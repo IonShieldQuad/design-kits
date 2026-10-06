@@ -1,0 +1,6 @@
+# Every file in this repo is generated or diffed by tools/build.py, which writes LF.
+# Without this, a CRLF checkout makes `build.py --check` report every generated file as
+# stale (on-disk CRLF vs regenerated LF) and the CI gate fails on a fresh clone.
+* text=auto eol=lf
+*.png binary
+*.webp binary
