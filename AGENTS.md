@@ -27,6 +27,7 @@ and read its spec.
 | [`cassette`](kits/cassette/DESIGN.md) | light · warm · retro · hardware · analogue | hardware, audio and device pages; anything that should feel like a physical panel rather than a screen |
 | [`sakura`](kits/sakura/DESIGN.md) | light · spring · floral · fresh · bright · colourful | spring campaigns, florals and lifestyle brands that want real colour |
 | [`gothic`](kits/gothic/DESIGN.md) | dark · bold · organic · editorial | music, subculture zines, nightlife, fashion/dark editorial |
+| [`retro-anime`](kits/retro-anime/DESIGN.md) | dark · retro · anime · neon · synthwave · city-pop | night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like 1987 |
 <!-- END KITS -->
 
 ## Rules

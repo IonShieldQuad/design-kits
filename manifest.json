@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 19,
+  "kit_count": 20,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -968,6 +968,47 @@
       "warnings": [
         "kit.json signature names unknown tokens: --gothic-ash, --gothic-rim, --gothic-blood, --gothic-vein"
       ]
+    },
+    {
+      "slug": "retro-anime",
+      "name": "Retro Anime",
+      "tagline": "80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun",
+      "description": "80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun.",
+      "index": "20",
+      "order": 125,
+      "mode": "dark",
+      "tags": [
+        "dark",
+        "retro",
+        "anime",
+        "neon",
+        "synthwave",
+        "city-pop"
+      ],
+      "fonts": "Audiowide · Rajdhani · Share Tech Mono",
+      "source": "derived from five reference illustrations (city-pop / 80s-anime / outrun sunset key art) supplied by the user; palette values are per-image median colour samples, not estimates",
+      "colors": {
+        "primary": "#ec4b8f",
+        "primary-hover": "#ff5fa2",
+        "primary-ink": "#1a0f2b",
+        "secondary": "#44a6d7",
+        "tertiary": "#ffb57b",
+        "neutral": "#19152b",
+        "surface": "#221a3a",
+        "surface-2": "#171129",
+        "text": "#f7ecff",
+        "text-muted": "#cbb8e4",
+        "success": "#45d6a4",
+        "warning": "#ffc46b",
+        "error": "#ff5f77"
+      },
+      "files": {
+        "design": "kits/retro-anime/DESIGN.md",
+        "tokens": "kits/retro-anime/tokens.css",
+        "lab": "kits/retro-anime/index.html",
+        "readme": "kits/retro-anime/README.md"
+      },
+      "warnings": []
     }
   ]
 }

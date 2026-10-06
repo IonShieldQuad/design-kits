@@ -1,0 +1,17 @@
+{
+  "name": "Retro Anime",
+  "tagline": "80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun",
+  "signature": [
+    "--retro-anime-sky",
+    "--retro-anime-sun",
+    "--retro-anime-grid",
+    "--retro-anime-chrome"
+  ],
+  "order": 125,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Audiowide&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap",
+  "fonts_label": "Audiowide · Rajdhani · Share Tech Mono",
+  "mode": "dark",
+  "source": "derived from five reference illustrations (city-pop / 80s-anime / outrun sunset key art) supplied by the user; palette values are per-image median colour samples, not estimates",
+  "tags": ["dark", "retro", "anime", "neon", "synthwave", "city-pop"],
+  "use_when": "night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like 1987"
+}
