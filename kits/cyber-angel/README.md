@@ -210,6 +210,24 @@ live in `tokens.css` and in prose, and no gradient appears in `colors:`.
   colour. A softer second grey would have been an invention, and it would have softened the rule
   that carries the design.
 
+## The panel construction — `kit.css`
+
+The Figma panel is a **construction**, not a value: a light underlayer plate behind a carbon layer,
+both chamfered on opposite corners and outlined in 1px black. Tokens carry colour, type, shape and
+depth; they cannot carry a *stacked* construction, so this kit is the first to ship a `kit.css`
+beside `tokens.css` (the build links it into this kit's lab automatically — see `docs/KIT-SPEC.md`).
+
+One thing worth knowing before editing it: **`--clip` is applied to the card itself, and `clip-path`
+clips descendants too**, so a pseudo-element offset *outside* the box is cut away before it can show.
+(It is not a `z-index` problem either — inside an `isolation: isolate` box a negative-z child paints
+*above* the element's own background.) The underlayer is therefore drawn *inside* the silhouette: a
+7px light band along the two edges the chamfer leaves intact, which reads as a second plate stepping
+out at the cut corner. The cyan wedge sits at the **top-right**, because the top-left triangle is
+precisely what `--clip` removes.
+
+If the literal offset plate is wanted later, that is a **lab change** — an unclipped wrapper element
+around `.card` — not a bigger `kit.css`.
+
 ## When to use
 
 Bright, confident, technological work: product launches, AI and vision pages, instruments and

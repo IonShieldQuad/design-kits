@@ -1,0 +1,105 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#f0a90c",
+        "primary-hover": "#d99400",
+        "primary-text": "#7d5200",
+        "primary-text-hover": "#5f3d00",
+        "on-primary": "#0f2136",
+        "secondary": "#3a9be0",
+        "tertiary": "#187a43",
+        "neutral": "#f3faff",
+        "bg-stop-1": "#eaf5ff",
+        "bg-stop-2": "#d6e9fc",
+        "bg-stop-3": "#ffecc6",
+        "bg-stop-4": "#ffdf9e",
+        "bg-stop-5": "#f9f0e1",
+        "bg-stop-6": "#f3faff",
+        "bg-2": "#f0f7ff",
+        "surface": "#fbfdff",
+        "surface-2": "#e9f2fd",
+        "overlay": "#0c203a6b",
+        "text": "#0f2136",
+        "text-muted": "#3a4c64",
+        "text-dim": "#4d5d72",
+        "text-invert": "#0f2136",
+        "accent-soft": "#f0a90c29",
+        "ok": "#187a43",
+        "warn": "#96631a",
+        "danger": "#c2352f",
+        "info": "#2f66c4",
+        "border": "#1a3a6624",
+        "border-strong": "#1a3a664d",
+        "focus-ring": "#1668bf",
+        "ramp-sky": "#8ecdf5",
+        "ramp-haze": "#bcdcf3",
+        "ramp-gold": "#f7b733",
+        "ramp-sun": "#f0a90c",
+        "leaf": "#38b26a"
+      },
+      "fontFamily": {
+        "display": [
+          "Fraunces"
+        ],
+        "heading": [
+          "Fraunces"
+        ],
+        "body": [
+          "Nunito Sans"
+        ],
+        "label": [
+          "DM Mono"
+        ],
+        "code": [
+          "DM Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.75rem",
+          {
+            "letterSpacing": "-0.015em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "400"
+          }
+        ],
+        "code": [
+          "0.8rem",
+          {}
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "12px",
+        "lg": "18px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.4rem",
+        "sm": "0.75rem",
+        "md": "1rem",
+        "lg": "2.25rem"
+      }
+    }
+  }
+}

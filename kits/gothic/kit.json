@@ -1,0 +1,19 @@
+{
+  "name": "Gothic",
+  "tagline": "Industrial starkness with thorns and roses growing through it.",
+  "use_when": "music, subculture zines, nightlife, fashion/dark editorial",
+  "order": 120,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Oswald:wght@500;600;700&family=Roboto+Mono:wght@400;500&display=swap",
+  "fonts_label": "Oswald · Barlow · Roboto Mono",
+  "mode": "dark",
+  "source": "original",
+  "tags": ["dark", "bold", "organic", "editorial"],
+  "signature": [
+    "--gothic-thorn",
+    "--gothic-rose",
+    "--gothic-ash",
+    "--gothic-rim",
+    "--gothic-blood",
+    "--gothic-vein"
+  ]
+}

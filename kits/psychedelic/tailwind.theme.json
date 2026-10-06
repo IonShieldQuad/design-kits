@@ -1,0 +1,100 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff6a00",
+        "secondary": "#5b1a8f",
+        "tertiary": "#e5198f",
+        "neutral": "#f6efdb",
+        "ink-acid": "#a8d400",
+        "ink-yellow": "#ffd21e",
+        "ink-edge": "#961478",
+        "bg-stop-1": "#fbf7ea",
+        "bg-stop-2": "#f5eeda",
+        "bg-stop-3": "#f1e7cc",
+        "bg-stop-4": "#faf5e8",
+        "bg-2": "#f6efdb",
+        "surface": "#fdfaf0",
+        "surface-2": "#f2e9d2",
+        "overlay": "#2a0a3e8c",
+        "text": "#2a0a3e",
+        "text-muted": "#5c2570",
+        "text-dim": "#6d457e",
+        "text-invert": "#2a0a3e",
+        "accent-ink": "#a83606",
+        "accent-ink-hover": "#8c2d03",
+        "accent-hover": "#e85d00",
+        "accent-soft": "#ff6a0029",
+        "ok": "#0d6f4c",
+        "warn": "#8a5500",
+        "danger": "#b81f24",
+        "info": "#2a63a3",
+        "border": "#96147875",
+        "border-strong": "#961478c7",
+        "focus-ring": "#5b1a8f"
+      },
+      "fontFamily": {
+        "display": [
+          "Bowlby One"
+        ],
+        "heading": [
+          "Bowlby One"
+        ],
+        "body": [
+          "DM Sans"
+        ],
+        "label": [
+          "Space Mono"
+        ],
+        "code": [
+          "Space Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.75rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "400"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "400"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "400"
+          }
+        ],
+        "code": [
+          "0.8rem",
+          {}
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "14px",
+        "lg": "22px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.4rem",
+        "sm": "0.75rem",
+        "md": "1rem",
+        "lg": "2.25rem"
+      }
+    }
+  }
+}

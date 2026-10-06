@@ -1,0 +1,12 @@
+{
+  "name": "Sakura",
+  "tagline": "A spring day: saturated blossom pink against fresh leaf green.",
+  "use_when": "spring campaigns, florals and lifestyle brands that want real colour",
+  "order": 115,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap",
+  "fonts_label": "Zen Kaku Gothic New · Karla · IBM Plex Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "spring", "floral", "fresh", "bright", "colourful"],
+  "signature": ["--sakura-petal", "--sakura-blossom", "--sakura-ramp", "--sakura-fresh"]
+}

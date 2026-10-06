@@ -1,0 +1,89 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#a4131f",
+        "primary-hover": "#c01726",
+        "primary-ink": "#efe9dd",
+        "primary-text": "#c9707a",
+        "primary-text-hover": "#dc8a8f",
+        "secondary": "#b8555f",
+        "tertiary": "#8d99a6",
+        "neutral": "#0a0b0d",
+        "surface": "#141519",
+        "surface-2": "#1c1d22",
+        "text": "#efe9dd",
+        "text-muted": "#a8a294",
+        "text-dim": "#8f8a7c",
+        "success": "#8aa05c",
+        "warning": "#c99a34",
+        "error": "#e4564f"
+      },
+      "fontFamily": {
+        "display": [
+          "Oswald"
+        ],
+        "heading": [
+          "Oswald"
+        ],
+        "body": [
+          "Barlow"
+        ],
+        "body-strong": [
+          "Barlow"
+        ],
+        "label": [
+          "Roboto Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.005em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "body-strong": [
+          "0.95rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.22em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "0px",
+        "md": "2px",
+        "lg": "3px",
+        "pill": "3px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "14px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

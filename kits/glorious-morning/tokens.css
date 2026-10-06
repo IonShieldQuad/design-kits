@@ -1,0 +1,141 @@
+/* ============================================================================
+   design-kits · glorious-morning
+   ----------------------------------------------------------------------------
+   FIRST LIGHT. A clear sky just after sunrise — awake, optimistic, energetic.
+
+   This is the third member of the daylight family and it is defined by TIME OF
+   DAY and ENERGY, not by hue:
+
+     zen-garden      grey, overcast, quiet, static
+     summer-sunset   dusk, synthwave, nostalgic, warm-dark
+     glorious-morning  first light, clear sky, awake, energetic
+
+   So the material is AIR AND LIGHT, never paper: the ground is a very light
+   sky tint rather than white, the lines are faint cool hairlines (no black
+   rules), there are no chamfers and nothing is frosted (--blur: none — this is
+   deliberately NOT glass). What makes it a morning is the SIGNATURE: a sunrise
+   ramp from cool sky blue to warm gold, a light-ray wash, a sun bloom low in
+   the first screen and a dew sheen that carries the one green.
+
+   The warm gold is the single action colour, because the sun arriving is
+   exactly what the kit is about. Gold is a great button fill and a terrible
+   small label, so gold-as-text is a separate, much darker bronze
+   (--accent-ink); see the note next to it.
+
+   Fonts: Fraunces (display) · Nunito Sans (body) · DM Mono (labels)
+   Contract: docs/KIT-SPEC.md v1 — every required name is present below.
+   ========================================================================== */
+:root{
+  /* -- surfaces ---------------------------------------------------------- */
+  /* --bg is a GRADIENT and therefore uses PX stops, not %: the body's gradient box is the
+     whole document, so a % ramp smears these six stops over thousands of pixels and the
+     first screen shows only the first one — a flat pale plate with no dawn in it. With px
+     stops the whole sequence (high clear sky → warm haze → the GOLD DAWN BAND → settling →
+     light air) lands inside the first screen, which is the entire point of the kit.
+
+     Contrast is checked against the DARKEST stop, #ffdf9e (the dawn band). --bg-2 is the
+     solid stand-in for exports and for tools that cannot parse a gradient token. */
+  --bg:            linear-gradient(180deg,
+                     #eaf5ff 0px, #d6e9fc 180px, #ffecc6 330px,
+                     #ffdf9e 420px, #f9f0e1 560px, #f3faff 760px);
+  --bg-2:          #f0f7ff;                 /* solid stop: masthead chrome, exports */
+  --surface:       #fbfdff;                 /* cards — crisp, a hair cool, not cream */
+  --surface-2:     #e9f2fd;                 /* nested panels, inputs — settled sky */
+  --overlay:       rgba(12,32,58,.42);      /* modal scrim: deep sky, not black */
+
+  /* -- text — DEEP COOL INK, never warm brown and never lightened for airiness --- */
+  --text:          #0f2136;                 /* 12.6:1 on the dawn band; 16.0:1 on --surface */
+  --text-muted:    #3a4c64;                 /* 8.6:1 on --surface */
+  --text-dim:      #4d5d72;                 /* 5.2:1 on the dawn band, 6.6:1 on --surface —
+                                               the dawn band is the binding constraint, so dim
+                                               cannot be a pale grey here */
+  --text-invert:   #0f2136;                 /* ink ON gold: 8.1:1. The sun is dark-on-gold. */
+
+  /* -- brand ------------------------------------------------------------- */
+  /* The one action colour. 41° hue against summer-sunset's 25° orange — gold, not tangerine. */
+  --accent:        #f0a90c;                 /* SUNRISE GOLD — the sun arriving */
+  --accent-hover:  #d99400;                 /* deeper gold: the button settles into the horizon */
+  --accent-2:      #3a9be0;                 /* CLEAR SKY BLUE — the cool counterweight, and
+                                               the cool end of the sunrise ramp */
+  --accent-soft:   rgba(240,169,12,.16);    /* 16% GOLD tint — backs badge/nav fills where the
+                                               text is --accent-ink, so it must stay gold */
+
+  /* -- accent as TEXT (the classic gold trap) ---------------------------- */
+  /* #f0a90c as a small label on the ground is about 1.9:1 — invisible. Fill and text are
+     different jobs, so accent-as-text is a separate dark bronze of the same family. */
+  --accent-ink:       #7d5200;              /* 5.3:1 on the dawn band, 6.7:1 on --surface,
+                                               and 6.0:1 on the real composited badge tint */
+  --accent-ink-hover: #5f3d00;              /* the hover step for accent TEXT — deeper, not
+                                               lighter, for the same reason --accent-hover is */
+
+  /* -- status (off the brand hues on purpose) ---------------------------- */
+  --ok:            #187a43;                 /* FRESH LEAF GREEN — the third colour, structural;
+                                               4.8:1 on --surface-2 */
+  --warn:          #96631a;                 /* deep ochre, held clearly away from the gold action */
+  --danger:        #c2352f;                 /* true red, 4.8:1 on --surface-2 */
+  --info:          #2f66c4;                 /* deeper sky blue — a status, not the --accent-2 counterweight */
+
+  /* -- lines — FAINT COOL HAIRLINES, no black rules anywhere -------------- */
+  --border:        rgba(26,58,102,.14);     /* the default hairline: air, drawn once */
+  --border-strong: rgba(26,58,102,.30);     /* input rims, emphasised dividers */
+  --border-w:      1px;                     /* one hairline — this kit has no graphic line work */
+  --focus-ring:    #1668bf;                 /* 4.3:1 on the dawn band — the keyboard ring is
+                                               sky blue so focus never looks like the gold hover */
+
+  /* -- shape — open and generous, never notched -------------------------- */
+  --radius-sm:      8px;
+  --radius-md:     12px;
+  --radius-lg:     18px;
+  --radius-pill:  999px;
+  --cut:            0px;                    /* NO chamfers. Cyber-angel cuts corners; this kit is air. */
+
+  /* -- type -------------------------------------------------------------- */
+  /* Fraunces (display) — a warm humanist soft-serif with an optical-size axis: it reads like a
+     hand-set good-morning card, not a spec sheet. Nunito Sans (body) — a rounded humanist sans
+     that keeps the page friendly rather than clinical. DM Mono (labels) — a quiet, warm-ish
+     terminal voice for eyebrows, badges and code. */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body:    "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .12em;
+  --tracking-display: -.015em;              /* a soft serif wants only a whisper of tightening */
+
+  /* -- depth — light, wide and warm; the sun is a glow, not a drop --------- */
+  --shadow-1:  0 2px 4px rgba(24,54,96,.05), 0 14px 30px -16px rgba(24,54,96,.18);
+  --shadow-2:  0 4px 8px rgba(24,54,96,.06), 0 30px 60px -28px rgba(24,54,96,.28);
+  --glow:      0 10px 26px -10px rgba(240,169,12,.50);   /* the gold button casts a sunlit halo */
+  --blur:      none;                        /* NOT glass — nothing is frosted in morning air */
+
+  /* -- motion — awake: a touch quicker than the default, eased out -------- */
+  --dur:   .18s;
+  --ease:  cubic-bezier(.2,.8,.25,1);
+
+  /* -- signature: the kit's own extras (declared in kit.json) ------------- */
+  /* The cold-to-warm sunrise ramp. PX stops again: it is laid across heroes, bars and media,
+     and a % ramp would show only its first (blue) stop in a short element. */
+  --glorious-morning-sunrise: linear-gradient(90deg,
+                     #8ecdf5 0px, #bcdcf3 220px, #ffecc6 520px, #f7b733 720px, #f0a90c 900px);
+  --glorious-morning-sky:     #d6e9fc;      /* high clear sky — alias of the mid --bg stop */
+  --glorious-morning-dawn:    #ffdf9e;      /* the dawn band — alias of the worst --bg stop */
+  /* A light-ray wash, the shafts that only show at first light.
+     Warm-tinted rather than pure white: these are overlays, and a subtle white wash tuned for a
+     mid-tone sky disappears completely over the near-white tile base (a review read them as
+     "nearly blank swatches"). Warm reads on cool near-white. */
+  --glorious-morning-ray:     repeating-conic-gradient(from 198deg at 6% -12%,
+                    rgba(255,246,222,.88) 0deg 5deg,
+                    rgba(255,206,120,.46) 5deg 11deg,
+                    rgba(255,255,255,0)   11deg 24deg);
+  /* The sun itself, low in the first screen — pairs with the masthead's --accent-soft wash. */
+  --glorious-morning-sun:     radial-gradient(circle at 14% -4%,
+                    rgba(255,178,44,.82) 0%, rgba(255,206,110,.42) 40%, rgba(255,255,255,0) 72%);
+  /* Dew: the fresh highlight. It is the only place the leaf green appears as material.
+     Built as a REAL droplet — a specular core over a cool wash with a green underside — because
+     as a flat near-white tint it was the one tile that still read as a blank swatch next to the
+     stronger sunrise/leaf tiles. Two layers: highlight, then the colour beneath. */
+  --glorious-morning-dew: radial-gradient(circle at 32% 28%,
+                    rgba(255,255,255,.98) 0%, rgba(255,255,255,.55) 12%, rgba(255,255,255,0) 34%),
+                    linear-gradient(158deg,
+                    rgba(214,233,252,.90) 0%, rgba(122,205,160,.45) 58%, rgba(24,122,67,.62) 100%);
+  --glorious-morning-leaf:    #38b26a;      /* the bright leaf; --ok is its darker, readable step */
+  --glorious-morning-halo:    0 0 42px -6px rgba(240,169,12,.72);  /* a soft sunlit halo */
+}

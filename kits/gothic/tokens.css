@@ -1,0 +1,119 @@
+/* ============================================================================
+   design-kits · gothic
+   ----------------------------------------------------------------------------
+   Industrial starkness with something alive growing through it. A near-black
+   ground (#0a0b0d, neutral-cool), BONE white text (#efe9dd — not pure white:
+   it reads as bone/ash), and ONE deep dry blood red (#a4131f).
+
+   The red is deliberately DEEP, not neon: #a4131f sits near 2.5:1 against the
+   ground as a fill and carries bone-white at 6.45:1, so the accent is a stain
+   rather than a lamp. The text-safe member of the same family is welded
+   rose (#c9707a) and lands in --accent-ink, which is exactly the rose half of
+   the two motifs.
+
+   Everything hard: 0-3px radii, 1px bone hairlines, no chamfer (--cut: 0px;
+   the corner cut is cyber-angel's signature and collides).
+
+   The kit's ONLY organic material is the two motifs, shipped as --gothic-thorn
+   (a barbed trellis of angled barbs) and --gothic-rose (nested radial petal
+   rings). They are PATTERN, never ornament smeared over the page: substrate
+   gradients you paint, not icons you scatter. Nothing else in this file grows.
+
+   Type: Oswald (heavy condensed display) · Barlow (body) · Roboto Mono (labels)
+
+   Contract: docs/KIT-SPEC.md v1. Every required name is present below,
+   including --border-w.
+   ========================================================================== */
+:root{
+  /* -- surfaces: near-black with a neutral-cool cast --------------------- */
+  --bg:            #0a0b0d;                 /* the ground — coal, faintly cool */
+  --bg-2:          #101114;                 /* masthead / gradient stop */
+  --surface:       #141519;                 /* panel: one step up, still coal */
+  --surface-2:     #1c1d22;                 /* inset: the lightest dark we own */
+  --overlay:       rgba(4,4,6,.80);         /* modal scrim */
+
+  /* -- text: bone and ash, never pure white ------------------------------ */
+  --text:          #efe9dd;                 /* 16.3:1 on --bg */
+  --text-muted:    #a8a294;                 /* 7.2:1 on --surface */
+  --text-dim:      #8f8a7c;                 /* 5.7 / 5.3 / 4.9 on bg / surface / surface-2 */
+  --text-invert:   #efe9dd;                 /* bone ON the blood plate: 6.45:1 —
+                                               deep red takes light ink, not dark ink */
+
+  /* -- brand: one blood red, and its rose ------------------------------- */
+  --accent:        #a4131f;                 /* deep dry blood — the action colour */
+  --accent-hover:  #c01726;                 /* the same red, arterial on hover */
+  --accent-2:      #b8555f;                 /* welded rose — the rose motif's own red */
+  --accent-soft:   rgba(164,19,31,.16);     /* 16% blood tint, derived from --accent */
+
+  /* -- accent as TEXT (the red is far too deep to read as small type) ---- */
+  --accent-ink:        #c9707a;             /* welded rose: 5.7:1 on --bg, 4.6:1 on
+                                               accent-soft over --surface-2 */
+  --accent-ink-hover:  #dc8a8f;             /* 7.6:1 on --bg — the rose lifts, never pales */
+
+  /* -- status: dried, saturated but dusty. None of these are neon ------- */
+  --ok:            #8aa05c;                 /* dried moss */
+  --warn:          #c99a34;                 /* dried amber */
+  --danger:        #e4564f;                 /* vermilion fault — hotter and lighter
+                                               than the accent so "delete" never
+                                               reads as the action */
+  --info:          #8d99a6;                 /* cold ash blue: data, telemetry */
+
+  /* -- lines: bone hairlines, translucent so the ground shows through --- */
+  --border:        rgba(239,233,221,.14);   /* the bone hairline */
+  --border-strong: rgba(239,233,221,.32);   /* input rim / emphasised rule */
+  --border-w:      1px;                     /* hairline: industrial stencilling, not
+                                               brutalist slabs */
+  --focus-ring:    #efe9dd;                 /* bone. The ring must never be mistakable
+                                               for the red action or its hover */
+
+  /* -- shape: sharp. 0-3px, no chamfer ---------------------------------- */
+  --radius-sm:     0px;                     /* a true right angle */
+  --radius-md:     2px;
+  --radius-lg:     3px;
+  --radius-pill:   3px;                     /* a badge here is a stamped plate, not a
+                                               lozenge — the token keeps its name */
+  --cut:           0px;                     /* NO clip-path. The corner cut is
+                                               cyber-angel's signature */
+
+  /* -- type -------------------------------------------------------------- */
+  --font-display:  "Oswald", "Arial Narrow", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Barlow", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Roboto Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .22em;                   /* stencilled wide, the industrial label */
+  --tracking-display: -0.005em;             /* Oswald is already drawn condensed;
+                                               more negative and the counters touch */
+
+  /* -- depth: hard shadow under, a rim light on top --------------------– */
+  --shadow-1:      inset 0 1px 0 rgba(239,233,221,.05), 0 1px 0 rgba(0,0,0,.90),
+                   0 14px 30px -22px rgba(0,0,0,.95);
+  --shadow-2:      inset 0 1px 0 rgba(239,233,221,.08), 0 22px 48px -24px rgba(0,0,0,.98),
+                   0 0 0 1px rgba(164,19,31,.20);
+  /* --glow is a shadow the blood casts, NOT a bloom. Cyberpunk owns the neon halo. */
+  --glow:          0 0 0 1px rgba(164,19,31,.50), 0 0 16px -6px rgba(164,19,31,.55);
+  --blur:          none;                    /* coal is not frosted glass */
+
+  /* -- motion: a snap, not a glide -------------------------------------- */
+  --dur:           .16s;
+  --ease:          cubic-bezier(.2,.7,.3,1);
+
+  /* -- signature: TWO motifs and their two supporting textures ---------- */
+  /* 1. THORN — a barbed fence. Bone canes every 34px, a blood thorn line
+        crossing them on the same 34px period so every cane grows exactly one
+        barb per cycle, and a hairline of bone barb-hairs between the thorns.
+        34px is chosen for legibility at chip size: 26px merges into tartan,
+        42px dissolves into disconnected scratches. */
+  --gothic-thorn:
+    /* A TOKEN CAN HOLD DRAWN ARTWORK. Gradients cannot express an organic form: three attempts
+       at a vine from repeating-linear-gradients read as plaid, tartan, then fencing — a sprig
+       needs a curve and a spur at an angle to the stem. So the motif is an inline SVG, tiled.
+       Base64 rather than percent-encoding: a hand-encoded data URI double-encodes '#' and fails
+       SILENTLY (the tile renders blank, with no console error). */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc3NCcgaGVpZ2h0PSc3NCcgdmlld0JveD0nMCAwIDc0IDc0Jz4gPGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWZlOWRkJyBzdHJva2Utb3BhY2l0eT0nMC42Micgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNOCA3MCBDMTYgNTQgMTAgNDAgMjAgMjYgQzI2IDE3IDI0IDEwIDMwIDQnLz48cGF0aCBkPSdNMjAgMjYgQzMwIDI0IDM4IDE4IDQ0IDEwJy8+PC9nPiA8ZyBmaWxsPSdub25lJyBzdHJva2U9JyNhNDEzMWYnIHN0cm9rZS13aWR0aD0nMi44JyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNMTQgNDQgTDI0IDQwJy8+PHBhdGggZD0nTTE4IDM0IEwyNyAyOScvPjxwYXRoIGQ9J00yNSAxNiBMMzQgMTcnLz48L2c+IDxnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VmZTlkZCcgc3Ryb2tlLW9wYWNpdHk9JzAuMzQnIHN0cm9rZS13aWR0aD0nMS40JyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNMTEgNTYgTDIwIDUzJy8+PHBhdGggZD0nTTI4IDIyIEwzNyAyNCcvPjwvZz48L3N2Zz4=") 0 0 / 74px 74px repeat,
+    linear-gradient(150deg, #131418 0%, #0a0b0d 100%);
+
+  --gothic-rose:
+    /* The same reasoning: nested radial rings ARE a bullseye (four rounds of tuning uneven
+       petals did not fix it, because rings have no petal DIVISIONS), and a bright pinprick core
+       reads as an eye. A drawn bloom — an asymmetric spiralling line — reads as a rose. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgdmlld0JveD0nMCAwIDgwIDgwJz4gPGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjYzk3MDdhJyBzdHJva2Utd2lkdGg9JzIuNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz4gPHBhdGggZD0nTTQwIDEyIEM1OCAxMiA2OSAyNSA2OSA0MCBDNjkgNjAgNTMgNzAgMzkgNzAgQzI0IDcwIDEzIDU4IDEzIDQzIEMxMyAzMCAyMyAyMSAzNSAyMSBDNDUgMjEgNTMgMjkgNTMgMzkgQzUzIDQ5IDQ1IDU2IDM3IDU2IEMzMSA1NiAyNiA1MSAyNiA0NSBDMjYgNDAgMzAgMzcgMzQgMzcnLz4gPC9nPjxjaXJjbGUgY3g9JzM0JyBjeT0nNDQnIHI9JzMnIGZpbGw9JyM4ZjE0MjAnLz48L3N2Zz4=") center / 92px 92px no-repeat,
+    radial-gradient(circle at 50% 46%, #6d0d15 0%, #2a060a 72%);

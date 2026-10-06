@@ -181,12 +181,16 @@ section.block:first-of-type { border-top: 0; }
   border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
   border-radius: var(--radius-md, 8px); outline: none;
   clip-path: var(--clip, none);
+  /* opt-in recess: a hardware/panel kit sets --input-inset so fields read as milled into the
+     surface rather than laid on top of it. Without it, inputs are the flattest thing on the page
+     and break the illusion a physical kit is going for. */
+  box-shadow: var(--input-inset, none);
   transition: border-color var(--dur, .16s) var(--ease, ease), box-shadow var(--dur, .16s) var(--ease, ease);
 }
 .input::placeholder, .textarea::placeholder { color: var(--text-on-surface-2-muted, var(--text-dim, rgba(233,237,245,.4))); }
 .input:focus, .select:focus, .textarea:focus {
   border-color: var(--accent, #6aa2ff);
-  box-shadow: 0 0 0 3px var(--accent-soft, rgba(106,162,255,.18));
+  box-shadow: var(--input-inset, none), 0 0 0 3px var(--accent-soft, rgba(106,162,255,.18));
 }
 .textarea { min-height: 88px; resize: vertical; }
 .field.is-invalid .input { border-color: var(--danger, #ff6b6b); }

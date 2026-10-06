@@ -1,0 +1,21 @@
+{
+  "name": "Cassette",
+  "tagline": "Warm hi-fi hardware — beige plastic, brushed aluminium, one amber LED",
+  "signature": [
+    "--cassette-brushed",
+    "--cassette-aluminium",
+    "--cassette-grille",
+    "--cassette-vu-scale",
+    "--cassette-knurl",
+    "--cassette-led-glow",
+    "--cassette-plastic-sheen",
+    "--cassette-window"
+  ],
+  "order": 110,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600;700&display=swap",
+  "fonts_label": "Overpass · Overpass Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "warm", "retro", "hardware", "analogue"],
+  "use_when": "hardware, audio and device pages; anything that should feel like a physical panel rather than a screen"
+}

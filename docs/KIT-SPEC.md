@@ -12,6 +12,7 @@ HTML to look good, the token set is underspecified — fix the tokens.
 | `tokens.css` | you | `:root { ... }` defining the token contract below |
 | `kit.json` | you | presentation metadata for the gallery (see below) |
 | `README.md` | you | stance, key choices, trade-offs, when to use |
+| `kit.css` | you, **optional** | the escape hatch — see below. Absent for most kits |
 | `index.html` | generated | component lab — `python tools/build.py` |
 | `tokens.json`, `tailwind.theme.json`, `theme.css` | generated | exports — `python tools/build.py` |
 
@@ -84,6 +85,71 @@ These are not required, but the shared lab honours them when present:
 Three-tier stacks (dark canvas → light card → dark inset) are what these exist for; without
 them the lab can only express one text colour per page.
 
+## `kit.css` — the escape hatch (optional)
+
+The token contract carries a design's *colours, type, shape and depth*. It cannot carry a
+**construction**: a panel built from a white underlayer plus a clipped layer on top, a component
+that needs its own pseudo-elements, bespoke patterning. When a kit genuinely needs that, it ships
+`kit.css` beside `tokens.css` and the build links it into that kit's lab automatically.
+
+Rules for `kit.css`:
+
+1. It may only touch the shared lab's **component selectors** (`.card`, `.btn`, `.input`, …)
+   using the kit's own tokens — no inventions the lab has no markup for.
+2. It must never hardcode a colour. Go through `var(--token)` like everything else.
+3. It must be small enough to explain in a paragraph, and the kit README must say what it does
+   and why the tokens alone were insufficient.
+4. It is per-kit. If two kits need the same construction, the *lab* or the contract is missing
+   something — fix that instead of copying the stylesheet.
+
+A worked example: a two-layer panel needs `position: relative` plus a `::before` offset underlay,
+which no colour token can express:
+
+```css
+.card { position: relative; isolation: isolate; }
+.card::before {
+  content: ""; position: absolute; inset: 0; transform: translate(4px, 4px);
+  background: var(--<kit>-canvas); clip-path: var(--clip); z-index: -1;
+}
+```
+
+**The boundary:** bespoke vector artwork is not a theme. If a design's identity lives in custom
+SVG geometry, that is a front-end, not a reusable kit — ship the SVG under `assets/` and let
+`kit.css` place it, but do not claim the theme carries it. A kit is judged on whether it
+*identifies* a design at 200×120, not on reproducing one screen pixel-for-pixel.
+
+## A token can hold drawn artwork (when gradients genuinely cannot)
+
+A *motif* is a different thing from bespoke artwork: it is part of the skin, and a token may
+carry it as an inline SVG data URI. Reach for this when a form is organic and gradients keep
+failing — a barbed vine built from `repeating-linear-gradient` reads as plaid, tartan or fencing
+because a sprig needs a curve and a spur at an angle to the stem; a rose built from nested
+radial rings reads as a bullseye, and no amount of uneven petal placement fixes it, because
+rings have no petal *divisions*.
+
+```css
+--gothic-rose:
+  /* drawn bloom: an asymmetric spiralling line reads as a rose where rings cannot */
+  url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0…") center / 92px 92px no-repeat,
+  radial-gradient(circle at 50% 46%, #6d0d15 0%, #2a060a 72%);
+```
+
+Rules that save real time:
+
+1. **Use base64, not hand-percent-encoding.** A manually encoded URI is easy to double-encode
+   (`#` → `%23` in the source, then `%` → `%25`), and it then fails *silently* — the tile renders
+   blank with no console error in the tile, just a `net::ERR_INVALID_URL` request failure.
+2. **A data URI contains a semicolon** (`…;base64,`), so any tooling that parses `tokens.css`
+   with a naive `[^;]+` regex will truncate the value at `;base64` and produce a broken
+   declaration. Parsers must track quote state and paren depth. (The reference `build.py`
+   does; check yours.)
+3. **Give it a base layer.** A drawn motif is usually line art, so pair it with a colour or
+   gradient layer beneath, or the tile shows only the kit's flat surface.
+4. **Don't wrap a data URI in `url()` for an HTML `src`** — `url(...)` is CSS syntax. That
+   mistake looks exactly like a rendering bug and wastes a debugging cycle.
+5. Scale it explicitly: `center / 92px 92px no-repeat` for a single mark, `0 0 / 74px 74px repeat`
+   for a tiled field.
+
 ## kit.json
 
 ```json
@@ -149,6 +215,12 @@ them the lab can only express one text colour per page.
   sentence, it isn't a kit — it's a screenshot.
 - **Never invent a value you can derive.** If a colour is a 12% tint of the accent, express
   it as `rgba(...)`/`color-mix()` — say so in the README.
+- **Every signature token must be legible at 168×72 on the tile base (`--surface-2`).** This is
+  the most-repeated failure in this library: an overlay tuned for subtlety over a mid-tone ground
+  (a mist, a light ray, a sheen, a white wash) renders as an empty chip over a near-white or dark
+  tile, so the kit's whole premise looks like nothing. Check the tiles, not just the page — and if
+  the token is an overlay, give it enough presence (or a second layer) to survive on its own. Two
+  motifs is plenty; a third weak one dilutes the two strong ones.
 
 ## Self-check before you call it done
 

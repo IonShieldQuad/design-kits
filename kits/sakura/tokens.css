@@ -1,0 +1,199 @@
+/* ============================================================================
+   design-kits · sakura                                          contract v1
+   ----------------------------------------------------------------------------
+   A SPRING DAY. Blossom pink with fresh leaf green, light and cheerful, more
+   colour than pastel.
+
+   NOT a quiet petal-drift — a spring day. Two colours carry it, and both are
+   held at visible saturation: a blossom pink that DEEPENS into a rose (never
+   lightens into baby-pink) and a living leaf green. The failure mode on both
+   sides of it is the thing this kit is built to avoid — go too pale and it is
+   generic pastel (that is what `glass` already is), pile on the pink alone and
+   it is a nursery. So:
+
+     · PINK DRIVES ACTION.  Sakura is the blossom, and the one saturated object
+       on screen is that blossom: primary buttons, the toggle, the check, the
+       tint behind active nav. Pink as a FILL is the identity.
+     · GREEN IS THE COUNTERWEIGHT, not a swatch. It is a fresh leaf green that
+       appears in real UI: the focus ring, the media/avatar/progress gradients,
+       the light half of the spring ramp and the scatter. Pink against LIVING
+       GREEN is the season; pink alone is a cliché.
+     · INK IS DEEP PLUM.  A pink body text on a pink ground is the other failure;
+       the ink is a warm plum-black, and the pink that works as a button FILL is
+       far too light as a small LABEL, so text-pink ships separately as
+       --accent-ink (a much deeper rose).
+
+   The ground is a real gradient with a faint warm-cool shift — cool sky at the
+   top of the first screen, warm petal below it, a leaf tint lower down — never
+   pure white (sterile) and never grey (a wet day, and that is zen-garden).
+   Stops are in PX, not %: the body gradient box is the whole document height,
+   so a 0-100% ramp smears the wash over thousands of pixels and the viewport
+   reads flat. See README.md for the worst-case-stop contrast maths.
+
+   Depth is airy but NOT glassy: soft layered shadows, --blur: none. Frosted
+   translucency is glass's territory and this kit deliberately does not go there.
+
+   Fonts: Zen Kaku Gothic New (display) · Karla (body) · IBM Plex Mono (labels)
+   ========================================================================== */
+:root{
+  /* ---------------------------------------------------------------- surfaces */
+  /* Warm-cool shift: sky (cool) → petal (warm) → leaf (fresh) → petal → petal
+     end. PX stops so the wash lands in the first screen at any page length.
+     Darkest stop is #f9eef3 and that is the value all contrast was proved
+     against (worst case, not the flattering lightest stop). */
+  --bg:            linear-gradient(160deg,
+                     #f1f6fb 0px,
+                     #fdf1f6 640px,
+                     #f3f8ee 1280px,
+                     #fdf3f6 2000px,
+                     #f9eef3 2900px);
+  --bg-2:          #fdf3f7;                   /* petal: masthead top stop + solid
+                                                 stand-in for exports */
+  --surface:       #fffbfd;                   /* cards — warm white lifted above
+                                                 the tinted ground (not the ground
+                                                 colour, and not grey) */
+  --surface-2:     #f8eef3;                   /* nested panels, inputs — the petal
+                                                 tint, settled below the card */
+  --overlay:       rgba(58, 36, 56, .38);     /* modal scrim: plum, never black */
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #3a2438;   /* DEEP PLUM — 12.5:1 on the darkest ground stop */
+  --text-muted:    #5e4557;   /* secondary reading ink — 8.3:1 on --surface */
+  --text-dim:      #6d5165;   /* captions/placeholders — 6.2:1 on the darkest
+                                 ground stop, 6.8:1 on --surface */
+  --text-invert:   #ffffff;   /* 5.2:1 on --accent (saturated pink is deep
+                                 enough for white, unlike a pastel) */
+
+  /* ------------------------------------------------------------------ brand */
+  /* One action colour (pink), one counterweight (green). That is the palette;
+     the cream in --sakura-ramp is a ramp midpoint, not a third voice. */
+  --accent:        #c8325f;                 /* BLOSSOM PINK — the action FILL.
+                                               Saturated, and deep enough that
+                                               white on it clears 4.5:1. */
+  --accent-hover:  #b02651;                 /* pressed: one step deeper, the
+                                               blossom bruising, never glowing */
+  --accent-ink:    #a81d4c;                 /* pink AS TEXT (links, eyebrow,
+                                               active nav, secondary-button
+                                               label, inline code). The fill
+                                               colour is only 2.7:1 as a small
+                                               label, so text-pink is its own
+                                               much deeper rose. */
+  --accent-ink-hover: #8d1540;              /* the hover step for pink text */
+  --accent-2:      #2e8339;                 /* FRESH LEAF GREEN — the
+                                               counterweight. Gradients, status
+                                               bar, avatar, focus. Deep enough
+                                               for white type on the avatar
+                                               wash. */
+  --accent-soft:   rgba(200, 50, 95, .10);  /* 10% blossom tint: focus halos,
+                                               active nav, badge-accent */
+
+  /* ----------------------------------------------------------------- status */
+  /* Off the blossom/leaf pair so a status never reads as decoration, and held
+     one step deeper so every one clears 4.5:1 on both panel surfaces. */
+  --ok:            #177040;                 /* deeper emerald — distinct from
+                                               the fresh leaf green */
+  --warn:          #8f5c00;                 /* pollen ochre */
+  --danger:        #b3261e;                 /* brick red, clearly not the pink */
+  --info:          #2b6aa8;                 /* the sky from the ground, inked */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        #ecd6e0;                 /* petal hairline */
+  --border-strong: #d9b9c8;                 /* input rims, emphasised dividers */
+  --border-w:      1px;                     /* a spring day is drawn in light
+                                               lines, not in weight */
+  --focus-ring:    #2f8340;                 /* FRESH GREEN focus — the leaf is
+                                               in real UI, and it can never be
+                                               confused with the pink action */
+
+  /* ------------------------------------------------------------------ shape */
+  /* Gently rounded, a little softer than the library default: a blossom has no
+     corners. Nothing is cut. */
+  --radius-sm:      10px;
+  --radius-md:      14px;
+  --radius-lg:      20px;
+  --radius-pill:   999px;
+  --cut:            0px;                    /* this kit rounds, it never cuts */
+
+  /* ------------------------------------------------------------------- type */
+  /* Zen Kaku Gothic New leads --font-display: a Japanese-designed gothic whose
+     light, open letterforms carry the airy cheer of the season and tie the type
+     to the same place the blossom does. Karla keeps the body plain so the
+     display face is the only voice with a spring in it. */
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, -apple-system, sans-serif;
+  --font-body:    "Karla", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .12em;                /* light and open, not shouted */
+  --tracking-display: -.01em;               /* a gothic wants only a touch */
+
+  /* ------------------------------------------------------------------ depth */
+  /* Airy, not glassy. Two soft shadow layers per step at low opacity plus a
+     light top edge — enough to lift a card off the tint, never a bloom. */
+  --shadow-1:  0 2px 4px rgba(58, 36, 56, .06), 0 12px 26px -14px rgba(58, 36, 56, .20);
+  --shadow-2:  0 4px 8px rgba(58, 36, 56, .07), 0 26px 48px -22px rgba(58, 36, 56, .30);
+  --glow:      0 10px 22px -10px rgba(200, 50, 95, .42);   /* blossom shadow under
+                                                              the primary button —
+                                                              a lift, not a halo */
+  --blur:      none;                        /* airy is not frosted; glass owns that */
+
+  /* ----------------------------------------------------------------- motion */
+  /* Brighter than the default and eased out with a hint of bounce: spring is
+     movement, and a snap is the one thing a cheerful kit should not do. */
+  --dur:   .2s;
+  --ease:  cubic-bezier(.3, 1.06, .45, 1);
+
+  /* --------------------------------------------------------- kit signature -- */
+  /* The spring extras. Declared in kit.json `signature` so the lab renders them. */
+
+  /* PETAL SCATTER — dots at varying radii. Two things matter: (1) the radii
+     are deliberately unequal (5 / 3.5 / 4.5 / 6 / 3 / 4px) so the scatter never
+     reads as a grid, and (2) roughly a third of the dots are LEAF GREEN, not
+     pink — a pink-and-pink scatter is a wallpaper, pink-and-leaf is a season.
+     It reads surprisingly well at chip and thumbnail size, which is the whole
+     reason it ships. */
+  --sakura-petal: radial-gradient(circle at 18% 26%, rgba(200, 50, 95, .22) 0 5px, transparent 6px),
+                  radial-gradient(circle at 63% 14%, rgba(200, 50, 95, .16) 0 3.5px, transparent 4.5px),
+                  radial-gradient(circle at 86% 58%, rgba(46, 131, 57, .20) 0 4.5px, transparent 5.5px),
+                  radial-gradient(circle at 38% 72%, rgba(200, 50, 95, .14) 0 6px, transparent 7px),
+                  radial-gradient(circle at 72% 88%, rgba(46, 131, 57, .15) 0 3px, transparent 4px),
+                  radial-gradient(circle at 8% 60%, rgba(200, 50, 95, .12) 0 4px, transparent 5px);
+
+  /* FIVE-PETAL BLOSSOM — five ellipses on a 72° ring around a deep-pink heart.
+     Petal centres sit at (50,22) (76,42) (66,74) (34,74) (24,42) — a real ring,
+     not a cross — alternating two pinks so the motif keeps a light and a shadow
+     side. The centre is --accent so the blossom is the action colour in
+     miniature. */
+  --sakura-blossom: radial-gradient(ellipse 6px 8px at 50% 22%, #f7a9c5 0 60%, transparent 63%),
+                    radial-gradient(ellipse 5px 8px at 76% 42%, #f29cbc 0 60%, transparent 63%),
+                    radial-gradient(ellipse 6px 8px at 66% 74%, #f7a9c5 0 60%, transparent 63%),
+                    radial-gradient(ellipse 6px 8px at 34% 74%, #f29cbc 0 60%, transparent 63%),
+                    radial-gradient(ellipse 5px 8px at 24% 42%, #f7a9c5 0 60%, transparent 63%),
+                    radial-gradient(circle at 50% 50%, #c8325f 0 3px, transparent 3.6px);
+
+  /* SPRING RAMP — blossom → cream → leaf, the season in one strip. PX stops:
+       deep pink 0 → light pink 90 → CREAM 170 → light leaf 250 → leaf 320 → deep
+       leaf 420. The cream midpoint is what makes the pink and the green read as
+       ONE ramp instead of two accents meeting. */
+  --sakura-ramp: linear-gradient(90deg,
+                   #c8325f 0px,
+                   #f7a9c5 90px,
+                   #fdf1f6 170px,
+                   #dff0c8 250px,
+                   #7ac06a 320px,
+                   #2e8339 420px);
+
+  /* FRESH HIGHLIGHT — a morning sheen for a page top or a hero plate: cool
+     white, then the leaf tint, then a petal blush, dissolving to nothing. */
+  --sakura-fresh: linear-gradient(115deg,
+                   rgba(255, 255, 255, .88) 0px,
+                   rgba(223, 240, 200, .38) 130px,
+                   rgba(247, 169, 197, .30) 250px,
+                   rgba(255, 255, 255, 0) 340px);
+
+  /* the five raw ground stops, addressable so a project can rebuild the wash or
+     print a swatch without re-typing hexes (the gradient itself lives on --bg) */
+  --sakura-sky:     #f1f6fb;   /* cool, top of the first screen */
+  --sakura-petal-1: #fdf1f6;   /* warm petal */
+  --sakura-leaf:    #f3f8ee;   /* leaf tint, lower */
+  --sakura-petal-2: #fdf3f6;
+  --sakura-petal-3: #f9eef3;   /* the darkest stop — the one contrast is proved against */
+}

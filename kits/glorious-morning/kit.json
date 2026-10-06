@@ -1,0 +1,19 @@
+{
+  "name": "Glorious Morning",
+  "tagline": "First light — a clear sky, a gold dawn band, and a light-ray wash.",
+  "signature": [
+    "--glorious-morning-sunrise",
+    "--glorious-morning-ray",
+    "--glorious-morning-sun",
+    "--glorious-morning-dew",
+    "--glorious-morning-leaf",
+    "--glorious-morning-halo"
+  ],
+  "order": 105,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap",
+  "fonts_label": "Fraunces · Nunito Sans · DM Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "morning", "fresh", "bright", "optimistic"],
+  "use_when": "morning-fresh product launches, wellness and productivity apps, children's and education products, anything that should feel like a clear start"
+}

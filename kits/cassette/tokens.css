@@ -1,0 +1,222 @@
+/* ============================================================================
+   design-kits · cassette                                         contract v1
+   ----------------------------------------------------------------------------
+   WARM HI-FI HARDWARE. This is not a screen — it is the FRONT PANEL of a 1970s
+   receiver: warm beige plastic with a moulded sheen, brushed aluminium trim,
+   and exactly ONE thing on the panel that lights up, a warm amber/orange LED.
+
+   The ground is beige PLASTIC, not white and not cream paper (#e2d8bf → #d3c6a6,
+   a mid-tone that a paper kit like geometric-dimensions never reaches). Insets
+   are a slightly DARKER beige — the panel is moulded, so a well is the same
+   material pressed one shade deeper, never a different substance.
+
+   ONE ACTION COLOUR. Amber (#e86f0a) fills the primary button, the toggle's
+   checked state, the progress bar and the media plate, and nothing else. It is
+   a lamp behind a beige bezel, so it is a FILL: as a small label on beige it is
+   1.85:1 and invisible. Accent-as-text is therefore a separate burnt orange
+   (#7a3600) — see --accent-ink.
+
+   DEPTH RUNS INWARDS. --shadow-1 / --shadow-2 are inset: a lit top lip, a
+   shadowed bottom lip and a short falloff into the well. A control on this
+   panel is a thing you press INTO the shell, so nothing floats.
+
+   Status colours sit well below the amber in value so a caution chip is never
+   mistaken for the action lamp, and they are checked on --surface-2 (the
+   deepest ground any of them is drawn on) rather than on the easy pale ground.
+
+   Fonts: Overpass (display + body) · Overpass Mono (labels, silkscreen)
+   Contract: docs/KIT-SPEC.md v1 — every required name is present below,
+   including --border-w. See README.md for the contrast table.
+   ========================================================================== */
+:root{
+  /* -- surfaces ---------------------------------------------------------- */
+  /* --bg is a GRADIENT and therefore uses PX stops, not %: the body's gradient
+     box is the whole document, so a % ramp would smear three stops over
+     thousands of pixels and the first screen would show one flat plate. The px
+     stops put the whole shell — bright lip at the top edge, settling into the
+     warmer lower case — inside the first screen.
+
+     Contrast is checked against the DARKEST stop, #d3c6a6. --bg-2 is the solid
+     stand-in for exports and for tools that cannot parse a gradient token. */
+  --bg:            linear-gradient(180deg, #e2d8bf 0px, #dcd1b6 340px, #d3c6a6 900px);
+  --bg-2:          #dcd1b6;                 /* solid shell tone: masthead, exports */
+  --surface:       #e9e0c9;                 /* cards — the sub-panel face, a shade
+                                               LIGHTER than the shell: a plate that
+                                               catches the light */
+  --surface-2:     #cabc9b;                 /* inputs, badges, code — the inset bay:
+                                               the same plastic pressed DEEPER */
+  --overlay:       rgba(38, 27, 14, .58);   /* modal scrim: warm shadow, not black */
+
+  /* -- text — WARM BROWN INK, never grey --------------------------------- */
+  /* A plastic panel is silkscreened in warm dark brown or black; a neutral
+     grey would read as a different material. The ink is NOT lightened to keep
+     the page soft — a beige ground eats contrast fast. */
+  --text:          #2b2115;                 /* 9.3:1 on the darkest --bg stop */
+  --text-muted:    #514327;                 /* 7.3:1 on --surface */
+  --text-dim:      #5a4a2d;                 /* captions/hints — 5.1 / 6.5 / 4.6:1,
+                                               see README: it clears all three
+                                               grounds, so no carve-out is needed */
+  --text-invert:   #241708;                 /* panel ink ON the amber plate: 5.6:1 */
+
+  /* -- brand ------------------------------------------------------------- */
+  /* The amber/orange LED. It is a FILL, and it is the only saturated colour on
+     the panel. Amber #e86f0a is 1.85:1 on the shell, which is exactly right for
+     a lamp and exactly wrong for lettering — hence --accent-ink below. */
+  --accent:        #e86f0a;
+  --accent-hover:  #fb8118;                 /* the LED comes UP on press, not down:
+                                               a brighter lamp keeps the label at
+                                               6.9:1, a darker one would fall to 4.1 */
+  --accent-2:      #2f8e85;                 /* METER TEAL — the one cool note, the
+                                               tint of a lit tuning dial. Media
+                                               plates, chart series and the bar's
+                                               second stop. Never an action. */
+  --accent-soft:   rgba(232, 111, 10, .15); /* 15% amber tint, derived — backs the
+                                               active nav/tab and inline code,
+                                               where the text is --accent-ink */
+
+  /* -- accent as TEXT (the classic amber trap) --------------------------- */
+  /* #e86f0a as a small label on beige is 1.85:1 — a lamp is not an ink. Fill and
+     text are different jobs, so accent-as-text is a much darker burnt orange of
+     the same family. 5.3:1 on the shell, 4.8:1 on the deepest inset bay. */
+  --accent-ink:       #7a3600;
+  --accent-ink-hover: #632900;              /* the hover step for accent TEXT */
+
+  /* -- status (kept clear of the amber action by VALUE) ------------------ */
+  --ok:            #18522a;                 /* moulded green lamp: nominal.
+                                               4.9:1 on --surface-2 */
+  --warn:          #624502;                 /* dark ochre, held far below the
+                                               amber in value so a caution chip
+                                               never reads as the action lamp */
+  --danger:        #8b1e0e;                 /* record / tally red, 4.9:1 on the bay */
+  --info:          #274669;                 /* petrol blue — the one cool status,
+                                               data and telemetry only */
+
+  /* -- lines — MOULDED SEAMS, opaque warm brown -------------------------- */
+  /* Not translucent white: the seam between two moulded parts is a darker
+     shade of the plastic, and an opaque seam is what holds at 2px. */
+  --border:        #b6a684;
+  --border-strong: #8f7f5f;                 /* input rim / emphasised divider */
+  --border-w:      2px;                     /* CHUNKY: a panel edge is a moulded
+                                               step, not a hairline */
+  --focus-ring:    #9c4505;                 /* 3.8:1 on the shell — a deep orange
+                                               ring so focus never reads as the
+                                               bright hover lamp */
+
+  /* -- shape — chunky, moulded, generous -------------------------------- */
+  /* Bigger radii than either reference kit: this is soft moulded plastic, not
+     hard card stock (geometric-dimensions: 0–2px) and not milled metal
+     (inside-the-machine: 2–4px). */
+  --radius-sm:       4px;
+  --radius-md:       8px;
+  --radius-lg:      12px;
+  --radius-pill:   999px;                   /* a chunky full pill — a hardware tag */
+  --cut:             0px;                   /* no chamfers: this panel is moulded */
+
+  /* -- type — a mechanical grotesque + a silkscreen mono ----------------- */
+  /* Overpass is derived from Highway Gothic, the American signage face: it is
+     drawn to survive paint, stencils and small panels, which is what a front
+     panel is. Overpass Mono is the SAME skeleton at one width — so the label
+     face and the body face are the same drawing, the way a real panel's
+     lettering and its spec plate share a hand. Not a retro script, not a
+     1950s diner face. */
+  --font-display:  "Overpass", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Overpass", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Overpass Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .1em;                 /* stamped plate, not spaced-out HUD */
+  --tracking-display: -.015em;              /* a signage grotesque needs a whisper */
+
+  /* -- depth — INSET. Controls are pressed into the shell ----------------- */
+  /* Lit top lip, shadowed bottom lip, short falloff into the well. There is no
+     soft outer drop shadow anywhere in this kit; if an element needs one to be
+     legible it is the wrong element. Lip alphas sit above the "barely there"
+     5% range on purpose — a 1px highlight at 5% does not survive a normal-DPI
+     display and a bevel nobody can see is not a bevel. */
+  --shadow-1:      inset 0 1px 0 rgba(255,252,240,.55),
+                   inset 0 -2px 0 rgba(94,74,44,.20),
+                   inset 0 3px 8px -4px rgba(72,55,30,.42);
+  --shadow-2:      inset 0 1px 0 rgba(255,252,240,.62),
+                   inset 0 -2px 0 rgba(94,74,44,.24),
+                   inset 0 5px 14px -6px rgba(72,55,30,.55);
+  /* --glow is the ONE energised thing: the amber lamp's halo. The shared lab
+     wires .btn-primary's box-shadow to --glow, and panels never wear it. */
+  --glow:          0 0 0 1px rgba(140,60,0,.30),
+                   0 4px 14px -3px rgba(232,111,10,.55),
+                   inset 0 1px 0 rgba(255,226,170,.65),
+                   inset 0 -2px 0 rgba(120,50,0,.30);
+  --blur:          none;                    /* moulded plastic is not frosted */
+
+  /* -- motion: a chunky control has travel, but it still snaps -----------– */
+  --dur:           .14s;
+  --ease:          cubic-bezier(.25,.75,.35,1);
+
+  /* ----------------------------------------------------------------------
+     extras — the physical textures, declared in kit.json `signature` and
+     rendered in the lab's Signature section. Six are surfaces/ramps, one is a
+     lamp halo (--cassette-led-glow is a box-shadow, so it is APPLIED rather
+     than painted), and one is the only dark surface in the kit.
+     ---------------------------------------------------------------------- */
+
+  /* 1 · BRUSHED ALUMINIUM. Fine light/dark silver lines are the whole trick:
+     a repeating ramp at 1px, not a smooth gradient — a smooth one reads as
+     plastic. The second layer is the faint vertical shading a real brushed rail
+     picks up from the room; it also keeps the value multi-layer, which is what
+     stops tools from flattening the 1px brushing into four fat bands. */
+  --cassette-brushed: repeating-linear-gradient(90deg,
+                        #8d887d 0px, #cfcac0 1px, #ada79c 2px, #e2ded5 3px),
+                      linear-gradient(180deg, #bdb8ad 0px, #a09a8f 100%);
+
+  /* 2 · the flat aluminium tone, for trim that is not textured (a rail's edge,
+     a screw bezel, the underside of a moulded lip). */
+  --cassette-aluminium: #b5afa4;
+
+  /* 3 · SPEAKER GRILLE. A radial-gradient dot tiling — the single most
+     recognisable hi-fi texture there is, and it is expressible: dot + hole on a
+     6px pitch, laid over the shaded beige of the grille cloth. */
+  --cassette-grille: radial-gradient(circle,
+                       rgba(43,33,21,.62) 0px, rgba(43,33,21,.62) 1.1px,
+                       rgba(0,0,0,0) 1.5px, rgba(0,0,0,0) 6px)
+                     0 0 / 6px 6px repeat,
+                     linear-gradient(180deg, #a99d82 0px, #968a70 100%);
+
+  /* 4 · VU-METER SCALE. GRADUATED tick marks on a warm cream face — the meter
+     scale every receiver has beside the tape counter. A tall tick every 45px, a
+     short one every 9px: the two layers carry their own background-size in the
+     shorthand, which is the only way a single token can express ticks of two
+     heights (size 45px × 58% paints the tall ones from the top edge only). */
+  --cassette-vu-scale:
+                       repeating-linear-gradient(90deg,
+                         rgba(58,44,26,.82) 0px, rgba(58,44,26,.82) 1px,
+                         rgba(0,0,0,0) 1px, rgba(0,0,0,0) 45px)
+                         0 0 / 45px 58% repeat-x,
+                       repeating-linear-gradient(90deg,
+                         rgba(58,44,26,.52) 0px, rgba(58,44,26,.52) 1px,
+                         rgba(0,0,0,0) 1px, rgba(0,0,0,0) 9px)
+                         0 0 / 9px 32% repeat-x,
+                       linear-gradient(180deg, #f2e8cd 0px, #e3d6b4 100%);
+
+  /* 5 · KNURLED KNOB. A repeating CONIC gradient is the only way to draw ribs
+     that radiate from a centre — which is exactly what a knurled aluminium knob
+     is. Apply on a circular element. */
+  --cassette-knurl: repeating-conic-gradient(from 0deg at 50% 50%,
+                      #cfcac0 0deg, #cfcac0 4deg, #86817a 4deg, #86817a 8deg);
+
+  /* 6 · LED GLOW (a box-shadow, so the lab applies it rather than painting it).
+     Halo AND lit core: an outward bleed onto the shell plus an inner amber wash,
+     so the element reads as a lamp that is ON, not as a pale chip with a shadow.
+     One token, because a lamp does not have a halo without a core. */
+  --cassette-led-glow: 0 0 12px 2px rgba(232,111,10,.62),
+                       inset 0 0 13px rgba(232,111,10,.55),
+                       inset 0 0 2px rgba(255,206,130,.90);
+
+  /* 7 · PLASTIC SHEEN. The moulded gloss: a bright band across the top of a
+     shell, a faint warm smudge along the bottom. Painted over --surface or
+     --bg as an overlay layer. */
+  --cassette-plastic-sheen: linear-gradient(180deg,
+                     rgba(255,253,244,.55) 0px, rgba(255,253,244,0) 40%,
+                     rgba(112,88,52,.10) 100%);
+
+  /* 8 · the smoked DISPLAY WINDOW. The one dark surface in the kit: the tinted
+     acrylic over a tuner dial or a cassette bay. Amber readouts and the LED
+     glow are drawn ON this, never on beige. */
+  --cassette-window: linear-gradient(180deg, #3a2f20 0px, #241c12 100%);
+}

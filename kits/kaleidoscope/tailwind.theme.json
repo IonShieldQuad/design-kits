@@ -1,0 +1,96 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff2d6f",
+        "secondary": "#5b86ff",
+        "tertiary": "#19dda0",
+        "neutral": "#050410",
+        "accent-hover": "#ff5b8f",
+        "accent-soft": "#ff2d6f26",
+        "facet-ruby": "#ff2d6f",
+        "facet-sapphire": "#5b86ff",
+        "facet-emerald": "#19dda0",
+        "facet-amber": "#ffb020",
+        "facet-violet": "#a678ff",
+        "bg": "#0a0719",
+        "bg-deep": "#050410",
+        "surface": "#15112e",
+        "surface-2": "#221d42",
+        "overlay": "#050410c7",
+        "text": "#f6f3ff",
+        "text-muted": "#b9b2dd",
+        "text-dim": "#9590b8",
+        "text-invert": "#08040d",
+        "ok": "#35c98e",
+        "warn": "#e0a13a",
+        "danger": "#ff6b4a",
+        "info": "#8aa6ff",
+        "border": "#aa96ff3d",
+        "border-strong": "#baaaff70",
+        "focus-ring": "#5b86ff"
+      },
+      "fontFamily": {
+        "display": [
+          "Sora"
+        ],
+        "heading": [
+          "Sora"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ],
+        "code": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.75rem",
+          {
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.15em",
+            "fontWeight": "500"
+          }
+        ],
+        "code": [
+          "0.8rem",
+          {}
+        ]
+      },
+      "borderRadius": {
+        "sm": "3px",
+        "md": "5px",
+        "lg": "7px",
+        "pill": "6px"
+      },
+      "spacing": {
+        "xs": "0.35rem",
+        "sm": "0.6rem",
+        "md": "1rem",
+        "lg": "1.75rem"
+      }
+    }
+  }
+}

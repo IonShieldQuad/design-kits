@@ -1,0 +1,92 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#c8325f",
+        "primary-hover": "#b02651",
+        "secondary": "#2e8339",
+        "tertiary": "#a81d4c",
+        "neutral": "#f9eef3",
+        "bg-stop-sky": "#f1f6fb",
+        "bg-stop-petal": "#fdf1f6",
+        "bg-stop-leaf": "#f3f8ee",
+        "bg-stop-warm": "#fdf3f6",
+        "bg-stop-end": "#f9eef3",
+        "bg-2": "#fdf3f7",
+        "surface": "#fffbfd",
+        "surface-2": "#f8eef3",
+        "overlay": "#3a243861",
+        "text": "#3a2438",
+        "text-muted": "#5e4557",
+        "text-dim": "#6d5165",
+        "text-invert": "#ffffff",
+        "accent-soft": "#c8325f1a",
+        "accent-ink": "#a81d4c",
+        "accent-ink-hover": "#8d1540",
+        "ok": "#177040",
+        "warn": "#8f5c00",
+        "danger": "#b3261e",
+        "info": "#2b6aa8",
+        "border": "#ecd6e0",
+        "border-strong": "#d9b9c8",
+        "focus-ring": "#2f8340"
+      },
+      "fontFamily": {
+        "display": [
+          "Zen Kaku Gothic New"
+        ],
+        "heading": [
+          "Zen Kaku Gothic New"
+        ],
+        "body": [
+          "Karla"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.006em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "10px",
+        "md": "14px",
+        "lg": "20px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.35rem",
+        "sm": "0.65rem",
+        "md": "1.15rem",
+        "lg": "2.25rem",
+        "xl": "3.5rem"
+      }
+    }
+  }
+}

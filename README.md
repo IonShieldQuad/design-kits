@@ -26,8 +26,13 @@ is entirely `tokens.css`. That is what makes adding a theme cheap.
 
 ```html
 <link rel="stylesheet" href="kits/quiet/tokens.css">
-<link rel="stylesheet" href="kits/quiet/kit.css">   <!-- optional, if the kit ships one -->
+<link rel="stylesheet" href="kits/quiet/kit.css">   <!-- only if the kit ships one; most don't -->
 ```
+
+`kit.css` is the escape hatch for a design whose identity lives in a *construction* rather than a
+colour (layered panels, bespoke patterning). The build links it automatically when present — see
+`docs/KIT-SPEC.md`. Everything else should be achievable from tokens alone; needing a `kit.css` is
+the signal to check whether a contract token is missing.
 
 Then write normal CSS against the variables — never against literal colours:
 
@@ -80,6 +85,12 @@ order, palette limits.
 | [`inside-the-machine`](kits/inside-the-machine/DESIGN.md) | dark · technical · mono · industrial · instrument | Machined instrumentation for a machine's interior |
 | [`zen-garden`](kits/zen-garden/DESIGN.md) | light · calm · muted · organic · minimal | journaling, wellness, calm reading interfaces |
 | [`outer-space`](kits/outer-space/DESIGN.md) | dark · cosmic · glowing · spacious | awe-led landing pages, science and space products, hero sections |
+| [`kaleidoscope`](kits/kaleidoscope/DESIGN.md) | dark · kaleidoscope · faceted · multicolour | launch pages, games and music, gallery showcases |
+| [`psychedelic`](kits/psychedelic/DESIGN.md) | light · psychedelic · organic · warm · retro · bold | gig and festival posters, album art and music brands, counterculture marketing, anything that should look screen-printed |
+| [`glorious-morning`](kits/glorious-morning/DESIGN.md) | light · morning · fresh · bright · optimistic | morning-fresh product launches, wellness and productivity apps, children's and education products, anything that should feel like a clear start |
+| [`cassette`](kits/cassette/DESIGN.md) | light · warm · retro · hardware · analogue | hardware, audio and device pages; anything that should feel like a physical panel rather than a screen |
+| [`sakura`](kits/sakura/DESIGN.md) | light · spring · floral · fresh · bright · colourful | spring campaigns, florals and lifestyle brands that want real colour |
+| [`gothic`](kits/gothic/DESIGN.md) | dark · bold · organic · editorial | music, subculture zines, nightlife, fashion/dark editorial |
 <!-- END KITS -->
 
 ## Token contract (v1)

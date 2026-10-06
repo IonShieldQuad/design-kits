@@ -1,0 +1,40 @@
+/* cyber-angel — kit.css
+   ---------------------------------------------------------------------------------------------
+   The Figma panel is a CONSTRUCTION, not a value: a light underlayer plate behind a carbon layer,
+   both chamfered 45deg on opposite corners, outlined in 1px black. Tokens carry colour, type,
+   shape and depth; they cannot carry a *stacked* construction, which is why this file exists
+   (see docs/KIT-SPEC.md, "kit.css").
+
+   Why the underlayer is a band and not an offset plate: the lab clips .card to --clip, and
+   clip-path clips DESCENDANTS too, so a pseudo-element offset outside the box is cut away before
+   it can show. (It is also not a z-index problem — inside an `isolation: isolate` box a negative
+   z-index child paints ABOVE the element's own background.) Drawing the plate inside the
+   silhouette is the only form of this construction that survives the chamfer, and it reads as a
+   stack: two light edges stepping out at the cut corner.
+
+   If the exact offset plate is wanted later, that is a lab change (an unclipped wrapper element
+   around .card), not a bigger stylesheet here.
+   --------------------------------------------------------------------------------------------- */
+
+.card-elevated {
+  position: relative;   /* the marked-corner wedge below is absolutely positioned */
+  /* the light underlayer, seen along the two edges that the chamfer leaves intact */
+  background-image:
+    linear-gradient(90deg, var(--surface) 0 7px, transparent 7px),
+    linear-gradient(180deg, var(--surface) 0 7px, transparent 7px);
+  background-color: var(--surface-2);
+}
+
+/* the marked corner: the Figma panel carries a short cyan wedge on its cut corner. Top-RIGHT,
+   because the top-left triangle is exactly what --clip removes. 12px sits inside the card's
+   padding gutter, so it cannot collide with the card's own text. */
+.card-elevated::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--cut, 12px);
+  height: var(--cut, 12px);
+  background: var(--accent);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}

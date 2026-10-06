@@ -156,15 +156,49 @@ def is_translucent(v: str) -> bool:
 
 # ------------------------------------------------------------------ css parsing
 COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
-VAR_RE = re.compile(r"(--[a-zA-Z0-9_-]+)\s*:\s*([^;]+);")
+VAR_RE = re.compile(r"(--[a-zA-Z0-9_-]+)\s*:\s*")
+
+
+def _read_value(body: str, start: int) -> tuple[str, int]:
+    """Read a custom-property value from `start` until its terminating `;`.
+
+    A naive `[^;]+` is wrong: values legitimately contain semicolons inside quotes or parens
+    (any `data:` URI does — `data:image/svg+xml;base64,...`). Track paren depth and quotes, and
+    stop only at a `;` at depth 0 outside quotes.
+    """
+    depth, quote, i = 0, "", start
+    while i < len(body):
+        c = body[i]
+        if quote:
+            if c == "\\":
+                i += 2
+                continue
+            if c == quote:
+                quote = ""
+        elif c in "\"'":
+            quote = c
+        elif c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+        elif c == ";" and depth == 0:
+            return body[start:i], i + 1
+        i += 1
+    return body[start:], len(body)
 
 
 def parse_css_vars(css: str) -> dict[str, str]:
     """Flat { --name: value } map. Later definitions win (last :root block)."""
     body = COMMENT_RE.sub("", css)
     out: dict[str, str] = {}
-    for name, value in VAR_RE.findall(body):
-        out[name] = " ".join(value.split())
+    pos = 0
+    while True:
+        m = VAR_RE.search(body, pos)
+        if not m:
+            break
+        value, end = _read_value(body, m.end())
+        out[m.group(1)] = " ".join(value.split())
+        pos = end
     return out
 
 
@@ -388,6 +422,11 @@ class Kit:
             "{{RADIUS_LABEL}}": html.escape(self.radius_label),
             "{{SWATCHES}}": swatches,
             "{{SIGNATURE}}": self.signature_section(),
+            # a kit that needs an actual CONSTRUCTION rather than a colour ships kit.css
+            # (layered panels, bespoke patterning). Absent by default — the whole point of the
+            # token contract is that most kits never need one.
+            "{{KIT_CSS}}": ('<link rel="stylesheet" href="kit.css">'
+                            if (self.dir / "kit.css").exists() else ""),
         }
         for k, v in rep.items():
             tpl = tpl.replace(k, v)
@@ -466,7 +505,8 @@ def sig_tile(name: str, value: str) -> str:
     """
     v = value.strip()
     looks_like_bg = bool(
-        "gradient(" in v or re.match(r"^(#|rgb|hsl|oklch|lab|color\()", v)
+        "gradient(" in v or v.startswith("url(")
+        or re.match(r"^(#|rgb|hsl|oklch|lab|color\()", v)
     )
     inner = (
         f'<b style="background:{html.escape(normalize_gradient(v), quote=True)}"></b>' if looks_like_bg
@@ -643,10 +683,30 @@ def main() -> int:
         '    <p class="g-desc">No kits yet. Add <code>kits/&lt;slug&gt;/</code> '
         "with DESIGN.md + tokens.css and re-run <code>python tools/build.py</code>.</p>"
     )
+    # filter chips are derived from the tags actually in use — a hardcoded list silently rots
+    # as kits are added (it did: the first chip set only covered the first seven kits).
+    # A tag used by a single kit is noise once the library grows, so require >= 2, and cap the row.
+    tag_counts: dict[str, int] = {}
+    for k in kits:
+        for t in k.tags:
+            tag_counts[t] = tag_counts.get(t, 0) + 1
+    ordered_tags = sorted(tag_counts, key=lambda t: (-tag_counts[t], t))
+    shown = [t for t in ordered_tags if tag_counts[t] >= 2][:14]
+    if len(shown) < 4:  # tiny libraries: show what there is
+        shown = ordered_tags[:8]
+    chips = ['<button class="g-chip" data-filter="all" aria-pressed="true">all</button>']
+    chips += [
+        f'<button class="g-chip" data-filter="{html.escape(t, quote=True)}" aria-pressed="false">'
+        f'{html.escape(t)} {tag_counts[t]}</button>'
+        for t in shown
+    ]
+    filters = "\n".join("    " + c for c in chips)
+
     gallery = read(TPL / "gallery.html")
     gallery = (
         gallery.replace("{{FONT_LINKS}}", font_links)
         .replace("{{CARDS}}", cards)
+        .replace("{{FILTERS}}", filters)
         .replace("{{KIT_COUNT}}", str(len(kits)))
         .replace("{{TOKEN_COUNT}}", str(len(REQUIRED_TOKENS)))
     )

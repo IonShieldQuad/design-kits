@@ -1,0 +1,91 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#e86f0a",
+        "primary-hover": "#fb8118",
+        "primary-ink": "#241708",
+        "primary-text": "#7a3600",
+        "primary-text-hover": "#632900",
+        "secondary": "#2f8e85",
+        "tertiary": "#274669",
+        "neutral": "#dcd1b6",
+        "ground-top": "#e2d8bf",
+        "ground-bottom": "#d3c6a6",
+        "surface": "#e9e0c9",
+        "surface-2": "#cabc9b",
+        "text": "#2b2115",
+        "text-muted": "#514327",
+        "success": "#18522a",
+        "warning": "#624502",
+        "error": "#8b1e0e"
+      },
+      "fontFamily": {
+        "display": [
+          "Overpass"
+        ],
+        "heading": [
+          "Overpass"
+        ],
+        "body": [
+          "Overpass"
+        ],
+        "label": [
+          "Overpass Mono"
+        ],
+        "readout": [
+          "Overpass Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.015em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.1em",
+            "fontWeight": "500"
+          }
+        ],
+        "readout": [
+          "0.95rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "4px",
+        "md": "8px",
+        "lg": "12px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

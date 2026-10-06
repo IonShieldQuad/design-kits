@@ -213,7 +213,7 @@ async function main() {
     }
 
     // desktop viewport-only crop of the masthead: what the gallery thumbnail has to sell
-    const ctx = await browser.newContext({ viewport: { width: 1280, height: 1180 }, deviceScaleFactor: 2 });
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 1780 }, deviceScaleFactor: 2 });
     const page = await ctx.newPage();
     await page.goto("file:///" + file.replace(/\\/g, "/"), { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
