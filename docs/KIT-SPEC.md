@@ -104,6 +104,10 @@ them the lab can only express one text colour per page.
   ignored and reported as stale, so don't bother numbering by hand.
 - `use_when` — optional one-liner for the generated picker table in `AGENTS.md`
   ("portfolio, product marketing for dev tools"). Falls back to `tagline`.
+- `signature` — optional list of token names to render in the lab's **Signature** section.
+  Default behaviour without it: every `--<slug>-*` token is treated as signature material.
+  Declare it explicitly when your kit's bespoke tokens are named descriptively instead
+  (e.g. `["--nebula-1", "--starfield", "--halo-star"]`). Unknown names are reported as warnings.
 - `mode` — `dark` | `light`. Drives the gallery chip and is a filter facet.
 - `fonts_url` — a single Google Fonts URL with every family/weight the kit uses. Empty
   string = system fonts only.

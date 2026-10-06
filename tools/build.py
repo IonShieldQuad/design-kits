@@ -103,6 +103,31 @@ def short_value(v: str) -> str:
     return v if len(v) <= 22 else v[:21] + "…"
 
 
+def normalize_gradient(v: str) -> str:
+    """Make a gradient readable inside a small chip.
+
+    A gradient whose stops are in px (which kits use so the band lands in the first screen)
+    clamps inside a 40px swatch or a 72px tile and reads as a flat colour. Rescale such
+    gradients to evenly spaced percentages for preview purposes only. Only applied when the
+    value has no nested parentheses, so `rgba()` stops are left untouched.
+    """
+    if "gradient(" not in v or not re.search(r"\d+px", v) or v.count("(") != 1:
+        return v
+    i, j = v.index("("), v.rindex(")")
+    head, inner, tail = v[: i + 1], v[i + 1: j], v[j:]
+    parts = [p.strip() for p in inner.split(",") if p.strip()]
+    leading: list[str] = []
+    while parts and not re.match(r"^(#|rgb|hsl|oklch|lab|color\()", parts[0]):
+        leading.append(parts.pop(0))
+    if len(parts) < 2:
+        return v
+    stops = []
+    for n, p in enumerate(parts):
+        colour = re.match(r"^(#\S+|rgba?\([^)]*\)|hsla?\([^)]*\)|\S+)", p).group(1)
+        stops.append(f"{colour} {100 * n / (len(parts) - 1):.0f}%")
+    return head + ", ".join(leading + stops) + tail
+
+
 def swatch_label(v: str) -> str:
     """Caption with a break opportunity after each comma.
 
@@ -321,7 +346,16 @@ class Kit:
         read as generic.
         """
         prefix = f"--{self.slug}-"
-        extras = sorted((k, v) for k, v in self.vars.items() if k.startswith(prefix))
+        declared = self.meta.get("signature")
+        if isinstance(declared, list) and declared:
+            # explicit declaration wins: an author may reasonably name material descriptively
+            # (--nebula-1) rather than slug-prefixing it (--outer-space-nebula-1)
+            extras = [(k, self.vars[k]) for k in declared if k in self.vars]
+            missing = [k for k in declared if k not in self.vars]
+            if missing:
+                self.warnings.append("kit.json signature names unknown tokens: " + ", ".join(missing))
+        else:
+            extras = sorted((k, v) for k, v in self.vars.items() if k.startswith(prefix))
         extras = extras[:8]
         if not extras:
             return ""
@@ -338,7 +372,7 @@ class Kit:
         tpl = read(TPL / "lab.html")
         swatches = "".join(
             f'<div class="swatch" title="{html.escape(v, quote=True)}">'
-            f'<i><b style="background:{html.escape(v, quote=True)}"></b></i>'
+            f'<i><b style="background:{html.escape(normalize_gradient(v), quote=True)}"></b></i>'
             f'<span>{swatch_label(v)}</span>'
             f'<span>{html.escape(l)}</span></div>'
             for l, v in self.swatch_pairs
@@ -364,7 +398,7 @@ class Kit:
         fg = self.vars.get("--text", "#e9edf5")
         surf = self.vars.get("--surface", "transparent")
         strip = "".join(
-            f'<i style="background:{html.escape(v, quote=True)}"></i>' for _, v in self.swatch_pairs[:6]
+            f'<i style="background:{html.escape(normalize_gradient(v), quote=True)}"></i>' for _, v in self.swatch_pairs[:6]
         )
         chips = "".join(
             f'<span class="g-tag{" mode-" + self.mode if t == self.mode else ""}">{html.escape(t)}</span>'
@@ -435,7 +469,7 @@ def sig_tile(name: str, value: str) -> str:
         "gradient(" in v or re.match(r"^(#|rgb|hsl|oklch|lab|color\()", v)
     )
     inner = (
-        f'<b style="background:{html.escape(v, quote=True)}"></b>' if looks_like_bg
+        f'<b style="background:{html.escape(normalize_gradient(v), quote=True)}"></b>' if looks_like_bg
         else f'<b class="fx" style="box-shadow:{html.escape(v, quote=True)}"></b>'
     )
     return (

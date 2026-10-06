@@ -27,12 +27,13 @@
 :root {
   /* --------------------------------------------------------------- surfaces */
   /* The ground is a real rainy-day grey: cool, desaturated, and deliberately
-     NOT cream and NOT white. A solid colour, not a gradient — a gradient --bg
-     silently voids the shared lab's masthead wash (the wash nests --bg-2 and
-     --bg inside a linear-gradient), and this kit needs that wash. The mist
-     gradient therefore ships as an extra: --zen-garden-mist. */
-  --bg:            #e8ecf0;                 /* overcast ground */
-  --bg-2:          #eef2f6;                 /* the mist tone: masthead top stop */
+     NOT cream and NOT white. It is now an actual mist gradient — the shared lab's masthead
+     no longer nests --bg inside another linear-gradient (that was invalid CSS), so a gradient
+     ground is safe again. Stops are in PX so the mist reads within the first screen instead of
+     being a % ramp that only shows its first stop. */
+  --bg:            linear-gradient(180deg, #f1f5f9 0px, #e8ecf0 380px, #dde4ec 100%);
+  --bg-2:          #eef2f6;                 /* the mist tone: masthead top stop, and the solid
+                                               stand-in for exports */
   --surface:       #f2f5f8;                 /* cards — a lift of mist above the ground */
   --surface-2:     #e6eaf0;                 /* nested panels, inputs — settled below */
   --overlay:       rgba(43, 50, 56, .42);   /* modal scrim: wet stone, not black */
@@ -102,11 +103,14 @@
   /* The mist gradient lives here, never in --bg (see the surfaces note), and
      never in DESIGN.md's colours (the linter errors on a gradient there). It is
      built from the three shipped stops. */
-  --zen-garden-bg-stop-1: #eef2f6;          /* mist, high */
+  --zen-garden-bg-stop-1: #f3f7fa;          /* mist, high */
   --zen-garden-bg-stop-2: #e8ecf0;          /* overcast, mid */
-  --zen-garden-bg-stop-3: #e2e8ee;          /* rain, low */
+  --zen-garden-bg-stop-3: #dae2ea;          /* rain, low — spread wide enough that the mist
+                                               gradient is actually perceptible; the first
+                                               version's stops sat within 2% of each other and
+                                               rendered as one flat plate */
   --zen-garden-mist: linear-gradient(170deg,
-                     #eef2f6 0%, #e9edf1 42%, #e8ecf0 68%, #e2e8ee 100%);
+                     #f3f7fa 0%, #e8ecf0 55%, #dae2ea 100%);
   --zen-garden-stone: #cdd5dd;              /* alias of --border, for prose */
   --zen-garden-rain:  #567694;              /* alias of --accent-2, for prose */
 }

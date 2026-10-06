@@ -2,6 +2,7 @@
   "name": "Outer Space",
   "tagline": "Starlight gold on a starfielded void",
   "use_when": "awe-led landing pages, science and space products, hero sections",
+  "signature": ["--nebula-1", "--nebula-2", "--nebula-3", "--starfield", "--starlight", "--halo-star", "--bg-stop-1", "--bg-stop-2"],
   "order": 90,
   "fonts_url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap",
   "fonts_label": "Outfit · Inter · IBM Plex Mono",

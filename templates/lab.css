@@ -103,11 +103,30 @@ section.block:first-of-type { border-top: 0; }
 .btn-danger { --_bg: transparent; --_fg: var(--danger, #ff6b6b);
               --_bd: color-mix(in srgb, var(--danger, #ff6b6b) 45%, transparent); }
 .btn-danger:hover { --_bg: color-mix(in srgb, var(--danger, #ff6b6b) 14%, transparent); }
-.btn[disabled], .btn.is-disabled { opacity: .42; cursor: not-allowed; transform: none; box-shadow: none; }
+/* Disabled is a LEGIBLE muted control, not a faded copy of the variant. The old treatment
+   (opacity .42 over the variant's own colours) put white text on a pale wash at ~1.5:1 — the
+   label effectively vanished. Using --text-dim on --surface-2 is also the one pair every kit
+   has already verified to >=4.55:1. */
+.btn[disabled], .btn.is-disabled {
+  --_bg: var(--surface-2, rgba(255,255,255,.06));
+  --_fg: var(--text-dim, rgba(233,237,245,.5));
+  --_bd: var(--border, rgba(255,255,255,.12));
+  opacity: 1; cursor: not-allowed; transform: none; box-shadow: none;
+}
 .btn-sm { padding: .35rem .7rem; font-size: .78rem; border-radius: var(--radius-sm, 4px); }
 .btn-lg { padding: .78rem 1.35rem; font-size: .95rem; }
 .btn-block { width: 100%; }
 .btn-icon { padding: .5rem; width: 2.25rem; }
+/* a real link affordance: the lab was demonstrating a "Link button" that was visually a
+   second Secondary button — boxed text is not a link */
+.btn.btn-link {
+  --_bg: transparent; --_bd: transparent;
+  --_fg: var(--accent-ink, var(--accent, #6aa2ff));
+  padding-left: .3rem; padding-right: .3rem;
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-thickness: 1px; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+.btn.btn-link:hover { --_bg: transparent; text-decoration-color: currentColor; filter: brightness(1.12); }
 
 /* ------------------------------------------------------------------- badges */
 .badge {
