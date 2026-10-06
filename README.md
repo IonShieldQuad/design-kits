@@ -62,6 +62,26 @@ That's the whole loop. `tools/build.py` discovers kits by directory, so no regis
 update by hand. `docs/KIT-SPEC.md` is the authoring contract — required token names, section
 order, palette limits.
 
+## The kits
+
+<!-- BEGIN KITS -->
+| Kit | Tone | Use when |
+|---|---|---|
+| [`carbon`](kits/carbon/DESIGN.md) | dark · cool · technical · bold | portfolios, dev-tool marketing, anything that must look engineered |
+| [`signal`](kits/signal/DESIGN.md) | dark · cool · technical · hud | dashboards, data-dense tools, resumes and CVs |
+| [`quiet`](kits/quiet/DESIGN.md) | dark · app · minimal · soft | apps, settings panels, long-form reading |
+| [`cyberpunk`](kits/cyberpunk/DESIGN.md) | dark · bold · technical · neon | games, music, nightlife, bold statements |
+| [`summer-sunset`](kits/summer-sunset/DESIGN.md) | light · warm · retro · bold · synthwave | 80s synthwave poster — sunset sky, bold lines, orange · cyan · magenta. |
+| [`chrome`](kits/chrome/DESIGN.md) | dark · metal · retro · bold · chrome | Liquid chrome on black — a metallic ramp, magenta action, cyan tertiary. |
+| [`cyber-angel`](kits/cyber-angel/DESIGN.md) | light · sharp · bold · holo · geometric | hopeful product launches, AI/vision pages, bold light branding |
+| [`geometric-dimensions`](kits/geometric-dimensions/DESIGN.md) | light · bold · geometric · retro | Bauhaus geometry lifted off the page on hard ink shadows |
+| [`glass`](kits/glass/DESIGN.md) | light · soft · modern · glass | modern SaaS, overlays, hero cards |
+| [`dark-glass`](kits/dark-glass/DESIGN.md) | dark · glass · soft · modern | Frosted panels over a violet-lit dark mesh |
+| [`inside-the-machine`](kits/inside-the-machine/DESIGN.md) | dark · technical · mono · industrial · instrument | Machined instrumentation for a machine's interior |
+| [`zen-garden`](kits/zen-garden/DESIGN.md) | light · calm · muted · organic · minimal | journaling, wellness, calm reading interfaces |
+| [`outer-space`](kits/outer-space/DESIGN.md) | dark · cosmic · glowing · spacious | awe-led landing pages, science and space products, hero sections |
+<!-- END KITS -->
+
 ## Token contract (v1)
 
 | Group | Variables |
@@ -70,11 +90,19 @@ order, palette limits.
 | Text | `--text` `--text-muted` `--text-dim` `--text-invert` |
 | Brand | `--accent` `--accent-hover` `--accent-2` `--accent-soft` |
 | Status | `--ok` `--warn` `--danger` `--info` |
-| Lines | `--border` `--border-strong` `--focus-ring` |
+| Lines | `--border` `--border-strong` `--border-w` `--focus-ring` |
 | Shape | `--radius-sm` `--radius-md` `--radius-lg` `--radius-pill` `--cut` |
 | Type | `--font-display` `--font-body` `--font-mono` `--tracking-caps` |
 | Depth | `--shadow-1` `--shadow-2` `--glow` `--blur` |
 | Motion | `--dur` `--ease` |
+
+Optional (the lab honours them when declared): `--clip` for a chamfered corner,
+`--accent-ink` for a text-safe accent, `--text-on-surface` / `--text-on-surface-2`
+(and `-muted`) for three-tier surface stacks where a card or an inset contrasts with the page.
+
+A kit's own extra tokens are rendered in the lab: name them `--<slug>-*` (e.g.
+`--chrome-gradient`, `--summer-sunset-sun`) and a **Signature** section shows them near the
+top, so bespoke gradients and patterns are visible rather than merely declared.
 
 Extras beyond the contract are allowed and ignored by the lab.
 

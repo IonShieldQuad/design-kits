@@ -1,0 +1,11 @@
+{
+  "name": "Inside the Machine",
+  "tagline": "Machined instrumentation for a machine's interior",
+  "index": "11",
+  "order": 80,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap",
+  "fonts_label": "IBM Plex Mono · IBM Plex Sans",
+  "mode": "dark",
+  "source": "original",
+  "tags": ["dark", "technical", "mono", "industrial", "instrument"]
+}

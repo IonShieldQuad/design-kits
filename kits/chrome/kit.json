@@ -1,0 +1,11 @@
+{
+  "name": "Chrome",
+  "tagline": "Liquid chrome on black — a metallic ramp, magenta action, cyan tertiary.",
+  "index": "08",
+  "order": 55,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800&display=swap",
+  "fonts_label": "Orbitron · Inter · JetBrains Mono",
+  "mode": "dark",
+  "source": "original",
+  "tags": ["dark", "metal", "retro", "bold", "chrome"]
+}

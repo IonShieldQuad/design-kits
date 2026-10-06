@@ -19,13 +19,13 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-a { color: var(--accent, #6aa2ff); text-decoration: none; }
-a:hover { color: var(--accent-hover, var(--accent, #6aa2ff)); text-decoration: underline; }
+a { color: var(--accent-ink, var(--accent, #6aa2ff)); text-decoration: none; }
+a:hover { color: var(--accent-hover, var(--accent-ink, var(--accent, #6aa2ff))); text-decoration: underline; }
 img, svg { max-width: 100%; display: block; }
 
 /* ---------------------------------------------------------------- structure */
 .wrap { width: min(1040px, calc(100% - 2.5rem)); margin: 0 auto; }
-section.block { padding: 2.25rem 0; border-top: 1px solid var(--border, rgba(255,255,255,.12)); }
+section.block { padding: 2.25rem 0; border-top: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12)); }
 section.block:first-of-type { border-top: 0; }
 .block-head { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
 .block-head h2 {
@@ -39,16 +39,18 @@ section.block:first-of-type { border-top: 0; }
 .stack { display: grid; gap: .75rem; }
 
 /* ------------------------------------------------------------------- header */
+/* The masthead is a WASH over the page ground, not a surface of its own — a kit's --bg is
+   often a signature gradient, and layering an opaque gradient on top of it hid exactly the
+   material the kit was proudest of. (Also: `linear-gradient(180deg, A, var(--bg))` is invalid
+   when --bg is itself a gradient — a gradient cannot be a colour stop.) */
 .masthead {
   padding: 2.5rem 0 1.75rem;
-  background:
-    radial-gradient(120% 140% at 12% 0%, var(--accent-soft, transparent) 0%, transparent 62%),
-    linear-gradient(180deg, var(--bg-2, transparent) 0%, var(--bg, transparent) 100%);
-  border-bottom: 1px solid var(--border, rgba(255,255,255,.12));
+  background: radial-gradient(120% 140% at 12% 0%, var(--accent-soft, transparent) 0%, transparent 62%);
+  border-bottom: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12));
 }
 .masthead .eyebrow {
   font-family: var(--font-mono, monospace); font-size: .72rem; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--accent, #6aa2ff); margin: 0 0 .6rem;
+  text-transform: uppercase; color: var(--accent-ink, var(--accent, #6aa2ff)); margin: 0 0 .6rem;
 }
 .masthead h1 {
   font-family: var(--font-display, inherit);
@@ -64,7 +66,7 @@ section.block:first-of-type { border-top: 0; }
 .swatch i {
   position: relative; display: block; height: 40px; margin-bottom: .3rem;
   border-radius: var(--radius-sm, 4px); overflow: hidden;
-  border: 1px solid var(--border, rgba(255,255,255,.14));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
   /* checkerboard: a translucent or gradient swatch is invisible on its own ground */
   background-image: repeating-conic-gradient(#8b93a3 0% 25%, #eef1f6 0% 50%);
   background-size: 11px 11px;
@@ -81,6 +83,7 @@ section.block:first-of-type { border-top: 0; }
   padding: .58rem 1rem; font: inherit; font-size: .875rem; font-weight: 550;
   color: var(--_fg); background: var(--_bg); border: 1px solid var(--_bd);
   border-radius: var(--radius-md, 8px); cursor: pointer;
+  clip-path: var(--clip, none);
   transition: background var(--dur, .16s) var(--ease, ease), color var(--dur, .16s) var(--ease, ease),
               border-color var(--dur, .16s) var(--ease, ease), box-shadow var(--dur, .16s) var(--ease, ease),
               transform var(--dur, .16s) var(--ease, ease);
@@ -92,7 +95,7 @@ section.block:first-of-type { border-top: 0; }
 .btn-primary { --_bg: var(--accent, #5b7cfa); --_fg: var(--text-invert, #fff); --_bd: transparent;
                box-shadow: var(--glow, none); }
 .btn-primary:hover { --_bg: var(--accent-hover, var(--accent, #5b7cfa)); }
-.btn-secondary { --_bg: transparent; --_fg: var(--accent, #6aa2ff);
+.btn-secondary { --_bg: transparent; --_fg: var(--accent-ink, var(--accent, #6aa2ff));
                  --_bd: color-mix(in srgb, var(--accent, #6aa2ff) 45%, transparent); }
 .btn-secondary:hover { --_bg: var(--accent-soft, rgba(106,162,255,.14)); }
 .btn-ghost { --_bg: transparent; --_bd: transparent; --_fg: var(--text-muted, rgba(233,237,245,.72)); }
@@ -100,7 +103,7 @@ section.block:first-of-type { border-top: 0; }
 .btn-danger { --_bg: transparent; --_fg: var(--danger, #ff6b6b);
               --_bd: color-mix(in srgb, var(--danger, #ff6b6b) 45%, transparent); }
 .btn-danger:hover { --_bg: color-mix(in srgb, var(--danger, #ff6b6b) 14%, transparent); }
-.btn[disabled], .btn.is-disabled { opacity: .42; cursor: not-allowed; transform: none; }
+.btn[disabled], .btn.is-disabled { opacity: .42; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn-sm { padding: .35rem .7rem; font-size: .78rem; border-radius: var(--radius-sm, 4px); }
 .btn-lg { padding: .78rem 1.35rem; font-size: .95rem; }
 .btn-block { width: 100%; }
@@ -111,10 +114,12 @@ section.block:first-of-type { border-top: 0; }
   display: inline-flex; align-items: center; gap: .35rem;
   padding: .2rem .55rem; font-size: .72rem; font-weight: 600;
   font-family: var(--font-mono, monospace); letter-spacing: .04em; text-transform: uppercase;
-  border-radius: var(--radius-pill, 999px); border: 1px solid var(--border, rgba(255,255,255,.14));
-  background: var(--surface-2, rgba(255,255,255,.05)); color: var(--text-muted, rgba(233,237,245,.72));
+  border-radius: var(--radius-pill, 999px); border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
+  background: var(--surface-2, rgba(255,255,255,.05));
+  color: var(--text-on-surface-2-muted, var(--text-muted, rgba(233,237,245,.72)));
+  clip-path: var(--clip, none);
 }
-.badge-accent { color: var(--accent, #6aa2ff); background: var(--accent-soft, rgba(106,162,255,.14));
+.badge-accent { color: var(--accent-ink, var(--accent, #6aa2ff)); background: var(--accent-soft, rgba(106,162,255,.14));
                 border-color: color-mix(in srgb, var(--accent, #6aa2ff) 38%, transparent); }
 .badge-ok { color: var(--ok, #43ffb4); border-color: color-mix(in srgb, var(--ok, #43ffb4) 38%, transparent); }
 .badge-warn { color: var(--warn, #ffc46b); border-color: color-mix(in srgb, var(--warn, #ffc46b) 38%, transparent); }
@@ -125,16 +130,19 @@ section.block:first-of-type { border-top: 0; }
 /* -------------------------------------------------------------------- cards */
 .card {
   background: var(--surface, rgba(255,255,255,.04));
-  border: 1px solid var(--border, rgba(255,255,255,.12));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12));
   border-radius: var(--radius-lg, 14px);
   padding: 1.15rem; box-shadow: var(--shadow-1, none);
   backdrop-filter: var(--blur, none);
   -webkit-backdrop-filter: var(--blur, none);
+  /* opt-in chamfer — a kit sets --clip; clip-path also cuts the border along the diagonal,
+     so a chamfered edge is borderless by design (documented, not a bug) */
+  clip-path: var(--clip, none);
 }
 .card-elevated { background: var(--surface-2, var(--surface)); box-shadow: var(--shadow-2, none); }
-.card-title { font-family: var(--font-display, inherit); font-size: 1.02rem; font-weight: 650; margin: .55rem 0 .35rem; }
-.card-body { color: var(--text-muted, rgba(233,237,245,.72)); font-size: .875rem; margin: 0; }
-.card-foot { display: flex; gap: .5rem; align-items: center; justify-content: space-between; margin-top: .95rem; padding-top: .85rem; border-top: 1px solid var(--border, rgba(255,255,255,.1)); }
+.card-title { font-family: var(--font-display, inherit); font-size: 1.02rem; font-weight: 650; margin: .55rem 0 .35rem; color: var(--text-on-surface, var(--text)); }
+.card-body { color: var(--text-on-surface-muted, var(--text-muted, rgba(233,237,245,.72))); font-size: .875rem; margin: 0; }
+.card-foot { display: flex; gap: .5rem; align-items: center; justify-content: space-between; margin-top: .95rem; padding-top: .85rem; border-top: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.1)); }
 .card-media {
   height: 96px; border-radius: var(--radius-md, 8px);
   background: linear-gradient(135deg, var(--accent, #6aa2ff) 0%, var(--accent-2, var(--accent, #6aa2ff)) 100%);
@@ -148,12 +156,13 @@ section.block:first-of-type { border-top: 0; }
 .field .hint { font-size: .74rem; color: var(--text-dim, rgba(233,237,245,.5)); }
 .input, .select, .textarea {
   width: 100%; padding: .6rem .72rem; font: inherit; font-size: .875rem;
-  color: var(--text, #e9edf5); background: var(--surface-2, rgba(255,255,255,.05));
-  border: 1px solid var(--border, rgba(255,255,255,.14));
+  color: var(--text-on-surface-2, var(--text, #e9edf5)); background: var(--surface-2, rgba(255,255,255,.05));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
   border-radius: var(--radius-md, 8px); outline: none;
+  clip-path: var(--clip, none);
   transition: border-color var(--dur, .16s) var(--ease, ease), box-shadow var(--dur, .16s) var(--ease, ease);
 }
-.input::placeholder, .textarea::placeholder { color: var(--text-dim, rgba(233,237,245,.4)); }
+.input::placeholder, .textarea::placeholder { color: var(--text-on-surface-2-muted, var(--text-dim, rgba(233,237,245,.4))); }
 .input:focus, .select:focus, .textarea:focus {
   border-color: var(--accent, #6aa2ff);
   box-shadow: 0 0 0 3px var(--accent-soft, rgba(106,162,255,.18));
@@ -165,7 +174,7 @@ section.block:first-of-type { border-top: 0; }
 .check input { accent-color: var(--accent, #6aa2ff); width: 1rem; height: 1rem; }
 .toggle { display: inline-flex; align-items: center; gap: .55rem; font-size: .875rem; color: var(--text-muted, rgba(233,237,245,.72)); }
 .toggle input { appearance: none; width: 2.4rem; height: 1.3rem; border-radius: 999px;
-                background: var(--surface-2, rgba(255,255,255,.12)); border: 1px solid var(--border, rgba(255,255,255,.18));
+                background: var(--surface-2, rgba(255,255,255,.12)); border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.18));
                 position: relative; cursor: pointer; transition: background var(--dur, .16s) var(--ease, ease); }
 .toggle input::after {
   content: ""; position: absolute; top: 2px; left: 2px; width: .95rem; height: .95rem;
@@ -178,18 +187,19 @@ section.block:first-of-type { border-top: 0; }
 .nav {
   display: flex; gap: .25rem; align-items: center; padding: .4rem;
   background: var(--surface, rgba(255,255,255,.04));
-  border: 1px solid var(--border, rgba(255,255,255,.12));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12));
   border-radius: var(--radius-md, 8px);
+  clip-path: var(--clip, none);
 }
 .nav a { padding: .4rem .75rem; border-radius: var(--radius-sm, 4px); font-size: .85rem;
          color: var(--text-muted, rgba(233,237,245,.72)); }
 .nav a:hover { background: var(--surface-2, rgba(255,255,255,.06)); color: var(--text, #e9edf5); text-decoration: none; }
-.nav a[aria-current="page"] { background: var(--accent-soft, rgba(106,162,255,.16)); color: var(--accent, #6aa2ff); font-weight: 600; }
-.tabs { display: flex; gap: 1.25rem; border-bottom: 1px solid var(--border, rgba(255,255,255,.12)); }
+.nav a[aria-current="page"] { background: var(--accent-soft, rgba(106,162,255,.16)); color: var(--accent-ink, var(--accent, #6aa2ff)); font-weight: 600; }
+.tabs { display: flex; gap: 1.25rem; border-bottom: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12)); }
 .tabs a { padding: .5rem 0; font-size: .875rem; color: var(--text-muted, rgba(233,237,245,.72));
           border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .tabs a:hover { text-decoration: none; color: var(--text, #e9edf5); }
-.tabs a[aria-current="page"] { color: var(--accent, #6aa2ff); border-bottom-color: var(--accent, #6aa2ff); font-weight: 600; }
+.tabs a[aria-current="page"] { color: var(--accent-ink, var(--accent, #6aa2ff)); border-bottom-color: var(--accent, #6aa2ff); font-weight: 600; }
 
 /* --------------------------------------------------------------------- table */
 .table { width: 100%; border-collapse: collapse; font-size: .85rem; }
@@ -197,11 +207,11 @@ section.block:first-of-type { border-top: 0; }
   text-align: left; font-family: var(--font-mono, monospace); font-size: .7rem;
   text-transform: uppercase; letter-spacing: .08em; font-weight: 600;
   color: var(--text-dim, rgba(233,237,245,.5));
-  padding: .55rem .7rem; border-bottom: 1px solid var(--border-strong, var(--border, rgba(255,255,255,.16)));
+  padding: .55rem .7rem; border-bottom: var(--border-w, 1px) solid var(--border-strong, var(--border, rgba(255,255,255,.16)));
 }
-.table td { padding: .6rem .7rem; border-bottom: 1px solid var(--border, rgba(255,255,255,.1)); color: var(--text-muted, rgba(233,237,245,.8)); }
+.table td { padding: .6rem .7rem; border-bottom: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.1)); color: var(--text-muted, rgba(233,237,245,.8)); }
 .table tr:hover td { background: var(--surface-2, rgba(255,255,255,.04)); color: var(--text, #e9edf5); }
-.table code { font-family: var(--font-mono, monospace); color: var(--accent, #6aa2ff); }
+.table code { font-family: var(--font-mono, monospace); color: var(--accent-ink, var(--accent, #6aa2ff)); }
 
 /* ---------------------------------------------------------------------- type */
 .type-row { display: grid; grid-template-columns: 150px 1fr; gap: 1.25rem; align-items: baseline;
@@ -220,19 +230,21 @@ pre.code, code.code {
   display: block; margin: 0; padding: .85rem 1rem; overflow-x: auto;
   font-family: var(--font-mono, monospace); font-size: .8rem; line-height: 1.6;
   color: var(--text, #e9edf5); background: var(--surface-2, rgba(0,0,0,.3));
-  border: 1px solid var(--border, rgba(255,255,255,.12)); border-radius: var(--radius-md, 8px);
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12)); border-radius: var(--radius-md, 8px);
+  clip-path: var(--clip, none);
 }
 code.inline { font-family: var(--font-mono, monospace); font-size: .84em; padding: .1em .38em;
-              background: var(--accent-soft, rgba(255,255,255,.08)); color: var(--accent, #6aa2ff);
+              background: var(--accent-soft, rgba(255,255,255,.08)); color: var(--accent-ink, var(--accent, #6aa2ff));
               border-radius: var(--radius-sm, 4px); }
 .alert {
   display: flex; gap: .7rem; align-items: flex-start; padding: .8rem .95rem;
   border-radius: var(--radius-md, 8px); font-size: .85rem;
   background: var(--surface-2, rgba(255,255,255,.05));
-  border: 1px solid var(--border, rgba(255,255,255,.12)); border-left-width: 3px;
-  color: var(--text-muted, rgba(233,237,245,.8));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12)); border-left-width: 3px;
+  color: var(--text-on-surface-2-muted, var(--text-muted, rgba(233,237,245,.8)));
+  clip-path: var(--clip, none);
 }
-.alert strong { color: var(--text, #e9edf5); display: block; font-size: .85rem; }
+.alert strong { color: var(--text-on-surface-2, var(--text, #e9edf5)); display: block; font-size: .85rem; }
 .alert-info { border-left-color: var(--info, #6aa2ff); }
 .alert-ok { border-left-color: var(--ok, #43ffb4); }
 .alert-warn { border-left-color: var(--warn, #ffc46b); }
@@ -249,12 +261,38 @@ code.inline { font-family: var(--font-mono, monospace); font-size: .84em; paddin
   font-family: var(--font-display, inherit); font-size: .82rem; font-weight: 700;
   color: var(--text-invert, #fff);
   background: linear-gradient(135deg, var(--accent, #6aa2ff), var(--accent-2, var(--accent, #6aa2ff)));
-  border: 1px solid var(--border, rgba(255,255,255,.16));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.16));
+}
+
+/* ------------------------------------------------------------------- tiles */
+/* "Signature" — renders the kit's own slug-prefixed extra tokens. Without this, a kit's
+   bespoke gradients/patterns exist in tokens.css but appear nowhere in the lab. */
+.tiles { display: flex; flex-wrap: wrap; gap: .9rem; }
+.tile { margin: 0; width: 168px; }
+.tile .chip {
+  display: block; height: 72px; margin-bottom: .4rem;
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.16));
+  border-radius: var(--radius-md, 8px); overflow: hidden;
+  /* base is the kit's own inset surface, NOT a checkerboard: tiles often hold faint overlays
+     (a sheen, a grid) which a transparency grid would swamp and make look broken */
+  background: var(--surface-2, rgba(0,0,0,.4));
+}
+.tile .chip b { display: block; width: 100%; height: 100%; }
+.tile .chip b.fx {
+  /* a non-background token (a halo shadow, a filter) is demonstrated by APPLYING it */
+  width: 46px; height: 46px; margin: 13px auto;
+  background: var(--surface, rgba(255,255,255,.06));
+  border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
+  border-radius: var(--radius-sm, 4px);
+}
+.tile figcaption {
+  font-family: var(--font-mono, monospace); font-size: .62rem; line-height: 1.35;
+  color: var(--text-dim, rgba(233,237,245,.5)); overflow-wrap: anywhere;
 }
 
 /* -------------------------------------------------------------------- footer */
 .footnote {
-  padding: 1.75rem 0 3rem; margin-top: .5rem; border-top: 1px solid var(--border, rgba(255,255,255,.12));
+  padding: 1.75rem 0 3rem; margin-top: .5rem; border-top: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.12));
   font-size: .78rem; color: var(--text-dim, rgba(233,237,245,.5));
   display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between;
 }
@@ -265,7 +303,7 @@ code.inline { font-family: var(--font-mono, monospace); font-size: .84em; paddin
 .muted { color: var(--text-muted, rgba(233,237,245,.72)); }
 .dim { color: var(--text-dim, rgba(233,237,245,.5)); }
 .caps { font-family: var(--font-mono, monospace); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
-.accent { color: var(--accent, #6aa2ff); }
+.accent { color: var(--accent-ink, var(--accent, #6aa2ff)); }
 .center { text-align: center; }
 .mt-1 { margin-top: .5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.75rem; }
 .w-100 { width: 100%; }

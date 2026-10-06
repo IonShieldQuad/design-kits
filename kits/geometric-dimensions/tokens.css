@@ -1,0 +1,95 @@
+/* ============================================================================
+   geometric-dimensions · tokens.css                             contract v1.1
+   ----------------------------------------------------------------------------
+   Bauhaus geometry with real dimensional depth. A printed paper ground, ink
+   rules at 3px, hard square corners, and depth expressed as a HARD OFFSET
+   SHADOW — 5px and 9px of pure ink with zero blur. No blurred shadow appears
+   anywhere in this kit: the whole point is that every surface is a sheet of
+   printed board lifted off the page, not something floating in fog.
+
+   Three primaries do the graphic work — red, blue, yellow — but only ONE of
+   them drives action: BLUE (--accent) carries every primary button, link and
+   focus ring, because it is the only one of the three that clears 4.5:1 with a
+   white label. Red (--accent-2) and yellow (--geo-yellow) are structural and
+   graphic only: media fills, the yellow highlight block, the red progress bar.
+   Status colours deliberately avoid the three primaries so a "failed" badge is
+   never mistaken for the brand red.
+
+   Contrast is on solids only — nothing here is translucent — so every ratio is
+   computed directly. See README.md for the table.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  --bg:            #f4f1ea;   /* paper / bone */
+  --bg-2:          #efe9dd;   /* the sheet lifted one step (masthead stop) */
+  --surface:       #fffdf7;   /* printed card stock */
+  --surface-2:     #f0ebe0;   /* nested panels, inputs, badge fills */
+  --overlay:       rgba(20, 17, 15, .55);
+
+  /* ----------------------------------------------------------------- text */
+  --text:          #14110f;   /* ink — 16.7:1 on the paper ground */
+  --text-muted:    #4e463f;   /* 9.1:1 on --surface */
+  --text-dim:      #6b625a;   /* captions/hints — 5.9 / 5.3 / 5.0:1, see README */
+  --text-invert:   #ffffff;   /* 6.8:1 on --accent */
+
+  /* ---------------------------------------------------------------- brand */
+  --accent:        #2b4bd8;   /* BLUE — the one action colour (white label clears AA) */
+  --accent-hover:  #1f39b3;   /* blue, pressed one step deeper */
+  --accent-2:      #e8482f;   /* RED — structural/graphic only */
+  --accent-soft:   rgba(43, 75, 216, .12);
+
+  /* --------------------------------------------------------------- status */
+  /* Kept off the three primaries: forest green, burnt amber, brick, steel. */
+  --ok:            #1b6b3a;
+  --warn:          #8a5300;
+  --danger:        #b3261e;
+  --info:          #0f5c8c;
+
+  /* ---------------------------------------------------------------- lines */
+  --border:        #14110f;   /* every rule is ink */
+  --border-strong: #14110f;
+  --border-w:      3px;       /* bold rules are the signature, not a hairline */
+  --focus-ring:    #2b4bd8;
+
+  /* ---------------------------------------------------------------- shape */
+  /* Hard corners are the point. The pill token is 2px on purpose: badges and
+     avatars read as squares with the faintest print rounding, never as pills. */
+  --radius-sm:     0px;
+  --radius-md:     2px;
+  --radius-lg:     2px;
+  --radius-pill:   2px;
+  --cut:           0px;       /* cut corners belong to the sibling `carbon` kit */
+
+  /* ----------------------------------------------------------------- type */
+  --font-display:  "Archivo", "Archivo Black", "Arial Black", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Space Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tracking-caps: .1em;
+  --tracking-display: -0.01em;   /* a black face needs almost no tightening */
+
+  /* ---------------------------------------------------------------- depth */
+  /* DIMENSIONS. Depth is a hard offset — 5px then 9px of solid ink, zero blur —
+     not a soft glow. There is no blurred shadow in this kit at all. The primary
+     button gets its own smaller offset through --glow, because templates/lab.css
+     wires .btn-primary's box-shadow to --glow rather than --shadow-1. */
+  --shadow-1:      5px 5px 0 var(--border);
+  --shadow-2:      9px 9px 0 var(--border);
+  --glow:          3px 3px 0 var(--border);
+  --blur:          none;      /* nothing in this kit is frosted */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .12s;      /* a print object snaps, it does not ease */
+  --ease:          cubic-bezier(.2, .8, .3, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — the geometric vocabulary, kept addressable so a project can draw
+     the Bauhaus composition without re-typing hexes.
+     ---------------------------------------------------------------------- */
+  --geo-red:       #e8482f;
+  --geo-blue:      #2b4bd8;
+  --geo-yellow:    #f2b21a;   /* the third primary — structural/graphic only */
+  --geo-ink:       #14110f;
+  --geo-paper:     #f4f1ea;
+  --geo-offset-sm: 5px 5px 0 var(--border);
+  --geo-offset-lg: 9px 9px 0 var(--border);
+}

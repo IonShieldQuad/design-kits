@@ -45,8 +45,9 @@ renders (fallbacks) but is considered incomplete and `build.py` will warn.
   --ok: --warn: --danger: --info:
 
   /* lines */
-  --border:        /* default 1px hairline (hex or rgba) */
-  --border-strong: /* emphasised divider / input border */
+  --border:        /* default hairline colour (hex or rgba) */
+  --border-strong: /* emphasised divider / input border colour */
+  --border-w:      /* border width — 1px default; 2-3px for bold-line/retro/brutalist kits */
   --focus-ring:    /* keyboard focus outline colour */
 
   /* shape */
@@ -68,6 +69,20 @@ renders (fallbacks) but is considered incomplete and `build.py` will warn.
 Extras are allowed and ignored by the lab (e.g. `--neon-cyan`, `--hologlow`). Prefix them
 with the kit slug if they could collide.
 
+## Optional capabilities (declare to enable)
+
+These are not required, but the shared lab honours them when present:
+
+| Token | Effect |
+|---|---|
+| `--clip` | opt-in chamfer. Set `--cut: 12px` plus `--clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut))` and the lab applies `clip-path` to cards, buttons, inputs, badges, alerts, nav and code blocks. **Caveat:** `clip-path` also cuts the border along the diagonal, so a chamfered edge is borderless. Document that in the kit README — it is a known limitation, not a bug. |
+| `--accent-ink` | the accent colour for **text** (eyebrow, links, active nav/tab, secondary-button labels, inline code, badges) as opposed to fill. A colour that works as a button fill is frequently too light to read as a small label — dark-glass's accent is 3.8:1 as text and summer-sunset's orange is 5.0:1 only after darkening. Declare a text-safe member of the same family; falls back to `--accent`. |
+| `--text-on-surface`, `--text-on-surface-muted` | text inside `.card`. Needed when `--surface` contrasts with `--bg` (light card on a dark canvas, or the reverse) — otherwise card text takes `--text` and goes unreadable. |
+| `--text-on-surface-2`, `--text-on-surface-2-muted` | text inside inputs, badges, alerts and code blocks (everything on `--surface-2`). Needed when `--surface-2` is a dark inset sitting inside a light card, which is a three-tier surface stack. |
+
+Three-tier stacks (dark canvas → light card → dark inset) are what these exist for; without
+them the lab can only express one text colour per page.
+
 ## kit.json
 
 ```json
@@ -85,6 +100,10 @@ with the kit slug if they could collide.
 ```
 
 - `order` — gallery sort key. Leave gaps (10, 20, 30…) so kits can be inserted later.
+  The gallery number (`01`, `02`, …) is **derived** from this; a hand-written `index` field is
+  ignored and reported as stale, so don't bother numbering by hand.
+- `use_when` — optional one-liner for the generated picker table in `AGENTS.md`
+  ("portfolio, product marketing for dev tools"). Falls back to `tagline`.
 - `mode` — `dark` | `light`. Drives the gallery chip and is a filter facet.
 - `fonts_url` — a single Google Fonts URL with every family/weight the kit uses. Empty
   string = system fonts only.

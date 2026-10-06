@@ -1,0 +1,144 @@
+/* ============================================================================
+   Outer Space · tokens.css                                    contract v1.1
+   ----------------------------------------------------------------------------
+   The wonder of space, not the menace of it. A deep blue-violet void carrying a
+   starfield and three vast nebula blooms, over which translucent panels float
+   like viewports. Light in this kit is emitted by distant objects: starlight
+   gold is the single action colour, ice cyan is the cool register, and a
+   violet/rose nebula is the atmosphere you look through.
+
+   TWO LOAD-BEARING DECISIONS — do not "simplify" either:
+
+   1. --bg IS LAYERED, NOT A RAMP. templates/lab.css applies var(--blur) to every
+      .card, and a backdrop-filter over a smooth ramp is indistinguishable from
+      flat paint: there is nothing behind the glass to smear. --bg is therefore
+      four starfield tiles (1-2.4px specks on 137/89/211/373px tiles, sizes
+      deliberately coprime so the field never reads as a grid) on top of four
+      nebula blooms (gold star, violet, rose, ice) and a deep floor bloom, on top
+      of a five-stop ramp. The specks give the frost high-frequency structure;
+      the blooms give it a colour gradient to lift. Sampled across 1440x2600 the
+      ground runs L = 0.0028 -> 0.0444, a 20.4x luminance spread: a vista with
+      depth, never a flat field.
+      --bg-plain is the same ground WITHOUT the specks, for text-critical use;
+      --starfield is the speck layers alone, for overlaying a hero or a poster.
+
+   2. THE ACCENT IS LIGHT, NOT PAINT. --accent is #ffe9b8, the warm-white of a
+      distant star, so --text-invert is the deep void (#0a0e22) and never white.
+      A pale gold fill with a near-black label is the single most distinctive
+      thing about this kit: every other dark kit in the library fills its primary
+      button with a saturated neon and inverts to white. Hover goes BRIGHTER
+      (#fff4d6), because a star flaring is more awe than a star dimming.
+
+   Contrast is verified by scratch/verify-space.py, which PARSES this file (ramp
+   stops, bloom geometry, speck tiles, surface alphas) and samples the gradient
+   rather than trusting a hex. Worst-case ground pixel #40384e; see README.md.
+   ========================================================================== */
+:root{
+  /* --------------------------------------------------------------- surfaces */
+  /* Painted top-down (CSS layer order): starfield specks -> gold star bloom ->
+     violet nebula -> rose nebula -> ice lane -> deep floor bloom -> ramp.
+     Comma-separated, so --bg stays one single usable background value.
+     The speck tiles carry an explicit position/size inside the shorthand. */
+  --bg:
+    radial-gradient(1.1px 1.1px at 18% 22%, rgba(255, 244, 214, .60) 0, rgba(255, 244, 214, 0) 100%) 0 0 / 137px 131px repeat,
+    radial-gradient(.9px .9px at 63% 71%, rgba(214, 229, 255, .50) 0, rgba(214, 229, 255, 0) 100%) 0 0 / 89px 97px repeat,
+    radial-gradient(1.3px 1.3px at 82% 14%, rgba(255, 233, 184, .42) 0, rgba(255, 233, 184, 0) 100%) 0 0 / 211px 197px repeat,
+    radial-gradient(2.4px 2.4px at 47% 58%, rgba(255, 244, 214, .75) 0, rgba(255, 244, 214, 0) 100%) 0 0 / 373px 331px repeat,
+    radial-gradient(950px 700px at 70% 90px,   rgba(255, 233, 184, .16) 0%, rgba(255, 233, 184, 0) 72%),
+    radial-gradient(1400px 900px at 14% 120px, rgba(107, 75, 214, .42) 0%, rgba(107, 75, 214, 0) 74%),
+    radial-gradient(1100px 800px at 92% 520px, rgba(194, 65, 143, .25) 0%, rgba(194, 65, 143, 0) 76%),
+    radial-gradient(1500px 1000px at 52% 1500px, rgba(79, 209, 224, .23) 0%, rgba(79, 209, 224, 0) 78%),
+    radial-gradient(1300px 900px at 8% 2400px,  rgba(84, 52, 180, .21) 0%,  rgba(84, 52, 180, 0) 80%),
+    linear-gradient(178deg, #0b0f26 0px, #090c1e 420px, #0a0e22 900px, #070a18 1600px, #05070f 2600px);
+  --bg-plain:                                  /* the ground with no starfield — text-critical use */
+    radial-gradient(950px 700px at 70% 90px,   rgba(255, 233, 184, .16) 0%, rgba(255, 233, 184, 0) 72%),
+    radial-gradient(1400px 900px at 14% 120px, rgba(107, 75, 214, .42) 0%, rgba(107, 75, 214, 0) 74%),
+    radial-gradient(1100px 800px at 92% 520px, rgba(194, 65, 143, .25) 0%, rgba(194, 65, 143, 0) 76%),
+    radial-gradient(1500px 1000px at 52% 1500px, rgba(79, 209, 224, .23) 0%, rgba(79, 209, 224, 0) 78%),
+    radial-gradient(1300px 900px at 8% 2400px,  rgba(84, 52, 180, .21) 0%,  rgba(84, 52, 180, 0) 80%),
+    linear-gradient(178deg, #0b0f26 0px, #090c1e 420px, #0a0e22 900px, #070a18 1600px, #05070f 2600px);
+  --starfield:                                 /* the specks alone — overlay a hero, a panel, a poster */
+    radial-gradient(1.1px 1.1px at 18% 22%, rgba(255, 244, 214, .60) 0, rgba(255, 244, 214, 0) 100%) 0 0 / 137px 131px repeat,
+    radial-gradient(.9px .9px at 63% 71%, rgba(214, 229, 255, .50) 0, rgba(214, 229, 255, 0) 100%) 0 0 / 89px 97px repeat,
+    radial-gradient(1.3px 1.3px at 82% 14%, rgba(255, 233, 184, .42) 0, rgba(255, 233, 184, 0) 100%) 0 0 / 211px 197px repeat,
+    radial-gradient(2.4px 2.4px at 47% 58%, rgba(255, 244, 214, .75) 0, rgba(255, 244, 214, 0) 100%) 0 0 / 373px 331px repeat;
+  --bg-2:          #0b0f26;                   /* the lightest ramp stop — masthead stand-in */
+  --surface:       rgba(20, 26, 56, .55);     /* viewport pane — genuinely translucent */
+  --surface-2:     rgba(28, 36, 78, .66);     /* denser nested pane, inputs */
+  --surface-solid: #141a38;                   /* opaque fallback: print, email, canvas */
+  --overlay:       rgba(4, 6, 15, .72);       /* modal scrim */
+
+  /* ------------------------------------------------------------------ text */
+  --text:          #eef1fb;   /* 9.9:1 on the worst-case ground pixel */
+  --text-muted:    #bcc5e4;   /* 8.9:1 on the composited .55 pane */
+  --text-dim:      #b0badb;   /* captions/hints — 5.8 / 7.5 / 7.0:1, see README */
+  --text-invert:   #0a0e22;   /* 16.0:1 on --accent: the void, never white */
+
+  /* ----------------------------------------------------------------- brand */
+  --accent:        #ffe9b8;   /* STARLIGHT — the single action colour */
+  --accent-hover:  #fff4d6;   /* the star flares brighter on hover, it does not dim */
+  --accent-2:      #7fe3f0;   /* ICE CYAN — the cool register: gradients, media, charts */
+  --accent-soft:   rgba(255, 233, 184, .14);  /* derived: 14% starlight tint */
+
+  /* ---------------------------------------------------------------- status */
+  /* Deliberately outside the starlight/ice pair — a warm solar amber for warn,
+     well clear of the pale gold accent, so a status can never read as an action. */
+  --ok:            #5fe0a8;   /* aurora */
+  --warn:          #ffb066;   /* solar amber */
+  --danger:        #ff6f86;   /* rose-hot */
+  --info:          #8fb6ff;   /* glacial blue */
+
+  /* ----------------------------------------------------------------- lines */
+  --border:        rgba(178, 198, 255, .13);  /* hairline cool edge, very low alpha */
+  --border-strong: rgba(190, 208, 255, .22);  /* input rims, emphasised rules */
+  --border-w:      1px;                       /* a vista is bounded by light, not by weight */
+  --focus-ring:    #ffe9b8;
+
+  /* ----------------------------------------------------------------- shape */
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     24px;      /* panels are generous; the scale is spacious */
+  --radius-pill:   999px;
+  --cut:           0px;       /* this kit rounds; it does not cut */
+
+  /* ------------------------------------------------------------------ type */
+  --font-display:  "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "IBM Plex Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tracking-caps: .14em;     /* wide, quiet labels */
+  --tracking-display: -0.015em;
+
+  /* ----------------------------------------------------------------- depth */
+  /* Depth is a glow and a soft shadow, never a hard edge. The inset top lip is
+     starlight catching the near rim of a pane. */
+  --shadow-1:      0 20px 48px rgba(2, 4, 14, .55), 0 2px 10px rgba(2, 4, 14, .35),
+                  inset 0 1px 0 rgba(200, 214, 255, .06);
+  --shadow-2:      0 34px 84px rgba(2, 4, 14, .62), 0 8px 24px rgba(2, 4, 14, .40),
+                  inset 0 1px 0 rgba(200, 214, 255, .09);
+  --glow:          0 0 34px rgba(255, 233, 184, .30);   /* the starlight halo */
+  --blur:          blur(22px) saturate(140%);           /* load-bearing: .card uses this */
+
+  /* ---------------------------------------------------------------- motion */
+  --dur:           .24s;
+  --ease:          cubic-bezier(.22, .61, .36, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — addressable so a project can rebuild the vista, paint a chart
+     series or emit a printed swatch without re-typing rgba().
+     ---------------------------------------------------------------------- */
+  --nebula-1:      #6b4bd6;                  /* deep violet bloom (top-left) */
+  --nebula-2:      #c2418f;                  /* rose nebula (right) */
+  --nebula-3:      #4fd1e0;                  /* ice lane (low centre) */
+  --bg-stop-1:     #0b0f26;                  /* lightest ramp stop */
+  --bg-stop-2:     #0a0e22;                  /* mid ramp stop */
+  --bg-stop-3:     #05070f;                  /* deepest ramp stop */
+  --starlight:     #ffe9b8;
+  --starlight-bright: #fff4d6;
+  --ice-cyan:      #7fe3f0;
+  --glacial-blue:  #8fb6ff;
+  --halo-star:     radial-gradient(950px 700px at 70% 90px,   rgba(255, 233, 184, .16) 0%, rgba(255, 233, 184, 0) 72%);
+  --halo-violet:   radial-gradient(1400px 900px at 14% 120px, rgba(107, 75, 214, .42) 0%, rgba(107, 75, 214, 0) 74%);
+  --halo-rose:     radial-gradient(1100px 800px at 92% 520px, rgba(194, 65, 143, .25) 0%, rgba(194, 65, 143, 0) 76%);
+  --halo-ice:      radial-gradient(1500px 1000px at 52% 1500px, rgba(79, 209, 224, .23) 0%, rgba(79, 209, 224, 0) 78%);
+  --vue:           linear-gradient(135deg, #ffe9b8 0%, #7fe3f0 100%);   /* starlight into ice */
+}

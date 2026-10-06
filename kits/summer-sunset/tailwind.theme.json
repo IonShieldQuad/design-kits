@@ -2,63 +2,67 @@
   "theme": {
     "extend": {
       "colors": {
-        "primary": "#ff7a59",
-        "secondary": "#7b4bd8",
-        "tertiary": "#ffb347",
-        "neutral": "#fff8f1",
-        "bg-stop-1": "#fff8f1",
-        "bg-stop-2": "#ffe8da",
-        "bg-stop-3": "#ffddcb",
-        "bg-2": "#fff3e9",
-        "surface": "#fffdfa",
-        "surface-2": "#fff2e7",
-        "overlay": "#2b1d2f73",
-        "text": "#2b1d2f",
-        "text-muted": "#7a5a66",
-        "text-dim": "#806875",
-        "text-invert": "#2b1d2f",
-        "accent-hover": "#f9623c",
-        "accent-soft": "#ff7a5929",
-        "ok": "#1f8a5b",
+        "primary": "#ff7a1a",
+        "secondary": "#06a9c4",
+        "tertiary": "#ff2ea6",
+        "neutral": "#fff5ec",
+        "bg-stop-1": "#fff5ec",
+        "bg-stop-2": "#ffe3ca",
+        "bg-stop-3": "#ffd1de",
+        "bg-stop-4": "#eedaf5",
+        "bg-2": "#fff0e2",
+        "surface": "#fffaf5",
+        "surface-2": "#ffeede",
+        "overlay": "#2a11368c",
+        "text": "#2a1136",
+        "text-muted": "#6d3a5e",
+        "text-dim": "#75506a",
+        "text-invert": "#2a1136",
+        "accent-hover": "#ef6a06",
+        "accent-soft": "#ff7a1a29",
+        "ok": "#1a7d52",
         "warn": "#a86a12",
-        "danger": "#d64545",
-        "info": "#3f6fd8",
-        "border": "#f1d8c6",
-        "border-strong": "#e0b499",
-        "focus-ring": "#7b4bd8",
-        "ramp-coral": "#ff7a59",
-        "ramp-amber": "#ffb347",
-        "ramp-violet": "#7b4bd8"
+        "danger": "#c8353f",
+        "info": "#3a6fd8",
+        "border": "#2a113642",
+        "border-strong": "#2a113699",
+        "focus-ring": "#077184",
+        "ramp-peach": "#ffb37a",
+        "ramp-orange": "#ff7a1a",
+        "ramp-magenta": "#ff2ea6",
+        "ramp-violet": "#7b2ff7",
+        "sun-core": "#ffd93b"
       },
       "fontFamily": {
         "display": [
-          "Fraunces"
+          "Audiowide"
         ],
         "heading": [
-          "Fraunces"
+          "Audiowide"
         ],
         "body": [
           "Inter"
         ],
         "label": [
-          "IBM Plex Mono"
+          "Share Tech Mono"
         ],
         "code": [
-          "IBM Plex Mono"
+          "Share Tech Mono"
         ]
       },
       "fontSize": {
         "display": [
           "2.75rem",
           {
-            "letterSpacing": "-0.01em",
-            "fontWeight": "600"
+            "letterSpacing": "0.01em",
+            "fontWeight": "400"
           }
         ],
         "heading": [
           "1.3rem",
           {
-            "fontWeight": "600"
+            "letterSpacing": "0.01em",
+            "fontWeight": "400"
           }
         ],
         "body": [
@@ -70,8 +74,8 @@
         "label": [
           "0.72rem",
           {
-            "letterSpacing": "0.12em",
-            "fontWeight": "500"
+            "letterSpacing": "0.16em",
+            "fontWeight": "400"
           }
         ],
         "code": [
@@ -80,15 +84,15 @@
         ]
       },
       "borderRadius": {
-        "sm": "10px",
-        "md": "14px",
-        "lg": "18px",
+        "sm": "4px",
+        "md": "6px",
+        "lg": "8px",
         "pill": "999px"
       },
       "spacing": {
         "xs": "0.4rem",
         "sm": "0.75rem",
-        "md": "1.15rem",
+        "md": "1rem",
         "lg": "2.25rem"
       }
     }

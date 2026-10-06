@@ -67,7 +67,7 @@ const REQUIRED_TOKENS = [
   "--text", "--text-muted", "--text-dim", "--text-invert",
   "--accent", "--accent-hover", "--accent-2", "--accent-soft",
   "--ok", "--warn", "--danger", "--info",
-  "--border", "--border-strong", "--focus-ring",
+  "--border", "--border-strong", "--focus-ring", "--border-w",
   "--radius-sm", "--radius-md", "--radius-lg", "--radius-pill", "--cut",
   "--font-display", "--font-body", "--font-mono", "--tracking-caps",
   "--shadow-1", "--shadow-2", "--glow", "--blur",
@@ -213,7 +213,7 @@ async function main() {
     }
 
     // desktop viewport-only crop of the masthead: what the gallery thumbnail has to sell
-    const ctx = await browser.newContext({ viewport: { width: 1280, height: 620 }, deviceScaleFactor: 2 });
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 1180 }, deviceScaleFactor: 2 });
     const page = await ctx.newPage();
     await page.goto("file:///" + file.replace(/\\/g, "/"), { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);

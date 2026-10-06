@@ -1,0 +1,88 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#4a6658",
+        "primary-hover": "#40594b",
+        "secondary": "#567694",
+        "tertiary": "#40594b",
+        "neutral": "#e8ecf0",
+        "bg-stop-1": "#eef2f6",
+        "bg-stop-2": "#e8ecf0",
+        "bg-stop-3": "#e2e8ee",
+        "bg-2": "#eef2f6",
+        "surface": "#f2f5f8",
+        "surface-2": "#e6eaf0",
+        "overlay": "#2b32386b",
+        "text": "#2b3238",
+        "text-muted": "#4d585f",
+        "text-dim": "#565f69",
+        "text-invert": "#ffffff",
+        "accent-soft": "#4a66581a",
+        "ok": "#33714d",
+        "warn": "#8a6220",
+        "danger": "#a8453d",
+        "info": "#43668e",
+        "border": "#cdd5dd",
+        "border-strong": "#aab6c2",
+        "focus-ring": "#3c6b93"
+      },
+      "fontFamily": {
+        "display": [
+          "Source Serif 4"
+        ],
+        "heading": [
+          "Source Serif 4"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.012em",
+            "fontWeight": "600"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.006em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.08em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "10px",
+        "lg": "14px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.35rem",
+        "sm": "0.65rem",
+        "md": "1.15rem",
+        "lg": "2.25rem",
+        "xl": "3.5rem"
+      }
+    }
+  }
+}

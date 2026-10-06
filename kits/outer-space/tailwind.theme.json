@@ -1,0 +1,115 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ffe9b8",
+        "primary-hover": "#fff4d6",
+        "on-primary": "#0a0e22",
+        "primary-soft": "#ffe9b824",
+        "secondary": "#7fe3f0",
+        "tertiary": "#6b4bd6",
+        "neutral": "#070a18",
+        "nebula-1": "#6b4bd6",
+        "nebula-2": "#c2418f",
+        "nebula-3": "#4fd1e0",
+        "bg-stop-1": "#0b0f26",
+        "bg-stop-2": "#0a0e22",
+        "bg-stop-3": "#05070f",
+        "surface": "#141a388c",
+        "surface-2": "#1c244ea8",
+        "surface-solid": "#141a38",
+        "text": "#eef1fb",
+        "text-muted": "#bcc5e4",
+        "text-dim": "#b0badb",
+        "ok": "#5fe0a8",
+        "warn": "#ffb066",
+        "danger": "#ff6f86",
+        "info": "#8fb6ff"
+      },
+      "fontFamily": {
+        "display": [
+          "Outfit"
+        ],
+        "h1": [
+          "Outfit"
+        ],
+        "h2": [
+          "Outfit"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "small": [
+          "Inter"
+        ],
+        "button": [
+          "Inter"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.015em",
+            "fontWeight": "700"
+          }
+        ],
+        "h1": [
+          "1.7rem",
+          {
+            "letterSpacing": "-0.015em",
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "button": [
+          "0.875rem",
+          {
+            "fontWeight": "500"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "14px",
+        "lg": "24px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "48px"
+      }
+    }
+  }
+}

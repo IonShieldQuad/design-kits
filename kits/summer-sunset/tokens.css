@@ -1,72 +1,89 @@
 /* ============================================================================
    design-kits · summer-sunset
    ----------------------------------------------------------------------------
-   The warm LIGHT kit. A cream-to-blush sunset-sky ground, deep plum-brown type,
-   and a coral -> amber -> violet ramp as the signature. Rounded, generous,
-   friendly.
+   An 80s SYNTHWAVE SUNSET POSTER, made usable as UI. Bold 2px graphic lines over
+   a warm sunset gradient ground, deep aubergine ink for text, and three neon
+   accents: orange (action), cyan (focus + cool counterweight), magenta (the
+   third, carried by the gradient ramp and the sun-band).
 
-   Fonts: Fraunces (display) · Inter (body) · IBM Plex Mono (labels)
-   Contract: docs/KIT-SPEC.md v1. Every required name is present below.
+   Fonts: Audiowide (display) · Inter (body) · Share Tech Mono (labels)
+   Contract: docs/KIT-SPEC.md v1.1. Every required name is present below.
    ========================================================================== */
 :root{
   /* -- surfaces ---------------------------------------------------------- */
-  /* --bg is a GRADIENT (the signature ground). Contrast is checked against its
-     darkest stop, #ffddcb — the worst case for dark type. */
-  --bg:            linear-gradient(180deg, #fff8f1 0%, #ffe8da 55%, #ffddcb 100%);
-  --bg-2:          #fff3e9;                 /* solid stop: masthead chrome, exports */
-  --surface:       #fffdfa;                 /* cards — warm near-white */
-  --surface-2:     #fff2e7;                 /* nested panels, inputs */
-  --overlay:       rgba(43,29,47,.45);      /* modal scrim */
+  /* --bg is a GRADIENT — the sunset sky, the signature ground. Stops are in PX, not %, on
+     purpose: a % ramp over a 3000px document shows only its first stop in the first screen,
+     which reads as flat cream. This puts the sunset band across the hero, then settles to a
+     calm warm ground for the rest of the page. Contrast is checked against its darkest stop,
+     #e8d5f5 (the violet band). --bg-2 is the solid stand-in for exports. */
+  --bg:            linear-gradient(180deg, #fff7ef 0px, #fff1e4 300px, #ffc9d6 440px, #e8d5f5 580px, #fff3e6 740px);
+  --bg-2:          #fff1e2;                 /* solid stop: masthead chrome, exports */
+  --surface:       #fffaf5;                 /* cards — warm near-white */
+  --surface-2:     #ffeede;                 /* nested panels, inputs */
+  --overlay:       rgba(42,17,54,.55);      /* modal scrim */
 
-  /* -- text -------------------------------------------------------------- */
-  --text:          #2b1d2f;                 /* plum-brown, 12.4:1 on the darkest --bg stop */
-  --text-muted:    #7a5a66;                 /* 5.9:1 on --surface */
-  --text-dim:      #806875;                 /* captions, placeholders */
-  --text-invert:   #2b1d2f;                 /* dark-on-coral: 6.2:1 on --accent */
+  /* -- text — deep aubergine ink, never orange --------------------------- */
+  --text:          #2a1136;                 /* 12.5:1 on the darkest --bg stop */
+  --text-muted:    #6d3a5e;                 /* 8.4:1 on --surface */
+  --text-dim:      #75506a;                 /* 5.0:1 on the darkest --bg stop, 6.0:1 on --surface-2 */
+  --text-invert:   #2a1136;                 /* aubergine ink on orange: 6.5:1 on --accent */
 
   /* -- brand ------------------------------------------------------------- */
-  --accent:        #ff7a59;                 /* coral — the action colour */
-  --accent-hover:  #f9623c;                 /* deeper coral on hover */
-  --accent-2:      #7b4bd8;                 /* violet — the cool end of the ramp */
-  --accent-soft:   rgba(255,122,89,.16);    /* 16% coral tint, derived */
+  --accent:        #ff7a1a;                 /* ORANGE — the action colour / the setting sun */
+  --accent-ink:    #b34a00;                 /* ORANGE AS TEXT — 5.0:1 on the light ground. Fill and
+                                               text are different jobs: #ff7a1a is a great button and
+                                               a poor small label. Used for the eyebrow, links,
+                                               secondary-button labels and active nav. */
+  --accent-hover:  #ef6a06;                 /* deeper orange on hover */
+  --accent-2:      #00b4d8;                 /* CYAN — vivid enough to read in media gradients */
+  --accent-soft:   rgba(255,122,26,.18);    /* 18% ORANGE tint — backs badge/nav fills where the
+                                               text is --accent, so it must stay in the orange
+                                               family. Magenta arrives via --glow, the ground
+                                               gradient and the signature ramp instead. */
 
-  /* -- status ------------------------------------------------------------ */
-  --ok:            #1f8a5b;
-  --warn:          #a86a12;
-  --danger:        #d64545;
-  --info:          #3f6fd8;
+  /* -- status (deliberately off the neon brand hues) --------------------- */
+  --ok:            #1a7d52;                 /* forest green, away from cyan; 4.5:1 on --surface-2 */
+  --warn:          #a86a12;                 /* amber-brown, away from the orange action */
+  --danger:        #c8353f;                 /* true red, away from the magenta band; 4.6:1 on --surface-2 */
+  --info:          #3a6fd8;                 /* indigo, away from cyan */
 
-  /* -- lines ------------------------------------------------------------- */
-  --border:        #f1d8c6;                 /* warm sand hairline */
-  --border-strong: #e0b499;                 /* emphatic divider / input border */
-  --focus-ring:    #7b4bd8;                 /* violet focus — the second accent */
+  /* -- lines — BOLD graphic outlines ------------------------------------- */
+  --border:        rgba(42,17,54,.40);      /* 2px aubergine line — the poster rule, meant to read */
+  --border-strong: rgba(42,17,54,.72);      /* the emphatic poster rule */
+  --border-w:      2px;                     /* bold-line kit: 2px everywhere */
+  --focus-ring:    #077184;                 /* deep cyan focus — never the orange action */
 
-  /* -- shape ------------------------------------------------------------- */
-  --radius-sm:     10px;
-  --radius-md:     14px;
-  --radius-lg:     18px;
+  /* -- shape — small, printed-poster radii ------------------------------- */
+  --radius-sm:     4px;
+  --radius-md:     6px;
+  --radius-lg:     8px;
   --radius-pill:   999px;
-  --cut:           0px;                     /* no corner cut — this kit is round */
+  --cut:           0px;                     /* no corner cut — the line does the work */
 
   /* -- type -------------------------------------------------------------- */
-  --font-display:  "Fraunces", Georgia, "Times New Roman", serif;
+  --font-display:  "Audiowide", "Segoe UI", system-ui, sans-serif;
   --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono:     "IBM Plex Mono", ui-monospace, Consolas, monospace;
-  --tracking-caps: .12em;
-  --tracking-display: -.01em;
+  --font-mono:     "Share Tech Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --tracking-caps: .16em;
+  --tracking-display: .01em;                /* Audiowide is already wide — no negative tracking */
 
-  /* -- depth ------------------------------------------------------------- */
-  --shadow-1:      0 2px 4px rgba(122,63,32,.05), 0 14px 30px -16px rgba(122,63,32,.28);
-  --shadow-2:      0 26px 52px -22px rgba(122,63,32,.42), 0 2px 0 rgba(255,255,255,.60) inset;
-  --glow:          0 0 0 4px rgba(255,122,89,.22);   /* soft warm ring, not a neon bloom */
+  /* -- depth — hard print offset shadows, not blur ----------------------- */
+  --shadow-1:      0 2px 0 rgba(42,17,54,.05), 0 14px 26px -18px rgba(255,46,166,.30);
+  --shadow-2:      4px 4px 0 rgba(42,17,54,.14), 0 26px 48px -24px rgba(255,46,166,.40);
+  --glow:          3px 3px 0 #ff2ea6;       /* hard MAGENTA poster offset on --accent */
   --blur:          none;
 
   /* -- motion ------------------------------------------------------------ */
-  --dur:           .22s;
-  --ease:          cubic-bezier(.22,.61,.36,1);
+  --dur:           .18s;
+  --ease:          cubic-bezier(.2,.8,.2,1);
 
   /* -- extras (ignored by the shared lab) -------------------------------- */
-  --summer-sunset-ramp: linear-gradient(90deg, #ff7a59 0%, #ffb347 50%, #7b4bd8 100%);
-  --summer-sunset-amber: #ffb347;           /* the warm middle of the ramp */
-  --summer-sunset-sky: linear-gradient(180deg, #ff9a76 0%, #ffb347 48%, #7b4bd8 100%);
+  --summer-sunset-magenta: #ff2ea6;         /* the third brand colour — ramp + sun-band */
+  --summer-sunset-violet:  #7b2ff7;         /* the cool end of the sunset ramp */
+  --summer-sunset-ramp:    linear-gradient(90deg, #ffb37a 0%, #ff7a1a 32%, #ff2ea6 66%, #7b2ff7 100%);
+  --summer-sunset-sun:     radial-gradient(circle at 50% 100%, #ffd93b 0%, #ff7a1a 46%, #ff2ea6 78%, transparent 80%);
+  --summer-sunset-sunband: repeating-linear-gradient(180deg, rgba(255,122,26,.85) 0 6px, rgba(255,46,166,.85) 6px 12px, transparent 12px 20px);
+  --summer-sunset-grid:    repeating-linear-gradient(90deg, rgba(42,17,54,.07) 0 1px, transparent 1px 30px),
+                           repeating-linear-gradient(0deg,  rgba(42,17,54,.07) 0 1px, transparent 1px 30px);
+  --summer-sunset-halo:    0 0 34px -6px rgba(255,122,26,.55);
 }

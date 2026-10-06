@@ -36,7 +36,8 @@
 
   /* -- lines ------------------------------------------------------------- */
   --border:        rgba(255,46,136,.30);    /* magenta hairline, not grey */
-  --border-strong: rgba(255,46,136,.62);    /* emphatic divider / input border */
+  --border-strong: rgba(255,46,136,.62);
+  --border-w:      1px;    /* emphatic divider / input border */
   --focus-ring:    #22e0ff;                 /* cyan focus — never mistakable for hover */
 
   /* -- shape ------------------------------------------------------------- */

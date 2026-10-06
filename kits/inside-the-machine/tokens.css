@@ -1,0 +1,86 @@
+/* ============================================================================
+   design-kits · inside-the-machine
+   ----------------------------------------------------------------------------
+   The INTERIOR of an instrument, not a product page. A graphite chassis with
+   panels recessed into it (inset, not floating), opaque steel hairline seams,
+   and phosphor lamps: amber acts (#ffb000), green reports (#4dff9e), red
+   faults (#ff5147).
+
+   Mono-first: IBM Plex Mono carries the interface — headings, eyebrows,
+   labels, table headers, badges — and IBM Plex Sans is the fallback voice for
+   sentences. There is no separate display face; the mono IS the display face.
+
+   Fonts: IBM Plex Mono (display + mono) · IBM Plex Sans (body)
+   Contract: docs/KIT-SPEC.md v1.1. Every required name is present below,
+   including --border-w.
+   ========================================================================== */
+:root{
+  /* -- surfaces ---------------------------------------------------------- */
+  --bg:            #0d0f11;                 /* graphite chassis */
+  --bg-2:          #131719;                 /* masthead / gradient stop */
+  --surface:       #16191d;                 /* milled panel face */
+  --surface-2:     #1b1f23;                 /* recessed well, inputs */
+  --overlay:       rgba(6,8,10,.78);        /* modal scrim */
+
+  /* -- text -------------------------------------------------------------- */
+  --text:          #e9edef;                 /* 16.2:1 on --bg */
+  --text-muted:    #9aa4ad;                 /* 7.0:1 on --surface */
+  --text-dim:      #828d95;                 /* 4.9:1 on --surface-2 */
+  --text-invert:   #0d0f11;                 /* chassis ink on the amber plate */
+
+  /* -- brand ------------------------------------------------------------- */
+  --accent:        #ffb000;                 /* amber — the ONLY action colour */
+  --accent-hover:  #ffc233;                 /* amber lifted one step */
+  --accent-2:      #4dff9e;                 /* green phosphor — readouts, media */
+  --accent-soft:   rgba(255,176,0,.13);     /* 13% amber tint, derived */
+
+  /* -- status ------------------------------------------------------------ */
+  --ok:            #4dff9e;                 /* green phosphor: nominal */
+  --warn:          #d99a2b;                 /* amber held one step DOWN so a
+                                               caution chip never shouts        */
+  --danger:        #ff5147;                 /* fault lamp */
+  --info:          #6c99b8;                 /* steel blue: data / telemetry */
+
+  /* -- lines: opaque steel seams, not translucent white ----------------– */
+  --border:        #2a2f35;                 /* the machined seam */
+  --border-strong: #4a535c;                 /* input rim / emphasised rule */
+  --border-w:      1px;                     /* hairline: this kit is milled, not bold */
+  --focus-ring:    #ffc233;                 /* amber, one step lighter than action */
+
+  /* -- shape: milled, never soft ----------------------------------------– */
+  --radius-sm:     2px;
+  --radius-md:     3px;
+  --radius-lg:     4px;
+  --radius-pill:   4px;                     /* a badge here is a stamped plate, not a lozenge */
+  --cut:           0px;                     /* no chamfers — the seam does that job */
+
+  /* -- type: mono-first -------------------------------------------------- */
+  --font-display:  "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --font-body:     "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .12em;                   /* stamped plate, not spaced-out HUD */
+  --tracking-display: -.01em;
+
+  /* -- depth: engraved. INNER shadows are the depth cue ------------------– */
+  --shadow-1:      inset 0 1px 0 rgba(255,255,255,.10), inset 0 -1px 0 rgba(0,0,0,.60),
+                   inset 0 2px 6px -3px rgba(0,0,0,.45);
+  --shadow-2:      inset 0 1px 0 rgba(255,255,255,.13), inset 0 -1px 0 rgba(0,0,0,.68),
+                   inset 0 4px 14px -6px rgba(0,0,0,.60);
+  --glow:          0 0 0 1px rgba(255,176,0,.45), 0 0 14px -2px rgba(255,176,0,.45);
+  /* --glow is the lamp's halo: controls wear it, panels never do. */
+  --blur:          none;                    /* machined metal is not frosted */
+
+  /* -- motion: a switch, not a glide ------------------------------------– */
+  --dur:           .12s;
+  --ease:          cubic-bezier(.3,.7,.4,1);
+
+  /* -- extras (ignored by the shared lab) -------------------------------- */
+  --machine-seam:       #2a2f35;            /* the seam, spelled out */
+  --machine-seam-strong:#4a535c;
+  --machine-highlight:  rgba(255,255,255,.05);  /* lit top lip of a recess */
+  --machine-well:       rgba(0,0,0,.5);         /* shadowed bottom lip */
+  --machine-graticule:  rgba(233,237,239,.028); /* faint chassis graticule */
+  --machine-lamp-amber: radial-gradient(circle at 35% 30%, #ffe08a 0%, #ffb000 45%, #7a5200 100%);
+  --machine-lamp-green: radial-gradient(circle at 35% 30%, #b6ffd6 0%, #4dff9e 45%, #0d6b41 100%);
+  --machine-phosphor:   linear-gradient(90deg, #4dff9e 0%, #ffb000 100%);
+}

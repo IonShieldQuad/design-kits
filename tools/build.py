@@ -41,7 +41,7 @@ REQUIRED_TOKENS = [
     "--text", "--text-muted", "--text-dim", "--text-invert",
     "--accent", "--accent-hover", "--accent-2", "--accent-soft",
     "--ok", "--warn", "--danger", "--info",
-    "--border", "--border-strong", "--focus-ring",
+    "--border", "--border-strong", "--focus-ring", "--border-w",
     "--radius-sm", "--radius-md", "--radius-lg", "--radius-pill", "--cut",
     "--font-display", "--font-body", "--font-mono", "--tracking-caps",
     "--shadow-1", "--shadow-2", "--glow", "--blur",
@@ -52,6 +52,15 @@ SWATCH_TOKENS = [
     ("--bg", "bg"), ("--surface", "surface"), ("--border", "border"),
     ("--accent", "accent"), ("--accent-2", "accent 2"), ("--ok", "ok"),
     ("--warn", "warn"), ("--danger", "danger"),
+]
+
+# Optional capabilities: a kit may declare these and the lab will honour them. Never a "gap".
+#   --clip                  opt-in chamfer (clip-path); also cuts the border along the diagonal
+#   --text-on-surface*      text inside .card (when --surface contrasts with --bg)
+#   --text-on-surface-2*    text inside inputs/badges/alerts (when --surface-2 contrasts)
+OPTIONAL_TOKENS = [
+    "--clip", "--accent-ink", "--text-on-surface", "--text-on-surface-muted",
+    "--text-on-surface-2", "--text-on-surface-2-muted",
 ]
 
 OK = "\033[92m✓\033[0m"
@@ -198,6 +207,8 @@ class Kit:
     def __init__(self, path: Path):
         self.dir = path
         self.slug = path.name
+        self.seq: int | None = None  # gallery position, assigned after sorting
+        self.optional_used: list[str] = []
         self.design_path = path / "DESIGN.md"
         self.tokens_path = path / "tokens.css"
         self.meta_path = path / "kit.json"
@@ -238,6 +249,10 @@ class Kit:
 
     @property
     def index_label(self) -> str:
+        """Derived from gallery position (order), not hand-maintained — inserting a kit must not
+        require renumbering every other kit.json."""
+        if self.seq is not None:
+            return f"{self.seq:02d}"
         return str(self.meta.get("index") or "—")
 
     @property
@@ -294,8 +309,31 @@ class Kit:
         missing = [t for t in REQUIRED_TOKENS if t not in self.vars]
         if missing:
             self.warnings.append("token contract gaps: " + ", ".join(missing))
+        self.optional_used = [t for t in OPTIONAL_TOKENS if t in self.vars]
 
     # -- generated output ----------------------------------------------------
+    def signature_section(self) -> str:
+        """Render the kit's own slug-prefixed extra tokens.
+
+        Convention: any token named `--<slug>-*` is the kit's signature material (a bespoke
+        gradient, ramp, pattern or halo). Without this section those exist in tokens.css and
+        appear nowhere in the lab — which is how a kit can be internally complete and still
+        read as generic.
+        """
+        prefix = f"--{self.slug}-"
+        extras = sorted((k, v) for k, v in self.vars.items() if k.startswith(prefix))
+        extras = extras[:8]
+        if not extras:
+            return ""
+        tiles = "".join(sig_tile(k, v) for k, v in extras)
+        return (
+            '  <section class="block">\n'
+            '    <div class="block-head"><h2>Signature</h2>'
+            '<span class="note">this kit\'s own extra tokens, rendered</span></div>\n'
+            f'    <div class="tiles">{tiles}</div>\n'
+            '  </section>\n'
+        )
+
     def lab_html(self) -> str:
         tpl = read(TPL / "lab.html")
         swatches = "".join(
@@ -315,6 +353,7 @@ class Kit:
             "{{FONTS_LABEL}}": html.escape(self.fonts_label),
             "{{RADIUS_LABEL}}": html.escape(self.radius_label),
             "{{SWATCHES}}": swatches,
+            "{{SIGNATURE}}": self.signature_section(),
         }
         for k, v in rep.items():
             tpl = tpl.replace(k, v)
@@ -379,6 +418,58 @@ class Kit:
             },
             "warnings": self.warnings,
         }
+
+
+# --------------------------------------------------------------- generated docs
+def sig_tile(name: str, value: str) -> str:
+    """One Signature tile.
+
+    An extra token is not always a background: `--summer-sunset-halo` is a box-shadow and
+    `--chrome-sheen` is a gradient overlay. Painting a shadow value as `background` renders
+    nothing at all, which is how a kit's proudest token ends up looking like an empty chip.
+    So: backgrounds get painted, everything else gets APPLIED to a small bevel on the kit's
+    own surface.
+    """
+    v = value.strip()
+    looks_like_bg = bool(
+        "gradient(" in v or re.match(r"^(#|rgb|hsl|oklch|lab|color\()", v)
+    )
+    inner = (
+        f'<b style="background:{html.escape(v, quote=True)}"></b>' if looks_like_bg
+        else f'<b class="fx" style="box-shadow:{html.escape(v, quote=True)}"></b>'
+    )
+    return (
+        f'<figure class="tile" title="{html.escape(name)}: {html.escape(v, quote=True)}">'
+        f'<span class="chip">{inner}</span>'
+        f'<figcaption>{html.escape(name[2:])}</figcaption></figure>'
+    )
+
+
+def picker_table(kits: list) -> str:
+    """The agent-facing picker table. Generated so it cannot drift from the kits."""
+    rows = [
+        "| Kit | Tone | Use when |",
+        "|---|---|---|",
+    ]
+    for k in kits:
+        tone = " · ".join(k.tags)
+        use = " ".join((k.meta.get("use_when") or k.tagline).split())
+        rows.append(f"| [`{k.slug}`](kits/{k.slug}/DESIGN.md) | {tone} | {use} |")
+    return "\n".join(rows)
+
+
+def inject_block(path: Path, marker: str, block: str, check: bool) -> bool:
+    """Replace the region between <!-- BEGIN marker --> and <!-- END marker -->.
+    No markers in the file = nothing to do (silently skipped)."""
+    if not path.exists():
+        return True
+    text = read(path)
+    begin, end = f"<!-- BEGIN {marker} -->", f"<!-- END {marker} -->"
+    if begin not in text or end not in text:
+        return True
+    new = re.sub(re.escape(begin) + r".*?" + re.escape(end),
+                 begin + "\n" + block + "\n" + end, text, flags=re.S)
+    return write_if_changed(path, new, check)
 
 
 # ------------------------------------------------------------------ npx bridge
@@ -464,6 +555,16 @@ def main() -> int:
     if not kits:
         print(f"{WARN} no kits found yet — add kits/<slug>/ with DESIGN.md + tokens.css")
 
+    # gallery position is derived, so inserting a kit never means renumbering the rest
+    for i, k in enumerate(kits, 1):
+        k.seq = i
+        declared = str(k.meta.get("index") or "").strip()
+        if declared and declared.lstrip("0") != str(i).lstrip("0"):
+            k.warnings.append(
+                f"kit.json index {declared!r} is stale — the gallery number is derived "
+                f"from order (now {i:02d}); the field is ignored"
+            )
+
     stale: list[str] = []
     lint_errors = 0
 
@@ -475,6 +576,8 @@ def main() -> int:
         for w in kit.warnings:
             mark = ERR if w.startswith("token contract") else WARN
             print(f"  {mark} {w}")
+        if kit.optional_used:
+            print(f"  · optional: {', '.join(kit.optional_used)}")
 
         if write_if_changed(kit.dir / "index.html", kit.lab_html(), args.check):
             print(f"  {OK} lab html")
@@ -532,6 +635,16 @@ def main() -> int:
     else:
         stale.append("manifest.json")
         print(f"{ERR} manifest.json is stale")
+
+    # the agent-facing picker table is generated too, so "hand it to another AI agent"
+    # cannot go stale the moment a kit is added
+    table = picker_table(kits)
+    for doc in ("AGENTS.md", "README.md"):
+        if inject_block(ROOT / doc, "KITS", table, args.check):
+            print(f"{OK} {doc} kit table")
+        else:
+            stale.append(doc)
+            print(f"{ERR} {doc} kit table is stale")
 
     print(f"\nmanifest digest {sha(manifest_text)} · kits {len(kits)}")
     if args.check and stale:

@@ -1,0 +1,112 @@
+/* ============================================================================
+   design-kits · zen-garden
+   ----------------------------------------------------------------------------
+   PEACE AND TRANQUILITY ON A GREY, RAINY DAY.
+
+   This is a mood kit, and the mood is restraint: an overcast ground rather
+   than a sunny one, wet-stone charcoal ink, thin 1px hairlines instead of
+   edges, and very soft, wide, low-opacity shadows. There is one action colour
+   — a deep moss sage — and exactly one second hue, a rain-blue. Nothing else
+   is allowed to be loud.
+
+   The hard part of a low-chroma kit is not "muted", it is "legible". Two
+   consequences, both load-bearing:
+
+     1. The ground is a COOL grey (#e8ecf0), not cream and not white. Cream
+        would make it sunny; white would make it sterile.
+     2. The sage was DARKENED from the #5f7d6a starting point to #4a6658.
+        At #5f7d6a, white-on-sage measured 4.54:1 (a hair over the floor) and
+        sage-as-a-link on the ground measured 3.82:1 — a failure. Lightening
+        the ground to compensate is the wrong direction; darkening the accent
+        is the right one.
+
+   Fonts: Source Serif 4 (display) · Inter (body) · IBM Plex Mono (labels)
+   Contract: docs/KIT-SPEC.md v1 — every required name is present below.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* The ground is a real rainy-day grey: cool, desaturated, and deliberately
+     NOT cream and NOT white. A solid colour, not a gradient — a gradient --bg
+     silently voids the shared lab's masthead wash (the wash nests --bg-2 and
+     --bg inside a linear-gradient), and this kit needs that wash. The mist
+     gradient therefore ships as an extra: --zen-garden-mist. */
+  --bg:            #e8ecf0;                 /* overcast ground */
+  --bg-2:          #eef2f6;                 /* the mist tone: masthead top stop */
+  --surface:       #f2f5f8;                 /* cards — a lift of mist above the ground */
+  --surface-2:     #e6eaf0;                 /* nested panels, inputs — settled below */
+  --overlay:       rgba(43, 50, 56, .42);   /* modal scrim: wet stone, not black */
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #2b3238;                 /* wet-stone charcoal, cool cast — never pure black */
+  --text-muted:    #4d585f;                 /* secondary reading ink */
+  --text-dim:      #565f69;                 /* captions, placeholders, table headers */
+  --text-invert:   #ffffff;                 /* ink on --accent — 6.30:1 */
+
+  /* ------------------------------------------------------------------ brand */
+  /* One action colour, one second hue. That is the whole palette. */
+  --accent:        #4a6658;                 /* MOSS SAGE — the single action colour */
+  --accent-hover:  #40594b;                 /* the pressed step: settles, does not glow */
+  --accent-2:      #567694;                 /* RAIN BLUE — gradients, media, charts only */
+  --accent-soft:   rgba(74, 102, 88, .10);  /* 10% sage tint — rings, active nav, badges */
+
+  /* ----------------------------------------------------------------- status */
+  /* Off the brand hues on purpose, and held at the same low saturation as the
+     rest of the kit so a status reads as a tint, not as an alarm. */
+  --ok:            #33714d;                 /* leaf green, away from the moss action */
+  --warn:          #8a6220;                 /* ochre — rain on dry stone */
+  --danger:        #a8453d;                 /* clay red, never a neon alert */
+  --info:          #43668e;                 /* deeper rain blue, distinct from --accent-2 */
+
+  /* ------------------------------------------------------------------ lines */
+  /* Thin by contract. The whole shape language is "a line, faintly drawn". */
+  --border:        #cdd5dd;                 /* the default hairline */
+  --border-strong: #aab6c2;                 /* input rims, emphasised dividers */
+  --border-w:      1px;                     /* this kit is thin: 1px everywhere */
+  --focus-ring:    #3c6b93;                 /* deep rain-blue focus — never the sage action */
+
+  /* ------------------------------------------------------------------ shape */
+  /* Gentle, never sharp, never bubbly. 8–14px is the whole scale. */
+  --radius-sm:      8px;
+  --radius-md:     10px;
+  --radius-lg:     14px;
+  --radius-pill:  999px;
+  --cut:            0px;                    /* nothing is notched; there are no corners here */
+
+  /* ------------------------------------------------------------------- type */
+  /* Source Serif 4 leads --font-display because it is the tranquil voice: a
+     humanist serif with open counters and calligraphic stress. Inter keeps the
+     body plain so the serif is the only warm thing on the page. */
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body:    "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .08em;                /* quiet, not shouted-out caps */
+  --tracking-display: -.012em;              /* a serif does not want much tightening */
+
+  /* ------------------------------------------------------------------ depth */
+  /* Soft, wide and barely there. Depth is a suggestion of rain-lit air, not a
+     lift-off. --glow is a shadow, not a bloom: it is a sage tint under the
+     primary button, never a halo. */
+  --shadow-1:  0 1px 2px rgba(43, 50, 56, .06), 0 10px 26px -14px rgba(43, 50, 56, .22);
+  --shadow-2:  0 2px 4px rgba(43, 50, 56, .06), 0 26px 52px -26px rgba(43, 50, 56, .34);
+  --glow:      0 8px 22px -12px rgba(74, 102, 88, .50);
+  --blur:      none;                        /* overcast is not glassy */
+
+  /* ----------------------------------------------------------------- motion */
+  /* Slower than the default and eased out, so nothing snaps. The motion is part
+     of the mood, not a separate decision. */
+  --dur:   .26s;
+  --ease:  cubic-bezier(.33, .72, .3, 1);
+
+  /* --------------------------------------------------------- kit extras ---- */
+  /* The mist gradient lives here, never in --bg (see the surfaces note), and
+     never in DESIGN.md's colours (the linter errors on a gradient there). It is
+     built from the three shipped stops. */
+  --zen-garden-bg-stop-1: #eef2f6;          /* mist, high */
+  --zen-garden-bg-stop-2: #e8ecf0;          /* overcast, mid */
+  --zen-garden-bg-stop-3: #e2e8ee;          /* rain, low */
+  --zen-garden-mist: linear-gradient(170deg,
+                     #eef2f6 0%, #e9edf1 42%, #e8ecf0 68%, #e2e8ee 100%);
+  --zen-garden-stone: #cdd5dd;              /* alias of --border, for prose */
+  --zen-garden-rain:  #567694;              /* alias of --accent-2, for prose */
+}

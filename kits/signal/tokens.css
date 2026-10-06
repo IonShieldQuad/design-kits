@@ -32,7 +32,8 @@
 
   /* ------------------------------------------------------------------ lines */
   --border: rgba(130, 180, 255, .16);     /* --line */
-  --border-strong: rgba(130, 180, 255, .34);  /* derived: double the hairline alpha */
+  --border-strong: rgba(130, 180, 255, .34);
+  --border-w:      1px;  /* derived: double the hairline alpha */
   --focus-ring: #37d7ff;
 
   /* ------------------------------------------------------------------ shape */

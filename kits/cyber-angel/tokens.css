@@ -1,80 +1,158 @@
 /* ============================================================================
-   cyber-angel · tokens.css                                     contract v1
+   cyber-angel · tokens.css                                     contract v1.1
    ----------------------------------------------------------------------------
-   Celestial-tech. A pearl/ice ground lit from above, periwinkle as the one
-   action colour, ice-cyan as its companion, a whisper of lavender. Depth is
-   luminous — soft coloured light, never a hard grey drop shadow.
+   Derived from the user's Figma file "Marketplace-Cyber-Angel"
+   (page "UI Kit", frame "Cyber Angel"). Nothing here is invented: every colour
+   below is a token from that frame, or a documented derivation from one (see
+   README.md → "Derivation", which lists the raw Figma value next to each one).
 
-   This file defines values only. The shared lab (templates/lab.css) turns
-   them into components; see DESIGN.md for the rationale and README.md for the
-   contrast proof.
+   THE DESIGN, IN ONE LINE
+   Light shell, dark wells. #D9D9D9 page and #E0E0E0 panels carry 1px BLACK
+   rules and 45° chamfered corners; anything inset — inputs, badges, alerts,
+   code, elevated cards — is the design's dark Panel #242424 and carries the
+   design's "On Panel" holo cyan. Holo cyan (#15B9FF fill / #89DCFF light) is
+   the one action colour; the halo glow is #15B9FF40.
+
+   TYPOGRAPHY IS THE VOICE: Syncopate (wide, squared, cap-set) for every
+   heading, Nova Flat for subheads and form chrome, Montserrat for body.
+
+   This file defines values, plus one clearly-marked compatibility block at the
+   bottom (read it — the lab still paints a few tiers from a single ink, and
+   would otherwise render dark-on-dark or cyan-on-grey).
    ========================================================================== */
 :root{
   /* ------------------------------------------------------------- surfaces */
-  --bg:            #f6f8ff;              /* pearl — the page ground */
-  --bg-2:          #eef2fb;              /* ice — gradient stop under the masthead */
-  --surface:       #ffffff;              /* cards, panels */
-  --surface-2:     #f1f4fd;              /* nested panels, inputs, subtle fills */
-  --overlay:       rgba(26, 33, 71, .38);/* modal scrim */
+  --bg:            #d9d9d9;              /* Figma "Background 2" — the page */
+  --bg-2:          #e0e0e0;              /* Figma "Surface" — the lit masthead stop */
+  --surface:       #e0e0e0;              /* Figma "Surface" — cards, panels */
+  --surface-2:     #242424;              /* Figma "Panel" — the dark inset/well */
+  --overlay:       rgba(46, 47, 48, .62);/* Figma "Background" as the modal scrim */
 
   /* ----------------------------------------------------------------- text */
-  --text:          #1a2147;              /* 14.6:1 on --bg */
-  --text-muted:    #646e96;              /* 5.0:1 on --surface */
-  --text-dim:      #636c92;              /* captions, placeholders, timestamps */
-  --text-invert:   #ffffff;              /* 5.1:1 on --accent */
+  --text:          #292929;              /* Figma "On Surface" · 10.31:1 on --bg */
+  --text-muted:    #444444;              /* midpoint of On Surface / Disabled Dark · 7.38:1 on --surface */
+  --text-dim:      #5c5c5c;              /* "Disabled Dark" #606060 deepened a step · 4.74:1 on --bg */
+  --text-invert:   #313131;              /* Figma "On Holo Dark" · 5.83:1 on --accent */
+
+  /* text by ground — the light shell and the dark wells need opposite inks */
+  --text-on-surface:        #292929;     /* = On Surface, on --surface       · 11.02:1 */
+  --text-on-surface-muted:  #444444;     /* muted, on --surface              ·  7.38:1 */
+  --text-on-surface-2:      #89dcff;     /* Figma "On Panel", on the well    · 10.16:1 */
+  --text-on-surface-2-muted:#7fbfda;     /* On Panel desaturated, on the well·  7.66:1 */
 
   /* ---------------------------------------------------------------- brand */
-  --accent:        #5b5ce8;              /* periwinkle-violet, the only action colour */
-  --accent-hover:  #4647cf;              /* one step deeper, not brighter */
-  --accent-2:      #7cc8f0;              /* ice-cyan — gradients, charts, media */
-  --accent-soft:   rgba(91, 92, 232, .08);/* tint for rings and quiet fills */
+  --accent:        #15b9ff;              /* Figma "Outline" — the holo cyan fill */
+  --accent-hover:  #4fcbff;              /* midpoint Outline → On Panel · 7.01:1 with On Holo Dark */
+  --accent-2:      #89dcff;              /* Figma "Primary" / "On Panel" — holo light */
+  --accent-soft:   rgba(21, 185, 255, .14); /* derived 14% holo tint for washes and rings */
 
   /* --------------------------------------------------------------- status */
-  --ok:            #0f7350;
-  --warn:          #8f5c00;
-  --danger:        #cc3350;
-  --info:          #4553d6;
+  /* The Figma file colours its semantics for the DARK panel (#ff948f "On Panel
+     Error"), which no light ground can carry, so red exists in two tiers:
+     --danger is "Holo Error" #ff554a deepened for the light ground, and
+     --cyber-angel-danger-panel is the design's own On-Panel red for the wells. */
+  --ok:            #5fe3a1;
+  --warn:          #ffc46b;
+  --danger:        #b32017;
+  --info:          #89dcff;              /* the design's info/holo colour IS On Panel */
 
   /* ---------------------------------------------------------------- lines */
-  --border:        #dce3f7;              /* the hairline that separates light from light */
-  --border-strong: #c3cdec;              /* input borders, emphasised dividers */
-  --focus-ring:    #5b5ce8;
+  --border:        #000000;              /* Figma "Border" — 1px black, everywhere */
+  --border-strong: #000000;              /* the design has exactly one border colour */
+  --border-w:      1px;
+  --focus-ring:    #005e85;              /* deep holo ink · 5.06:1 on --bg */
 
   /* ---------------------------------------------------------------- shape */
-  --radius-sm:     10px;
-  --radius-md:     14px;                 /* buttons, inputs, nav */
-  --radius-lg:     20px;                 /* cards */
-  --radius-pill:   999px;
-  --cut:           0px;                  /* no corner cuts — this kit is round, not machined */
+  --radius-sm:     2px;                  /* the design rounds 2-4px, and mostly not at all */
+  --radius-md:     3px;
+  --radius-lg:     4px;
+  --radius-pill:   2px;                  /* no pills: badges are chamfered tags */
+  --cut:           12px;                 /* 45° chamfer, opposite corners (top-left + bottom-right) */
+  --clip:          polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
 
   /* ----------------------------------------------------------------- type */
-  --font-display:  "Sora", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono:     "JetBrains Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
-  --tracking-caps: .18em;                /* mono labels breathe */
-  --tracking-display: .015em;            /* display type is opened up, not tightened */
+  --font-display:  "Syncopate", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Nova Flat", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .09em;
+  --tracking-display: .02em;             /* Syncopate is wide-tracked BY DESIGN — this is the voice */
 
   /* ---------------------------------------------------------------- depth */
-  --shadow-1:      0 6px 22px rgba(58, 70, 150, .10);
-  --shadow-2:      0 18px 46px rgba(58, 70, 150, .16);
-  --glow:          0 10px 26px rgba(91, 92, 232, .30), 0 2px 6px rgba(91, 92, 232, .18);
-  --blur:          none;                 /* crisp surfaces. Frost is a different kit. */
+  --shadow-1:      2px 4px 4px rgba(0, 0, 0, .25), inset 1px 1px 2px rgba(205, 205, 205, .25);
+  --shadow-2:      4px 8px 8px rgba(0, 0, 0, .30), inset 1px 1px 2px rgba(205, 205, 205, .30);
+  --glow:          0 0 2px rgba(21, 185, 255, .40), 0 0 8px rgba(21, 185, 255, .25);
+  --blur:          blur(2px);            /* the design's background-blur radius: 2 */
 
   /* --------------------------------------------------------------- motion */
-  --dur:           .18s;
-  --ease:          cubic-bezier(.22, .61, .36, 1);
+  --dur:           .16s;
+  --ease:          cubic-bezier(.2, .9, .25, 1);
 
   /* ----------------------------------------------------------------------
-     extras — celestial washes. Light tints of the brand used for glow and
-     ambience only; nothing legible is ever set on them.
+     extras — the holo kit. Every token is named --cyber-angel-* so the shared
+     lab's "Signature" section renders it (the lab paints any token whose name
+     starts with the kit slug). All eight are paintable — gradients, washes and
+     colours — because the lab puts each one into a chip; the file's non-paintable
+     effects (the emboss drop, the halo stack) are carried by the contract's own
+     --shadow-* / --glow instead of being duplicated here.
      ---------------------------------------------------------------------- */
-  --angel-periwinkle: #8fa8ff;
-  --angel-ice:        #a8e8ff;
-  --angel-lavender:   #c9c2ff;
-  --angel-halo:       radial-gradient(120% 140% at 12% 0%,
-                        rgba(168, 232, 255, .55) 0%,
-                        rgba(143, 168, 255, .20) 45%,
-                        transparent 72%);
-  --angel-aurora:     linear-gradient(135deg, #5b5ce8 0%, #8fa8ff 52%, #a8e8ff 100%);
-  --angel-glow-soft:  0 0 44px rgba(143, 168, 255, .40);
+  --cyber-angel-canvas:         #2e2f30;  /* Figma "Background" — the dark canvas the kit was drawn on */
+  --cyber-angel-danger-panel:   #ff948f;  /* Figma "On Panel Error" · 7.31:1 on the well */
+  --cyber-angel-halo:           radial-gradient(circle at 50% 45%, rgba(21, 185, 255, .45) 0%, rgba(21, 185, 255, .16) 45%, transparent 72%); /* the file's halo, as a wash */
+  --cyber-angel-halo-ink:       rgba(21, 185, 255, .45); /* #15B9FF40 — the halo's ink, and the button's drop-shadow */
+  --cyber-angel-holo:           linear-gradient(135deg, #15b9ff 0%, #89dcff 100%); /* the fill ramp: accent → holo light */
+  --cyber-angel-holo-ink:       #005e85;  /* deep holo cyan, the accent as TEXT on light · 5.06:1 on --bg */
+  --cyber-angel-holo-ink-hover: #00527a;  /* one step deeper · 5.99:1 */
+  --cyber-angel-slash:          repeating-linear-gradient(45deg, #15b9ff 0 2px, transparent 2px 9px); /* the file's brand glyph */
 }
+
+/* ============================================================================
+   COMPATIBILITY BLOCK — the lab still paints a few tiers from a SINGLE ink (and
+   clips two effects). Colour-only, no layout: delete a line the day the lab
+   stops needing it. Reasons, in order:
+   ========================================================================== */
+
+/* §1 HALO INK. In the Figma frame, cyan on a LIGHT surface is an outline or a
+   fill, never body text — its text colour there is "On Surface" #292929. The
+   lab paints accent text (links, eyebrow, secondary button, accent badge, active
+   nav/tab, table and inline code) on light grounds, where #15b9ff is 1.58:1.
+   Those consumers get the deep holo ink; the accent itself stays a holo fill. */
+a,
+.masthead .eyebrow,
+.btn-secondary,
+.badge-accent,
+.nav a[aria-current="page"],
+.tabs a[aria-current="page"],
+.table code,
+code.inline { color: var(--cyber-angel-holo-ink); }
+a:hover { color: var(--cyber-angel-holo-ink-hover); }
+.tabs a[aria-current="page"] { border-bottom-color: var(--cyber-angel-holo-ink); }
+
+/* §2 DARK WELLS. --surface-2 is the design's dark Panel, so every tier the lab
+   still paints on it from a light-ground ink (or a light-ground status red)
+   needs its paired "on panel" ink. */
+pre.code, code.code { color: var(--text-on-surface-2); }
+pre.code .dim, pre.code .muted { color: var(--text-on-surface-2-muted); }
+.card-elevated .card-title { color: var(--text-on-surface-2); }
+.card-elevated .card-body { color: var(--text-on-surface-2-muted); }
+.nav a:hover { color: var(--text-on-surface-2); }
+.table tr:hover td { color: var(--text-on-surface-2); }
+.btn-ghost:hover { --_fg: var(--text-on-surface-2); }
+.toggle input::after { background: var(--text-on-surface-2-muted); }
+.badge-danger { color: var(--cyber-angel-danger-panel); }
+.alert-danger { border-left-color: var(--cyber-angel-danger-panel); }
+.field.is-invalid .input { border-color: var(--cyber-angel-danger-panel); }
+
+/* §3 CHAMFER KEEPER. clip-path clips an element's box-shadow and outline along
+   with its pixels, so the file's holo halo and emboss drop are re-expressed as
+   drop-shadow() filters (which follow the clipped silhouette), and the input's
+   focus ring — a box-shadow the chamfer would eat — becomes a holo border. */
+.btn-primary { filter: drop-shadow(0 0 6px var(--cyber-angel-halo-ink)); }
+.card { filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, .22)); }
+.input:focus, .select:focus, .textarea:focus { border-color: var(--accent-2); }
+
+/* §4 CAP-SET DISPLAY. Syncopate is set uppercase in the Figma frame — it is the
+   face's own voice, not a preference — and the lab leaves text-transform alone. */
+.masthead h1,
+.block-head h2,
+.card-title,
+.t-display, .t-h1, .t-h2, .t-h3 { text-transform: uppercase; }

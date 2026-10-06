@@ -1,0 +1,96 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff2e88",
+        "secondary": "#c9d0da",
+        "tertiary": "#35e3ff",
+        "neutral": "#08090d",
+        "bg": "#08090d",
+        "bg-2": "#0e1118",
+        "surface": "#101319",
+        "surface-2": "#171b23",
+        "overlay": "#030407c7",
+        "text": "#eef1f6",
+        "text-muted": "#a7b0bf",
+        "text-dim": "#8b94a4",
+        "text-invert": "#0b0d12",
+        "accent-hover": "#ff5aa3",
+        "accent-soft": "#ff2e8826",
+        "ok": "#2fe6a0",
+        "warn": "#ffb347",
+        "danger": "#ff4d4d",
+        "info": "#35e3ff",
+        "border": "#c9d0da33",
+        "border-strong": "#c9d0da75",
+        "focus-ring": "#35e3ff",
+        "chrome-1": "#ffffff",
+        "chrome-2": "#c9d0da",
+        "chrome-3": "#7c8695",
+        "chrome-4": "#2b3038"
+      },
+      "fontFamily": {
+        "display": [
+          "Orbitron"
+        ],
+        "heading": [
+          "Orbitron"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ],
+        "code": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.75rem",
+          {
+            "letterSpacing": "0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.02em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.2em",
+            "fontWeight": "600"
+          }
+        ],
+        "code": [
+          "0.8rem",
+          {}
+        ]
+      },
+      "borderRadius": {
+        "sm": "2px",
+        "md": "4px",
+        "lg": "6px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.35rem",
+        "sm": "0.6rem",
+        "md": "1rem",
+        "lg": "1.75rem"
+      }
+    }
+  }
+}

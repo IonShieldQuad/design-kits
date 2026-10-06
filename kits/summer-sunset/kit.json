@@ -1,11 +1,11 @@
 {
   "name": "Summer Sunset",
-  "tagline": "Warm cream light, with a coral → amber → violet ramp.",
+  "tagline": "80s synthwave poster — sunset sky, bold lines, orange · cyan · magenta.",
   "index": "05",
   "order": 50,
-  "fonts_url": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap",
-  "fonts_label": "Fraunces · Inter · IBM Plex Mono",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap",
+  "fonts_label": "Audiowide · Inter · Share Tech Mono",
   "mode": "light",
   "source": "original",
-  "tags": ["light", "warm", "soft", "friendly"]
+  "tags": ["light", "warm", "retro", "bold", "synthwave"]
 }

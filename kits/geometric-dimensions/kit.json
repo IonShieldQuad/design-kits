@@ -1,0 +1,11 @@
+{
+  "name": "Geometric Dimensions",
+  "tagline": "Bauhaus geometry lifted off the page on hard ink shadows",
+  "index": "09",
+  "order": 65,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap",
+  "fonts_label": "Archivo Black · Inter · Space Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "bold", "geometric", "retro"]
+}

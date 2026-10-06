@@ -1,0 +1,11 @@
+{
+  "name": "Zen Garden",
+  "tagline": "Stillness for grey, rainy days: wet stone, moss sage, rain blue.",
+  "use_when": "journaling, wellness, calm reading interfaces",
+  "order": 85,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap",
+  "fonts_label": "Source Serif 4 · Inter · IBM Plex Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "calm", "muted", "organic", "minimal"]
+}

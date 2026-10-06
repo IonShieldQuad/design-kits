@@ -2,69 +2,86 @@
   "theme": {
     "extend": {
       "colors": {
-        "primary": "#5b5ce8",
-        "primary-hover": "#4647cf",
-        "primary-border": "#b9bcf7",
-        "on-primary": "#ffffff",
-        "secondary": "#7cc8f0",
-        "tertiary": "#c9c2ff",
-        "neutral": "#f6f8ff",
-        "neutral-2": "#eef2fb",
-        "surface": "#ffffff",
-        "surface-2": "#f1f4fd",
-        "text": "#1a2147",
-        "text-muted": "#646e96",
-        "text-dim": "#636c92",
-        "border": "#dce3f7",
-        "border-strong": "#c3cdec",
-        "ok": "#0f7350",
-        "warn": "#8f5c00",
-        "danger": "#cc3350",
-        "info": "#4553d6",
-        "periwinkle-soft": "#8fa8ff",
-        "ice": "#a8e8ff",
-        "lavender": "#c9c2ff"
+        "primary": "#15b9ff",
+        "primary-hover": "#4fcbff",
+        "on-primary": "#313131",
+        "secondary": "#89dcff",
+        "tertiary": "#005e85",
+        "neutral": "#d9d9d9",
+        "neutral-2": "#e0e0e0",
+        "canvas": "#2e2f30",
+        "surface": "#e0e0e0",
+        "surface-2": "#242424",
+        "text": "#292929",
+        "text-muted": "#444444",
+        "text-dim": "#5c5c5c",
+        "text-invert": "#313131",
+        "on-surface": "#292929",
+        "on-surface-muted": "#444444",
+        "on-surface-2": "#89dcff",
+        "on-surface-2-muted": "#7fbfda",
+        "border": "#000000",
+        "border-strong": "#000000",
+        "accent-soft": "#15b9ff24",
+        "ok": "#5fe3a1",
+        "warn": "#ffc46b",
+        "danger": "#b32017",
+        "danger-panel": "#ff948f",
+        "info": "#89dcff"
       },
       "fontFamily": {
         "display": [
-          "Sora"
+          "Syncopate"
         ],
         "h1": [
-          "Sora"
+          "Syncopate"
         ],
         "h2": [
-          "Sora"
+          "Syncopate"
+        ],
+        "h3": [
+          "Syncopate"
         ],
         "body": [
-          "Inter"
+          "Montserrat"
         ],
         "small": [
-          "Inter"
+          "Montserrat"
+        ],
+        "input": [
+          "Nova Flat"
         ],
         "label": [
-          "JetBrains Mono"
+          "Nova Flat"
         ]
       },
       "fontSize": {
         "display": [
           "2.6rem",
           {
-            "letterSpacing": "0.015em",
+            "letterSpacing": "0.02em",
             "fontWeight": "700"
           }
         ],
         "h1": [
           "1.7rem",
           {
-            "letterSpacing": "0.01em",
+            "letterSpacing": "0.02em",
             "fontWeight": "700"
           }
         ],
         "h2": [
           "1.3rem",
           {
-            "letterSpacing": "0.01em",
-            "fontWeight": "600"
+            "letterSpacing": "0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "h3": [
+          "1.05rem",
+          {
+            "letterSpacing": "0.02em",
+            "fontWeight": "700"
           }
         ],
         "body": [
@@ -79,19 +96,25 @@
             "fontWeight": "400"
           }
         ],
+        "input": [
+          "0.875rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
         "label": [
           "0.72rem",
           {
-            "letterSpacing": "0.18em",
+            "letterSpacing": "0.09em",
             "fontWeight": "500"
           }
         ]
       },
       "borderRadius": {
-        "sm": "10px",
-        "md": "14px",
-        "lg": "20px",
-        "pill": "999px"
+        "sm": "2px",
+        "md": "3px",
+        "lg": "4px",
+        "pill": "2px"
       },
       "spacing": {
         "xs": "4px",

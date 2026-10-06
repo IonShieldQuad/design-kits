@@ -1,0 +1,87 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ffb000",
+        "primary-hover": "#ffc233",
+        "primary-ink": "#0d0f11",
+        "secondary": "#4dff9e",
+        "tertiary": "#6c99b8",
+        "neutral": "#0d0f11",
+        "surface": "#16191d",
+        "surface-2": "#1b1f23",
+        "text": "#e9edef",
+        "text-muted": "#9aa4ad",
+        "success": "#4dff9e",
+        "warning": "#d99a2b",
+        "error": "#ff5147"
+      },
+      "fontFamily": {
+        "display": [
+          "IBM Plex Mono"
+        ],
+        "heading": [
+          "IBM Plex Mono"
+        ],
+        "readout": [
+          "IBM Plex Mono"
+        ],
+        "body": [
+          "IBM Plex Sans"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "600"
+          }
+        ],
+        "readout": [
+          "0.95rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "500"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "2px",
+        "md": "3px",
+        "lg": "4px",
+        "pill": "4px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "14px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

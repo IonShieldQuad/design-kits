@@ -50,7 +50,8 @@
 
   /* ---------------------------------------------------------------- lines */
   --border:        rgba(255, 255, 255, .70);  /* hairline light edge */
-  --border-strong: rgba(28, 32, 51, .14);     /* emphasised rule (a second white line is invisible) */
+  --border-strong: rgba(28, 32, 51, .14);
+  --border-w:      1px;     /* emphasised rule (a second white line is invisible) */
   --focus-ring:    #4550e8;
 
   /* ---------------------------------------------------------------- shape */

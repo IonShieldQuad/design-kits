@@ -1,0 +1,118 @@
+/* ============================================================================
+   dark-glass · tokens.css                                      contract v1.1
+   ----------------------------------------------------------------------------
+   Dark frosted glass. A near-black ground carrying a soft violet/cyan mesh is
+   seen through genuinely translucent panels. Depth comes from layered soft
+   shadows plus a faint inner top highlight; borders are hairline LIGHT edges
+   (rgba(255,255,255,.14)), never dark ink.
+
+   templates/lab.css applies var(--blur) to every .card, so --blur is
+   load-bearing: set it to none and the kit stops being glass.
+
+   FROST NEEDS STRUCTURE BEHIND IT. A frosted panel only reads as frosted when
+   there is high-frequency detail on the far side of the glass; a perfectly
+   smooth ramp blurs to something indistinguishable from flat paint. That is
+   why --bg is not one linear ramp but a mesh: three soft colour blobs (violet,
+   cyan, deep purple) sitting on a close-spaced multi-stop ramp. The blobs are
+   sized/positioned in px so the structure stays anchored to the viewport at any
+   document length instead of smearing down a 4000px page.
+
+   Contrast was verified against the WORST-CASE pixel of that mesh — the
+   lightest point any viewer can scroll to — with the translucent surfaces
+   composited over it channel-by-channel in sRGB. See README.md for the maths.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  /* Mesh, painted top-down (CSS order): violet wash top-left, cyan wash
+     top-right, a wide deep-purple bloom low-centre, over a close-spaced ramp —
+     then the same three voices again at lower amplitude further down the page
+     (px y-positions 1500 / 2050 / 2750) so the mesh still has structure behind
+     the panels in the Cards, Data and Typography sections. A single top-of-page
+     wash leaves the rest of a long document flat black and the frost dies with
+     it. Comma-separated layers, so --bg stays a single usable background value. */
+  --bg: radial-gradient(760px 620px at 14% 40px,   rgba(139,124,255,.28) 0%, rgba(139,124,255,0) 70%),
+        radial-gradient(680px 560px at 88% 120px,  rgba(79,216,255,.20) 0%,  rgba(79,216,255,0) 72%),
+        radial-gradient(900px 720px at 55% 640px,  rgba(120,86,220,.24) 0%,  rgba(120,86,220,0) 74%),
+        radial-gradient(820px 660px at 22% 1500px, rgba(139,124,255,.22) 0%, rgba(139,124,255,0) 72%),
+        radial-gradient(760px 600px at 82% 2050px, rgba(79,216,255,.16) 0%,  rgba(79,216,255,0) 74%),
+        radial-gradient(920px 720px at 48% 2750px, rgba(120,86,220,.18) 0%,  rgba(120,86,220,0) 74%),
+        linear-gradient(160deg, #0d0f1b 0px, #090a13 420px, #0c0e18 900px, #080910 1500px, #070810 2200px);
+  --bg-2:          #0e1018;                   /* masthead stop / solid stand-in */
+  --surface:       rgba(22, 26, 36, .55);     /* frosted panel — genuinely translucent */
+  --surface-2:     rgba(28, 33, 45, .68);     /* denser nested panel, inputs */
+  --overlay:       rgba(6, 7, 12, .66);       /* modal scrim */
+
+  /* ----------------------------------------------------------------- text */
+  --text:          #eef2fb;   /* 11.1:1 on the lightest ground pixel */
+  --text-muted:    #b7c0d4;   /* 8.3:1 on the composited .55 panel */
+  --text-dim:      #a0a9be;   /* captions/hints — 5.3 / 6.5 / 6.4:1, see README */
+  --text-invert:   #0b0c14;   /* 6.0:1 on --accent (a dark label on luminous violet) */
+
+  /* ---------------------------------------------------------------- brand */
+  --accent:        #8b7cff;                 /* violet — the action colour */
+  --accent-ink:    #b3a6ff;                 /* violet AS TEXT — 6.5:1 on the lit surface. The fill
+                                               colour is only 3.8:1 as text, so small labels, links and
+                                               the eyebrow use this lighter tint instead. */
+  --accent-hover:  #a294ff;
+  --accent-2:      #4fd8ff;   /* cyan — gradients, charts, media */
+  --accent-soft:   rgba(139, 124, 255, .16);
+
+  /* --------------------------------------------------------------- status */
+  /* Deliberately outside the violet/cyan brand pair: green, amber, red, blue. */
+  --ok:            #4fce8f;
+  --warn:          #f5b942;
+  --danger:        #ff6b81;
+  --info:          #6b9dff;
+
+  /* ---------------------------------------------------------------- lines */
+  --border:        rgba(255, 255, 255, .14);  /* hairline LIGHT edge */
+  --border-strong: rgba(255, 255, 255, .22);  /* emphasised rule / input rim */
+  --border-w:      1px;     /* a frosted panel is defined by light, not by weight */
+  --focus-ring:    #8b7cff;
+
+  /* ---------------------------------------------------------------- shape */
+  --radius-sm:     10px;
+  --radius-md:     16px;
+  --radius-lg:     22px;
+  --radius-pill:   999px;
+  --cut:           0px;     /* this kit rounds, it does not cut */
+
+  /* ----------------------------------------------------------------- type */
+  --font-display:  "Sora", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tracking-caps: .12em;
+  --tracking-display: -0.02em;   /* geometric display face, set tight */
+
+  /* ---------------------------------------------------------------- depth */
+  /* Two shadow layers per step plus a faint inner top highlight: the panel and
+     the ground it floats on differ by only a few percent of luminance, so the
+     shadow — not a border — is what defines a card. */
+  --shadow-1:      0 18px 40px rgba(0, 0, 0, .45), 0 2px 8px rgba(0, 0, 0, .30),
+                  inset 0 1px 0 rgba(255, 255, 255, .10);
+  --shadow-2:      0 30px 70px rgba(0, 0, 0, .55), 0 8px 22px rgba(0, 0, 0, .35),
+                  inset 0 1px 0 rgba(255, 255, 255, .14);
+  --glow:          0 10px 30px rgba(139, 124, 255, .35);
+  --blur:          blur(20px) saturate(140%);   /* load-bearing: .card uses this */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .22s;
+  --ease:          cubic-bezier(.2, .7, .3, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — the mesh, kept addressable so a project can rebuild the ground,
+     a chart series or a printed swatch without re-typing rgba().
+     ---------------------------------------------------------------------- */
+  --bg-stop-1:     #0d0f1b;                  /* lightest ramp stop */
+  --bg-stop-2:     #090a13;
+  --bg-stop-3:     #070810;                  /* darkest ramp stop */
+  --surface-solid: #161a24;                  /* opaque fallback (print, email) */
+  --dg-wash-1:     rgba(139, 124, 255, .28);
+  --dg-wash-2:     rgba(79, 216, 255, .20);
+  --dg-wash-3:     rgba(120, 86, 220, .24);
+  --dg-wash-4:     rgba(139, 124, 255, .22);
+  --dg-wash-5:     rgba(79, 216, 255, .16);
+  --dg-wash-6:     rgba(120, 86, 220, .18);
+  --dg-sheen:      linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.03) 55%, rgba(255,255,255,.08) 100%);
+  --dg-edge:       inset 0 1px 0 rgba(255, 255, 255, .10);
+}

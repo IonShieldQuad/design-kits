@@ -1,0 +1,115 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#2b4bd8",
+        "primary-hover": "#1f39b3",
+        "on-primary": "#ffffff",
+        "secondary": "#e8482f",
+        "tertiary": "#f2b21a",
+        "neutral": "#f4f1ea",
+        "surface": "#fffdf7",
+        "surface-2": "#f0ebe0",
+        "text": "#14110f",
+        "text-muted": "#4e463f",
+        "text-dim": "#6b625a",
+        "ok": "#1b6b3a",
+        "warn": "#8a5300",
+        "danger": "#b3261e",
+        "info": "#0f5c8c"
+      },
+      "fontFamily": {
+        "display": [
+          "Archivo"
+        ],
+        "h1": [
+          "Archivo"
+        ],
+        "h2": [
+          "Archivo"
+        ],
+        "h3": [
+          "Archivo"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "small": [
+          "Inter"
+        ],
+        "button": [
+          "Inter"
+        ],
+        "label": [
+          "Space Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.6rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "900"
+          }
+        ],
+        "h1": [
+          "1.7rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "900"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "fontWeight": "900"
+          }
+        ],
+        "h3": [
+          "1.05rem",
+          {
+            "fontWeight": "900"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "button": [
+          "0.875rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.1em",
+            "fontWeight": "700"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "0px",
+        "md": "2px",
+        "lg": "2px",
+        "pill": "2px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

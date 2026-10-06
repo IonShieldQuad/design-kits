@@ -1,6 +1,7 @@
 {
   "name": "Carbon",
   "tagline": "Neon on carbon black, nothing round, everything cut",
+  "use_when": "portfolios, dev-tool marketing, anything that must look engineered",
   "index": "01",
   "order": 10,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",

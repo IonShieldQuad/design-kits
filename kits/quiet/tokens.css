@@ -32,7 +32,8 @@
 
   /* ------------------------------------------------------------------ lines */
   --border: #2a3140;                      /* --line */
-  --border-strong: #3a4356;               /* derived: --line lifted for input rims */
+  --border-strong: #3a4356;
+  --border-w:      1px;               /* derived: --line lifted for input rims */
   --focus-ring: #7390ff;                  /* --accent-hover */
 
   /* ------------------------------------------------------------------ shape */
