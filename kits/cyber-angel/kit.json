@@ -1,6 +1,7 @@
 {
   "name": "Cyber Angel",
   "tagline": "Chamfered light, holo cyan, unafraid",
+  "signature": ["--cyber-angel-holo", "--cyber-angel-holo-ink", "--cyber-angel-holo-ink-hover", "--cyber-angel-halo", "--cyber-angel-halo-ink", "--cyber-angel-slash", "--cyber-angel-canvas", "--cyber-angel-danger-panel"],
   "order": 60,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nova+Flat&family=Syncopate:wght@400;700&display=swap",
   "fonts_label": "Syncopate · Nova Flat · Montserrat",

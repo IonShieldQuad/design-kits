@@ -23,7 +23,7 @@
 :root{
   /* ------------------------------------------------------------- surfaces */
   --bg:            #d9d9d9;              /* Figma "Background 2" — the page */
-  --bg-2:          #e0e0e0;              /* Figma "Surface" — the lit masthead stop */
+  --bg-2:          #2E2F30;              /* Figma "Surface" — the lit masthead stop */
   --surface:       #e0e0e0;              /* Figma "Surface" — cards, panels */
   --surface-2:     #242424;              /* Figma "Panel" — the dark inset/well */
   --overlay:       rgba(46, 47, 48, .62);/* Figma "Background" as the modal scrim */
@@ -42,6 +42,11 @@
 
   /* ---------------------------------------------------------------- brand */
   --accent:        #15b9ff;              /* Figma "Outline" — the holo cyan fill */
+  /* accent AS TEXT (links, eyebrow, secondary labels, active nav, code, badges).
+     The cyan fill #15b9ff is 1.58:1 as text on the light shell, so text gets the
+     file's deep holo ink instead — the contract's --accent-ink, not an override. */
+  --accent-ink:       var(--cyber-angel-holo-ink);
+  --accent-ink-hover: var(--cyber-angel-holo-ink-hover);
   --accent-hover:  #4fcbff;              /* midpoint Outline → On Panel · 7.01:1 with On Holo Dark */
   --accent-2:      #89dcff;              /* Figma "Primary" / "On Panel" — holo light */
   --accent-soft:   rgba(21, 185, 255, .14); /* derived 14% holo tint for washes and rings */
@@ -111,21 +116,8 @@
    stops needing it. Reasons, in order:
    ========================================================================== */
 
-/* §1 HALO INK. In the Figma frame, cyan on a LIGHT surface is an outline or a
-   fill, never body text — its text colour there is "On Surface" #292929. The
-   lab paints accent text (links, eyebrow, secondary button, accent badge, active
-   nav/tab, table and inline code) on light grounds, where #15b9ff is 1.58:1.
-   Those consumers get the deep holo ink; the accent itself stays a holo fill. */
-a,
-.masthead .eyebrow,
-.btn-secondary,
-.badge-accent,
-.nav a[aria-current="page"],
-.tabs a[aria-current="page"],
-.table code,
-code.inline { color: var(--cyber-angel-holo-ink); }
-a:hover { color: var(--cyber-angel-holo-ink-hover); }
-.tabs a[aria-current="page"] { border-bottom-color: var(--cyber-angel-holo-ink); }
+/* §1 is GONE: the lab now routes accent-as-text through --accent-ink / --accent-ink-hover,
+   so the eight per-selector overrides that used to live here are the contract's job. */
 
 /* §2 DARK WELLS. --surface-2 is the design's dark Panel, so every tier the lab
    still paints on it from a light-ground ink (or a light-ground status red)
@@ -156,3 +148,8 @@ pre.code .dim, pre.code .muted { color: var(--text-on-surface-2-muted); }
 .block-head h2,
 .card-title,
 .t-display, .t-h1, .t-h2, .t-h3 { text-transform: uppercase; }
+
+/* --bg-2 note: this is the Figma file's "Background" #2E2F30. The shared lab no longer
+   paints --bg-2 as the masthead's top gradient stop (the masthead is a wash over the kit's
+   own ground), so the dark canvas value is faithful again rather than lightened for
+   legibility. The dark canvas is also exposed as --cyber-angel-canvas and --overlay. */

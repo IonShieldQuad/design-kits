@@ -59,7 +59,7 @@ SWATCH_TOKENS = [
 #   --text-on-surface*      text inside .card (when --surface contrasts with --bg)
 #   --text-on-surface-2*    text inside inputs/badges/alerts (when --surface-2 contrasts)
 OPTIONAL_TOKENS = [
-    "--clip", "--accent-ink", "--text-on-surface", "--text-on-surface-muted",
+    "--clip", "--accent-ink", "--accent-ink-hover", "--text-on-surface", "--text-on-surface-muted",
     "--text-on-surface-2", "--text-on-surface-2-muted",
 ]
 
