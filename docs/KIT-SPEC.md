@@ -135,7 +135,12 @@ them the lab can only express one text colour per page.
 ## Quality bar
 
 - **Contrast:** `--text` on `--bg` ≥ 7:1, `--text-muted` on `--surface` ≥ 4.5:1,
-  `--text-invert` on `--accent` ≥ 4.5:1. Run the linter; fix warnings.
+  `--text-invert` on `--accent` ≥ 4.5:1, and `--text-dim` ≥ 4.55:1 against `--bg` and
+  `--surface`. **Carve-out:** when `--surface-2` deliberately *inverts* the kit (a dark well
+  inside a light shell, or the reverse — cyber-angel's `#242424` panel), no single `--text-dim`
+  can clear both families; the provable ceiling on the inverted ground is 3.31:1. In that case
+  the paired `--text-on-surface-2*` tokens carry that tier, and the kit must state the ceiling
+  in its README rather than lightening the ground. Run the linter; fix warnings.
 - **One accent, one second accent.** A third "look at me" colour is how kits start looking
   like a rainbow. Status colours don't count toward this.
 - **Typography comes from a real pairing**, not five fonts. Two families (display + body) and
