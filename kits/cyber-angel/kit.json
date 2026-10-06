@@ -1,0 +1,11 @@
+{
+  "name": "Cyber Angel",
+  "tagline": "Celestial calm — pearl light with a periwinkle glow",
+  "index": "06",
+  "order": 60,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap",
+  "fonts_label": "Sora · Inter",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "soft", "cool", "ethereal"]
+}

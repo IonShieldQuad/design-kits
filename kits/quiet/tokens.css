@@ -1,0 +1,67 @@
+/* ============================================================================
+   Quiet — design kit tokens
+   Derived from simple-website-test/templates/index.html (inline <style>).
+   DESIGN.md holds the normative values; README.md explains every derivation.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  --bg: #0b0e13;                          /* --bg */
+  --bg-2: #10141c;                        /* derived: the ground lifted one step */
+  --surface: #12161f;                     /* --panel */
+  --surface-2: #171c27;                   /* derived: one lift for inputs, nested panels */
+  --overlay: rgba(11, 14, 19, .72);       /* the ground, as a scrim */
+
+  /* ------------------------------------------------------------------- text */
+  --text: #e8ecf3;                        /* --text */
+  --text-muted: #b9c2d0;                  /* --muted */
+  --text-dim: #8a93a3;                    /* derived: captions, placeholders only */
+  --text-invert: #0b0e13;                 /* derived: the page ink, for text on --accent */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent: #5b7cfa;                      /* --accent */
+  --accent-hover: #7390ff;                /* --accent-hover */
+  --accent-2: #7d6ce8;                    /* derived: one step around the wheel */
+  --accent-soft: rgba(91, 124, 250, .16);
+
+  /* ----------------------------------------------------------------- status */
+  --ok: #5fbf8f;                          /* derived */
+  --warn: #e0b26b;                        /* derived */
+  --danger: #ff8383;                      /* --danger */
+  --info: #6b93e0;                        /* derived */
+
+  /* ------------------------------------------------------------------ lines */
+  --border: #2a3140;                      /* --line */
+  --border-strong: #3a4356;               /* derived: --line lifted for input rims */
+  --focus-ring: #7390ff;                  /* --accent-hover */
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --cut: 0px;                             /* this kit does not cut corners */
+
+  /* ------------------------------------------------------------------- type */
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .02em;
+  --tracking-display: -.02em;
+
+  /* ------------------------------------------------------------------ depth */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .4);
+  --shadow-2: 0 10px 28px rgba(0, 0, 0, .45);
+  --glow: none;                           /* nothing in this kit emits light */
+  --blur: none;
+
+  /* ----------------------------------------------------------------- motion */
+  --dur: .15s;
+  --ease: ease;
+
+  /* ------------------------------------------------------------- kit extras */
+  --panel: #12161f;
+  --line: #2a3140;
+  --quiet-ink: #0b0e13;
+  --num: "tnum";
+}

@@ -1,0 +1,77 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#37d7ff",
+        "primary-hover": "#5fe0ff",
+        "primary-ink": "#04121a",
+        "secondary": "#4a9dff",
+        "tertiary": "#8b6cff",
+        "neutral": "#05070d",
+        "surface": "#0c1426",
+        "surface-2": "#101b32",
+        "text": "#eaf3ff",
+        "text-muted": "#8ea3c4",
+        "success": "#43ffb4",
+        "warning": "#ffc46b",
+        "error": "#ff6b7a"
+      },
+      "fontFamily": {
+        "display": [
+          "Chakra Petch"
+        ],
+        "heading": [
+          "Chakra Petch"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "600"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "4px",
+        "md": "6px",
+        "lg": "10px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

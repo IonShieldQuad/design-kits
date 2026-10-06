@@ -1,0 +1,72 @@
+/* ============================================================================
+   design-kits · summer-sunset
+   ----------------------------------------------------------------------------
+   The warm LIGHT kit. A cream-to-blush sunset-sky ground, deep plum-brown type,
+   and a coral -> amber -> violet ramp as the signature. Rounded, generous,
+   friendly.
+
+   Fonts: Fraunces (display) · Inter (body) · IBM Plex Mono (labels)
+   Contract: docs/KIT-SPEC.md v1. Every required name is present below.
+   ========================================================================== */
+:root{
+  /* -- surfaces ---------------------------------------------------------- */
+  /* --bg is a GRADIENT (the signature ground). Contrast is checked against its
+     darkest stop, #ffddcb — the worst case for dark type. */
+  --bg:            linear-gradient(180deg, #fff8f1 0%, #ffe8da 55%, #ffddcb 100%);
+  --bg-2:          #fff3e9;                 /* solid stop: masthead chrome, exports */
+  --surface:       #fffdfa;                 /* cards — warm near-white */
+  --surface-2:     #fff2e7;                 /* nested panels, inputs */
+  --overlay:       rgba(43,29,47,.45);      /* modal scrim */
+
+  /* -- text -------------------------------------------------------------- */
+  --text:          #2b1d2f;                 /* plum-brown, 12.4:1 on the darkest --bg stop */
+  --text-muted:    #7a5a66;                 /* 5.9:1 on --surface */
+  --text-dim:      #806875;                 /* captions, placeholders */
+  --text-invert:   #2b1d2f;                 /* dark-on-coral: 6.2:1 on --accent */
+
+  /* -- brand ------------------------------------------------------------- */
+  --accent:        #ff7a59;                 /* coral — the action colour */
+  --accent-hover:  #f9623c;                 /* deeper coral on hover */
+  --accent-2:      #7b4bd8;                 /* violet — the cool end of the ramp */
+  --accent-soft:   rgba(255,122,89,.16);    /* 16% coral tint, derived */
+
+  /* -- status ------------------------------------------------------------ */
+  --ok:            #1f8a5b;
+  --warn:          #a86a12;
+  --danger:        #d64545;
+  --info:          #3f6fd8;
+
+  /* -- lines ------------------------------------------------------------- */
+  --border:        #f1d8c6;                 /* warm sand hairline */
+  --border-strong: #e0b499;                 /* emphatic divider / input border */
+  --focus-ring:    #7b4bd8;                 /* violet focus — the second accent */
+
+  /* -- shape ------------------------------------------------------------- */
+  --radius-sm:     10px;
+  --radius-md:     14px;
+  --radius-lg:     18px;
+  --radius-pill:   999px;
+  --cut:           0px;                     /* no corner cut — this kit is round */
+
+  /* -- type -------------------------------------------------------------- */
+  --font-display:  "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --tracking-caps: .12em;
+  --tracking-display: -.01em;
+
+  /* -- depth ------------------------------------------------------------- */
+  --shadow-1:      0 2px 4px rgba(122,63,32,.05), 0 14px 30px -16px rgba(122,63,32,.28);
+  --shadow-2:      0 26px 52px -22px rgba(122,63,32,.42), 0 2px 0 rgba(255,255,255,.60) inset;
+  --glow:          0 0 0 4px rgba(255,122,89,.22);   /* soft warm ring, not a neon bloom */
+  --blur:          none;
+
+  /* -- motion ------------------------------------------------------------ */
+  --dur:           .22s;
+  --ease:          cubic-bezier(.22,.61,.36,1);
+
+  /* -- extras (ignored by the shared lab) -------------------------------- */
+  --summer-sunset-ramp: linear-gradient(90deg, #ff7a59 0%, #ffb347 50%, #7b4bd8 100%);
+  --summer-sunset-amber: #ffb347;           /* the warm middle of the ramp */
+  --summer-sunset-sky: linear-gradient(180deg, #ff9a76 0%, #ffb347 48%, #7b4bd8 100%);
+}

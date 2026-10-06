@@ -1,0 +1,9 @@
+# scratch / local only
+.hermes/
+node_modules/
+*.log
+
+# generated lab screenshots from tools/verify-lab.cjs are kept (they document the kits)
+# but per-run intermediates are not
+shots/verdict.json
+shots/

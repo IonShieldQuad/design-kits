@@ -1,0 +1,11 @@
+{
+  "name": "Cyberpunk",
+  "tagline": "Neon on near-black — loud, glowing, still legible.",
+  "index": "04",
+  "order": 40,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Oxanium:wght@400;500;600;700&display=swap",
+  "fonts_label": "Oxanium · Inter · JetBrains Mono",
+  "mode": "dark",
+  "source": "original",
+  "tags": ["dark", "bold", "technical", "neon"]
+}

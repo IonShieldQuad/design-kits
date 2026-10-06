@@ -1,0 +1,69 @@
+name: verify
+
+# Two gates:
+#  1. the kit contract still holds (every kit defines every required token)
+#  2. every lab actually renders in a real browser (no missing variables, no placeholder text)
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  contract-and-render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generated files are up to date
+        run: python tools/build.py --check --no-export --no-lint
+
+      - name: Token contract (every kit defines every required token)
+        run: |
+          python - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+          root = Path(".")
+          req = json.loads((root / "manifest.json").read_text())["required_tokens"]
+          bad = []
+          for kit_dir in sorted(p for p in (root / "kits").iterdir() if p.is_dir()):
+              css = (kit_dir / "tokens.css").read_text(encoding="utf-8")
+              missing = [t for t in req if not re.search(re.escape(t) + r"\s*:", css)]
+              if missing:
+                  bad.append(f"{kit_dir.name}: {', '.join(missing)}")
+          if bad:
+              print("TOKEN CONTRACT FAILURES:"); print("\n".join(bad)); sys.exit(1)
+          print(f"token contract OK for {len(list((root/'kits').iterdir()))} kits")
+          PY
+
+      - name: DESIGN.md lint (official linter)
+        run: |
+          fail=0
+          for f in kits/*/DESIGN.md; do
+            echo "— $f"
+            npx -y -p @google/design.md designmd lint "$f" || fail=1
+          done
+          exit $fail
+
+      - name: Install playwright + chromium
+        run: |
+          npm i --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Render every lab in headless chromium
+        run: node tools/verify-lab.cjs
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lab-shots
+          path: shots/
+          retention-days: 14

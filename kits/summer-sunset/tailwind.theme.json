@@ -1,0 +1,96 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff7a59",
+        "secondary": "#7b4bd8",
+        "tertiary": "#ffb347",
+        "neutral": "#fff8f1",
+        "bg-stop-1": "#fff8f1",
+        "bg-stop-2": "#ffe8da",
+        "bg-stop-3": "#ffddcb",
+        "bg-2": "#fff3e9",
+        "surface": "#fffdfa",
+        "surface-2": "#fff2e7",
+        "overlay": "#2b1d2f73",
+        "text": "#2b1d2f",
+        "text-muted": "#7a5a66",
+        "text-dim": "#806875",
+        "text-invert": "#2b1d2f",
+        "accent-hover": "#f9623c",
+        "accent-soft": "#ff7a5929",
+        "ok": "#1f8a5b",
+        "warn": "#a86a12",
+        "danger": "#d64545",
+        "info": "#3f6fd8",
+        "border": "#f1d8c6",
+        "border-strong": "#e0b499",
+        "focus-ring": "#7b4bd8",
+        "ramp-coral": "#ff7a59",
+        "ramp-amber": "#ffb347",
+        "ramp-violet": "#7b4bd8"
+      },
+      "fontFamily": {
+        "display": [
+          "Fraunces"
+        ],
+        "heading": [
+          "Fraunces"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ],
+        "code": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.75rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "500"
+          }
+        ],
+        "code": [
+          "0.8rem",
+          {}
+        ]
+      },
+      "borderRadius": {
+        "sm": "10px",
+        "md": "14px",
+        "lg": "18px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "0.4rem",
+        "sm": "0.75rem",
+        "md": "1.15rem",
+        "lg": "2.25rem"
+      }
+    }
+  }
+}

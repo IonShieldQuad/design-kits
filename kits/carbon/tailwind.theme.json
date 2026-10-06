@@ -1,0 +1,88 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#00e5ff",
+        "primary-hover": "#2ae9ff",
+        "primary-ink": "#04121a",
+        "secondary": "#7c4dff",
+        "tertiary": "#2f7bff",
+        "neutral": "#0b0c10",
+        "surface": "#13151c",
+        "surface-2": "#1a1e27",
+        "text": "#e6ebf2",
+        "text-muted": "#9aa6b4",
+        "success": "#3ddc97",
+        "warning": "#ffc46b",
+        "error": "#ff3d5e"
+      },
+      "fontFamily": {
+        "display": [
+          "Space Grotesk"
+        ],
+        "heading": [
+          "Space Grotesk"
+        ],
+        "body": [
+          "Inter"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ],
+        "tech": [
+          "Orbitron"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "650"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.08em",
+            "fontWeight": "600"
+          }
+        ],
+        "tech": [
+          "1rem",
+          {
+            "letterSpacing": "0.06em",
+            "fontWeight": "600"
+          }
+        ]
+      },
+      "borderRadius": {
+        "none": "0px",
+        "sm": "0px",
+        "md": "0px",
+        "lg": "0px",
+        "pill": "0px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

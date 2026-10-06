@@ -1,0 +1,80 @@
+/* ============================================================================
+   cyber-angel · tokens.css                                     contract v1
+   ----------------------------------------------------------------------------
+   Celestial-tech. A pearl/ice ground lit from above, periwinkle as the one
+   action colour, ice-cyan as its companion, a whisper of lavender. Depth is
+   luminous — soft coloured light, never a hard grey drop shadow.
+
+   This file defines values only. The shared lab (templates/lab.css) turns
+   them into components; see DESIGN.md for the rationale and README.md for the
+   contrast proof.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  --bg:            #f6f8ff;              /* pearl — the page ground */
+  --bg-2:          #eef2fb;              /* ice — gradient stop under the masthead */
+  --surface:       #ffffff;              /* cards, panels */
+  --surface-2:     #f1f4fd;              /* nested panels, inputs, subtle fills */
+  --overlay:       rgba(26, 33, 71, .38);/* modal scrim */
+
+  /* ----------------------------------------------------------------- text */
+  --text:          #1a2147;              /* 14.6:1 on --bg */
+  --text-muted:    #646e96;              /* 5.0:1 on --surface */
+  --text-dim:      #636c92;              /* captions, placeholders, timestamps */
+  --text-invert:   #ffffff;              /* 5.1:1 on --accent */
+
+  /* ---------------------------------------------------------------- brand */
+  --accent:        #5b5ce8;              /* periwinkle-violet, the only action colour */
+  --accent-hover:  #4647cf;              /* one step deeper, not brighter */
+  --accent-2:      #7cc8f0;              /* ice-cyan — gradients, charts, media */
+  --accent-soft:   rgba(91, 92, 232, .08);/* tint for rings and quiet fills */
+
+  /* --------------------------------------------------------------- status */
+  --ok:            #0f7350;
+  --warn:          #8f5c00;
+  --danger:        #cc3350;
+  --info:          #4553d6;
+
+  /* ---------------------------------------------------------------- lines */
+  --border:        #dce3f7;              /* the hairline that separates light from light */
+  --border-strong: #c3cdec;              /* input borders, emphasised dividers */
+  --focus-ring:    #5b5ce8;
+
+  /* ---------------------------------------------------------------- shape */
+  --radius-sm:     10px;
+  --radius-md:     14px;                 /* buttons, inputs, nav */
+  --radius-lg:     20px;                 /* cards */
+  --radius-pill:   999px;
+  --cut:           0px;                  /* no corner cuts — this kit is round, not machined */
+
+  /* ----------------------------------------------------------------- type */
+  --font-display:  "Sora", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tracking-caps: .18em;                /* mono labels breathe */
+  --tracking-display: .015em;            /* display type is opened up, not tightened */
+
+  /* ---------------------------------------------------------------- depth */
+  --shadow-1:      0 6px 22px rgba(58, 70, 150, .10);
+  --shadow-2:      0 18px 46px rgba(58, 70, 150, .16);
+  --glow:          0 10px 26px rgba(91, 92, 232, .30), 0 2px 6px rgba(91, 92, 232, .18);
+  --blur:          none;                 /* crisp surfaces. Frost is a different kit. */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .18s;
+  --ease:          cubic-bezier(.22, .61, .36, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — celestial washes. Light tints of the brand used for glow and
+     ambience only; nothing legible is ever set on them.
+     ---------------------------------------------------------------------- */
+  --angel-periwinkle: #8fa8ff;
+  --angel-ice:        #a8e8ff;
+  --angel-lavender:   #c9c2ff;
+  --angel-halo:       radial-gradient(120% 140% at 12% 0%,
+                        rgba(168, 232, 255, .55) 0%,
+                        rgba(143, 168, 255, .20) 45%,
+                        transparent 72%);
+  --angel-aurora:     linear-gradient(135deg, #5b5ce8 0%, #8fa8ff 52%, #a8e8ff 100%);
+  --angel-glow-soft:  0 0 44px rgba(143, 168, 255, .40);
+}

@@ -1,0 +1,106 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#4550e8",
+        "primary-hover": "#3944d6",
+        "primary-border": "#a9b0fa",
+        "on-primary": "#ffffff",
+        "secondary": "#b39dff",
+        "tertiary": "#7fe0c4",
+        "neutral": "#eef1f8",
+        "rose": "#ffd9e8",
+        "lilac": "#dcd6ff",
+        "mint": "#d3f5ea",
+        "sky": "#d6ecff",
+        "surface": "#ffffff94",
+        "surface-2": "#ffffffa6",
+        "surface-solid": "#f3f5fb",
+        "text": "#1c2033",
+        "text-muted": "#454b63",
+        "text-dim": "#656c87",
+        "border": "#ffffffb3",
+        "border-strong": "#1c203324",
+        "ok": "#0f7350",
+        "warn": "#8f5c00",
+        "danger": "#c4354f",
+        "info": "#4550e8"
+      },
+      "fontFamily": {
+        "display": [
+          "Plus Jakarta Sans"
+        ],
+        "h1": [
+          "Plus Jakarta Sans"
+        ],
+        "h2": [
+          "Plus Jakarta Sans"
+        ],
+        "body": [
+          "Plus Jakarta Sans"
+        ],
+        "small": [
+          "Plus Jakarta Sans"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.6rem",
+          {
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "h1": [
+          "1.7rem",
+          {
+            "letterSpacing": "-0.015em",
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "10px",
+        "md": "14px",
+        "lg": "20px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

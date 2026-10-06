@@ -1,0 +1,74 @@
+/* ============================================================================
+   Carbon — design kit tokens
+   Derived from the msubinarylily portfolio design system (css/main.css).
+   DESIGN.md holds the normative values; README.md explains every derivation.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  --bg: #0b0c10;                          /* --carbon — the board */
+  --bg-2: #13151c;                        /* --carbon-2 */
+  --surface: #13151c;                     /* --carbon-2 — card plate */
+  --surface-2: #1a1e27;                   /* derived: --carbon-2 lifted one step (inputs, nested panels) */
+  --overlay: rgba(5, 6, 9, .74);          /* derived: the board, darkened for modal scrims */
+
+  /* ------------------------------------------------------------------- text */
+  --text: #e6ebf2;                        /* --text-on-dark */
+  --text-muted: #9aa6b4;                  /* --text-on-dark-dim */
+  --text-dim: #7c8795;                    /* derived: muted pulled toward the ground */
+  --text-invert: #04121a;                 /* the source's label colour on neon */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent: #00e5ff;                      /* --neon-cyan */
+  --accent-hover: #2ae9ff;                /* lighter stop of the source primary gradient */
+  --accent-2: #7c4dff;                    /* --neon-violet — gradients, media, charts */
+  --accent-soft: rgba(0, 229, 255, .16);  /* --neon-soft */
+
+  /* ----------------------------------------------------------------- status */
+  --ok: #3ddc97;
+  --warn: #ffc46b;
+  --danger: #ff3d5e;                      /* --pole-hot */
+  --info: #2f7bff;                        /* --pole-cold */
+
+  /* ------------------------------------------------------------------ lines */
+  --border: #2a2f3a;                      /* --line-dark */
+  --border-strong: #3b424f;               /* derived: --line-dark lifted for input rims */
+  --focus-ring: #00e5ff;                  /* --neon-cyan */
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm: 0px;                       /* nothing round in this kit */
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-pill: 0px;
+  --cut: 14px;                            /* --cut — corner size for the clip paths */
+  --cut-lg: 22px;                         /* --cut-lg */
+  --clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+  --clip-lg: polygon(var(--cut-lg) 0, 100% 0, 100% calc(100% - var(--cut-lg)), calc(100% - var(--cut-lg)) 100%, 0 100%, 0 var(--cut-lg));
+  --clip-btn: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+
+  /* ------------------------------------------------------------------- type */
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+  --font-tech: "Orbitron", "Space Grotesk", system-ui, sans-serif;  /* wordmark + HUD labels only */
+  --tracking-caps: .08em;
+  --tracking-display: -.01em;
+
+  /* ------------------------------------------------------------------ depth */
+  --shadow-1: 0 6px 20px rgba(0, 0, 0, .45);
+  --shadow-2: 0 14px 40px rgba(0, 0, 0, .55);
+  --glow: 0 0 14px rgba(0, 229, 255, .35);
+  --blur: blur(16px) saturate(1.35);
+
+  /* ----------------------------------------------------------------- motion */
+  --dur: .25s;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* ------------------------------------------------------------- kit extras */
+  --carbon: #0b0c10;
+  --carbon-2: #13151c;
+  --neon-cyan: #00e5ff;
+  --neon-violet: #7c4dff;
+  --neon-ink: #05636f;                    /* readable neon for light surfaces */
+  --hologlow: linear-gradient(135deg, #00e5ff 0%, #7c4dff 100%);
+}

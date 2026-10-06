@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>design-kits — reusable UI themes</title>
+<meta name="description" content="Reusable UI theme kits: portable design tokens and live component labs, for people and AI agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+{{FONT_LINKS}}
+<link rel="stylesheet" href="templates/gallery.css">
+</head>
+<body>
+
+<header class="g-hero">
+  <div class="wrap">
+    <p class="g-eyebrow">design-kits · v1</p>
+    <h1>Reusable UI themes</h1>
+    <p class="lede">Each kit is a palette, a type pairing, a shape language and a live component lab.
+      Point a person at the lab, point an AI agent at <code>DESIGN.md</code>, or drop <code>tokens.css</code>
+      into any project and write CSS against the variables.</p>
+    <div class="g-stats">
+      <span><b>{{KIT_COUNT}}</b>kits</span>
+      <span><b>{{TOKEN_COUNT}}</b>tokens per kit</span>
+      <span><b>1</b>shared component lab</span>
+      <span><b>0</b>build step at serve time</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="g-filters" role="group" aria-label="Filter kits">
+    <button class="g-chip" data-filter="all" aria-pressed="true">all</button>
+    <button class="g-chip" data-filter="dark" aria-pressed="false">dark</button>
+    <button class="g-chip" data-filter="light" aria-pressed="false">light</button>
+    <button class="g-chip" data-filter="warm" aria-pressed="false">warm</button>
+    <button class="g-chip" data-filter="cool" aria-pressed="false">cool</button>
+    <button class="g-chip" data-filter="technical" aria-pressed="false">technical</button>
+    <button class="g-chip" data-filter="soft" aria-pressed="false">soft</button>
+    <button class="g-chip" data-filter="bold" aria-pressed="false">bold</button>
+  </div>
+
+  <div class="g-grid" id="grid">
+{{CARDS}}
+  </div>
+</main>
+
+<footer class="wrap g-foot">
+  <span>design-kits — <a href="README.md">README</a> · <a href="AGENTS.md">AGENTS.md</a> · <a href="docs/KIT-SPEC.md">KIT-SPEC</a></span>
+  <span>token spec: Google DESIGN.md (Apache-2.0)</span>
+</footer>
+
+<script>
+(function () {
+  var grid = document.getElementById('grid');
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.g-card'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.g-chip'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.dataset.filter;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      cards.forEach(function (card) {
+        var tags = (card.dataset.tags || '').split(' ');
+        card.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

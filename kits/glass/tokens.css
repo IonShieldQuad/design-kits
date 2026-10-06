@@ -1,0 +1,96 @@
+/* ============================================================================
+   glass · tokens.css                                           contract v1
+   ----------------------------------------------------------------------------
+   Glassmorphism with restraint. A soft pastel ground (rose → lilac → mint →
+   sky) seen through translucent white panels. Surfaces are genuinely see-through
+   and carry a real backdrop-filter: templates/lab.css applies var(--blur) to
+   .card, so --blur is load-bearing here — do not set it to none.
+
+   Contrast was verified against the WORST-CASE stop of the gradient (the
+   lightest one) and against the composited surface (white at .55 over that
+   stop), not against a flat hex. See README.md for the maths.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  /* The ground is a gradient, so it is declared on --bg (body background).
+     Stops are in px, not %, on purpose: the body's gradient box is the whole
+     document height, so a 0-100% ramp smears the pastels over thousands of
+     pixels and the viewport reads as flat near-white. Fixed-length stops keep
+     the same wash in view at any page length and any viewport. The ramp still
+     terminates on the base colour, so the lightest stop used for the contrast
+     maths below is unchanged. */
+  --bg: linear-gradient(150deg,
+          #ffd9e8 0px,
+          #dcd6ff 700px,
+          #d3f5ea 1500px,
+          #d6ecff 2300px,
+          #eef1f8 3400px);
+  --bg-2:          #eef1f8;                   /* solid base / masthead stop */
+  --surface:       rgba(255, 255, 255, .58);  /* genuinely translucent */
+  --surface-2:     rgba(255, 255, 255, .65);  /* nested panels, inputs */
+  --overlay:       rgba(28, 32, 51, .34);     /* modal scrim */
+
+  /* ----------------------------------------------------------------- text */
+  --text:          #1c2033;   /* 14.3:1 on the lightest gradient stop */
+  --text-muted:    #454b63;   /* 8.2:1 on the composited .55 surface */
+  --text-dim:      #656c87;   /* captions, placeholders */
+  --text-invert:   #ffffff;   /* 5.9:1 on --accent */
+
+  /* ---------------------------------------------------------------- brand */
+  --accent:        #4550e8;  /* periwinkle-indigo — the one action colour */
+  --accent-hover:  #3944d6;
+  --accent-2:      #b39dff;  /* lilac — gradients, charts, media */
+  --accent-soft:   rgba(69, 80, 232, .12);
+
+  /* --------------------------------------------------------------- status */
+  --ok:            #0f7350;
+  --warn:          #8f5c00;
+  --danger:        #c4354f;
+  --info:          #4550e8;
+
+  /* ---------------------------------------------------------------- lines */
+  --border:        rgba(255, 255, 255, .70);  /* hairline light edge */
+  --border-strong: rgba(28, 32, 51, .14);     /* emphasised rule (a second white line is invisible) */
+  --focus-ring:    #4550e8;
+
+  /* ---------------------------------------------------------------- shape */
+  --radius-sm:     10px;
+  --radius-md:     14px;
+  --radius-lg:     20px;
+  --radius-pill:   999px;
+  --cut:           0px;
+
+  /* ----------------------------------------------------------------- type */
+  --font-display:  "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tracking-caps: .14em;
+  --tracking-display: -0.02em;   /* modern-SaaS tightness, the inverse of cyber-angel */
+
+  /* ---------------------------------------------------------------- depth */
+  /* Depth = layered soft shadow + a light top edge. A translucent panel over a
+     pastel ground sits only a few percent away from it in luminance, so the
+     shadow is doing all the work — hence two shadow layers per step. */
+  --shadow-1:      0 10px 30px rgba(31, 38, 88, .14), 0 2px 6px rgba(31, 38, 88, .06),
+                   inset 0 1px 0 rgba(255, 255, 255, .85);
+  --shadow-2:      0 26px 60px rgba(31, 38, 88, .20), 0 6px 18px rgba(31, 38, 88, .08),
+                   inset 0 1px 0 rgba(255, 255, 255, .95);
+  --glow:          0 10px 26px rgba(69, 80, 232, .28);
+  --blur:          blur(20px) saturate(180%); /* load-bearing: .card uses this */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .2s;
+  --ease:          cubic-bezier(.2, .7, .3, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — the raw gradient stops, kept addressable so a project can rebuild
+     a ground, a chart series or a printed swatch without re-typing hexes.
+     ---------------------------------------------------------------------- */
+  --glass-rose:  #ffd9e8;
+  --glass-lilac: #dcd6ff;
+  --glass-mint:  #d3f5ea;
+  --glass-sky:   #d6ecff;
+  --glass-base:  #eef1f8;
+  --glass-edge:  inset 0 1px 0 rgba(255, 255, 255, .80);
+  --glass-sheen: linear-gradient(135deg, rgba(255,255,255,.70) 0%, rgba(255,255,255,.24) 55%, rgba(255,255,255,.44) 100%);
+}

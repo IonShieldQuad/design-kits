@@ -1,0 +1,78 @@
+/* ============================================================================
+   Signal — design kit tokens
+   Derived from the resume site (ionshieldquad.github.io/resume, assets/style.css).
+   DESIGN.md holds the normative values; README.md explains every derivation.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  --bg: #05070d;                          /* --bg0 */
+  --bg-2: #0b1322;                        /* --bg2 */
+  --surface: #0c1426;                     /* --panel, flattened (see README) */
+  --surface-2: #101b32;                   /* --panel-2, flattened (see README) */
+  --overlay: rgba(5, 7, 13, .78);         /* the source topbar scrim */
+
+  /* ------------------------------------------------------------------- text */
+  --text: #eaf3ff;
+  --text-muted: #8ea3c4;                  /* --muted */
+  --text-dim: #7284a5;                    /* --dim */
+  --text-invert: #04121a;                 /* ink label on cyan */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent: #37d7ff;                      /* --c-cyan */
+  --accent-hover: #5fe0ff;                /* derived: cyan lifted one step */
+  --accent-2: #4a9dff;                    /* --c-blue */
+  --accent-soft: rgba(55, 215, 255, .16);
+
+  /* ----------------------------------------------------------------- status */
+  --ok: #43ffb4;                          /* --c-mint */
+  --warn: #ffc46b;                        /* --c-amber */
+  --danger: #ff6b7a;                      /* derived — the source has no red */
+  --info: #8b6cff;                        /* --c-vio */
+
+  /* ------------------------------------------------------------------ lines */
+  --border: rgba(130, 180, 255, .16);     /* --line */
+  --border-strong: rgba(130, 180, 255, .34);  /* derived: double the hairline alpha */
+  --focus-ring: #37d7ff;
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm: 4px;
+  --radius-md: 6px;                       /* --radius */
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --cut: 16px;                            /* --cut */
+  --clip: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+  --clip-corner: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+
+  /* ------------------------------------------------------------------- type */
+  --font-display: "Chakra Petch", "Segoe UI", Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;
+  --tracking-display: .01em;
+
+  /* ------------------------------------------------------------------ depth */
+  --shadow-1: 0 8px 24px rgba(2, 6, 16, .5);
+  --shadow-2: 0 18px 50px rgba(0, 0, 0, .28);   /* the source .panel shadow */
+  --glow: 0 0 14px rgba(55, 215, 255, .4);      /* the source's pressed-switch glow */
+  --blur: blur(10px);                           /* the source topbar backdrop-filter */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur: .15s;
+  --ease: ease;
+
+  /* ------------------------------------------------------------- kit extras */
+  --bg0: #05070d;
+  --bg1: #080d18;
+  --bg2: #0b1322;
+  --panel: rgba(12, 20, 38, .82);
+  --panel-2: rgba(16, 27, 50, .55);
+  --line: rgba(130, 180, 255, .16);
+  --line-2: rgba(130, 180, 255, .09);
+  --c-cyan: #37d7ff;
+  --c-blue: #4a9dff;
+  --c-vio: #8b6cff;
+  --c-mint: #43ffb4;
+  --c-amber: #ffc46b;
+  --channel: linear-gradient(100deg, #ffffff 20%, #9be8ff 55%, #37d7ff 90%);
+}
