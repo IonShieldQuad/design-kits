@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tropical Breeze — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Tropical Breeze kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&amp;family=Nunito:wght@400;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Tropical Breeze</h1>
+  <p class="spec-sub">A warm coastal afternoon — sand and sea-foam, palm green, one coral pop</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Tropical Breeze
+description: A warm coastal afternoon — sand and sea-foam ground, sea turquoise, palm green, one coral pop.
+colors:
+  primary: &quot;#cc3f26&quot;
+  primary-hover: &quot;#b33620&quot;
+  primary-ink: &quot;#a8291a&quot;
+  primary-ink-hover: &quot;#8c2013&quot;
+  secondary: &quot;#0fae9e&quot;
+  tertiary: &quot;#257043&quot;
+  neutral: &quot;#f6f3e6&quot;
+  surface: &quot;#fffdf7&quot;
+  surface-2: &quot;#f2efe1&quot;
+  text: &quot;#16342c&quot;
+  text-muted: &quot;#3d5a50&quot;
+  text-dim: &quot;#4f6b60&quot;
+  text-invert: &quot;#fffaf0&quot;
+  success: &quot;#257043&quot;
+  warning: &quot;#8a5a10&quot;
+  error: &quot;#b3243a&quot;
+  info: &quot;#1f6f9e&quot;
+  accent-tint: &quot;#f8e4dc&quot;
+typography:
+  display:
+    fontFamily: Baloo 2
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;-0.01em&quot;
+  heading:
+    fontFamily: Baloo 2
+    fontSize: 1.32rem
+    fontWeight: 650
+    lineHeight: 1.2
+    letterSpacing: &quot;-0.005em&quot;
+  body:
+    fontFamily: Nunito
+    fontSize: 0.98rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: DM Mono
+    fontSize: 0.72rem
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: &quot;0.13em&quot;
+  code:
+    fontFamily: DM Mono
+    fontSize: 0.84rem
+    fontWeight: 400
+    lineHeight: 1.6
+rounded:
+  sm: 8px
+  md: 14px
+  lg: 22px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  hint:
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-tint}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  frond-mark:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 68px
+    width: 68px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="tropical-breeze">Tropical Breeze</h2>
+<h3 id="overview">Overview</h3>
+<p>Mid-afternoon on a coast: dry sand underfoot, the sea in front of it, a palm leaning in from the corner, one low sun. This is a <strong>warm, playful holiday</strong>, not a minimal spa — the page is allowed to be cheerful, rounded and saturated, and it is built so it never becomes a rainbow or a neon sign.</p>
+<p>The ground is the scene itself. <code>--bg</code> is a px-stopped gradient that cools to sea-foam at the top of the page and warms to sand at the foot of it, so the first viewport is sky-coloured and the bottom of a long page is beach. Cards are clean warm paper, insets are pale dry sand.</p>
+<p>Three structural hues sit under one accent. <strong>Sea turquoise</strong> (<code>#0fae9e</code>) owns water, data, media and progress. <strong>Palm green</strong> (<code>#257043</code>) owns the kit's plant life — the frond motif and the success tier. <strong>Coral</strong> (<code>#cc3f26</code>) is the single action colour and the only saturated object a page will contain. There is no grey anywhere: greys belong to <code>zen-garden</code>, and crimson belongs to <code>city-pop</code>.</p>
+<h3 id="colors">Colors</h3>
+<p>Coral <code>#cc3f26</code> is the primary: a warm, orange-leaning tomato — a hibiscus, deliberately a hue away from city-pop's crimson (<code>#d62f4b</code>). It is graded as a <strong>fill</strong>, which is why it sits darker than the day is bright: a cream label (<code>--text-invert</code> <code>#fffaf0</code>) clears 4.69:1 on it, but coral as a small label is only ~4.8:1 and worse on its own tint, so text-coral ships separately as <code>--accent-ink</code> <code>#a8291a</code> (6.08:1 at worst on a solid ground, 5.10:1 on its own 13% tint).</p>
+<p>Turquoise <code>#0fae9e</code> is the second accent and belongs to the sea and to state — media panels, progress, focus, charts. It is bright by design and is <strong>never used as text</strong>: <code>--info</code> <code>#1f6f9e</code> carries the text-safe blue. Palm green <code>#257043</code> is the third structural hue and doubles as <code>--ok</code>, so success is not an afterthought bolted onto the palette — it is the frond's own colour.</p>
+<p>The ink is a deep palm-shadow green <code>#16342c</code>, not a neutral charcoal: a neutral would pull the page straight back toward the restrained register this kit is not. The warm sand <code>#f6f3e6</code> is the neutral ground; <code>--surface-2</code> <code>#f2efe1</code> is the dry-sand inset that badges, inputs and code sit in.</p>
+<p>Status colours are held off the brand hues so a status reads as a signal rather than as decoration: ochre <code>#8a5a10</code>, a deep berry <code>#b3243a</code>, and the shallow-sea blue <code>#1f6f9e</code>.</p>
+<h3 id="typography">Typography</h3>
+<p>Baloo 2 is the display face — a warm, rounded, slightly chunky letterform that carries the holiday without tipping into novelty script. Nunito is the body: it shares Baloo 2's rounded terminals, so the page reads as one voice at two weights, and it stays legible in quantity. DM Mono takes labels, metrics and code, spaced <code>0.13em</code> in caps so a small label reads as a painted beach sign.</p>
+<p>One caveat encoded here: Baloo 2's rounded weights are generous, so display tracking is held at <code>-0.01em</code> and never tighter — over-tightening a rounded face closes its counters and it stops looking friendly.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is airy (<code>16px</code> gutters, <code>24px</code> between blocks) — the brief is a breeze, so nothing is packed. The whole page is soft: radii run <code>8px</code>–<code>22px</code>, with one pill reserved for badges. Nothing is notched and nothing is sharp; the shore is all curves.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>open air, not glass</strong>: <code>--blur</code> stays <code>none</code> and panels are flat paper, because a beach afternoon has no frosted surfaces. Lift comes from two soft, wide, low-opacity shadows in the ink's own green, plus <code>--glow</code> — the one energised object on a page, a turquoise rim with the coral's own warm bloom beneath it, so a primary button reads as lit by the low sun. The shadows are soft on purpose; this is a smooth kit, not a pixel or 90s-chrome one.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry lives in three drawn signature tokens rather than in its corners.</p>
+<p><strong>The frond</strong> (<code>--tropical-breeze-frond</code>) is the mark: a swept rachis with leaflets fanned off it at an angle, shortening toward the tip. It is drawn as inline SVG because a frond <em>is</em> a curve with leaflets — no repeating gradient produces one, and a stripe pattern renders as a fern print.</p>
+<p><strong>The waves</strong> (<code>--tropical-breeze-wave</code>) are the field: three rolling crests at different amplitudes, each with a foam lip offset above it, over the sea's own gradient. They tile seamlessly — every path starts and ends on the same y with a matched slope — which is what lets it work as a repeating texture rather than a single mark.</p>
+<p><strong>The parasol</strong> (<code>--tropical-breeze-parasol</code>) is the emblem: a top-down beach umbrella, eight wedges alternating coral and cream around a turquoise hub. It is drawn because a disc divided into wedges is a division of <em>angle</em>, and no gradient produces that. It is also the one place the coral and the turquoise meet.</p>
+<p>A fourth motif (a sand-grain dither) was considered and cut: the beach grain is already carried by <code>--media-bg</code>, and a fourth tile would only dilute the three.</p>
+<h3 id="components">Components</h3>
+<p>Buttons run coral fills with cream labels, or flat paper with coral-ink labels; the danger button keeps the paper and takes berry text. Cards stay flat on the sand with a warm hairline border; the elevated card settles into the dry-sand inset. Inputs sit in that same inset, which is also where badges, code and alerts live — so <code>--text-on-surface-2*</code> and the badge inks are all graded against <code>#f2efe1</code>. The media panel is not a colour at all: <code>--media-bg</code> replaces the lab's generic accent ramp with the beach itself — sky, a low soft sun on the water, crests and dry sand.</p>
+<p>The accent badge is the one component whose ground is translucent: its background is a 13% coral tint over the surface it sits on, so <code>accent-tint</code> in the palette above is that composite as it renders on warm paper (<code>#f8e4dc</code>), and <code>--accent-ink</code> is graded against the composite, not the tint.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep coral for action and turquoise for sea/state. Two accents, two jobs.</li><li><strong>Do</strong> let the ground walk from sea-foam to sand down the page — a <code>%</code> ramp shows one flat colour and wastes the whole idea.</li><li><strong>Do</strong> hold <code>--blur: none</code>. This is open air; the moment a panel frosts, it becomes a different kit.</li><li><strong>Don't</strong> use <code>--accent-2</code> turquoise as text — it is a fill and a watermark, not an ink; <code>--info</code> is the text-safe blue.</li><li><strong>Don't</strong> set the coral on the coral tint. The badge case is graded (<code>--accent-ink</code> on the composite), and coral-on-coral-tint is not.</li><li><strong>Don't</strong> add a third accent hue or a grey. Four hues is the whole coast; a grey is a different beach.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

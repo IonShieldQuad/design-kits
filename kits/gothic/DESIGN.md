@@ -1,44 +1,44 @@
 ---
 version: alpha
 name: Gothic
-description: "Industrial starkness with something alive growing through it — a near-black ground, bone-white type, one deep dry blood red, a heavy condensed display face, and exactly two organic motifs: a thorn vine and a rose."
+description: "Dark feminine gothic — velvet plum, wine, rose and candlelight, with thorns, a rose and lace growing through it."
 colors:
-  primary: "#a4131f"
-  primary-hover: "#c01726"
-  primary-ink: "#efe9dd"
-  primary-text: "#c9707a"
-  primary-text-hover: "#dc8a8f"
-  secondary: "#b8555f"
-  tertiary: "#8d99a6"
-  neutral: "#0a0b0d"
-  surface: "#141519"
-  surface-2: "#1c1d22"
-  text: "#efe9dd"
-  text-muted: "#a8a294"
-  text-dim: "#8f8a7c"
-  success: "#8aa05c"
-  warning: "#c99a34"
-  error: "#e4564f"
+  primary: "#8f1d3f"
+  primary-hover: "#ab2549"
+  primary-ink: "#f7ece8"
+  primary-text: "#e08ba6"
+  primary-text-hover: "#f0a6bc"
+  secondary: "#c99a4e"
+  tertiary: "#93a9c6"
+  neutral: "#130b12"
+  surface: "#1f1420"
+  surface-2: "#28192a"
+  text: "#f4ebe6"
+  text-muted: "#cdb6bf"
+  text-dim: "#b095a2"
+  success: "#8fb073"
+  warning: "#d9a94f"
+  error: "#e3737d"
 typography:
   display:
-    fontFamily: Oswald
+    fontFamily: Cormorant Garamond
     fontSize: 2.9rem
     fontWeight: 700
-    lineHeight: 1.02
-    letterSpacing: "-0.005em"
+    lineHeight: 1.06
+    letterSpacing: "-0.01em"
   heading:
-    fontFamily: Oswald
-    fontSize: 1.3rem
+    fontFamily: Cormorant Garamond
+    fontSize: 1.34rem
     fontWeight: 600
-    lineHeight: 1.18
-    letterSpacing: "0.005em"
+    lineHeight: 1.2
+    letterSpacing: "0em"
   body:
-    fontFamily: Barlow
+    fontFamily: Lora
     fontSize: 0.95rem
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.65
   body-strong:
-    fontFamily: Barlow
+    fontFamily: Lora
     fontSize: 0.95rem
     fontWeight: 600
     lineHeight: 1.5
@@ -47,12 +47,12 @@ typography:
     fontSize: 0.72rem
     fontWeight: 500
     lineHeight: 1
-    letterSpacing: "0.22em"
+    letterSpacing: "0.20em"
 rounded:
-  sm: 0px
-  md: 2px
-  lg: 3px
-  pill: 3px
+  sm: 3px
+  md: 7px
+  lg: 14px
+  pill: 999px
 spacing:
   xs: 4px
   sm: 8px
@@ -190,187 +190,196 @@ components:
 
 ## Overview
 
-**Industrial starkness with something alive growing through it.** The structure is hard: a
-near-black ground (`#0a0b0d`, neutral-cool, not violet and not graphite-warm), bone white for
-every word of it (`#efe9dd` — ash, not pure white), and exactly one blood red (`#a4131f`) for the
-thing that acts. The type is heavy, condensed and stencilled. Nothing here is soft, and nothing
-here is ornamental.
+**Dark feminine gothic — velvet, and something alive growing through it.** The register is
+witches, vampires and dark romance: a deep **velvet plum** ground (`#130b12`, a violet cast,
+never neutral charcoal), soft ivory for every word of it (`#f4ebe6` — bone, not pure white),
+one deep **wine** (`#8f1d3f`) for the thing that acts, a muted **rose** (`#e08ba6`) for anything
+that has to be *read*, and a **candlelight gold** (`#c99a4e`) that is the light in the room.
+The type is a romantic display serif, and the corners have softened from a right angle to a
+velvet curve.
 
-Then the thorns and the roses. They are the *only* organic material in the kit, and they appear
-as **pattern** — a barbed trellis and a set of nested radial petal rings — never as decoration
-smeared over the page. That is the whole argument: a hard black structure with two growing things
-cutting through it. Two motifs, and no more. A third would be fuss, and fuss is what this kit is
-not.
+The thorns and roses survive the change of register — they always belonged to this one — but
+they are rose-forward now, not industrial: a **rose head on a thorned stem**, a **lace veil**,
+and a **dripping candle**. The rose is the kit's signature: *something alive growing through
+it*. Three motifs, three jobs (a mark, a fabric, a light), and no more.
 
-This is the **stark subculture** reading on purpose. It is not the romantic one: there is no
-blackletter anywhere (a cathedral voice would be a different kit — see Do's and Don'ts), no
-stained glass, no gilded serif. The display face is a condensed grotesque off a hardcore flyer,
-not an illuminated capital.
-
-At 200×120 it is unmistakable: **coal black, bone white, and one deep dry red**, with a bone
-hairline grid and a single red bar. It does not glow (Cyberpunk's hot magenta bloom lives there),
-it is not blue-violet with gold starlight (Outer Space), and it is not graphite-and-amber
-machined metal (Inside the Machine). Its neighbours in the dark column are all *warm* or *cool*
-by hue; Gothic is the one that is **neutral**, and it is the only one with anything growing in it.
+At 200×120 it is unmistakable: **velvet plum, ivory, and wine**, with a rose in one corner, a
+candle in the other, and a wine bar. It is not the neon night of Cyberpunk, not the blue-gold
+of Outer Space, not the machined graphite of Inside the Machine. Those are all *cool or
+neutral*; Gothic is the one dark kit in the **red-plum** family, and the only one with a flower
+in it.
 
 ## Colors
 
-- **Primary (#a4131f) — deep dry blood.** The single action colour: the primary button plate, the
-  focus family, the toggle's checked state, the blood thread in the rose, the barbs in the vine.
-  It is deliberately **deep, not neon**. Neon red is Cyberpunk's neighbour and would have made this
-  a second neon kit; `#a4131f` reads as a stain. It is dark enough that bone-white ink on it clears
-  6.45:1 — so the button keeps *light* ink, which is unusual and is the reason `--text-invert` is
-  bone rather than near-black.
-- **Primary-hover (#c01726):** the same red made arterial. Hue unchanged, one visible step up.
-- **Primary-ink (#efe9dd):** the bone ink printed on the blood plate.
-- **Primary-text (#c9707a) — welded rose.** A deep red cannot carry small type on near-black:
-  `#a4131f` is 2.52:1 against the ground. So the text-safe member of the blood family is a muted
-  welded rose, used for eyebrow, links, active nav/tab, secondary-button labels, inline code and
-  the `badge-accent` label. It is also literally the rose motif's colour, which is why the motif
-  and the link colour are the same substance rather than two competing ideas.
-- **Primary-text-hover (#dc8a8f):** the rose lifted for hover. It never pales to pink.
-- **Secondary (#b8555f):** welded rose again, at surface strength — media plates, the second stop
-  of the progress gradient, the petal band in the rose. The second accent and nothing more.
-- **Tertiary (#8d99a6):** cold ash blue. Data and telemetry only; it never competes with the red.
-- **Neutral (#0a0b0d):** the coal ground.
-- **Surface (#141519) / surface-2 (#1c1d22):** panel and inset. A two-step rise of a few percent
-  luminance each — enough that a panel reads as a panel, not enough to introduce a second colour.
-- **Text (#efe9dd) / text-muted (#a8a294) / text-dim (#8f8a7c):** bone, ash and dust. All three are
-  warm-neutral greys offset toward the bone, never pure white and never blue-grey — the greys are
-  part of the bone family, so the only saturated thing on any page is the red.
-- **Success (#8aa05c) / warning (#c99a34) / error (#e4564f):** dried moss, dried amber, vermilion.
-  All three are desaturated one step past the point where they would shout. Error is *lighter and
-  hotter* than the blood accent on purpose: "delete" must never read as "the action".
+- **Primary (#8f1d3f) — deep velvet wine.** The single action colour: the primary button plate,
+  the toggle's checked state, the media panel's base stop, the barbs on the rose's stem. It is
+  deliberately **deep, not neon** — a wine stain, not a lamp. Dark enough that ivory ink on it
+  clears 7.5:1, so the button keeps *light* ink and `--text-invert` is ivory, not near-black.
+- **Primary-hover (#ab2549):** the same wine warmed. Hue unchanged, one visible step up.
+- **Primary-ink (#f7ece8):** the ivory ink printed on the wine plate.
+- **Primary-text (#e08ba6) — muted rose.** A deep wine cannot carry small type on a plum
+  ground: `#8f1d3f` is only 2.13:1 against the ground. So the text-safe member of the wine
+  family is a muted rose (`--accent-ink`), used for eyebrows, links, active nav/tab,
+  secondary-button labels, inline code and the `badge-accent` label. It is also literally the
+  colour of the rose motif and the vein in the lace, so the link colour and the flower are the
+  same substance.
+- **Primary-text-hover (#f0a6bc):** the rose lifted for hover. It never pales to candy pink.
+- **Secondary (#c99a4e) — candlelight gold.** The light in the room: the flame of the candle
+  motif, the lit end of the media ramp, and the gold half of the masthead's candle glow. It is
+  the second accent and it has a *job* — remove the candle and the wine/rose pair still stands;
+  the gold is what makes it a vigil. It is never used as a fill for an action.
+- **Tertiary (#93a9c6) — moonlight blue.** Data and telemetry only. The one cool colour in the
+  kit, and it exists so a status row can be legible without borrowing the wine.
+- **Neutral (#130b12):** the velvet ground — the dominant stop of the page gradient.
+- **Surface (#1f1420) / surface-2 (#28192a):** panel and inset. A two-step rise of a few
+  percent luminance each — enough that a panel reads as a panel, not enough to introduce a
+  second colour.
+- **Text (#f4ebe6) / text-muted (#cdb6bf) / text-dim (#b095a2):** ivory, dusty mauve and mauve
+  dust. All three are warm-neutrals carrying the plum cast, never pure white and never
+  blue-grey — the only saturated thing on a page is the wine and its rose.
+- **Success (#8fb073) / warning (#d9a94f) / error (#e3737d):** muted sage, candlelight amber,
+  dusty-rose fault. All three are desaturated one step past the point where they would shout.
+  Error is *lighter and hotter* than the wine on purpose: "delete" must never read as "the
+  action".
 
-Deliberately not in the map above: `--border` / `--border-strong` (translucent bone hairlines —
+Deliberately not in the map above: `--border` / `--border-strong` (translucent ivory hairlines —
 the DESIGN.md component schema has no `borderColor` property), `--accent-soft`
-(`rgba(164,19,31,.16)`, which is a tint of `primary`, not a colour), `--overlay`, `--focus-ring`
-and the six `--gothic-*` signature tokens. Their exact values are in `tokens.css`.
+(`rgba(143,29,63,.18)`, a tint of `primary`, not a colour), `--overlay`, `--focus-ring`, and the
+five `--gothic-*` signature tokens. Their exact values are in `tokens.css`.
 
 ## Typography
 
-Three families, each with one job.
+Three families, each with one job. The single biggest change of register: the heavy condensed
+grotesque is gone.
 
-- **Oswald — display and headings.** A heavy condensed grotesque. It is the letterform of the
-  hardcore flyer, the industrial stencil and the agitprop poster: narrow, vertical, no calligraphic
-  gesture and no blackletter. That is exactly the reading the user asked for and exactly the
-  reading they rejected — Gothic here means *stark subculture*, not *cathedral*. Set at 700 on the
-  h1 and display, 600 on section headings, where its condensed width lets a long title sit in one
-  line, which is the whole point of a condensed face.
-- **Barlow — body.** A slightly condensed grotesque drawn for signage; it survives at 15px, it
-  shares Oswald's grotesque skeleton so the two never look bolted together, and being a touch
-  narrower than a normal-width sans it keeps the page's vertical rhythm tight. It never sets a
-  title.
-- **Roboto Mono — labels.** Eyebrows, badges, table headers, metadata, hint text. Mono is the kit's
-  *machine* voice: the serial number stencilled on the plate. Caps labels run `+0.22em` — much wider
-  than Inside the Machine's stamped `+0.12em`, because a stencil on a black ground needs the air to
-  stay legible at .72rem.
-- **Display tracking is `-0.005em`** — almost nothing, deliberately. Oswald is already drawn
-  condensed; the usual `-0.02em` display tightening closes its counters at 2.9rem. The condensed
-  width supplies the tension, not negative tracking.
+- **Cormorant Garamond — display and headings.** A romantic, high-contrast old-style serif with
+  fine hairlines and a calligraphic italic: the face of a dark-romance novel cover and an
+  engraved plate. It is the exact opposite decision to the condensed grotesque this kit used to
+  carry, and it is the change that makes the register read. Set at 700 on the h1 and display,
+  600 on section headings. Its narrow old-style width lets a long title hold one line without
+  the condensed trick.
+- **Lora — body.** A contemporary serif drawn for reading: moderate contrast, a brushed
+  calligraphic warmth, and a sturdy skeleton at 15px. It shares Cormorant's old-style
+  proportions so the two never look bolted together, and being lower-contrast it *supports the
+  display quietly* rather than competing with its hairlines. It never sets a title.
+- **Roboto Mono — labels.** Eyebrows, badges, table headers, metadata, hints. Mono is the kit's
+  one *machine* voice — the spell index, the catalogue number on a reliquary. Caps labels run
+  `+0.20em`, because an engraved label on a dark ground needs the air to stay legible at .72rem.
+- **Display tracking is `-0.01em`** — a touch only. Cormorant is a narrow old-style; the usual
+  `-0.02em` display tightening begins to touch its fine joins at 2.9rem.
 
 ## Layout
 
-The shared column (`min(1040px, 100% - 2.5rem)`) over flat coal. Section boundaries are 1px bone
-hairlines and generous vertical padding; inside a panel the rhythm is tight (8–14px) so related
-material groups by proximity rather than by boxing. Cards are an auto-fit grid that collapses to
-one column on a phone.
+The shared column (`min(1040px, 100% - 2.5rem)`) over a velvet gradient that runs from
+`#1a1019` at the masthead to `#0e0810` at the foot of the page. Section boundaries are 1px
+ivory hairlines and generous vertical padding; inside a panel the rhythm is tight (8–14px) so
+related material groups by proximity rather than by boxing. Cards are an auto-fit grid that
+collapses to one column on a phone.
 
-The layout is *boring on purpose*. The kit's voice is hue, weight and two motifs; a layout that
-also performed would leave nothing for the reader to hold on to. Body copy caps around 66ch, and
-the condensed display lets headings run wider than a normal-width face would allow.
+The layout is *boring on purpose*. The kit's voice is hue, type and three motifs; a layout that
+also performed would leave nothing for the reader to hold on to. Body copy caps around 66ch.
 
-Because `--bg` is a flat hex, there is no gradient stop to check and no "darkest stop" question:
-contrast is computed against `#0a0b0d` exactly. Where a gradient *is* used (the masthead wash,
-`--gothic-blood`, `--gothic-ash`) it is either decoration under text that has already been verified
-against the flat ground, or a media surface with no text on it.
+`--bg` is a gradient, so every text token is solved against its **brightest stop**
+(`#1a1019`, the masthead ground) — for a dark kit that is the binding one, not the darkest.
+Where a second gradient sits under text (`--wash` at the masthead) it is composited and graded
+too; the worst number in the table below is the dim tier on that composite.
 
 ## Elevation & Depth
 
-**Hard shadow below, bone rim on top.** `--shadow-1` is a 1px bone rim
-(`inset 0 1px 0 rgba(239,233,221,.05)`), a 1px hard line under the panel (`0 1px 0 rgba(0,0,0,.9)`)
-and a short dark falloff — a plate resting on coal, not a glass card floating over it. `--shadow-2`
-deepens the falloff, brightens the rim, and adds a 1px blood thread around the foot
-(`0 0 0 1px rgba(164,19,31,.20)`): the elevated panel is the one place in the kit where the red
-touches the structure rather than the content.
+**Velvet casts a soft shadow.** `--shadow-1` is an inset ivory rim plus a blurred dark falloff
+(`0 10px 26px -16px`) — a panel resting on plum, not a hard plate on coal. `--shadow-2` deepens
+the falloff, brightens the rim, and adds a 1px wine thread around the foot
+(`0 0 0 1px rgba(143,29,63,.22)`): the elevated panel is the one place the wine touches the
+structure rather than the content.
 
-**`--glow` is a shadow, not a bloom.** `0 0 0 1px rgba(164,19,31,.50)` plus a short 16px halo at
-55% — a blood stain pooling under the primary button, not a neon lamp. The difference matters:
-Cyberpunk's `--glow` is a wide magenta bloom and it owns that; Gothic's accent is deep, so its
-"glow" had to become a shadow or the red would have had to become neon to justify it.
+**`--glow` is a real candlelight bloom** — `0 0 0 1px rgba(143,29,63,.55)` plus a soft 24px
+halo in **rose** (`rgba(224,139,166,.45)`), applied to the primary button. This is a reversal of
+the old kit, which had to make its "glow" a hard shadow because a deep accent cannot bloom
+convincingly. The trick here is that the bloom is the *rose*, not the wine: light around a deep
+fill has to be lighter than the fill, so the rose does the blooming.
 
-`--blur: none`. Coal is not frosted glass, and translucency would flatten the panels back into
-the ground.
+`--blur: none`. Velvet is opaque; translucency would flatten the panels back into the ground.
 
 ## Shapes
 
-Sharp. `--radius-sm: 0px`, `--radius-md: 2px`, `--radius-lg: 3px`. A card is a plate with square
-corners; an input is a cut recess; a badge is a stamped tag.
+**Velvet softens the corner.** `--radius-sm: 3px`, `--radius-md: 7px`, `--radius-lg: 14px`. A
+card is a soft panel, an input is a shallow recess, a badge is a lozenge. The old kit's 0–3px
+right angles are gone — sharp corners were the industrial read, and this register is not that.
+
+**`--radius-pill: 999px`.** A true pill: badges are lozenges and `.avatar` is a **circle** of
+ivory initials — the cameo read, and a deliberate break from the stamped 3px plate the kit used
+to ship.
 
 **`--cut: 0px` and no `--clip`.** The corner chamfer belongs to Cyber-angel, and reusing another
-kit's signature is the fastest way to make two kits look like one. This kit does not clip anything.
+kit's signature is the fastest way to make two kits look like one. Nothing here is clipped.
 
-**`--radius-pill` is 3px, not 999px.** A lozenge badge is a product-UI tag; on a black plate with
-a 1px bone rim it reads as a pill from a different kit. The token keeps its contract name and takes
-this kit's largest hard radius. One visible consequence in the shared lab: `.badge` (pill, 3px) and
-`.badge-square` (`--radius-sm`, 0px) now differ by 3px, so those two demos look near-identical —
-this kit distinguishes badges by colour and by the status dot, not by roundness. The same token
-makes `.avatar` a square of bone initials, which is correct here and is a visible break from every
-other dark kit in the set.
-
-Rules are **1px bone hairlines**, never 2–3px slabs: a hairline on coal is a stencil edge, and a
-heavy rule would start competing with the thorn pattern, which is where the kit's line-detail
-budget is spent.
+Rules are **1px ivory hairlines**, never 2–3px slabs: a fine line reads as lace, a heavy rule as
+a fence.
 
 ## Components
 
-- **button-primary** — the blood plate: bone label in the mono label style (`{typography.label}`),
-  2px radius, and the only element allowed to wear `--glow`. The label is *light on dark red*,
-  which is possible here only because the accent is deep (6.45:1). A neon red would have forced
-  dark ink.
-- **button-primary-hover** — the same plate, arterial (`#c01726`). Bone ink, hue unchanged.
-- **button-secondary / button-ghost / button-danger** — an unlit ground with a rose, ash or
-  vermilion label. Secondary actions are outlined, never filled; a black page with two red plates
-  on it has no hierarchy.
-- **card / card-elevated** — the plate and the raised plate. `card-elevated` is the only surface in
-  the kit that carries the red thread in its shadow.
-- **card-title** — Oswald, weight 600. Titles are condensed and loud; they are the poster voice.
-- **input** — the `surface-2` recess, a bone hairline, a blood focus ring with a soft
-  `--accent-soft` halo. Placeholders use `--text-dim`, which still clears 4.55:1 on `surface-2`.
-- **badge** — a 3px-cornered stamped tag in mono caps. `badge-accent` labels in welded rose on a
-  16% blood tint (4.62:1 on the compounded ground); `badge-ok` / `badge-warn` / `badge-danger`
-  recolour only the label and leave the plate dark, so a status row reads as tags, not as paint.
-- **table-header** — mono, uppercase, `+0.22em`, dust (`{colors.text-dim}`): the stencilled column
-  legend.
-- **alert-*** — a `surface-2` recess with a 3px rule down the left edge (ash blue, moss, amber,
-  vermilion). The one place a 3px rule is allowed, because it is a status flag and not a seam.
-- **link** — welded rose, underlined on hover. Links are text, so they take the text-safe red; a
-  link in `#a4131f` would be unreadable at 2.5:1.
+- **button-primary** — the wine plate: ivory label in the mono label style
+  (`{typography.label}`), 7px radius, and the only element allowed to wear `--glow`. The label
+  is *light on deep wine* (7.5:1), possible only because the accent is deep.
+- **button-primary-hover** — the same plate, warmed (`#ab2549`). Ivory ink, hue unchanged.
+- **button-secondary / button-ghost / button-danger** — an unlit ground with a rose, mauve or
+  dusty-rose label. Secondary actions are outlined, never filled; a plum page with two wine
+  plates on it has no hierarchy.
+- **card / card-elevated** — the panel and the raised panel. `card-elevated` is the only surface
+  that carries the wine thread in its shadow.
+- **card-title** — Cormorant Garamond at 600; titles are the romantic voice.
+- **card-media** — the media panel renders `--media-bg`: the **lace veil** tiled over a
+  wine→rose→candlelight ramp. Its declared `backgroundColor` is `{colors.primary}` and
+  `card-media-2` is `{colors.secondary}` because those are the ramp's two endpoints — the
+  colours that actually render.
+- **input** — the `surface-2` recess with `--input-inset` (it sits *into* the velvet), an ivory
+  hairline, and a wine focus ring with a soft `--accent-soft` halo. Placeholders use
+  `--text-dim`, which clears 6.1:1 on `surface-2`.
+- **badge** — a lozenge in mono caps. `badge-accent` labels in rose on an 18% wine tint
+  (6.1:1 on the compounded ground); `badge-ok` / `badge-warn` / `badge-danger` recolour only the
+  label and leave the plate dark, so a status row reads as tags, not as paint.
+- **table-header** — mono, uppercase, `+0.20em`, mauve dust (`{colors.text-dim}`).
+- **alert-*** — a `surface-2` recess with a 3px rule down the left edge (moonlight, sage, amber,
+  dusty rose). The one place a 3px rule is allowed, because it is a status flag, not a seam. The
+  alert's *body* text renders as the muted `{colors.text-muted}` and its strong line as
+  `{colors.text}`; the status colour is declared as the component's `textColor` only because the
+  DESIGN.md schema has no `borderColor`, and it is the status colour that actually renders — as the
+  rule, not the sentence.
+- **link** — the rose, underlined on hover. Links are text, so they take the text-safe rose; a
+  link in `#8f1d3f` would be unreadable at 2.1:1.
 
-### The two motifs
+### The three motifs
 
-- **`--gothic-thorn`** — a barbed fence: bone canes every 34px, one blood thorn line crossing every cane on the same 34px period, and a hairline of bone barb-hairs between the thorns. The 34px period is not arbitrary — it is the only one of three densities tested that still reads as a thorned fence at chip size; 26px merges into tartan and 42px dissolves into disconnected scratches.
-- **`--gothic-rose`** — nested radial petal rings inside **five uneven outer petals**, with two soft crevices and a bone bloom on the upper-left of the head. Two things are deliberate: the petals are placed and sized unevenly (a rose is not a pinwheel, and a pinwheel with a centred dot reads as a bullseye), and there is **no bone-white heart** — a bright pinprick at the centre of a dark red disc reads as an eye catchlight at chip size. The core is a welded-rose inner petal (`--accent-ink`'s own colour) sitting in a burgundy throat. A rose *is* a set of concentric radials, which is why it renders in a token at all rather than needing an image.
-- **`--gothic-ash`, `--gothic-rim`, `--gothic-blood`, `--gothic-vein`** — the supporting four: the
-  worn ground, the panel rim light, the accent's four stops as a surface, and a single blood-and-bone
-  hairline rule. Texture and light, not motifs.
+- **`--gothic-rose`** — a rose head drawn as an **asymmetric spiral** inside three uneven outer
+  petals, on a **wine thorned stem** with a gold leaf-flourish. Two things are deliberate: the
+  spiral is *not* nested concentric rings (rings read as a bullseye) and it is *not* centred on
+  a bright heart (a pinprick at the centre of a disc reads as an eye catchlight). Both were
+  rejected after rendering at chip size.
+- **`--gothic-lace`** — a repeatable field of fine netting with a **four-petal flower** at each
+  crossing, hearted by a single rose dot. A different job from the rose: the rose is a *mark*,
+  this is the ground's *fabric* (the veil), and it is what the media panel wears.
+- **`--gothic-candle`** — a lit pillar with wax running down both flanks and pooling at the
+  foot. Deliberately **no circular halo**: a bright disc on a dark tile reads as an eye, so the
+  warmth lives in the flame core and the drips. This motif is the candlelight gold's alibi.
+- **`--gothic-wine`, `--gothic-vein`** — the supporting two: the accent as a velvet drape
+  (surface), and a single wine→rose→candle→rose→wine hairline rule. Light and line, not motifs.
 
-Six shipped tokens, two ideas. That is the budget and it is spent.
+Five shipped tokens, three ideas. That is the budget and it is spent.
 
 ## Do's and Don'ts
 
-- **Do** keep the ground flat coal and let the bone hairlines draw the structure.
-- **Do** use exactly one blood red for the thing that acts, and welded rose for anything that has
+- **Do** keep the ground flat velvet plum and let the ivory hairlines draw the structure.
+- **Do** use exactly one wine for the thing that acts, and the muted rose for anything that has
   to be read as *text*.
-- **Do** keep the thorns and the rose as substrate pattern. They are a fence and a flower, not a
-  sticker set.
-- **Do** set titles in Oswald at 600–700 and let the condensed width do the shouting.
-- **Do** keep radii at 0–3px. If a corner looks soft, it is wrong.
-- **Don't** add blackletter, gilded serifs or stained-glass colour. That is the romantic/cathedral
-  reading and it was explicitly rejected — it would also collide with every "heritage" kit.
-- **Don't** brighten the red to `#ff2e88`-adjacent neon. Neon red is Cyberpunk's, and a glowing
-  red would undo the "dry stain" argument this whole kit rests on.
-- **Don't** put dark ink on the blood plate. `--text-invert` is bone because `#a4131f` is deep
-  enough to hold it; dark ink on it is ~2.5:1.
-- **Don't** add a third organic motif, a third accent, or a chamfer. Two motifs, one red, hard
-  corners — the kit is the restraint.
+- **Do** keep the rose, the lace and the candle as substrate marks. They are a flower, a veil
+  and a flame, not a sticker set.
+- **Do** set titles in Cormorant Garamond at 600–700 and let the serif carry the romance.
+- **Do** let the candlelight gold do a job — flame, media ramp, candle glow — or leave it out.
+- **Don't** put a heavy condensed grotesque back in. That industrial face is the one thing that
+  breaks this register hardest.
+- **Don't** brighten the wine to neon or add a second saturated accent. Wine + rose is one
+  family; the gold is light, not a third brand colour.
+- **Don't** put dark ink on the wine plate. `--text-invert` is ivory because `#8f1d3f` is deep
+  enough to hold it; dark ink on it is ~2.1:1.
+- **Don't** return to 0px corners or a chamfer. Velvet curves; the industrial right angle is gone
+  and the chamfer belongs to another kit.

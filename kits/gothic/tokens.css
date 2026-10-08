@@ -1,119 +1,162 @@
 /* ============================================================================
    design-kits · gothic
    ----------------------------------------------------------------------------
-   Industrial starkness with something alive growing through it. A near-black
-   ground (#0a0b0d, neutral-cool), BONE white text (#efe9dd — not pure white:
-   it reads as bone/ash), and ONE deep dry blood red (#a4131f).
+   DARK FEMININE GOTHIC — witches, vampires, dark romance. Something alive
+   growing through velvet.
 
-   The red is deliberately DEEP, not neon: #a4131f sits near 2.5:1 against the
-   ground as a fill and carries bone-white at 6.45:1, so the accent is a stain
-   rather than a lamp. The text-safe member of the same family is welded
-   rose (#c9707a) and lands in --accent-ink, which is exactly the rose half of
-   the two motifs.
+   This kit was re-registered from "industrial starkness" (near-black ground,
+   Oswald, hard 0-3px corners) to the romantic register. It is still UNMISTAKABLY
+   DARK: the ground is now a deep plum/aubergine velvet (#130b12, a violet cast,
+   never neutral), the type is a romantic display serif (Cormorant Garamond) over
+   a quiet body serif (Lora), and the corners soften to 3-14px with a true pill.
+   The thorns and roses stay — they belong to this register too — but they are
+   rose-forward now: a bloom on a thorned stem, a lace veil, a dripping candle.
 
-   Everything hard: 0-3px radii, 1px bone hairlines, no chamfer (--cut: 0px;
-   the corner cut is cyber-angel's signature and collides).
+   PALETTE
+     ground   deep velvet plum, near-black with a violet cast (#130b12)
+     action   one deep velvet WINE (#8f1d3f) — the only fill that acts
+     text     soft ivory/bone (#f4ebe6) — never pure white
+     blush    a muted rose (#e08ba6) carries every read word (--accent-ink)
+     candle   a candlelight gold (#c99a4e) earns a real job: the candle flame,
+              the lit half of the media ramp, and the masthead's candle glow.
 
-   The kit's ONLY organic material is the two motifs, shipped as --gothic-thorn
-   (a barbed trellis of angled barbs) and --gothic-rose (nested radial petal
-   rings). They are PATTERN, never ornament smeared over the page: substrate
-   gradients you paint, not icons you scatter. Nothing else in this file grows.
+   The gold is not decoration — it is the light in the room. Remove the candle
+   motif and the wine/rose pair still stands; the gold is what makes it a vigil.
 
-   Type: Oswald (heavy condensed display) · Barlow (body) · Roboto Mono (labels)
+   TYPE: Cormorant Garamond (romantic display serif) · Lora (quiet body serif)
+         · Roboto Mono (labels — the kit's one machine voice)
 
    Contract: docs/KIT-SPEC.md v1. Every required name is present below,
    including --border-w.
    ========================================================================== */
 :root{
-  /* -- surfaces: near-black with a neutral-cool cast --------------------- */
-  --bg:            #0a0b0d;                 /* the ground — coal, faintly cool */
-  --bg-2:          #101114;                 /* masthead / gradient stop */
-  --surface:       #141519;                 /* panel: one step up, still coal */
-  --surface-2:     #1c1d22;                 /* inset: the lightest dark we own */
-  --overlay:       rgba(4,4,6,.80);         /* modal scrim */
+  /* -- surfaces: velvet plum — a violet cast, never neutral charcoal -------- */
+  --bg:            linear-gradient(180deg, #1a1019 0px, #130b12 320px, #0e0810 100%);
+                                            /* velvet, deepest at the foot of the page.
+                                               The BRIGHTEST stop is #1a1019 (top), so
+                                               that is the ground every number below is
+                                               solved against. */
+  --bg-2:          #130b12;                 /* the dominant stop / masthead floor */
+  --surface:       #1f1420;                 /* panel: one step up, still plum */
+  --surface-2:     #28192a;                 /* inset: the lightest dark we own */
+  --overlay:       rgba(12,6,11,.82);       /* modal scrim */
 
-  /* -- text: bone and ash, never pure white ------------------------------ */
-  --text:          #efe9dd;                 /* 16.3:1 on --bg */
-  --text-muted:    #a8a294;                 /* 7.2:1 on --surface */
-  --text-dim:      #8f8a7c;                 /* 5.7 / 5.3 / 4.9 on bg / surface / surface-2 */
-  --text-invert:   #efe9dd;                 /* bone ON the blood plate: 6.45:1 —
-                                               deep red takes light ink, not dark ink */
+  /* -- text: soft ivory and a dusty mauve, never pure white ---------------- */
+  --text:          #f4ebe6;                 /* ivory — 15.8:1 on the top bg stop */
+  --text-muted:    #cdb6bf;                 /* dusty mauve — 8.7:1 on --surface-2 */
+  --text-dim:      #b095a2;                 /* mauve dust — 6.1:1 on --surface-2,
+                                               the binding ground for this tier */
+  --text-invert:   #f7ece8;                 /* ivory ON the wine plate: 7.5:1 —
+                                               deep wine takes light ink, not dark */
 
-  /* -- brand: one blood red, and its rose ------------------------------- */
-  --accent:        #a4131f;                 /* deep dry blood — the action colour */
-  --accent-hover:  #c01726;                 /* the same red, arterial on hover */
-  --accent-2:      #b8555f;                 /* welded rose — the rose motif's own red */
-  --accent-soft:   rgba(164,19,31,.16);     /* 16% blood tint, derived from --accent */
+  /* -- brand: one velvet wine, its rose, and the candle -------------------- */
+  --accent:        #8f1d3f;                 /* deep velvet wine — the action colour */
+  --accent-hover:  #ab2549;                 /* the wine warmed, arterial on hover */
+  --accent-2:      #c99a4e;                 /* candlelight gold — the light in the room */
+  --accent-soft:   rgba(143,29,63,.18);     /* 18% wine tint, derived from --accent */
 
-  /* -- accent as TEXT (the red is far too deep to read as small type) ---- */
-  --accent-ink:        #c9707a;             /* welded rose: 5.7:1 on --bg, 4.6:1 on
-                                               accent-soft over --surface-2 */
-  --accent-ink-hover:  #dc8a8f;             /* 7.6:1 on --bg — the rose lifts, never pales */
+  /* -- accent as TEXT (the wine is far too deep to read as small type) ----- */
+  --accent-ink:        #e08ba6;             /* muted rose: 7.4:1 on the ground, 6.1:1
+                                               on accent-soft over --surface-2 */
+  --accent-ink-hover:  #f0a6bc;             /* the rose lifted, never pales to pink */
 
-  /* -- status: dried, saturated but dusty. None of these are neon ------- */
-  --ok:            #8aa05c;                 /* dried moss */
-  --warn:          #c99a34;                 /* dried amber */
-  --danger:        #e4564f;                 /* vermilion fault — hotter and lighter
-                                               than the accent so "delete" never
-                                               reads as the action */
-  --info:          #8d99a6;                 /* cold ash blue: data, telemetry */
+  /* -- status: desaturated one step past shouting ------------------------- */
+  --ok:            #8fb073;                 /* muted sage */
+  --warn:          #d9a94f;                 /* candlelight amber */
+  --danger:        #e3737d;                 /* dusty rose fault — lighter and hotter
+                                               than the wine, so "delete" never reads
+                                               as "the action" */
+  --info:          #93a9c6;                 /* moonlight blue: data, telemetry */
 
-  /* -- lines: bone hairlines, translucent so the ground shows through --- */
-  --border:        rgba(239,233,221,.14);   /* the bone hairline */
-  --border-strong: rgba(239,233,221,.32);   /* input rim / emphasised rule */
-  --border-w:      1px;                     /* hairline: industrial stencilling, not
-                                               brutalist slabs */
-  --focus-ring:    #efe9dd;                 /* bone. The ring must never be mistakable
-                                               for the red action or its hover */
+  /* -- lines: ivory hairlines, translucent so the velvet shows through ----- */
+  --border:        rgba(244,235,230,.14);   /* the ivory hairline */
+  --border-strong: rgba(244,235,230,.30);   /* input rim / emphasised rule */
+  --border-w:      1px;                     /* a fine lace hairline, not a slab */
+  --focus-ring:    #e08ba6;                 /* the rose. Two steps lighter than the
+                                               wine action, so a ring is never
+                                               mistaken for the fill */
 
-  /* -- shape: sharp. 0-3px, no chamfer ---------------------------------- */
-  --radius-sm:     0px;                     /* a true right angle */
-  --radius-md:     2px;
-  --radius-lg:     3px;
-  --radius-pill:   3px;                     /* a badge here is a stamped plate, not a
-                                               lozenge — the token keeps its name */
-  --cut:           0px;                     /* NO clip-path. The corner cut is
+  /* -- shape: velvet softens the corner ----------------------------------- */
+  --radius-sm:     3px;
+  --radius-md:     7px;
+  --radius-lg:     14px;
+  --radius-pill:   999px;                   /* a true lozenge: badges are pills and
+                                               avatars are circles — the cameo read */
+  --cut:           0px;                     /* no chamfer. The corner cut is
                                                cyber-angel's signature */
 
   /* -- type -------------------------------------------------------------- */
-  --font-display:  "Oswald", "Arial Narrow", "Segoe UI", system-ui, sans-serif;
-  --font-body:     "Barlow", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display:  "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body:     "Lora", Georgia, "Times New Roman", serif;
   --font-mono:     "Roboto Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --tracking-caps: .22em;                   /* stencilled wide, the industrial label */
-  --tracking-display: -0.005em;             /* Oswald is already drawn condensed;
-                                               more negative and the counters touch */
+  --tracking-caps: .20em;                   /* engraved wide — a grimoire label */
+  --tracking-display: -0.01em;              /* Cormorant is a narrow old-style; a
+                                               touch of tightening holds the line */
 
-  /* -- depth: hard shadow under, a rim light on top --------------------– */
-  --shadow-1:      inset 0 1px 0 rgba(239,233,221,.05), 0 1px 0 rgba(0,0,0,.90),
-                   0 14px 30px -22px rgba(0,0,0,.95);
-  --shadow-2:      inset 0 1px 0 rgba(239,233,221,.08), 0 22px 48px -24px rgba(0,0,0,.98),
-                   0 0 0 1px rgba(164,19,31,.20);
-  /* --glow is a shadow the blood casts, NOT a bloom. Cyberpunk owns the neon halo. */
-  --glow:          0 0 0 1px rgba(164,19,31,.50), 0 0 16px -6px rgba(164,19,31,.55);
-  --blur:          none;                    /* coal is not frosted glass */
+  /* -- depth: velvet is soft, so the shadows bloom ------------------------ */
+  --shadow-1:      inset 0 1px 0 rgba(244,235,230,.05), 0 10px 26px -16px rgba(0,0,0,.92);
+  --shadow-2:      inset 0 1px 0 rgba(244,235,230,.07), 0 24px 52px -24px rgba(0,0,0,.96),
+                   0 0 0 1px rgba(143,29,63,.22);
+  /* --glow is a real candlelight bloom, not a hard ring. The action colour is a deep
+     wine, so the light around it has to be the ROSE, not the wine again. */
+  --glow:          0 0 0 1px rgba(143,29,63,.55), 0 0 24px -4px rgba(224,139,166,.45);
+  --blur:          none;                    /* velvet is opaque, not frosted glass */
 
-  /* -- motion: a snap, not a glide -------------------------------------- */
-  --dur:           .16s;
-  --ease:          cubic-bezier(.2,.7,.3,1);
+  /* -- motion: a slow exhale, not a snap ---------------------------------- */
+  --dur:           .24s;
+  --ease:          cubic-bezier(.22,.61,.36,1);
 
-  /* -- signature: TWO motifs and their two supporting textures ---------- */
-  /* 1. THORN — a barbed fence. Bone canes every 34px, a blood thorn line
-        crossing them on the same 34px period so every cane grows exactly one
-        barb per cycle, and a hairline of bone barb-hairs between the thorns.
-        34px is chosen for legibility at chip size: 26px merges into tartan,
-        42px dissolves into disconnected scratches. */
-  --gothic-thorn:
-    /* A TOKEN CAN HOLD DRAWN ARTWORK. Gradients cannot express an organic form: three attempts
-       at a vine from repeating-linear-gradients read as plaid, tartan, then fencing — a sprig
-       needs a curve and a spur at an angle to the stem. So the motif is an inline SVG, tiled.
-       Base64 rather than percent-encoding: a hand-encoded data URI double-encodes '#' and fails
-       SILENTLY (the tile renders blank, with no console error). */
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc3NCcgaGVpZ2h0PSc3NCcgdmlld0JveD0nMCAwIDc0IDc0Jz4gPGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWZlOWRkJyBzdHJva2Utb3BhY2l0eT0nMC42Micgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNOCA3MCBDMTYgNTQgMTAgNDAgMjAgMjYgQzI2IDE3IDI0IDEwIDMwIDQnLz48cGF0aCBkPSdNMjAgMjYgQzMwIDI0IDM4IDE4IDQ0IDEwJy8+PC9nPiA8ZyBmaWxsPSdub25lJyBzdHJva2U9JyNhNDEzMWYnIHN0cm9rZS13aWR0aD0nMi44JyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNMTQgNDQgTDI0IDQwJy8+PHBhdGggZD0nTTE4IDM0IEwyNyAyOScvPjxwYXRoIGQ9J00yNSAxNiBMMzQgMTcnLz48L2c+IDxnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VmZTlkZCcgc3Ryb2tlLW9wYWNpdHk9JzAuMzQnIHN0cm9rZS13aWR0aD0nMS40JyBzdHJva2UtbGluZWNhcD0ncm91bmQnPiA8cGF0aCBkPSdNMTEgNTYgTDIwIDUzJy8+PHBhdGggZD0nTTI4IDIyIEwzNyAyNCcvPjwvZz48L3N2Zz4=") 0 0 / 74px 74px repeat,
-    linear-gradient(150deg, #131418 0%, #0a0b0d 100%);
+  /* -- opt-in capabilities the lab honours -------------------------------- */
+  --wash:          radial-gradient(120% 150% at 16% 0%, rgba(201,154,78,.13) 0%,
+                                   rgba(143,29,63,.12) 38%, transparent 70%);
+                                            /* the masthead candle glow: a gold bloom
+                                               bled into wine, over the velvet */
+  --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0OCcgaGVpZ2h0PSc0OCcgdmlld0JveD0nMCAwIDQ4IDQ4Jz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNmNGViZTYnIHN0cm9rZS1vcGFjaXR5PScuNTAnIHN0cm9rZS13aWR0aD0nMS4xJyBzdHJva2UtbGluZWNhcD0ncm91bmQnPjxwYXRoIGQ9J00wIDAgTDQ4IDQ4Jy8+PHBhdGggZD0nTTQ4IDAgTDAgNDgnLz48cGF0aCBkPSdNMjQgNSBDMzAgMTMgMzAgMTkgMjQgMjQgQzE4IDE5IDE4IDEzIDI0IDUgWicvPjxwYXRoIGQ9J00yNCA0MyBDMzAgMzUgMzAgMjkgMjQgMjQgQzE4IDI5IDE4IDM1IDI0IDQzIFonLz48cGF0aCBkPSdNNSAyNCBDMTMgMzAgMTkgMzAgMjQgMjQgQzE5IDE4IDEzIDE4IDUgMjQgWicvPjxwYXRoIGQ9J000MyAyNCBDMzUgMzAgMjkgMzAgMjQgMjQgQzI5IDE4IDM1IDE4IDQzIDI0IFonLz48L2c+PGNpcmNsZSBjeD0nMjQnIGN5PScyNCcgcj0nMi44JyBmaWxsPScjZTA4YmE2Jy8+PC9zdmc+") 0 0 / 40px 40px repeat,
+                   linear-gradient(135deg, #8f1d3f 0%, #b3254f 48%, #c99a4e 100%);
+                                            /* the lace veil over the wine→rose→candle
+                                               ramp. Both endpoints are palette colours
+                                               (primary / secondary), so the DESIGN.md
+                                               media components describe what renders. */
+  --media-op:      .95;
+  --fill-bg:       linear-gradient(135deg, #8f1d3f 0%, #b3254f 100%);
+                                            /* progress + avatar: pure velvet wine, so
+                                               the ivory initials stay readable */
+  --input-inset:   inset 0 2px 5px rgba(0,0,0,.40), 0 1px 0 rgba(244,235,230,.05);
+                                            /* fields recess into the velvet */
 
+  /* -- signature: THREE motifs and two supporting textures ---------------- */
+  /* 1. ROSE — something alive growing through it. A rose head drawn as an
+        ASYMMETRIC SPIRAL (nested rings read as a bullseye, and a bright centre
+        reads as an eye catchlight — both were rejected at chip size) inside
+        three uneven outer petals, on a wine thorned stem. */
   --gothic-rose:
-    /* The same reasoning: nested radial rings ARE a bullseye (four rounds of tuning uneven
-       petals did not fix it, because rings have no petal DIVISIONS), and a bright pinprick core
-       reads as an eye. A drawn bloom — an asymmetric spiralling line — reads as a rose. */
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgdmlld0JveD0nMCAwIDgwIDgwJz4gPGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjYzk3MDdhJyBzdHJva2Utd2lkdGg9JzIuNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz4gPHBhdGggZD0nTTQwIDEyIEM1OCAxMiA2OSAyNSA2OSA0MCBDNjkgNjAgNTMgNzAgMzkgNzAgQzI0IDcwIDEzIDU4IDEzIDQzIEMxMyAzMCAyMyAyMSAzNSAyMSBDNDUgMjEgNTMgMjkgNTMgMzkgQzUzIDQ5IDQ1IDU2IDM3IDU2IEMzMSA1NiAyNiA1MSAyNiA0NSBDMjYgNDAgMzAgMzcgMzQgMzcnLz4gPC9nPjxjaXJjbGUgY3g9JzM0JyBjeT0nNDQnIHI9JzMnIGZpbGw9JyM4ZjE0MjAnLz48L3N2Zz4=") center / 92px 92px no-repeat,
-    radial-gradient(circle at 50% 46%, #6d0d15 0%, #2a060a 72%);
+    /* A TOKEN CAN HOLD DRAWN ARTWORK, base64 (not percent-encoded — a hand-encoded
+       data URI double-encodes '#' and then fails SILENTLY as a blank tile). */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc5MicgaGVpZ2h0PSc5Micgdmlld0JveD0nMCAwIDkyIDkyJz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNlMDhiYTYnIHN0cm9rZS13aWR0aD0nMi41JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnPjxwYXRoIGQ9J00yOSAyMSBDNDAgMTEgNTcgMTQgNjMgMjcnLz48cGF0aCBkPSdNNjUgMzUgQzY2IDQ5IDU2IDYxIDQyIDYxJy8+PHBhdGggZD0nTTI5IDU4IEMxNyA1MyAxMSA0MSAxNiAyOScvPjxwYXRoIGQ9J00zNCAzMCBDNDUgMjUgNTUgMzQgNTEgNDUgQzQ4IDU0IDM2IDU1IDMxIDQ2IEMyNyAzOSAzMyAzMiA0MSAzNCBDNDYgMzUgNDcgNDEgNDMgNDQnLz48L2c+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGYxZDNmJyBzdHJva2Utd2lkdGg9JzIuNCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz48cGF0aCBkPSdNNDYgNjAgQzQxIDcyIDUxIDc4IDQ0IDkxJy8+PC9nPjxnIGZpbGw9JyM4ZjFkM2YnPjxwYXRoIGQ9J000OCA2NiBMNTkgNjAgTDQ2IDcyIFonLz48cGF0aCBkPSdNNDMgNzkgTDMxIDc3IEw0MyA4NSBaJy8+PC9nPjxnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2M5OWE0ZScgc3Ryb2tlLW9wYWNpdHk9Jy41NScgc3Ryb2tlLXdpZHRoPScxLjYnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCc+PHBhdGggZD0nTTUwIDYyIEM2MCA2OCA2MSA3NyA1NSA4NCcvPjwvZz48L3N2Zz4=") center / 92px 92px no-repeat,
+    radial-gradient(circle at 48% 42%, #3a1626 0%, #1b0e17 74%);
+
+  /* 2. LACE — a veil. A repeatable field of fine netting with a four-petal flower
+        at each crossing, its heart a single rose dot. A different job from the
+        rose: the rose is a MARK, this is the GROUND's fabric. */
+  --gothic-lace:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0OCcgaGVpZ2h0PSc0OCcgdmlld0JveD0nMCAwIDQ4IDQ4Jz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNmNGViZTYnIHN0cm9rZS1vcGFjaXR5PScuNTAnIHN0cm9rZS13aWR0aD0nMS4xJyBzdHJva2UtbGluZWNhcD0ncm91bmQnPjxwYXRoIGQ9J00wIDAgTDQ4IDQ4Jy8+PHBhdGggZD0nTTQ4IDAgTDAgNDgnLz48cGF0aCBkPSdNMjQgNSBDMzAgMTMgMzAgMTkgMjQgMjQgQzE4IDE5IDE4IDEzIDI0IDUgWicvPjxwYXRoIGQ9J00yNCA0MyBDMzAgMzUgMzAgMjkgMjQgMjQgQzE4IDI5IDE4IDM1IDI0IDQzIFonLz48cGF0aCBkPSdNNSAyNCBDMTMgMzAgMTkgMzAgMjQgMjQgQzE5IDE4IDEzIDE4IDUgMjQgWicvPjxwYXRoIGQ9J000MyAyNCBDMzUgMzAgMjkgMzAgMjQgMjQgQzI5IDE4IDM1IDE4IDQzIDI0IFonLz48L2c+PGNpcmNsZSBjeD0nMjQnIGN5PScyNCcgcj0nMi44JyBmaWxsPScjZTA4YmE2Jy8+PC9zdmc+") 0 0 / 48px 48px repeat,
+    linear-gradient(150deg, #241525 0%, #150c13 100%);
+
+  /* 3. CANDLE — the light in the room, and the gold's alibi. A lit pillar with wax
+        running down both flanks and pooling at the foot. Deliberately no circular
+        halo: a bright disc on a dark tile reads as an EYE, so the warmth lives in
+        the flame core and the drips. */
+  --gothic-candle:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2MCcgaGVpZ2h0PSc3OCcgdmlld0JveD0nMCAwIDYwIDc4Jz48cGF0aCBkPSdNMzAgNiBDMzcgMTUgMzYgMjQgMzAgMjcgQzI0IDI0IDIzIDE1IDMwIDYgWicgZmlsbD0nI2Q5YTk0ZicvPjxwYXRoIGQ9J00zMCAxMyBDMzQgMTkgMzMgMjQgMzAgMjYgQzI3IDI0IDI2IDE5IDMwIDEzIFonIGZpbGw9JyNmOGU4Y2EnLz48cGF0aCBkPSdNMzAgMjcgTDMwIDMyJyBzdHJva2U9JyM2YTRhM2UnIHN0cm9rZS13aWR0aD0nMS42Jy8+PHBhdGggZD0nTTIyIDMzIEwzOCAzMyBMMzggNjkgUTM4IDc2IDMwIDc2IFEyMiA3NiAyMiA2OSBaJyBmaWxsPScjZTZkM2NjJy8+PGVsbGlwc2UgY3g9JzMwJyBjeT0nNzQnIHJ4PScxMicgcnk9JzIuOCcgZmlsbD0nI2YxZTJkYScvPjxwYXRoIGQ9J00yMyAzMiBDMTUgNDUgMTUgNTggMjAgNTggUTI2IDU4IDI1IDQ3IEwyNSAzMiBaJyBmaWxsPScjZjFlMmRhJy8+PHBhdGggZD0nTTM3IDMyIEM0MyA0MSA0MiA1MCAzNyA1MCBRMzMgNTAgMzQgNDMgTDM0IDMyIFonIGZpbGw9JyNmMWUyZGEnLz48cGF0aCBkPSdNMjggMzMgTDMyIDMzIEwzMiA0OCBRMzAgNTIgMjggNDggWicgZmlsbD0nI2YxZTJkYScvPjxlbGxpcHNlIGN4PSczMCcgY3k9JzMzJyByeD0nOCcgcnk9JzIuNCcgZmlsbD0nI2NmYjhiMicgb3BhY2l0eT0nLjYnLz48cGF0aCBkPSdNMjYgMzYgTDI2IDU4JyBzdHJva2U9JyNjZmI4YjInIHN0cm9rZS13aWR0aD0nMS4zJyBzdHJva2Utb3BhY2l0eT0nLjQ1Jy8+PC9zdmc+") center / 60px 78px no-repeat,
+    linear-gradient(180deg, #2a1520 0%, #150c13 100%);
+
+  /* -- supporting textures (not motifs: light and line) ------------------- */
+  --gothic-wine:
+    /* the accent as a surface: the velvet drape */
+    linear-gradient(160deg, #4a1024 0%, #8f1d3f 44%, #b3254f 64%, #2a0a14 100%);
+
+  --gothic-vein:
+    /* one hairline: wine → rose → candle → rose → wine */
+    linear-gradient(90deg, transparent 0%, #8f1d3f 16%, #e08ba6 42%, #c99a4e 58%,
+                    #8f1d3f 84%, transparent 100%);
+}

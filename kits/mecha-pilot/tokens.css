@@ -1,0 +1,159 @@
+/* ============================================================================
+   design-kits · mecha-pilot                                   contract v1
+   ----------------------------------------------------------------------------
+   THE PILOT'S INSTRUMENT PANEL — a mecha cockpit HUD. This is INSTRUMENTATION,
+   not a machine case: amber READOUTS, a targeting reticle, a calibration scale
+   and a hazard tape. Gunmetal panels, one amber readout lamp, one cyan data
+   channel, one warning red.
+
+   DIFFERENTIATION (deliberate, not incidental):
+     · inside-the-machine is industrial hardware TEXTURE (carbon weave, vents,
+       engraved inset seams, mono-first). mecha-pilot has no texture and no
+       engraving: its panels are FLAT plates that LIGHT UP, its depth is a hard
+       zero-blur offset, and its identity is the drawn instruments.
+     · carbon is neon CYAN on carbon black with CUT (chamfered) corners. This kit
+       has no cyan action, no neon data, and NO chamfer: its corners are square
+       because an instrument bezel is square.
+
+   NOTHING SMOOTH. All five doors are shut (see README and the comments below):
+     1 curves    -> every --radius-* is 0px; checkbox/radio are squared
+     2 shadows   -> zero-blur offsets only; the "glow" is a STEPPED phosphor ring
+     3 gradients -> hard stops / px bands / dithers; --bg is banded, --wash is off
+     4 artwork   -> line art drawn at display size (nothing is upscaled)
+     5 blur      -> --blur: none
+
+   Fonts: Chakra Petch (display) · Saira (body) · Share Tech Mono (readout)
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* --bg is a COCKPIT FLOOR, not a fade: a 1px CRT scan-line field over two
+     HARD-STOPPED gunmetal plates (stops share a position — no interpolation),
+     with a 2px canopy lamp rule across the very top. The scan lines only ever
+     DARKEN, so the lightest pixel the page can show is the plate itself — which
+     is exactly what every contrast pair below is graded against. */
+  --bg:
+    linear-gradient(180deg, rgba(255, 171, 43, .82) 0px, rgba(255, 171, 43, .82) 2px, rgba(0, 0, 0, 0) 2px),
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, .34) 0px, rgba(0, 0, 0, .34) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px),
+    linear-gradient(180deg, #10151b 0px, #10151b 520px, #0d1116 520px, #0d1116 100%);
+  --bg-2:          #0d1116;               /* solid stand-in for exports/masthead */
+  --surface:       #171d24;               /* the instrument plate (lightest ground) */
+  --surface-2:     #111720;               /* recessed readout well, inputs, tiles */
+  --overlay:       rgba(5, 7, 10, .80);   /* modal scrim — a hard dim, not glass */
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #e8eef5;               /* 14.5:1 on --surface */
+  --text-muted:    #9aa6b3;               /*  6.9:1 on --surface */
+  --text-dim:      #93a0ae;               /*  6.4:1 on --surface — the binding ground */
+  --text-invert:   #0d1116;               /* panel ink on the amber lamp (10.0:1) */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent:        #ffab2b;               /* READOUT amber — print, lamp, action */
+  --accent-hover:  #ffbc4d;               /* the lamp stepped up one notch */
+  --accent-2:      #3fd0e6;               /* DATA cyan — media, charts, telemetry */
+  --accent-soft:   rgba(255, 171, 43, .16); /* 16% amber tint, derived from --accent */
+
+  --accent-ink:        #ffc061;           /* the amber AS TEXT (10.5:1 on --surface) */
+  --accent-ink-hover:  #ffcf82;
+
+  /* ----------------------------------------------------------------- status */
+  /* The four annunciator lamps of an aircraft panel — one job each. They never
+     carry a primary action; the amber lamp is the only action colour. */
+  --ok:            #4ee08a;               /* green  · nominal   (10.0:1) */
+  --warn:          #ffd24a;               /* yellow · caution   (11.8:1) */
+  --danger:        #ff5a4d;               /* red    · warning   ( 5.5:1) */
+  --info:          #3fd0e6;               /* cyan   · data      ( 9.2:1) */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        #2b3540;               /* bezel hairline */
+  --border-strong: #48535f;               /* instrument rim / emphasised rule */
+  --border-w:      1px;
+  --focus-ring:    #ffc061;               /* amber readout ring (10.5:1) */
+
+  /* ------------------------------------------------------------------ shape */
+  /* SQUARE. An instrument bezel is square; there is no curve in this cockpit. */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   0px;
+  --cut:           0px;                   /* and no chamfer — carbon owns that */
+
+  /* ------------------------------------------------------------------- type */
+  --font-display:  "Chakra Petch", "Segoe UI", Arial, sans-serif;
+  --font-body:     "Saira", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "Share Tech Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .16em;              /* HUD labels run wider than a stamped plate */
+  --tracking-display: .01em;
+
+  /* ------------------------------------------------------------------ depth */
+  /* ZERO-BLUR offsets. A panel is a plate sitting 4px proud of its ground; there
+     is no soft drop anywhere in the kit. */
+  --shadow-1:      4px 4px 0 0 rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 171, 43, .06);
+  --shadow-2:      6px 6px 0 0 rgba(0, 0, 0, .62), inset 0 0 0 1px rgba(255, 171, 43, .09);
+  /* --glow is the LIT READOUT: a phosphor bloom stepped into three concentric
+     hard rings (1px / 3px / 5px) instead of a blur — a lamp with a job. */
+  --glow:          0 0 0 1px var(--accent), 0 0 0 3px rgba(255, 171, 43, .34), 0 0 0 5px rgba(255, 171, 43, .13);
+  --blur:          none;                  /* a cockpit panel is not frosted glass */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur:           .12s;                  /* a switch throws; it does not glide */
+  --ease:          cubic-bezier(.2, .9, .3, 1);
+
+  /* ------------------------------------------------------- lab capability hooks */
+  /* The masthead default is a smooth radial accent bloom. This cockpit has no
+     soft gradient over its ground, so the wash is switched OFF and the scan-line
+     floor shows through. */
+  --wash:          transparent;
+  /* The media panel is a DISPLAY, not an accent ramp: a dark amber phosphor
+     screen with hard sweep bands and a scan-line field, opaque. */
+  --media-bg:
+    linear-gradient(180deg,
+      rgba(255, 171, 43, .26) 0px, rgba(255, 171, 43, .26) 3px, rgba(0, 0, 0, 0) 3px,
+      rgba(0, 0, 0, 0) 30px, rgba(255, 171, 43, .16) 30px, rgba(255, 171, 43, .16) 34px, rgba(0, 0, 0, 0) 34px),
+    repeating-linear-gradient(90deg, rgba(255, 171, 43, .11) 0px, rgba(255, 171, 43, .11) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 7px),
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, .55) 0px, rgba(0, 0, 0, .55) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px),
+    linear-gradient(90deg, #1c1406 0px, #1c1406 58px, #241a08 58px, #241a08 100%);
+  --media-op:      1;                     /* a screen is opaque, not a .85 wash */
+  /* progress + avatar: a SEGMENTED lamp bar, hard-stopped, both segments light
+     enough that the panel-ink avatar label still reads on the fill */
+  --fill-bg:       repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 6px, #c07a12 6px, #c07a12 8px);
+  /* every button variant wears the hard key-offset, not just the primary one */
+  --btn-shadow:    2px 2px 0 0 #05070a;
+  /* the readout well is milled, zero-blur */
+  --input-inset:   inset 0 2px 0 0 rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(0, 0, 0, .45);
+  /* square controls: native checkbox/radio ignore --radius-pill, so draw the box */
+  --check-appearance: none;
+  --check-bg:         var(--surface-2);
+  --check-border:     var(--border-w, 1px) solid var(--border-strong);
+  --check-checked:    var(--accent);
+  /* keep any imagery hard-edged */
+  --pixel-render:     pixelated;
+
+  /* --------------------------------------------------------------- signature */
+  /* Three motifs, three DIFFERENT jobs (symbol / scale / warning), each a
+     background value that survives a 168x72 tile on --surface-2. Non-flatness is
+     measured in the README, not asserted. */
+
+  /* 1 · RETICLE — the SYMBOL. DRAWN (base64 SVG line art): concentric rings with
+     a dashed tick ring, a gapped crosshair, corner brackets and a top index.
+     A gradient cannot make a ring with radial ticks; only vector can. The base
+     layer is a SCOPE FACE of hard concentric bands — never a radial fade. */
+  --mecha-pilot-reticle:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZiMDNhJz48Y2lyY2xlIGN4PSc2MCcgY3k9JzYwJyByPSc1MCcgc3Ryb2tlLXdpZHRoPScxLjQnIG9wYWNpdHk9Jy45NScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzQzJyBzdHJva2Utd2lkdGg9JzYnIHN0cm9rZS1kYXNoYXJyYXk9JzEuNSA2JyBvcGFjaXR5PScuOScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzI0JyBzdHJva2Utd2lkdGg9JzEnIG9wYWNpdHk9Jy41Jy8+PGNpcmNsZSBjeD0nNjAnIGN5PSc2MCcgcj0nNicgc3Ryb2tlLXdpZHRoPScxLjInIG9wYWNpdHk9Jy44Jy8+PHBhdGggZD0nTTYwIDE2IFYzOCBNNjAgODIgVjEwNCBNMTYgNjAgSDM4IE04MiA2MCBIMTA0JyBzdHJva2Utd2lkdGg9JzInLz48cGF0aCBkPSdNOCAyMCBWOCBIMjAgTTEwMCA4IEgxMTIgVjIwIE0xMTIgMTAwIFYxMTIgSDEwMCBNMjAgMTEyIEg4IFYxMDAnIHN0cm9rZS13aWR0aD0nMicgb3BhY2l0eT0nLjknLz48L2c+PHBhdGggZD0nTTYwIDMgbDQgNyBoLTggeicgZmlsbD0nI2ZmYjAzYScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzIuNicgZmlsbD0nI2ZmYjAzYScvPjwvc3ZnPg==") center / 66px 66px no-repeat,
+    radial-gradient(circle at 50% 50%, #1a242e 0px, #1a242e 30px, #121a21 30px, #121a21 58px, #0b1015 58px, #0b1015 100%);
+
+  /* 2 · SCALE — the MEASUREMENT. DRAWN (base64 SVG): a heading/range tape with
+     hard minor ticks, taller major ticks, numerals, end brackets and a bright
+     index needle. A repeating gradient makes an even comb with no majors — the
+     calibrated readout has to be drawn. */
+  --mecha-pilot-scale:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxnIHN0cm9rZT0nI2ZmYjAzYScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNTAgSDE2MCcgc3Ryb2tlLXdpZHRoPScxLjYnIG9wYWNpdHk9Jy45NScvPjxwYXRoIGQ9J004IDU3IEgxNjAnIHN0cm9rZS13aWR0aD0nMScgb3BhY2l0eT0nLjQnLz48L2c+PGcgc3Ryb2tlPScjZmZiMDNhJyBzdHJva2Utd2lkdGg9JzEuMicgb3BhY2l0eT0nLjgnPjxwYXRoIGQ9J00xNCA1MCB2LTUgTTIwIDUwIHYtNSBNMjYgNTAgdi01IE0zMiA1MCB2LTUgTTM4IDUwIHYtNSBNNDQgNTAgdi01IE01MCA1MCB2LTUgTTU2IDUwIHYtNSBNNjIgNTAgdi01IE02OCA1MCB2LTUgTTc0IDUwIHYtNSBNODAgNTAgdi01IE04NiA1MCB2LTUgTTkyIDUwIHYtNSBNOTggNTAgdi01IE0xMDQgNTAgdi01IE0xMTAgNTAgdi01IE0xMTYgNTAgdi01IE0xMjIgNTAgdi01IE0xMjggNTAgdi01IE0xMzQgNTAgdi01IE0xNDAgNTAgdi01IE0xNDYgNTAgdi01IE0xNTIgNTAgdi01Jy8+PC9nPjxnIHN0cm9rZT0nI2ZmYjAzYScgc3Ryb2tlLXdpZHRoPScyJz48cGF0aCBkPSdNMTQgNTAgdi0xMSBNNDQgNTAgdi0xMSBNNzQgNTAgdi0xMSBNMTA0IDUwIHYtMTEgTTEzNCA1MCB2LTExJy8+PC9nPjx0ZXh0IHg9JzE0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAwPC90ZXh0Pjx0ZXh0IHg9JzQ0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAzPC90ZXh0Pjx0ZXh0IHg9Jzc0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjA2PC90ZXh0Pjx0ZXh0IHg9JzEwNCcgeT0nMzMnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2ZmYjAzYScgb3BhY2l0eT0nLjg1Jz4wOTwvdGV4dD48dGV4dCB4PScxMzQnIHk9JzMzJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyNmZmIwM2EnIG9wYWNpdHk9Jy44NSc+MTI8L3RleHQ+PHBhdGggZD0nTTc0IDggVjUyJyBzdHJva2U9JyNmZmQyNGEnIHN0cm9rZS13aWR0aD0nMicvPjxwYXRoIGQ9J003NCAyIGw0IDYgaC04IHonIGZpbGw9JyNmZmQyNGEnLz48ZyBzdHJva2U9JyNmZmIwM2EnIHN0cm9rZS13aWR0aD0nMS42JyBvcGFjaXR5PScuOScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNjQgdi0yMCBoNSBNMTYwIDY0IHYtMjAgaC01Jy8+PC9nPjwvc3ZnPg==") center / 150px 64px no-repeat,
+    linear-gradient(180deg, #141b21 0px, #141b21 2px, #0e141a 2px, #0e141a 100%);
+
+  /* 3 · HAZARD — the WARNING. Instrument-panel hazard tape: hard 45-degree
+     amber/black stripes under a 2px amber rule at both edges. Pure repeating
+     gradient, and the highest-variance tile in the kit. */
+  --mecha-pilot-hazard:
+    linear-gradient(180deg, var(--accent) 0px, var(--accent) 2px, rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 70px, var(--accent) 70px, var(--accent) 72px),
+    repeating-linear-gradient(45deg, var(--accent) 0px, var(--accent) 9px, #0b0f13 9px, #0b0f13 18px);
+}

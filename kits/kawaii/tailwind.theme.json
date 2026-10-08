@@ -1,0 +1,83 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff6fb2",
+        "primary-hover": "#ff86c1",
+        "on-primary": "#4a1738",
+        "primary-ink": "#ab1559",
+        "primary-ink-hover": "#8f104b",
+        "secondary": "#35c79a",
+        "tertiary": "#c9a6ff",
+        "accent-tint": "#fcdaec",
+        "neutral": "#fff2f9",
+        "surface": "#ffffff",
+        "surface-2": "#fbeef7",
+        "text": "#3b2743",
+        "text-muted": "#5f4a68",
+        "text-dim": "#634e6c",
+        "success": "#0d7a57",
+        "warning": "#946000",
+        "error": "#bd2d28",
+        "info": "#4f52c9",
+        "focus": "#7d5bd6",
+        "border": "#eadee8"
+      },
+      "fontFamily": {
+        "display": [
+          "Baloo 2"
+        ],
+        "heading": [
+          "Baloo 2"
+        ],
+        "body": [
+          "Nunito"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.8rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.28rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "500"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.1em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "12px",
+        "md": "18px",
+        "lg": "28px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

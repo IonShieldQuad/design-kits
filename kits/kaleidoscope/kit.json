@@ -1,19 +1,17 @@
 {
   "name": "Kaleidoscope",
-  "tagline": "Mirrored jewel facets — symmetry instead of restraint",
+  "tagline": "Mirrored jewel facets — a full-bleed kaleidoscope, beams and shards",
   "use_when": "launch pages, games and music, gallery showcases",
   "order": 95,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
   "fonts_label": "Sora · Inter · IBM Plex Mono",
   "mode": "dark",
   "source": "original",
-  "tags": ["dark", "kaleidoscope", "faceted", "multicolour"],
+  "tags": ["dark", "kaleidoscope", "faceted", "multicolour", "glossy"],
   "signature": [
-    "--kaleidoscope-star",
-    "--kaleidoscope-rose-window",
-    "--kaleidoscope-shard",
-    "--kaleidoscope-prism",
-    "--kaleidoscope-facet-edge",
-    "--kaleidoscope-glint"
+    "--kaleidoscope-mandala",
+    "--kaleidoscope-beam",
+    "--kaleidoscope-fractal",
+    "--kaleidoscope-star"
   ]
 }

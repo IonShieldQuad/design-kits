@@ -1,12 +1,12 @@
 ---
 version: alpha
 name: Kaleidoscope
-description: Mirrored jewel facets on a deep indigo aperture — one ruby facet acts, sapphire answers it cool, and the other three are structure. The discipline is symmetry, not restraint.
+description: A full-bleed mirrored kaleidoscope on a deep indigo aperture — a drawn facet field under every surface, a hard-banded beam of light and a fractal shard. One ruby facet acts, sapphire answers it cool, and the other three are structure. The discipline is symmetry, not restraint.
 colors:
   primary: "#ff2d6f"
   secondary: "#5b86ff"
   tertiary: "#19dda0"
-  neutral: "#050410"
+  neutral: "#0c0920"
   accent-hover: "#ff5b8f"
   accent-soft: "rgba(255,45,111,0.15)"
   facet-ruby: "#ff2d6f"
@@ -14,11 +14,12 @@ colors:
   facet-emerald: "#19dda0"
   facet-amber: "#ffb020"
   facet-violet: "#a678ff"
-  bg: "#0a0719"
-  bg-deep: "#050410"
+  bg: "#0c0920"
+  bg-light: "#120e30"
+  bg-deep: "#040310"
   surface: "#15112e"
   surface-2: "#221d42"
-  overlay: "rgba(5,4,16,0.78)"
+  overlay: "rgba(4,3,16,0.80)"
   text: "#f6f3ff"
   text-muted: "#b9b2dd"
   text-dim: "#9590b8"
@@ -204,6 +205,10 @@ components:
   page-deep:
     backgroundColor: "{colors.bg}"
     textColor: "{colors.text}"
+  ground-field:
+    backgroundColor: "{colors.bg-light}"
+    textColor: "{colors.text}"
+    height: "100%"
 ---
 
 # Kaleidoscope
@@ -214,10 +219,11 @@ Every other kit in this library obeys *one accent plus one second accent*. This 
 and that is the argument the kit exists to make. **Symmetry replaces restraint.** A kaleidoscope
 is multi-hue by construction — the image inside it is a riot of jewel colour — and it still
 reads as one object, because everything in it is *mirrored*. The discipline moved out of the
-palette and into the geometry: every pattern here is built from a mirrored pair of angles
-(0°/180°, 60°/120°, or a conic sequence that repeats its own first half back), and every corner
-is a cut rather than a curve. A rainbow is undisciplined; a kaleidoscope is a rainbow that has
-been folded. That fold is the whole kit.
+palette and into the geometry: every pattern here is built from a mirror — a conic fan that
+repeats its own first half back, a mandala field of eight-fold rosettes, a beam symmetric about
+its own axis, a fractal shard split down its spine — and every corner is a cut rather than a
+curve. A rainbow is undisciplined; a kaleidoscope is a rainbow that has been folded. That fold is
+the whole kit.
 
 So there are five jewel facets — ruby, amber, emerald, sapphire, violet — and **exactly one
 of them is allowed to act**: ruby (`{colors.primary}`) fills the single primary control on a
@@ -226,9 +232,16 @@ and chart series. Amber, emerald and violet are structure and graphic: pattern s
 a prism ramp. They never fill a button and they are never text. The eye can hold five hues
 because only two of them are asking for anything.
 
-The ground is near-neutral: a very deep indigo aperture (`{colors.bg-deep}` at its darkest),
-light entering from above it, falling to near-black. It has to be near-neutral, or the facets
-stop reading as light through glass and start reading as more colour on colour. Nothing in this
+The page **is** the kaleidoscope. The ground is not a plain dark field with a bloom on top: it is
+a drawn, full-bleed **facet field** (`--kaleidoscope-mandala`) — five eight-fold rosettes per
+200px tile, mirrored, with roughly half their facets deliberately unlit — laid over a deep indigo
+aperture (`{colors.bg-deep}` at its darkest) whose light enters from above and falls to
+near-black. Two more forms do different jobs: a hard-banded **beam of light**
+(`--kaleidoscope-beam`), which also fills media panels and progress bars, and a mirrored
+**fractal shard** (`--kaleidoscope-fractal`). The field must stay dark enough to be a *ground*:
+a facet tuned for a poster is a facet text can no longer sit on. It is held to a hard luminance
+ceiling, and the masthead's old ruby bloom is deliberately gone — a translucent wash stacked on
+the field is the one composite that would push `{colors.text-dim}` under 4.55:1. Nothing in this
 kit is soft: no blurred shadow, no frost, no organic curve.
 
 Use it where the page *is* the artefact — launch pages, game and music UI, a portfolio or
@@ -256,24 +269,34 @@ Neutral ground and text:
 
 | Role | Token | Value | Contrast |
 |---|---|---|---|
-| Ground (darkest stop) | `--bg` | `#050410` | — |
-| Ground (base) | `{colors.bg}` | `#0a0719` | — |
+| Ground — field's brightest pixel (binding) | `--kaleidoscope-mandala` | ≈ `#332928` | **the ground that matters** |
+| Ground (deepest stop) | `--bg` | `#040310` | — |
+| Ground (base / mid stop) | `{colors.bg}` | `#0c0920` | — |
+| Ground (lightest aperture stop) | `{colors.bg-light}` | `#120e30` | — |
 | Card pane | `{colors.surface}` | `#15112e` | — |
 | Lit pane | `{colors.surface-2}` | `#221d42` | — |
-| Body text | `{colors.text}` | `#f6f3ff` | **18.60:1** on the darkest stop |
-| Secondary text | `{colors.text-muted}` | `#b9b2dd` | **9.10:1** on `{colors.surface}` |
-| Tertiary text | `{colors.text-dim}` | `#9590b8` | **6.75:1** on the ground, **6.04:1** on `{colors.surface}` |
+| Body text | `{colors.text}` | `#f6f3ff` | **18.70:1** on the deepest stop, **12.89:1** on the field's brightest pixel |
+| Secondary text | `{colors.text-muted}` | `#b9b2dd` | **9.10:1** on `{colors.surface}`, **7.04:1** on the field's brightest pixel |
+| Tertiary text | `{colors.text-dim}` | `#9590b8` | **6.79:1** on the deepest stop, **5.26:1** on `{colors.surface-2}`, **4.68:1** on the field's brightest pixel |
 | Ink on a facet | `{colors.text-invert}` | `#08040d` | **5.67:1** on ruby, **6.91:1** on its hover |
-| Ruby as *text* | `--accent-ink` `#ff6f9c` | — | **7.76:1** on the ground, **6.95:1** on `{colors.surface}` |
+| Ruby as *text* | `--accent-ink` `#ff6f9c` | — | **5.38:1** on the field's brightest pixel, **6.95:1** on `{colors.surface}` |
+
+Because the ground is now an **image layer**, the binding ground is no longer a declared stop:
+it is the brightest pixel the field actually paints. That value (≈ `#332928`, measured off the
+rendered page) is what every ink is graded against, and it is the number that forced the
+masthead's ruby bloom off — stack a 15% wash on it and `{colors.text-dim}` drops to 4.5:1 at
+best. The field is drawn so no two facets ever overlap (the rosettes only touch), which is what
+keeps that ceiling exact rather than approximate.
 
 Three things are worth stating plainly.
 
 **Who acts.** Ruby only. `--accent` is `#ff2d6f`; it is the single filled control on a screen.
 Sapphire is `--accent-2` and is the *cool counterweight* — it never fills an action, it fills
 media. Emerald, amber and violet are not in the brand pair at all: they appear in patterns
-(`--kaleidoscope-star`, `--kaleidoscope-rose-window`, `--kaleidoscope-shard`,
-`--kaleidoscope-prism`), in chart series and in a lit edge. If you ever find yourself reaching
-for amber to fill a button, the kit has failed — that is the fifth "look at me" colour arriving.
+(`--kaleidoscope-mandala`, `--kaleidoscope-beam`, `--kaleidoscope-fractal`,
+`--kaleidoscope-star`, `--kaleidoscope-prism`), in chart series and in a lit edge. If you ever
+find yourself reaching for amber to fill a button, the kit has failed — that is the fifth
+"look at me" colour arriving.
 
 **Why the ink is near-black.** White on ruby is 3.59:1, well under AA. Rather than lighten the
 facet (which would make it a pale pink and cost the kit its jewel value), the label is
@@ -281,7 +304,7 @@ near-black `{colors.text-invert}`: 5.67:1, and it reads like ink on a lit stone.
 this by lightening `{colors.text-invert}`.
 
 **Ruby as text is a different, lighter member of the same family.** `#ff2d6f` is a fine *fill*
-and only 4.14:1 as a small label over the masthead's ruby wash. `--accent-ink` `#ff6f9c` is the
+and only ~4.1:1 as a small label over the lit ground. `--accent-ink` `#ff6f9c` is the
 same hue, lighter, and clears 4.5:1 everywhere it is used — links, the eyebrow, inline code,
 active nav, secondary-button labels.
 
@@ -334,9 +357,9 @@ first one is a trap:
 2. Therefore `--shadow-1` and `--shadow-2` are *inset facet edges first*, with an outer bloom
    appended for consumers who do not clip the element. `--shadow-2`'s bloom is not re-typed — it
    is `var(--kaleidoscope-glint)`, and **`--glow` is literally `var(--kaleidoscope-facet-edge)`**,
-   so the primary button's lit rim and the surface bloom are the same two materials the lab
-   renders in its Signature section. Derive, don't duplicate. `--shadow-1` stays nearly flat,
-   because on a clipped card only its inset edge lands.
+   so the primary button's lit rim and the surface bloom are the same two materials, used twice
+   rather than defined twice. Derive, don't duplicate. `--shadow-1` stays nearly flat, because on
+   a clipped card only its inset edge lands.
 3. `--blur` is `none`. There is no frosted glass here: the surfaces are opaque, so the contrast
    of every pair is provable against a hex rather than a composite.
 
@@ -396,14 +419,24 @@ colours, shadows and clip-paths are deliberately not listed per component — th
   violet, sapphire). This is the one place all five are permitted in one view, because a chart
   is a graphic and not a hierarchy.
 - **media-block** — `{colors.secondary}` sapphire; the one place the counterweight fills area.
-  Real media uses `--kaleidoscope-prism` (ruby → amber → emerald → sapphire → violet).
+  Real media uses `--media-bg`: the **beam** (`--kaleidoscope-beam`) laid over
+  `--kaleidoscope-prism` (ruby → amber → emerald → sapphire → violet) — a shaft of light
+  dispersing, not a two-stop accent ramp.
+- **progress / avatar** — `--fill-bg` is `--kaleidoscope-prism`, so a bar disperses into ordered
+  bands instead of fading from accent to accent-2. `{colors.text-invert}` clears 4.5:1 on every
+  band, so the avatar's initials stay legible.
 - **divider** / **divider-strong** — the hairline and the emphasised rule, as `{colors.border}`
   and `{colors.border-strong}` fills. DESIGN.md has no `borderColor` property, so the line
   colours are declared here as 1px fills instead — the honest way to keep them referenced.
 - **overlay-scrim** — `{colors.overlay}`, the modal veil.
 - **focus-indicator** / **input-ring** — the two rings, as fills: the 2px sapphire keyboard ring
   (`{colors.focus-ring}`) and the 3px `{colors.accent-soft}` halo the focused input lays down.
-- **page** / **page-deep** — the ground, and its darkest stop.
+- **page** / **page-deep** — the ground, and its darkest stop. The live ground is the drawn
+  facet field (`--kaleidoscope-mandala`) over the `{colors.bg}` aperture; `{colors.bg-light}`
+  `#120e30` is the aperture's lightest stop, where the field's ceiling binds.
+- **ground-field** — `{colors.bg-light}`, the lightest stop of the ground, used as a solid fill
+  where a component has to *state* the ground rather than inherit it (the field's ceiling is
+  measured here). It is deliberately the brightest value in the ground ramp.
 
 ## Do's and Don'ts
 
@@ -411,8 +444,12 @@ colours, shadows and clip-paths are deliberately not listed per component — th
 
 - Let ruby be the *single* filled control on a screen. One facet acts; four are structure.
 - Keep every pattern mirrored. Patterns ship as `--kaleidoscope-*` tokens; the conic fan repeats
-  its own first half, the shard lattice pairs 60° with 120°, the rose window is radial. If you
-  add a pattern, add a mirror.
+  its own first half, the mandala is eight-fold with unlit facets mirrored to unlit facets, the
+  beam is symmetric about its own axis, the shard is split down its spine. If you add a pattern,
+  add a mirror.
+- Keep the ground dark. `--kaleidoscope-mandala` is drawn for a UI, not a poster: no two facets
+  overlap, and its brightest pixel holds `--text-dim` at 4.68:1. Brighten a facet and you spend
+  legibility, not confidence.
 - Keep the insets. `--shadow-1`/`--shadow-2`/`--glow` are inset-only for a reason: the clip eats
   everything outside the silhouette.
 - Use `--kaleidoscope-facet-clip` (22px, four corners) for hero panels and `--clip` (10px, two

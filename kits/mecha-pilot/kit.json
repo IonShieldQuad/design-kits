@@ -1,0 +1,16 @@
+{
+  "name": "Mecha Pilot",
+  "tagline": "The pilot's instrument panel — amber readouts, a reticle, a range scale and hazard tape on gunmetal",
+  "signature": [
+    "--mecha-pilot-reticle",
+    "--mecha-pilot-scale",
+    "--mecha-pilot-hazard"
+  ],
+  "order": 150,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Saira:wght@400;500;600&family=Share+Tech+Mono&display=swap",
+  "fonts_label": "Chakra Petch · Saira · Share Tech Mono",
+  "mode": "dark",
+  "source": "original",
+  "tags": ["dark", "mecha", "hud", "cockpit", "technical", "instrumentation"],
+  "use_when": "cockpit / HUD interfaces: sim and game UI, telemetry and mission consoles, device dashboards, anything that should read as an instrument panel rather than a page"
+}

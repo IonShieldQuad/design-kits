@@ -2,11 +2,15 @@
   "name": "Quiet",
   "tagline": "Calm surfaces for tools you live in",
   "use_when": "apps, settings panels, long-form reading",
-  "index": "03",
   "order": 30,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   "fonts_label": "Inter",
   "mode": "dark",
   "source": "derived from simple-website-test",
-  "tags": ["dark", "app", "minimal", "soft"]
+  "tags": [
+    "dark",
+    "app",
+    "minimal",
+    "soft"
+  ]
 }

@@ -97,6 +97,18 @@ section.block:first-of-type { border-top: 0; }
 }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
 .btn:focus-visible { outline: 2px solid var(--focus-ring, var(--accent, #6aa2ff)); outline-offset: 2px; }
+/* A clip-path eats `outline` (and box-shadow) along the diagonal, so a chamfered control loses its
+   keyboard focus indicator entirely. An INSET ring paints inside the silhouette, where the chamfer
+   cannot reach it. Opt-in: the default 0 width leaves every other kit untouched. */
+.btn:focus-visible {
+  box-shadow: var(--btn-shadow, none),
+              inset 0 0 0 var(--focus-inset, 0) var(--focus-ring, transparent);
+}
+/* The contract names a display font FAMILY but never its STYLE — so a kit whose register leans
+   forward (broadcast, racing, editorial) had to ship a kit.css just to say `italic`. */
+.t-display, .t-h1, .t-h2, .t-h3, .card-title, .masthead h1, .avatar {
+  font-style: var(--style-display, normal);
+}
 
 .btn-primary { --_bg: var(--accent, #5b7cfa); --_fg: var(--text-invert, #fff); --_bd: transparent;
                box-shadow: var(--glow, none); }

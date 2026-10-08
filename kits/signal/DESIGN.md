@@ -178,7 +178,7 @@ anything that is a fact.*
   source's own; the red is derived, because the source has no danger colour and a status
   system without one is incomplete.
 
-`--text-dim: #7284a5` (the source's `--dim`), `--border: rgba(130,180,255,.16)` (the source's
+`--text-dim: #7486a6` (the source's `--dim`), `--border: rgba(130,180,255,.16)` (the source's
 `--line`) and `--border-strong: rgba(130,180,255,.34)` are defined in `tokens.css` but kept
 out of the `colors` map above: the DESIGN.md component schema has no `borderColor` property
 and a tertiary caption asserts no contrast floor, so listing them would only produce orphan

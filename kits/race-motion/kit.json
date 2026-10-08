@@ -1,0 +1,16 @@
+{
+  "name": "Race Motion",
+  "tagline": "Motorsport as broadcast — asphalt under kerbs and a chequered flag, set in a big italic",
+  "signature": [
+    "--race-motion-chequer",
+    "--race-motion-kerb",
+    "--race-motion-slipstream"
+  ],
+  "order": 155,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Saira · Inter · JetBrains Mono",
+  "mode": "dark",
+  "source": "original — palette, motifs and register authored for this kit; no reference images were sampled",
+  "tags": ["dark", "sport", "motorsport", "bold", "geometric", "high-contrast"],
+  "use_when": "speed, sport and competition: race and esports coverage, motorsport team pages, timing and telemetry dashboards, launch pages that need to feel loud and precise"
+}

@@ -1,28 +1,28 @@
 ---
 version: alpha
 name: Psychedelic
-description: A 1960s acid poster printed on paper — a warm off-white ground, five clashing screen-print inks, thick off-key outlines and a fat rounded display face.
+description: A 1960s acid poster printed on paper — a warped banded plate, five clashing screen-print inks, thick off-key outlines and a fat rounded display face.
 colors:
   primary: "#ff6a00"
   secondary: "#5b1a8f"
   tertiary: "#e5198f"
-  neutral: "#f6efdb"
+  neutral: "#f6ecd8"
   ink-acid: "#a8d400"
   ink-yellow: "#ffd21e"
   ink-edge: "#961478"
-  bg-stop-1: "#fbf7ea"
-  bg-stop-2: "#f5eeda"
-  bg-stop-3: "#f1e7cc"
-  bg-stop-4: "#faf5e8"
-  bg-2: "#f6efdb"
-  surface: "#fdfaf0"
-  surface-2: "#f2e9d2"
+  bg-stop-1: "#fdfaf1"
+  bg-stop-2: "#f8f1e0"
+  bg-stop-3: "#f6ecd8"
+  bg-stop-4: "#fbf6e9"
+  bg-2: "#f8f1e0"
+  surface: "#fefcf4"
+  surface-2: "#f4ecd9"
   overlay: "rgba(42,10,62,0.55)"
   text: "#2a0a3e"
   text-muted: "#5c2570"
   text-dim: "#6d457e"
   text-invert: "#2a0a3e"
-  accent-ink: "#a83606"
+  accent-ink: "#943005"
   accent-ink-hover: "#8c2d03"
   accent-hover: "#e85d00"
   accent-soft: "rgba(255,106,0,0.16)"
@@ -142,70 +142,88 @@ components:
 
 # Psychedelic
 
-A 1960s acid poster, rebuilt as a working UI kit. **The ground is paper** — a warm,
-uneven off-white — and every colour is an *ink* laid on top of it: acid green, hot orange,
-magenta, deep purple and a sparing yellow. The period-correct construction is the reason the
-kit works at all: a screen print starts with paper, and a fully saturated page is a poster
-nobody can read past a headline.
+A 1960s acid poster, rebuilt as a working UI kit. **The ground is a paper plate, and the
+page is the poster**: a hard-banded ripple of overprinted screen tints, then a 3px halftone
+grain, then warm off-white paper. Every colour is an *ink* laid on top — acid green, hot
+orange, magenta, deep purple and a sparing yellow. The period-correct construction is the
+reason the kit works at all: a screen print starts with paper, and a fully saturated page is
+a poster nobody can read past a headline.
 
 ## Overview
 
-Three things carry the era, and none of them is a gradient ground:
+Three things carry the era, and none of them is a smooth gradient:
 
-1. **Ink on paper.** `--bg` is an aged paper ramp (`#fbf7ea` → `#f1e7cc` → `#faf5e8`, px
-   stops), not a colour field. The saturation lives in the inks, the outlines and the
-   `--psychedelic-*` patterns — where a poster's saturation actually lives.
+1. **The page is the poster.** `--bg` is a layered plate, not a flat beige: a 3px
+   `repeating-conic-gradient` **halftone grain**, over `--psychedelic-warp` — a
+   `repeating-radial-gradient` ripple whose bands are **hard-stopped** (two stops at one
+   position, zero gap), centred off the plate's top-left so the bands land as warped arcs —
+   over a px-stop aged-paper ramp (`#fdfaf1` → `#f6ecd8` → `#fbf6e9`). Yellow and acid green
+   **carry the field at strength**; magenta, orange and purple arrive as **thin overprint
+   rings** in the paper gaps. That split is not decoration — it is the only way a light
+   plate can hold five inks *and* keep plum type legible; see Colors.
 2. **Clashing saturated inks, five of them, with three jobs.** Hot orange
    `#ff6a00` (`--accent`) drives the **one** primary action. Deep purple `#5b1a8f`
    (`--accent-2`) is the **cool counterweight** — media gradients, bars, the focus ring,
    the cool end of every ramp. Acid green `#a8d400`, magenta `#e5198f` and yellow
-   `#ffd21e` are **graphic** inks: they live in the patterns, the ramp and the printed
-   edge. Acid green (1.4:1 on paper) and yellow (1.2:1) never carry text; magenta is 3.5:1
-   as type so it does not either.
+   `#ffd21e` are **graphic** inks: they live in the ground field, the patterns and the
+   printed edge. Acid green (1.4:1 on paper) and yellow (1.2:1) never carry text; magenta
+   is 3.5:1 as type so it does not either.
 3. **Organic and warped, never geometric.** No chamfer (`--cut: 0px`), no grid, no mirror.
    The liquid comes from generous pooled radii (8 / 14 / 22px), thick saturated outlines
-   that are deliberately *off-key*, and four pattern extras built from
-   `repeating-radial-gradient`, `repeating-conic-gradient` and `radial-gradient`: a
-   **swirl**, a **burst**, a **wobbly stripe** and a **blob wash**.
+   that are deliberately *off-key*, and three pattern extras: a **warp** (the banded
+   ground ripple), a **halftone** (a 3px dot screen) and a **burst** (the full-strength
+   five-ink sunburst that lives in the graphics, never under type).
 
 The shadows are printed, not lit: the primary button carries the whole poster behind it as
 two hard offsets, magenta then yellow (`--glow: 2px 2px 0 #e5198f, 4px 4px 0 #ffd21e`) — two
 plates printed out of register. That misregistration, not a neon bloom, is the kit's depth.
 
-It is a **light** kit: mode `light`, one deep plum ink `#2a0a3e`, and the paper is the ground.
+It is a **light** kit: mode `light`, one deep plum ink `#2a0a3e`, and the printed plate is
+the ground.
 
 ## Colors
 
+The plate supplies the colour, the inks sit on it, and the inks are graded against the
+**darkest band the ground can produce** (the purple overprint ring over `#f6ecd8`, the
+palest paper stop), not against an average.
+
 | Role | Token | Value | Contrast |
 |---|---|---|---|
-| Ground | `--bg` | gradient `#fbf7ea` → `#faf5e8` | — |
-| Ground (checked stop) | — | `#f1e7cc` (aged band, 880px) | worst case for plum ink |
-| Card | `--surface` | `#fdfaf0` | — |
-| Nested / input | `--surface-2` | `#f2e9d2` | — |
-| Body ink | `--text` | `#2a0a3e` | **14.07:1** on the worst stop |
-| Secondary ink | `--text-muted` | `#5c2570` | **10.29:1** on `--surface` |
-| Tertiary ink | `--text-dim` | `#6d457e` | **6.08 / 7.17 / 6.19:1** on bg-worst / surface / surface-2 |
-| On-orange ink | `--text-invert` | `#2a0a3e` | **6.04:1** on `--accent` |
+| Plate (palest stop) | `--bg` | `#fdfaf1` | — |
+| Plate (darkest stop) | `--bg` | `#f6ecd8` | worst case for plum ink |
+| Card | `--surface` | `#fefcf4` | — |
+| Nested / input | `--surface-2` | `#f4ecd9` | — |
+| Body ink | `--text` | `#2a0a3e` | **14.78:1** on the plate stop; **11.13:1** worst band |
+| Secondary ink | `--text-muted` | `#5c2570` | **10.46:1** on `--surface`; 6.90:1 worst band |
+| Tertiary ink | `--text-dim` | `#6d457e` | **6.39 / 6.37:1** on plate / surface-2; 4.81:1 worst band |
+| On-orange ink | `--text-invert` | `#2a0a3e` | **6.04:1** on `--accent`, 4.95:1 on hover |
 | Action | `--accent` | `#ff6a00` | hot orange |
-| Action as text | `--accent-ink` | `#a83606` | **5.33:1** on the worst stop |
+| Action as text | `--accent-ink` | `#943005` | **6.67:1** on plate; **4.70:1** on its own tint over the worst band |
 | Cool counterweight | `--accent-2` | `#5b1a8f` | deep purple |
 | Graphic ink | `--psychedelic-ink-acid` | `#a8d400` | 1.4:1 — graphic only |
 | Graphic ink | `--psychedelic-ink-magenta` | `#e5198f` | 3.5:1 — graphic only |
 | Graphic ink | `--psychedelic-ink-yellow` | `#ffd21e` | 1.2:1 — sparingly, graphic only |
 | Printed edge | `--psychedelic-ink-edge` | `#961478` | off-key outline ink |
-| Focus | `--focus-ring` | `#5b1a8f` | 8.57:1 on the worst stop |
+| Focus | `--focus-ring` | `#5b1a8f` | **6.78:1** worst ground |
 
-**`--bg` is a gradient, checked against its darkest stop.** `#f1e7cc` (the aged centre band)
-is the worst case for plum ink; the top and bottom stops are lighter and score higher.
-`--bg-2: #f6efdb` is the solid paper stand-in for exports.
+**The inks are laid as screen tints, and the tint level is a contrast decision.** On a light
+plate the deep inks can only be printed at a few percent before they sink plum type below
+4.5:1 — so **yellow (70%) and acid green (36%) carry the field at strength**, while
+**magenta (12%), orange (18%) and purple (10%) sit as thin overprint rings**. The
+full-strength clash is the graphics' job: the `--psychedelic-burst`, the `--media-bg`
+panel and the masthead `--wash`. The readings above are the *composited* colour of each
+band over the palest paper stop, and the tint levels were solved against the worst of them.
+
+**`--bg` is a layered plate, checked band by band.** The darkest thing the plate can make is
+a purple overprint ring over the `#f6ecd8` stop; the palest is a bare `#fdfaf1` stop. Every
+value in the table is measured on the unluckiest band the relevant ink can land on.
+`--bg-2: #f8f1e0` is the solid paper stand-in for exports.
 
 **The pattern gradients are not in the `colors:` map above** — that block accepts CSS
 colours only, and the linter errors on a gradient there. The raw inks ship as colours
 (`ink-acid`, `ink-yellow`, `ink-edge`, plus `primary`/`secondary`/`tertiary` for
 orange/purple/magenta) and the gradients themselves live in `tokens.css` as
-`--psychedelic-swirl`, `--psychedelic-burst`, `--psychedelic-wobble`,
-`--psychedelic-blob`, `--psychedelic-ramp`, `--psychedelic-misreg` and
-`--psychedelic-grain`.
+`--psychedelic-warp`, `--psychedelic-halftone` and `--psychedelic-burst`.
 
 **Ink is deep plum, and `--text-invert` equals `--text`.** White on `#ff6a00` is about
 2.4:1. Plum on orange is 6.0:1 and reads exactly like screen-print ink on a warm plate, so
@@ -213,10 +231,13 @@ the kit puts dark ink on the accent rather than light. Do not "fix" this by ligh
 `--text-invert` — the poster's ink block is a dark plate.
 
 **Fill and text are different jobs, so orange has two tokens.** `#ff6a00` fills the primary
-button (6.0:1 under plum) and is unreadable as a small label. The eyebrow, links, secondary-
-button labels, active nav/tab, inline code and accent badges therefore read `--accent-ink`
-`#a83606` (5.33:1) with `--accent-ink-hover` `#8c2d03` for the hover step — because
-`--accent-hover` `#e85d00` is a *fill* step and too light to read as type.
+button (6.04:1 under plum) and is unreadable as a small label. The eyebrow, links,
+secondary-button labels, active nav/tab, inline code and accent badges therefore read
+`--accent-ink` `#943005` (6.67:1 on the plate, 5.70:1 on the purple ring, 4.70:1 even on
+its own 16% tint composited over the worst band) with `--accent-ink-hover` `#8c2d03` for the
+hover step — because `--accent-hover` `#e85d00` is a *fill* step and too light to read as
+type. The bolder ground pushed this ink one shade deeper than the first cut of the kit; it
+is still unmistakably burnt orange.
 
 **Status never borrows a brand ink.** `--ok` `#0d6f4c` forest green (never the acid green),
 `--warn` `#8a5500` brown-amber (never the orange action or the yellow), `--danger` `#b81f24`
@@ -243,7 +264,10 @@ Display is barely tracked (`.01em`); mono labels are wide (`.14em`).
 
 The shared 1040px measure, 2.25rem between blocks, and a `0.4 / 0.75 / 1 / 2.25rem`
 spacing scale. Density is medium: a poster needs air around the ink, so blocks breathe and
-the 2px outlines have room to read as printed frames rather than as borders.
+the 2px outlines have room to read as printed frames rather than as borders. The warped
+ground is a *plate* under that text, so its bands are sized in px (58 / 74 / 96 / 140 /
+152 / 174px, a ~205px repeat) to land inside the first viewport rather than below it — and
+small enough that the motif also reads inside a 168×72 Signature tile.
 
 ## Elevation & Depth
 
@@ -260,10 +284,19 @@ Depth is print, not light.
 
 ## Shapes
 
-Soft, pooled and rounded — the opposite of the library's printed-poster kits:
-`--radius-sm: 8px`, `--radius-md: 14px`, `--radius-lg: 22px`, pills on badges, avatars and
-toggles. `--cut: 0px`: a chamfer is a straight geometric cut and geometry is exactly what
-this kit is not. Where a sharper kit uses a notch, this one uses a pooled corner.
+Soft, pooled and rounded on the components — the opposite of the library's crisp printed
+kits: `--radius-sm: 8px`, `--radius-md: 14px`, `--radius-lg: 22px`, pills on badges,
+avatars and toggles. `--cut: 0px`: a chamfer is a straight geometric cut and geometry is
+exactly what this kit is not. Where a sharper kit uses a notch, this one uses a pooled
+corner.
+
+The *ground* carries the shape language instead of the corners. It is a **warp, not a
+grid**: `--psychedelic-warp` is concentric bands struck from a centre off the plate's
+top-left, so every edge arrives as an arc and no two bands are parallel; the halftone grain
+is a 3px dot screen, the imperceptibly small unit of print; and `--psychedelic-burst` is a
+conic ray wheel — the one place the kit's geometry is radial rather than linear. Corners
+round, the field warps: the two together are why the skin reads as hand-printed rather than
+as a tidy UI on cream.
 
 ## Components
 
@@ -290,12 +323,14 @@ Every component colour resolves to a `{colors.*}` token; nothing is re-typed.
 
 **Do**
 
-- Keep the ground paper. Ink on paper is the kit; a saturated `--bg` destroys the readability
-  that lets five inks coexist.
-- Use the pattern extras where a surface wants texture: `--psychedelic-burst` for a hero
-  field, `--psychedelic-swirl` for a pooled play-button or avatar field,
-  `--psychedelic-wobble` for a banded edge, `--psychedelic-blob` as a soft ink wash behind
-  media, `--psychedelic-ramp` as the full five-ink sequence.
+- Keep the ground a **plate**: paper, hard-banded ink tints, a halftone grain. Ink on paper
+  is the kit; a saturated `--bg` destroys the readability that lets five inks coexist.
+- Keep every plate band **hard-stopped**. Two stops at one position, never a ramp — a
+  smoothly fading ground is a colour wash, and this kit is a screen print.
+- Use the pattern extras where a surface wants texture: `--psychedelic-burst` for a media
+  panel or a hero field, `--psychedelic-warp` for a banded band of ground,
+  `--psychedelic-halftone` as the printed dot screen. Full-strength inks go in the
+  **graphics**, never under type.
 - Keep `--border-w: 2px` and the off-key `--psychedelic-ink-edge` family. A neutral grey
   hairline turns this into a plain cream theme.
 - Keep the display face single-weight and large. Bowlby One at 12px is mud.
@@ -304,7 +339,11 @@ Every component colour resolves to a `{colors.*}` token; nothing is re-typed.
 
 - Don't put text on acid green, yellow or magenta. They are graphic inks: 1.4:1, 1.2:1 and
   3.5:1 on paper.
+- Don't raise a dark ink's tint on the plate without re-measuring: magenta, orange and
+  purple are capped at ring strength (12 / 18 / 10%) precisely so `--accent-ink` and
+  `--text-dim` survive on the worst band.
 - Don't use `#ff6a00` as type; use `{colors.accent-ink}`.
 - Don't add a second orange or a second purple. One action colour, one counterweight.
 - Don't add glass, blur, or a neon bloom. The depth is printed misregistration.
-- Don't square the corners or add a chamfer — that is the geometric kit's language, not this one.
+- Don't square the corners or add a chamfer — that is the geometric kit's language, not
+  this one.

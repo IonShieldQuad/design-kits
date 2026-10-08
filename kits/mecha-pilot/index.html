@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-kit="mecha-pilot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecha Pilot — design kit</title>
+<meta name="description" content="The pilot&#x27;s instrument panel — amber readouts, a targeting reticle, a range scale and hazard tape on gunmetal, with no smooth edge anywhere.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Saira:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/lab.css">
+<link rel="stylesheet" href="tokens.css">
+
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">25 · Mecha Pilot</p>
+    <h1>The pilot&#x27;s instrument panel — amber readouts, a reticle, a range scale and hazard tape on gunmetal</h1>
+    <p>The pilot&#x27;s instrument panel — amber readouts, a targeting reticle, a range scale and hazard tape on gunmetal, with no smooth edge anywhere.</p>
+    <div class="meta">kit <code>mecha-pilot</code> · Chakra Petch · Saira · Share Tech Mono · radius 0px / 0px / 0px</div>
+    <div class="swatches"><div class="swatch" title="linear-gradient(180deg, rgba(255, 171, 43, .82) 0px, rgba(255, 171, 43, .82) 2px, rgba(0, 0, 0, 0) 2px), repeating-linear-gradient(180deg, rgba(0, 0, 0, .34) 0px, rgba(0, 0, 0, .34) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px), linear-gradient(180deg, #10151b 0px, #10151b 520px, #0d1116 520px, #0d1116 100%)"><i><b style="background:linear-gradient(180deg, rgba(255, 171, 43, .82) 0px, rgba(255, 171, 43, .82) 2px, rgba(0, 0, 0, 0) 2px), repeating-linear-gradient(180deg, rgba(0, 0, 0, .34) 0px, rgba(0, 0, 0, .34) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px), linear-gradient(180deg, #10151b 0px, #10151b 520px, #0d1116 520px, #0d1116 100%)"></b></i><span>gradient</span><span>bg</span></div><div class="swatch" title="#171d24"><i><b style="background:#171d24"></b></i><span>#171d24</span><span>surface</span></div><div class="swatch" title="#2b3540"><i><b style="background:#2b3540"></b></i><span>#2b3540</span><span>border</span></div><div class="swatch" title="#ffab2b"><i><b style="background:#ffab2b"></b></i><span>#ffab2b</span><span>accent</span></div><div class="swatch" title="#3fd0e6"><i><b style="background:#3fd0e6"></b></i><span>#3fd0e6</span><span>accent 2</span></div><div class="swatch" title="#4ee08a"><i><b style="background:#4ee08a"></b></i><span>#4ee08a</span><span>ok</span></div><div class="swatch" title="#ffd24a"><i><b style="background:#ffd24a"></b></i><span>#ffd24a</span><span>warn</span></div><div class="swatch" title="#ff5a4d"><i><b style="background:#ff5a4d"></b></i><span>#ff5a4d</span><span>danger</span></div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+    <section class="block">
+    <div class="block-head"><h2>Signature</h2><span class="note">this kit's own extra tokens, rendered</span></div>
+    <div class="tiles"><figure class="tile" title="--mecha-pilot-reticle: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZiMDNhJz48Y2lyY2xlIGN4PSc2MCcgY3k9JzYwJyByPSc1MCcgc3Ryb2tlLXdpZHRoPScxLjQnIG9wYWNpdHk9Jy45NScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzQzJyBzdHJva2Utd2lkdGg9JzYnIHN0cm9rZS1kYXNoYXJyYXk9JzEuNSA2JyBvcGFjaXR5PScuOScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzI0JyBzdHJva2Utd2lkdGg9JzEnIG9wYWNpdHk9Jy41Jy8+PGNpcmNsZSBjeD0nNjAnIGN5PSc2MCcgcj0nNicgc3Ryb2tlLXdpZHRoPScxLjInIG9wYWNpdHk9Jy44Jy8+PHBhdGggZD0nTTYwIDE2IFYzOCBNNjAgODIgVjEwNCBNMTYgNjAgSDM4IE04MiA2MCBIMTA0JyBzdHJva2Utd2lkdGg9JzInLz48cGF0aCBkPSdNOCAyMCBWOCBIMjAgTTEwMCA4IEgxMTIgVjIwIE0xMTIgMTAwIFYxMTIgSDEwMCBNMjAgMTEyIEg4IFYxMDAnIHN0cm9rZS13aWR0aD0nMicgb3BhY2l0eT0nLjknLz48L2c+PHBhdGggZD0nTTYwIDMgbDQgNyBoLTggeicgZmlsbD0nI2ZmYjAzYScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzIuNicgZmlsbD0nI2ZmYjAzYScvPjwvc3ZnPg==&quot;) center / 66px 66px no-repeat, radial-gradient(circle at 50% 50%, #1a242e 0px, #1a242e 30px, #121a21 30px, #121a21 58px, #0b1015 58px, #0b1015 100%)"><span class="chip"><b style="background:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZiMDNhJz48Y2lyY2xlIGN4PSc2MCcgY3k9JzYwJyByPSc1MCcgc3Ryb2tlLXdpZHRoPScxLjQnIG9wYWNpdHk9Jy45NScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzQzJyBzdHJva2Utd2lkdGg9JzYnIHN0cm9rZS1kYXNoYXJyYXk9JzEuNSA2JyBvcGFjaXR5PScuOScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzI0JyBzdHJva2Utd2lkdGg9JzEnIG9wYWNpdHk9Jy41Jy8+PGNpcmNsZSBjeD0nNjAnIGN5PSc2MCcgcj0nNicgc3Ryb2tlLXdpZHRoPScxLjInIG9wYWNpdHk9Jy44Jy8+PHBhdGggZD0nTTYwIDE2IFYzOCBNNjAgODIgVjEwNCBNMTYgNjAgSDM4IE04MiA2MCBIMTA0JyBzdHJva2Utd2lkdGg9JzInLz48cGF0aCBkPSdNOCAyMCBWOCBIMjAgTTEwMCA4IEgxMTIgVjIwIE0xMTIgMTAwIFYxMTIgSDEwMCBNMjAgMTEyIEg4IFYxMDAnIHN0cm9rZS13aWR0aD0nMicgb3BhY2l0eT0nLjknLz48L2c+PHBhdGggZD0nTTYwIDMgbDQgNyBoLTggeicgZmlsbD0nI2ZmYjAzYScvPjxjaXJjbGUgY3g9JzYwJyBjeT0nNjAnIHI9JzIuNicgZmlsbD0nI2ZmYjAzYScvPjwvc3ZnPg==&quot;) center / 66px 66px no-repeat, radial-gradient(circle at 50% 50%, #1a242e 0px, #1a242e 30px, #121a21 30px, #121a21 58px, #0b1015 58px, #0b1015 100%)"></b></span><figcaption>mecha-pilot-reticle</figcaption></figure><figure class="tile" title="--mecha-pilot-scale: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxnIHN0cm9rZT0nI2ZmYjAzYScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNTAgSDE2MCcgc3Ryb2tlLXdpZHRoPScxLjYnIG9wYWNpdHk9Jy45NScvPjxwYXRoIGQ9J004IDU3IEgxNjAnIHN0cm9rZS13aWR0aD0nMScgb3BhY2l0eT0nLjQnLz48L2c+PGcgc3Ryb2tlPScjZmZiMDNhJyBzdHJva2Utd2lkdGg9JzEuMicgb3BhY2l0eT0nLjgnPjxwYXRoIGQ9J00xNCA1MCB2LTUgTTIwIDUwIHYtNSBNMjYgNTAgdi01IE0zMiA1MCB2LTUgTTM4IDUwIHYtNSBNNDQgNTAgdi01IE01MCA1MCB2LTUgTTU2IDUwIHYtNSBNNjIgNTAgdi01IE02OCA1MCB2LTUgTTc0IDUwIHYtNSBNODAgNTAgdi01IE04NiA1MCB2LTUgTTkyIDUwIHYtNSBNOTggNTAgdi01IE0xMDQgNTAgdi01IE0xMTAgNTAgdi01IE0xMTYgNTAgdi01IE0xMjIgNTAgdi01IE0xMjggNTAgdi01IE0xMzQgNTAgdi01IE0xNDAgNTAgdi01IE0xNDYgNTAgdi01IE0xNTIgNTAgdi01Jy8+PC9nPjxnIHN0cm9rZT0nI2ZmYjAzYScgc3Ryb2tlLXdpZHRoPScyJz48cGF0aCBkPSdNMTQgNTAgdi0xMSBNNDQgNTAgdi0xMSBNNzQgNTAgdi0xMSBNMTA0IDUwIHYtMTEgTTEzNCA1MCB2LTExJy8+PC9nPjx0ZXh0IHg9JzE0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAwPC90ZXh0Pjx0ZXh0IHg9JzQ0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAzPC90ZXh0Pjx0ZXh0IHg9Jzc0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjA2PC90ZXh0Pjx0ZXh0IHg9JzEwNCcgeT0nMzMnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2ZmYjAzYScgb3BhY2l0eT0nLjg1Jz4wOTwvdGV4dD48dGV4dCB4PScxMzQnIHk9JzMzJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyNmZmIwM2EnIG9wYWNpdHk9Jy44NSc+MTI8L3RleHQ+PHBhdGggZD0nTTc0IDggVjUyJyBzdHJva2U9JyNmZmQyNGEnIHN0cm9rZS13aWR0aD0nMicvPjxwYXRoIGQ9J003NCAyIGw0IDYgaC04IHonIGZpbGw9JyNmZmQyNGEnLz48ZyBzdHJva2U9JyNmZmIwM2EnIHN0cm9rZS13aWR0aD0nMS42JyBvcGFjaXR5PScuOScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNjQgdi0yMCBoNSBNMTYwIDY0IHYtMjAgaC01Jy8+PC9nPjwvc3ZnPg==&quot;) center / 150px 64px no-repeat, linear-gradient(180deg, #141b21 0px, #141b21 2px, #0e141a 2px, #0e141a 100%)"><span class="chip"><b style="background:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxnIHN0cm9rZT0nI2ZmYjAzYScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNTAgSDE2MCcgc3Ryb2tlLXdpZHRoPScxLjYnIG9wYWNpdHk9Jy45NScvPjxwYXRoIGQ9J004IDU3IEgxNjAnIHN0cm9rZS13aWR0aD0nMScgb3BhY2l0eT0nLjQnLz48L2c+PGcgc3Ryb2tlPScjZmZiMDNhJyBzdHJva2Utd2lkdGg9JzEuMicgb3BhY2l0eT0nLjgnPjxwYXRoIGQ9J00xNCA1MCB2LTUgTTIwIDUwIHYtNSBNMjYgNTAgdi01IE0zMiA1MCB2LTUgTTM4IDUwIHYtNSBNNDQgNTAgdi01IE01MCA1MCB2LTUgTTU2IDUwIHYtNSBNNjIgNTAgdi01IE02OCA1MCB2LTUgTTc0IDUwIHYtNSBNODAgNTAgdi01IE04NiA1MCB2LTUgTTkyIDUwIHYtNSBNOTggNTAgdi01IE0xMDQgNTAgdi01IE0xMTAgNTAgdi01IE0xMTYgNTAgdi01IE0xMjIgNTAgdi01IE0xMjggNTAgdi01IE0xMzQgNTAgdi01IE0xNDAgNTAgdi01IE0xNDYgNTAgdi01IE0xNTIgNTAgdi01Jy8+PC9nPjxnIHN0cm9rZT0nI2ZmYjAzYScgc3Ryb2tlLXdpZHRoPScyJz48cGF0aCBkPSdNMTQgNTAgdi0xMSBNNDQgNTAgdi0xMSBNNzQgNTAgdi0xMSBNMTA0IDUwIHYtMTEgTTEzNCA1MCB2LTExJy8+PC9nPjx0ZXh0IHg9JzE0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAwPC90ZXh0Pjx0ZXh0IHg9JzQ0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjAzPC90ZXh0Pjx0ZXh0IHg9Jzc0JyB5PSczMycgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjZmZiMDNhJyBvcGFjaXR5PScuODUnPjA2PC90ZXh0Pjx0ZXh0IHg9JzEwNCcgeT0nMzMnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2ZmYjAzYScgb3BhY2l0eT0nLjg1Jz4wOTwvdGV4dD48dGV4dCB4PScxMzQnIHk9JzMzJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyNmZmIwM2EnIG9wYWNpdHk9Jy44NSc+MTI8L3RleHQ+PHBhdGggZD0nTTc0IDggVjUyJyBzdHJva2U9JyNmZmQyNGEnIHN0cm9rZS13aWR0aD0nMicvPjxwYXRoIGQ9J003NCAyIGw0IDYgaC04IHonIGZpbGw9JyNmZmQyNGEnLz48ZyBzdHJva2U9JyNmZmIwM2EnIHN0cm9rZS13aWR0aD0nMS42JyBvcGFjaXR5PScuOScgZmlsbD0nbm9uZSc+PHBhdGggZD0nTTggNjQgdi0yMCBoNSBNMTYwIDY0IHYtMjAgaC01Jy8+PC9nPjwvc3ZnPg==&quot;) center / 150px 64px no-repeat, linear-gradient(180deg, #141b21 0px, #141b21 2px, #0e141a 2px, #0e141a 100%)"></b></span><figcaption>mecha-pilot-scale</figcaption></figure><figure class="tile" title="--mecha-pilot-hazard: linear-gradient(180deg, var(--accent) 0px, var(--accent) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 70px, var(--accent) 70px, var(--accent) 72px), repeating-linear-gradient(45deg, var(--accent) 0px, var(--accent) 9px, #0b0f13 9px, #0b0f13 18px)"><span class="chip"><b style="background:linear-gradient(180deg, var(--accent) 0px, var(--accent) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 70px, var(--accent) 70px, var(--accent) 72px), repeating-linear-gradient(45deg, var(--accent) 0px, var(--accent) 9px, #0b0f13 9px, #0b0f13 18px)"></b></span><figcaption>mecha-pilot-hazard</figcaption></figure></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Buttons</h2><span class="note">every variant, every size</span></div>
+    <div class="row">
+      <button class="btn btn-primary">Primary action</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+    <div class="row mt-2">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary btn-icon" aria-label="Add">+</button>
+      <a class="btn btn-link" href="#forms">Link button</a>
+    </div>
+    <div class="row mt-2">
+      <button class="btn btn-primary btn-block">Block button — full width</button>
+    </div>
+  </section>
+
+  <section class="block" id="forms">
+    <div class="block-head"><h2>Forms</h2><span class="note">inputs, select, textarea, toggles</span></div>
+    <div class="grid">
+      <div class="stack">
+        <div class="field">
+          <label for="k-name">Project name</label>
+          <input class="input" id="k-name" placeholder="horizon-chamber">
+          <span class="hint">Lowercase, hyphenated.</span>
+        </div>
+        <div class="field">
+          <label for="k-stack">Stack</label>
+          <select class="select" id="k-stack">
+            <option>Python · FastAPI</option>
+            <option>JavaScript · Canvas</option>
+            <option>Lua · Hyperspace</option>
+          </select>
+        </div>
+        <div class="field is-invalid">
+          <label for="k-mail">Email</label>
+          <input class="input" id="k-mail" value="not-an-email">
+          <span class="hint">Enter a valid email address.</span>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="field">
+          <label for="k-notes">Notes</label>
+          <textarea class="textarea" id="k-notes" placeholder="What changed and why…"></textarea>
+        </div>
+        <label class="check"><input type="checkbox" checked> Notify me on completion</label>
+        <label class="check"><input type="radio" name="vis" checked> Public</label>
+        <label class="check"><input type="radio" name="vis"> Private</label>
+        <label class="toggle"><input type="checkbox" checked> Live preview</label>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Navigation</h2><span class="note">pills and underline tabs</span></div>
+    <nav class="nav">
+      <a href="#" aria-current="page">Overview</a>
+      <a href="#">Projects</a>
+      <a href="#">Stack</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="tabs mt-3">
+      <a href="#" aria-current="page">Active tab</a>
+      <a href="#">Second</a>
+      <a href="#">Third</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Cards</h2><span class="note">surface, elevated, with media</span></div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-media"></div>
+        <h3 class="card-title">Rain Maker</h3>
+        <p class="card-body">Procedural rain-noise generator: nine spectral layers plus droplets with per-band faders.</p>
+        <div class="card-foot">
+          <span class="badge badge-accent">Desktop</span>
+          <button class="btn btn-ghost btn-sm">Open</button>
+        </div>
+      </article>
+      <article class="card card-elevated">
+        <div class="row"><span class="badge badge-ok"><i class="dot"></i>Live</span><span class="badge">v1.3.0</span></div>
+        <h3 class="card-title">Telegram aggregator</h3>
+        <p class="card-body">Aggregation and outreach assistance, with AI surfacing relevant contacts and drafting replies.</p>
+        <div class="card-foot">
+          <span class="dim" style="font-size:.78rem">Updated 2 days ago</span>
+          <button class="btn btn-primary btn-sm">Deploy</button>
+        </div>
+      </article>
+      <article class="card">
+        <h3 class="card-title">Empty state</h3>
+        <p class="card-body">Nothing here yet. Add your first project to get started.</p>
+        <div class="card-foot">
+          <button class="btn btn-secondary btn-sm">Add project</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Data</h2><span class="note">table, badges, progress, avatars</span></div>
+    <table class="table">
+      <thead>
+        <tr><th>Kit</th><th>Tone</th><th>Status</th><th>Coverage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>tokens.css</code></td><td>structure</td><td><span class="badge badge-ok">stable</span></td><td><div class="bar"><i style="width:100%"></i></div></td></tr>
+        <tr><td><code>DESIGN.md</code></td><td>spec</td><td><span class="badge badge-ok">stable</span></td><td><div class="bar"><i style="width:88%"></i></div></td></tr>
+        <tr><td><code>tailwind.theme.json</code></td><td>export</td><td><span class="badge badge-warn">generated</span></td><td><div class="bar bar-ok"><i style="width:60%"></i></div></td></tr>
+      </tbody>
+    </table>
+    <div class="row mt-3">
+      <span class="avatar">LG</span>
+      <span class="avatar">AK</span>
+      <span class="badge badge-square">square badge</span>
+      <span class="badge badge-danger"><i class="dot"></i>failed</span>
+      <span class="badge badge-warn">draft</span>
+      <span class="badge badge-accent">accent</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Typography</h2><span class="note">display → caption</span></div>
+    <div class="type-row"><span class="tag">display</span><p class="t-display">Ship the thing</p></div>
+    <div class="type-row"><span class="tag">h1 / heading</span><p class="t-h1">Agent-driven pipelines</p></div>
+    <div class="type-row"><span class="tag">h2</span><p class="t-h2">Specification first</p></div>
+    <div class="type-row"><span class="tag">h3</span><p class="t-h3">Milestones and checkpoints</p></div>
+    <div class="type-row"><span class="tag">body</span><p class="t-body">I would rather fully understand a system than ship something I cannot explain. Clear code, tested behaviour, continuous learning.</p></div>
+    <div class="type-row"><span class="tag">small / muted</span><p class="t-small">Secondary detail, captions, timestamps.</p></div>
+    <div class="type-row"><span class="tag">label / caps</span><p class="t-caps">Section label · 2026</p></div>
+    <div class="type-row"><span class="tag">inline code</span><p class="t-body">Run <code class="inline">npx @google/design.md lint</code> to validate.</p></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>Feedback</h2><span class="note">alerts, code, bars</span></div>
+    <div class="stack">
+      <div class="alert alert-info"><span>ℹ</span><div><strong>Heads up</strong>Tokens are declared once and referenced everywhere else.</div></div>
+      <div class="alert alert-ok"><span>✓</span><div><strong>All checks passed</strong>Contrast is WCAG AA on every component pair.</div></div>
+      <div class="alert alert-warn"><span>!</span><div><strong>Generated file</strong><code>tailwind.theme.json</code> is rebuilt by <code>tools/build.py</code> — don't hand-edit.</div></div>
+      <div class="alert alert-danger"><span>✕</span><div><strong>Contrast regression</strong>Body text on the accent surface dropped below 4.5:1.</div></div>
+    </div>
+    <pre class="code mt-2"><span class="dim"># drop this kit into any project</span>
+&lt;link rel="stylesheet" href="kits/mecha-pilot/tokens.css"&gt;
+
+<span class="accent">.hero</span> { background: var(--bg); color: var(--text); }
+<span class="accent">.cta</span>  { background: var(--accent); color: var(--text-invert); }</pre>
+  </section>
+
+  <footer class="footnote">
+    <span>Mecha Pilot — part of <code>design-kits</code></span>
+    <span><a href="DESIGN.md">DESIGN.md</a> · <a href="tokens.css">tokens.css</a> · <a href="../../index.html">all kits</a></span>
+  </footer>
+</main>
+
+</body>
+</html>

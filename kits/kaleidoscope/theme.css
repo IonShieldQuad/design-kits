@@ -2,7 +2,7 @@
   --color-primary: #ff2d6f;
   --color-secondary: #5b86ff;
   --color-tertiary: #19dda0;
-  --color-neutral: #050410;
+  --color-neutral: #0c0920;
   --color-accent-hover: #ff5b8f;
   --color-accent-soft: #ff2d6f26;
   --color-facet-ruby: #ff2d6f;
@@ -10,11 +10,12 @@
   --color-facet-emerald: #19dda0;
   --color-facet-amber: #ffb020;
   --color-facet-violet: #a678ff;
-  --color-bg: #0a0719;
-  --color-bg-deep: #050410;
+  --color-bg: #0c0920;
+  --color-bg-light: #120e30;
+  --color-bg-deep: #040310;
   --color-surface: #15112e;
   --color-surface-2: #221d42;
-  --color-overlay: #050410c7;
+  --color-overlay: #040310cc;
   --color-text: #f6f3ff;
   --color-text-muted: #b9b2dd;
   --color-text-dim: #9590b8;

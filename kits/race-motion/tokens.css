@@ -1,0 +1,166 @@
+/* ============================================================================
+   race-motion · tokens.css                                    contract v1.1
+   ----------------------------------------------------------------------------
+   MOTORSPORT / SPEED. A race broadcast, not a car brand.
+
+   REGISTER — asphalt, chosen over bodywork white.
+   The brief offered two registers: bodywork WHITE (light) or ASPHALT charcoal
+   (dark). This kit takes ASPHALT. Reasons, recorded in README.md:
+     · A white ground plus black type plus red is what every car marque's site
+       already looks like — the brief asks for the energy of a *race broadcast*,
+       and the broadcast is run at night, under lights, on tarmac.
+     · Kerb red/white and a true black-and-white chequer both need a dark ground
+       to shout; on white, the white half of each motif disappears.
+     · One signal yellow (--warn) does exactly one job: caution. It is the only
+       yellow in the kit and never becomes a control colour.
+
+   THE DESIGN IN ONE LINE
+   Asphalt rungs under a white/itch-black chequer and a red/white kerb; racing
+   red is the one action colour; bodywork white is the second accent; the display
+   face is Saira, set ITALIC, because a broadcast graphic leans forward.
+
+   Contrast is measured, never eyeballed — see README.md for the table. The
+   binding ground for a dark kit is its BRIGHTEST stop: --surface-2 #262a31.
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* Asphalt at dusk, lit from the top of the frame. px stops so the rung lands
+     inside the first viewport instead of stretching over the whole document. */
+  --bg:            linear-gradient(180deg, #26292f 0px, #1d2025 130px, #171a1e 320px, #121418 560px, #0d0f12 100%);
+  --bg-2:          #0d0f12;                /* the far end of the straight — near black */
+  --surface:       #1b1e24;                /* card plate, a touch above the tarmac */
+  --surface-2:     #262a31;                /* nested wells, inputs, badges — BRIGHTEST ground */
+  --overlay:       rgba(8, 9, 12, .78);    /* the night, as a modal scrim */
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #f3f6f9;                /* bodywork white */
+  --text-muted:    #bcc3cc;                /* secondary: 7.6:1 on --surface-2 */
+  --text-dim:      #a0a8b3;                /* captions/hints — see README for the binding stop */
+  --text-invert:   #ffffff;                /* pure white is what actually renders on the red fill */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent:        #d40a00;                /* RACING RED — the one action colour */
+  --accent-hover:  #e10600;                /* one step brighter; still 4.96:1 with white */
+  --accent-2:      #e9eef3;                /* BODYWORK WHITE — the second accent / livery stripe */
+  --accent-soft:   rgba(212, 10, 0, .16);  /* derived: the red as a 16% tint for rings and badges */
+  --accent-ink:    #ff7a6d;                /* the red AS TEXT — the fill is only 3.5:1 as a label */
+  --accent-ink-hover: #ff9a8d;
+
+  /* ----------------------------------------------------------------- status */
+  /* Status avoids the brand red so a "failed" badge is never read as the accent.
+     --warn is the kit's ONLY yellow, and it does ONE job: caution / flags. */
+  --ok:            #3ddc84;                /* green flag */
+  --warn:          #ffd23f;                /* SIGNAL YELLOW — caution, and nothing else */
+  --danger:        #ff6256;                /* red flag, in a light coral tier, not the deep fill */
+  --info:          #3aa0ff;                /* blue flag */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        #363b44;                /* steel hairline against the tarmac */
+  --border-strong: #4d545f;
+  --border-w:      2px;                    /* bold rules are broadcast graphics, not a hairline */
+  --focus-ring:    #e9eef3;                /* bodywork white: a control is lit when it is armed */
+
+  /* ------------------------------------------------------------------ shape */
+  /* Nothing pill-shaped: a pit-wall telemetry panel is a rectangle with its
+     leading corners cut. --cut is what carries the kit's diagonal energy. */
+  --radius-sm:     0px;
+  --radius-md:     2px;
+  --radius-lg:     3px;
+  --radius-pill:   3px;                    /* "pill" is a chamfered tag here, never a lozenge */
+  --cut:           12px;
+  /* Speed cut: the two LEADING (right) corners are removed, so every plate
+     leans forward. top-right then bottom-right. */
+  --clip:          polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+
+  /* ------------------------------------------------------------------- type */
+  /* Saira carries a TRUE italic (v23, ital 700–900 verified on Google Fonts),
+     which is the one thing this register cannot do without. Inter is the body;
+     JetBrains Mono is the timing tower. */
+  --font-display:  "Saira", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .16em;                  /* squads and drivers are set wide and caps */
+  --tracking-display: -0.01em;             /* a heavy italic face needs no extra tightening */
+
+  /* ------------------------------------------------------------------ depth */
+  /* Flat broadcast graphics: tight dark drops, no glass. NOTE — --clip clips
+     box-shadow along with the pixels, so on clipped plates these read as
+     *subtle* rather than absent; the chamfer and the hard bands carry the
+     depth. Documented caveat, not a bug (see docs/KIT-SPEC.md). */
+  --shadow-1:      0 3px 14px rgba(0, 0, 0, .50);
+  --shadow-2:      0 12px 34px rgba(0, 0, 0, .62);
+  --glow:          0 0 0 1px rgba(212, 10, 0, .55), 0 6px 20px rgba(212, 10, 0, .34);
+  --blur:          none;                   /* broadcast, not glass */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur:           .14s;                   /* a pit stop, not a hover transition */
+  --ease:          cubic-bezier(.2, .9, .3, 1);
+
+  /* ========================================================================
+     SIGNATURE MOTIFS — three devices, three different jobs.
+     ======================================================================== */
+
+  /* 1 · THE CHEQUERED FLAG. A true two-tone checker: repeating-conic-gradient
+     lays a 2x2 block and background-size sets its period, so each square is
+     exactly 12px. Hard-edged, no blur, and it must stay CRISP — hence 1.5rem
+     rather than a px size (the build's swatch normaliser rewrites any `NNpx`
+     gradient inside a single paren pair into smooth % stops, which would melt
+     the checker into a conic swirl). Job: identity / finish. */
+  --race-motion-chequer:
+    repeating-conic-gradient(#f2f5f8 0% 25%, #14171b 0% 50%) 0 0 / 1.5rem 1.5rem repeat;
+
+  /* 2 · THE KERB. Hard-banded red and white at -52deg. Never a ramp: the two
+     stops share a position at every seam. 1rem bands. Job: the track edge —
+     the kit's "beware, you are at the limit" graphic. */
+  --race-motion-kerb:
+    repeating-linear-gradient(-52deg, #eef2f6 0 1rem, #d40a00 1rem 2rem);
+
+  /* 3 · SLIPSTREAM. Speed lines, DRAWN. Tapering wedges that converge on the
+     vanish point where the car has just passed, a bright core streak and a flare.
+     Two parallel repeating gradients give flat wallpaper, not perspective; the
+     convergence is real structure, so it is drawn. Drawn at 480x160 and scaled
+     with `cover`, so the tile and the media panel keep the same angle.
+     Job: motion — this is what --media-bg paints. */
+  --race-motion-slipstream:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMGEwZDExIi8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjMTQxOTIyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMmExMjEwIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSIwLjEwIiBjeT0iMC41IiByPSIwLjQ2Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZjZhNDUiIHN0b3Atb3BhY2l0eT0iMC42MiIvPjxzdG9wIG9mZnNldD0iMC40MiIgc3RvcC1jb2xvcj0iI2MwMTUwMCIgc3RvcC1vcGFjaXR5PSIwLjI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzAxNTAwIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjE2MCIgZmlsbD0idXJsKCNhKSIvPjxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiBmaWxsPSJ1cmwoI2cpIi8+PHBvbHlnb24gcG9pbnRzPSI0ODAsMCA0ODAsMjQgMjUwLDczLjUgMjUwLDY3LjUiIGZpbGw9IiNjODBlMDAiIG9wYWNpdHk9IjAuOTUiLz48cG9seWdvbiBwb2ludHM9IjQ4MCwyOCA0ODAsNDQgMTg2LDc2LjIgMTg2LDcxLjQiIGZpbGw9IiNmMmY1ZjgiIG9wYWNpdHk9IjAuOSIvPjxwb2x5Z29uIHBvaW50cz0iNDgwLDQ2IDQ4MCw2MCAxMzgsNzguMSAxMzgsNzQuMyIgZmlsbD0iI2UxMDYwMCIgb3BhY2l0eT0iMC45OCIvPjxwb2x5Z29uIHBvaW50cz0iNDgwLDYwIDQ4MCw2OCAxMTIsNzguNyAxMTIsNzYuOSIgZmlsbD0iI2YyZjVmOCIgb3BhY2l0eT0iMC44NSIvPjxwb2x5Z29uIHBvaW50cz0iNDgwLDY2IDQ4MCw3MiA5Niw3OS43IDk2LDc3LjMiIGZpbGw9IiNlMTA2MDAiIG9wYWNpdHk9IjAuOTUiLz48cG9seWdvbiBwb2ludHM9IjQ4MCw3MiA0ODAsODggNzQsODIuNCA3NCw3Ny42IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIxLjAiLz48cG9seWdvbiBwb2ludHM9IjQ4MCw4OCA0ODAsMTAwIDk2LDgzLjMgOTYsODAuNyIgZmlsbD0iI2UxMDYwMCIgb3BhY2l0eT0iMC45NSIvPjxwb2x5Z29uIHBvaW50cz0iNDgwLDEwMCA0ODAsMTE0IDEzOCw4NS43IDEzOCw4MS45IiBmaWxsPSIjZjJmNWY4IiBvcGFjaXR5PSIwLjkiLz48cG9seWdvbiBwb2ludHM9IjQ4MCwxMTYgNDgwLDEzMiAxODYsODguNiAxODYsODMuOCIgZmlsbD0iI2M4MGUwMCIgb3BhY2l0eT0iMC45NSIvPjxwb2x5Z29uIHBvaW50cz0iNDgwLDEzNiA0ODAsMTYwIDI1MCw5Mi41IDI1MCw4Ni41IiBmaWxsPSIjZjJmNWY4IiBvcGFjaXR5PSIwLjg4Ii8+PGNpcmNsZSBjeD0iNTQiIGN5PSI4MCIgcj0iMjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMDkiLz48Y2lyY2xlIGN4PSI1NCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==") 0 0 / cover no-repeat;
+
+
+
+  /* ========================================================================
+     OPT-IN LAB CAPABILITIES
+     ======================================================================== */
+
+  /* media panel: motion, not a flat accent ramp (the lab's default). */
+  --media-bg:      var(--race-motion-slipstream);
+  --media-op:      1;
+
+  /* masthead wash: faint speed streaks across the frame plus a red brake-glow
+     kept to the RIGHT of the text column, so masthead copy still sits on the
+     bare --bg stop and keeps its measured ratio. */
+  --wash:
+    repeating-linear-gradient(102deg, rgba(244, 247, 250, .045) 0 2px, transparent 2px 30px),
+    linear-gradient(100deg, transparent 44%, rgba(212, 10, 0, .12) 78%, rgba(212, 10, 0, .20) 100%);
+
+  /* progress + avatar fills: livery. Red with a deeper red band on the diagonal. */
+  --fill-bg:       repeating-linear-gradient(115deg, var(--accent) 0 12px, #8f0500 12px 24px);
+
+  /* fields are milled into the plate, not laid on it. Inset shadows survive
+     --clip because they paint inside the silhouette. */
+  --input-inset:   inset 2px 2px 0 rgba(0, 0, 0, .45), inset -1px -1px 0 rgba(255, 255, 255, .04);
+
+  /* THE DISPLAY VOICE LEANS FORWARD. The contract names a font FAMILY but never its STYLE — so
+     this kit used to ship a kit.css just to say `italic`. The lab now carries it as a token. */
+  --style-display: italic;
+
+  /* --clip eats `outline`, so the lab's own focus ring would be cut away along the chamfer and a
+     clipped control would have NO keyboard focus indicator. An inset ring paints inside the
+     silhouette, where the chamfer cannot reach it. */
+  --focus-inset:   2px;
+
+  /* native checkbox/radio ignore border-radius, so they are squared by hand —
+     a rounded control inside a chamfered plate breaks the kit's one rule. */
+  --check-appearance: none;
+  --check-bg:      var(--surface);
+  --check-border:  2px solid var(--border-strong);
+  --check-checked: var(--accent);
+}

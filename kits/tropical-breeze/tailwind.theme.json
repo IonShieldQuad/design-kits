@@ -1,0 +1,91 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#cc3f26",
+        "primary-hover": "#b33620",
+        "primary-ink": "#a8291a",
+        "primary-ink-hover": "#8c2013",
+        "secondary": "#0fae9e",
+        "tertiary": "#257043",
+        "neutral": "#f6f3e6",
+        "surface": "#fffdf7",
+        "surface-2": "#f2efe1",
+        "text": "#16342c",
+        "text-muted": "#3d5a50",
+        "text-dim": "#4f6b60",
+        "text-invert": "#fffaf0",
+        "success": "#257043",
+        "warning": "#8a5a10",
+        "error": "#b3243a",
+        "info": "#1f6f9e",
+        "accent-tint": "#f8e4dc"
+      },
+      "fontFamily": {
+        "display": [
+          "Baloo 2"
+        ],
+        "heading": [
+          "Baloo 2"
+        ],
+        "body": [
+          "Nunito"
+        ],
+        "label": [
+          "DM Mono"
+        ],
+        "code": [
+          "DM Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.32rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "650"
+          }
+        ],
+        "body": [
+          "0.98rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.13em",
+            "fontWeight": "400"
+          }
+        ],
+        "code": [
+          "0.84rem",
+          {
+            "fontWeight": "400"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "14px",
+        "lg": "22px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

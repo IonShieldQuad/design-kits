@@ -1,0 +1,16 @@
+{
+  "name": "Tropical Breeze",
+  "tagline": "A warm coastal afternoon — sand and sea-foam, palm green, one coral pop",
+  "signature": [
+    "--tropical-breeze-frond",
+    "--tropical-breeze-wave",
+    "--tropical-breeze-parasol"
+  ],
+  "order": 145,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap",
+  "fonts_label": "Baloo 2 · Nunito · DM Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "warm", "tropical", "playful", "coastal", "rounded"],
+  "use_when": "holiday and travel pages, lifestyle, food and family products, kids' and summer software — anything that should feel like a warm afternoon on the coast"
+}

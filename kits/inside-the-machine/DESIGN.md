@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Inside the Machine
-description: Machined instrumentation — a graphite chassis with engraved panels, opaque steel hairlines, amber for action, green phosphor for readouts, and IBM Plex Mono carrying the interface.
+description: Machined instrumentation — a graphite chassis with engraved panels, drawn carbon-fibre cloth, a punched vent plate and brushed steel, opaque steel hairlines, amber for action, green phosphor for readouts, and IBM Plex Mono carrying the interface.
 colors:
   primary: "#ffb000"
   primary-hover: "#ffc233"
@@ -107,7 +107,7 @@ components:
     textColor: "{colors.text}"
     typography: "{typography.heading}"
   card-media:
-    backgroundColor: "{colors.primary}"
+    backgroundColor: "{colors.neutral}"
     rounded: "{rounded.sm}"
     height: 96px
   card-media-2:
@@ -199,8 +199,27 @@ reading instruments. That inversion — and the warm amber-on-graphite ground �
 Signal (navy HUD, Chakra Petch headings, cyan action) and Cyberpunk (near-black, magenta
 action, neon bloom).
 
+**The material is drawn, not tinted.** A palette this dark reads as a *colour scheme* until real
+surfaces appear, so three textures are drawn (as base64 SVG data URIs, the one place a token may
+hold artwork) and do three genuinely different jobs:
+
+1. **A woven carbon-fibre cloth** — `--inside-the-machine-weave`. A 2/2 twill: continuous warp
+   and weft tows whose over/under crossings step one column per row, so the sheen forms diagonal
+   bands and it reads as interlace, not a beveled grid. This is the kit's *surface*; it is milled
+   into the media panel through `--media-bg`, the one place the lab shows a surface rather than a
+   colour.
+2. **A punched vent plate** — `--inside-the-machine-grille`. Each hole is a dark well (r 3.15)
+   inside a lit ring offset down 0.8px, so the lower lip catches the light. This is *structure*:
+   the plate is perforated, not dotted.
+3. **Brushed steel lit by a specular band** — `--inside-the-machine-steel`. Fine vertical
+   striations over hard bands: a lit top rim, the bright specular band, a machine-mark line, a
+   dark chamfer foot. This is *light* — the one motif that is about the light raking across metal.
+
+Each tile is proved non-flat at 168×72 (pixel standard deviation in the README); the library's
+most repeated defect is a motif tuned so subtly that its tile renders blank.
+
 One sentence: *a machined instrument panel — amber for the one thing that acts, green phosphor
-for everything it reports.*
+for everything it reports, over carbon cloth and brushed steel.*
 
 ## Colors
 
@@ -215,7 +234,7 @@ for everything it reports.*
   accent, and the same green as `success` — see the note on shared lamps below.
 - **Tertiary (#6c99b8):** steel blue. Data and telemetry only; it is a cool note that never
   competes with the two phosphor lamps.
-- **Neutral (#0d0f11):** the graphite ground.
+- **Neutral (#0d0f11):** the graphite ground, and the base the carbon cloth is woven on.
 - **Surface (#16191d) / surface-2 (#1b1f23):** the panel face and the recessed well. A two-step
   rise — small enough that a panel reads as *cut into* the chassis rather than laid on it.
 - **Text (#e9edef) / text-muted (#9aa4ad):** the two contrast-guaranteed text steps, both cool
@@ -229,6 +248,13 @@ Deliberately not in the map above: `--text-dim: #828d95` (captions, placeholders
 `--accent-soft: rgba(255,176,0,.13)`. The DESIGN.md component schema has no `borderColor`
 property, and a translucent tint is not a colour — listing them would only produce orphan
 warnings for values that are very much in use. Their exact values are in `tokens.css`.
+
+**The material greys live in the artwork, not the palette.** The three drawn textures introduce
+their own steel tones (a tow highlight `#99a5b2`, a steel specular `#f2f6f9`, a punched-plate lip
+`#6c7885`… — exact stops in `tokens.css`). They are the *shading of a drawn object*, not surfaces
+a consumer paints with, so they are not palette tokens and not in the map above — the same way a
+rose does not need its petal tint to be a theme colour. Every surface a consumer *does* paint
+with is a palette colour, unchanged from before this kit grew a material.
 
 ## Typography
 
@@ -267,6 +293,12 @@ Because the mono is wide, text blocks are kept narrower than a grotesque layout 
 body copy caps around 62ch and control labels stay short. Dense material — tables, badge rows,
 progress bars — is this kit's natural content, not its edge case.
 
+Texture never sits under type. The carbon cloth (media panels) and the steel rail are painted on
+boxes that carry no text; the page ground, masthead and every label sit on flat graphite or flat
+panel tones, so the drawn material adds hardware without ever moving a contrast ratio. That is a
+rule, not a coincidence: `--text-dim` clears 4.55:1 only against grounds at or below `#1b1f23`,
+so a textured ground under type could not both be visible and be legible.
+
 ## Elevation & Depth
 
 **Depth is engraved, not floating.** There is no soft outer drop shadow anywhere in this kit;
@@ -277,6 +309,10 @@ the lab's card gets its depth from `--shadow-1`, which is an inset stack — a l
 surface. `--shadow-2` deepens the recess (a brighter rim on a longer `14px` inner falloff);
 `card-elevated` is therefore *more* cut-in, not more lifted — a milled well with light on its
 rim, which is the correct reading of "elevated" on a machined face.
+
+Inputs carry the same logic at the pixel scale: `--input-inset` is a dark top lip plus a faint
+bottom rim, so a field is a *hole in the panel* rather than a chip laid on it. Without it the
+fields were the flattest element on the page and broke the machined read.
 
 The lip alphas are deliberately above the "barely there" range (5%): at 5% a 1px highlight does
 not survive a normal-density display, and a recess nobody can see is not a recess. The falloff
@@ -292,6 +328,13 @@ Small and hard: `--radius-sm: 2px`, `--radius-md: 3px`, `--radius-lg: 4px`. Noth
 rounder than 4px, because a machined edge is a milled edge, not a soft one. `--cut: 0px` —
 this kit does not chamfer; the seam does that job (Signal owns the corner cut, and reusing it
 would blur the two kits together).
+
+**The shape that matters here is not a radius — it is the drawn form.** A weave is a crossing of
+tows, a grille is a punched hole, a rail is a lit chamfer; none of the three can be expressed as
+a corner treatment, and all three are rectangular tiles repeated at their own size
+(`--inside-the-machine-weave` at 24px, `--inside-the-machine-grille` at 12px). Radius stays 2–4px
+so the *only* curves on screen are the punched holes and the woven sheen — the machine's own
+geometry, not a soft UI.
 
 The one deliberate contract bend: **`--radius-pill` is 4px, not 999px.** A badge on this
 machine is a stamped rectangular plate; a lozenge would read as a pill-shaped tag from a
@@ -310,9 +353,13 @@ lab keeps its own hard-coded round rocker — a switch is allowed to be a switch
 - **card / card-elevated** — the milled panel and the deeper well. Both inset; both bounded by
   a steel seam; neither floats.
 - **card-title** — mono, weight 600. Titles are labels you can read across the room.
-- **input** — `surface-2` well, `--border` seam, amber focus with a soft `--accent-soft` halo.
-  An input is a hole in the panel, so it is the *darker* of the two surface steps in spirit
-  even though it is tonally one step up.
+- **card-media** — a milled blank of **woven carbon-fibre cloth**, not a colour swatch. The panel
+  is drawn by `--media-bg: var(--inside-the-machine-weave)` and held at full strength with
+  `--media-op: 1`; at the default `.85` the weave washed out to a grey tint. This is the kit's
+  one surface rather than a colour, and the place the material is most legible.
+- **input** — `surface-2` well, `--border` seam, amber focus with a soft `--accent-soft` halo,
+  and `--input-inset` so it reads as *recessed into* the panel. An input is a hole in the panel,
+  so it is the *darker* of the two surface steps in spirit even though it is tonally one step up.
 - **badge** — a 4px-cornered stamped plate; `badge-accent`, `badge-ok`, `badge-warn` and
   `badge-danger` recolour the label and leave the plate dark, so a status row reads as lamps,
   not as blocks of paint.
@@ -321,6 +368,10 @@ lab keeps its own hard-coded round rocker — a switch is allowed to be a switch
   fault red).
 - **link** — amber, underlined on hover; the same lamp as the action, because a link *is* an
   action.
+- **The signature motifs** — `--inside-the-machine-weave` (woven carbon-fibre cloth),
+  `--inside-the-machine-grille` (punched vent plate) and `--inside-the-machine-steel` (brushed
+  steel rail). They render as 168×72 tiles on `--surface-2`; the weave additionally backs the
+  media panel. They are material, not controls, and carry no text.
 
 ## Do's and Don'ts
 
@@ -329,9 +380,15 @@ lab keeps its own hard-coded round rocker — a switch is allowed to be a switch
   it is the wrong element.
 - **Do** draw seams as opaque steel (`#2a2f35`), not as translucent white. Engraving is
   subtractive.
+- **Do** fake material with a drawn tile and a fixed size (`0 0 / 24px 24px repeat`), never
+  with a stretched or smoothly-faded gradient. A weave that is scaled to fill smears; a metal
+  ramp reads as fog.
 - **Do** set facts, IDs and numerals in mono — and headings too. The mono is the interface.
 - **Do** keep radii at 2–4px and let the corners stay hard.
 - **Don't** put white text on amber; the amber plate takes graphite ink (`--primary-ink`).
+- **Don't** run a texture under type. Carbon cloth, the steel rail and the grille belong on
+  media blanks and signature tiles; `--text-dim` needs a ground at or below `#1b1f23`.
+- **Don't** dim the media panel below `--media-op: 1`. The weave is the point; a wash defeats it.
 - **Don't** introduce a third lamp. Green reports, amber acts, red faults, and the steel blue
   is data — that is the whole instrument.
 - **Don't** add a glow to a panel. Glow belongs to an energised control.

@@ -1,19 +1,18 @@
 {
   "name": "Gothic",
-  "tagline": "Industrial starkness with thorns and roses growing through it.",
-  "use_when": "music, subculture zines, nightlife, fashion/dark editorial",
+  "tagline": "Dark feminine gothic — velvet, thorns, roses and candlelight.",
+  "use_when": "dark romance, beauty/fashion editorial, nightlife, witchy or vampire branding, music",
   "order": 120,
-  "fonts_url": "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Oswald:wght@500;600;700&family=Roboto+Mono:wght@400;500&display=swap",
-  "fonts_label": "Oswald · Barlow · Roboto Mono",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap",
+  "fonts_label": "Cormorant Garamond · Lora · Roboto Mono",
   "mode": "dark",
   "source": "original",
-  "tags": ["dark", "bold", "organic", "editorial"],
+  "tags": ["dark", "romantic", "ornate", "feminine", "velvet"],
   "signature": [
-    "--gothic-thorn",
     "--gothic-rose",
-    "--gothic-ash",
-    "--gothic-rim",
-    "--gothic-blood",
+    "--gothic-lace",
+    "--gothic-candle",
+    "--gothic-wine",
     "--gothic-vein"
   ]
 }

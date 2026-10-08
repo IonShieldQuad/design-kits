@@ -1,11 +1,15 @@
 {
   "name": "Dark Glass",
   "tagline": "Frosted panels over a violet-lit dark mesh",
-  "index": "10",
   "order": 75,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
   "fonts_label": "Sora · Inter · JetBrains Mono",
   "mode": "dark",
   "source": "original",
-  "tags": ["dark", "glass", "soft", "modern"]
+  "tags": [
+    "dark",
+    "glass",
+    "soft",
+    "modern"
+  ]
 }

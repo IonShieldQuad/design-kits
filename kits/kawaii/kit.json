@@ -1,0 +1,16 @@
+{
+  "name": "Kawaii",
+  "tagline": "A pastel sticker sheet — bubblegum pink, lilac and mint, huge radii, sparkles and hearts",
+  "signature": [
+    "--kawaii-sparkle",
+    "--kawaii-heart",
+    "--kawaii-confetti"
+  ],
+  "order": 160,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Baloo 2 · Nunito · JetBrains Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "pastel", "playful", "cute", "rounded", "sticker"],
+  "use_when": "playful consumer and creator products — kids' and hobby apps, chat and community surfaces, sticker/emoji tooling, and landing pages that should feel fun rather than premium"
+}

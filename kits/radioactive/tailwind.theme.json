@@ -1,0 +1,88 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#86c81a",
+        "primary-hover": "#78b814",
+        "primary-ink": "#1d4a06",
+        "secondary": "#e8860c",
+        "tertiary": "#17427e",
+        "neutral": "#c6cac3",
+        "surface": "#f2f4ef",
+        "surface-2": "#bfc3bc",
+        "text": "#12150f",
+        "text-muted": "#3a4136",
+        "text-dim": "#424a3f",
+        "invert": "#10130d",
+        "success": "#0d5230",
+        "warning": "#6a3f04",
+        "error": "#8a160d"
+      },
+      "fontFamily": {
+        "display": [
+          "Chakra Petch"
+        ],
+        "heading": [
+          "Chakra Petch"
+        ],
+        "body": [
+          "Archivo"
+        ],
+        "label": [
+          "IBM Plex Mono"
+        ],
+        "readout": [
+          "IBM Plex Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.7rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.98rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.16em",
+            "fontWeight": "500"
+          }
+        ],
+        "readout": [
+          "0.9rem",
+          {
+            "letterSpacing": "0.04em",
+            "fontWeight": "400"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "2px",
+        "md": "4px",
+        "lg": "6px",
+        "pill": "2px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

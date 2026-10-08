@@ -1,0 +1,186 @@
+/* ============================================================================
+   design-kits · kawaii                                            contract v1
+   ----------------------------------------------------------------------------
+   STICKER-CUTE PASTELS. A pastel-sticker sheet, not a corporate pastel theme.
+
+   The palette is four pastel grounds — pink, lilac, mint, cream — plus exactly
+   ONE candy accent (a bubblegum pink) doing all the action. Nothing here is
+   elegant and nothing is serious: the register is "sticker", so the SHAPE
+   carries as much identity as the colour.
+
+   DIFFERENTIATION (three kits in this library are light and soft; none is this):
+     · sakura        spring — SATURATED blossom pink against leaf green, elegant,
+                     10-20px radii, a measured petal drift.
+     · city-pop      80s Tokyo pastel — airbrushed cream/coral/teal sleeve art.
+     · glorious-morning  first light — dawn gold on clear sky, energetic, a
+                     soft-serif display.
+   kawaii is the only kit in the library that is PLAYFUL rather than pretty:
+   huge radii (12/18/28px, pills on every bar and chip), a bouncy overshoot
+   ease, a bubbly rounded display face, and drawn sparkle / heart / confetti
+   motifs. If a screen here reads as "elegant", the kit has failed.
+
+   CONTRAST. Pastel grounds make --text-dim the hard token, and the palest
+   ground binds — --surface is pure #ffffff, so every caption/hint/label is
+   graded against WHITE, not against the pretty pink stop. The accent is a
+   pale candy pink that is 2.3:1 as a label on white, so accent-as-text ships
+   separately as --accent-ink and is ALSO graded on its own --accent-soft tint
+   composited over the surface (the badge case that shipped unreadable
+   elsewhere in this library). Numbers are in README.md, measured, not eyeballed.
+
+   Fonts: Baloo 2 (display) · Nunito (body) · JetBrains Mono (labels, code)
+   ========================================================================== */
+:root {
+  /* ---------------------------------------------------------------- surfaces */
+  /* Four pastel grounds in sequence — pink → lilac → mint → pink — at PX stops,
+     because the body's gradient box is the whole document and a % ramp would
+     show one flat colour in the viewport. The LAST stop is the palest, and
+     --surface (#ffffff) is paler still: those two are what contrast is proved
+     against, not the pink stop that flatters the numbers. */
+  --bg:            linear-gradient(180deg,
+                     #fff2f9 0px,
+                     #fbdcf0 260px,
+                     #eadffd 560px,
+                     #daf3e6 880px,
+                     #fce6f3 1200px);
+  --bg-2:          #fbdcf0;                 /* solid stand-in for exports */
+  --surface:       #ffffff;                 /* cards — sticker-paper white, the palest ground */
+  --surface-2:     #fbeef7;                 /* inputs, chips, code — the pink sticker tint */
+  --overlay:       rgba(72, 44, 80, .36);   /* modal scrim: plum, so a modal stays soft */
+
+  /* ------------------------------------------------------------------- text */
+  /* Deep plum ink, never grey: a grey on a pastel ground is what makes a light
+     kit look corporate. Every value below is graded against #ffffff (--surface)
+     and every --bg stop. */
+  --text:          #3b2743;                 /* 13.5:1 on white, 10.6:1 on the lilac stop */
+  --text-muted:    #5f4a68;                 /* 7.9:1 on white, 6.2:1 on the lilac stop */
+  --text-dim:      #634e6c;                 /* captions/placeholders — 7.4:1 on white,
+                                               6.6:1 on --surface-2, 5.8:1 on the lilac stop */
+  --text-invert:   #4a1738;                 /* DEEP BERRY label ON the candy-pink fill:
+                                               5.55:1. A pastel fill takes DARK ink; white
+                                               on #ff6fb2 is 1.9:1 and would vanish. */
+
+  /* ------------------------------------------------------------------ brand */
+  /* ONE candy accent. #ff6fb2 is a bubblegum pink that is a great FILL and a
+     terrible LABEL (2.3:1 on white), so text-pink is its own deep member. */
+  --accent:        #ff6fb2;                 /* bubblegum — the action fill */
+  --accent-hover:  #ff86c1;                 /* one step brighter: with dark ink the fill may lighten */
+  --accent-ink:    #ab1559;                 /* candy pink AS TEXT — eyebrow, links, active nav,
+                                               secondary-button label, badges. 7.04:1 on white,
+                                               and 5.49:1 on its own 16% tint over --surface-2. */
+  --accent-ink-hover: #8f104b;              /* the hover step for accent TEXT — deeper, not lighter */
+  --accent-2:      #35c79a;                 /* CANDY MINT — the second accent, structural only:
+                                               media, progress, avatar, charts. Never a label
+                                               (3.0:1 on white) and never the action. */
+  --accent-soft:   rgba(255, 111, 178, .16);/* 16% bubblegum tint — rings, active nav, chips */
+
+  /* ----------------------------------------------------------------- status */
+  /* Deepened OFF the pastels so a status never reads as decoration, and every
+     one cleared against --surface-2 (where badges and alerts actually sit). */
+  --ok:            #0d7a57;                 /* 4.74:1 on --surface-2 */
+  --warn:          #946000;                 /* 4.75:1 on --surface-2 */
+  --danger:        #bd2d28;                 /* 5.23:1 on --surface-2, and clearly not the pink */
+  --info:          #4f52c9;                 /* 5.52:1 on --surface-2 — periwinkle, not the accent-2 mint */
+
+  /* ------------------------------------------------------------------ lines */
+  /* Soft plum-pink hairlines. 2px, because a die-cut sticker has a visible
+     outline — this is the one place the kit is not subtle. */
+  --border:        rgba(150, 90, 140, .20);
+  --border-strong: rgba(150, 90, 140, .38);
+  --border-w:      2px;
+  --focus-ring:    #7d5bd6;                 /* GRAPE. 4.84:1 on white, 4.11:1 at its worst --
+                                               the ring is lilac so focus can never be confused
+                                               with the candy-pink action or its hover */
+
+  /* ------------------------------------------------------------------ shape */
+  /* MAXIMUM ROUNDNESS — the kit's loudest idea. A sticker has no corners. */
+  --radius-sm:      12px;
+  --radius-md:      18px;
+  --radius-lg:      28px;
+  --radius-pill:   999px;                   /* every chip, bar, toggle and avatar is a pill */
+  --cut:            0px;                    /* nothing is cut; kawaii only rounds */
+
+  /* ------------------------------------------------------------------- type */
+  /* Baloo 2 — a chunky, bubbly rounded display; it IS the sticker lettering.
+     Nunito — a rounded soft body that stays legible at 12-13px, where Quicksand
+     goes spindly and Fredoka goes wide. JetBrains Mono — a friendly mono for
+     chips, labels and code so the small type never turns technical. */
+  --font-display: "Baloo 2", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .10em;                /* chips are cute, not shouted */
+  --tracking-display: -.005em;              /* Baloo 2 is already round; do not squeeze it */
+
+  /* ------------------------------------------------------------------ depth */
+  /* Soft, wide and PLUM-tinted — a pastel drop shadow (a grey one would read as
+     grime on a pastel page). Stickers sit just off the surface, so every step
+     keeps a short blur close under the shape. */
+  --shadow-1:  0 2px 4px rgba(150, 90, 140, .10), 0 12px 22px -10px rgba(150, 90, 140, .26);
+  --shadow-2:  0 4px 8px rgba(150, 90, 140, .10), 0 22px 40px -18px rgba(150, 90, 140, .34);
+  --glow:      0 8px 20px -6px rgba(255, 111, 178, .55);   /* the candy button's own pink lift */
+  --blur:      none;                        /* sticker paper is not frosted; glass owns that */
+
+  /* ----------------------------------------------------------------- motion */
+  /* BRIEF AND BOUNCY — an overshoot curve, so controls pop rather than glide. */
+  --dur:   .22s;
+  --ease:  cubic-bezier(.34, 1.56, .64, 1);
+
+  /* ------------------------------------------------- opt-in lab capabilities */
+  /* --btn-shadow reaches EVERY button variant (the primary also keeps --glow),
+     so all five read as the same lifted sticker. */
+  --btn-shadow:  0 2px 0 rgba(150, 90, 140, .08), 0 7px 14px -6px rgba(150, 90, 140, .26);
+  /* a soft candy well, so a field looks pressed into the sticker sheet */
+  --input-inset: inset 0 2px 6px rgba(150, 90, 140, .10);
+  /* ROUND the native checkbox/radio. They ignore border-radius, so a kit whose
+     one rule is "maximum roundness" must declare them or ship square controls.
+     Round box, candy fill when checked. */
+  --check-appearance: none;
+  --check-bg:         #fff0f8;
+  --check-border:     2px solid rgba(150, 90, 140, .34);
+  --check-checked:    #ff6fb2;
+  /* --fill-bg drives .bar > i and .avatar: a candy ramp instead of the default
+     two-stop accent ramp. Both render as pills, so the avatar is a candy dot. */
+  --fill-bg:  linear-gradient(90deg, #ff9ecd 0px, #c9a6ff 130px, #7de0c0 280px);
+  /* --media-bg replaces the .card-media hardcoded accent ramp with the kit's own
+     material: a pastel sticker sheet — pink→lilac→mint wash, a dashed white
+     die-cut border, sparkles and a heart. --media-op lifts the default .85 dim
+     so the pastels read at full strength (a dimmed pastel is just a grey). */
+  --media-op: 1;
+  --media-bg:
+    /* DRAWN: the die-cut border, the sparkle and the heart are geometry, and a
+       gradient cannot make a dashed rounded rect or a 4-point star. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMzYwIDEyMCI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQwZTciLz48c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI2Q3YzJmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2JmZjJkZiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxMjAiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjM0OCIgaGVpZ2h0PSIxMDgiIHJ4PSIxNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWRhc2hhcnJheT0iOSA3IiBvcGFjaXR5PSIwLjkyIi8+CjxnIGZpbGw9IiNmZmZmZmYiPgo8cGF0aCBkPSJNNzQgMjYgQzc3IDQwIDg1IDQ3IDEwMCA0OSBDODUgNTEgNzcgNTggNzQgNzIgQzcxIDU4IDYzIDUxIDQ4IDQ5IEM2MyA0NyA3MSA0MCA3NCAyNiBaIi8+CjxwYXRoIGQ9Ik0yNTIgNjIgQzI1NCA3MSAyNTkgNzUuNSAyNjggNzcgQzI1OSA3OC41IDI1NCA4MyAyNTIgOTIgQzI1MCA4MyAyNDUgNzguNSAyMzYgNzcgQzI0NSA3NS41IDI1MCA3MSAyNTIgNjIgWiIgb3BhY2l0eT0iMC45Ii8+CjwvZz4KPHBhdGggZD0iTTMwNSAzNCBDMzA1IDM0IDI5NiA0MyAyOTYgNTAgQzI5NiA1NiAzMDAgNjAgMzA1IDYwIEMzMTAgNjAgMzE0IDU2IDMxNCA1MCBDMzE0IDQzIDMwNSAzNCAzMDUgMzQgWiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC45NSIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSI4OCIgcj0iNSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC44NSIvPgo8Y2lyY2xlIGN4PSIzMzAiIGN5PSI5NCIgcj0iNCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSIxOTYiIGN5PSIyNCIgcj0iMy41IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiLz4KPC9zdmc+") center / cover no-repeat,
+    linear-gradient(135deg, #ffd0e7 0%, #d7c2ff 55%, #bff2df 100%);
+  /* --wash replaces the masthead's default radial bloom with two pastel clouds —
+     bubblegum at the top-left, lilac at the top-right — over the kit's own ground.
+     Both are translucent and pastel, so they can only DARKEN the palest ground
+     toward its tint, never lift it past the white every text pair was proved on. */
+  --wash:
+    radial-gradient(120% 130% at 14% 0%, rgba(255, 143, 196, .52) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(95% 125% at 86% 8%, rgba(176, 150, 255, .44) 0%, rgba(255, 255, 255, 0) 62%);
+
+  /* ------------------------------------------------------------- signature ---
+     Three motifs, declared in kit.json, each doing a DIFFERENT job — and each
+     with its own base layer, so no tile shows only the kit's flat surface. */
+  /* 1 · SPARKLE — the "pop" MARK: a four-point star burst with two satellites
+     and a candy core, drawn (a 4-point star is concave, which no gradient can
+     make). A single centred mark, not a field. The star sizes and the depth of
+     the base were tuned against PIL std-dev on a real 168x72 tile: the pale-base
+     first attempt measured 30 and washed out, this one measures 38 and reads. */
+  --kawaii-sparkle:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMTAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAyMTAgOTAiPgo8ZyBmaWxsPSIjZmZmZmZmIj4KPHBhdGggZD0iTTEwNSAxIEMxMTAuNzIgMjYuNTIgMTIzLjQ4IDM5LjI4IDE0OSA0NSBDMTIzLjQ4IDUwLjcyIDExMC43MiA2My40ODAwMDAwMDAwMDAwMDQgMTA1IDg5IEM5OS4yOCA2My40ODAwMDAwMDAwMDAwMDQgODYuNTIgNTAuNzIgNjEgNDUgQzg2LjUyIDM5LjI4IDk5LjI4IDI2LjUyIDEwNSAxIFoiIG9wYWNpdHk9IjEuMCIvPgo8cGF0aCBkPSJNMzMgOSBDMzUuNDcgMjAuMDIgNDAuOTggMjUuNTMgNTIgMjggQzQwLjk4IDMwLjQ3IDM1LjQ3IDM1Ljk4IDMzIDQ3IEMzMC41MyAzNS45OCAyNS4wMiAzMC40NyAxNCAyOCBDMjUuMDIgMjUuNTMgMzAuNTMgMjAuMDIgMzMgOSBaIiBvcGFjaXR5PSIwLjk1Ii8+CjxwYXRoIGQ9Ik0xNzQgNyBDMTc1Ljk1IDE1LjcgMTgwLjMgMjAuMDUgMTg5IDIyIEMxODAuMyAyMy45NSAxNzUuOTUgMjguMyAxNzQgMzcgQzE3Mi4wNSAyOC4zIDE2Ny43IDIzLjk1IDE1OSAyMiBDMTY3LjcgMjAuMDUgMTcyLjA1IDE1LjcgMTc0IDcgWiIgb3BhY2l0eT0iMC45MiIvPgo8cGF0aCBkPSJNMTc5IDU2IEMxODAuNTYgNjIuOTYgMTg0LjA0IDY2LjQ0IDE5MSA2OCBDMTg0LjA0IDY5LjU2IDE4MC41NiA3My4wNCAxNzkgODAgQzE3Ny40NCA3My4wNCAxNzMuOTYgNjkuNTYgMTY3IDY4IEMxNzMuOTYgNjYuNDQgMTc3LjQ0IDYyLjk2IDE3OSA1NiBaIiBvcGFjaXR5PSIwLjkiLz4KPC9nPgo8Y2lyY2xlIGN4PSI3OSIgY3k9IjY4IiByPSI1LjAiIGZpbGw9IiNmZjVmYWUiIG9wYWNpdHk9IjEuMCIvPgo8Y2lyY2xlIGN4PSIxMzEiIGN5PSIyMyIgcj0iNC4wIiBmaWxsPSIjZmY1ZmFlIiBvcGFjaXR5PSIwLjk1Ii8+CjxjaXJjbGUgY3g9IjU4IiBjeT0iMTQiIHI9IjMuNSIgZmlsbD0iIzdhNWNmZiIgb3BhY2l0eT0iMC45Ii8+CjxjaXJjbGUgY3g9IjE1MiIgY3k9IjcyIiByPSI0LjAiIGZpbGw9IiM3YTVjZmYiIG9wYWNpdHk9IjAuOSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjYyIiByPSIzLjAiIGZpbGw9IiNmZjVmYWUiIG9wYWNpdHk9IjAuODUiLz4KPGNpcmNsZSBjeD0iMTk2IiBjeT0iNDAiIHI9IjMuMCIgZmlsbD0iIzdhNWNmZiIgb3BhY2l0eT0iMC44Ii8+CjxjaXJjbGUgY3g9IjEwNSIgY3k9IjQ1IiByPSI2LjUiIGZpbGw9IiNmZjVmYWUiIG9wYWNpdHk9IjEuMCIvPgo8L3N2Zz4=") center / 152px 65px no-repeat,
+    radial-gradient(60% 98% at 50% 50%, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 64%),
+    linear-gradient(135deg, #ff86c6 0%, #a78bff 100%);
+  /* 2 · HEART — the AFFECTION mark: a rounded die-cut sticker heart (white
+     outline + specular highlight), with a mint and a lilac mini-heart. A
+     different symbol AND a different construction from the sparkle: this one
+     is a filled shape with an outline, where the sparkle is pure line/points. */
+  --kawaii-heart:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMTAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAyMTAgOTAiPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDUsNDUpIj4KPHBhdGggZD0iTTAgMzggQy0yIDM0IC00MCAxMCAtNDAgLTEyIEMtNDAgLTMwIC0yNyAtNDAgLTE1IC00MCBDLTcgLTQwIC0xIC0zNSAwIC0yOCBDMSAtMzUgNyAtNDAgMTUgLTQwIEMyNyAtNDAgNDAgLTMwIDQwIC0xMiBDNDAgMTAgMiAzNCAwIDM4IFoiIGZpbGw9IiNmZjZmYjIiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxlbGxpcHNlIGN4PSItMTQiIGN5PSItMjIiIHJ4PSI5IiByeT0iNS41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMjQgLTE0IC0yMikiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuODAiLz4KPC9nPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNywzMCkgc2NhbGUoMC40MikiPjxwYXRoIGQ9Ik0wIDM4IEMtMiAzNCAtNDAgMTAgLTQwIC0xMiBDLTQwIC0zMCAtMjcgLTQwIC0xNSAtNDAgQy03IC00MCAtMSAtMzUgMCAtMjggQzEgLTM1IDcgLTQwIDE1IC00MCBDMjcgLTQwIDQwIC0zMCA0MCAtMTIgQzQwIDEwIDIgMzQgMCAzOCBaIiBmaWxsPSIjOGZlM2MyIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3OCw2Mikgc2NhbGUoMC4zMikiPjxwYXRoIGQ9Ik0wIDM4IEMtMiAzNCAtNDAgMTAgLTQwIC0xMiBDLTQwIC0zMCAtMjcgLTQwIC0xNSAtNDAgQy03IC00MCAtMSAtMzUgMCAtMjggQzEgLTM1IDcgLTQwIDE1IC00MCBDMjcgLTQwIDQwIC0zMCA0MCAtMTIgQzQwIDEwIDIgMzQgMCAzOCBaIiBmaWxsPSIjYzFhNmZmIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L2c+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjIwIiByPSI0IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iNjIiIGN5PSI3MCIgcj0iMy41IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjg1Ii8+Cjwvc3ZnPg==") center / 152px 65px no-repeat,
+    linear-gradient(135deg, #c9f5e4 0%, #fff1d8 100%);
+  /* 3 · CONFETTI — the FIELD: a tiled scatter of dots, tiny stars and a tiny
+     heart at unequal sizes and colours, on its own cream ground. This is
+     texture you tile behind something, not a mark you place — the third job. */
+  --kawaii-confetti:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZmZmN2YxIi8+CjxwYXRoIGQ9Ik0xOCA5IEMxOS40IDE1IDIzIDE4LjYgMjkgMjAgQzIzIDIxLjQgMTkuNCAyNSAxOCAzMSBDMTYuNiAyNSAxMyAyMS40IDcgMjAgQzEzIDE4LjYgMTYuNiAxNSAxOCA5IFoiIGZpbGw9IiNmZjllY2IiLz4KPGNpcmNsZSBjeD0iNjAiIGN5PSIxMyIgcj0iNiIgZmlsbD0iI2M5YTZmZiIvPgo8cGF0aCBkPSJNNjQgMzkgQzY0IDM5IDU3LjUgNDUgNTcuNSA0OS41IEM1Ny41IDUzLjUgNjAuNSA1NiA2NCA1NiBDNjcuNSA1NiA3MC41IDUzLjUgNzAuNSA0OS41IEM3MC41IDQ1IDY0IDM5IDY0IDM5IFoiIGZpbGw9IiM3ZGRmYjgiLz4KPGNpcmNsZSBjeD0iMzEiIGN5PSI0NyIgcj0iNC41IiBmaWxsPSIjZmY2ZmIyIi8+CjxwYXRoIGQ9Ik00NiA1OCBDNDcgNjIgNDkuNSA2NC41IDU0IDY2IEM0OS41IDY3LjUgNDcgNzAgNDYgNzQgQzQ1IDcwIDQyLjUgNjcuNSAzOCA2NiBDNDIuNSA2NC41IDQ1IDYyIDQ2IDU4IFoiIGZpbGw9IiNiOGE2ZmYiLz4KPGNpcmNsZSBjeD0iMTAiIGN5PSI2NSIgcj0iNSIgZmlsbD0iIzZmZDZjMCIvPgo8Y2lyY2xlIGN4PSI3NCIgY3k9Ijc0IiByPSIzLjUiIGZpbGw9IiNmZmIzZDkiLz4KPGNpcmNsZSBjeD0iNDYiIGN5PSIzMSIgcj0iMyIgZmlsbD0iI2ZmZDE2NiIvPgo8L3N2Zz4=") 0 0 / 80px 80px repeat,
+    linear-gradient(180deg, #fff7f1 0%, #fff7f1 100%);
+}

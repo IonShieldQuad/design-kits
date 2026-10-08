@@ -2,11 +2,15 @@
   "name": "Glass",
   "tagline": "Frosted pastel panels — translucent, layered, quiet",
   "use_when": "modern SaaS, overlays, hero cards",
-  "index": "07",
   "order": 70,
   "fonts_url": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
   "fonts_label": "Plus Jakarta Sans",
   "mode": "light",
   "source": "original",
-  "tags": ["light", "soft", "modern", "glass"]
+  "tags": [
+    "light",
+    "soft",
+    "modern",
+    "glass"
+  ]
 }

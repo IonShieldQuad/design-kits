@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radioactive — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Radioactive kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Radioactive</h1>
+  <p class="spec-sub">A containment site under CCTV — cold concrete, clinical white plates, hazard tape, and one toxic-green readout</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Radioactive
+description: A containment site under CCTV — cold poured concrete, clinical white wall plates, hazard tape, and one toxic-green readout.
+colors:
+  primary: &quot;#86c81a&quot;
+  primary-hover: &quot;#78b814&quot;
+  primary-ink: &quot;#1d4a06&quot;
+  secondary: &quot;#e8860c&quot;
+  tertiary: &quot;#17427e&quot;
+  neutral: &quot;#c6cac3&quot;
+  surface: &quot;#f2f4ef&quot;
+  surface-2: &quot;#bfc3bc&quot;
+  text: &quot;#12150f&quot;
+  text-muted: &quot;#3a4136&quot;
+  text-dim: &quot;#424a3f&quot;
+  invert: &quot;#10130d&quot;
+  success: &quot;#0d5230&quot;
+  warning: &quot;#6a3f04&quot;
+  error: &quot;#8a160d&quot;
+typography:
+  display:
+    fontFamily: Chakra Petch
+    fontSize: 2.7rem
+    fontWeight: 700
+    lineHeight: 1.04
+    letterSpacing: &quot;-0.005em&quot;
+  heading:
+    fontFamily: Chakra Petch
+    fontSize: 1.3rem
+    fontWeight: 600
+    lineHeight: 1.2
+  body:
+    fontFamily: Archivo
+    fontSize: 0.98rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: IBM Plex Mono
+    fontSize: 0.72rem
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: &quot;0.16em&quot;
+  readout:
+    fontFamily: IBM Plex Mono
+    fontSize: 0.9rem
+    fontWeight: 400
+    lineHeight: 1.3
+    letterSpacing: &quot;0.04em&quot;
+rounded:
+  sm: 2px
+  md: 4px
+  lg: 6px
+  pill: 2px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.invert}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.body}&quot;
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="radioactive">Radioactive</h2>
+<h3 id="overview">Overview</h3>
+<p>A containment site under CCTV, photographed in daylight. The subject is a <strong>building</strong> — a decommissioned reactor hall, a hazardous-materials store, a clean room with a spill in it — so the ground is poured concrete and the working surfaces are the clinical white plates bolted onto it. The only things that burn are the readouts: one toxic acid green for the live, actionable material, and one safety amber for warnings and tape.</p>
+<p>The kit is <strong>light</strong>, and that is the central decision. Hazard tape is meaningless on near-black — the black band of a yellow/black diagonal vanishes — and "institutional" is a property of concrete in daylight, not of a glowing poster. A dark green-on-black reading would have made a science-fiction title card; a mid-grey concrete hall with yellow/black tape, white instrument plates and a green CRT readout reads as a <em>regulated facility</em>. The glow that the genre does deserve is kept, but scoped to the one element that is actually energised.</p>
+<h3 id="colors">Colors</h3>
+<p>Acid green <code>#86c81a</code> is the single action colour — the live lamp, the spill, the readout phosphor and the "go" signal. It is a bright yellow-green on purpose: as a <strong>fill</strong> it is light enough to carry near-black ink (<code>#10130d</code>, 9.18:1), which is the hazard-signage convention — black on yellow-green, never white. As small <strong>text</strong> it cannot work on concrete (1.6:1), so the kit ships <code>--accent-ink</code> (<code>#1d4a06</code>) for eyebrows, links, active tabs, badge labels and secondary buttons.</p>
+<p>Safety amber <code>#e8860c</code> is the second accent and the hot warning tone. It belongs to <em>warning and data</em> — media panels, charts, the hazard tape — and it is a <strong>fill only</strong>: it never carries a text label. The third hue is an institutional telemetry blue <code>#17427e</code> for the <code>info</code> register, so a facility UI has its CCTV/telemetry voice without inventing a third "look at me" colour.</p>
+<p>The concrete <code>#c6cac3</code> is a cold green-grey, never neutral and never beige: a neutral grey would read as office, and a warm grey as domestic. The clinical white <code>#f2f4ef</code> is the palest ground, and every ink is graded against the <strong>darkest aggregate pixel</strong> of the floor (<code>~#bcc0b9</code>) and against the recessed slab <code>#bfc3bc</code> — the two binding grounds. Because the kit is a three-tier stack (concrete → white plate → grey well), text inside cards and inside insets ships separately as <code>--text-on-surface*</code> and <code>--text-on-surface-2*</code> rather than inheriting one page-wide ink.</p>
+<h3 id="typography">Typography</h3>
+<p>Chakra Petch is the <strong>display</strong> face — a squared, technical signage letterform that reads as a stencilled label on a control panel. It is not asked to set body copy. Archivo, a neutral institutional grotesque, carries running text at reading size. IBM Plex Mono is the telemetry face: every readout, counter, field label and code block is monospaced, because a facility's numbers are tabular. The <code>0.16em</code> tracking on caps is what makes a small mono label read as machine output rather than as prose. Two families plus a mono is the ceiling; nothing here is decorative.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is firm rather than airy — <code>16px</code> gutters, <code>24px</code> between blocks — so the concrete shows between the plates. Corners are <code>2px</code>–<code>6px</code>: machined, not rounded. Nothing is a pill; a badge is a stamped plate at <code>2px</code> because the token must keep its name even when the shape is square.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>physical, not atmospheric</strong>. <code>--blur</code> is <code>none</code>; there is no frosted glass on a poured floor. Cards lift with a hard 1px lip plus a low, tight drop (<code>--shadow-1</code>/<code>--shadow-2</code>) so they read as plates standing off the wall. The one luminous device is <code>--glow</code>: a <strong>tight</strong> acid-green ring with a short bloom, applied by the lab to the primary button and to focus. It is deliberately scoped — it marks the element that is <em>live</em> (the actionable control, the focused field, the active tab), and it is tight enough to read as an energised indicator lamp rather than as neon atmosphere. Glow is a design decision here: a containment site is full of things that are literally glowing, and this kit uses that fact to give exactly one element on each screen its "on" state.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry lives in its three signature devices rather than its corners. The <strong>trefoil</strong> (<code>--radioactive-trefoil</code>) is drawn inline SVG because it is exact geometry — three congruent annular sectors at 120° around a core — and no stack of gradients can produce a wedge. The <strong>hazard hatching</strong> (<code>--radioactive-hazard</code>) is drawn too — a 45° yellow/black tape pattern as inline SVG, giving crisp hard bands where a CSS <code>repeating-linear-gradient</code> would be rescaled and blurred by the gallery's preview normaliser. The <strong>spill</strong> (<code>--radioactive-spill</code>) is drawn too: a toxic puddle is a blob with a hot core, spatter and rising vapour — structure, not a green gradient — and it carries its own dark hall base so the tile reads as luminescence in a dark cell. Three motifs, three jobs: a symbol, a warning, an atmosphere.</p>
+<h3 id="components">Components</h3>
+<p>Primary buttons are acid-green fills with near-black labels — a pulled alarm cover; secondary buttons are white plates with green labels; the danger button keeps the white plate and takes breach-red text. Cards are the clinical-white plates; the elevated card recesses to the grey concrete slab (<code>--surface-2</code>). Fields are milled <em>into</em> the concrete (<code>--input-inset</code>) and square, and the native checkbox and radio are squared via the <code>--check-*</code> tokens (a native control ignores <code>border-radius</code>, so a square kit that skips them renders the one shape it forbids). Progress and avatar fills are hard-banded two-tone acid — hazard tape in green. Media panels are the CCTV readout, not an accent ramp.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep green for the live/actionable layer and amber for warning and data. Two accents, two jobs.</li><li><strong>Do</strong> let the glow stay on the one energised element. Scattered over the page it becomes a poster.</li><li><strong>Do</strong> keep body copy on concrete or a white plate — never set text on the trefoil, the tape or a readout.</li><li><strong>Don't</strong> use the bright acid green as a text colour; it is a fill. Text green is <code>--accent-ink</code>.</li><li><strong>Don't</strong> put amber on a control label — it is a warning hue and a fill, and it never carries type.</li><li><strong>Don't</strong> round the corners or add glass. The facility is machined and cast, not soft.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

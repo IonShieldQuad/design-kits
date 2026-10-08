@@ -2,11 +2,15 @@
   "name": "Signal",
   "tagline": "A deep-navy HUD for dense data",
   "use_when": "dashboards, data-dense tools, resumes and CVs",
-  "index": "02",
   "order": 20,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap",
   "fonts_label": "Chakra Petch · Inter · JetBrains Mono",
   "mode": "dark",
   "source": "derived from resume site",
-  "tags": ["dark", "cool", "technical", "hud"]
+  "tags": [
+    "dark",
+    "cool",
+    "technical",
+    "hud"
+  ]
 }

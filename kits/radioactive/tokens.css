@@ -1,0 +1,201 @@
+/* ============================================================================
+   Radioactive — design kit tokens                                     order 165
+   ----------------------------------------------------------------------------
+   A CONTAINMENT SITE UNDER CCTV. Cold poured-concrete grey is the ground; the
+   readouts, placards and tape are the only things that burn. This is a LIGHT kit
+   because the subject is a *building* — a decommissioned reactor hall in
+   daylight — not a night sky. Hazard tape needs a mid ground to read (the black
+   band of a yellow/black stripe disappears against near-black), and "institutional"
+   is a property of concrete, not of a glowing poster.
+
+   THREE MATERIALS, THREE JOBS.
+     · CONCRETE  — a cold green-grey, never a neutral grey and never beige.
+       --bg is the poured floor (a drawn aggregate speckle over a slow gradient);
+       --surface-2 is a recessed slab, one step darker than the floor.
+     · CLINICAL WHITE (#f2f4ef) — the wall plates bolted onto the concrete. Cards
+       are white so the working surface is calm and the hazard is something you
+       ADD, never a field you read text on.
+     · TOXIC ACID GREEN (#86c81a) — the ONE action colour: it is the live lamp,
+       the spill, the readout phosphor and the "go" signal. It is a bright
+       yellow-green so it can carry near-black ink as a FILL; as small TEXT it
+       hands off to --accent-ink (#1d4a06), because bright green is 1.6:1 on
+       concrete and would fail as a label.
+
+   ONE HOT WARNING TONE. Safety amber #e8860c is the second accent and belongs to
+   WARNING and to DATA (media panels, charts, the hazard tape). It is a fill
+   colour only — it never carries text.
+
+   GLOW IS A DESIGN DECISION, NOT DECORATION. --glow is the kit's one luminescent
+   device: a tight acid-green ring + short bloom that marks the LIVING thing on
+   the page — the primary action, the focused control, the active tab. On a light
+   concrete site a soft bloom would read as a poster, so the glow is deliberately
+   TIGHT (a 1px ring, a 9px core, a 20px tail) so it reads as an energised
+   indicator lamp, not neon. Nothing else in the kit glows.
+
+   Type: Chakra Petch (technical signage) · Archivo (institutional body) ·
+         IBM Plex Mono (telemetry / readouts)
+   Contract: docs/KIT-SPEC.md v1 — every required name present. Contrast table and
+   the palette rationale are in README.md.
+   ========================================================================== */
+:root {
+  /* -- surfaces: poured concrete, a recessed slab, and a white wall plate -- */
+  /* --bg is a DRAWN aggregate speckle (inline SVG) over a slow gradient. It
+     carries the masthead copy, so the speckle is deliberately LOW-amplitude:
+     its darkest aggregate pixel is ~#bcc0b9, and every ink below is graded
+     against that pixel, not against the average ground. */
+  --bg:            url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxODAnIGhlaWdodD0nMTgwJyB2aWV3Qm94PScwIDAgMTgwIDE4MCc+PGVsbGlwc2UgY3g9Jzk4LjQnIGN5PScxMzMuNicgcng9JzE1LjcnIHJ5PScxMC45JyBmaWxsPScjYmNjMGI5JyBmaWxsLW9wYWNpdHk9JzAuMDcnLz48ZWxsaXBzZSBjeD0nMTc1LjYnIGN5PSc0MS40JyByeD0nMTEuMicgcnk9JzguMScgZmlsbD0nI2NkZDFjYScgZmlsbC1vcGFjaXR5PScwLjA3Jy8+PGVsbGlwc2UgY3g9JzE1My40JyBjeT0nMTM5LjQnIHJ4PSc4LjInIHJ5PSc4LjQnIGZpbGw9JyNjZGQxY2EnIGZpbGwtb3BhY2l0eT0nMC4wNycvPjxlbGxpcHNlIGN4PScxNzUuNicgY3k9JzI3LjInIHJ4PScxMC4xJyByeT0nOS4xJyBmaWxsPScjY2RkMWNhJyBmaWxsLW9wYWNpdHk9JzAuMDcnLz48ZWxsaXBzZSBjeD0nMTI4LjYnIGN5PSc1MS40JyByeD0nMTIuMScgcnk9JzcuNCcgZmlsbD0nI2JjYzBiOScgZmlsbC1vcGFjaXR5PScwLjA3Jy8+PGVsbGlwc2UgY3g9Jzg3LjYnIGN5PSc0MS43JyByeD0nOS41JyByeT0nOS4yJyBmaWxsPScjYmNjMGI5JyBmaWxsLW9wYWNpdHk9JzAuMDcnLz48ZWxsaXBzZSBjeD0nMTU0LjknIGN5PScxMTUuMCcgcng9JzE0LjUnIHJ5PScxMS44JyBmaWxsPScjYmNjMGI5JyBmaWxsLW9wYWNpdHk9JzAuMDcnLz48Y2lyY2xlIGN4PSczLjAnIGN5PScxNzMuMScgcj0nMS4zOScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjQ2Jy8+PGNpcmNsZSBjeD0nMTY5LjEnIGN5PSc3Ny4zJyByPScxLjM4JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNDknLz48Y2lyY2xlIGN4PScxNDQuNicgY3k9JzEwLjUnIHI9JzAuNTcnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC41NicvPjxjaXJjbGUgY3g9JzIyLjgnIGN5PScxNDcuNicgcj0nMS40NycgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nMTcyLjknIGN5PSc2Ny45JyByPScwLjc0JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTEnLz48Y2lyY2xlIGN4PScxNTkuMicgY3k9JzEwOS4xJyByPScwLjc3JyBmaWxsPScjZDJkNmNmJyBmaWxsLW9wYWNpdHk9JzAuNDcnLz48Y2lyY2xlIGN4PScxNjMuMicgY3k9JzE2NC43JyByPScwLjY5JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNTknLz48Y2lyY2xlIGN4PScxMDkuNicgY3k9JzM3LjcnIHI9JzAuODgnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzU5LjQnIGN5PScxMTguMCcgcj0nMS4yMicgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjMxJy8+PGNpcmNsZSBjeD0nMzEuOScgY3k9JzM5LjMnIHI9JzAuNjknIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzExMC4xJyBjeT0nMzMuNicgcj0nMS4wNScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjM2Jy8+PGNpcmNsZSBjeD0nMzcuNCcgY3k9JzE5LjUnIHI9JzAuNTQnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zNScvPjxjaXJjbGUgY3g9JzE0OC42JyBjeT0nMTY4LjMnIHI9JzEuMicgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjQ2Jy8+PGNpcmNsZSBjeD0nMjUuMScgY3k9JzI2LjQnIHI9JzAuODQnIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC41NCcvPjxjaXJjbGUgY3g9JzEzLjknIGN5PSc3MC4yJyByPScxLjQ2JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuMzUnLz48Y2lyY2xlIGN4PScxNTYuOCcgY3k9JzEzLjQnIHI9JzEuMzQnIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9Jzk1LjknIGN5PScxMzIuMicgcj0nMS4xMycgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjU4Jy8+PGNpcmNsZSBjeD0nMTEzLjAnIGN5PSc3LjEnIHI9JzEuMTYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40MScvPjxjaXJjbGUgY3g9JzEzOC4xJyBjeT0nMTI4LjcnIHI9JzAuNzMnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zJy8+PGNpcmNsZSBjeD0nNC4xJyBjeT0nMTQ3LjYnIHI9JzEuMjknIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC41NicvPjxjaXJjbGUgY3g9JzE3OC41JyBjeT0nMTE4LjMnIHI9JzAuOTYnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41NicvPjxjaXJjbGUgY3g9JzE1OS44JyBjeT0nMTM0LjInIHI9JzAuNzMnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zMycvPjxjaXJjbGUgY3g9JzE1NC4zJyBjeT0nMTU0LjAnIHI9JzAuODcnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC40MycvPjxjaXJjbGUgY3g9JzExNS4wJyBjeT0nMTc4LjgnIHI9JzAuNzMnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC40OCcvPjxjaXJjbGUgY3g9JzExMS44JyBjeT0nMTMxLjcnIHI9JzAuNTYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zOCcvPjxjaXJjbGUgY3g9JzE2NS44JyBjeT0nMTAuMicgcj0nMS40NycgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjU3Jy8+PGNpcmNsZSBjeD0nOTMuNicgY3k9JzcwLjYnIHI9JzAuNjYnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzQyLjMnIGN5PSc5OS4xJyByPScxLjA5JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48Y2lyY2xlIGN4PSczNi4xJyBjeT0nNC4zJyByPScxLjQ5JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNTknLz48Y2lyY2xlIGN4PScxMjcuMicgY3k9JzgxLjInIHI9JzEuMjUnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC41NycvPjxjaXJjbGUgY3g9JzEwOC44JyBjeT0nNTQuNCcgcj0nMC42OCcgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjM3Jy8+PGNpcmNsZSBjeD0nOC43JyBjeT0nNjcuNycgcj0nMC44OCcgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjMzJy8+PGNpcmNsZSBjeD0nNDAuNScgY3k9JzEyMC45JyByPScxLjA1JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNDEnLz48Y2lyY2xlIGN4PSc0Mi40JyBjeT0nMTY5LjcnIHI9JzEuNDEnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9JzUwLjYnIGN5PSc0Mi4zJyByPScxLjQyJyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNTYnLz48Y2lyY2xlIGN4PSc3Mi41JyBjeT0nMTM1LjAnIHI9JzAuNzknIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC40NCcvPjxjaXJjbGUgY3g9JzEwNy42JyBjeT0nOS4yJyByPScxLjQ0JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuMzEnLz48Y2lyY2xlIGN4PScxMDMuNicgY3k9JzEwOS45JyByPScxLjE1JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTQnLz48Y2lyY2xlIGN4PScxNzUuMCcgY3k9JzM3LjgnIHI9JzAuNTknIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC41OScvPjxjaXJjbGUgY3g9JzE2MC4yJyBjeT0nMTE3LjknIHI9JzEuMicgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjM3Jy8+PGNpcmNsZSBjeD0nMTUxLjAnIGN5PScyOC4zJyByPScwLjc5JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNDYnLz48Y2lyY2xlIGN4PScxNjYuNScgY3k9JzExMi44JyByPScxLjM3JyBmaWxsPScjZDJkNmNmJyBmaWxsLW9wYWNpdHk9JzAuMzgnLz48Y2lyY2xlIGN4PScxNDYuNScgY3k9JzkuMycgcj0nMC43MScgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjU3Jy8+PGNpcmNsZSBjeD0nMTEyLjYnIGN5PSc5OS4xJyByPScwLjk5JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuMycvPjxjaXJjbGUgY3g9JzE2Mi45JyBjeT0nNDQuNCcgcj0nMS40OScgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nNzIuMycgY3k9JzcxLjUnIHI9JzAuNjYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40NicvPjxjaXJjbGUgY3g9JzYzLjknIGN5PScxNzUuMicgcj0nMC45OCcgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjMyJy8+PGNpcmNsZSBjeD0nNjAuOScgY3k9JzEyNC4zJyByPScwLjY4JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSc2NC4zJyBjeT0nOTkuNScgcj0nMC42NScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjQ5Jy8+PGNpcmNsZSBjeD0nMzUuNicgY3k9JzE2Ny4yJyByPScwLjc4JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNDEnLz48Y2lyY2xlIGN4PScyNS41JyBjeT0nMTIyLjgnIHI9JzAuODEnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzE0OC4zJyBjeT0nMzIuOCcgcj0nMS40NicgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjU4Jy8+PGNpcmNsZSBjeD0nNjkuNScgY3k9JzU2LjYnIHI9JzEuMDQnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxjaXJjbGUgY3g9JzE1Mi42JyBjeT0nNzUuOCcgcj0nMS4yMycgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjYxJy8+PGNpcmNsZSBjeD0nMzYuOCcgY3k9Jzc4LjgnIHI9JzEuMTYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC42MScvPjxjaXJjbGUgY3g9JzE0NS4zJyBjeT0nMTY4LjgnIHI9JzEuNDUnIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC40OScvPjxjaXJjbGUgY3g9JzE1My40JyBjeT0nMTUyLjMnIHI9JzAuNzcnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC40NCcvPjxjaXJjbGUgY3g9JzEwMC4zJyBjeT0nNS44JyByPScwLjg3JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuMzcnLz48Y2lyY2xlIGN4PScyOC40JyBjeT0nMTQ5LjAnIHI9JzEuMzUnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxjaXJjbGUgY3g9JzcxLjgnIGN5PScxMzcuMicgcj0nMC45OCcgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjYnLz48Y2lyY2xlIGN4PSc0Mi4xJyBjeT0nOTAuNicgcj0nMS4zNycgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjQ0Jy8+PGNpcmNsZSBjeD0nMTc4LjUnIGN5PScxMDguMScgcj0nMS4zMScgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nMTI1LjcnIGN5PScxMzAuNycgcj0nMS40MycgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjMnLz48Y2lyY2xlIGN4PSc4Mi4zJyBjeT0nOTkuNCcgcj0nMC45NScgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjU4Jy8+PGNpcmNsZSBjeD0nMTcxLjknIGN5PScxNDEuMCcgcj0nMS40NScgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjQnLz48Y2lyY2xlIGN4PScxMTYuNycgY3k9JzU4LjEnIHI9JzAuNTcnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zOScvPjxjaXJjbGUgY3g9JzE0Mi41JyBjeT0nMTMxLjgnIHI9JzAuOTUnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9Jzg2LjQnIGN5PScxNTkuMScgcj0nMC43NycgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nNy4wJyBjeT0nMTI3LjUnIHI9JzAuNjUnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zNycvPjxjaXJjbGUgY3g9JzEwMi42JyBjeT0nMTQ1LjgnIHI9JzAuNTYnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC42MScvPjxjaXJjbGUgY3g9JzE3LjMnIGN5PSczMC4yJyByPScxLjE4JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNDYnLz48Y2lyY2xlIGN4PScxOS4yJyBjeT0nMTAzLjgnIHI9JzAuODYnIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC41MScvPjxjaXJjbGUgY3g9JzEzLjYnIGN5PScxNzkuOScgcj0nMC42JyBmaWxsPScjZDJkNmNmJyBmaWxsLW9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSc1MS4zJyBjeT0nMTM0LjUnIHI9JzEuMDEnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40OScvPjxjaXJjbGUgY3g9JzE2Ny4wJyBjeT0nMC45JyByPScwLjUyJyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTInLz48Y2lyY2xlIGN4PSc3OC43JyBjeT0nNTkuMycgcj0nMC43MycgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjQyJy8+PGNpcmNsZSBjeD0nMTkuOCcgY3k9JzEzNS41JyByPScwLjUxJyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuMzInLz48Y2lyY2xlIGN4PScxNjEuNScgY3k9JzExMi41JyByPScwLjk3JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNDMnLz48Y2lyY2xlIGN4PSc5LjcnIGN5PSc4NS45JyByPScwLjU2JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSc1OC42JyBjeT0nMTY2LjgnIHI9JzEuNDYnIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzAuNicgY3k9JzE2NS41JyByPScxLjQ0JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNTgnLz48Y2lyY2xlIGN4PScxNjIuNCcgY3k9JzIwLjUnIHI9JzAuNzInIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC41MycvPjxjaXJjbGUgY3g9JzIuOScgY3k9Jzg1LjQnIHI9JzEuMDUnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40MycvPjxjaXJjbGUgY3g9JzYzLjInIGN5PScyLjYnIHI9JzEuMzknIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9JzQ0LjknIGN5PSc0Mi44JyByPScxLjM5JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuMzEnLz48Y2lyY2xlIGN4PSc0Mi4wJyBjeT0nNjIuNicgcj0nMC42OCcgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjM3Jy8+PGNpcmNsZSBjeD0nMTEwLjknIGN5PScxNS45JyByPScxLjI1JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNDEnLz48Y2lyY2xlIGN4PScxMDIuOScgY3k9JzExLjYnIHI9JzAuNzcnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40OScvPjxjaXJjbGUgY3g9JzI1LjcnIGN5PScxNDcuNicgcj0nMS4xMycgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjQ4Jy8+PGNpcmNsZSBjeD0nMTMuMCcgY3k9JzcyLjQnIHI9JzAuNzMnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzI5LjQnIGN5PScxOC4zJyByPScxLjQ2JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuMzknLz48Y2lyY2xlIGN4PSc2Mi4zJyBjeT0nMTEuOCcgcj0nMS4xMycgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjQ0Jy8+PGNpcmNsZSBjeD0nMTQ4LjUnIGN5PScxMDguNicgcj0nMC45NScgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjQ0Jy8+PGNpcmNsZSBjeD0nMTI0LjEnIGN5PScxNjAuNicgcj0nMS4zJyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNCcvPjxjaXJjbGUgY3g9JzIwLjMnIGN5PSc4MC45JyByPScxLjM2JyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNTMnLz48Y2lyY2xlIGN4PSc3NC42JyBjeT0nMTA2LjcnIHI9JzEuMCcgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nNjguMycgY3k9JzExOS40JyByPScwLjk4JyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNScvPjxjaXJjbGUgY3g9JzExNC41JyBjeT0nNTkuNycgcj0nMC41MycgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nMTAuOCcgY3k9JzM5LjAnIHI9JzAuNjknIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC40MScvPjxjaXJjbGUgY3g9JzE0OC45JyBjeT0nMTE2LjgnIHI9JzAuNzUnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41MycvPjxjaXJjbGUgY3g9JzExNC4wJyBjeT0nMTI4LjUnIHI9JzEuMCcgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nMTE5LjYnIGN5PScxNzkuNCcgcj0nMC41NScgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjM4Jy8+PGNpcmNsZSBjeD0nMTE2LjInIGN5PSc3Ny40JyByPScxLjUnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzE0MS4zJyBjeT0nOTIuOScgcj0nMC45MycgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjQ3Jy8+PGNpcmNsZSBjeD0nNzIuMycgY3k9JzgwLjUnIHI9JzAuOTcnIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC41OScvPjxjaXJjbGUgY3g9JzYuNCcgY3k9JzE3Ni42JyByPScwLjgzJyBmaWxsPScjYjdiYmI0JyBmaWxsLW9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSczMS41JyBjeT0nMTczLjQnIHI9JzEuMjgnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzQuMScgY3k9JzcwLjYnIHI9JzEuMDknIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzEzOC45JyBjeT0nMTUzLjcnIHI9JzEuMTInIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC42MicvPjxjaXJjbGUgY3g9JzEzOS4yJyBjeT0nOTQuNicgcj0nMS4yOCcgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjQ5Jy8+PGNpcmNsZSBjeD0nOTcuNicgY3k9Jzg4LjgnIHI9JzAuOTknIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC40NCcvPjxjaXJjbGUgY3g9Jzc4LjknIGN5PScxMjIuMicgcj0nMS4zMycgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjM1Jy8+PGNpcmNsZSBjeD0nMTAyLjQnIGN5PSczLjAnIHI9JzEuMTInIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC41OScvPjxjaXJjbGUgY3g9JzQ3LjMnIGN5PSc4LjgnIHI9JzEuMTknIGZpbGw9JyNhZWIyYWInIGZpbGwtb3BhY2l0eT0nMC4zJy8+PGNpcmNsZSBjeD0nMTAzLjInIGN5PSc0My44JyByPScxLjI4JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuMycvPjxjaXJjbGUgY3g9Jzg0LjEnIGN5PScxMTguMCcgcj0nMS4wOCcgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjQ2Jy8+PGNpcmNsZSBjeD0nOTMuNicgY3k9JzU4LjMnIHI9JzEuMjInIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC42MScvPjxjaXJjbGUgY3g9JzEzNi45JyBjeT0nMTQwLjUnIHI9JzAuOTYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzEyOC4xJyBjeT0nNzEuOScgcj0nMS4wOScgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjM5Jy8+PGNpcmNsZSBjeD0nMTYwLjgnIGN5PScxMTcuOCcgcj0nMC42MycgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjQ3Jy8+PGNpcmNsZSBjeD0nMjIuNycgY3k9JzM1LjMnIHI9JzAuNzgnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC41Jy8+PGNpcmNsZSBjeD0nMTU3LjInIGN5PSc3LjcnIHI9JzEuMDInIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC4zNScvPjxjaXJjbGUgY3g9JzM2LjcnIGN5PScxMzcuMycgcj0nMS4xOScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjQ5Jy8+PGNpcmNsZSBjeD0nNzkuOScgY3k9JzE2Mi45JyByPScwLjYxJyBmaWxsPScjYWViMmFiJyBmaWxsLW9wYWNpdHk9JzAuNScvPjxjaXJjbGUgY3g9JzE0NC40JyBjeT0nMy4yJyByPScwLjg2JyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNDcnLz48Y2lyY2xlIGN4PSc3Ny4yJyBjeT0nMTMwLjQnIHI9JzEuMTQnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41Jy8+PGNpcmNsZSBjeD0nMjEuNCcgY3k9JzQzLjEnIHI9JzEuMzknIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC41MScvPjxjaXJjbGUgY3g9JzE1OC42JyBjeT0nNDQuNScgcj0nMC43MicgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjUnLz48Y2lyY2xlIGN4PScxNC44JyBjeT0nNTIuNScgcj0nMC45MicgZmlsbD0nI2NmZDNjYycgZmlsbC1vcGFjaXR5PScwLjQ4Jy8+PGNpcmNsZSBjeD0nODUuMCcgY3k9JzE0MC4yJyByPScxLjM3JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNDQnLz48Y2lyY2xlIGN4PScxMTMuOCcgY3k9JzIuMycgcj0nMS4xOScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjQ3Jy8+PGNpcmNsZSBjeD0nMTUxLjgnIGN5PScxMjAuOScgcj0nMS4xOScgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjYxJy8+PGNpcmNsZSBjeD0nMzMuNScgY3k9JzEzMC4yJyByPScwLjYnIGZpbGw9JyNkMmQ2Y2YnIGZpbGwtb3BhY2l0eT0nMC40MScvPjxjaXJjbGUgY3g9JzE3OS45JyBjeT0nOS45JyByPScxLjQ5JyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTknLz48Y2lyY2xlIGN4PSc4OS4zJyBjeT0nMTAzLjAnIHI9JzAuODgnIGZpbGw9JyNjZmQzY2MnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxjaXJjbGUgY3g9JzIxLjUnIGN5PScxMjcuNScgcj0nMS4zNicgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nMTMuMycgY3k9JzE2OC44JyByPScxLjM1JyBmaWxsPScjZDJkNmNmJyBmaWxsLW9wYWNpdHk9JzAuNDUnLz48Y2lyY2xlIGN4PSc3OS40JyBjeT0nOTkuMycgcj0nMC45OCcgZmlsbD0nI2FlYjJhYicgZmlsbC1vcGFjaXR5PScwLjU2Jy8+PGNpcmNsZSBjeD0nOTguMycgY3k9Jzg1LjUnIHI9JzEuMicgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nMTA0LjQnIGN5PScxMTcuNCcgcj0nMC45NScgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjUzJy8+PGNpcmNsZSBjeD0nNjYuOScgY3k9JzE0Mi43JyByPScwLjYnIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC40MycvPjxjaXJjbGUgY3g9JzI5LjEnIGN5PScxMDkuMCcgcj0nMC45NycgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PGNpcmNsZSBjeD0nMTI2LjEnIGN5PSc2Ny41JyByPScxLjI2JyBmaWxsPScjZDJkNmNmJyBmaWxsLW9wYWNpdHk9JzAuNDknLz48Y2lyY2xlIGN4PSc2OC41JyBjeT0nMTIxLjknIHI9JzAuODMnIGZpbGw9JyNiN2JiYjQnIGZpbGwtb3BhY2l0eT0nMC42MScvPjxjaXJjbGUgY3g9Jzc1LjgnIGN5PSczNC4yJyByPScxLjQzJyBmaWxsPScjYzBjNGJkJyBmaWxsLW9wYWNpdHk9JzAuNTgnLz48Y2lyY2xlIGN4PSc1My43JyBjeT0nNzIuMycgcj0nMS4wNScgZmlsbD0nI2QyZDZjZicgZmlsbC1vcGFjaXR5PScwLjQzJy8+PGNpcmNsZSBjeD0nODAuNScgY3k9JzQuOCcgcj0nMC42NicgZmlsbD0nI2I3YmJiNCcgZmlsbC1vcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nNTkuNCcgY3k9JzM3LjcnIHI9JzEuMjgnIGZpbGw9JyNjMGM0YmQnIGZpbGwtb3BhY2l0eT0nMC41MicvPjxjaXJjbGUgY3g9JzQyLjMnIGN5PScyMy44JyByPScwLjcyJyBmaWxsPScjY2ZkM2NjJyBmaWxsLW9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PScxNjEuMScgY3k9JzE5LjcnIHI9JzEuMScgZmlsbD0nI2MwYzRiZCcgZmlsbC1vcGFjaXR5PScwLjQ3Jy8+PC9zdmc+") 0 0 / 180px 180px repeat,
+                   linear-gradient(180deg, #cbd0c8 0px, #c6cac3 320px, #c3c7c0 100%);
+  --bg-2:          #c1c5be;                  /* solid stand-in for exports */
+  --surface:       #f2f4ef;                  /* clinical white — the wall plate.
+                                                PALEST ground in the kit */
+  --surface-2:     #bfc3bc;                  /* recessed concrete slab — inputs,
+                                                badges, code. DARKEST common ground */
+  --overlay:       rgba(14, 17, 12, .58);    /* modal scrim: concrete in shadow */
+
+  /* -- text: near-black aggregate ink, graded against the darkest ground ---- */
+  --text:          #12150f;                  /* 9.98:1 on the darkest aggregate */
+  --text-muted:    #3a4136;                  /* 5.72:1 on the darkest aggregate */
+  --text-dim:      #424a3f;                  /* captions/hints — 4.98:1 on the
+                                                darkest aggregate pixel, the
+                                                binding ground for a light kit */
+  --text-invert:   #10130d;                  /* near-black label ON the acid fill:
+                                                9.18:1 — hazard signage puts black
+                                                on yellow-green, never white */
+
+  /* -- brand: one action colour and its ink -------------------------------- */
+  --accent:        #86c81a;                  /* toxic acid green — the live lamp */
+  --accent-hover:  #78b814;                  /* it deepens under load: a fill with a
+                                                black label may only get darker */
+  --accent-2:      #e8860c;                  /* SAFETY AMBER — the hot warning tone.
+                                                Media, charts, hazard tape. A fill
+                                                only; it never carries text */
+  --accent-soft:   rgba(134, 200, 26, .18);  /* 18% acid tint, derived from --accent */
+
+  /* -- accent as TEXT (bright green cannot be a label on concrete) ---------- */
+  --accent-ink:        #1d4a06;              /* 5.59:1 on the darkest aggregate, 5.41:1
+                                                even on its own 18% tint composited
+                                                over that ground — the badge case */
+  --accent-ink-hover:  #173a05;              /* deeper on hover — on a light site
+                                                the accent text darkens, never pales */
+
+  /* -- status: institutional signal lamps, all dark enough to be text -------- */
+  --ok:            #0d5230;                  /* nominal — a green held bluer than
+                                                the acid accent so "all clear"
+                                                never reads as the action */
+  --warn:          #6a3f04;                  /* caution amber as text */
+  --danger:        #8a160d;                  /* containment breach */
+  --info:          #17427e;                  /* CCTV / telemetry blue */
+
+  /* -- lines: dark hairline joints in the concrete -------------------------- */
+  --border:        rgba(20, 24, 16, .22);
+  --border-strong: rgba(20, 24, 16, .46);
+  --border-w:      1px;                       /* a cast panel joint, not a slab */
+  --focus-ring:    #2c6a0e;                   /* 3.58:1 on the darkest ground */
+
+  /* -- shape: machined, near-square ----------------------------------------- */
+  --radius-sm:      2px;
+  --radius-md:      4px;
+  --radius-lg:      6px;
+  --radius-pill:    2px;                      /* a badge is a stamped plate, not a
+                                                lozenge — the token keeps its name */
+  --cut:            0px;                      /* NO clip-path: it would eat the
+                                                --glow, which this kit needs */
+
+  /* -- type — technical signage, institutional body, telemetry mono --------- */
+  --font-display:  "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .16em;                  /* stencilled label spacing */
+  --tracking-display: -.005em;
+
+  /* -- depth: hard offset drops (institutional), one energised glow ---------- */
+  --shadow-1:      0 1px 0 rgba(20, 24, 16, .16), 0 8px 18px -12px rgba(20, 24, 16, .45);
+  --shadow-2:      0 2px 0 rgba(20, 24, 16, .18), 0 18px 36px -20px rgba(20, 24, 16, .55);
+  /* --glow marks the LIVING element (primary action / focus / active tab): a
+     tight acid ring with a short bloom, so it reads as a lit indicator lamp.
+     See the header note — this is scoped, not atmosphere. */
+  --glow:          0 0 0 1px rgba(120, 184, 20, .75),
+                   0 0 9px rgba(134, 200, 26, .55),
+                   0 0 20px -4px rgba(116, 178, 20, .50);
+  --blur:          none;                      /* concrete is not frosted glass */
+
+  /* -- motion: a lamp switching, not a glide -------------------------------- */
+  --dur:           .18s;
+  --ease:          cubic-bezier(.2, .7, .3, 1);
+
+  /* --------------------------------------------------------- opt-in capabilities */
+  /* The kit is a three-tier stack — concrete --bg → white --surface → grey
+     --surface-2 — so text inside cards and inside insets is declared explicitly
+     rather than inherited from one page-wide ink. */
+  --text-on-surface:        #12150f;
+  --text-on-surface-muted:  #3a4136;
+  --text-on-surface-2:      #16190f;
+  --text-on-surface-2-muted: #3f4739;
+
+  /* fields read as MILLED INTO the concrete, not laid on top of it */
+  --input-inset:   inset 0 1px 2px rgba(20, 24, 16, .30), inset 0 -1px 0 rgba(255, 255, 255, .45);
+  /* a physical 1px lip on every button variant */
+  --btn-shadow:    0 1px 0 rgba(20, 24, 16, .18);
+
+  /* native checkbox/radio ignore border-radius, so a square kit squares them */
+  --check-appearance: none;
+  --check-bg:         #f2f4ef;
+  --check-border:     2px solid #16190f;
+  --check-checked:    #86c81a;                /* a ticked box is a FILLED green plate */
+
+  /* progress + avatar fill: hard-banded two-tone acid (hazard tape in green).
+     Both bands stay light so the near-black --text-invert label reads on either. */
+  --fill-bg:       repeating-linear-gradient(45deg, #9ad81e 0 9px, #7cbb12 9px 18px);
+
+  /* --media-bg makes the card's media panel read as CONTAMINATION, not as an
+     accent ramp: a dark phosphor-green CCTV readout — scanlines, a waveform
+     trace, a level readout and a camera reticle. Drawn (inline SVG). --media-op:
+     1 lifts the default .85 dim so the readout is at full strength. */
+  --media-op:      1;
+  --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0ODAnIGhlaWdodD0nMTYwJyB2aWV3Qm94PScwIDAgNDgwIDE2MCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdwJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMGUxYTA4Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMDUwODBhJy8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9J3cnIGN4PScuNScgY3k9Jy40NCcgcj0nLjcyJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyM5ZmUwMjgnIHN0b3Atb3BhY2l0eT0nLjM0Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMGUxYTA4JyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0nYmFyJyB4MT0nMCcgeTE9JzAnIHgyPScwJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjYjVlYTM0JyBzdG9wLW9wYWNpdHk9Jy43MicvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzVmOTYxMCcgc3RvcC1vcGFjaXR5PScuNDInLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nNDgwJyBoZWlnaHQ9JzE2MCcgZmlsbD0ndXJsKCNwKScvPjxyZWN0IHdpZHRoPSc0ODAnIGhlaWdodD0nMTYwJyBmaWxsPSd1cmwoI3cpJy8+PGcgZmlsbD0nIzZmYWUxMicgZmlsbC1vcGFjaXR5PScuMTInPjxyZWN0IHg9JzAnIHk9JzAnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzQnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzgnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzEyJyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxNicgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMjAnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzI0JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScyOCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMzInIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzM2JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PSc0MCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nNDQnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzQ4JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PSc1Micgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nNTYnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzYwJyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PSc2NCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nNjgnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzcyJyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PSc3Nicgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nODAnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9Jzg0JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PSc4OCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nOTInIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9Jzk2JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxMDAnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzEwNCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMTA4JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxMTInIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzExNicgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMTIwJyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxMjQnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzEyOCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMTMyJyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxMzYnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzE0MCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMTQ0JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48cmVjdCB4PScwJyB5PScxNDgnIHdpZHRoPSc0ODAnIGhlaWdodD0nMicvPjxyZWN0IHg9JzAnIHk9JzE1Micgd2lkdGg9JzQ4MCcgaGVpZ2h0PScyJy8+PHJlY3QgeD0nMCcgeT0nMTU2JyB3aWR0aD0nNDgwJyBoZWlnaHQ9JzInLz48L2c+PGxpbmUgeDE9JzAnIHkxPSc3MCcgeDI9JzQ4MCcgeTI9JzcwJyBzdHJva2U9JyM2ZmFlMTInIHN0cm9rZS1vcGFjaXR5PScuMicvPjxnIGZpbGw9J3VybCgjYmFyKSc+PHJlY3QgeD0nMjYnIHk9JzEyMycgd2lkdGg9JzEwJyBoZWlnaHQ9JzknLz48cmVjdCB4PSc0MScgeT0nMTE2JyB3aWR0aD0nMTAnIGhlaWdodD0nMTYnLz48cmVjdCB4PSc1NicgeT0nMTA4JyB3aWR0aD0nMTAnIGhlaWdodD0nMjQnLz48cmVjdCB4PSc3MScgeT0nMTIwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTInLz48cmVjdCB4PSc4NicgeT0nMTEyJyB3aWR0aD0nMTAnIGhlaWdodD0nMjAnLz48cmVjdCB4PScxMDEnIHk9JzEwNCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzI4Jy8+PHJlY3QgeD0nMTE2JyB5PScxMTgnIHdpZHRoPScxMCcgaGVpZ2h0PScxNCcvPjxyZWN0IHg9JzEzMScgeT0nMTEwJyB3aWR0aD0nMTAnIGhlaWdodD0nMjInLz48cmVjdCB4PScxNDYnIHk9JzEyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJy8+PHJlY3QgeD0nMTYxJyB5PScxMTQnIHdpZHRoPScxMCcgaGVpZ2h0PScxOCcvPjwvZz48ZyBmaWxsPScjOGZkMTFjJyBmaWxsLW9wYWNpdHk9Jy41Jz48cmVjdCB4PSczMDAnIHk9JzExOCcgd2lkdGg9JzExJyBoZWlnaHQ9JzE0Jy8+PHJlY3QgeD0nMzE2JyB5PScxMTAnIHdpZHRoPScxMScgaGVpZ2h0PScyMicvPjxyZWN0IHg9JzMzMicgeT0nMTIxJyB3aWR0aD0nMTEnIGhlaWdodD0nMTEnLz48cmVjdCB4PSczNDgnIHk9JzEwNicgd2lkdGg9JzExJyBoZWlnaHQ9JzI2Jy8+PHJlY3QgeD0nMzY0JyB5PScxMTUnIHdpZHRoPScxMScgaGVpZ2h0PScxNycvPjxyZWN0IHg9JzM4MCcgeT0nMTA5JyB3aWR0aD0nMTEnIGhlaWdodD0nMjMnLz48cmVjdCB4PSczOTYnIHk9JzExOScgd2lkdGg9JzExJyBoZWlnaHQ9JzEzJy8+PHJlY3QgeD0nNDEyJyB5PScxMTInIHdpZHRoPScxMScgaGVpZ2h0PScyMCcvPjwvZz48bGluZSB4MT0nMjInIHkxPScxMzMuNScgeDI9JzE4MCcgeTI9JzEzMy41JyBzdHJva2U9JyM4ZmQxMWMnIHN0cm9rZS1vcGFjaXR5PScuNDUnLz48bGluZSB4MT0nMjk2JyB5MT0nMTMzLjUnIHgyPSc0MTgnIHkyPScxMzMuNScgc3Ryb2tlPScjOGZkMTFjJyBzdHJva2Utb3BhY2l0eT0nLjQ1Jy8+PGcgc3Ryb2tlPScjN2RiZDE4JyBzdHJva2Utb3BhY2l0eT0nLjMyJyBzdHJva2Utd2lkdGg9JzMnIGZpbGw9J25vbmUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCc+PHBhdGggZD0nTTQ2MiA5MiBDNDU5IDEwNCA0NjYgMTEyIDQ2MiAxMjQnLz48cGF0aCBkPSdNNDc0IDk2IEM0NzIgMTA2IDQ3NyAxMTQgNDc0IDEyMicvPjwvZz48cG9seWxpbmUgZmlsbD0nbm9uZScgc3Ryb2tlPScjYTZlMDJhJyBzdHJva2Utd2lkdGg9JzIuMicgc3Ryb2tlLW9wYWNpdHk9Jy45MicgcG9pbnRzPScwLDc5IDgsODQgMTYsODIgMjQsMTAyIDMyLDg1IDQwLDYyIDQ4LDY3IDU2LDQ4IDY0LDM4IDcyLDY1IDgwLDY4IDg4LDcyIDk2LDEwMSAxMDQsOTMgMTEyLDc2IDEyMCw4MiAxMjgsNTkgMTM2LDQwIDE0NCw1NyAxNTIsNTMgMTYwLDU3IDE2OCw5MCAxNzYsOTAgMTg0LDg0IDE5Miw5NyAyMDAsNzMgMjA4LDUyIDIxNiw2MCAyMjQsNDUgMjMyLDQzIDI0MCw3NCAyNDgsNzcgMjU2LDgxIDI2NCwxMDQgMjcyLDg3IDI4MCw2OSAyODgsNzIgMjk2LDQ5IDMwNCwzOCAzMTIsNjEgMzIwLDYxIDMyOCw2OSAzMzYsOTkgMzQ0LDkxIDM1Miw4MSAzNjAsODkgMzY4LDYyIDM3Niw0NCAzODQsNTcgMzkyLDQ3IDQwMCw1MyA0MDgsODUgNDE2LDg0IDQyNCw4NSA0MzIsMTAxIDQ0MCw3NyA0NDgsNTkgNDU2LDY0IDQ2NCw0NCA0NzIsNDEgNDgwLDcwJy8+PHBvbHlsaW5lIGZpbGw9J25vbmUnIHN0cm9rZT0nI2UyZmY4Nicgc3Ryb2tlLXdpZHRoPScxJyBzdHJva2Utb3BhY2l0eT0nLjQ1JyBwb2ludHM9JzAsNzggOCw4MyAxNiw4MSAyNCwxMDEgMzIsODQgNDAsNjEgNDgsNjYgNTYsNDcgNjQsMzcgNzIsNjQgODAsNjcgODgsNzEgOTYsMTAwIDEwNCw5MiAxMTIsNzUgMTIwLDgxIDEyOCw1OCAxMzYsMzkgMTQ0LDU2IDE1Miw1MiAxNjAsNTYgMTY4LDg5IDE3Niw4OSAxODQsODMgMTkyLDk2IDIwMCw3MiAyMDgsNTEgMjE2LDU5IDIyNCw0NCAyMzIsNDIgMjQwLDczIDI0OCw3NiAyNTYsODAgMjY0LDEwMyAyNzIsODYgMjgwLDY4IDI4OCw3MSAyOTYsNDggMzA0LDM3IDMxMiw2MCAzMjAsNjAgMzI4LDY4IDMzNiw5OCAzNDQsOTAgMzUyLDgwIDM2MCw4OCAzNjgsNjEgMzc2LDQzIDM4NCw1NiAzOTIsNDYgNDAwLDUyIDQwOCw4NCA0MTYsODMgNDI0LDg0IDQzMiwxMDAgNDQwLDc2IDQ0OCw1OCA0NTYsNjMgNDY0LDQzIDQ3Miw0MCA0ODAsNjknLz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNhNmUwMmEnPjxyZWN0IHg9JzEyJyB5PScxMicgd2lkdGg9JzQ1NicgaGVpZ2h0PScxMzYnIHN0cm9rZS1vcGFjaXR5PScuMzAnIHN0cm9rZS13aWR0aD0nMScvPjxnIHN0cm9rZS1vcGFjaXR5PScuNycgc3Ryb2tlLXdpZHRoPSczJz48cGF0aCBkPSdNMTIgMzQgTDEyIDEyIEwzNCAxMicvPjxwYXRoIGQ9J000NDYgMTIgTDQ2OCAxMiBMNDY4IDM0Jy8+PHBhdGggZD0nTTEyIDEyNiBMMTIgMTQ4IEwzNCAxNDgnLz48cGF0aCBkPSdNNDQ2IDE0OCBMNDY4IDE0OCBMNDY4IDEyNicvPjwvZz48L2c+PGNpcmNsZSBjeD0nNDUyJyBjeT0nMzAnIHI9JzUnIGZpbGw9JyNlMmZmODYnLz48Y2lyY2xlIGN4PSc0NTInIGN5PSczMCcgcj0nOScgZmlsbD0nbm9uZScgc3Ryb2tlPScjZTJmZjg2JyBzdHJva2Utb3BhY2l0eT0nLjQnLz48L3N2Zz4=") center / cover no-repeat;
+
+  /* --wash replaces the masthead's default radial accent bloom. On a light
+     concrete site it is daylight off the wall plus a faint green readout source
+     at the top-left — a translucent LAYER, so the aggregate shows through. */
+  --wash:
+    radial-gradient(120% 140% at 12% 0%, rgba(134, 200, 26, .12) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 70%);
+
+  /* ----------------------------------------------------------------------
+     SIGNATURE — the three devices this kit is recognised by, each doing a
+     DIFFERENT job: a SYMBOL, a WARNING, an ATMOSPHERE. Each carries its own
+     base layer, so no tile shows only the kit's flat surface.
+     ---------------------------------------------------------------------- */
+
+  /* 1 · THE TREFOIL — the SYMBOL. DRAWN, not stacked gradients: a trefoil is
+     exact geometry — three congruent annular sectors at 120° around a core —
+     and no gradient can produce a wedge. The mark sits on a yellow placard
+     disc (radiography signage is yellow/black, which is also why the kit's
+     warning tone is amber). */
+  --radioactive-trefoil:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc5NicgaGVpZ2h0PSc5Nicgdmlld0JveD0nMCAwIDk2IDk2Jz48Y2lyY2xlIGN4PSc0OCcgY3k9JzQ4JyByPSc0NScgZmlsbD0nI2Y0YzQwMCcvPjxjaXJjbGUgY3g9JzQ4JyBjeT0nNDgnIHI9JzQ1JyBmaWxsPSdub25lJyBzdHJva2U9JyMxNDE2MGYnIHN0cm9rZS13aWR0aD0nMi41Jy8+PHBhdGggZD0nTTMyLjUwIDIxLjE1IEEzMS4wIDMxLjAgMCAwIDEgNjMuNTAgMjEuMTUgTDUzLjUwIDM4LjQ3IEExMS4wIDExLjAgMCAwIDAgNDIuNTAgMzguNDcgWicgZmlsbD0nIzE0MTYwZicvPjxwYXRoIGQ9J003OS4wMCA0OC4wMCBBMzEuMCAzMS4wIDAgMCAxIDYzLjUwIDc0Ljg1IEw1My41MCA1Ny41MyBBMTEuMCAxMS4wIDAgMCAwIDU5LjAwIDQ4LjAwIFonIGZpbGw9JyMxNDE2MGYnLz48cGF0aCBkPSdNMzIuNTAgNzQuODUgQTMxLjAgMzEuMCAwIDAgMSAxNy4wMCA0OC4wMCBMMzcuMDAgNDguMDAgQTExLjAgMTEuMCAwIDAgMCA0Mi41MCA1Ny41MyBaJyBmaWxsPScjMTQxNjBmJy8+PGNpcmNsZSBjeD0nNDgnIGN5PSc0OCcgcj0nNycgZmlsbD0nIzE0MTYwZicvPjxjaXJjbGUgY3g9JzQ4JyBjeT0nNDgnIHI9JzkuNScgZmlsbD0nbm9uZScgc3Ryb2tlPScjZjRjNDAwJyBzdHJva2Utd2lkdGg9JzEuNCcvPjwvc3ZnPg==") center / 62px 62px no-repeat,
+    radial-gradient(circle at 50% 46%, #d9ddd6 0%, #b7bbb4 80%);
+
+  /* 2 · HAZARD HATCHING — the WARNING. Crisp hard-banded 45° yellow/black tape.
+     DRAWN as an SVG pattern rather than a CSS `repeating-linear-gradient`: the
+     gallery's gradient-normaliser rescales any px stop to percentages for small
+     preview chips, which turns a 7px stripe pattern into a smooth yellow→black
+     ramp and destroys the hard bands. An SVG pattern cannot be mangled. This is
+     also the device that needs a mid ground, which is why the kit is light. */
+  --radioactive-hazard:
+    /* DRAWN, for the same reason as the trefoil: 45° stripes are exact geometry, and a
+       CSS px-stop `repeating-linear-gradient` is rewritten into a smooth ramp by the
+       gallery's gradient-normaliser (which rescales px stops to percentages for small
+       preview chips), which destroys the hard bands. An SVG pattern cannot be mangled.
+       Yellow/black bands, 7px each on a 45° axis. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyOCcgaGVpZ2h0PScyOCcgdmlld0JveD0nMCAwIDI4IDI4Jz48ZGVmcz48cGF0dGVybiBpZD0naCcgd2lkdGg9JzE0JyBoZWlnaHQ9JzE0JyBwYXR0ZXJuVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyBwYXR0ZXJuVHJhbnNmb3JtPSdyb3RhdGUoNDUpJz48cmVjdCB3aWR0aD0nMTQnIGhlaWdodD0nMTQnIGZpbGw9JyNmNGM0MDAnLz48cmVjdCB3aWR0aD0nNycgaGVpZ2h0PScxNCcgZmlsbD0nIzE0MTYwZicvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9JzI4JyBoZWlnaHQ9JzI4JyBmaWxsPSd1cmwoI2gpJy8+PC9zdmc+") 0 0 / 28px 28px repeat,
+    #f4c400;
+
+  /* 3 · THE SPILL — the ATMOSPHERE. DRAWN: a toxic puddle is a blob with a hot
+     core, spatter and rising vapour — structure, not a green gradient. It
+     carries its own dark hall base, so the tile reads as luminescence in a dark
+     containment cell rather than as a flat green chip. */
+  --radioactive-spill:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMjAwIDEyMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdiJyB4MT0nMCcgeTE9JzAnIHgyPScwJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMTkxZDEzJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMGEwYzA3Jy8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9J2dsb3cnIGN4PScuNDQnIGN5PScuNjInIHI9Jy42Mic+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjYTZlMDJhJyBzdG9wLW9wYWNpdHk9Jy41NScvPjxzdG9wIG9mZnNldD0nLjUnIHN0b3AtY29sb3I9JyM2ZmFlMTInIHN0b3Atb3BhY2l0eT0nLjE2Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMDAwMDAwJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9JzEyMCcgZmlsbD0ndXJsKCNiKScvPjxnIHN0cm9rZT0nIzZmYWUxMicgc3Ryb2tlLW9wYWNpdHk9Jy4xMCcgc3Ryb2tlLXdpZHRoPScxJz48bGluZSB4MT0nMCcgeTE9JzE2JyB4Mj0nMjAwJyB5Mj0nMTYnLz48bGluZSB4MT0nMCcgeTE9JzI2JyB4Mj0nMjAwJyB5Mj0nMjYnLz48bGluZSB4MT0nMCcgeTE9JzEwNCcgeDI9JzIwMCcgeTI9JzEwNCcvPjwvZz48ZWxsaXBzZSBjeD0nODgnIGN5PSc3NCcgcng9Jzg2JyByeT0nNTInIGZpbGw9J3VybCgjZ2xvdyknLz48cGF0aCBkPSdNMjAgODggQzE0IDc4IDI2IDY4IDQ0IDcwIEM1OCA3MSA2OCA2NiA4NCA3MCBDMTA0IDc1IDEyMCA3MCAxMzIgODAgQzE0NCA5MCAxMjggMTAwIDEwOCAxMDAgQzc4IDEwMSA0NCAxMDMgMzAgOTggQzI0IDk2IDIyIDkzIDIwIDg4IFonIGZpbGw9JyM1Zjk2MTAnLz48cGF0aCBkPSdNMzQgODQgQzMyIDc5IDQyIDc2IDU0IDc5IEM2NiA4MiA3OCA3OCA5MCA4MyBDMTAwIDg3IDk2IDkzIDgyIDk0IEM2NCA5NSA0MCA5MiAzNCA4NCBaJyBmaWxsPScjN2RiZDE4Jy8+PGVsbGlwc2UgY3g9JzcwJyBjeT0nODQnIHJ4PScyNicgcnk9JzknIGZpbGw9JyNiNWVhMzQnLz48ZWxsaXBzZSBjeD0nNjInIGN5PSc4Micgcng9JzEzJyByeT0nNC40JyBmaWxsPScjZTJmZjg2Jy8+PGcgZmlsbD0nIzdkYmQxOCc+PGNpcmNsZSBjeD0nMTUwJyBjeT0nNjYnIHI9JzQuMicvPjxjaXJjbGUgY3g9JzE2MicgY3k9Jzc4JyByPScyLjYnLz48Y2lyY2xlIGN4PScyOCcgY3k9JzU4JyByPSczJy8+PGNpcmNsZSBjeD0nMTEyJyBjeT0nNDYnIHI9JzIuMicvPjwvZz48ZyBmaWxsPScjZDZmNTZhJz48Y2lyY2xlIGN4PScxNTEuNicgY3k9JzY0LjYnIHI9JzEuMicvPjxjaXJjbGUgY3g9JzI3LjQnIGN5PSc1Nycgcj0nMC45Jy8+PGNpcmNsZSBjeD0nMTYyLjgnIGN5PSc3Ny40JyByPScwLjgnLz48L2c+PGcgc3Ryb2tlPScjOGZkMTFjJyBzdHJva2Utb3BhY2l0eT0nLjM4JyBzdHJva2Utd2lkdGg9JzInIGZpbGw9J25vbmUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCc+PHBhdGggZD0nTTcwIDc0IEM2NiA2MiA3OCA1NiA3MiA0NCBDNjggMzYgNzYgMzAgNzIgMjInLz48cGF0aCBkPSdNOTYgNzIgQzkzIDYyIDEwMiA1NiA5OCA0NicvPjxwYXRoIGQ9J001MiA3MCBDNDkgNjIgNTUgNTYgNTIgNDgnLz48L2c+PC9zdmc+") center / cover no-repeat,
+    linear-gradient(180deg, #191d13 0%, #0b0d08 100%);
+}

@@ -1,20 +1,16 @@
 {
   "name": "Psychedelic",
-  "tagline": "1960s acid poster — paper ground, five screen-print inks, fat groovy type.",
+  "tagline": "1960s acid poster — a warped banded plate, five screen-print inks, fat groovy type.",
   "order": 100,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap",
   "fonts_label": "Bowlby One · DM Sans · Space Mono",
   "mode": "light",
   "source": "original",
-  "tags": ["light", "psychedelic", "organic", "warm", "retro", "bold"],
+  "tags": ["light", "psychedelic", "organic", "screen-print", "retro", "bold"],
   "use_when": "gig and festival posters, album art and music brands, counterculture marketing, anything that should look screen-printed",
   "signature": [
-    "--psychedelic-swirl",
-    "--psychedelic-burst",
-    "--psychedelic-wobble",
-    "--psychedelic-blob",
-    "--psychedelic-ramp",
-    "--psychedelic-misreg",
-    "--psychedelic-grain"
+    "--psychedelic-warp",
+    "--psychedelic-halftone",
+    "--psychedelic-burst"
   ]
 }

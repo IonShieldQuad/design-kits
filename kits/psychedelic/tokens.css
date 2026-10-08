@@ -1,69 +1,84 @@
 /* ============================================================================
    design-kits · psychedelic
    ----------------------------------------------------------------------------
-   A 1960s ACID POSTER, printed on paper. The ground is warm off-white PAPER and
-   every hue is an INK laid on top of it — which is both the period-correct
-   construction (a screen print begins with paper, not with a coloured page) and
-   the only construction that keeps five clashing inks readable at paragraph
-   length. A fully saturated ground would be a poster you cannot read.
+   A 1960s ACID POSTER, printed on paper. The ground is a PAPER PLATE, and the
+   page is the POSTER: a hard-banded ripple of overprinted screen tints, then a
+   3px halftone grain, then the plate. Every hue is an INK laid on the paper —
+   the period-correct construction (a screen print begins with paper, not with
+   a coloured page) and the only construction that keeps five clashing inks
+   readable at paragraph length. A fully saturated ground is a poster you cannot
+   read past the headline.
 
    Inks: ACID GREEN #a8d400 · HOT ORANGE #ff6a00 · MAGENTA #e5198f ·
          DEEP PURPLE #5b1a8f · YELLOW #ffd21e (used sparingly)
    Three jobs: ORANGE drives the single primary action, DEEP PURPLE is the cool
    counterweight, and ACID GREEN + MAGENTA + YELLOW are GRAPHIC inks — they live
-   in the pattern extras, the ramp and the printed edge, never in text (acid
+   in the ground field, the patterns and the printed edge, never in text (acid
    green on paper is 1.4:1, yellow 1.2:1: both are colour, not language).
 
    Organic and WARPED, not geometric: no chamfer, no grid — the era is carried
-   by the clashing palette, a fat rounded display face, and the --psychedelic-*
-   swirl / burst / wobble / blob extras below.
+   by the clashing palette, a fat rounded display face, a warped banded ground,
+   a halftone grain and the --psychedelic-* extras below.
+
+   Print logic: HARD bands (two stops at one position), never a smooth ramp; the
+   inks OVERPRINT where two plates meet. The ground is a light plate, so the
+   inks are laid as SCREEN TINTS — YELLOW and ACID carry the field at strength
+   because they are the two light inks; MAGENTA, ORANGE and PURPLE arrive as
+   thin overprint rings, because at full strength they would sink the plate
+   below the plum ink's legibility floor. The full-strength clash is the
+   graphics' job (--psychedelic-burst, --media-bg, the masthead --wash).
 
    Fonts: Bowlby One (display) · DM Sans (body) · Space Mono (labels)
    Contract: docs/KIT-SPEC.md v1.1. Every required name is present below.
    ========================================================================== */
 :root{
   /* -- surfaces ---------------------------------------------------------- */
-  /* --bg is a GRADIENT — aged paper, warm and uneven. The stops are in PX on purpose: a %
-     ramp over a 3000px document shows only its first stop in the first screen, which reads
-     as a flat plate. Contrast is checked against the DARKEST stop, #f1e7cc (the aged centre
-     band at 880px); every other stop is lighter and therefore scores higher. --bg-2 is the
-     solid paper stand-in for exports and for tools that cannot parse a gradient token. */
-  --bg:            linear-gradient(180deg, #fbf7ea 0px, #f5eeda 460px, #f1e7cc 880px, #faf5e8 1400px);
-  --bg-2:          #f6efdb;                 /* solid paper stop: masthead chrome, exports */
-  --surface:       #fdfaf0;                 /* cards — paper lifted off the aged ground */
-  --surface-2:     #f2e9d2;                 /* nested panels, inputs — a deeper paper wash */
+  /* --bg is the POSTER: a 3px halftone grain over a hard-banded ripple field
+     over the paper plate. The ripple stops are in PX on purpose — a % ramp over
+     a 3000px document shows only its first stop in the first screen, which
+     reads as a flat plate. Contrast is checked against the DARKEST band the
+     field can produce (`warp acid on #f6ecd8`, the palest paper stop under an
+     ink tint); see README. --bg-2 is the solid paper stand-in for exports and
+     for tools that cannot parse a layered token. */
+  --bg:
+    repeating-conic-gradient(rgba(42,10,62,.05) 0 25%, rgba(42,10,62,0) 0 50%) 0 0 / 3px 3px repeat,
+    var(--psychedelic-warp),
+    linear-gradient(180deg, #fdfaf1 0px, #f8f1e0 620px, #f6ecd8 1240px, #fbf6e9 2400px);
+  --bg-2:          #f8f1e0;                 /* solid paper stop: masthead chrome, exports */
+  --surface:       #fefcf4;                 /* cards — paper lifted off the printed plate */
+  --surface-2:     #f4ecd9;                 /* nested panels, inputs — a deeper paper wash */
   --overlay:       rgba(42,10,62,.55);      /* modal scrim — plum, not neutral grey */
 
   /* -- text — ONE ink tier, deep plum ------------------------------------ */
-  --text:          #2a0a3e;                 /* 14.1:1 on the darkest paper stop */
-  --text-muted:    #5c2570;                 /* 10.3:1 on --surface */
-  --text-dim:      #6d457e;                 /* 6.1:1 on the darkest stop, 7.2:1 on --surface,
-                                               6.2:1 on --surface-2 */
+  --text:          #2a0a3e;                 /* 10.9:1 on the darkest band the ground can make */
+  --text-muted:    #5c2570;                 /* 6.9:1 on the worst ground, 9.8:1 on --surface */
+  --text-dim:      #6d457e;                 /* 4.81:1 worst ground, 6.4:1 on --surface-2 */
   --text-invert:   #2a0a3e;                 /* the same plum ink, screen-printed ON the orange:
                                                6.0:1 on --accent. The poster's ink block is a
                                                dark plate, not a white one. */
 
   /* -- brand — five inks, three jobs ------------------------------------- */
   --accent:        #ff6a00;                 /* HOT ORANGE — the one primary action */
-  --accent-ink:    #a83606;                 /* ORANGE AS TEXT — a burnt-orange ink, 5.3:1 on the
-                                               darkest stop. #ff6a00 is a great button and an
-                                               unreadable small label; fill and text are
+  --accent-ink:    #943005;                 /* ORANGE AS TEXT — a burnt-orange ink, 5.31:1 on
+                                               the darkest band and 4.70:1 on its own 16% tint
+                                               composited over it. #ff6a00 is a great button and
+                                               an unreadable small label; fill and text are
                                                different jobs. Eyebrow, links, secondary-button
                                                labels, active nav/tab, inline code, badges. */
   --accent-ink-hover: #8c2d03;              /* the deeper text hover — --accent-hover is a FILL
                                                step and too light to read as type */
-  --accent-hover:  #e85d00;                 /* fill hover; still 5.0:1 under --text-invert */
+  --accent-hover:  #e85d00;                 /* fill hover; still 4.95:1 under --text-invert */
   --accent-2:      #5b1a8f;                 /* DEEP PURPLE — the cool counterweight. Media
                                                gradients, bars, avatars, the focus ring. */
   --accent-soft:   rgba(255,106,0,.16);     /* 16% orange tint — badge/nav fills that sit under
                                                --accent-ink, so it must stay in the orange
                                                family. Magenta and acid green arrive via the
-                                               pattern extras instead. */
+                                               ground field and the pattern extras instead. */
 
   /* -- status — deliberately off every brand ink ------------------------- */
-  --ok:            #0d6f4c;                 /* forest green, away from acid green; 5.1:1 on --surface-2 */
+  --ok:            #0d6f4c;                 /* forest green, away from acid green; 5.3:1 on --surface-2 */
   --warn:          #8a5500;                 /* brown-amber, away from hot orange and the yellow */
-  --danger:        #b81f24;                 /* true red, away from the magenta; 5.3:1 on --surface-2 */
+  --danger:        #b81f24;                 /* true red, away from the magenta; 5.5:1 on --surface-2 */
   --info:          #2a63a3;                 /* blue — the palette's one cold, non-brand hue */
 
   /* -- lines — THICK, saturated, deliberately off-key -------------------- */
@@ -73,7 +88,7 @@
   --border:        rgba(150,20,120,.46);
   --border-strong: rgba(150,20,120,.78);
   --border-w:      2px;                     /* bold-line kit: 2px everywhere */
-  --focus-ring:    #5b1a8f;                 /* deep purple focus — never the orange action; 8.6:1 */
+  --focus-ring:    #5b1a8f;                 /* deep purple focus — never the orange action; 6.8:1 */
 
   /* -- shape — soft, pooled, liquid (NOT a chamfer) ---------------------- */
   --radius-sm:     8px;
@@ -101,6 +116,66 @@
   --dur:           .18s;
   --ease:          cubic-bezier(.2,.8,.2,1);
 
+  /* -- the poster plate — a hard-banded ripple of overprinted screen tints -- */
+  /* The ground FIELD. Rings of YELLOW and ACID at full tint carry the poster;
+     MAGENTA / ORANGE / PURPLE arrive as thin overprint rings inside the paper
+     gaps. Two stops share every position (0px gaps) so each band edge is HARD —
+     a smooth ramp here would be a colour wash, not a screen print. The centre
+     sits off the plate's top-left so the bands land as warped arcs. A radial
+     repeat over ~205px — small enough that the motif also reads inside a 168x72
+     Signature tile instead of rendering as one flat field. See README for the
+     measured per-band contrast and tile non-flatness. */
+  --psychedelic-warp:
+    repeating-radial-gradient(circle at 16% 4%,
+      rgba(255,210,30,.70) 0 58px,          /* YELLOW — the field colour */
+      rgba(255,210,30,0)  58px 74px,
+      rgba(229,25,143,.12) 74px 82px,       /* MAGENTA — overprint ring */
+      rgba(229,25,143,0)  82px 96px,
+      rgba(168,212,0,.36) 96px 140px,       /* ACID GREEN — the counter-band */
+      rgba(168,212,0,0)   140px 152px,
+      rgba(255,106,0,.18) 152px 160px,      /* ORANGE — overprint ring */
+      rgba(255,106,0,0)   160px 174px,
+      rgba(91,26,143,.10) 174px 182px,      /* DEEP PURPLE — overprint ring */
+      rgba(91,26,143,0)   182px 205px);
+
+  /* TEXTURE — the 3px halftone screen. A repeating-conic checker IS the print
+     idiom (a dot screen), not a smooth noise field. The page lays a 5% variant
+     of it as grain in --bg; this full-strength token is the motif itself (tile)
+     and the base layer under --media-bg's burst. */
+  --psychedelic-halftone:
+    repeating-conic-gradient(rgba(229,25,143,.75) 0 25%, rgba(255,210,30,.80) 0 50%)
+      0 0 / 3px 3px repeat;
+
+  /* STRUCTURE — the full-strength sunburst. Five ink rays with paper between
+     them: the loud element, and the only place the inks meet at strength.
+     Graphics only (media panels, the signature tile) — never under text. */
+  --psychedelic-burst:
+    repeating-conic-gradient(from -90deg at 50% 50%,
+      rgba(255,106,0,.94) 0 9deg,  rgba(255,106,0,0)  9deg 18deg,
+      rgba(229,25,143,.90) 18deg 27deg, rgba(229,25,143,0) 27deg 36deg,
+      rgba(91,26,143,.90) 36deg 45deg,  rgba(91,26,143,0) 45deg 54deg,
+      rgba(255,210,30,.92) 54deg 63deg, rgba(255,210,30,0) 63deg 72deg,
+      rgba(168,212,0,.86) 72deg 81deg,  rgba(168,212,0,0) 81deg 90deg);
+
+  /* -- optional capabilities the shared lab honours ---------------------- */
+  /* Masthead: a PALE hard-banded ray fan rising from below the bar — the
+     poster's sunburst, light enough that the eyebrow (--accent-ink) and the
+     swatch captions (--text-dim) still clear their floors over it. */
+  --wash: repeating-conic-gradient(from -90deg at 50% 250%,
+      rgba(255,210,30,.18) 0 9deg,  rgba(255,210,30,0)  9deg 18deg,
+      rgba(255,106,0,.12) 18deg 27deg, rgba(255,106,0,0) 27deg 36deg,
+      rgba(168,212,0,.13) 36deg 45deg, rgba(168,212,0,0) 45deg 54deg,
+      rgba(229,25,143,.08) 54deg 63deg, rgba(229,25,143,0) 63deg 72deg);
+  /* Card media panel: the sunburst over the halftone screen — a mini poster.
+     Fully opaque, because a printed panel is ink, not a translucent wash. */
+  --media-bg: var(--psychedelic-burst), var(--psychedelic-halftone);
+  --media-op: 1;
+  /* Progress + avatar fills: FLAT 9px ink bands, no ramp. Orange/yellow/acid
+     only — the avatar's plum initials sit on this fill, and plum on magenta or
+     purple does not clear 4.5:1. */
+  --fill-bg: repeating-linear-gradient(90deg,
+      #ff6a00 0 9px, #ffd21e 9px 18px, #a8d400 18px 27px);
+
   /* -- extras (ignored by the shared lab) -------------------------------- */
   /* the raw inks, for reference: */
   --psychedelic-ink-acid:    #a8d400;       /* 1.4:1 on paper — GRAPHIC ONLY, never text */
@@ -108,30 +183,4 @@
   --psychedelic-ink-purple:  #5b1a8f;       /* = --accent-2 */
   --psychedelic-ink-yellow:  #ffd21e;       /* 1.2:1 on paper — GRAPHIC ONLY, used sparingly */
   --psychedelic-ink-edge:    #961478;       /* the deliberately off-key printed outline ink */
-
-  /* the patterns — organic, warped, fluid. Declared in kit.json `signature`. */
-  --psychedelic-swirl:  repeating-radial-gradient(circle at 42% 38%,
-                          #ff6a00 0 9px, #e5198f 9px 14px, #5b1a8f 14px 26px,
-                          #a8d400 26px 33px, #ffd21e 33px 37px, #f6efdb 37px 44px);
-  --psychedelic-burst:  repeating-conic-gradient(from -8deg at 50% 50%,
-                          #ff6a00 0deg 8deg, transparent 8deg 16deg,
-                          #e5198f 16deg 24deg, transparent 24deg 32deg);
-  --psychedelic-wobble: repeating-radial-gradient(circle at 128% -46%,
-                          #5b1a8f 0 5px, transparent 5px 13px,
-                          #e5198f 13px 18px, transparent 18px 26px),
-                        linear-gradient(180deg, rgba(255,210,30,.30) 0%, rgba(255,106,0,.12) 100%);
-                        /* warped banded stripes — the circle sits far outside the box, so the
-                           bands arrive as arcs, never as straight rules — laid over a pooled
-                           warm wash. Two layers on purpose: the lab's preview normaliser flattens
-                           any single-pattern px stop list into one evenly-spaced period, which
-                           turns this token into a blur in the Signature tiles. */
-  --psychedelic-blob:   radial-gradient(62% 72% at 32% 30%,
-                          rgba(229,25,143,.52) 0%, rgba(168,212,0,.34) 44%,
-                          rgba(91,26,143,.30) 72%, transparent 84%),
-                        radial-gradient(48% 56% at 74% 64%,
-                          rgba(255,106,0,.42) 0%, rgba(255,210,30,.24) 52%, transparent 80%);
-  --psychedelic-ramp:   linear-gradient(90deg, #ff6a00 0%, #e5198f 38%, #5b1a8f 70%, #a8d400 100%);
-  --psychedelic-misreg: 2px 2px 0 #e5198f, 4px 4px 0 #ffd21e;   /* two-plate offset, as a shadow */
-  --psychedelic-grain:  repeating-linear-gradient(48deg, rgba(42,10,62,.055) 0 1px, transparent 1px 3px),
-                        repeating-linear-gradient(-42deg, rgba(229,25,143,.05) 0 1px, transparent 1px 4px);
 }

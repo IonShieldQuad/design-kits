@@ -1,0 +1,86 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ffab2b",
+        "primary-hover": "#ffbc4d",
+        "primary-ink": "#ffc061",
+        "secondary": "#3fd0e6",
+        "tertiary": "#ffd24a",
+        "neutral": "#0d1116",
+        "surface": "#171d24",
+        "surface-2": "#111720",
+        "text": "#e8eef5",
+        "text-muted": "#9aa6b3",
+        "success": "#4ee08a",
+        "error": "#ff5a4d"
+      },
+      "fontFamily": {
+        "display": [
+          "Chakra Petch"
+        ],
+        "heading": [
+          "Chakra Petch"
+        ],
+        "body": [
+          "Saira"
+        ],
+        "label": [
+          "Share Tech Mono"
+        ],
+        "readout": [
+          "Chakra Petch"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.006em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.75rem",
+          {
+            "letterSpacing": "0.16em",
+            "fontWeight": "400"
+          }
+        ],
+        "readout": [
+          "1rem",
+          {
+            "letterSpacing": "0.05em",
+            "fontWeight": "600"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "0px",
+        "md": "0px",
+        "lg": "0px",
+        "pill": "0px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

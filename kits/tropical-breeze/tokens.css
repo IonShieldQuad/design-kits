@@ -1,0 +1,159 @@
+/* ============================================================================
+   Tropical Breeze — design kit tokens                                contract v1
+   ----------------------------------------------------------------------------
+   A WARM COASTAL BREEZE. Mid-afternoon on a beach: dry sand underfoot, the sea
+   in front of it, a palm leaning in from the corner, and one low sun.
+
+   THE SCENE. Sand and a pale seaside sky make the ground: the page cools
+   toward sea-foam at the top and warms to sand at the bottom, so scrolling the
+   lab walks you from the sky down the shore. Cards are a clean warm paper.
+
+   THREE STRUCTURAL HUES, ONE ACCENT. Sea turquoise and palm green sit either
+   side of the sand — turquoise owns water, data, media and progress; palm green
+   owns the toolkit's plant life (the frond motif, success, and the parasol's
+   hub). Coral is the single ACTION colour: the one saturated thing on the page,
+   the parasol's alternating panels, and every primary button. It is deliberately
+   NOT city-pop's crimson (this is a warmer, more orange coral) and there is no
+   grey here at all — that register belongs to #zen-garden.
+
+   CONTRAST. This is a LIGHT kit, so the palest ground binds: --text-dim is
+   solved against --surface (#fffdf7, the near-white card), not against an
+   average, which is how the caption tier usually lands at 4.4:1 on the one stop
+   that matters. Coral is under 4.5:1 as a small label, so accent-as-text ships
+   separately as --accent-ink, graded on every ground AND on its own 13% tint
+   composited over the surface (the badge case). Full table in README.md.
+
+   Fonts: Baloo 2 (display) · Nunito (body) · DM Mono (labels, code)
+   Contract: docs/KIT-SPEC.md v1 — every required name present.
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* --bg uses PX stops (never %): the body gradient box is the whole document,
+     so a percentage ramp would show one flat colour in the viewport and hide
+     the whole idea. Sea-foam sky at the top, settling through mint and cream to
+     warm sand at the foot of the page. */
+  --bg:            linear-gradient(180deg, #dff2ea 0px, #e9f4e4 280px, #f2f2e0 560px, #faf0da 900px, #f7edd6 100%);
+  --bg-2:          #f6f3e6;                 /* solid stand-in for exports / no-gradient tools */
+  --surface:       #fffdf7;                 /* cards — clean warm paper, a touch under white */
+  --surface-2:     #f2efe1;                 /* inputs, badges, code, and the Signature tile base:
+                                               a pale dry-sand inset, warmer than the page */
+  --overlay:       rgba(19, 43, 38, .45);   /* modal scrim: deep sea-green, never neutral grey */
+
+  /* ------------------------------------------------------------------- text */
+  /* The ink is a deep palm-shadow green, not a neutral charcoal: every grey
+     would pull the page back toward the spa register this kit is not. */
+  --text:          #16342c;                 /* 11.7:1 on the tightest ground (--surface-2) */
+  --text-muted:    #3d5a50;                 /* 6.6:1 even on the palest inset */
+  --text-dim:      #4f6b60;                 /* captions/hints/placeholders — 5.05:1 on the
+                                               binding ground; 5.73:1 on --surface */
+  --text-invert:   #fffaf0;                 /* label ON the coral fill (cream): 4.69:1 */
+
+  /* ------------------------------------------------------------------ brand */
+  /* Coral is a warm, orange-leaning tomato — a hibiscus, not city-pop's
+     crimson. It is graded as a FILL (a cream label clears 4.5:1 on it), which
+     is why it sits darker than the day is bright. */
+  --accent:        #cc3f26;
+  --accent-hover:  #b33620;                 /* the pressed step: deepens, never glows */
+  --accent-2:      #0fae9e;                 /* SEA TURQUOISE — water, media, charts, focus.
+                                               Bright by design; never used as text */
+  --accent-soft:   rgba(204, 63, 38, .13);  /* 13% coral tint — active nav, rings, badges */
+
+  /* -- accent as TEXT (the fill-vs-label split) -------------------------- */
+  --accent-ink:       #a8291a;              /* 6.08:1 on the tightest ground and 5.10:1 even
+                                               on its own 13% tint composited over the surface */
+  --accent-ink-hover: #8c2013;
+
+  /* ----------------------------------------------------------------- status */
+  /* Palm green is the kit's third structural hue, so success is not an
+     afterthought bolted on: it is the frond's own colour. */
+  --ok:            #257043;                 /* PALM GREEN — 5.24:1 on --surface-2 */
+  --warn:          #8a5a10;                 /* dried-grass ochre — sun-adjacent, used sparingly */
+  --danger:        #b3243a;                 /* a deep berry red, the coral's cool cousin */
+  --info:          #1f6f9e;                 /* shallow-sea blue — data and telemetry */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        rgba(22, 52, 44, .16);   /* a warm ink hairline, not white translucency */
+  --border-strong: rgba(22, 52, 44, .36);
+  --border-w:      1px;                     /* beach air is soft: a hairline, not a moulded step */
+  --focus-ring:    #0b8578;                 /* deep turquoise focus — 3.92:1 at worst */
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm:      8px;                    /* soft, generous, pebble-worn — nothing sharp */
+  --radius-md:     14px;
+  --radius-lg:     22px;
+  --radius-pill:  999px;
+  --cut:            0px;                    /* nothing is notched; the shore is all curves */
+
+  /* ------------------------------------------------------------------- type */
+  --font-display: "Baloo 2", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .13em;                /* a painted beach sign is spaced, not shouting */
+  --tracking-display: -.01em;
+
+  /* ------------------------------------------------------------------ depth */
+  --shadow-1:      0 6px 18px -8px rgba(22, 52, 44, .22);
+  --shadow-2:      0 18px 44px -18px rgba(22, 52, 44, .30);
+  /* --glow is the ONE energised object: a turquoise rim with the coral's own
+     warm lift beneath, so a primary button reads as lit by the low sun. */
+  --glow:          0 0 0 1px rgba(15, 174, 158, .40),
+                   0 10px 24px -10px rgba(204, 63, 38, .50);
+  --blur:          none;                    /* open air, not glass */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur:           .30s;
+  --ease:          cubic-bezier(.22, .68, .3, 1);
+
+  /* ------------------------------------------------------------------ fill */
+  /* --fill-bg backs progress (.bar > i) and .avatar. Deep-sea teal rather than
+     the default accent→accent-2 ramp: cream initials and the bar both need a
+     ground dark enough to carry them (4.81:1..6.57:1), and turquoise owns the
+     sea anyway. Coral stays reserved for ACTION. */
+  --fill-bg:       linear-gradient(135deg, #0d7d72 0%, #0a665e 100%);
+
+  /* -------------------------------------------------------- opt-in capabilities */
+  /* --wash replaces the lab masthead's default radial accent bloom with a soft
+     low sun in the corner: a warm translucency over the page's own sky stop, so
+     the ground shows through and masthead copy keeps its contrast (modelled over
+     bg[0]: --text-dim 4.68:1, --accent-ink 5.63:1 at the glow's centre, and both
+     improve everywhere else). */
+  --wash:          radial-gradient(120% 150% at 78% 0%, rgba(255, 214, 150, .55) 0%, rgba(255, 214, 150, 0) 58%);
+
+  /* --media-bg replaces the .card-media panel's generic accent ramp with the
+     thing this kit is actually about: the beach. Sky, a low soft sun with its
+     glitter path on the water, three rolling crests, and dry sand with grain.
+     Drawn (inline SVG) because the crests and the glitter column need real
+     geometry. --media-op: 1 lifts the default .85 dim so the postcard reads. */
+  --media-op:      1;
+  --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0ODAnIGhlaWdodD0nMTcwJyB2aWV3Qm94PScwIDAgNDgwIDE3MCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdza3knIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyNmZWZhZjAnLz48c3RvcCBvZmZzZXQ9JzAuNTUnIHN0b3AtY29sb3I9JyNkOGYwZWEnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyM5ZmRmZDYnLz48L2xpbmVhckdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0nc3VuJyBjeD0nMC41JyBjeT0nMC41JyByPScwLjUnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZjZkZicvPjxzdG9wIG9mZnNldD0nMC40Micgc3RvcC1jb2xvcj0nI2ZmZGZhNicgc3RvcC1vcGFjaXR5PScwLjkyJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZjYTg2JyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0nc2VhJyB4MT0nMCcgeTE9JzAnIHgyPScwJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjOGZkZWQyJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMmZhMjk0Jy8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9J3NhbmQnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyNmOWVjY2YnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyNlZWRiYjInLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nNDgwJyBoZWlnaHQ9JzE3MCcgZmlsbD0idXJsKCNza3kpIi8+PGNpcmNsZSBjeD0nMzcyJyBjeT0nNjYnIHI9JzU4JyBmaWxsPSJ1cmwoI3N1bikiLz48Y2lyY2xlIGN4PSczNzInIGN5PSc2Nicgcj0nMjMnIGZpbGw9JyNmZmU2YjAnLz48cmVjdCB5PSc5Nicgd2lkdGg9JzQ4MCcgaGVpZ2h0PSc3NCcgZmlsbD0idXJsKCNzZWEpIi8+PHBhdGggZD0nTS05MCAxMDQuMkwtODQgMTAzLjdMLTc4IDEwMy4zTC03MiAxMDIuN0wtNjYgMTAyLjNMLTYwIDEwMS44TC01NCAxMDEuNUwtNDggMTAxLjJMLTQyIDEwMS4wTC0zNiAxMDEuMEwtMzAgMTAxLjFMLTI0IDEwMS4zTC0xOCAxMDEuNkwtMTIgMTAyLjBMLTYgMTAyLjVMMCAxMDMuMEw2IDEwMy41TDEyIDEwNC4wTDE4IDEwNC40TDI0IDEwNC43TDMwIDEwNC45TDM2IDEwNS4wTDQyIDEwNS4wTDQ4IDEwNC44TDU0IDEwNC41TDYwIDEwNC4yTDY2IDEwMy43TDcyIDEwMy4zTDc4IDEwMi43TDg0IDEwMi4zTDkwIDEwMS44TDk2IDEwMS41TDEwMiAxMDEuMkwxMDggMTAxLjBMMTE0IDEwMS4wTDEyMCAxMDEuMUwxMjYgMTAxLjNMMTMyIDEwMS42TDEzOCAxMDIuMEwxNDQgMTAyLjVMMTUwIDEwMy4wTDE1NiAxMDMuNUwxNjIgMTA0LjBMMTY4IDEwNC40TDE3NCAxMDQuN0wxODAgMTA0LjlMMTg2IDEwNS4wTDE5MiAxMDUuMEwxOTggMTA0LjhMMjA0IDEwNC41TDIxMCAxMDQuMkwyMTYgMTAzLjdMMjIyIDEwMy4zTDIyOCAxMDIuN0wyMzQgMTAyLjNMMjQwIDEwMS44TDI0NiAxMDEuNUwyNTIgMTAxLjJMMjU4IDEwMS4wTDI2NCAxMDEuMEwyNzAgMTAxLjFMMjc2IDEwMS4zTDI4MiAxMDEuNkwyODggMTAyLjBMMjk0IDEwMi41TDMwMCAxMDMuMEwzMDYgMTAzLjVMMzEyIDEwNC4wTDMxOCAxMDQuNEwzMjQgMTA0LjdMMzMwIDEwNC45TDMzNiAxMDUuMEwzNDIgMTA1LjBMMzQ4IDEwNC44TDM1NCAxMDQuNUwzNjAgMTA0LjJMMzY2IDEwMy43TDM3MiAxMDMuM0wzNzggMTAyLjdMMzg0IDEwMi4zTDM5MCAxMDEuOEwzOTYgMTAxLjVMNDAyIDEwMS4yTDQwOCAxMDEuMEw0MTQgMTAxLjBMNDIwIDEwMS4xTDQyNiAxMDEuM0w0MzIgMTAxLjZMNDM4IDEwMi4wTDQ0NCAxMDIuNUw0NTAgMTAzLjBMNDU2IDEwMy41TDQ2MiAxMDQuMEw0NjggMTA0LjRMNDc0IDEwNC43TDQ4MCAxMDQuOUw0ODYgMTA1LjBMNDkyIDEwNS4wTDQ5OCAxMDQuOEw1MDQgMTA0LjVMNTEwIDEwNC4yTDUxNiAxMDMuN0w1MjIgMTAzLjNMNTI4IDEwMi43TDUzNCAxMDIuM0w1NDAgMTAxLjhMNTQ2IDEwMS41TDU1MiAxMDEuMkw1NTggMTAxLjBMNTY0IDEwMS4wTDU3MCAxMDEuMUw1NzYgMTAxLjMnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VhZmZmYicgc3Ryb2tlLXdpZHRoPScxLjQnIG9wYWNpdHk9JzAuOCcvPjxwYXRoIGQ9J00tOTAgMTEwLjhMLTg0IDExMC4xTC03OCAxMDkuNUwtNzIgMTA5LjJMLTY2IDEwOS4yTC02MCAxMDkuNUwtNTQgMTEwLjBMLTQ4IDExMC44TC00MiAxMTEuNkwtMzYgMTEyLjVMLTMwIDExMy4zTC0yNCAxMTQuMUwtMTggMTE0LjVMLTEyIDExNC44TC02IDExNC43TDAgMTE0LjRMNiAxMTMuOUwxMiAxMTMuMUwxOCAxMTIuMkwyNCAxMTEuM0wzMCAxMTAuNUwzNiAxMDkuOUw0MiAxMDkuNEw0OCAxMDkuMkw1NCAxMDkuM0w2MCAxMDkuN0w2NiAxMTAuM0w3MiAxMTEuMEw3OCAxMTEuOUw4NCAxMTIuOEw5MCAxMTMuNkw5NiAxMTQuMkwxMDIgMTE0LjdMMTA4IDExNC44TDExNCAxMTQuN0wxMjAgMTE0LjNMMTI2IDExMy42TDEzMiAxMTIuOEwxMzggMTExLjlMMTQ0IDExMS4xTDE1MCAxMTAuM0wxNTYgMTA5LjdMMTYyIDEwOS4zTDE2OCAxMDkuMkwxNzQgMTA5LjRMMTgwIDEwOS44TDE4NiAxMTAuNUwxOTIgMTExLjNMMTk4IDExMi4yTDIwNCAxMTMuMUwyMTAgMTEzLjhMMjE2IDExNC40TDIyMiAxMTQuN0wyMjggMTE0LjhMMjM0IDExNC42TDI0MCAxMTQuMUwyNDYgMTEzLjRMMjUyIDExMi41TDI1OCAxMTEuNkwyNjQgMTEwLjhMMjcwIDExMC4xTDI3NiAxMDkuNUwyODIgMTA5LjJMMjg4IDEwOS4yTDI5NCAxMDkuNUwzMDAgMTEwLjBMMzA2IDExMC44TDMxMiAxMTEuNkwzMTggMTEyLjVMMzI0IDExMy4zTDMzMCAxMTQuMUwzMzYgMTE0LjVMMzQyIDExNC44TDM0OCAxMTQuN0wzNTQgMTE0LjRMMzYwIDExMy45TDM2NiAxMTMuMUwzNzIgMTEyLjJMMzc4IDExMS4zTDM4NCAxMTAuNUwzOTAgMTA5LjlMMzk2IDEwOS40TDQwMiAxMDkuMkw0MDggMTA5LjNMNDE0IDEwOS43TDQyMCAxMTAuM0w0MjYgMTExLjBMNDMyIDExMS45TDQzOCAxMTIuOEw0NDQgMTEzLjZMNDUwIDExNC4yTDQ1NiAxMTQuN0w0NjIgMTE0LjhMNDY4IDExNC43TDQ3NCAxMTQuM0w0ODAgMTEzLjZMNDg2IDExMi44TDQ5MiAxMTEuOUw0OTggMTExLjFMNTA0IDExMC4zTDUxMCAxMDkuN0w1MTYgMTA5LjNMNTIyIDEwOS4yTDUyOCAxMDkuNEw1MzQgMTA5LjhMNTQwIDExMC41TDU0NiAxMTEuM0w1NTIgMTEyLjJMNTU4IDExMy4xTDU2NCAxMTMuOEw1NzAgMTE0LjRMNTc2IDExNC43JyBmaWxsPSdub25lJyBzdHJva2U9JyNmMmZmZmMnIHN0cm9rZS13aWR0aD0nMS4yJyBvcGFjaXR5PScwLjYyJy8+PHBhdGggZD0nTS05MCAxMTkuMkwtODQgMTE5LjBMLTc4IDExOC44TC03MiAxMTguOEwtNjYgMTE4LjlMLTYwIDExOS4wTC01NCAxMTkuM0wtNDggMTE5LjdMLTQyIDEyMC4xTC0zNiAxMjAuNUwtMzAgMTIxLjBMLTI0IDEyMS41TC0xOCAxMjEuOUwtMTIgMTIyLjRMLTYgMTIyLjdMMCAxMjMuMEw2IDEyMy4xTDEyIDEyMy4yTDE4IDEyMy4yTDI0IDEyMy4wTDMwIDEyMi44TDM2IDEyMi41TDQyIDEyMi4xTDQ4IDEyMS42TDU0IDEyMS4yTDYwIDEyMC43TDY2IDEyMC4yTDcyIDExOS44TDc4IDExOS40TDg0IDExOS4xTDkwIDExOC45TDk2IDExOC44TDEwMiAxMTguOEwxMDggMTE4LjlMMTE0IDExOS4xTDEyMCAxMTkuNEwxMjYgMTE5LjhMMTMyIDEyMC4yTDEzOCAxMjAuN0wxNDQgMTIxLjJMMTUwIDEyMS42TDE1NiAxMjIuMUwxNjIgMTIyLjVMMTY4IDEyMi44TDE3NCAxMjMuMEwxODAgMTIzLjJMMTg2IDEyMy4yTDE5MiAxMjMuMUwxOTggMTIzLjBMMjA0IDEyMi43TDIxMCAxMjIuM0wyMTYgMTIxLjlMMjIyIDEyMS41TDIyOCAxMjEuMEwyMzQgMTIwLjVMMjQwIDEyMC4xTDI0NiAxMTkuNkwyNTIgMTE5LjNMMjU4IDExOS4wTDI2NCAxMTguOUwyNzAgMTE4LjhMMjc2IDExOC44TDI4MiAxMTkuMEwyODggMTE5LjJMMjk0IDExOS41TDMwMCAxMTkuOUwzMDYgMTIwLjRMMzEyIDEyMC44TDMxOCAxMjEuM0wzMjQgMTIxLjhMMzMwIDEyMi4yTDMzNiAxMjIuNkwzNDIgMTIyLjlMMzQ4IDEyMy4xTDM1NCAxMjMuMkwzNjAgMTIzLjJMMzY2IDEyMy4xTDM3MiAxMjIuOUwzNzggMTIyLjZMMzg0IDEyMi4yTDM5MCAxMjEuOEwzOTYgMTIxLjNMNDAyIDEyMC44TDQwOCAxMjAuNEw0MTQgMTE5LjlMNDIwIDExOS41TDQyNiAxMTkuMkw0MzIgMTE5LjBMNDM4IDExOC44TDQ0NCAxMTguOEw0NTAgMTE4LjlMNDU2IDExOS4wTDQ2MiAxMTkuM0w0NjggMTE5LjdMNDc0IDEyMC4xTDQ4MCAxMjAuNUw0ODYgMTIxLjBMNDkyIDEyMS41TDQ5OCAxMjEuOUw1MDQgMTIyLjRMNTEwIDEyMi43TDUxNiAxMjMuMEw1MjIgMTIzLjFMNTI4IDEyMy4yTDUzNCAxMjMuMkw1NDAgMTIzLjBMNTQ2IDEyMi44TDU1MiAxMjIuNUw1NTggMTIyLjFMNTY0IDEyMS42TDU3MCAxMjEuMkw1NzYgMTIwLjcnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VhZmZmYicgc3Ryb2tlLXdpZHRoPScxLjUnIG9wYWNpdHk9JzAuNycvPjxwYXRoIGQ9J00tOTAgMTI4LjVMLTg0IDEyOS4yTC03OCAxMzAuMEwtNzIgMTMwLjlMLTY2IDEzMS44TC02MCAxMzIuN0wtNTQgMTMzLjRMLTQ4IDEzMy45TC00MiAxMzQuMkwtMzYgMTM0LjJMLTMwIDEzMy45TC0yNCAxMzMuNUwtMTggMTMyLjhMLTEyIDEzMi4wTC02IDEzMS4xTDAgMTMwLjJMNiAxMjkuM0wxMiAxMjguNkwxOCAxMjguMUwyNCAxMjcuOEwzMCAxMjcuOEwzNiAxMjguMUw0MiAxMjguNUw0OCAxMjkuMkw1NCAxMzAuMEw2MCAxMzAuOUw2NiAxMzEuOEw3MiAxMzIuN0w3OCAxMzMuNEw4NCAxMzMuOUw5MCAxMzQuMkw5NiAxMzQuMkwxMDIgMTMzLjlMMTA4IDEzMy41TDExNCAxMzIuOEwxMjAgMTMyLjBMMTI2IDEzMS4xTDEzMiAxMzAuMkwxMzggMTI5LjNMMTQ0IDEyOC42TDE1MCAxMjguMUwxNTYgMTI3LjhMMTYyIDEyNy44TDE2OCAxMjguMUwxNzQgMTI4LjVMMTgwIDEyOS4yTDE4NiAxMzAuMEwxOTIgMTMwLjlMMTk4IDEzMS44TDIwNCAxMzIuN0wyMTAgMTMzLjRMMjE2IDEzMy45TDIyMiAxMzQuMkwyMjggMTM0LjJMMjM0IDEzMy45TDI0MCAxMzMuNUwyNDYgMTMyLjhMMjUyIDEzMi4wTDI1OCAxMzEuMUwyNjQgMTMwLjJMMjcwIDEyOS4zTDI3NiAxMjguNkwyODIgMTI4LjFMMjg4IDEyNy44TDI5NCAxMjcuOEwzMDAgMTI4LjFMMzA2IDEyOC41TDMxMiAxMjkuMkwzMTggMTMwLjBMMzI0IDEzMC45TDMzMCAxMzEuOEwzMzYgMTMyLjdMMzQyIDEzMy40TDM0OCAxMzMuOUwzNTQgMTM0LjJMMzYwIDEzNC4yTDM2NiAxMzMuOUwzNzIgMTMzLjVMMzc4IDEzMi44TDM4NCAxMzIuMEwzOTAgMTMxLjFMMzk2IDEzMC4yTDQwMiAxMjkuM0w0MDggMTI4LjZMNDE0IDEyOC4xTDQyMCAxMjcuOEw0MjYgMTI3LjhMNDMyIDEyOC4xTDQzOCAxMjguNUw0NDQgMTI5LjJMNDUwIDEzMC4wTDQ1NiAxMzAuOUw0NjIgMTMxLjhMNDY4IDEzMi43TDQ3NCAxMzMuNEw0ODAgMTMzLjlMNDg2IDEzNC4yTDQ5MiAxMzQuMkw0OTggMTMzLjlMNTA0IDEzMy41TDUxMCAxMzIuOEw1MTYgMTMyLjBMNTIyIDEzMS4xTDUyOCAxMzAuMkw1MzQgMTI5LjNMNTQwIDEyOC42TDU0NiAxMjguMUw1NTIgMTI3LjhMNTU4IDEyNy44TDU2NCAxMjguMUw1NzAgMTI4LjVMNTc2IDEyOS4yJyBmaWxsPSdub25lJyBzdHJva2U9JyNmMmZmZmMnIHN0cm9rZS13aWR0aD0nMS4yJyBvcGFjaXR5PScwLjUnLz48cGF0aCBkPSdNLTkwIDEzOC42TC04NCAxMzguNEwtNzggMTM4LjNMLTcyIDEzOC4yTC02NiAxMzguMkwtNjAgMTM4LjNMLTU0IDEzOC40TC00OCAxMzguNkwtNDIgMTM4LjhMLTM2IDEzOS4xTC0zMCAxMzkuNEwtMjQgMTM5LjdMLTE4IDE0MC4xTC0xMiAxNDAuNEwtNiAxNDAuN0wwIDE0MS4wTDYgMTQxLjNMMTIgMTQxLjVMMTggMTQxLjdMMjQgMTQxLjhMMzAgMTQxLjhMMzYgMTQxLjhMNDIgMTQxLjdMNDggMTQxLjVMNTQgMTQxLjNMNjAgMTQxLjFMNjYgMTQwLjhMNzIgMTQwLjVMNzggMTQwLjJMODQgMTM5LjhMOTAgMTM5LjVMOTYgMTM5LjJMMTAyIDEzOC45TDEwOCAxMzguNkwxMTQgMTM4LjRMMTIwIDEzOC4zTDEyNiAxMzguMkwxMzIgMTM4LjJMMTM4IDEzOC4yTDE0NCAxMzguNEwxNTAgMTM4LjVMMTU2IDEzOC43TDE2MiAxMzkuMEwxNjggMTM5LjNMMTc0IDEzOS42TDE4MCAxMzkuOUwxODYgMTQwLjNMMTkyIDE0MC42TDE5OCAxNDAuOUwyMDQgMTQxLjJMMjEwIDE0MS40TDIxNiAxNDEuNkwyMjIgMTQxLjdMMjI4IDE0MS44TDIzNCAxNDEuOEwyNDAgMTQxLjdMMjQ2IDE0MS42TDI1MiAxNDEuNEwyNTggMTQxLjJMMjY0IDE0MC45TDI3MCAxNDAuNkwyNzYgMTQwLjNMMjgyIDEzOS45TDI4OCAxMzkuNkwyOTQgMTM5LjNMMzAwIDEzOS4wTDMwNiAxMzguN0wzMTIgMTM4LjVMMzE4IDEzOC4zTDMyNCAxMzguMkwzMzAgMTM4LjJMMzM2IDEzOC4yTDM0MiAxMzguM0wzNDggMTM4LjVMMzU0IDEzOC43TDM2MCAxMzguOUwzNjYgMTM5LjJMMzcyIDEzOS41TDM3OCAxMzkuOEwzODQgMTQwLjJMMzkwIDE0MC41TDM5NiAxNDAuOEw0MDIgMTQxLjFMNDA4IDE0MS40TDQxNCAxNDEuNkw0MjAgMTQxLjdMNDI2IDE0MS44TDQzMiAxNDEuOEw0MzggMTQxLjhMNDQ0IDE0MS42TDQ1MCAxNDEuNUw0NTYgMTQxLjNMNDYyIDE0MS4wTDQ2OCAxNDAuN0w0NzQgMTQwLjRMNDgwIDE0MC4xTDQ4NiAxMzkuN0w0OTIgMTM5LjRMNDk4IDEzOS4xTDUwNCAxMzguOEw1MTAgMTM4LjZMNTE2IDEzOC40TDUyMiAxMzguM0w1MjggMTM4LjJMNTM0IDEzOC4yTDU0MCAxMzguM0w1NDYgMTM4LjRMNTUyIDEzOC42TDU1OCAxMzguOEw1NjQgMTM5LjFMNTcwIDEzOS40TDU3NiAxMzkuNycgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWFmZmZiJyBzdHJva2Utd2lkdGg9JzEuMycgb3BhY2l0eT0nMC40MicvPjxlbGxpcHNlIGN4PSczNzInIGN5PScxMDInIHJ4PScxMCcgcnk9JzIuMScgZmlsbD0nI2ZmZThiNCcgb3BhY2l0eT0nMC44MicvPjxlbGxpcHNlIGN4PSczNzInIGN5PScxMTAnIHJ4PScxNScgcnk9JzIuMScgZmlsbD0nI2ZmZThiNCcgb3BhY2l0eT0nMC42NicvPjxlbGxpcHNlIGN4PSczNzInIGN5PScxMTknIHJ4PScyMCcgcnk9JzIuMScgZmlsbD0nI2ZmZThiNCcgb3BhY2l0eT0nMC41MicvPjxlbGxpcHNlIGN4PSczNzInIGN5PScxMjknIHJ4PScyNycgcnk9JzIuMScgZmlsbD0nI2ZmZThiNCcgb3BhY2l0eT0nMC4zOCcvPjxlbGxpcHNlIGN4PSczNzInIGN5PScxMzknIHJ4PSczNCcgcnk9JzIuMScgZmlsbD0nI2ZmZThiNCcgb3BhY2l0eT0nMC4yNicvPjxwYXRoIGQ9J00wIDE3MEwwIDE0OUM5MCAxNDIgMTY4IDE1MiAyNDggMTQ2QzMzMCAxNDAgNDA0IDE1MSA0ODAgMTQ2TDQ4MCAxNzBaJyBmaWxsPSJ1cmwoI3NhbmQpIi8+PHBhdGggZD0nTTAgMTQ5QzkwIDE0MiAxNjggMTUyIDI0OCAxNDZDMzMwIDE0MCA0MDQgMTUxIDQ4MCAxNDZMNDgwIDE1NEM0MDQgMTU5IDMzMCAxNDggMjQ4IDE1NEMxNjggMTYwIDkwIDE1MCAwIDE1N1onIGZpbGw9JyNlN2Q4YjUnIG9wYWNpdHk9Jy45Jy8+PHBhdGggZD0nTTAgMTQ5QzkwIDE0MiAxNjggMTUyIDI0OCAxNDZDMzMwIDE0MCA0MDQgMTUxIDQ4MCAxNDYnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZkZmZmNicgc3Ryb2tlLXdpZHRoPScyJyBvcGFjaXR5PScuOScvPjxnIGZpbGw9JyNkY2M0OWEnPjxyZWN0IHg9JzE4JyB5PScxNTgnIHdpZHRoPScxLjcnIGhlaWdodD0nMS43Jy8+PHJlY3QgeD0nNDYnIHk9JzE2NCcgd2lkdGg9JzEuNycgaGVpZ2h0PScxLjcnLz48cmVjdCB4PSc3NCcgeT0nMTU2JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzExMicgeT0nMTY2JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzE1MCcgeT0nMTU5JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzE5NicgeT0nMTYzJyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzIzOCcgeT0nMTU2JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzI3NicgeT0nMTY1JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzMxMicgeT0nMTYwJyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzM1MicgeT0nMTY0JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzM5OCcgeT0nMTU3JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzQzNicgeT0nMTYzJyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzQ2NCcgeT0nMTU5JyB3aWR0aD0nMS43JyBoZWlnaHQ9JzEuNycvPjxyZWN0IHg9JzkwJyB5PScxNjcnIHdpZHRoPScxLjcnIGhlaWdodD0nMS43Jy8+PHJlY3QgeD0nMjYyJyB5PScxNjgnIHdpZHRoPScxLjcnIGhlaWdodD0nMS43Jy8+PHJlY3QgeD0nMzMwJyB5PScxNTMnIHdpZHRoPScxLjcnIGhlaWdodD0nMS43Jy8+PHJlY3QgeD0nMjgnIHk9JzE1MScgd2lkdGg9JzEuNycgaGVpZ2h0PScxLjcnLz48cmVjdCB4PScyMDYnIHk9JzE1MScgd2lkdGg9JzEuNycgaGVpZ2h0PScxLjcnLz48cmVjdCB4PSc0MjAnIHk9JzE2OCcgd2lkdGg9JzEuNycgaGVpZ2h0PScxLjcnLz48cmVjdCB4PScxNzAnIHk9JzE2OCcgd2lkdGg9JzEuNycgaGVpZ2h0PScxLjcnLz48L2c+PGcgZmlsbD0nI2ZkZjdlNCc+PHJlY3QgeD0nMjEnIHk9JzE2MCcgd2lkdGg9JzEuMycgaGVpZ2h0PScxLjMnLz48cmVjdCB4PSc0OScgeT0nMTY2JyB3aWR0aD0nMS4zJyBoZWlnaHQ9JzEuMycvPjxyZWN0IHg9Jzc3JyB5PScxNTgnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMTE1JyB5PScxNjgnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMTUzJyB5PScxNjEnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMTk5JyB5PScxNjUnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMjQxJyB5PScxNTgnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMjc5JyB5PScxNjcnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMzE1JyB5PScxNjInIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PHJlY3QgeD0nMzU1JyB5PScxNjYnIHdpZHRoPScxLjMnIGhlaWdodD0nMS4zJy8+PC9nPjxnIHRyYW5zZm9ybT0ndHJhbnNsYXRlKDIgLTEyKSBzY2FsZSgwLjg2KSByb3RhdGUoLTIwKScgc3Ryb2tlPScjMWU2YjNjJyBzdHJva2Utd2lkdGg9JzIuOCcgZmlsbD0nbm9uZScgb3BhY2l0eT0nMC45NCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz48cGF0aCBkPSdNODMuNSA4Mi4xTDkyLjQgNzIuMU04My41IDgyLjFMNzEuMCA3Ny4zTTgwLjIgNzAuOEw5MS45IDU0LjhNODAuMiA3MC44TDYxLjEgNjUuNU03NS45IDYwLjNMODguNCAzOC45TTc1LjkgNjAuM0w1MS40IDU2LjRNNzAuNyA1MC44TDgyLjAgMjUuMU03MC43IDUwLjhMNDIuNyA0OS41TTY0LjYgNDIuMkw3My4xIDE0LjNNNjQuNiA0Mi4yTDM1LjYgNDQuM001Ny42IDM0LjVMNjIuMyA3LjBNNTcuNiAzNC41TDMwLjMgMzkuOU00OS43IDI3LjdMNTAuOCAzLjJNNDkuNyAyNy43TDI2LjQgMzUuNE00MC45IDIxLjhMMzkuNSAyLjVNNDAuOSAyMS44TDIzLjQgMjkuOU0zMS4xIDE2LjdMMjguNyA0LjFNMzEuMSAxNi43TDIwLjIgMjMuNCcvPjxwYXRoIGQ9J004NiA5NVE3NiAyOCAxNSAxMScgc3Ryb2tlLXdpZHRoPSc0Jy8+PC9nPjxnIHRyYW5zZm9ybT0ndHJhbnNsYXRlKDM0IC0yMCkgc2NhbGUoMC42Mikgcm90YXRlKDEwKScgc3Ryb2tlPScjMWU2YjNjJyBzdHJva2Utd2lkdGg9JzIuOCcgZmlsbD0nbm9uZScgb3BhY2l0eT0nMC43NCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz48cGF0aCBkPSdNODMuNSA4Mi4xTDkyLjQgNzIuMU04My41IDgyLjFMNzEuMCA3Ny4zTTgwLjIgNzAuOEw5MS45IDU0LjhNODAuMiA3MC44TDYxLjEgNjUuNU03NS45IDYwLjNMODguNCAzOC45TTc1LjkgNjAuM0w1MS40IDU2LjRNNzAuNyA1MC44TDgyLjAgMjUuMU03MC43IDUwLjhMNDIuNyA0OS41TTY0LjYgNDIuMkw3My4xIDE0LjNNNjQuNiA0Mi4yTDM1LjYgNDQuM001Ny42IDM0LjVMNjIuMyA3LjBNNTcuNiAzNC41TDMwLjMgMzkuOU00OS43IDI3LjdMNTAuOCAzLjJNNDkuNyAyNy43TDI2LjQgMzUuNE00MC45IDIxLjhMMzkuNSAyLjVNNDAuOSAyMS44TDIzLjQgMjkuOU0zMS4xIDE2LjdMMjguNyA0LjFNMzEuMSAxNi43TDIwLjIgMjMuNCcvPjxwYXRoIGQ9J004NiA5NVE3NiAyOCAxNSAxMScgc3Ryb2tlLXdpZHRoPSc0Jy8+PC9nPjwvc3ZnPg==") center / cover no-repeat;
+
+  /* ------------------------------------------------------------------------
+     extras — the three tokens that ARE the coast, declared in kit.json
+     `signature`. Each is DRAWN artwork (inline SVG, base64) with its own colour
+     base layer beneath it, so a tile never shows only the flat --surface-2.
+     ------------------------------------------------------------------------ */
+
+  /* 1 · THE FROND. A palm frond is a curved rachis with leaflets fanned off it
+     at an angle — no repeating gradient produces that; a stripe pattern would
+     render as a fern-print flat, not a leaf. Drawn: a swept spine with leaflets
+     that shorten toward the tip. */
+  --tropical-breeze-frond:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIGZpbGw9JyNlYWZhZjAnLz48cGF0aCBkPSdNODQuNCA4NS45UTkwLjggODMuMSA5My4xIDc2LjFNODQuNCA4NS45UTc3LjMgODYuMCA3Mi40IDgwLjZNODEuNiA3NS4zUTkxLjIgNzAuMyA5My44IDU5LjNNODEuNiA3NS4zUTcwLjkgNzYuNCA2Mi42IDY4LjdNNzguMiA2NS41UTg5LjkgNTcuOSA5Mi4wIDQzLjNNNzguMiA2NS41UTY0LjQgNjguMiA1Mi44IDU5LjNNNzQuMCA1Ni40UTg2LjcgNDYuMiA4Ny41IDI5LjBNNzQuMCA1Ni40UTU4LjMgNjEuMiA0My43IDUyLjFNNjkuMCA0OC4xUTgxLjYgMzUuNiA4MC40IDE3LjBNNjkuMCA0OC4xUTUyLjcgNTUuMCAzNS45IDQ2LjlNNjMuMiA0MC41UTc0LjUgMjYuNSA3MS4zIDguME02My4yIDQwLjVRNDcuNiA0OS4zIDI5LjkgNDMuME01Ni44IDMzLjZRNjUuOSAxOS4zIDYwLjkgMi4yTTU2LjggMzMuNlE0My4wIDQzLjYgMjUuNiAzOS41TTQ5LjUgMjcuNVE1Ni4xIDE0LjEgNTAuMSAtMC4zTTQ5LjUgMjcuNVEzOC40IDM3LjUgMjIuOSAzNS43TTQxLjUgMjIuMlE0NS42IDEwLjkgMzkuNiAtMC4xTTQxLjUgMjIuMlEzMy42IDMxLjEgMjEuMCAzMS4wTTMyLjggMTcuNVEzNC44IDkuNCAyOS44IDIuMk0zMi44IDE3LjVRMjcuOSAyNC4zIDE5LjIgMjUuMU0yMy4zIDEzLjZRMjQuMCA5LjMgMjEuMCA1LjhNMjMuMyAxMy42UTIxLjEgMTcuNCAxNi42IDE4LjInIGZpbGw9J25vbmUnIHN0cm9rZT0nIzJmOTE1Micgc3Ryb2tlLXdpZHRoPScxLjknIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjxwYXRoIGQ9J004NiA5NVE3NiAyOCAxNSAxMScgZmlsbD0nbm9uZScgc3Ryb2tlPScjMWU2YjNjJyBzdHJva2Utd2lkdGg9JzMuMicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+PC9zdmc+") center / 68px 68px no-repeat,
+    linear-gradient(160deg, #eafaf0 0%, #cfeedd 100%);
+
+  /* 2 · THE WAVES. Three rolling crests at different amplitudes, each with a
+     foam lip offset above it, over the sea's own gradient. Tiles seamlessly
+     (every path starts and ends on the same y with a matched slope), so it is
+     the kit's texture field rather than a single mark. */
+  --tropical-breeze-wave:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc5NicgaGVpZ2h0PSc0OCcgdmlld0JveD0nMCAwIDk2IDQ4Jz48cmVjdCB3aWR0aD0nOTYnIGhlaWdodD0nNDgnIGZpbGw9JyNkM2YyZWMnLz48cmVjdCB3aWR0aD0nOTYnIGhlaWdodD0nMjQnIGZpbGw9JyNiZmVlZTcnLz48cGF0aCBkPSdNMCAxMC40QzIxIDUgMjcgNSA0OCAxMC40QzY5IDE1IDc1IDE1IDk2IDEwLjQnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2YyZmZmYicgc3Ryb2tlLXdpZHRoPScxLjMnIG9wYWNpdHk9Jy44NScvPjxwYXRoIGQ9J00wIDIyLjRDMjEgMTYgMjcgMTYgNDggMjIuNEM2OSAyOCA3NSAyOCA5NiAyMi40JyBmaWxsPSdub25lJyBzdHJva2U9JyNmMmZmZmInIHN0cm9rZS13aWR0aD0nMS4zJyBvcGFjaXR5PScuODUnLz48cGF0aCBkPSdNMCAzNC40QzIxIDI5IDI3IDI5IDQ4IDM0LjRDNjkgMzkgNzUgMzkgOTYgMzQuNCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZjJmZmZiJyBzdHJva2Utd2lkdGg9JzEuMycgb3BhY2l0eT0nLjg1Jy8+PHBhdGggZD0nTTAgMTNDMjEgOCAyNyA4IDQ4IDEzQzY5IDE4IDc1IDE4IDk2IDEzJyBmaWxsPSdub25lJyBzdHJva2U9JyMxYTllOTAnIHN0cm9rZS13aWR0aD0nMi42Jy8+PHBhdGggZD0nTTAgMjVDMjEgMTkgMjcgMTkgNDggMjVDNjkgMzEgNzUgMzEgOTYgMjUnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzE3OGY4Mycgc3Ryb2tlLXdpZHRoPScyLjQnLz48cGF0aCBkPSdNMCAzN0MyMSAzMiAyNyAzMiA0OCAzN0M2OSA0MiA3NSA0MiA5NiAzNycgZmlsbD0nbm9uZScgc3Ryb2tlPScjMWE5ZTkwJyBzdHJva2Utd2lkdGg9JzIuNicvPjwvc3ZnPg==") 0 0 / 96px 48px repeat,
+    linear-gradient(180deg, #d3f2ec 0%, #a5e2da 100%);
+
+  /* 3 · THE PARASOL. Top-down beach umbrella: eight wedges alternating coral and
+     cream around a turquoise hub, over warm peach. This is the kit's emblem —
+     and the one place the coral and the turquoise meet. Drawn because a disc
+     divided into wedges is a division of angle, which no gradient produces. */
+  --tropical-breeze-parasol:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIGZpbGw9JyNmZmU5ZDInLz48cGF0aCBkPSdNNTAgNTBMNTAuMCA4LjBBNDIgNDIgMCAwIDEgNzkuNyAyMC4zWicgZmlsbD0nI2NjM2YyNicvPjxwYXRoIGQ9J001MCA1MEw3OS43IDIwLjNBNDIgNDIgMCAwIDEgOTIuMCA1MC4wWicgZmlsbD0nI2ZmZmFmMCcvPjxwYXRoIGQ9J001MCA1MEw5Mi4wIDUwLjBBNDIgNDIgMCAwIDEgNzkuNyA3OS43WicgZmlsbD0nI2NjM2YyNicvPjxwYXRoIGQ9J001MCA1MEw3OS43IDc5LjdBNDIgNDIgMCAwIDEgNTAuMCA5Mi4wWicgZmlsbD0nI2ZmZmFmMCcvPjxwYXRoIGQ9J001MCA1MEw1MC4wIDkyLjBBNDIgNDIgMCAwIDEgMjAuMyA3OS43WicgZmlsbD0nI2NjM2YyNicvPjxwYXRoIGQ9J001MCA1MEwyMC4zIDc5LjdBNDIgNDIgMCAwIDEgOC4wIDUwLjBaJyBmaWxsPScjZmZmYWYwJy8+PHBhdGggZD0nTTUwIDUwTDguMCA1MC4wQTQyIDQyIDAgMCAxIDIwLjMgMjAuM1onIGZpbGw9JyNjYzNmMjYnLz48cGF0aCBkPSdNNTAgNTBMMjAuMyAyMC4zQTQyIDQyIDAgMCAxIDUwLjAgOC4wWicgZmlsbD0nI2ZmZmFmMCcvPjxjaXJjbGUgY3g9JzUwJyBjeT0nNTAnIHI9JzQyJyBmaWxsPSdub25lJyBzdHJva2U9JyNjOTk0NWYnIHN0cm9rZS13aWR0aD0nMS40JyBvcGFjaXR5PScuNzUnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc4JyBmaWxsPScjMGZhZTllJy8+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nMy4yJyBmaWxsPScjMGE2NjVlJy8+PC9zdmc+") center / 64px 64px no-repeat,
+    linear-gradient(160deg, #ffe9d2 0%, #ffd9bd 100%);
+}

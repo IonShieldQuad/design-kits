@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Motion — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Race Motion kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Race Motion</h1>
+  <p class="spec-sub">Motorsport as broadcast — asphalt under kerbs and a chequered flag, set in a big italic</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Race Motion
+description: Motorsport as broadcast — asphalt under kerbs and a chequered flag, set in a big italic.
+colors:
+  primary: &quot;#d40a00&quot;
+  primary-hover: &quot;#e10600&quot;
+  primary-ink: &quot;#ff7a6d&quot;
+  secondary: &quot;#e9eef3&quot;
+  tertiary: &quot;#ffd23f&quot;
+  neutral: &quot;#0d0f12&quot;
+  surface: &quot;#1b1e24&quot;
+  surface-2: &quot;#262a31&quot;
+  text: &quot;#f3f6f9&quot;
+  text-muted: &quot;#bcc3cc&quot;
+  text-invert: &quot;#ffffff&quot;
+  success: &quot;#3ddc84&quot;
+  error: &quot;#ff6256&quot;
+typography:
+  display:
+    fontFamily: Saira
+    fontSize: 3rem
+    fontWeight: 800
+    lineHeight: 1.02
+    letterSpacing: &quot;-0.01em&quot;
+  heading:
+    fontFamily: Saira
+    fontSize: 1.32rem
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: &quot;-0.005em&quot;
+  body:
+    fontFamily: Inter
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: JetBrains Mono
+    fontSize: 0.72rem
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: &quot;0.16em&quot;
+  timing:
+    fontFamily: JetBrains Mono
+    fontSize: 0.82rem
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: &quot;0.02em&quot;
+rounded:
+  sm: 0px
+  md: 2px
+  lg: 3px
+  pill: 3px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  card-media-2:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-caution:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="race-motion">Race Motion</h2>
+<h3 id="overview">Overview</h3>
+<p>The energy of a race broadcast, not a car brand. A marque's site is a white room with a red accent; this is the other thing — tarmac at dusk, under lights, with a kerb at the edge of the frame and a chequered flag across it. Racing red is the single action colour, bodywork white is the second accent, and one signal yellow is kept for cautions alone.</p>
+<p>The register is <strong>asphalt</strong> (the brief's dark option) rather than bodywork white. Three reasons: a white ground with black type and a red accent is what every car marque already looks like; the white halves of a kerb and a chequer disappear on a white page, so the two motifs this kit is built on only work on a dark one; and a broadcast is lit from the top of the frame, which is what <code>--bg</code> models. The mode is therefore <code>dark</code>.</p>
+<p>The kit's geometry is a <strong>speed cut</strong> — the two leading (right) corners of every plate are removed by <code>clip-path</code>, so cards, buttons, inputs and badges all lean forward. That chamfer plus a heavy <em>italic</em> display face is what makes the kit identifiable at 200×120.</p>
+<h3 id="colors">Colors</h3>
+<p>Racing red <code>#d40a00</code> is the one action colour: primary buttons, focus, the live state. Its fill is only 3.55:1 as a small label, so text-red ships separately as <code>primary-ink</code> <code>#ff7a6d</code> — every link, eyebrow, active tab, badge label and inline code goes through it. Bodywork white <code>#e9eef3</code> is the second accent (livery stripes, media fills); it is not a control colour.</p>
+<p>The ground is <code>#26292f</code> at the top of the frame settling to <code>#0d0f12</code> at the bottom — asphalt, never a neutral grey-black, and warm enough at the far end (<code>#33100e</code> in the slipstream) to read as brake glow. <code>neutral</code> <code>#0d0f12</code> is that darkest stop.</p>
+<p>Signal yellow <code>#ffd23f</code> is <code>tertiary</code>, and it does exactly <strong>one</strong> job: caution. It appears in <code>--warn</code>, in <code>badge-caution</code>, and nowhere that asks the user to click or to act. Status colours stay off the brand red: <code>success</code> is a green flag, <code>error</code> is a light coral-red tier deliberately distinct from the deep fill so a "failed" badge is never mistaken for the accent.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, three jobs. <strong>Saira</strong> is the display face and it is set <strong>italic</strong> — the register is a broadcast graphic, and a broadcast graphic leans forward. Saira was chosen over Chakra Petch (no italic exists) and over Archivo (italic exists, but a neutral grotesque) because its slightly squared, technical italic is the sports-graphics voice; the italic itself is declared in <code>kit.css</code> because the token contract carries a font <em>family</em>, never a font <em>style</em>. <strong>Inter</strong> is the body, because it stays legible in quantity where a display face does not. <strong>JetBrains Mono</strong> is the timing tower: labels, metrics and code, set wide (<code>0.16em</code>) in caps so small labels read as graphics rather than as body text.</p>
+<h3 id="layout">Layout</h3>
+<p>Comfortable density — <code>16px</code> gutters, <code>24px</code> between blocks — so the loud surfaces have air. Corners are effectively square: <code>0px</code> to <code>3px</code>, with the diagonal carried by the <code>12px</code> speed cut instead of by a radius. Nothing is a pill; badges are chamfered tags. UI chrome (kickers, chips, nav labels, meta lines) stays at or above 12px.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Flat, like a broadcast overlay: <code>--blur: none</code>, no <code>backdrop-filter</code>. Depth is a tight dark drop (<code>0 3px 14px</code> / <code>0 12px 34px</code>) plus a red charge glow on the primary action. One honest caveat: the kit opts into <code>--clip</code>, and <code>clip-path</code> clips <code>box-shadow</code>, so on a clipped plate those drops read as <em>subtle</em> rather than absent — the chamfer and the hard bands carry most of the depth. That is a documented limitation of the chamfer, not a bug, and it suits a flat overlay.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry lives in three signature tokens rather than in its corners:</p>
+<ul><li><code>--race-motion-chequer</code> — a <strong>true two-tone chequered flag</strong>: <code>repeating-conic-gradient</code> lays a 2×2 block and <code>background-size</code> sets its period, so each square is exactly 12px. Hard-edged and crisp; it is deliberately sized in <code>rem</code> because the build's swatch normaliser rewrites any <code>NNpx</code> gradient inside a single paren pair into smooth <code>%</code> stops, which would melt the checker into a conic swirl.</li><li><code>--race-motion-kerb</code> — hard-banded red and white at −52°, never a smooth ramp (both stops share a position at every seam). The track edge.</li><li><code>--race-motion-slipstream</code> — speed lines: white and red streaks at 102° over a dark asphalt ground with a bright convergence where the car has just passed. This is what <code>--media-bg</code> paints, so a media panel shows motion rather than the lab's default flat accent ramp.</li></ul>
+<p>Three motifs, three jobs: identity (the flag), limit (the kerb), motion (the slipstream).</p>
+<h3 id="components">Components</h3>
+<p>Primary buttons are red plates with a pure-white label (not a cream — the difference is the 4.97:1 pass). Secondary buttons are flat surfaces with red text through <code>primary-ink</code>. Cards sit on <code>--surface</code> with a 2px steel rule, the elevated card deepens to <code>--surface-2</code>, and inputs are milled by an inset shadow. Badges are chamfered tags carrying mono caps; the caution badge is the kit's only yellow. Media panels use the slipstream.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep red for action and white for structure; two accents, two jobs.</li><li><strong>Do</strong> let the speed cut do the diagonal work — a radius on top of a chamfer fights it.</li><li><strong>Do</strong> keep the signal yellow on cautions only. It is not a second brand colour.</li><li><strong>Don't</strong> put the red fill behind small text; use <code>primary-ink</code>.</li><li><strong>Don't</strong> add a blurred shadow, a glass panel or a third accent — this register is flat, loud and precise, and a bloom turns a broadcast into a dashboard.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

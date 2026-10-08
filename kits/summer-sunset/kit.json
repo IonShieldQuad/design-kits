@@ -1,11 +1,16 @@
 {
   "name": "Summer Sunset",
   "tagline": "80s synthwave poster — sunset sky, bold lines, orange · cyan · magenta.",
-  "index": "05",
   "order": 50,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap",
   "fonts_label": "Audiowide · Inter · Share Tech Mono",
   "mode": "light",
   "source": "original",
-  "tags": ["light", "warm", "retro", "bold", "synthwave"]
+  "tags": [
+    "light",
+    "warm",
+    "retro",
+    "bold",
+    "synthwave"
+  ]
 }

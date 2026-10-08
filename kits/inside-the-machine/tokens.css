@@ -6,6 +6,22 @@
    and phosphor lamps: amber acts (#ffb000), green reports (#4dff9e), red
    faults (#ff5147).
 
+   MATERIAL — the part a palette cannot carry. Three DRAWN textures do three
+   different jobs and are rendered as ~168x72 tiles on --surface-2:
+
+     1. --inside-the-machine-weave   a woven carbon-fibre cloth (SURFACE).
+        Drawn (base64 SVG, 24px tile, repeat): a 2/2 twill — continuous warp and
+        weft tows whose over/under crossings step diagonally. Milled onto the
+        media panel via --media-bg.
+     2. --inside-the-machine-grille  a punched vent plate (STRUCTURE).
+        Drawn (base64 SVG, 12px tile, repeat): each hole is a dark well with a
+        lit lower lip, so it reads as punched metal, not a dot grid.
+     3. --inside-the-machine-steel   brushed steel lit by a hard specular band
+        (LIGHT). Hard px stops, never a smooth ramp — a ramp reads as fog.
+        Signature tile only: --fill-bg is shared by the avatar, which prints
+        --text-invert on its fill, so a fill dark enough to read as metal would
+        make the initials unreadable.
+
    Mono-first: IBM Plex Mono carries the interface — headings, eyebrows,
    labels, table headers, badges — and IBM Plex Sans is the fallback voice for
    sentences. There is no separate display face; the mono IS the display face.
@@ -23,9 +39,9 @@
   --overlay:       rgba(6,8,10,.78);        /* modal scrim */
 
   /* -- text -------------------------------------------------------------- */
-  --text:          #e9edef;                 /* 16.2:1 on --bg */
-  --text-muted:    #9aa4ad;                 /* 7.0:1 on --surface */
-  --text-dim:      #828d95;                 /* 4.9:1 on --surface-2 */
+  --text:          #e9edef;                 /* 16.30:1 on --bg */
+  --text-muted:    #9aa4ad;                 /* 6.96:1 on --surface */
+  --text-dim:      #828d95;                 /* 4.89:1 on --surface-2 (binding) */
   --text-invert:   #0d0f11;                 /* chassis ink on the amber plate */
 
   /* -- brand ------------------------------------------------------------- */
@@ -74,13 +90,42 @@
   --dur:           .12s;
   --ease:          cubic-bezier(.3,.7,.4,1);
 
-  /* -- extras (ignored by the shared lab) -------------------------------- */
+  /* -- opt-in lab capabilities ------------------------------------------- */
+  /* The one place a surface can be shown rather than a colour. media panels
+     carry the carbon cloth at full strength (--media-op: 1; a texture washed to
+     the default .85 dim loses its weave). */
+  --media-bg:      var(--inside-the-machine-weave);
+  --media-op:      1;
+  /* Fields default to flat (`none`); a milled machine recesses its inputs. */
+  --input-inset:   inset 0 1px 0 rgba(0,0,0,.55), inset 0 -1px 0 rgba(255,255,255,.05);
+
+  /* -- signature material (DRAWN, not a ramp) ---------------------------- */
+  /* 1 · WOVEN CARBON-FIBRE CLOTH. A 2/2 twill: continuous warp + weft tows, and
+     the tow that is ON TOP in each crossing lights up (near-white over / near-
+     black under). The "over" cells step one column per row, so the sheen forms
+     the diagonal bands that make a twill read as carbon and not as a grid of
+     beveled tiles. Base64 SVG, never hand-encoded (a double-encoded '#' fails
+     silently as a blank tile). 24px tile, repeat. */
+  --inside-the-machine-weave:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2hiJyB4MT0nMCcgeTE9JzAnIHgyPScwJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjY2ZkOGUxJy8+PHN0b3Agb2Zmc2V0PScwLjUnIHN0b3AtY29sb3I9JyM2YTc0ODAnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxYjIwMjYnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0naGQnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMyYjMyM2EnLz48c3RvcCBvZmZzZXQ9JzAuNScgc3RvcC1jb2xvcj0nIzE2MWIyMScvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzA3MDkwYicvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSd2YicgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2I5YzRjZicvPjxzdG9wIG9mZnNldD0nMC41JyBzdG9wLWNvbG9yPScjNWI2NjcyJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMTUxYTFmJy8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9J3ZkJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMCc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMjMyYTMxJy8+PHN0b3Agb2Zmc2V0PScwLjUnIHN0b3AtY29sb3I9JyMxMTE2MWInLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMwNjA4MDknLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMjQnIGhlaWdodD0nMjQnIGZpbGw9JyMwODBhMGMnLz48ZyBmaWxsPSd1cmwoI2hkKSc+PHJlY3QgeD0nMCcgeT0nMC43JyB3aWR0aD0nMjQnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMCcgeT0nNi43JyB3aWR0aD0nMjQnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMCcgeT0nMTIuNycgd2lkdGg9JzI0JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzAnIHk9JzE4LjcnIHdpZHRoPScyNCcgaGVpZ2h0PSc0LjYnLz48L2c+PGcgZmlsbD0ndXJsKCN2ZCknPjxyZWN0IHg9JzAuNycgeT0nMCcgd2lkdGg9JzQuNicgaGVpZ2h0PScyNCcvPjxyZWN0IHg9JzYuNycgeT0nMCcgd2lkdGg9JzQuNicgaGVpZ2h0PScyNCcvPjxyZWN0IHg9JzEyLjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nMjQnLz48cmVjdCB4PScxOC43JyB5PScwJyB3aWR0aD0nNC42JyBoZWlnaHQ9JzI0Jy8+PC9nPjxnIGZpbGw9J3VybCgjaGIpJz48cmVjdCB4PScwJyB5PScwLjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzYnIHk9JzAuNycgd2lkdGg9JzYnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nNicgeT0nNi43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48cmVjdCB4PScxMicgeT0nNi43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48cmVjdCB4PScxMicgeT0nMTIuNycgd2lkdGg9JzYnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMTgnIHk9JzEyLjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzAnIHk9JzE4LjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzE4JyB5PScxOC43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48L2c+PGcgZmlsbD0ndXJsKCN2YiknPjxyZWN0IHg9JzEyLjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjxyZWN0IHg9JzE4LjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjxyZWN0IHg9JzAuNycgeT0nNicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMTguNycgeT0nNicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMC43JyB5PScxMicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nNi43JyB5PScxMicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nNi43JyB5PScxOCcgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMTIuNycgeT0nMTgnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjwvZz48L3N2Zz4=") 0 0 / 24px 24px repeat,
+    #0e1114;
+  /* 2 · PUNCHED VENT PLATE. Each hole is a dark well (r 3.15) inside a lit ring
+     (r 4.7) offset down 0.8, so the lower lip catches light — a punched hole,
+     not a dot. 12px tile, repeat. */
+  --inside-the-machine-grille:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgdmlld0JveD0nMCAwIDEyIDEyJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J3AnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMxZDIyMjYnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxMDE0MTgnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTInIGhlaWdodD0nMTInIGZpbGw9J3VybCgjcCknLz48Y2lyY2xlIGN4PSc2JyBjeT0nNicgcj0nNC43JyBmaWxsPScjNmM3ODg1Jy8+PGNpcmNsZSBjeD0nNicgY3k9JzUuMicgcj0nNC43JyBmaWxsPScjMTgxYzIwJy8+PGNpcmNsZSBjeD0nNicgY3k9JzYuMDUnIHI9JzMuMTUnIGZpbGw9JyMwNDA2MGEnLz48L3N2Zz4=") 0 0 / 12px 12px repeat,
+    #14171b;
+  /* 3 · BRUSHED STEEL RAIL. Fine vertical striations over HARD bands: a lit top
+     rim, the specular band, a machine-mark line, a dark chamfer foot. Hard px
+     stops (two stops at one position) because a smooth ramp reads as fog. */
+  --inside-the-machine-steel:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, rgba(0,0,0,.18) 1px 2px), linear-gradient(180deg, #7c8794 0px, #7c8794 1px, #c3ceda 1px, #c3ceda 5px, #f2f6f9 5px, #f2f6f9 8px, #aeb9c6 8px, #aeb9c6 13px, #5b6570 13px, #5b6570 18px, #23282e 18px, #23282e 21px);
+
+  /* -- construction helpers (spelled out for consumers; not rendered) ---- */
   --machine-seam:       #2a2f35;            /* the seam, spelled out */
   --machine-seam-strong:#4a535c;
   --machine-highlight:  rgba(255,255,255,.05);  /* lit top lip of a recess */
   --machine-well:       rgba(0,0,0,.5);         /* shadowed bottom lip */
-  --machine-graticule:  rgba(233,237,239,.028); /* faint chassis graticule */
   --machine-lamp-amber: radial-gradient(circle at 35% 30%, #ffe08a 0%, #ffb000 45%, #7a5200 100%);
   --machine-lamp-green: radial-gradient(circle at 35% 30%, #b6ffd6 0%, #4dff9e 45%, #0d6b41 100%);
-  --machine-phosphor:   linear-gradient(90deg, #4dff9e 0%, #ffb000 100%);
 }

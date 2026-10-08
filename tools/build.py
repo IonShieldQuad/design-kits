@@ -65,6 +65,7 @@ OPTIONAL_TOKENS = [
     # shape / construction
     "--clip", "--input-inset", "--btn-shadow",
     "--check-appearance", "--check-bg", "--check-border", "--check-checked",
+    "--style-display", "--focus-inset",
     # surfaces the lab would otherwise hardcode
     "--media-bg", "--media-op", "--wash", "--fill-bg",
     # rendering

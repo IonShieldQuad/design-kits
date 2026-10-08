@@ -1,0 +1,16 @@
+{
+  "name": "Radioactive",
+  "tagline": "A containment site under CCTV — cold concrete, clinical white plates, hazard tape, and one toxic-green readout",
+  "signature": [
+    "--radioactive-trefoil",
+    "--radioactive-hazard",
+    "--radioactive-spill"
+  ],
+  "order": 165,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+  "fonts_label": "Chakra Petch · Archivo · IBM Plex Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "industrial", "hazard", "technical", "clinical", "toxic"],
+  "use_when": "institutional danger: industrial, safety, monitoring and telemetry dashboards, ops and incident UIs, science/medical tooling, anything that should feel like a controlled — not a cosy — environment"
+}

@@ -2,35 +2,35 @@
   "theme": {
     "extend": {
       "colors": {
-        "primary": "#a4131f",
-        "primary-hover": "#c01726",
-        "primary-ink": "#efe9dd",
-        "primary-text": "#c9707a",
-        "primary-text-hover": "#dc8a8f",
-        "secondary": "#b8555f",
-        "tertiary": "#8d99a6",
-        "neutral": "#0a0b0d",
-        "surface": "#141519",
-        "surface-2": "#1c1d22",
-        "text": "#efe9dd",
-        "text-muted": "#a8a294",
-        "text-dim": "#8f8a7c",
-        "success": "#8aa05c",
-        "warning": "#c99a34",
-        "error": "#e4564f"
+        "primary": "#8f1d3f",
+        "primary-hover": "#ab2549",
+        "primary-ink": "#f7ece8",
+        "primary-text": "#e08ba6",
+        "primary-text-hover": "#f0a6bc",
+        "secondary": "#c99a4e",
+        "tertiary": "#93a9c6",
+        "neutral": "#130b12",
+        "surface": "#1f1420",
+        "surface-2": "#28192a",
+        "text": "#f4ebe6",
+        "text-muted": "#cdb6bf",
+        "text-dim": "#b095a2",
+        "success": "#8fb073",
+        "warning": "#d9a94f",
+        "error": "#e3737d"
       },
       "fontFamily": {
         "display": [
-          "Oswald"
+          "Cormorant Garamond"
         ],
         "heading": [
-          "Oswald"
+          "Cormorant Garamond"
         ],
         "body": [
-          "Barlow"
+          "Lora"
         ],
         "body-strong": [
-          "Barlow"
+          "Lora"
         ],
         "label": [
           "Roboto Mono"
@@ -40,14 +40,14 @@
         "display": [
           "2.9rem",
           {
-            "letterSpacing": "-0.005em",
+            "letterSpacing": "-0.01em",
             "fontWeight": "700"
           }
         ],
         "heading": [
-          "1.3rem",
+          "1.34rem",
           {
-            "letterSpacing": "0.005em",
+            "letterSpacing": "0em",
             "fontWeight": "600"
           }
         ],
@@ -66,16 +66,16 @@
         "label": [
           "0.72rem",
           {
-            "letterSpacing": "0.22em",
+            "letterSpacing": "0.2em",
             "fontWeight": "500"
           }
         ]
       },
       "borderRadius": {
-        "sm": "0px",
-        "md": "2px",
-        "lg": "3px",
-        "pill": "3px"
+        "sm": "3px",
+        "md": "7px",
+        "lg": "14px",
+        "pill": "999px"
       },
       "spacing": {
         "xs": "4px",

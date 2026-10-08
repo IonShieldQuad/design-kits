@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kawaii — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Kawaii kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&amp;family=Nunito:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Kawaii</h1>
+  <p class="spec-sub">A pastel sticker sheet — bubblegum pink, lilac and mint, huge radii, sparkles and hearts</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Kawaii
+description: &quot;A pastel sticker sheet: bubblegum pink, lilac and mint grounds, one candy accent, 28px radii with pills everywhere, and drawn sparkle, heart and confetti stickers.&quot;
+colors:
+  primary: &quot;#ff6fb2&quot;
+  primary-hover: &quot;#ff86c1&quot;
+  on-primary: &quot;#4a1738&quot;
+  primary-ink: &quot;#ab1559&quot;
+  primary-ink-hover: &quot;#8f104b&quot;
+  secondary: &quot;#35c79a&quot;
+  tertiary: &quot;#c9a6ff&quot;
+  accent-tint: &quot;#fcdaec&quot;
+  neutral: &quot;#fff2f9&quot;
+  surface: &quot;#ffffff&quot;
+  surface-2: &quot;#fbeef7&quot;
+  text: &quot;#3b2743&quot;
+  text-muted: &quot;#5f4a68&quot;
+  text-dim: &quot;#634e6c&quot;
+  success: &quot;#0d7a57&quot;
+  warning: &quot;#946000&quot;
+  error: &quot;#bd2d28&quot;
+  info: &quot;#4f52c9&quot;
+  focus: &quot;#7d5bd6&quot;
+  border: &quot;#eadee8&quot;
+typography:
+  display:
+    fontFamily: Baloo 2
+    fontSize: 2.8rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;-0.005em&quot;
+  heading:
+    fontFamily: Baloo 2
+    fontSize: 1.28rem
+    fontWeight: 600
+    lineHeight: 1.2
+  body:
+    fontFamily: Nunito
+    fontSize: 0.95rem
+    fontWeight: 500
+    lineHeight: 1.6
+  label:
+    fontFamily: JetBrains Mono
+    fontSize: 0.72rem
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: &quot;0.10em&quot;
+rounded:
+  sm: 12px
+  md: 18px
+  lg: 28px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 14px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 14px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink-hover}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 14px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-body:
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-tint}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;
+  progress-bar:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    height: 8px
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  spot-illustration:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    size: 96px
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: 1px
+  focus:
+    textColor: &quot;{colors.focus}&quot;</code></pre></section>
+<h2 id="kawaii">Kawaii</h2>
+<h3 id="overview">Overview</h3>
+<p>Kawaii is a <strong>pastel sticker sheet</strong>. Four soft grounds — pink, lilac, mint and cream — carry a single bubblegum action colour, and the shape language, not the hue, is what identifies the kit: 12/18/28px radii, pills on every chip, bar, toggle and avatar, soft plum-tinted shadows, and a bouncy overshoot ease so controls pop instead of gliding. Type is a chunky rounded display (Baloo 2) over a rounded soft body (Nunito), with a friendly mono for labels.</p>
+<p>It exists because this library had three light, soft kits and none of them was <em>playful</em>. <code>sakura</code> is a spring day — saturated blossom pink against living leaf green, drawn in measured, elegant strokes. <code>city-pop</code> is an airbrushed 80s Tokyo sleeve, cream and coral and teal. <code>glorious-morning</code> is first light — dawn gold on clear sky, energetic and open. All three are <em>pretty</em>. Kawaii is the opposite register on purpose: it is <strong>cute</strong>, it wears stickers, and a screen that reads as elegant is a screen where this kit has failed. The motifs make that explicit — a four-point sparkle, a die-cut heart and a confetti field — where the other three kits show a sun, a petal drift and a light ray.</p>
+<h3 id="colors">Colors</h3>
+<p>The pastels are grounds, not decorations. Pink <code>#fff2f9</code>/<code>#fbdcf0</code>, lilac <code>#eadffd</code> and mint <code>#daf3e6</code> are the page wash, and <strong>the palest stop is the one that binds</strong>: <code>--surface</code> is pure <code>#ffffff</code>, so every caption, hint and label is graded against white, not against the flattering pink stop. Everything is inked in <strong>deep plum</strong> (<code>#3b2743</code>), never grey — a grey ink on a pastel ground is exactly what makes a light theme read as corporate rather than cute.</p>
+<p>There is <strong>one candy accent</strong>: bubblegum <code>#ff6fb2</code>. It is a fill and only a fill — as a small label on white it is 2.57:1 — so accent-as-text ships separately as <code>#ab1559</code>, and that value is graded <em>both</em> on every ground and on its own 16% <code>--accent-soft</code> tint composited over the surface (the pastel-badge case that shipped unreadable in nine kits of this library). Because the fill is a pastel, buttons take <strong>dark</strong> labels: <code>--text-invert</code> is a deep berry <code>#4a1738</code> at 5.55:1 on the bubblegum, where white would be 2.57:1 and vanish.</p>
+<p>A pastel fill cannot carry a status, so <code>--ok</code>, <code>--warn</code>, <code>--danger</code> and <code>--info</code> are deepened until each clears 4.5:1 on <code>--surface-2</code>, the ground badges and alerts actually sit on.</p>
+<h3 id="typography">Typography</h3>
+<p><strong>Baloo 2</strong> is the display face: a chunky, bubbly rounded grotesque whose counters are round at large sizes — it <em>is</em> sticker lettering. <strong>Nunito</strong> is the body: rounded, warm, and still legible at 12–13px, which is where Quicksand's thin geometric strokes go spindly and Fredoka's wide shapes cost a line. <strong>JetBrains Mono</strong> handles chips, labels and code; it is deliberately a <em>friendly</em> monospace, because a technical mono would pull the small type back toward "dashboard". Caps tracking is a modest <code>0.10em</code> — the chips are cute, not shouted.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is comfortable and nothing is dense: 16px gutters, 24px between blocks, 18px card padding. The defining layout fact is <strong>roundness</strong>: the smallest radius in the kit is 12px and every interactive control is a pill. Radio and checkbox are explicitly rounded through the <code>--check-*</code> capability, because native controls ignore <code>border-radius</code> and would otherwise ship as the only square thing on the page — a visible break of the kit's one absolute rule.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>soft, wide and plum-tinted</strong>: a pastel drop shadow, because a neutral-grey shadow on a pastel page reads as grime. Two shadow steps plus a candy <code>--glow</code> (the pink lift under the primary button) are all the depth the kit has. <code>--blur</code> is <code>none</code> — sticker paper is matte, and frosted glass is <code>glass</code>'s territory. <code>--btn-shadow</code> reaches every button variant so all five read as the same lifted sticker, and inputs take a soft <code>--input-inset</code> well so a field looks pressed into the sheet.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The shape language is the identity. Corners are huge, pills are everywhere, and nothing is chamfered. Three <strong>drawn</strong> motifs carry the genre's vocabulary: the four-point <strong>sparkle</strong> (a concave star, which no gradient can make), the <strong>die-cut heart</strong> (a filled shape with a white outline and a specular highlight), and the <strong>confetti field</strong> (dots, tiny stars and a tiny heart tiled at unequal sizes). Each is an inline SVG in base64 — never hand-percent-encoded, which double-encodes <code>#</code> and fails silently as a blank tile — and each carries its own base layer so no tile shows only the kit's flat surface.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are bubblegum pills with deep-berry labels, or white pills with candy-pink labels; the danger button keeps the white surface and takes a distinctly red text so "delete" never reads as the action. Cards are white sticker paper on the pastel ground with a 2px plum-pink outline and a 28px radius; the elevated card sits on the pink inset tint. Media panels use a drawn pastel sticker sheet rather than a generic accent ramp. Badges are pills: muted plum on the pink tint, or candy-pink text on the composited accent tint. Links and eyebrows route through <code>{colors.primary-ink}</code> so the fill is never used as a label.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep the candy accent for action only, and route every label through <code>primary-ink</code>.</li><li><strong>Do</strong> give buttons <strong>dark</strong> labels. A pastel fill takes deep berry ink; white on <code>#ff6fb2</code> is 2.57:1 and disappears.</li><li><strong>Do</strong> let the motifs be seen. They are drawn shapes on their own base layers, not sheens or washes that vanish at 168×72.</li><li><strong>Don't</strong> round anything less or square anything off. The pills and the huge radii are the kit — a 4px corner turns it back into a generic pastel theme.</li><li><strong>Don't</strong> reach for a second saturated colour or a third "look at me" accent. The pastels are grounds, <code>--accent-2</code> (mint) is structural only, and the one candy pink does all the persuading.</li><li><strong>Don't</strong> make it elegant. If a screen comes out tasteful and restrained, it is <code>sakura</code>, <code>city-pop</code> or <code>glorious-morning</code> — not this kit.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>
