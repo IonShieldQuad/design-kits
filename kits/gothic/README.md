@@ -1,8 +1,9 @@
 # Gothic
 
 **Dark feminine gothic — velvet, and something alive growing through it.** A deep plum ground, soft
-ivory type, one velvet wine, a muted rose for anything you have to read, and a candlelight gold that
-earns its place as the light in the room. A rose on a thorned stem, a lace veil, a dripping candle.
+ivory type, one velvet wine, a muted rose for anything you have to read, a warm **blush** that is the
+candlelight bloom around the action, and a candlelight gold that earns its place as the light in the
+room. A rose on a thorned stem, a lace veil, a dripping candle.
 
 `19` · dark · `Cormorant Garamond · Lora · Roboto Mono` · source: original
 
@@ -24,8 +25,9 @@ industrial.
 
 The structure is soft now. Velvet plum ground (`#130b12`, a violet cast, never charcoal), ivory text
 (`#f4ebe6` — bone, not pure white), a single wine (`#8f1d3f`) for the thing that acts, a muted rose
-(`#e08ba6`) for the thing that is *read*, and 3–14px corners with a true pill. Cormorant Garamond
-sets anything that speaks; Lora carries the body quietly; Roboto Mono is the one machine voice left.
+(`#e08ba6`) for the thing that is *read*, a warm **blush** (`#e3737d`) that is the bloom around the
+action, and 5–16px corners with a true pill. Cormorant Garamond sets anything that speaks; Lora
+carries the body quietly; Roboto Mono is the one machine voice left.
 
 Use it for **dark romance, beauty and fashion editorial, nightlife, witchy or vampire branding, and
 music**. It is a poor fit for anything that has to look friendly, safe or corporate — that is the
@@ -55,40 +57,46 @@ Every value below is authored for this kit; nothing is inherited from another ki
 | `--accent-hover` | `#ab2549` | the same wine warmed |
 | `--accent-2` | `#c99a4e` | candlelight gold — the light in the room |
 | `--accent-soft` | `rgba(143,29,63,.18)` | 18% wine tint, derived from `--accent` |
-| `--accent-ink` | `#e08ba6` | muted rose as TEXT — 7.43:1 on `--bg`, 6.13:1 on tint over `--surface-2` |
+| `--accent-ink` | `#e08ba6` | muted rose as TEXT — 7.43:1 on `--bg`, 6.15:1 on tint over `--surface-2` |
 | `--accent-ink-hover` | `#f0a6bc` | the rose lifted |
+| `--blush` | `#e3737d` | warm rose — a **first-class accent** (the glow bloom + the media veil's heart); never a fault |
 | `--ok` | `#8fb073` | muted sage |
 | `--warn` | `#d9a94f` | candlelight amber |
-| `--danger` | `#e3737d` | dusty-rose fault — lighter/hotter than the wine |
+| `--danger` | `#e0655a` | a true **warning red** — hot and red, clearly not the wine |
 | `--info` | `#93a9c6` | moonlight blue |
 | `--border` | `rgba(244,235,230,.14)` | the ivory hairline |
 | `--border-strong` | `rgba(244,235,230,.30)` | input rim / emphasised rule |
 | `--border-w` | `1px` | a fine lace hairline, not a slab |
 | `--focus-ring` | `#e08ba6` | the rose — two steps lighter than the wine action |
-| `--radius-sm/md/lg` | `3px` / `7px` / `14px` | velvet curve |
+| `--radius-sm/md/lg` | `5px` / `9px` / `16px` | velvet curve |
 | `--radius-pill` | `999px` | a true lozenge — badges are pills, avatars are circles |
 | `--cut` | `0px` | no chamfer; that is Cyber-angel's signature |
 | `--shadow-1` | inset ivory rim + `0 10px 26px -16px` falloff | a panel resting on velvet |
 | `--shadow-2` | inset rim + `0 24px 52px -24px` + `0 0 0 1px rgba(143,29,63,.22)` | the raised panel, with the wine thread |
-| `--glow` | `0 0 0 1px rgba(143,29,63,.55), 0 0 24px -4px rgba(224,139,166,.45)` | a real candlelight bloom — in **rose**, not wine |
+| `--glow` | `0 0 0 1px rgba(143,29,63,.55), 0 0 24px -4px rgba(227,115,125,.50)` | a real candlelight bloom — in the **blush**, not wine |
 | `--blur` | `none` | velvet is opaque, not frosted glass |
 
 Optional capabilities declared: `--accent-ink`, `--accent-ink-hover`, `--wash`, `--media-bg`,
 `--media-op`, `--fill-bg`, `--input-inset`.
 
-## The three motifs (and the two textures)
+## The three motifs (and the one texture)
 
 | Token | What it is | Job | How it is built |
 |---|---|---|---|
-| `--gothic-rose` | a rose head on a thorned stem | the **mark** — something alive | drawn SVG (base64), asymmetric spiral in three outer petals + wine thorns, over a plum bloom |
+| `--gothic-rose` | a rose bloom on a thorned stem | the **mark** — something alive | drawn SVG (base64): three rings of closed, overlapping petals (6 / 5 / 3) with visible edges, filled so each ring occludes the one behind it, a furled bud spiralling inside, on a wine stem with a leaf |
 | `--gothic-lace` | a lace veil | the **fabric** — a repeatable field | drawn SVG, fine netting + a four-petal flower, hearted by a rose dot |
 | `--gothic-candle` | a dripping candle | the **light** — the gold's job | drawn SVG, lit pillar with wax running down both flanks |
-| `--gothic-wine` | the accent as a surface | texture | a 4-stop velvet drape |
-| `--gothic-vein` | one hairline rule | texture | wine → rose → candle → rose → wine |
+| `--gothic-wine` | the accent as a surface | texture (not a motif) | a 4-stop velvet drape |
 
-**Five tokens, three ideas.** A third *motif* beyond rose/lace/candle is explicitly out of scope —
-the three already do three different jobs (mark, fabric, light), and a fourth would dilute them.
-`--gothic-wine` and `--gothic-vein` are light and line, not motifs.
+**Four tokens, three ideas.** A fourth *motif* beyond rose/lace/candle is out of scope — the three
+already do three different jobs (mark, fabric, light) and a decorative fourth only dilutes them.
+`--gothic-wine` is the accent as a surface, not a motif.
+
+A fifth tile, `--gothic-vein` — a wine → rose → candle hairline — was **cut in review**. Rendered at
+168×72 it was a plum → magenta → **orange** → gold → **yellow** horizontal band: a sunset/aurora ramp
+that carried two hues the kit owns nowhere else, with no material cue for anything at all. Re-hueing
+it would only have re-made the lace, so it was removed. It is the one edit of the three that is a
+deletion rather than a redraw.
 
 ### Each motif is proofed non-flat on the tile, not just on the page
 
@@ -99,27 +107,34 @@ PIL. Reported as the standard deviation of luminance across the tile (`0` would 
 
 | Token | luminance std-dev (lab tile) | per-channel RGB std-dev | verdict |
 |---|---|---|---|
-| `--gothic-rose` | **27.1** | 37.6 / 24.2 / 27.2 | line art, clearly not flat |
-| `--gothic-lace` | **32.8** | 35.7 / 33.3 / 31.8 | a lattice, clearly not flat |
-| `--gothic-candle` | **52.1** | 53.7 / 52.3 / 46.8 | a solid form + flame, clearly not flat |
+| `--gothic-rose` | **24.0** | 41.0 / 19.4 / 23.7 | a solid layered bloom + stem, clearly not flat |
+| `--gothic-lace` | **36.4** | 38.4 / 36.1 / 34.3 | a lattice, clearly not flat |
+| `--gothic-candle` | **53.2** | 54.8 / 53.3 / 47.7 | a solid form + flame, clearly not flat |
 
-The two supporting textures clear it too (`--gothic-wine` 11.7, `--gothic-vein` 46.3) — neither is
-a flat plate — but their non-flatness is a gradient, not the failure mode this check exists for.
+The supporting texture clears it too (`--gothic-wine` 10.3) — not a flat plate — but its
+non-flatness is a smooth gradient, not the failure mode this check exists for. (`--media-bg` also
+measures 30.0, for reference.)
 
-### The motifs were settled by looking, three times
+### The motifs were settled by looking — the rose took four attempts
 
-Both the rose and the candle failed a first rendering and were redrawn:
+- The **candle** failed once and was redrawn: it first shipped with a large warm halo behind the
+  flame, which read as a **bullseye / eye** and as a flat column body. The halo is gone (warmth now
+  lives in the flame core) and the wax runs down both flanks and pools at the foot, so it reads as
+  *dripping*, not just lit.
+- The **rose took four attempts, and two of them failed in review.** Version 1 was a nested/looped
+  head — a **bullseye**; a bright heart in the middle then read as an **eye**. Version 2 was a single
+  **asymmetric spiral**: it survived the arithmetic (a real, non-flat tile) but a cold reviewer read
+  it as a **spiral / rosette / target / vinyl groove** — it "only read because it was labelled".
+  The rule that came out of that: *a rose needs petal **divisions**, and outlines alone tangle.*
+  Versions 3–4 were built as **closed, filled, overlapping petals** — occlusion gives clean petal
+  edges where outline-only petals give a tangle — with a furled bud inside and a thorned stem.
+- The shipped mark was re-rendered on the lab's own 168×72 `.chip` and graded **cold, with no
+  label**. The verdict: *"it looks like a rose … 85–90% confidence"*, nothing clipped at the tile
+  edges. That is the bar it had to clear, and it is the reason this token was redrawn rather than
+  filed as good-enough.
 
-- The **rose** first shipped as a nested/looped head and read as a **bullseye**, and any attempt to
-  put a bright heart in the middle read as an **eye** (a pinprick at the centre of a dark disc is a
-  catchlight). The shipped version is a single **asymmetric spiral** off-centre inside three uneven
-  petals; the stem and thorns disambiguate it firmly as botanical.
-- The **candle** first shipped with a large warm halo behind the flame, which read as a **bullseye /
-  eye** and as a flat column body. The halo is gone (warmth now lives in the flame core) and the wax
-  now runs down both flanks and pools at the foot, so it reads as *dripping*, not just lit.
-
-Both were re-rendered and re-checked at chip size before shipping. The motifs are the one part of
-this kit that could not be settled by arithmetic, so they were settled by looking.
+The motifs are the one part of this kit that cannot be settled by arithmetic, so they are settled by
+looking — and the rose is settled by looking *and being told nothing*.
 
 ## Type: why these three
 
@@ -146,8 +161,17 @@ this kit that could not be settled by arithmetic, so they were settled by lookin
   contrast numbers forced: `#8f1d3f` is **2.13:1** against the ground, so the deep wine cannot carry
   small type. The muted rose at 7.43:1 can, and it happens to be the rose motif's own colour — the
   link colour and the flower are the same substance.
-- `--danger: #e3737d` — deliberately **lighter and hotter** than the wine. "Delete" must never read
-  as "the action".
+- `--blush: #e3737d` — the palette's **warmth**, promoted in review out of `--danger`. It is the
+  colour of the candlelight halo `--glow` casts around the primary action and of the heart of the
+  `--media-bg` veil ramp. It is derived from nothing — it is the one hue the kit *chose* — and its
+  6.20:1 on the ground is never spent as ink, only as bloom.
+- `--danger: #e0655a` — a true warning **red**, deliberately hotter and redder than the wine.
+  "Delete" must never read as "the action"; since review it must never read as the blush either,
+  which is why the fault is a red and not a pink (the price is 4.89:1 on its own badge plate —
+  the kit's tightest number). It is a *coral-leaning* red by necessity, not by choice: on a dark
+  ground, saturation costs luminance, and a purer, hue-0 red at this lightness measures only
+  4.03–4.37:1 on `--surface-2` — it would fail. `#e0655a` is the reddest value that clears the bar
+  on the lightest dark the kit owns, and it is clearly distinct from the amber `--warn`.
 - `--text-invert: #f7ece8` (ivory, not near-black). A deep wine is deep enough to hold light ink
   (7.50:1), so the primary button keeps an ivory label — the inverse of a bright-accent dark kit.
 - `--accent-2: #c99a4e` (candlelight gold) — promoted to a real job rather than decoration: the
@@ -161,7 +185,7 @@ this kit that could not be settled by arithmetic, so they were settled by lookin
 
 Computed from `tokens.css` by script — WCAG relative-luminance ratio, `(Lhi + .05) / (Llo + .05)`.
 Translucent grounds are **composited** before grading (a badge's rose label is measured against its
-16–18% wine tint over the surface, and the masthead's ivory/rose labels against the `--wash` bloom
+18% wine tint over the surface, and the masthead's ivory/rose labels against the `--wash` bloom
 over the top bg stop).
 
 | Pair | Ratio | Target | |
@@ -176,18 +200,27 @@ over the top bg stop).
 | `--text-dim` on `--surface-2` | **6.07:1** | ≥ 4.55 | ✓ |
 | `--text-dim` on `--wash` composite (masthead) | **5.34:1** | ≥ 4.55 | ✓ |
 | `--accent-ink` on `--bg` (top stop) | **7.43:1** | ≥ 4.5 | ✓ |
-| `--accent-ink` on accent-soft over `--surface-2` | **6.13:1** | ≥ 4.5 | ✓ |
-| `--accent-ink` on accent-soft over `--surface` | **6.55:1** | ≥ 4.5 | ✓ |
+| `--accent-ink` on accent-soft over `--surface-2` | **6.15:1** | ≥ 4.5 | ✓ |
+| `--accent-ink` on accent-soft over `--surface` | **6.57:1** | ≥ 4.5 | ✓ |
 | `--accent-ink` on `--wash` composite | **5.86:1** | ≥ 4.5 | ✓ |
-| `--danger` on `--bg` (top stop) | **6.20:1** | ≥ 4.5 | ✓ |
+| `--danger` on `--surface-2` (the danger badge's plate) | **4.89:1** | ≥ 4.5 | ✓ |
+| `--danger` on `--surface` | **5.24:1** | ≥ 4.5 | ✓ |
+| `--danger` on `--bg` (top stop) | **5.46:1** | ≥ 4.5 | ✓ |
 | `--ok` / `--warn` / `--info` on `--surface` | 7.31 / 8.26 / 7.40:1 | ≥ 4.5 | ✓ |
 | `--focus-ring` on `--bg` | **7.43:1** | ≥ 3 | ✓ |
 
-**Worst pair: `--text-dim` (mauve dust, `#b095a2`) on the masthead `--wash` composite
-(≈`#3c2124`, the candle glow over the top bg stop) at 5.34:1** — target 4.55. On a *solid* ground
-the worst is the same token on `--surface-2` at 6.07:1. The dim tier is deliberately not moodier
-and darker than this: `--surface-2` is the lightest dark the kit owns, and it is the binding ground
-for a dark kit.
+The **blush** is *not* a text or status ink, so it carries no target — it renders only inside
+`--glow` (a `box-shadow`) and as the heart of the `--media-bg` ramp. For reference it sits at
+**6.20:1** on the top `--bg` stop and **5.56:1** on `--surface-2`.
+
+**Worst pair: `--danger` (the warning red, `#e0655a`) on its own `--surface-2` badge plate at
+4.89:1** — target 4.5. Moving the blush out of `--danger` is what produced the kit's tightest
+number: a fault colour that is *lighter* than this stops reading as red, and one that is *darker*
+stops clearing 4.5:1 on the lightest dark the kit owns. 4.89:1 is the honest price of a real red
+here. Second-tightest, and the binding number for the whole text tiers, is `--text-dim` (mauve dust,
+`#b095a2`) on the masthead `--wash` composite (≈`#3c2124`) at 5.34:1 (target 4.55); on a *solid*
+ground the same token's worst is 6.07:1 on `--surface-2`, which is the lightest dark the kit owns
+and the binding ground for a dark kit.
 
 `--border` / `--border-strong` sit at ~1.4–2.6:1 by design — decorative seams that never carry
 meaning alone. `--accent` itself is 2.13:1 on the ground, which is exactly why it is never used as
@@ -214,21 +247,35 @@ well inside a light shell); there is no inversion here, so declaring them would 
   so candlelight gold is the candle motif's flame, the lit end of the media ramp, and the gold half
   of the masthead glow. It is never an action fill. If the candle were removed the kit would need
   the gold removed with it.
-- **The media panel declares `primary` and `secondary` because those are what actually render.**
-  `--media-bg` is the lace veil over a wine→rose→candle ramp, whose endpoints are `#8f1d3f` and
-  `#c99a4e` — so `card-media` / `card-media-2` describe the ramp's two ends honestly rather than
-  pointing at colours that never appear.
+- **The blush was rescued from `--danger` and given a job.** Review found the palette's one blush
+  filed as "error": the softest, most romantic colour on the page meant *failed*. `--danger` is now a
+  true warning red (`#e0655a`) and the blush (`#e3737d`) is a first-class accent in the **bloom
+  family** — the halo `--glow` casts around the primary action, and the heart of the `--media-bg`
+  veil ramp (which also retired the last off-palette hex, a stray magenta, from that ramp). The soft
+  pink is now warmth, and nothing soft means "failed" any more.
+- **The media ramp is now wine → blush → candlelight, and every stop is a palette colour.** Before,
+  it was wine → *magenta* → candle, and the magenta was not in the palette at all; `card-media` /
+  `card-media-2` still declare `primary` / `secondary` because those are the ramp's two *endpoints*,
+  and the blush is what renders in its heart. A pink-into-candlelight ramp necessarily warms through
+  a lit amber on the way; that is the gold heating the veil, and — unlike the cut tile — it sits
+  *under the lace*, which is the material cue the tile never had.
 - **The rose and the candle each shipped a bug on the first try** (a bullseye/eye rose, an
-  eyelike-halo candle) and were redrawn. Documented above under the motifs, because "look at the
-  tiles" is the check that catches this and arithmetic cannot.
-- **Five signature tokens is the budget.** They are all used; none is filler. `--gothic-vein` is the
-  weakest as a *tile* (a horizontal hairline rendered 72px tall reads as a band) but the strongest
-  as an actual export.
+  eyelike-halo candle), and the rose then shipped a *second* bug that arithmetic could not catch: a
+  clean spiral that was non-flat, contrast-safe, and still read as a **rosette** rather than a rose.
+  All three were redrawn. Documented above under the motifs, because "look at the tiles, cold" is
+  the check that catches this.
+- **One DESIGN.md linter warning is kept on purpose:** `orphaned-tokens: 'blush' is defined but
+  never referenced by any component`. The blush *does* render — in `--glow` and in `--media-bg` — but
+  the DESIGN.md component schema has no `boxShadow` or `backgroundImage` property, so a colour whose
+  entire job is a bloom and a gradient mid-stop cannot be pointed at from a component. Same reason
+  `--glow`, `--border` and `--accent-soft` are described in prose. It is accepted, not accidental.
+- **Four signature tokens is the budget.** They are all used; none is filler. The fifth was cut in
+  review (see the motifs), which is the cheapest possible way to strengthen the remaining three.
 - **The kit is a bad fit for anything friendly.** Wine and rose on plum is not a neutral palette;
   using it for a healthcare product or a kids' app would be a category error.
 
 ## Files
 
 `DESIGN.md` (normative values) · `tokens.css` (the contract) · `kit.json` (gallery metadata) ·
-`index.html`, `tokens.json`, `tailwind.theme.json`, `theme.css` (generated by
-`python tools/build.py`).
+`index.html`, `DESIGN.html`, `tokens.json`, `tailwind.theme.json`, `theme.css` (generated by
+`python tools/build.py --only gothic`).

@@ -29,7 +29,9 @@
         "info": "#8aa6ff",
         "border": "#aa96ff3d",
         "border-strong": "#baaaff70",
-        "focus-ring": "#5b86ff"
+        "focus-ring": "#5b86ff",
+        "plate": "#4a3fa4",
+        "veil": "#04031057"
       },
       "fontFamily": {
         "display": [

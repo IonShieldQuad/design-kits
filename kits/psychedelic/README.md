@@ -40,7 +40,8 @@ motifs: a **warp** (the banded ground ripple), a **halftone** (a 3px dot screen)
   on the darkest band the plate can make *and* on its own 16% tint composited over it. The
   first cut of this kit used `#a83606` on a flat ground; the plate now needs `#943005`, which
   is 6.67:1 on the plate and 4.70:1 on the composite.
-- **Five inks, three jobs.**
+- **Five inks, three jobs.** The swatch row shows more cells than five because it also lists the
+  paper, the border and the status colours — the *inks* are five, and the copy counts those.
   - **Hot orange `#ff6a00` (`--accent`)** drives the **one primary action**. It is the only
     solid orange object on a screen.
   - **Deep purple `#5b1a8f` (`--accent-2`)** is the **cool counterweight**: media gradients,

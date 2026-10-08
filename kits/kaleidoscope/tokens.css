@@ -26,42 +26,74 @@
    not to clip. --focus-ring is a border-colour change in practice, not a ring.
 
    GROUND + CONTRAST:
-   The ground is now a DRAWN mirrored field, not just a gradient. An image layer
-   on --bg lifts arbitrary pixels, so the field is held to a hard luminance
-   ceiling: its brightest facet, doubled where two rosettes overlap, tops out at
-   L=0.0213 over the aperture's lightest stop (#120e30), which puts --text-dim at
-   4.88:1 there (floor 4.55). The masthead's old ruby bloom (--wash) is REMOVED
-   for the same reason — a translucent bloom stacked on the field is the one pair
-   that would have failed. See README.md for the full table.
+   The ground is a DRAWN mirrored field, not just a gradient. An image layer on
+   --bg lifts arbitrary pixels, so the field is held to a hard luminance ceiling
+   and then CALMED by a translucent plate. `--kaleidoscope-veil` (rgba(4,3,16,.34))
+   is the top layer of the ground: it drops the field's peak luminance and its
+   edge contrast together, so the mirrored geometry still reads while it stops
+   competing with small type. The binding pair went from --text-dim 4.68:1 on the
+   raw field to 5.53:1 on the veiled field. Because the veil is a translucent
+   layer it is graded as a COMPOSITE, never as the art beneath it.
+
+   The masthead carries its OWN calmer plate: `--wash` is a translucent dark
+   gradient (NOT the old ruby bloom — a bloom raises luminance and would fail;
+   a dark plate lowers it). Masthead text is graded against veil+wash, --text-dim
+   6.10:1. See README.md for the full table.
 
    Fonts: Sora (display) · Inter (body) · IBM Plex Mono (labels)
    ========================================================================== */
 :root{
   /* -- surfaces ---------------------------------------------------------- */
-  /* The GROUND, in two parts. (1) --kaleidoscope-mandala-art is the drawn
-     mirrored FACET FIELD: five 8-fold rosettes (one per tile corner plus one at
-     the centre) so a 200px tile joins seamlessly with its neighbours and the
-     page reads as a kaleidoscope rather than a dark card on a dark page. The
-     rosettes are sized so they only TOUCH (r=70: 2r=140 < the 141.4 corner-to-centre
-     distance), so no two facets ever stack and the alpha budget is exactly one
-     facet. Roughly half the facets are unlit (near-black) — darkening costs
-     nothing against the contrast floor — and the lit half sits at 12-15% of a
-     jewel hue, so the field carries real internal luminance structure while its
-     brightest pixel (4.72:1 for --text-dim over the aperture's lightest stop)
-     still clears the 4.55:1 floor.
-     (2) below it, the old aperture ramp, deepened so the field can carry the
-     brightness budget. Stops in px so the aperture sits in the first screen at
-     any document length. */
+  /* The GROUND, in three layers, and the ORDER is a legibility decision.
+     (0) --kaleidoscope-veil is a translucent dark PLATE laid over the whole field. Every
+     glyph that floats directly on the page — the masthead's meta line, the swatch labels,
+     the captions under the Signature tiles, form hints, the underline tabs, table cells and
+     the footer — is now graded against this calmed composite instead of a raw facet edge.
+     A flat veil cuts the field's peak luminance and its edge contrast together (measured
+     mean |luminance gradient| 0.00049 → 0.00026, ~47% calmer), so the mirrored geometry
+     still reads while it stops competing with small type.
+     (1) --kaleidoscope-mandala-art is the drawn mirrored FACET FIELD: five 8-fold rosettes
+     (one per tile corner plus one at the centre) so a 200px tile joins seamlessly with its
+     neighbours and the page reads as a kaleidoscope rather than a dark card on a dark page.
+     The rosettes are sized so they only TOUCH (r=70: 2r=140 < the 141.4 corner-to-centre
+     distance), so no two facets ever stack and the alpha budget is exactly one facet.
+     Roughly half the facets are unlit (near-black) — darkening costs nothing against the
+     contrast floor — and the lit half sits at 12-15% of a jewel hue.
+     (2) --kaleidoscope-aperture is the deep indigo ramp the field falls through. Stops in px
+     so the aperture sits in the first screen at any document length.
+     The veil is a translucent layer, so it is graded as a COMPOSITE (see README) — never
+     against the art beneath it and never against a solid. */
   --kaleidoscope-mandala-art:
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJyB2aWV3Qm94PScwIDAgMjAwIDIwMCc+PGRlZnM+PGcgaWQ9J3InPjxwb2x5Z29uIHBvaW50cz0nMC4wLDAuMCAyMS4wLDAuMCAxNC44LDE0LjggMC4wLDAuMCcgZmlsbD0nIzA0MDMwZScgZmlsbC1vcGFjaXR5PScuNjInLz48cG9seWdvbiBwb2ludHM9JzAuMCwwLjAgMTQuOCwxNC44IDAuMCwyMS4wIDAuMCwwLjAnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC4xNTAnLz48cG9seWdvbiBwb2ludHM9JzAuMCwwLjAgMC4wLDIxLjAgLTE0LjgsMTQuOCAtMC4wLDAuMCcgZmlsbD0nIzA0MDMwZScgZmlsbC1vcGFjaXR5PScuNjInLz48cG9seWdvbiBwb2ludHM9Jy0wLjAsMC4wIC0xNC44LDE0LjggLTIxLjAsMC4wIC0wLjAsMC4wJyBmaWxsPScjNWI4NmZmJyBmaWxsLW9wYWNpdHk9JzAuMTUwJy8+PHBvbHlnb24gcG9pbnRzPSctMC4wLDAuMCAtMjEuMCwwLjAgLTE0LjgsLTE0LjggLTAuMCwtMC4wJyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nLTAuMCwtMC4wIC0xNC44LC0xNC44IC0wLjAsLTIxLjAgLTAuMCwtMC4wJyBmaWxsPScjZmYyZDZmJyBmaWxsLW9wYWNpdHk9JzAuMTUwJy8+PHBvbHlnb24gcG9pbnRzPSctMC4wLC0wLjAgLTAuMCwtMjEuMCAxNC44LC0xNC44IDAuMCwtMC4wJyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nMC4wLC0wLjAgMTQuOCwtMTQuOCAyMS4wLC0wLjAgMC4wLC0wLjAnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC4xNTAnLz48cG9seWdvbiBwb2ludHM9JzIxLjAsMC4wIDQyLjAsMC4wIDI5LjcsMjkuNyAxNC44LDE0LjgnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC4xMzUnLz48cG9seWdvbiBwb2ludHM9JzE0LjgsMTQuOCAyOS43LDI5LjcgMC4wLDQyLjAgMC4wLDIxLjAnIGZpbGw9JyMwNDAzMGUnIGZpbGwtb3BhY2l0eT0nLjYyJy8+PHBvbHlnb24gcG9pbnRzPScwLjAsMjEuMCAwLjAsNDIuMCAtMjkuNywyOS43IC0xNC44LDE0LjgnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC4xMzUnLz48cG9seWdvbiBwb2ludHM9Jy0xNC44LDE0LjggLTI5LjcsMjkuNyAtNDIuMCwwLjAgLTIxLjAsMC4wJyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nLTIxLjAsMC4wIC00Mi4wLDAuMCAtMjkuNywtMjkuNyAtMTQuOCwtMTQuOCcgZmlsbD0nI2ZmMmQ2ZicgZmlsbC1vcGFjaXR5PScwLjEzNScvPjxwb2x5Z29uIHBvaW50cz0nLTE0LjgsLTE0LjggLTI5LjcsLTI5LjcgLTAuMCwtNDIuMCAtMC4wLC0yMS4wJyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nLTAuMCwtMjEuMCAtMC4wLC00Mi4wIDI5LjcsLTI5LjcgMTQuOCwtMTQuOCcgZmlsbD0nIzE5ZGRhMCcgZmlsbC1vcGFjaXR5PScwLjEzNScvPjxwb2x5Z29uIHBvaW50cz0nMTQuOCwtMTQuOCAyOS43LC0yOS43IDQyLjAsLTAuMCAyMS4wLC0wLjAnIGZpbGw9JyMwNDAzMGUnIGZpbGwtb3BhY2l0eT0nLjYyJy8+PHBvbHlnb24gcG9pbnRzPSc0Mi4wLDAuMCA3MC4wLDAuMCA0OS41LDQ5LjUgMjkuNywyOS43JyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nMjkuNywyOS43IDQ5LjUsNDkuNSAwLjAsNzAuMCAwLjAsNDIuMCcgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjEyMCcvPjxwb2x5Z29uIHBvaW50cz0nMC4wLDQyLjAgMC4wLDcwLjAgLTQ5LjUsNDkuNSAtMjkuNywyOS43JyBmaWxsPScjMDQwMzBlJyBmaWxsLW9wYWNpdHk9Jy42MicvPjxwb2x5Z29uIHBvaW50cz0nLTI5LjcsMjkuNyAtNDkuNSw0OS41IC03MC4wLDAuMCAtNDIuMCwwLjAnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC4xMjAnLz48cG9seWdvbiBwb2ludHM9Jy00Mi4wLDAuMCAtNzAuMCwwLjAgLTQ5LjUsLTQ5LjUgLTI5LjcsLTI5LjcnIGZpbGw9JyMwNDAzMGUnIGZpbGwtb3BhY2l0eT0nLjYyJy8+PHBvbHlnb24gcG9pbnRzPSctMjkuNywtMjkuNyAtNDkuNSwtNDkuNSAtMC4wLC03MC4wIC0wLjAsLTQyLjAnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC4xMjAnLz48cG9seWdvbiBwb2ludHM9Jy0wLjAsLTQyLjAgLTAuMCwtNzAuMCA0OS41LC00OS41IDI5LjcsLTI5LjcnIGZpbGw9JyMwNDAzMGUnIGZpbGwtb3BhY2l0eT0nLjYyJy8+PHBvbHlnb24gcG9pbnRzPScyOS43LC0yOS43IDQ5LjUsLTQ5LjUgNzAuMCwtMC4wIDQyLjAsLTAuMCcgZmlsbD0nI2E2NzhmZicgZmlsbC1vcGFjaXR5PScwLjEyMCcvPjxsaW5lIHgyPSc3MC4wJyB5Mj0nMC4wJyBzdHJva2U9JyMwNDAzMGUnIHN0cm9rZS13aWR0aD0nMS4yJyBzdHJva2Utb3BhY2l0eT0nLjYwJy8+PGxpbmUgeDI9JzQ5LjUnIHkyPSc0OS41JyBzdHJva2U9JyMwNDAzMGUnIHN0cm9rZS13aWR0aD0nMS4yJyBzdHJva2Utb3BhY2l0eT0nLjYwJy8+PGxpbmUgeDI9JzAuMCcgeTI9JzcwLjAnIHN0cm9rZT0nIzA0MDMwZScgc3Ryb2tlLXdpZHRoPScxLjInIHN0cm9rZS1vcGFjaXR5PScuNjAnLz48bGluZSB4Mj0nLTQ5LjUnIHkyPSc0OS41JyBzdHJva2U9JyMwNDAzMGUnIHN0cm9rZS13aWR0aD0nMS4yJyBzdHJva2Utb3BhY2l0eT0nLjYwJy8+PGxpbmUgeDI9Jy03MC4wJyB5Mj0nMC4wJyBzdHJva2U9JyMwNDAzMGUnIHN0cm9rZS13aWR0aD0nMS4yJyBzdHJva2Utb3BhY2l0eT0nLjYwJy8+PGxpbmUgeDI9Jy00OS41JyB5Mj0nLTQ5LjUnIHN0cm9rZT0nIzA0MDMwZScgc3Ryb2tlLXdpZHRoPScxLjInIHN0cm9rZS1vcGFjaXR5PScuNjAnLz48bGluZSB4Mj0nLTAuMCcgeTI9Jy03MC4wJyBzdHJva2U9JyMwNDAzMGUnIHN0cm9rZS13aWR0aD0nMS4yJyBzdHJva2Utb3BhY2l0eT0nLjYwJy8+PGxpbmUgeDI9JzQ5LjUnIHkyPSctNDkuNScgc3Ryb2tlPScjMDQwMzBlJyBzdHJva2Utd2lkdGg9JzEuMicgc3Ryb2tlLW9wYWNpdHk9Jy42MCcvPjxjaXJjbGUgcj0nMTEuOScgZmlsbD0nIzA0MDMwZScgZmlsbC1vcGFjaXR5PScuNzInLz48cG9seWdvbiBwb2ludHM9JzAsLTcuNyA3LjcsMCAwLDcuNyAtNy43LDAnIGZpbGw9JyNmZmQ5YTAnIGZpbGwtb3BhY2l0eT0nLjE0Jy8+PC9nPjwvZGVmcz48dXNlIGhyZWY9JyNyJyB4PScwJyB5PScwJy8+PHVzZSBocmVmPScjcicgeD0nMjAwJyB5PScwJy8+PHVzZSBocmVmPScjcicgeD0nMCcgeT0nMjAwJy8+PHVzZSBocmVmPScjcicgeD0nMjAwJyB5PScyMDAnLz48dXNlIGhyZWY9JyNyJyB4PScxMDAnIHk9JzEwMCcvPjwvc3ZnPg==");
-  --kaleidoscope-mandala:
-    var(--kaleidoscope-mandala-art) 0 0 / 200px 200px repeat,
+  --kaleidoscope-veil:
+    linear-gradient(rgba(4, 3, 16, .34), rgba(4, 3, 16, .34));
+  --kaleidoscope-aperture:
     radial-gradient(130% 100% at 50% -6%,
       #120e30 0px,
       #0c0920 640px,
       #08061a 1400px,
       #040310 2400px);
-  --bg:            var(--kaleidoscope-mandala);   /* the ground, by reference */
+  /* THE GROUND (--bg): the veiled field over the aperture. */
+  --kaleidoscope-ground:
+    var(--kaleidoscope-veil),
+    var(--kaleidoscope-mandala-art) 0 0 / 200px 200px repeat,
+    var(--kaleidoscope-aperture);
+  --bg:            var(--kaleidoscope-ground);   /* the ground, by reference */
+
+  /* THE TILE PLATE. A signature tile must not share the page's base: when
+     --kaleidoscope-mandala WAS --bg, its 168x72 tile painted the identical ground and read
+     as a dark hole in the page — this library's most-repeated defect. Every DARK motif
+     (mandala, beam, fractal) therefore sits on the SAME lit plate (a violet radial), so the
+     strip reads as specimens on a lit ground rather than gaps in the page. The plate is
+     written out in full in each token rather than shared through one var(), because the lab
+     generator classifies a signature token by looking for a literal `gradient(`; a value built
+     only from var() references is misread as a box-shadow and painted as a bevel instead of a
+     background. Measured on the rendered lab, the mandala tile's mean luminance is 8.33%
+     against a 0.30% page ground (~28x), its edge ring is 5.63% (~19x) and its grayscale
+     std-dev is 27.9 — the dark motifs are what make the plate worth having. */
+  --kaleidoscope-mandala:
+    var(--kaleidoscope-mandala-art) 0 0 / 200px 200px repeat,
+    radial-gradient(150% 140% at 50% 45%, #6658c2 0px, #4a3fa4 60%, #3a2f86 100%);
   --bg-2:          #0c0920;                 /* solid base / darkest-mid stop */
   --surface:       #15112e;                 /* card pane */
   --surface-2:     #221d42;                 /* nested panels, inputs, badges —
@@ -73,13 +105,15 @@
   --overlay:       rgba(4, 3, 16, .80);     /* modal scrim */
 
   /* -- text -------------------------------------------------------------- */
-  --text:          #f6f3ff;                 /* 18.6:1 on the deepest stop, 15.8:1
-                                               on the field's brightest pixel */
-  --text-muted:    #b9b2dd;                 /* 9.10:1 on --surface */
+  --text:          #f6f3ff;                 /* 18.70:1 on the deepest stop, 15.24:1
+                                               on the veiled field's brightest pixel */
+  --text-muted:    #b9b2dd;                 /* 9.10:1 on --surface, 8.32:1 on the
+                                               veiled field */
   --text-dim:      #9590b8;                 /* the token that fails most often.
-                                               Worst ground is the field over the
-                                               aperture's lightest stop: 4.88:1,
-                                               floor 4.55. See README. */
+                                               Worst ground is the veiled field's
+                                               brightest pixel: 5.53:1, floor 4.55
+                                               (4.68:1 before the veil — the fix this
+                                               revision makes). See README. */
   --text-invert:   #08040d;                 /* near-black ink on jewel fills:
                                                5.67:1 on --accent, 6.91:1 on hover */
 
@@ -94,8 +128,9 @@
   /* #ff2d6f is a fine fill but only ~4.1:1 as a small label over a lit ground.
      Same hue, lifted: legible everywhere it is used (links, the eyebrow, inline
      code, active nav, secondary labels). */
-  --accent-ink:       #ff6f9c;              /* 5.62:1 even on the field's
-                                               brightest pixel, 6.95:1 on --surface */
+  --accent-ink:       #ff6f9c;              /* 6.36:1 on the veiled field's brightest
+                                               pixel, 6.95:1 on --surface, 5.21:1 on
+                                               the 15% ruby badge tint over --surface-2 */
   --accent-ink-hover: #ff96b8;              /* hovers brighter, like the fill does */
 
   /* -- status (system states, off the jewel fills by value) -------------- */
@@ -154,10 +189,12 @@
   --ease:          cubic-bezier(.34,.16,.18,1);
 
   /* -- opt-in capabilities the lab honours ------------------------------- */
-  /* The masthead WASH is off: the full-bleed field is the masthead's material,
-     and any translucent bloom stacked on the field is the one composite that
-     would push --text-dim under 4.55:1. */
-  --wash:          none;
+  /* The masthead WASH is back, and it is a PLATE, not a bloom. A bloom raises luminance
+     (the old 15% ruby radial), which is the one thing the field's ceiling cannot afford; a
+     translucent DARK plate lowers it. The masthead's own calm ground sits over the veiled
+     field, so its eyebrow, meta line and swatch labels are graded against veil+wash:
+     --text-dim 6.10:1, --accent-ink 7.02:1. */
+  --wash:          linear-gradient(180deg, rgba(4, 3, 16, .58), rgba(4, 3, 16, .34));
   /* Media panels: a hard-banded BEAM of light across the prism dispersion —
      no smooth two-stop accent ramp. */
   --media-bg:      var(--kaleidoscope-beam-art) center / 100% 100% no-repeat,
@@ -190,16 +227,17 @@
   --kaleidoscope-beam-art: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMjQwIDEwMCc+PGcgdHJhbnNmb3JtPSd0cmFuc2xhdGUoLTE0LDUyKSByb3RhdGUoLTMxKSc+PHBvbHlnb24gcG9pbnRzPScwLjAsLTAuOSAyNDAuMCwtMy44IDI0MC4wLDMuOCAwLjAsMC45JyBmaWxsPScjZmZmMmY4JyBmaWxsLW9wYWNpdHk9JzAuOTInLz48cG9seWdvbiBwb2ludHM9JzAuMCwtMi43IDI0MC4wLC0xMS4yIDI0MC4wLC0zLjggMC4wLC0wLjknIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC42MicvPjxwb2x5Z29uIHBvaW50cz0nMC4wLDAuOSAyNDAuMCwzLjggMjQwLjAsMTEuMiAwLjAsMi43JyBmaWxsPScjZmYyZDZmJyBmaWxsLW9wYWNpdHk9JzAuNjInLz48cG9seWdvbiBwb2ludHM9JzAuMCwtNC41IDI0MC4wLC0xOC44IDI0MC4wLC0xMS4yIDAuMCwtMi43JyBmaWxsPScjZmZiMDIwJyBmaWxsLW9wYWNpdHk9JzAuNDYnLz48cG9seWdvbiBwb2ludHM9JzAuMCwyLjcgMjQwLjAsMTEuMiAyNDAuMCwxOC44IDAuMCw0LjUnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40NicvPjxwb2x5Z29uIHBvaW50cz0nMC4wLC02LjMgMjQwLjAsLTI2LjIgMjQwLjAsLTE4LjggMC4wLC00LjUnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC4zNicvPjxwb2x5Z29uIHBvaW50cz0nMC4wLDQuNSAyNDAuMCwxOC44IDI0MC4wLDI2LjIgMC4wLDYuMycgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjM2Jy8+PHBvbHlnb24gcG9pbnRzPScwLjAsLTguMSAyNDAuMCwtMzMuOCAyNDAuMCwtMjYuMiAwLjAsLTYuMycgZmlsbD0nI2E2NzhmZicgZmlsbC1vcGFjaXR5PScwLjI0Jy8+PHBvbHlnb24gcG9pbnRzPScwLjAsNi4zIDI0MC4wLDI2LjIgMjQwLjAsMzMuOCAwLjAsOC4xJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuMjQnLz48cG9seWdvbiBwb2ludHM9JzAuMCwtOS45IDI0MC4wLC00MS4yIDI0MC4wLC0zMy44IDAuMCwtOC4xJyBmaWxsPScjM2EyYTZlJyBmaWxsLW9wYWNpdHk9JzAuMzInLz48cG9seWdvbiBwb2ludHM9JzAuMCw4LjEgMjQwLjAsMzMuOCAyNDAuMCw0MS4yIDAuMCw5LjknIGZpbGw9JyMzYTJhNmUnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxsaW5lIHgxPScwJyB5MT0nMCcgeDI9JzI0MCcgeTI9JzAnIHN0cm9rZT0nI2ZmZmZmZicgc3Ryb2tlLW9wYWNpdHk9Jy44NScgc3Ryb2tlLXdpZHRoPScxLjEnLz48ZyB0cmFuc2Zvcm09J3RyYW5zbGF0ZSgwLC00NiknPjxwb2x5Z29uIHBvaW50cz0nMC4wLC0wLjQgMjQwLjAsLTEuNSAyNDAuMCwxLjUgMC4wLDAuNCcgZmlsbD0nI2ZmZjJmOCcgZmlsbC1vcGFjaXR5PScwLjMwMjUwMDAwMDAwMDAwMDA1Jy8+PHBvbHlnb24gcG9pbnRzPScwLjAsLTEuMSAyNDAuMCwtNC41IDI0MC4wLC0xLjUgMC4wLC0wLjQnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC4xNjUnLz48cG9seWdvbiBwb2ludHM9JzAuMCwwLjQgMjQwLjAsMS41IDI0MC4wLDQuNSAwLjAsMS4xJyBmaWxsPScjNWI4NmZmJyBmaWxsLW9wYWNpdHk9JzAuMTY1Jy8+PHBvbHlnb24gcG9pbnRzPScwLjAsLTIuMCAyNDAuMCwtOC4yIDI0MC4wLC00LjUgMC4wLC0xLjEnIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC4wOTknLz48cG9seWdvbiBwb2ludHM9JzAuMCwxLjEgMjQwLjAsNC41IDI0MC4wLDguMiAwLjAsMi4wJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuMDk5Jy8+PC9nPjxnIHRyYW5zZm9ybT0ndHJhbnNsYXRlKDAsNTIpJz48cG9seWdvbiBwb2ludHM9JzAuMCwtMC40IDI0MC4wLC0xLjUgMjQwLjAsMS41IDAuMCwwLjQnIGZpbGw9JyNmZmYyZjgnIGZpbGwtb3BhY2l0eT0nMC4yNDc1MDAwMDAwMDAwMDAwMycvPjxwb2x5Z29uIHBvaW50cz0nMC4wLC0xLjEgMjQwLjAsLTQuNSAyNDAuMCwtMS41IDAuMCwtMC40JyBmaWxsPScjNWI4NmZmJyBmaWxsLW9wYWNpdHk9JzAuMTM1Jy8+PHBvbHlnb24gcG9pbnRzPScwLjAsMC40IDI0MC4wLDEuNSAyNDAuMCw0LjUgMC4wLDEuMScgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjEzNScvPjxwb2x5Z29uIHBvaW50cz0nMC4wLC0yLjAgMjQwLjAsLTguMiAyNDAuMCwtNC41IDAuMCwtMS4xJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuMDgxJy8+PHBvbHlnb24gcG9pbnRzPScwLjAsMS4xIDI0MC4wLDQuNSAyNDAuMCw4LjIgMC4wLDIuMCcgZmlsbD0nI2E2NzhmZicgZmlsbC1vcGFjaXR5PScwLjA4MScvPjwvZz48L2c+PC9zdmc+");
   --kaleidoscope-beam:
     var(--kaleidoscope-beam-art) center / 100% 100% no-repeat,
-    radial-gradient(120% 130% at 18% 6%, #171240 0%, #08061a 72%);
+    radial-gradient(150% 140% at 50% 45%, #6658c2 0px, #4a3fa4 60%, #3a2f86 100%);
 
   /* FRACTAL — a mirrored polygonal SHARD with real internal structure. A
      vertical crystal, subdivided three times into a Sierpinski gasket and
      mirrored left/half to right/half, so it is symmetric about its spine and
-     every facet is a hard-edged triangle. Drawn at 200px and scaled down, on a
-     dark base so it reads as a cut stone rather than a flat chip. */
+     every facet is a hard-edged triangle. Drawn at 200px and scaled to 152px, on
+     the same lit tile plate as the other two dark motifs, so the shard reads as a
+     cut stone standing on a lit ground rather than a chip lost in the page. */
   --kaleidoscope-fractal:
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJyB2aWV3Qm94PScwIDAgMjAwIDIwMCc+PHBvbHlnb24gcG9pbnRzPScxMDAsOCAxNjgsMTAyIDEwMCwxOTYgMzIsMTAyJyBmaWxsPScjMGMwODI0JyBmaWxsLW9wYWNpdHk9Jy45MicvPjxwb2x5Z29uIHBvaW50cz0nMTAwLjAsOC4wIDkxLjUsMTkuOCAxMDguNSwxOS44JyBmaWxsPScjZmYyZDZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzkxLjUsMTkuOCA4My4wLDMxLjUgMTAwLjAsMzEuNScgZmlsbD0nI2ZmYjAyMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMDguNSwxOS44IDEwMC4wLDMxLjUgMTE3LjAsMzEuNScgZmlsbD0nIzE5ZGRhMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc4My4wLDMxLjUgNzQuNSw0My4yIDkxLjUsNDMuMicgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc3NC41LDQzLjIgNjYuMCw1NS4wIDgzLjAsNTUuMCcgZmlsbD0nI2E2NzhmZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc5MS41LDQzLjIgODMuMCw1NS4wIDEwMC4wLDU1LjAnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTE3LjAsMzEuNSAxMDguNSw0My4yIDEyNS41LDQzLjInIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTA4LjUsNDMuMiAxMDAuMCw1NS4wIDExNy4wLDU1LjAnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTI1LjUsNDMuMiAxMTcuMCw1NS4wIDEzNC4wLDU1LjAnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNjYuMCw1NS4wIDU3LjUsNjYuOCA3NC41LDY2LjgnIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNTcuNSw2Ni44IDQ5LjAsNzguNSA2Ni4wLDc4LjUnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNzQuNSw2Ni44IDY2LjAsNzguNSA4My4wLDc4LjUnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNDkuMCw3OC41IDQwLjUsOTAuMiA1Ny41LDkwLjInIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNDAuNSw5MC4yIDMyLjAsMTAyLjAgNDkuMCwxMDIuMCcgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc1Ny41LDkwLjIgNDkuMCwxMDIuMCA2Ni4wLDEwMi4wJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzgzLjAsNzguNSA3NC41LDkwLjIgOTEuNSw5MC4yJyBmaWxsPScjZmYyZDZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9Jzc0LjUsOTAuMiA2Ni4wLDEwMi4wIDgzLjAsMTAyLjAnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nOTEuNSw5MC4yIDgzLjAsMTAyLjAgMTAwLjAsMTAyLjAnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTM0LjAsNTUuMCAxMjUuNSw2Ni44IDE0Mi41LDY2LjgnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTI1LjUsNjYuOCAxMTcuMCw3OC41IDEzNC4wLDc4LjUnIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTQyLjUsNjYuOCAxMzQuMCw3OC41IDE1MS4wLDc4LjUnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTE3LjAsNzguNSAxMDguNSw5MC4yIDEyNS41LDkwLjInIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTA4LjUsOTAuMiAxMDAuMCwxMDIuMCAxMTcuMCwxMDIuMCcgZmlsbD0nIzE5ZGRhMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMjUuNSw5MC4yIDExNy4wLDEwMi4wIDEzNC4wLDEwMi4wJyBmaWxsPScjNWI4NmZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzE1MS4wLDc4LjUgMTQyLjUsOTAuMiAxNTkuNSw5MC4yJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzE0Mi41LDkwLjIgMTM0LjAsMTAyLjAgMTUxLjAsMTAyLjAnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTU5LjUsOTAuMiAxNTEuMCwxMDIuMCAxNjguMCwxMDIuMCcgZmlsbD0nI2ZmYjAyMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMDAuMCwxOTYuMCAxMDguNSwxODQuMiA5MS41LDE4NC4yJyBmaWxsPScjZmZiMDIwJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzEwOC41LDE4NC4yIDExNy4wLDE3Mi41IDEwMC4wLDE3Mi41JyBmaWxsPScjMTlkZGEwJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzkxLjUsMTg0LjIgMTAwLjAsMTcyLjUgODMuMCwxNzIuNScgZmlsbD0nIzViODZmZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMTcuMCwxNzIuNSAxMjUuNSwxNjAuOCAxMDguNSwxNjAuOCcgZmlsbD0nI2E2NzhmZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMjUuNSwxNjAuOCAxMzQuMCwxNDkuMCAxMTcuMCwxNDkuMCcgZmlsbD0nI2ZmMmQ2ZicgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPScxMDguNSwxNjAuOCAxMTcuMCwxNDkuMCAxMDAuMCwxNDkuMCcgZmlsbD0nI2ZmYjAyMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc4My4wLDE3Mi41IDkxLjUsMTYwLjggNzQuNSwxNjAuOCcgZmlsbD0nIzE5ZGRhMCcgZmlsbC1vcGFjaXR5PScwLjQyJy8+PHBvbHlnb24gcG9pbnRzPSc5MS41LDE2MC44IDEwMC4wLDE0OS4wIDgzLjAsMTQ5LjAnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNzQuNSwxNjAuOCA4My4wLDE0OS4wIDY2LjAsMTQ5LjAnIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTM0LjAsMTQ5LjAgMTQyLjUsMTM3LjIgMTI1LjUsMTM3LjInIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTQyLjUsMTM3LjIgMTUxLjAsMTI1LjUgMTM0LjAsMTI1LjUnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTI1LjUsMTM3LjIgMTM0LjAsMTI1LjUgMTE3LjAsMTI1LjUnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTUxLjAsMTI1LjUgMTU5LjUsMTEzLjggMTQyLjUsMTEzLjgnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTU5LjUsMTEzLjggMTY4LjAsMTAyLjAgMTUxLjAsMTAyLjAnIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTQyLjUsMTEzLjggMTUxLjAsMTAyLjAgMTM0LjAsMTAyLjAnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTE3LjAsMTI1LjUgMTI1LjUsMTEzLjggMTA4LjUsMTEzLjgnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTI1LjUsMTEzLjggMTM0LjAsMTAyLjAgMTE3LjAsMTAyLjAnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nMTA4LjUsMTEzLjggMTE3LjAsMTAyLjAgMTAwLjAsMTAyLjAnIGZpbGw9JyM1Yjg2ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNjYuMCwxNDkuMCA3NC41LDEzNy4yIDU3LjUsMTM3LjInIGZpbGw9JyNhNjc4ZmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNzQuNSwxMzcuMiA4My4wLDEyNS41IDY2LjAsMTI1LjUnIGZpbGw9JyNmZjJkNmYnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nNTcuNSwxMzcuMiA2Ni4wLDEyNS41IDQ5LjAsMTI1LjUnIGZpbGw9JyNmZmIwMjAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nODMuMCwxMjUuNSA5MS41LDExMy44IDc0LjUsMTEzLjgnIGZpbGw9JyMxOWRkYTAnIGZpbGwtb3BhY2l0eT0nMC40MicvPjxwb2x5Z29uIHBvaW50cz0nOTEuNSwxMTMuOCAxMDAuMCwxMDIuMCA4My4wLDEwMi4wJyBmaWxsPScjNWI4NmZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9Jzc0LjUsMTEzLjggODMuMCwxMDIuMCA2Ni4wLDEwMi4wJyBmaWxsPScjYTY3OGZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzQ5LjAsMTI1LjUgNTcuNSwxMTMuOCA0MC41LDExMy44JyBmaWxsPScjZmYyZDZmJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzU3LjUsMTEzLjggNjYuMCwxMDIuMCA0OS4wLDEwMi4wJyBmaWxsPScjZmZiMDIwJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzQwLjUsMTEzLjggNDkuMCwxMDIuMCAzMi4wLDEwMi4wJyBmaWxsPScjMTlkZGEwJyBmaWxsLW9wYWNpdHk9JzAuNDInLz48cG9seWdvbiBwb2ludHM9JzEwMCw4IDE2OCwxMDIgMTAwLDE5NiAzMiwxMDInIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZmZDlhMCcgc3Ryb2tlLXdpZHRoPScxLjUnIHN0cm9rZS1vcGFjaXR5PScuODUnLz48bGluZSB4MT0nMTAwJyB5MT0nOCcgeDI9JzEwMCcgeTI9JzE5Nicgc3Ryb2tlPScjZmZmZmZmJyBzdHJva2Utb3BhY2l0eT0nLjYwJyBzdHJva2Utd2lkdGg9JzEuMScvPjxsaW5lIHgxPSczMicgeTE9JzEwMicgeDI9JzE2OCcgeTI9JzEwMicgc3Ryb2tlPScjYzliYmZmJyBzdHJva2Utb3BhY2l0eT0nLjQ1JyBzdHJva2Utd2lkdGg9Jy45Jy8+PC9zdmc+") center / 152px 152px no-repeat,
-    radial-gradient(circle at 50% 44%, #141039 0%, #070518 72%);
+    radial-gradient(150% 140% at 50% 45%, #6658c2 0px, #4a3fa4 60%, #3a2f86 100%);
 
   /* the mirrored conic fan: nine wedges over 180°, repeated — the second half
      of every turn is the first half mirrored, which is the whole idea */

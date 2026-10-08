@@ -6,6 +6,20 @@
    and phosphor lamps: amber acts (#ffb000), green reports (#4dff9e), red
    faults (#ff5147).
 
+   MACHINED COMPONENTS — the part the first pass missed. Colour and type alone
+   left the controls reading as flat dark UI, so the CONTROLS are now cut from
+   the chassis too:
+
+     · --input-inset  every field is a milled WELL (--machine-recess), not a box.
+     · --btn-shadow   every button variant wears --machine-bevel: a lit top lip, a
+                      shadowed bottom lip, a seat shadow and a plate face.
+     · --glow         retired its 14px blur for a HARD amber bezel. The machine is
+                      milled, not glowing, so the switch is anodised, not hazy.
+     · --check-*       the native radio is a circle, which this kit cannot have;
+                      both controls are squared to stamped sockets that light amber.
+     · kit.css        plumbs the same recess/bevel onto the nav channel, the tab
+                      row and the toggle, which lab.css chromes with no shadow hook.
+
    MATERIAL — the part a palette cannot carry. Three DRAWN textures do three
    different jobs and are rendered as ~168x72 tiles on --surface-2:
 
@@ -77,13 +91,34 @@
   --tracking-caps: .12em;                   /* stamped plate, not spaced-out HUD */
   --tracking-display: -.01em;
 
-  /* -- depth: engraved. INNER shadows are the depth cue ------------------– */
-  --shadow-1:      inset 0 1px 0 rgba(255,255,255,.10), inset 0 -1px 0 rgba(0,0,0,.60),
-                   inset 0 2px 6px -3px rgba(0,0,0,.45);
-  --shadow-2:      inset 0 1px 0 rgba(255,255,255,.13), inset 0 -1px 0 rgba(0,0,0,.68),
-                   inset 0 4px 14px -6px rgba(0,0,0,.60);
-  --glow:          0 0 0 1px rgba(255,176,0,.45), 0 0 14px -2px rgba(255,176,0,.45);
-  /* --glow is the lamp's halo: controls wear it, panels never do. */
+  /* -- depth: engraved. INNER shadows are the depth cue. The lips are 2/2px, the same chamfer
+     language as --machine-bevel, so a panel edge and a control edge are the same cut. -------------– */
+  --shadow-1:      inset 0 2px 0 rgba(255,255,255,.10), inset 0 -2px 0 rgba(0,0,0,.62),
+                   inset 0 3px 9px -4px rgba(0,0,0,.48);
+  --shadow-2:      inset 0 2px 0 rgba(255,255,255,.13), inset 0 -3px 0 rgba(0,0,0,.70),
+                   inset 0 6px 16px -7px rgba(0,0,0,.60);
+  /* --machine-bevel is THE control edge and the plate, and it is what stops the buttons rendering
+     as flat rectangles. Called out layer by layer:
+       · a lit top lip (2px) and a shadowed bottom lip (3px) — a real chamfer, not a 1px hint
+         that is invisible at 100% and only shows up under a loupe;
+       · a lit left lip and a shadowed right lip, so the light has a direction;
+       · a hard zero-blur seat shadow so the plate sits proud of the panel;
+       · an 8% face lift, LAST, so a *transparent* variant (secondary/ghost/danger have no --_bg)
+         still has a plate to carry the bevel — without it the dark controls are outlines and read
+         flat, which is exactly the review's complaint.
+     The lab paints --btn-shadow on EVERY .btn variant; .btn-primary overrides box-shadow with
+     --glow, so the bevel is folded into --glow too and the amber switch wears its edge as well. */
+  --machine-bevel: inset 0 2px 0 rgba(255,255,255,.30), inset 2px 0 0 rgba(255,255,255,.11),
+                   inset 0 -3px 0 rgba(0,0,0,.78), inset -2px 0 0 rgba(0,0,0,.45),
+                   0 1px 0 0 rgba(0,0,0,.80),
+                   inset 0 0 0 100px rgba(255,255,255,.08);
+  --btn-shadow:    var(--machine-bevel);
+  /* --glow is ZERO-BLUR: a hard 1px + 3px amber bezel that seats the amber plate in the panel,
+     not a soft halo. The machine reads as milled, not glowing, so the lamp's bloom is retired for
+     an anodised edge — a blurred 14px halo was the one thing on the page still blurring the
+     silhouette and blurring reads as modern UI, not as hardware. */
+  --glow:          0 0 0 1px rgba(255,176,0,.55), 0 0 0 3px rgba(255,176,0,.14),
+                   var(--machine-bevel);
   --blur:          none;                    /* machined metal is not frosted */
 
   /* -- motion: a switch, not a glide ------------------------------------– */
@@ -96,30 +131,67 @@
      the default .85 dim loses its weave). */
   --media-bg:      var(--inside-the-machine-weave);
   --media-op:      1;
-  /* Fields default to flat (`none`); a milled machine recesses its inputs. */
-  --input-inset:   inset 0 1px 0 rgba(0,0,0,.55), inset 0 -1px 0 rgba(255,255,255,.05);
+  /* One source of truth for "a well milled into the chassis": the top lip drops a hard line and a
+     shadow down into the hole, the bottom lip catches light, and a dark inner wall rings all four
+     sides. --input-inset plumbs a FIELD onto it; kit.css plumbs the nav channel and the toggle
+     track onto the same token, so a recess is a recess everywhere. (The lit lip is .12, not .05:
+     at .05 it vanished into graphite and the well read flat.) */
+  --machine-recess: inset 0 1px 0 rgba(0,0,0,.85), inset 0 2px 5px -2px rgba(0,0,0,.60),
+                    inset 0 -1px 0 rgba(255,255,255,.12), inset 0 0 0 1px rgba(0,0,0,.28);
+  --input-inset:   var(--machine-recess);
+  /* The lab used to chrome the nav, the tab row and the switch directly and offered no shadow
+     hook, so this kit shipped a 6-declaration kit.css to reach them. Those hooks are tokens now
+     (--bar-* / --toggle-*), and the same two construction values drive all of them. */
+  --bar-shadow: var(--machine-recess);
+  --bar-item-shadow: var(--machine-bevel);
+  --bar-item-pad: .6rem;
+  --toggle-shadow: var(--machine-recess);
+  --toggle-knob-shadow: var(--machine-bevel);
+
+  /* Square the native controls. Chromium draws a radio as a circle, which a kit capped at
+     --radius-pill: 4px cannot have; --check-appearance: none makes both a stamped socket. Unchecked
+     is a small milled well on --surface-2; checked is a lit amber plate (the lab paints the fill —
+     there is no glyph — so "on" is a lamp, which is this machine's own vocabulary). */
+  --check-appearance: none;
+  --check-bg:      var(--surface-2);
+  --check-border:  var(--border-w) solid var(--border-strong);
+  --check-checked: var(--accent);
 
   /* -- signature material (DRAWN, not a ramp) ---------------------------- */
   /* 1 · WOVEN CARBON-FIBRE CLOTH. A 2/2 twill: continuous warp + weft tows, and
      the tow that is ON TOP in each crossing lights up (near-white over / near-
      black under). The "over" cells step one column per row, so the sheen forms
      the diagonal bands that make a twill read as carbon and not as a grid of
-     beveled tiles. Base64 SVG, never hand-encoded (a double-encoded '#' fails
-     silently as a blank tile). 24px tile, repeat. */
+     beveled tiles. Over the whole tile sits a broad RAKED SPECULAR sweep
+     (a hard-stepped diagonal band, lit → flat → shadowed) so the light falls
+     across the cloth at an angle and the weave reads ANISOTROPIC rather than
+     uniformly printed. Base64 SVG, never hand-encoded (a double-encoded '#'
+     fails silently as a blank tile). 24px tile, repeat. */
   --inside-the-machine-weave:
+    linear-gradient(118deg, rgba(255,255,255,.15) 0 16%, rgba(255,255,255,.02) 16% 42%,
+                    rgba(0,0,0,.09) 42% 70%, rgba(0,0,0,.20) 70% 100%),
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2hiJyB4MT0nMCcgeTE9JzAnIHgyPScwJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjY2ZkOGUxJy8+PHN0b3Agb2Zmc2V0PScwLjUnIHN0b3AtY29sb3I9JyM2YTc0ODAnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxYjIwMjYnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0naGQnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMyYjMyM2EnLz48c3RvcCBvZmZzZXQ9JzAuNScgc3RvcC1jb2xvcj0nIzE2MWIyMScvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzA3MDkwYicvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSd2YicgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2I5YzRjZicvPjxzdG9wIG9mZnNldD0nMC41JyBzdG9wLWNvbG9yPScjNWI2NjcyJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMTUxYTFmJy8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9J3ZkJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMCc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMjMyYTMxJy8+PHN0b3Agb2Zmc2V0PScwLjUnIHN0b3AtY29sb3I9JyMxMTE2MWInLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMwNjA4MDknLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMjQnIGhlaWdodD0nMjQnIGZpbGw9JyMwODBhMGMnLz48ZyBmaWxsPSd1cmwoI2hkKSc+PHJlY3QgeD0nMCcgeT0nMC43JyB3aWR0aD0nMjQnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMCcgeT0nNi43JyB3aWR0aD0nMjQnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMCcgeT0nMTIuNycgd2lkdGg9JzI0JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzAnIHk9JzE4LjcnIHdpZHRoPScyNCcgaGVpZ2h0PSc0LjYnLz48L2c+PGcgZmlsbD0ndXJsKCN2ZCknPjxyZWN0IHg9JzAuNycgeT0nMCcgd2lkdGg9JzQuNicgaGVpZ2h0PScyNCcvPjxyZWN0IHg9JzYuNycgeT0nMCcgd2lkdGg9JzQuNicgaGVpZ2h0PScyNCcvPjxyZWN0IHg9JzEyLjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nMjQnLz48cmVjdCB4PScxOC43JyB5PScwJyB3aWR0aD0nNC42JyBoZWlnaHQ9JzI0Jy8+PC9nPjxnIGZpbGw9J3VybCgjaGIpJz48cmVjdCB4PScwJyB5PScwLjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzYnIHk9JzAuNycgd2lkdGg9JzYnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nNicgeT0nNi43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48cmVjdCB4PScxMicgeT0nNi43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48cmVjdCB4PScxMicgeT0nMTIuNycgd2lkdGg9JzYnIGhlaWdodD0nNC42Jy8+PHJlY3QgeD0nMTgnIHk9JzEyLjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzAnIHk9JzE4LjcnIHdpZHRoPSc2JyBoZWlnaHQ9JzQuNicvPjxyZWN0IHg9JzE4JyB5PScxOC43JyB3aWR0aD0nNicgaGVpZ2h0PSc0LjYnLz48L2c+PGcgZmlsbD0ndXJsKCN2YiknPjxyZWN0IHg9JzEyLjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjxyZWN0IHg9JzE4LjcnIHk9JzAnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjxyZWN0IHg9JzAuNycgeT0nNicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMTguNycgeT0nNicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMC43JyB5PScxMicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nNi43JyB5PScxMicgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nNi43JyB5PScxOCcgd2lkdGg9JzQuNicgaGVpZ2h0PSc2Jy8+PHJlY3QgeD0nMTIuNycgeT0nMTgnIHdpZHRoPSc0LjYnIGhlaWdodD0nNicvPjwvZz48L3N2Zz4=") 0 0 / 24px 24px repeat,
     #0e1114;
   /* 2 · PUNCHED VENT PLATE. Each hole is a dark well (r 3.15) inside a lit ring
      (r 4.7) offset down 0.8, so the lower lip catches light — a punched hole,
-     not a dot. 12px tile, repeat. */
+     not a dot. The lip is bright (#95a2b0) against a near-black well: a punched
+     edge is a real edge, and at a softer lip the tile read as a flat dot grid.
+     12px tile, repeat. */
   --inside-the-machine-grille:
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgdmlld0JveD0nMCAwIDEyIDEyJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J3AnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMxZDIyMjYnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxMDE0MTgnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTInIGhlaWdodD0nMTInIGZpbGw9J3VybCgjcCknLz48Y2lyY2xlIGN4PSc2JyBjeT0nNicgcj0nNC43JyBmaWxsPScjNmM3ODg1Jy8+PGNpcmNsZSBjeD0nNicgY3k9JzUuMicgcj0nNC43JyBmaWxsPScjMTgxYzIwJy8+PGNpcmNsZSBjeD0nNicgY3k9JzYuMDUnIHI9JzMuMTUnIGZpbGw9JyMwNDA2MGEnLz48L3N2Zz4=") 0 0 / 12px 12px repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgdmlld0JveD0nMCAwIDEyIDEyJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J3AnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMxZDIyMjYnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxMDE0MTgnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTInIGhlaWdodD0nMTInIGZpbGw9J3VybCgjcCknLz48Y2lyY2xlIGN4PSc2JyBjeT0nNicgcj0nNC43JyBmaWxsPScjOTVhMmIwJy8+PGNpcmNsZSBjeD0nNicgY3k9JzUuMicgcj0nNC43JyBmaWxsPScjMTQxNzFiJy8+PGNpcmNsZSBjeD0nNicgY3k9JzYuMDUnIHI9JzMuMTUnIGZpbGw9JyMwMzA0MDYnLz48L3N2Zz4=") 0 0 / 12px 12px repeat,
     #14171b;
-  /* 3 · BRUSHED STEEL RAIL. Fine vertical striations over HARD bands: a lit top
-     rim, the specular band, a machine-mark line, a dark chamfer foot. Hard px
-     stops (two stops at one position) because a smooth ramp reads as fog. */
+  /* 3 · BRUSHED STEEL RAIL. Vertical striations over HARD bands: a lit top rim,
+     the specular band, a machine-mark line, a dark chamfer foot. Hard px stops
+     (two stops at one position) because a smooth ramp reads as fog. The grain is
+     TWO overlapping co-prime periods (2px and 7px) so it is not a mechanically
+     even comb, plus a raked diagonal specular band across it — that is what
+     separates brushed metal from a printed stripe (§4 in the brief). */
   --inside-the-machine-steel:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, rgba(0,0,0,.18) 1px 2px), linear-gradient(180deg, #7c8794 0px, #7c8794 1px, #c3ceda 1px, #c3ceda 5px, #f2f6f9 5px, #f2f6f9 8px, #aeb9c6 8px, #aeb9c6 13px, #5b6570 13px, #5b6570 18px, #23282e 18px, #23282e 21px);
+    repeating-linear-gradient(90deg, rgba(255,255,255,.11) 0 1px, rgba(0,0,0,.24) 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 3px, rgba(0,0,0,.10) 3px 7px),
+    linear-gradient(104deg, rgba(255,255,255,.15) 0 26%, rgba(255,255,255,0) 26% 58%,
+                    rgba(0,0,0,.14) 58% 82%, rgba(255,255,255,.05) 82% 100%),
+    linear-gradient(180deg, #7c8794 0px, #7c8794 1px, #c3ceda 1px, #c3ceda 5px, #f2f6f9 5px, #f2f6f9 8px, #aeb9c6 8px, #aeb9c6 13px, #5b6570 13px, #5b6570 18px, #23282e 18px, #23282e 21px);
 
   /* -- construction helpers (spelled out for consumers; not rendered) ---- */
   --machine-seam:       #2a2f35;            /* the seam, spelled out */

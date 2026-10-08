@@ -31,6 +31,8 @@ colors:
   border: "rgba(170,150,255,0.24)"
   border-strong: "rgba(186,170,255,0.44)"
   focus-ring: "#5b86ff"
+  plate: "#4a3fa4"
+  veil: "rgba(4,3,16,0.34)"
 typography:
   display:
     fontFamily: "Sora"
@@ -209,6 +211,14 @@ components:
     backgroundColor: "{colors.bg-light}"
     textColor: "{colors.text}"
     height: "100%"
+  tile-plate:
+    backgroundColor: "{colors.plate}"
+    rounded: "{rounded.sm}"
+    height: "72px"
+  ground-veil:
+    backgroundColor: "{colors.veil}"
+    width: "100%"
+    height: "100%"
 ---
 
 # Kaleidoscope
@@ -233,15 +243,15 @@ a prism ramp. They never fill a button and they are never text. The eye can hold
 because only two of them are asking for anything.
 
 The page **is** the kaleidoscope. The ground is not a plain dark field with a bloom on top: it is
-a drawn, full-bleed **facet field** (`--kaleidoscope-mandala`) — five eight-fold rosettes per
+a drawn, full-bleed **facet field** (`--kaleidoscope-mandala-art`) — five eight-fold rosettes per
 200px tile, mirrored, with roughly half their facets deliberately unlit — laid over a deep indigo
 aperture (`{colors.bg-deep}` at its darkest) whose light enters from above and falls to
-near-black. Two more forms do different jobs: a hard-banded **beam of light**
-(`--kaleidoscope-beam`), which also fills media panels and progress bars, and a mirrored
-**fractal shard** (`--kaleidoscope-fractal`). The field must stay dark enough to be a *ground*:
-a facet tuned for a poster is a facet text can no longer sit on. It is held to a hard luminance
-ceiling, and the masthead's old ruby bloom is deliberately gone — a translucent wash stacked on
-the field is the one composite that would push `{colors.text-dim}` under 4.55:1. Nothing in this
+near-black, and covered by a translucent dark **veil** (`{colors.veil}`). The veil is the
+legibility layer: it drops the field's peak luminance *and* its edge contrast together, so small
+text can sit on the field without competing with a facet edge. Two more forms do different jobs: a
+hard-banded **beam of light** (`--kaleidoscope-beam`), which also fills media panels and progress
+bars, and a mirrored **fractal shard** (`--kaleidoscope-fractal`). The field must stay dark enough
+to be a *ground*: a facet tuned for a poster is a facet text can no longer sit on. Nothing in this
 kit is soft: no blurred shadow, no frost, no organic curve.
 
 Use it where the page *is* the artefact — launch pages, game and music UI, a portfolio or
@@ -269,24 +279,26 @@ Neutral ground and text:
 
 | Role | Token | Value | Contrast |
 |---|---|---|---|
-| Ground — field's brightest pixel (binding) | `--kaleidoscope-mandala` | ≈ `#332928` | **the ground that matters** |
+| Ground — veiled field's brightest pixel (binding) | `--kaleidoscope-ground` | ≈ `#231c20` | **the ground that matters** |
+| Ground — the veil over the field | `{colors.veil}` | `rgba(4,3,16,0.34)` | translucent — graded as a composite |
 | Ground (deepest stop) | `--bg` | `#040310` | — |
 | Ground (base / mid stop) | `{colors.bg}` | `#0c0920` | — |
 | Ground (lightest aperture stop) | `{colors.bg-light}` | `#120e30` | — |
+| Tile plate (signature tiles) | `{colors.plate}` | `#4a3fa4` | — |
 | Card pane | `{colors.surface}` | `#15112e` | — |
 | Lit pane | `{colors.surface-2}` | `#221d42` | — |
-| Body text | `{colors.text}` | `#f6f3ff` | **18.70:1** on the deepest stop, **12.89:1** on the field's brightest pixel |
-| Secondary text | `{colors.text-muted}` | `#b9b2dd` | **9.10:1** on `{colors.surface}`, **7.04:1** on the field's brightest pixel |
-| Tertiary text | `{colors.text-dim}` | `#9590b8` | **6.79:1** on the deepest stop, **5.26:1** on `{colors.surface-2}`, **4.68:1** on the field's brightest pixel |
+| Body text | `{colors.text}` | `#f6f3ff` | **18.70:1** on the deepest stop, **15.24:1** on the veiled field's brightest pixel |
+| Secondary text | `{colors.text-muted}` | `#b9b2dd` | **9.10:1** on `{colors.surface}`, **8.32:1** on the veiled field |
+| Tertiary text | `{colors.text-dim}` | `#9590b8` | **6.79:1** on the deepest stop, **5.53:1** on the veiled field's brightest pixel, **6.11:1** on the masthead (veil + wash), **5.26:1** on `{colors.surface-2}` |
 | Ink on a facet | `{colors.text-invert}` | `#08040d` | **5.67:1** on ruby, **6.91:1** on its hover |
-| Ruby as *text* | `--accent-ink` `#ff6f9c` | — | **5.38:1** on the field's brightest pixel, **6.95:1** on `{colors.surface}` |
+| Ruby as *text* | `--accent-ink` `#ff6f9c` | — | **6.36:1** on the veiled field, **6.95:1** on `{colors.surface}`, **5.21:1** on the 15% ruby badge tint over `{colors.surface-2}` (the worst pair in the kit) |
 
-Because the ground is now an **image layer**, the binding ground is no longer a declared stop:
-it is the brightest pixel the field actually paints. That value (≈ `#332928`, measured off the
-rendered page) is what every ink is graded against, and it is the number that forced the
-masthead's ruby bloom off — stack a 15% wash on it and `{colors.text-dim}` drops to 4.5:1 at
-best. The field is drawn so no two facets ever overlap (the rosettes only touch), which is what
-keeps that ceiling exact rather than approximate.
+Because the ground is an **image layer under a translucent veil**, the binding ground is a
+*composite*, not a declared stop and not the art beneath it: the field's brightest facet peaks at
+`#332928`, and `{colors.veil}` composites it to ≈ `#231c20` (measured off the rendered page). Every
+ink is graded against that composite — grading against the raw facet, or against a solid, is the
+check the veil exists to make honest. The field is drawn so no two facets ever overlap (the
+rosettes only touch), which keeps the ceiling exact rather than approximate.
 
 Three things are worth stating plainly.
 
@@ -432,8 +444,17 @@ colours, shadows and clip-paths are deliberately not listed per component — th
 - **focus-indicator** / **input-ring** — the two rings, as fills: the 2px sapphire keyboard ring
   (`{colors.focus-ring}`) and the 3px `{colors.accent-soft}` halo the focused input lays down.
 - **page** / **page-deep** — the ground, and its darkest stop. The live ground is the drawn
-  facet field (`--kaleidoscope-mandala`) over the `{colors.bg}` aperture; `{colors.bg-light}`
-  `#120e30` is the aperture's lightest stop, where the field's ceiling binds.
+  facet field (`--kaleidoscope-mandala-art`) over the `{colors.bg}` aperture, under the
+  `{colors.veil}` plate; `{colors.bg-light}` `#120e30` is the aperture's lightest stop, where the
+  field's ceiling binds.
+- **ground-veil** — `{colors.veil}`, the translucent plate that is the top layer of the ground.
+  It is the legibility layer (peak luminance *and* edge contrast fall together) and, being
+  translucent, every ink over it is graded as a composite. In `tokens.css` it is a one-colour
+  `linear-gradient` so it can be a `background` layer.
+- **tile-plate** — `{colors.plate}`, the lit base under the dark Signature motifs. In
+  `tokens.css` it is a violet radial (a smooth gradient, which DESIGN.md cannot hold); this entry
+  states the mid stop as a flat fill, as `ground-field` does for the aperture. Without it a tile
+  that shares the page's base reads as a hole in the page.
 - **ground-field** — `{colors.bg-light}`, the lightest stop of the ground, used as a solid fill
   where a component has to *state* the ground rather than inherit it (the field's ceiling is
   measured here). It is deliberately the brightest value in the ground ramp.
@@ -447,9 +468,9 @@ colours, shadows and clip-paths are deliberately not listed per component — th
   its own first half, the mandala is eight-fold with unlit facets mirrored to unlit facets, the
   beam is symmetric about its own axis, the shard is split down its spine. If you add a pattern,
   add a mirror.
-- Keep the ground dark. `--kaleidoscope-mandala` is drawn for a UI, not a poster: no two facets
-  overlap, and its brightest pixel holds `--text-dim` at 4.68:1. Brighten a facet and you spend
-  legibility, not confidence.
+- Keep the ground dark. `--kaleidoscope-mandala-art` is drawn for a UI, not a poster: no two
+  facets overlap, and `--kaleidoscope-veil` holds `--text-dim` at 5.53:1 on the field's brightest
+  pixel. Brighten a facet — or drop the veil — and you spend legibility, not confidence.
 - Keep the insets. `--shadow-1`/`--shadow-2`/`--glow` are inset-only for a reason: the clip eats
   everything outside the silhouette.
 - Use `--kaleidoscope-facet-clip` (22px, four corners) for hero panels and `--clip` (10px, two

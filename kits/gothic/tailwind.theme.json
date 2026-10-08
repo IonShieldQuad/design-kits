@@ -9,6 +9,7 @@
         "primary-text-hover": "#f0a6bc",
         "secondary": "#c99a4e",
         "tertiary": "#93a9c6",
+        "blush": "#e3737d",
         "neutral": "#130b12",
         "surface": "#1f1420",
         "surface-2": "#28192a",
@@ -17,7 +18,7 @@
         "text-dim": "#b095a2",
         "success": "#8fb073",
         "warning": "#d9a94f",
-        "error": "#e3737d"
+        "error": "#e0655a"
       },
       "fontFamily": {
         "display": [
@@ -72,9 +73,9 @@
         ]
       },
       "borderRadius": {
-        "sm": "3px",
-        "md": "7px",
-        "lg": "14px",
+        "sm": "5px",
+        "md": "9px",
+        "lg": "16px",
         "pill": "999px"
       },
       "spacing": {

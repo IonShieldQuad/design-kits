@@ -709,7 +709,9 @@
         "info": "#8aa6ff",
         "border": "rgba(170,150,255,0.24)",
         "border-strong": "rgba(186,170,255,0.44)",
-        "focus-ring": "#5b86ff"
+        "focus-ring": "#5b86ff",
+        "plate": "#4a3fa4",
+        "veil": "rgba(4,3,16,0.34)"
       },
       "files": {
         "design": "kits/kaleidoscope/DESIGN.md",
@@ -948,7 +950,7 @@
       "slug": "gothic",
       "name": "Gothic",
       "tagline": "Dark feminine gothic — velvet, thorns, roses and candlelight.",
-      "description": "Dark feminine gothic — velvet plum, wine, rose and candlelight, with thorns, a rose and lace growing through it.",
+      "description": "Dark feminine gothic — velvet plum, wine, rose, blush and candlelight, with thorns, a rose and lace growing through it.",
       "index": "19",
       "order": 120,
       "mode": "dark",
@@ -969,6 +971,7 @@
         "primary-text-hover": "#f0a6bc",
         "secondary": "#c99a4e",
         "tertiary": "#93a9c6",
+        "blush": "#e3737d",
         "neutral": "#130b12",
         "surface": "#1f1420",
         "surface-2": "#28192a",
@@ -977,7 +980,7 @@
         "text-dim": "#b095a2",
         "success": "#8fb073",
         "warning": "#d9a94f",
-        "error": "#e3737d"
+        "error": "#e0655a"
       },
       "files": {
         "design": "kits/gothic/DESIGN.md",

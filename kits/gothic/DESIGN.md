@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Gothic
-description: "Dark feminine gothic — velvet plum, wine, rose and candlelight, with thorns, a rose and lace growing through it."
+description: "Dark feminine gothic — velvet plum, wine, rose, blush and candlelight, with thorns, a rose and lace growing through it."
 colors:
   primary: "#8f1d3f"
   primary-hover: "#ab2549"
@@ -10,6 +10,7 @@ colors:
   primary-text-hover: "#f0a6bc"
   secondary: "#c99a4e"
   tertiary: "#93a9c6"
+  blush: "#e3737d"
   neutral: "#130b12"
   surface: "#1f1420"
   surface-2: "#28192a"
@@ -18,7 +19,7 @@ colors:
   text-dim: "#b095a2"
   success: "#8fb073"
   warning: "#d9a94f"
-  error: "#e3737d"
+  error: "#e0655a"
 typography:
   display:
     fontFamily: Cormorant Garamond
@@ -49,9 +50,9 @@ typography:
     lineHeight: 1
     letterSpacing: "0.20em"
 rounded:
-  sm: 3px
-  md: 7px
-  lg: 14px
+  sm: 5px
+  md: 9px
+  lg: 16px
   pill: 999px
 spacing:
   xs: 4px
@@ -194,7 +195,8 @@ components:
 witches, vampires and dark romance: a deep **velvet plum** ground (`#130b12`, a violet cast,
 never neutral charcoal), soft ivory for every word of it (`#f4ebe6` — bone, not pure white),
 one deep **wine** (`#8f1d3f`) for the thing that acts, a muted **rose** (`#e08ba6`) for anything
-that has to be *read*, and a **candlelight gold** (`#c99a4e`) that is the light in the room.
+that has to be *read*, a warm **blush** (`#e3737d`) that is the candlelight *bloom* around the
+action, and a **candlelight gold** (`#c99a4e`) that is the light in the room.
 The type is a romantic display serif, and the corners have softened from a right angle to a
 velvet curve.
 
@@ -221,9 +223,13 @@ in it.
   ground: `#8f1d3f` is only 2.13:1 against the ground. So the text-safe member of the wine
   family is a muted rose (`--accent-ink`), used for eyebrows, links, active nav/tab,
   secondary-button labels, inline code and the `badge-accent` label. It is also literally the
-  colour of the rose motif and the vein in the lace, so the link colour and the flower are the
-  same substance.
+  colour of the rose motif and of the rose dot at the heart of the lace, so the link colour and the
+  flower are the same substance.
 - **Primary-text-hover (#f0a6bc):** the rose lifted for hover. It never pales to candy pink.
+- **Blush (#e3737d) — the warm rose, a first-class accent.** The kit's *bloom* family, and the
+  colour that used to be filed as `error`. It owns warmth rather than status: the candlelight
+  halo `--glow` casts around the primary action, and the heart of the media veil
+  (`--media-bg`). It is never a fault ink and never a warning.
 - **Secondary (#c99a4e) — candlelight gold.** The light in the room: the flame of the candle
   motif, the lit end of the media ramp, and the gold half of the masthead's candle glow. It is
   the second accent and it has a *job* — remove the candle and the wine/rose pair still stands;
@@ -237,15 +243,16 @@ in it.
 - **Text (#f4ebe6) / text-muted (#cdb6bf) / text-dim (#b095a2):** ivory, dusty mauve and mauve
   dust. All three are warm-neutrals carrying the plum cast, never pure white and never
   blue-grey — the only saturated thing on a page is the wine and its rose.
-- **Success (#8fb073) / warning (#d9a94f) / error (#e3737d):** muted sage, candlelight amber,
-  dusty-rose fault. All three are desaturated one step past the point where they would shout.
-  Error is *lighter and hotter* than the wine on purpose: "delete" must never read as "the
-  action".
+- **Success (#8fb073) / warning (#d9a94f) / error (#e0655a):** muted sage, candlelight amber,
+  and a **true warning red**. All three are desaturated one step past the point where they would
+  shout. Error is *hotter and redder* than the wine on purpose: "delete" must never read as
+  "the action" — and it must never read as the blush either, which is why the error is a red
+  and the blush is a warmth.
 
 Deliberately not in the map above: `--border` / `--border-strong` (translucent ivory hairlines —
 the DESIGN.md component schema has no `borderColor` property), `--accent-soft`
 (`rgba(143,29,63,.18)`, a tint of `primary`, not a colour), `--overlay`, `--focus-ring`, and the
-five `--gothic-*` signature tokens. Their exact values are in `tokens.css`.
+four `--gothic-*` signature tokens. Their exact values are in `tokens.css`.
 
 ## Typography
 
@@ -293,18 +300,20 @@ the falloff, brightens the rim, and adds a 1px wine thread around the foot
 structure rather than the content.
 
 **`--glow` is a real candlelight bloom** — `0 0 0 1px rgba(143,29,63,.55)` plus a soft 24px
-halo in **rose** (`rgba(224,139,166,.45)`), applied to the primary button. This is a reversal of
-the old kit, which had to make its "glow" a hard shadow because a deep accent cannot bloom
-convincingly. The trick here is that the bloom is the *rose*, not the wine: light around a deep
-fill has to be lighter than the fill, so the rose does the blooming.
+halo in the **blush** (`rgba(227,115,125,.50)`), applied to the primary button. This is a reversal
+of the old kit, which had to make its "glow" a hard shadow because a deep accent cannot bloom
+convincingly. The trick here is that the bloom is the *blush*, not the wine: light around a deep
+fill has to be lighter than the fill, so the blush — the palette's warmth — does the blooming.
 
 `--blur: none`. Velvet is opaque; translucency would flatten the panels back into the ground.
 
 ## Shapes
 
-**Velvet softens the corner.** `--radius-sm: 3px`, `--radius-md: 7px`, `--radius-lg: 14px`. A
+**Velvet softens the corner.** `--radius-sm: 5px`, `--radius-md: 9px`, `--radius-lg: 16px`. A
 card is a soft panel, an input is a shallow recess, a badge is a lozenge. The old kit's 0–3px
 right angles are gone — sharp corners were the industrial read, and this register is not that.
+Review read the previous 3px chip and input as *crisp/technical* rather than velvet, so the small
+steps were opened one notch: the smallest radius a user ever sees is now 5px.
 
 **`--radius-pill: 999px`.** A true pill: badges are lozenges and `.avatar` is a **circle** of
 ivory initials — the cameo read, and a deliberate break from the stamped 3px plate the kit used
@@ -319,19 +328,21 @@ a fence.
 ## Components
 
 - **button-primary** — the wine plate: ivory label in the mono label style
-  (`{typography.label}`), 7px radius, and the only element allowed to wear `--glow`. The label
+  (`{typography.label}`), 9px radius, and the only element allowed to wear `--glow` — whose halo
+  is the **blush** (`{colors.blush}`), the palette's own warmth, not the wine again. The label
   is *light on deep wine* (7.5:1), possible only because the accent is deep.
 - **button-primary-hover** — the same plate, warmed (`#ab2549`). Ivory ink, hue unchanged.
 - **button-secondary / button-ghost / button-danger** — an unlit ground with a rose, mauve or
-  dusty-rose label. Secondary actions are outlined, never filled; a plum page with two wine
+  warning-red label. Secondary actions are outlined, never filled; a plum page with two wine
   plates on it has no hierarchy.
 - **card / card-elevated** — the panel and the raised panel. `card-elevated` is the only surface
   that carries the wine thread in its shadow.
 - **card-title** — Cormorant Garamond at 600; titles are the romantic voice.
 - **card-media** — the media panel renders `--media-bg`: the **lace veil** tiled over a
-  wine→rose→candlelight ramp. Its declared `backgroundColor` is `{colors.primary}` and
-  `card-media-2` is `{colors.secondary}` because those are the ramp's two endpoints — the
-  colours that actually render.
+  wine→**blush**→candlelight ramp, so the **blush** (`{colors.blush}`) is what you actually see in
+  its heart. Its declared `backgroundColor` is `{colors.primary}` and `card-media-2` is
+  `{colors.secondary}` because those are the ramp's two endpoints — the colours that
+  actually render.
 - **input** — the `surface-2` recess with `--input-inset` (it sits *into* the velvet), an ivory
   hairline, and a wine focus ring with a soft `--accent-soft` halo. Placeholders use
   `--text-dim`, which clears 6.1:1 on `surface-2`.
@@ -340,7 +351,7 @@ a fence.
   label and leave the plate dark, so a status row reads as tags, not as paint.
 - **table-header** — mono, uppercase, `+0.20em`, mauve dust (`{colors.text-dim}`).
 - **alert-*** — a `surface-2` recess with a 3px rule down the left edge (moonlight, sage, amber,
-  dusty rose). The one place a 3px rule is allowed, because it is a status flag, not a seam. The
+  warning red). The one place a 3px rule is allowed, because it is a status flag, not a seam. The
   alert's *body* text renders as the muted `{colors.text-muted}` and its strong line as
   `{colors.text}`; the status colour is declared as the component's `textColor` only because the
   DESIGN.md schema has no `borderColor`, and it is the status colour that actually renders — as the
@@ -350,21 +361,26 @@ a fence.
 
 ### The three motifs
 
-- **`--gothic-rose`** — a rose head drawn as an **asymmetric spiral** inside three uneven outer
-  petals, on a **wine thorned stem** with a gold leaf-flourish. Two things are deliberate: the
-  spiral is *not* nested concentric rings (rings read as a bullseye) and it is *not* centred on
-  a bright heart (a pinprick at the centre of a disc reads as an eye catchlight). Both were
-  rejected after rendering at chip size.
+- **`--gothic-rose`** — a rose bloom built from three rings of **closed, overlapping petals**
+  (6 outer, 5 mid, 3 inner), filled so each ring occludes the one behind it and the petal *edges*
+  stay visible, with a small **furled bud spiralling inside** the bloom, on a **wine thorned stem**
+  with a leaf. Three things are deliberate, all learned by rendering the tile and looking: nested
+  concentric arcs read as a **bullseye**, a bare spiral reads as a **rosette / vinyl groove**,
+  and a pinprick of light at the centre of the bloom reads as an **eye**. The delivered mark is
+  the one that read as a rose to a cold viewer with no label — see the README.
 - **`--gothic-lace`** — a repeatable field of fine netting with a **four-petal flower** at each
   crossing, hearted by a single rose dot. A different job from the rose: the rose is a *mark*,
   this is the ground's *fabric* (the veil), and it is what the media panel wears.
 - **`--gothic-candle`** — a lit pillar with wax running down both flanks and pooling at the
   foot. Deliberately **no circular halo**: a bright disc on a dark tile reads as an eye, so the
   warmth lives in the flame core and the drips. This motif is the candlelight gold's alibi.
-- **`--gothic-wine`, `--gothic-vein`** — the supporting two: the accent as a velvet drape
-  (surface), and a single wine→rose→candle→rose→wine hairline rule. Light and line, not motifs.
+- **`--gothic-wine`** — the one supporting texture: the accent as a velvet drape (a surface, not
+  a motif). The kit carried a fifth tile, a wine→rose→candle hairline. It was **cut**: rendered at
+  chip size it was a plum→magenta→**orange**→gold→**yellow** band, i.e. a sunset/aurora ramp
+  carrying hues the kit does not own and no material cue at all — and a fifth decorative tile only
+  diluted the rose, the lace and the candle.
 
-Five shipped tokens, three ideas. That is the budget and it is spent.
+Four shipped tokens, three ideas. That is the budget and it is spent.
 
 ## Do's and Don'ts
 
@@ -378,7 +394,10 @@ Five shipped tokens, three ideas. That is the budget and it is spent.
 - **Don't** put a heavy condensed grotesque back in. That industrial face is the one thing that
   breaks this register hardest.
 - **Don't** brighten the wine to neon or add a second saturated accent. Wine + rose is one
-  family; the gold is light, not a third brand colour.
+  family; the blush is that family's warmth and the gold is light, not a third brand colour.
+- **Don't** file the blush as an error or the error as a blush. The blush (`#e3737d`) is the
+  bloom family — glow and media warmth; the fault is a red (`#e0655a`). The soft pink must never
+  be the thing that means "failed".
 - **Don't** put dark ink on the wine plate. `--text-invert` is ivory because `#8f1d3f` is deep
   enough to hold it; dark ink on it is ~2.1:1.
 - **Don't** return to 0px corners or a chamfer. Velvet curves; the industrial right angle is gone

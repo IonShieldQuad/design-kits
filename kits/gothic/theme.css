@@ -6,6 +6,7 @@
   --color-primary-text-hover: #f0a6bc;
   --color-secondary: #c99a4e;
   --color-tertiary: #93a9c6;
+  --color-blush: #e3737d;
   --color-neutral: #130b12;
   --color-surface: #1f1420;
   --color-surface-2: #28192a;
@@ -14,7 +15,7 @@
   --color-text-dim: #b095a2;
   --color-success: #8fb073;
   --color-warning: #d9a94f;
-  --color-error: #e3737d;
+  --color-error: #e0655a;
   --font-display: "Cormorant Garamond";
   --font-heading: "Cormorant Garamond";
   --font-body: "Lora";
@@ -33,9 +34,9 @@
   --font-weight-body: 400;
   --font-weight-body-strong: 600;
   --font-weight-label: 500;
-  --radius-sm: 3px;
-  --radius-md: 7px;
-  --radius-lg: 14px;
+  --radius-sm: 5px;
+  --radius-md: 9px;
+  --radius-lg: 16px;
   --radius-pill: 999px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;

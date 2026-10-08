@@ -8,7 +8,7 @@
    Oswald, hard 0-3px corners) to the romantic register. It is still UNMISTAKABLY
    DARK: the ground is now a deep plum/aubergine velvet (#130b12, a violet cast,
    never neutral), the type is a romantic display serif (Cormorant Garamond) over
-   a quiet body serif (Lora), and the corners soften to 3-14px with a true pill.
+   a quiet body serif (Lora), and the corners soften to 5-16px with a true pill.
    The thorns and roses stay — they belong to this register too — but they are
    rose-forward now: a bloom on a thorned stem, a lace veil, a dripping candle.
 
@@ -16,9 +16,14 @@
      ground   deep velvet plum, near-black with a violet cast (#130b12)
      action   one deep velvet WINE (#8f1d3f) — the only fill that acts
      text     soft ivory/bone (#f4ebe6) — never pure white
-     blush    a muted rose (#e08ba6) carries every read word (--accent-ink)
+     read     a muted rose (#e08ba6) carries every READ word (--accent-ink)
+     blush    a warm rose (#e3737d) — a first-class accent in the BLOOM family:
+              the candlelight halo --glow casts around the action, and the warm
+              heart of the media veil. It is NOT an error colour.
      candle   a candlelight gold (#c99a4e) earns a real job: the candle flame,
               the lit half of the media ramp, and the masthead's candle glow.
+     fault    a true warning red (#e0655a) — hot and red, clearly not the wine
+              ("delete" must never read as "the action").
 
    The gold is not decoration — it is the light in the room. Remove the candle
    motif and the wine/rose pair still stands; the gold is what makes it a vigil.
@@ -60,12 +65,21 @@
                                                on accent-soft over --surface-2 */
   --accent-ink-hover:  #f0a6bc;             /* the rose lifted, never pales to pink */
 
+  /* -- blush: the kit's own warm rose, a FIRST-CLASS accent ------------------
+     Not a status colour. The blush is the candlelight BLOOM family: the halo
+     `--glow` casts around the primary action, and the warm heart of the media
+     veil (`--media-bg`). It lived as `--danger` ("error") until review; a
+     warning is now a red and the blush does warmth instead. */
+  --blush:             #e3737d;             /* warm rose — glow + media warmth;
+                                               6.20:1 on the ground, but it is a
+                                               bloom, never a text or fault ink */
+
   /* -- status: desaturated one step past shouting ------------------------- */
   --ok:            #8fb073;                 /* muted sage */
   --warn:          #d9a94f;                 /* candlelight amber */
-  --danger:        #e3737d;                 /* dusty rose fault — lighter and hotter
-                                               than the wine, so "delete" never reads
-                                               as "the action" */
+  --danger:        #e0655a;                 /* a TRUE warning red — hot, red and
+                                               clearly not the wine, so "delete"
+                                               never reads as "the action" */
   --info:          #93a9c6;                 /* moonlight blue: data, telemetry */
 
   /* -- lines: ivory hairlines, translucent so the velvet shows through ----- */
@@ -77,9 +91,11 @@
                                                mistaken for the fill */
 
   /* -- shape: velvet softens the corner ----------------------------------- */
-  --radius-sm:     3px;
-  --radius-md:     7px;
-  --radius-lg:     14px;
+  /* Review read the old 3px as crisp/technical rather than velvet: the small
+     steps were opened up one notch so even a chip or an input is visibly soft. */
+  --radius-sm:     5px;
+  --radius-md:     9px;
+  --radius-lg:     16px;
   --radius-pill:   999px;                   /* a true lozenge: badges are pills and
                                                avatars are circles — the cameo read */
   --cut:           0px;                     /* no chamfer. The corner cut is
@@ -98,8 +114,9 @@
   --shadow-2:      inset 0 1px 0 rgba(244,235,230,.07), 0 24px 52px -24px rgba(0,0,0,.96),
                    0 0 0 1px rgba(143,29,63,.22);
   /* --glow is a real candlelight bloom, not a hard ring. The action colour is a deep
-     wine, so the light around it has to be the ROSE, not the wine again. */
-  --glow:          0 0 0 1px rgba(143,29,63,.55), 0 0 24px -4px rgba(224,139,166,.45);
+     wine, so the light around it has to be a lighter warm rose — and that warm rose
+     is the BLUSH (`--blush`), the bloom family's own job. */
+  --glow:          0 0 0 1px rgba(143,29,63,.55), 0 0 24px -4px rgba(227,115,125,.50);
   --blur:          none;                    /* velvet is opaque, not frosted glass */
 
   /* -- motion: a slow exhale, not a snap ---------------------------------- */
@@ -112,27 +129,33 @@
                                             /* the masthead candle glow: a gold bloom
                                                bled into wine, over the velvet */
   --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0OCcgaGVpZ2h0PSc0OCcgdmlld0JveD0nMCAwIDQ4IDQ4Jz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNmNGViZTYnIHN0cm9rZS1vcGFjaXR5PScuNTAnIHN0cm9rZS13aWR0aD0nMS4xJyBzdHJva2UtbGluZWNhcD0ncm91bmQnPjxwYXRoIGQ9J00wIDAgTDQ4IDQ4Jy8+PHBhdGggZD0nTTQ4IDAgTDAgNDgnLz48cGF0aCBkPSdNMjQgNSBDMzAgMTMgMzAgMTkgMjQgMjQgQzE4IDE5IDE4IDEzIDI0IDUgWicvPjxwYXRoIGQ9J00yNCA0MyBDMzAgMzUgMzAgMjkgMjQgMjQgQzE4IDI5IDE4IDM1IDI0IDQzIFonLz48cGF0aCBkPSdNNSAyNCBDMTMgMzAgMTkgMzAgMjQgMjQgQzE5IDE4IDEzIDE4IDUgMjQgWicvPjxwYXRoIGQ9J000MyAyNCBDMzUgMzAgMjkgMzAgMjQgMjQgQzI5IDE4IDM1IDE4IDQzIDI0IFonLz48L2c+PGNpcmNsZSBjeD0nMjQnIGN5PScyNCcgcj0nMi44JyBmaWxsPScjZTA4YmE2Jy8+PC9zdmc+") 0 0 / 40px 40px repeat,
-                   linear-gradient(135deg, #8f1d3f 0%, #b3254f 48%, #c99a4e 100%);
-                                            /* the lace veil over the wine→rose→candle
-                                               ramp. Both endpoints are palette colours
-                                               (primary / secondary), so the DESIGN.md
-                                               media components describe what renders. */
+                   linear-gradient(135deg, #8f1d3f 0%, #e3737d 60%, #c99a4e 100%);
+                                            /* the lace veil over the wine→BLUSH→candle
+                                               ramp: the blush is its heart, the candle
+                                               only warms the far corner. Every stop is
+                                               a palette colour (primary / blush /
+                                               secondary), so the DESIGN.md media
+                                               components describe what renders. */
   --media-op:      .95;
-  --fill-bg:       linear-gradient(135deg, #8f1d3f 0%, #b3254f 100%);
-                                            /* progress + avatar: pure velvet wine, so
-                                               the ivory initials stay readable */
+  --fill-bg:       linear-gradient(135deg, #8f1d3f 0%, #ab2549 100%);
+                                            /* progress + avatar: the wine warmed one
+                                               step (--accent-hover), kept dark so the
+                                               ivory initials stay readable (7.0:1) */
   --input-inset:   inset 0 2px 5px rgba(0,0,0,.40), 0 1px 0 rgba(244,235,230,.05);
                                             /* fields recess into the velvet */
 
-  /* -- signature: THREE motifs and two supporting textures ---------------- */
-  /* 1. ROSE — something alive growing through it. A rose head drawn as an
-        ASYMMETRIC SPIRAL (nested rings read as a bullseye, and a bright centre
-        reads as an eye catchlight — both were rejected at chip size) inside
-        three uneven outer petals, on a wine thorned stem. */
+  /* -- signature: THREE motifs and one supporting texture ----------------- */
+  /* 1. ROSE — something alive growing through it. The bloom is built from three
+        rings of CLOSED, overlapping petal shapes, filled so each layer occludes
+        the one behind it and the petal EDGES stay visible (nested arcs read as a
+        bullseye; a bare spiral reads as a rosette or a vinyl groove — both were
+        rejected at chip size, twice). A small furled bud spirals inside the
+        bloom, and the stem is wine and thorned. Redrawn and re-rendered until it
+        read as a rose cold, with no label. */
   --gothic-rose:
     /* A TOKEN CAN HOLD DRAWN ARTWORK, base64 (not percent-encoded — a hand-encoded
        data URI double-encodes '#' and then fails SILENTLY as a blank tile). */
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc5MicgaGVpZ2h0PSc5Micgdmlld0JveD0nMCAwIDkyIDkyJz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyNlMDhiYTYnIHN0cm9rZS13aWR0aD0nMi41JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnPjxwYXRoIGQ9J00yOSAyMSBDNDAgMTEgNTcgMTQgNjMgMjcnLz48cGF0aCBkPSdNNjUgMzUgQzY2IDQ5IDU2IDYxIDQyIDYxJy8+PHBhdGggZD0nTTI5IDU4IEMxNyA1MyAxMSA0MSAxNiAyOScvPjxwYXRoIGQ9J00zNCAzMCBDNDUgMjUgNTUgMzQgNTEgNDUgQzQ4IDU0IDM2IDU1IDMxIDQ2IEMyNyAzOSAzMyAzMiA0MSAzNCBDNDYgMzUgNDcgNDEgNDMgNDQnLz48L2c+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGYxZDNmJyBzdHJva2Utd2lkdGg9JzIuNCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJz48cGF0aCBkPSdNNDYgNjAgQzQxIDcyIDUxIDc4IDQ0IDkxJy8+PC9nPjxnIGZpbGw9JyM4ZjFkM2YnPjxwYXRoIGQ9J000OCA2NiBMNTkgNjAgTDQ2IDcyIFonLz48cGF0aCBkPSdNNDMgNzkgTDMxIDc3IEw0MyA4NSBaJy8+PC9nPjxnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2M5OWE0ZScgc3Ryb2tlLW9wYWNpdHk9Jy41NScgc3Ryb2tlLXdpZHRoPScxLjYnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCc+PHBhdGggZD0nTTUwIDYyIEM2MCA2OCA2MSA3NyA1NSA4NCcvPjwvZz48L3N2Zz4=") center / 92px 92px no-repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij48cGF0aCBkPSJNNDcuMCAzOS4wIEMzNC4yIDUwLjMgMjIuMiA0OC43IDIzLjcgMzYuMSBDMjQuMCAzMC40IDI3LjYgMjQuMCAzNS45IDIxLjkgQzQzLjkgMjAuMyA1MC41IDI1LjUgNDcuMCAzOS4wIFoiIGZpbGw9IiNhODQ2NWYiIHN0cm9rZT0iIzQ1MTYyYiIgc3Ryb2tlLXdpZHRoPSIxLjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQ3LjAgMzkuMCBDMzEuOSAzNC4zIDI3LjcgMjQuMyAzOC42IDE5LjggQzQzLjQgMTcuNSA1MC4yIDE3LjMgNTUuOCAyMi44IEM2MC43IDI4LjIgNTkuNSAzNS42IDQ3LjAgMzkuMCBaIiBmaWxsPSIjYTg0NjVmIiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS43IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ny4wIDM5LjAgQzQzLjkgMjIuMCA1MS43IDEyLjEgNjIuMCAxOS43IEM2Ni44IDIyLjggNzAuNSAyOS4wIDY3LjkgMzcuNSBDNjUuMSA0NS40IDU3LjAgNDguNyA0Ny4wIDM5LjAgWiIgZmlsbD0iI2E4NDY1ZiIgc3Ryb2tlPSIjNDUxNjJiIiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDcuMCAzOS4wIEM1OS4yIDI4LjAgNzAuNCAyOS40IDY4LjggNDEuNiBDNjguNCA0Ny4wIDY1LjEgNTMuMiA1Ny4yIDU1LjMgQzQ5LjcgNTcuMCA0My42IDUyLjAgNDcuMCAzOS4wIFoiIGZpbGw9IiNhODQ2NWYiIHN0cm9rZT0iIzQ1MTYyYiIgc3Ryb2tlLXdpZHRoPSIxLjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQ3LjAgMzkuMCBDNjEuNiA0My42IDY1LjYgNTMuMyA1NS4xIDU3LjggQzUwLjUgNjAuMCA0NC4wIDYwLjEgMzguNiA1NC44IEMzMy44IDQ5LjUgMzQuOSA0Mi4zIDQ3LjAgMzkuMCBaIiBmaWxsPSIjYTg0NjVmIiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS43IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ny4wIDM5LjAgQzUwLjIgNTUuMyA0My4wIDY0LjYgMzMuMSA1Ny4zIEMyOC41IDU0LjIgMjQuOSA0OC4yIDI3LjIgNDAuMSBDMjkuNyAzMi42IDM3LjQgMjkuNiA0Ny4wIDM5LjAgWiIgZmlsbD0iI2E4NDY1ZiIgc3Ryb2tlPSIjNDUxNjJiIiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDcuMCAzNy4wIEMzNS4yIDM0LjcgMzAuOSAyNy4zIDM4LjUgMjIuNiBDNDEuOCAyMC40IDQ2LjggMTkuNiA1MS42IDIzLjQgQzU2LjAgMjcuMSA1NS45IDMzLjEgNDcuMCAzNy4wIFoiIGZpbGw9IiNjMjViNzgiIHN0cm9rZT0iIzQ1MTYyYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQ3LjAgMzcuMCBDNDUuNCAyNS44IDUwLjUgMTkuOSA1Ni45IDI1LjUgQzU5LjkgMjcuOCA2Mi4xIDMyLjEgNjAuMyAzNy41IEM1OC4zIDQyLjQgNTMuMSA0NC4wIDQ3LjAgMzcuMCBaIiBmaWxsPSIjYzI1Yjc4IiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ny4wIDM3LjAgQzU4LjAgMzIuMCA2Ni4xIDM1LjYgNjIuNyA0NC4wIEM2MS40IDQ3LjcgNTcuOCA1MS4zIDUxLjYgNTEuMCBDNDUuNyA1MC40IDQyLjEgNDUuNCA0Ny4wIDM3LjAgWiIgZmlsbD0iI2MyNWI3OCIgc3Ryb2tlPSIjNDUxNjJiIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDcuMCAzNy4wIEM1NC41IDQ0LjggNTMuOCA1Mi4zIDQ1LjcgNTEuNiBDNDIuMSA1MS41IDM4LjAgNDkuNCAzNi41IDQ0LjIgQzM1LjMgMzkuMyAzOC40IDM1LjEgNDcuMCAzNy4wIFoiIGZpbGw9IiNjMjViNzgiIHN0cm9rZT0iIzQ1MTYyYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQ3LjAgMzcuMCBDNDEuNCA0Ny4wIDMzLjMgNDguNyAzMS4yIDQwLjUgQzMwLjEgMzYuOCAzMC45IDMyLjAgMzUuOCAyOC44IEM0MC42IDI2LjAgNDYuMSAyNy44IDQ3LjAgMzcuMCBaIiBmaWxsPSIjYzI1Yjc4IiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ny4wIDM2LjAgQzQxLjcgMjkuMiA0Mi44IDIzLjQgNDkuMSAyNC43IEM1Mi4wIDI1LjEgNTUuMSAyNy4xIDU1LjkgMzEuMyBDNTYuNSAzNS4yIDUzLjcgMzguMyA0Ny4wIDM2LjAgWiIgZmlsbD0iI2RkODA5OCIgc3Ryb2tlPSIjYzk3MzhmIiBzdHJva2Utd2lkdGg9IjEuNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDcuMCAzNi4wIEM1NC44IDMzLjcgNTkuNiAzNi44IDU2LjIgNDIuMCBDNTQuOSA0NC4zIDUyLjAgNDYuMyA0OC4wIDQ1LjUgQzQ0LjMgNDQuNiA0Mi42IDQxLjEgNDcuMCAzNi4wIFoiIGZpbGw9IiNkZDgwOTgiIHN0cm9rZT0iI2M5NzM4ZiIgc3Ryb2tlLXdpZHRoPSIxLjQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQ3LjAgMzYuMCBDNDUuOCA0My42IDQxLjQgNDYuNCAzOC4zIDQxLjUgQzM2LjkgMzkuNCAzNi4zIDM2LjEgMzguNSAzMy4wIEM0MC43IDMwLjIgNDQuNCAzMC4yIDQ3LjAgMzYuMCBaIiBmaWxsPSIjZGQ4MDk4IiBzdHJva2U9IiNjOTczOGYiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ni42IDMwLjEgTDQ3LjMgMzAuMSBMNDguMSAzMC4yIEw0OC44IDMwLjQgTDQ5LjQgMzAuNyBMNTAuMCAzMS4yIEw1MC40IDMxLjcgTDUwLjggMzIuMiBMNTEuMSAzMi44IEw1MS4zIDMzLjUgTDUxLjQgMzQuMSBMNTEuMyAzNC44IEw1MS4yIDM1LjQgTDUwLjkgMzYuMCBMNTAuNiAzNi41IEw1MC4yIDM3LjAgTDQ5LjcgMzcuNCBMNDkuMiAzNy42IEw0OC43IDM3LjggTDQ4LjEgMzguMCBMNDcuNiAzOC4wIEw0Ny4wIDM3LjkgTDQ2LjUgMzcuNyBMNDYuMSAzNy41IEw0NS42IDM3LjIgTDQ1LjMgMzYuOCBMNDUuMCAzNi40IEw0NC44IDM2LjAgTDQ0LjcgMzUuNSBMNDQuNiAzNS4wIEw0NC42IDM0LjYgTDQ0LjcgMzQuMSBMNDQuOSAzMy43IEw0NS4xIDMzLjQgTDQ1LjQgMzMuMSBMNDUuNyAzMi44IEw0Ni4xIDMyLjYgTDQ2LjQgMzIuNSBMNDYuOCAzMi40IEw0Ny4yIDMyLjQgTDQ3LjUgMzIuNSBMNDcuOSAzMi42IEw0OC4yIDMyLjcgTDQ4LjQgMzIuOSBMNDguNiAzMy4yIEw0OC44IDMzLjQgTDQ4LjkgMzMuNyBMNDkuMCAzNC4wIEw0OS4wIDM0LjMgTDQ5LjAgMzQuNSBMNDguOSAzNC44IEw0OC44IDM1LjAgTDQ4LjcgMzUuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGYyYzQ5IiBzdHJva2Utd2lkdGg9IjIuMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik00NyA1MyBDIDQzIDYzLCA0OSA3NCwgNDQgOTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzliMjI0NyIgc3Ryb2tlLXdpZHRoPSI0LjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDcgNTMgQyA0MiA1MSwgMzkgNTIsIDM3IDU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNjMjViNzgiIHN0cm9rZS13aWR0aD0iMi4wIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQ3IDUzIEMgNTIgNTEsIDU1IDUyLCA1NyA1NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzI1Yjc4IiBzdHJva2Utd2lkdGg9IjIuMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik00NS40IDYyLjAgTDM4LjMgNTguMiBMNDAuNyA2My4yIFoiIGZpbGw9IiNiMDJhNTIiLz4KPHBhdGggZD0iTTQ4LjggNzEuMCBMNTUuOSA3NC44IEw1My41IDY5LjggWiIgZmlsbD0iI2IwMmE1MiIvPgo8cGF0aCBkPSJNNDQuOCA4MC4wIEwzOC44IDc2LjAgTDQwLjQgODAuNyBaIiBmaWxsPSIjYjAyYTUyIi8+CjxwYXRoIGQ9Ik00OS4yIDczIEMgNTIgNzIsIDU1IDcyLCA1OCA3MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOWIyMjQ3IiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik01OC4wIDczLjAgQzYyLjIgNjcuNiA3MS42IDcwLjggNzMuNCA3Ny40IEM2OC40IDgyLjEgNTguNyA3OS45IDU4LjAgNzMuMCBaIiBmaWxsPSIjYzI1Yjc4IiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTU5LjUgNzMuNCBMNzEuNSA3Ni45IiBzdHJva2U9IiM0NTE2MmIiIHN0cm9rZS13aWR0aD0iMS4wIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=") center / 80px 80px no-repeat,
     radial-gradient(circle at 48% 42%, #3a1626 0%, #1b0e17 74%);
 
   /* 2. LACE — a veil. A repeatable field of fine netting with a four-petal flower
@@ -150,13 +173,12 @@
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2MCcgaGVpZ2h0PSc3OCcgdmlld0JveD0nMCAwIDYwIDc4Jz48cGF0aCBkPSdNMzAgNiBDMzcgMTUgMzYgMjQgMzAgMjcgQzI0IDI0IDIzIDE1IDMwIDYgWicgZmlsbD0nI2Q5YTk0ZicvPjxwYXRoIGQ9J00zMCAxMyBDMzQgMTkgMzMgMjQgMzAgMjYgQzI3IDI0IDI2IDE5IDMwIDEzIFonIGZpbGw9JyNmOGU4Y2EnLz48cGF0aCBkPSdNMzAgMjcgTDMwIDMyJyBzdHJva2U9JyM2YTRhM2UnIHN0cm9rZS13aWR0aD0nMS42Jy8+PHBhdGggZD0nTTIyIDMzIEwzOCAzMyBMMzggNjkgUTM4IDc2IDMwIDc2IFEyMiA3NiAyMiA2OSBaJyBmaWxsPScjZTZkM2NjJy8+PGVsbGlwc2UgY3g9JzMwJyBjeT0nNzQnIHJ4PScxMicgcnk9JzIuOCcgZmlsbD0nI2YxZTJkYScvPjxwYXRoIGQ9J00yMyAzMiBDMTUgNDUgMTUgNTggMjAgNTggUTI2IDU4IDI1IDQ3IEwyNSAzMiBaJyBmaWxsPScjZjFlMmRhJy8+PHBhdGggZD0nTTM3IDMyIEM0MyA0MSA0MiA1MCAzNyA1MCBRMzMgNTAgMzQgNDMgTDM0IDMyIFonIGZpbGw9JyNmMWUyZGEnLz48cGF0aCBkPSdNMjggMzMgTDMyIDMzIEwzMiA0OCBRMzAgNTIgMjggNDggWicgZmlsbD0nI2YxZTJkYScvPjxlbGxpcHNlIGN4PSczMCcgY3k9JzMzJyByeD0nOCcgcnk9JzIuNCcgZmlsbD0nI2NmYjhiMicgb3BhY2l0eT0nLjYnLz48cGF0aCBkPSdNMjYgMzYgTDI2IDU4JyBzdHJva2U9JyNjZmI4YjInIHN0cm9rZS13aWR0aD0nMS4zJyBzdHJva2Utb3BhY2l0eT0nLjQ1Jy8+PC9zdmc+") center / 60px 78px no-repeat,
     linear-gradient(180deg, #2a1520 0%, #150c13 100%);
 
-  /* -- supporting textures (not motifs: light and line) ------------------- */
+  /* -- supporting texture (not a motif: the accent as a surface) ----------- */
   --gothic-wine:
-    /* the accent as a surface: the velvet drape */
+    /* the accent as a surface: the velvet drape. The one extra beyond the
+       three motifs; the old wine→rose→candle hairline tile was CUT — it
+       rendered as a plum→magenta→orange→gold→yellow band, i.e. a sunset/aurora
+       ramp carrying two hues the kit does not own, with no material cue, and a
+       fifth decorative tile only diluted the rose, the lace and the candle. */
     linear-gradient(160deg, #4a1024 0%, #8f1d3f 44%, #b3254f 64%, #2a0a14 100%);
-
-  --gothic-vein:
-    /* one hairline: wine → rose → candle → rose → wine */
-    linear-gradient(90deg, transparent 0%, #8f1d3f 16%, #e08ba6 42%, #c99a4e 58%,
-                    #8f1d3f 84%, transparent 100%);
 }

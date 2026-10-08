@@ -28,7 +28,7 @@ Inside `kits/<slug>/` only. Touch nothing else in the repo.
 | `DESIGN.md` | yes | Google DESIGN.md format |
 | `kit.json` | yes | gallery metadata |
 | `README.md` | yes | stance, choices, trade-offs, when to use |
-| `kit.css` | **no** | the escape hatch — read the `kit.css` section of `KIT-SPEC.md` first. Prefer tokens: a shadow, a radius, a dither and a gradient are all tokens. Only a *stacked construction* (a panel built from two offset plates) needs `kit.css`. |
+| `kit.css` | **no** | the escape hatch — read the `kit.css` section of `KIT-SPEC.md` first. Prefer tokens: a shadow, a radius, a dither and a gradient are all tokens. Only a *stacked construction* (a panel built from two offset plates) needs `kit.css`. **Before you write one, check whether the lab simply has no slot for the construction** — if a box-shadow could express it, the answer is a token in the lab, not a stylesheet in your kit. `--bar-shadow`, `--bar-item-shadow`, `--bar-item-pad`, `--toggle-shadow` and `--toggle-knob-shadow` exist for exactly that reason: the nav, the tab row and the switch were chromed with no hook, and a kit shipped a six-declaration `kit.css` to reach them. It is tokens now. |
 
 `index.html`, `DESIGN.html`, `tokens.json`, `theme.css`, `tailwind.theme.json` are **generated**.
 
