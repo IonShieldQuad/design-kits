@@ -324,9 +324,7 @@
         "lab": "kits/chrome/index.html",
         "readme": "kits/chrome/README.md"
       },
-      "warnings": [
-        "kit.json index '08' is stale — the gallery number is derived from order (now 06); the field is ignored"
-      ]
+      "warnings": []
     },
     {
       "slug": "cyber-angel",
@@ -422,9 +420,7 @@
         "lab": "kits/geometric-dimensions/index.html",
         "readme": "kits/geometric-dimensions/README.md"
       },
-      "warnings": [
-        "kit.json index '09' is stale — the gallery number is derived from order (now 08); the field is ignored"
-      ]
+      "warnings": []
     },
     {
       "slug": "glass",
@@ -475,9 +471,7 @@
         "lab": "kits/glass/index.html",
         "readme": "kits/glass/README.md"
       },
-      "warnings": [
-        "kit.json index '07' is stale — the gallery number is derived from order (now 09); the field is ignored"
-      ]
+      "warnings": []
     },
     {
       "slug": "dark-glass",

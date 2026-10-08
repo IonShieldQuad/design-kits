@@ -164,6 +164,25 @@ async function main() {
         }
         if (tokenCheck.captionOverflow) entry.errors.push("desktop: a swatch caption overflows its cell");
 
+        // The library's legibility floor: UI chrome (captions, labels, meta, badges) is >= 12px.
+        // It is easy to lose this in the shared stylesheet, so it is asserted rather than trusted.
+        const smallText = await page.evaluate(() => {
+          const SEL = ".swatch span, .tile figcaption, .badge, .caps, .t-caps, .masthead .eyebrow, " +
+                      ".masthead .meta, .field .hint, .table th, .type-row .tag";
+          const seen = new Set(), out = [];
+          document.querySelectorAll(SEL).forEach((e) => {
+            if (e.offsetParent === null) return;
+            const px = parseFloat(getComputedStyle(e).fontSize);
+            if (px < 12) {
+              const k = e.className.toString().slice(0, 24) + px;
+              if (!seen.has(k)) { seen.add(k); out.push(`${e.className.toString().slice(0, 24)} ${px}px`); }
+            }
+          });
+          return out.slice(0, 5);
+        }).catch(() => []);
+        (smallText || []).forEach((s) => entry.errors.push(
+          `desktop: UI chrome below the 12px floor — ${s}`));
+
         // 2. TEXT CONTRAST, SAMPLED FROM THE RENDERED PIXELS.
         //    Two traps, both hit here: a ratio taken against a solid ground is wrong for an ink on
         //    a translucent tint (accent badges sit on a ~16% tint of the accent itself), and a

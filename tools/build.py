@@ -147,6 +147,10 @@ def swatch_label(v: str) -> str:
     <wbr> gives it a legal break point instead.
     """
     s = short_value(v)
+    # A `var(--name)` caption is an identifier, not a number: give it a legal break AFTER the
+    # `var(--` so it can wrap across lines instead of overflowing a 92px cell at 12px.
+    if s.startswith("var(--"):
+        return "var(--<wbr>" + html.escape(s[6:])
     if "," not in s:
         return html.escape(s)
     return "<wbr>,".join(html.escape(p) for p in s.split(","))
