@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sakura — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Sakura kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Karla:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Sakura</h1>
+  <p class="spec-sub">A spring day: saturated blossom pink against fresh leaf green.</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Sakura
+description: A spring day — saturated blossom pink against fresh leaf green on a light tinted ground, with deep plum ink and a hint of bounce.
+colors:
+  primary: &quot;#c8325f&quot;
+  primary-hover: &quot;#b02651&quot;
+  secondary: &quot;#2e8339&quot;
+  tertiary: &quot;#a81d4c&quot;
+  neutral: &quot;#f9eef3&quot;
+  bg-stop-sky: &quot;#f1f6fb&quot;
+  bg-stop-petal: &quot;#fdf1f6&quot;
+  bg-stop-leaf: &quot;#f3f8ee&quot;
+  bg-stop-warm: &quot;#fdf3f6&quot;
+  bg-stop-end: &quot;#f9eef3&quot;
+  bg-2: &quot;#fdf3f7&quot;
+  surface: &quot;#fffbfd&quot;
+  surface-2: &quot;#f8eef3&quot;
+  overlay: &quot;rgba(58,36,56,0.38)&quot;
+  text: &quot;#3a2438&quot;
+  text-muted: &quot;#5e4557&quot;
+  text-dim: &quot;#6d5165&quot;
+  text-invert: &quot;#ffffff&quot;
+  accent-soft: &quot;rgba(200,50,95,0.10)&quot;
+  accent-ink: &quot;#a81d4c&quot;
+  accent-ink-hover: &quot;#8d1540&quot;
+  ok: &quot;#177040&quot;
+  warn: &quot;#8f5c00&quot;
+  danger: &quot;#b3261e&quot;
+  info: &quot;#2b6aa8&quot;
+  border: &quot;#ecd6e0&quot;
+  border-strong: &quot;#d9b9c8&quot;
+  focus-ring: &quot;#2f8340&quot;
+typography:
+  display:
+    fontFamily: &quot;Zen Kaku Gothic New&quot;
+    fontSize: &quot;2.9rem&quot;
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: &quot;-0.01em&quot;
+  heading:
+    fontFamily: &quot;Zen Kaku Gothic New&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: &quot;-0.006em&quot;
+  body:
+    fontFamily: &quot;Karla&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: &quot;IBM Plex Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: &quot;0.12em&quot;
+rounded:
+  sm: &quot;10px&quot;
+  md: &quot;14px&quot;
+  lg: &quot;20px&quot;
+  pill: &quot;999px&quot;
+spacing:
+  xs: &quot;0.35rem&quot;
+  sm: &quot;0.65rem&quot;
+  md: &quot;1.15rem&quot;
+  lg: &quot;2.25rem&quot;
+  xl: &quot;3.5rem&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.accent-ink}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.accent-ink-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.accent-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  nav:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.4rem&quot;
+  nav-active:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.accent-ink}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  alert-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.accent-ink}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p><strong>Not a quiet petal-drift — a spring day.</strong> Sakura is the season rendered as an interface: blossom pink against fresh leaf green, light and cheerful, with <strong>more colour than pastel</strong>. Two colours carry the whole kit, and both are held at visible saturation. The failure mode this kit is built to avoid has two directions, and it avoids both:</p>
+<ul><li>Go <strong>too pale</strong> and it dissolves into generic pastel — a soft wash of near-white with a faint tint. That is what the library's <code>glass</code> kit already is, and Sakura is deliberately not it.</li><li>Add <strong>too much pink</strong> and it becomes a nursery: one sugary hue repeated until the page reads as a baby-shower invitation.</li></ul>
+<p>The escape from both is the same move: <strong>pink against living green</strong>. Pink alone is a cliché; pink beside a fresh leaf is the season. Green is therefore not a swatch colour — it is a working counterweight that appears in real UI (the focus ring, the media/avatar/progress gradients, the light half of the spring ramp, the scatter, and every status that means "go"). The two hues are married in one ramp: blossom → <strong>cream</strong> → leaf. The cream midpoint is what makes them read as a single gradient rather than as two accents that happen to meet.</p>
+<p>Three decisions follow from that, and each is load-bearing:</p>
+<p>1. <strong>Pink drives action.</strong> Sakura <em>is</em> the blossom, so the one saturated object on a screen is the blossom: the primary button, the toggle, the checkbox, the tint behind active nav. Pink as a <strong>fill</strong> is the identity; a kit whose primary action is green would be a different season wearing this name. 2. <strong>The ink is deep plum, never pink.</strong> Pink body text on a pink ground is the second failure mode, so the reading ink is a warm plum-black (<code>#3a2438</code>). And because a pink that works as a button <em>fill</em> is far too light to read as a small <em>label</em>, text-pink ships separately as <code>--accent-ink</code>, a much deeper rose. 3. <strong>The ground is a real gradient, not white.</strong> A clean light base with a faint warm–cool shift — cool sky at the top of the first screen, warm petal below it, a leaf tint lower down — so the page is tinted like a room with a window open, never sterile white and never grey (grey is <code>zen-garden</code>, and grey is a wet day).</p>
+<p>Depth is airy but explicitly <strong>not glassy</strong>: soft layered shadows and no frosted translucency at all (<code>--blur: none</code>). Frost is <code>glass</code>'s material; here depth is a lift, not a pane.</p>
+<p>One sentence: <em>blossom pink and fresh leaf green on a light tinted spring ground.</em></p>
+<h3 id="colors">Colors</h3>
+<p>Two hues, one ink, one light ground. Both hues are <strong>saturated</strong>, and the way they stay legible is by deepening the ink — never by lightening the ground.</p>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Contrast</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Ground (gradient)</td><td><code>--bg</code></td><td>sky→petal→leaf stops</td><td>proved on the darkest stop</td></tr><tr><td>Ground, cool stop</td><td><code>bg-stop-sky</code></td><td><code>#f1f6fb</code></td><td>—</td></tr><tr><td>Ground, petal stop</td><td><code>bg-stop-petal</code></td><td><code>#fdf1f6</code></td><td>—</td></tr><tr><td>Ground, leaf stop</td><td><code>bg-stop-leaf</code></td><td><code>#f3f8ee</code></td><td>—</td></tr><tr><td>Ground, mid stop</td><td><code>bg-stop-warm</code></td><td><code>#fdf3f6</code></td><td>—</td></tr><tr><td>Ground, darkest stop</td><td><code>bg-stop-end</code></td><td><code>#f9eef3</code></td><td>the value all maths used</td></tr><tr><td>Ground lift / export stand-in</td><td><code>--bg-2</code></td><td><code>#fdf3f7</code></td><td>—</td></tr><tr><td>Card</td><td><code>--surface</code></td><td><code>#fffbfd</code></td><td>—</td></tr><tr><td>Nested panel / input</td><td><code>--surface-2</code></td><td><code>#f8eef3</code></td><td>—</td></tr><tr><td>Body ink (plum)</td><td><code>--text</code></td><td><code>#3a2438</code></td><td><strong>12.5:1</strong> on the darkest ground</td></tr><tr><td>Secondary ink</td><td><code>--text-muted</code></td><td><code>#5e4557</code></td><td><strong>8.3:1</strong> on <code>--surface</code></td></tr><tr><td>Tertiary ink</td><td><code>--text-dim</code></td><td><code>#6d5165</code></td><td><strong>6.2:1</strong> on the darkest ground, <strong>6.8:1</strong> on <code>--surface</code></td></tr><tr><td>Ink on the action</td><td><code>--text-invert</code></td><td><code>#ffffff</code></td><td><strong>5.2:1</strong> on <code>--accent</code></td></tr><tr><td>Action (blossom pink)</td><td><code>--accent</code></td><td><code>#c8325f</code></td><td><strong>5.2:1</strong> as a fill with white type</td></tr><tr><td>Pink <strong>as text</strong></td><td><code>--accent-ink</code></td><td><code>#a81d4c</code></td><td><strong>6.3:1</strong> on the darkest ground</td></tr><tr><td>Counterweight (leaf green)</td><td><code>--accent-2</code></td><td><code>#2e8339</code></td><td>fill only; white on it <strong>4.7:1</strong></td></tr><tr><td>Blossom tint</td><td><code>--accent-soft</code></td><td><code>rgba(200,50,95,.10)</code></td><td>deep rose on it <strong>5.5:1</strong></td></tr><tr><td>Focus</td><td><code>--focus-ring</code></td><td><code>#2f8340</code></td><td>fresh green, never the pink action</td></tr><tr><td>Hairline</td><td><code>--border</code></td><td><code>#ecd6e0</code></td><td>—</td></tr><tr><td>Emphasised line</td><td><code>--border-strong</code></td><td><code>#d9b9c8</code></td><td>—</td></tr></tbody></table>
+<p><strong>Primary (<code>#c8325f</code>) is the blossom, and it is the action colour.</strong> A pink that has to carry white type cannot be a pastel — <code>#c8325f</code> is saturated but <em>deep</em>, which is exactly the register the brief asked for ("more colour than pastel"): it has the chroma of a blossom and the weight of a pressed petal. Lighten it and the button fails; the answer is never to lighten the ground.</p>
+<p><strong>Secondary (<code>#2e8339</code>) is the fresh leaf, and it is the differentiation.</strong> Pink alone is the cliché; the green is what makes the page a spring day rather than a nursery. It is deliberately <strong>chromatic</strong>, not the desaturated moss <code>zen-garden</code> uses — a living leaf next to a blossom, not a grey sage next to rain. It appears in the focus ring, the media plate, the avatar and the progress bar (all as the second stop of a pink→green wash), and in the light half of <code>--sakura-ramp</code>. It is a fill and a motif colour; body text is plum, and green-as-text is never asked to carry a paragraph.</p>
+<p><strong>Tertiary (<code>#a81d4c</code>) is pink-as-text, not a third hue.</strong> The schema wants a <code>tertiary</code>, and this kit's honest answer is that it has two hues by design. Its <code>tertiary</code> is <code>--accent-ink</code>: the deep rose that links, eyebrows, active nav and secondary-button labels actually use. It exists because <strong>the fill pink measures only 2.7:1 as a small label on the ground</strong> — a real failure, and the reason <code>--accent-ink</code> is a declared capability rather than a nice-to-have.</p>
+<p><strong>Neutral (<code>#f9eef3</code>) is the darkest stop of the spring ground.</strong> It is the value chosen for every contrast calculation, so the numbers above hold at the <em>worst</em> point a viewer can scroll to, not at the flattering light one. Warm it further and it stops being a spring ground; cool it and it becomes <code>zen-garden</code>'s overcast.</p>
+<p><strong>The ground is a gradient, and its stops live in <code>colors:</code> as colours.</strong> A gradient is not a colour and the linter errors on one, so the five stops ship as <code>bg-stop-*</code> and the live gradient is <code>--bg</code> in <code>tokens.css</code>. The stops are in <strong>px</strong>, not percent: the body's gradient box is the whole document height, so a 0–100% ramp smears a 5% tint across thousands of pixels and the viewport reads flat white. Fixed-length stops keep the same wash in view at any page length.</p>
+<p><strong>Status colours bracket the brand pair rather than borrow it.</strong> <code>ok</code> is a <strong>deeper emerald</strong> (<code>#177040</code>) — green, but a more emerald green than the fresh leaf, so "success" is never mistakable for "the counterweight". <code>warn</code> is pollen ochre, <code>danger</code> is a brick red chosen to sit clearly away from the pink (a crimson would have collided with the blossom), and <code>info</code> is the cool <strong>sky</strong> from the top of the ground, inked. Each clears 4.5:1 on both panel surfaces.</p>
+<p><strong>Every tint is derived.</strong> <code>--accent-soft</code> is a 10% <code>rgba()</code> of <code>--accent</code> and the media and avatar washes are the <code>--accent</code>→<code>--accent-2</code> pair — no hand-picked blends that could drift.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, each with one job.</p>
+<ul><li><strong>Zen Kaku Gothic New</strong> (display) — headings, the wordmark, card titles. A Japanese-designed humanist gothic with light, open letterforms: it gives the airy cheer of the season (light weights, generous counters, no heaviness) and it ties the type to the same place the blossom comes from, so the kit's origin reads through letterform as well as colour.</li><li><strong>Karla</strong> (body) — everything you actually read. A clean grotesque with slightly warm, unfussy shapes; neutral enough that the display face stays the only voice with a spring in it.</li><li><strong>IBM Plex Mono</strong> (labels) — eyebrows, badges, table headers, code. A humanist mono, so a label stays legible without turning into a machine voice.</li></ul>
+<p>Display is tightened only a touch (<code>-0.01em</code> — a gothic does not want more than that), and mono labels are tracked to <code>0.12em</code>: open and light, in keeping with a bright day, but still short of a shout.</p>
+<h3 id="layout">Layout</h3>
+<p>The shared lab measure — <code>min(1040px, calc(100% - 2.5rem))</code> — with a <code>0.35 / 0.65 / 1.15 / 2.25 / 3.5rem</code> spacing scale. Density is <strong>comfortable</strong>: enough air that the ground's warm–cool shift is visible between the plates, but tighter than a mood kit's, because a spring day is awake rather than contemplative. Cards, panels and fields all sit on <code>--radius-lg</code> / <code>--radius-md</code>, and the block rule is the 1px petal hairline.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Airy, soft, and <strong>not frosted</strong>. Where <code>glass</code> puts a translucent pane on a pastel ground, Sakura lifts an opaque warm-white card off a tinted one.</p>
+<ul><li><code>--shadow-1</code> — cards: a small contact shadow plus a wide, low-opacity plum drop (<code>rgba(58,36,56,.20)</code> at <code>26px</code>). Plum, never black: a black shadow on a warm ground reads as dirt.</li><li><code>--shadow-2</code> — elevated surfaces: the same idea wider and softer, so a raised card reads as further from the ground rather than as more raised.</li><li><code>--glow</code> — the primary button only, and it is a <strong>blossom shadow, not a bloom</strong>: a pink <code>0 10px 22px -10px rgba(200,50,95,.42)</code>. If it ever looks like light, it is too strong.</li><li><code>--blur: none</code> — an airy spring page is not a pane of frosted glass. This is the single cleanest line between Sakura and <code>glass</code>.</li></ul>
+<h3 id="shapes">Shapes</h3>
+<p>Gently rounded throughout: <code>--radius-sm: 10px</code>, <code>--radius-md: 14px</code>, <code>--radius-lg: 20px</code>, and <code>999px</code> pills for badges, avatars, toggles and the progress bar. A blossom has no corners, so the scale sits one step softer than the library default. <code>--cut: 0px</code> — nothing is chamfered; a cut corner is an industrial signal and this kit is neither.</p>
+<h3 id="components">Components</h3>
+<p>Every colour resolves to a <code>{colors.*}</code> token. Shadows, hairlines and gradients live in the prose here and in <code>tokens.css</code>, because the component schema has no property for them.</p>
+<ul><li><strong>button-primary</strong> — a solid <code>{colors.primary}</code> blossom plate with <code>{colors.text-invert}</code>, a 14px radius and the pink <code>--glow</code> beneath. It is the one saturated object on a screen, which is what gives a bright palette a clear focal point.</li><li><strong>button-primary-hover</strong> — <code>{colors.primary-hover}</code>, one step <strong>deeper</strong>. The blossom bruises; it does not glow.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> with an <code>{colors.accent-ink}</code> label and a rose-tinted rim (<code>color-mix</code> 45%); hover fills with the 10% <code>{colors.accent-soft}</code> wash. The label is the <em>deep</em> rose, never the fill pink.</li><li><strong>button-ghost</strong> — <code>{colors.text-muted}</code> with no rim; the quietest control.</li><li><strong>card / card-elevated</strong> — <code>{colors.surface}</code> and <code>{colors.surface-2}</code> at 20px, separated by the 1px <code>{colors.border}</code> petal hairline and <code>--shadow-1</code>, never a hard edge.</li><li><strong>input</strong> — <code>{colors.surface-2}</code> settled <em>below</em> the card, with a <code>{colors.border-strong}</code> rim so the field reads as a recess and not a floating box. Focus swaps to the pink border with an <code>{colors.accent-soft}</code> halo; the keyboard ring is <code>{colors.focus-ring}</code> <strong>green</strong>, so focus and hover can never be confused — and so the leaf is genuinely in the UI.</li><li><strong>badge</strong> — <code>{colors.text-muted}</code> mono caps in a pill on <code>{colors.surface-2}</code>. <code>badge-accent</code> is the 10% blossom tint with an <code>{colors.accent-ink}</code> label; <code>badge-ok</code> / <code>badge-warn</code> / <code>badge-danger</code> use the emerald, ochre and brick.</li><li><strong>nav / nav-active</strong> — a <code>{colors.surface}</code> pill bar; the current item takes <code>{colors.accent-soft}</code> with a deep-rose label, the calmest possible "you are here".</li><li><strong>link</strong> — <code>{colors.accent-ink}</code> on the ground. Never <code>{colors.primary}</code>: the fill pink is a 2.7:1 label and would be a real accessibility failure.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the ground <code>--bg</code>'s gradient and its px stops. The warm–cool shift is the kit's weather; flattening it to one hex makes the page read as white paper.</li><li>Let pink <strong>fill</strong> and pink <strong>label</strong> be two different values. <code>{colors.primary}</code> for surfaces you click; <code>{colors.accent-ink}</code> for anything that is text.</li><li>Use the leaf green in real UI — focus, gradients, bars — not only in swatches. Green in one chip is decoration; green at the focus ring is a season.</li><li>Reach for <code>--sakura-ramp</code> when two accents must meet, and let the <strong>cream</strong> midpoint do the work of joining them.</li><li>Spend the space. Comfortable padding is what keeps a saturated palette from feeling loud.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't lighten <code>--accent</code> toward pastel to "soften" the kit. That is <code>glass</code>, and it also drops white-on-pink under 4.5:1. Deepen the ink instead; never lighten the ground.</li><li>Don't use <code>{colors.primary}</code> as a text colour. It measures 2.7:1 on the ground. Small labels are <code>{colors.accent-ink}</code>.</li><li>Don't put pink body text on the pink ground. The ink is <code>{colors.text}</code> (plum) — <code>{colors.tertiary}</code> is for labels and links only, at label sizes.</li><li>Don't add a third "look at me" hue. Pink plus leaf green is the whole palette; the cream in the ramp is a midpoint, not a member.</li><li>Don't introduce frosted translucency or a coloured glow. Soft opaque shadows only.</li><li>Don't let the scatter or the blossom motif become a wallpaper. <code>--sakura-petal</code> and <code>--sakura-blossom</code> are accents for a plate, a masthead or a hero — never a page-long fill.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

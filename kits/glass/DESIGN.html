@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glass — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Glass kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Glass</h1>
+  <p class="spec-sub">Frosted pastel panels — translucent, layered, quiet</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Glass
+description: Frosted, translucent panels over a soft pastel gradient — restrained glassmorphism with layered depth instead of borders.
+colors:
+  primary: &quot;#4550e8&quot;
+  accent-ink: &quot;#2a36e5&quot;
+  primary-hover: &quot;#3944d6&quot;
+  primary-border: &quot;#a9b0fa&quot;
+  on-primary: &quot;#ffffff&quot;
+  secondary: &quot;#b39dff&quot;
+  tertiary: &quot;#7fe0c4&quot;
+  neutral: &quot;#eef1f8&quot;
+  rose: &quot;#ffd9e8&quot;
+  lilac: &quot;#dcd6ff&quot;
+  mint: &quot;#d3f5ea&quot;
+  sky: &quot;#d6ecff&quot;
+  surface: &quot;rgba(255, 255, 255, 0.58)&quot;
+  surface-2: &quot;rgba(255, 255, 255, 0.65)&quot;
+  surface-solid: &quot;#f3f5fb&quot;
+  text: &quot;#1c2033&quot;
+  text-muted: &quot;#454b63&quot;
+  text-dim: &quot;#585e76&quot;
+  border: &quot;rgba(255, 255, 255, 0.70)&quot;
+  border-strong: &quot;rgba(28, 32, 51, 0.14)&quot;
+  ok: &quot;#0f7350&quot;
+  warn: &quot;#8f5c00&quot;
+  danger: &quot;#c4354f&quot;
+  info: &quot;#4550e8&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Plus Jakarta Sans&quot;
+    fontSize: &quot;2.6rem&quot;
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: &quot;-0.02em&quot;
+  h1:
+    fontFamily: &quot;Plus Jakarta Sans&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: &quot;-0.015em&quot;
+  h2:
+    fontFamily: &quot;Plus Jakarta Sans&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;-0.01em&quot;
+  body:
+    fontFamily: &quot;Plus Jakarta Sans&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: &quot;Plus Jakarta Sans&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.14em&quot;
+
+rounded:
+  sm: &quot;10px&quot;
+  md: &quot;14px&quot;
+  lg: &quot;20px&quot;
+  pill: &quot;999px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    boxShadow: &quot;0 10px 26px rgba(69,80,232,0.28)&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    boxShadow: &quot;0 14px 32px rgba(69,80,232,0.34)&quot;
+  button-secondary:
+    backgroundColor: &quot;rgba(255, 255, 255, 0.45)&quot;
+    textColor: &quot;{colors.primary}&quot;
+    borderColor: &quot;{colors.primary-border}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;rgba(255, 255, 255, 0.70)&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    borderColor: &quot;{colors.primary-border}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    borderColor: &quot;{colors.border}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+    boxShadow: &quot;0 10px 30px rgba(31,38,88,0.14), 0 2px 6px rgba(31,38,88,0.06)&quot;
+    backdropFilter: &quot;blur(20px) saturate(180%)&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    borderColor: &quot;{colors.border}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    boxShadow: &quot;0 26px 60px rgba(31,38,88,0.20), 0 6px 18px rgba(31,38,88,0.08)&quot;
+    backdropFilter: &quot;blur(20px) saturate(180%)&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    borderColor: &quot;{colors.border-strong}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  input-focus:
+    borderColor: &quot;{colors.primary}&quot;
+    boxShadow: &quot;0 0 0 3px rgba(69,80,232,0.14)&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    borderColor: &quot;{colors.border}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;rgba(69,80,232,0.12)&quot;
+    textColor: &quot;{colors.primary}&quot;
+    borderColor: &quot;{colors.primary-border}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  nav-item-active:
+    backgroundColor: &quot;rgba(69,80,232,0.12)&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    borderColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  media-gradient:
+    backgroundImage: &quot;linear-gradient(135deg, {colors.primary} 0%, {colors.secondary} 100%)&quot;
+    rounded: &quot;{rounded.md}&quot;</code></pre></section>
+<h2 id="glass">Glass</h2>
+<h3 id="overview">Overview</h3>
+<p>Glass is glassmorphism with the volume turned down. The ground is a soft pastel ramp — rose, lilac, mint and sky over a light base — and everything above it is a frosted white panel you can see through. There is no flat colour anywhere: surfaces are translucent, edges are hairline light, and depth comes from stacked soft shadows plus a one-pixel highlight on the top edge.</p>
+<p>Restraint is the whole point. The pastels are washes, not statements; the ink is deep (<code>{colors.text}</code>) so text stays legible over any stop of the ramp; and the only saturated thing in the kit is the periwinkle-indigo action colour (<code>{colors.primary}</code>).</p>
+<p>Because surfaces are translucent, "the background" is never one value. Every contrast claim in <code>README.md</code> is made against the <strong>lightest</strong> gradient stop and against the <strong>composited</strong> surface (white at 58% over that stop) — the two worst cases.</p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>primary — <code>{colors.primary}</code></strong> periwinkle-indigo. Tuned one step deeper than the reference swatch so white label text clears 4.5:1 on a bright kit where the button sits on a pastel ground rather than on white.</li><li><strong>secondary — <code>{colors.secondary}</code></strong> lilac. Gradient partner and chart colour; it is the mid-stop of the ground, so UI built on it looks continuous with the page.</li><li><strong>tertiary — <code>{colors.tertiary}</code></strong> mint. Available for success-adjacent accents and data series; it is the one cool green on the ramp.</li><li><strong>neutral — <code>{colors.neutral}</code></strong> the light base the whole gradient settles onto, and the colour to use when a surface genuinely cannot be translucent (print, email, canvas).</li><li>The four ramp stops are addressable: <code>{colors.rose}</code>, <code>{colors.lilac}</code>, <code>{colors.mint}</code>, <code>{colors.sky}</code>.</li><li><strong>Surfaces are transparent by design:</strong> <code>{colors.surface}</code> and <code>{colors.surface-2}</code> are <code>rgba()</code> white. Never substitute a hex — the translucency <em>is</em> the kit.</li><li>Status colours (<code>{colors.ok}</code>, <code>{colors.warn}</code>, <code>{colors.danger}</code>, <code>{colors.info}</code>) are darkened so badge text stays readable once it is composited over the ramp.</li></ul>
+<h3 id="typography">Typography</h3>
+<p>A single family, Plus Jakarta Sans, for both display and body, with JetBrains Mono for labels. Using one humanist geometric across the whole kit is deliberate: the ground is busy with colour, so the type stays quiet. Display sizes are set <strong>tight</strong> (<code>-0.02em</code>) — the inverse of the sibling <code>cyber-angel</code> kit, whose headings are opened up.</p>
+<p>Labels run at <code>{typography.label.letterSpacing}</code> in mono uppercase. Body copy is 0.95rem / 1.6; on a busy pastel ground, generous leading is what keeps paragraphs readable.</p>
+<h3 id="layout">Layout</h3>
+<p>Panels are the layout unit. Content sits on frosted cards, cards sit on the ramp, and the ramp should always be visible at the edges — a full-bleed opaque page defeats the entire idea. Keep 16–28px between surfaces so the ground reads between them.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Three layers, all translucent, distinguished by opacity and shadow rather than by colour:</p>
+<p>1. ground — the gradient on <code>--bg</code>; 2. <code>{colors.surface}</code> at 58% white with <code>backdrop-filter: blur(20px) saturate(180%)</code>; 3. <code>{colors.surface-2}</code> at 65% white with the deeper <code>--shadow-2</code>.</p>
+<p>The blur is <strong>load-bearing</strong>: <code>templates/lab.css</code> applies <code>var(--blur)</code> to <code>.card</code>, and a kit that sets <code>--blur: none</code> gets no frost at all. Saturing the backdrop (180%) is what keeps the pastels from turning to milk behind the glass.</p>
+<p>Borders are hairline light (<code>{colors.border}</code>) and exist only as an edge highlight. <code>{colors.border-strong}</code> is the one exception — a faint ink hairline for emphasised rules, because a second <em>white</em> line has no visible difference against a pastel ground. If a surface needs more definition, add shadow rather than another border.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 10px, <code>{rounded.md}</code> 14px, <code>{rounded.lg}</code> 20px, pills at 999px, <code>--cut: 0px</code>. Radius is generous but consistent — the frosted panel and the ground it floats on should feel cut from the same mould.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> with white label and a soft indigo cast; hover deepens to <code>{colors.primary-hover}</code>.</li><li><strong>button-secondary</strong> — translucent white (45%) with a <code>{colors.primary-border}</code> hairline; it reads as a pane of glass with accent text.</li><li><strong>card</strong> — 58% white, 1px light edge, <code>blur(20px) saturate(180%)</code>, <code>--shadow-1</code>.</li><li><strong>card-elevated</strong> — 65% white and <code>--shadow-2</code>; the extra opacity is what makes it feel lifted, not the shadow alone.</li><li><strong>input</strong> — 65% white fill with a <code>{colors.border-strong}</code> hairline; focus adds the accent border and a soft ring.</li><li><strong>badge</strong> — pill, mono, uppercase, translucent fill; <code>badge-accent</code> for the tinted variant.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the ground visible between panels — that is where the kit lives.</li><li>Verify any new text colour against the <em>lightest</em> ramp stop and the composited surface.</li><li>Use <code>--shadow-1</code> / <code>--shadow-2</code> (they carry a top-edge highlight) instead of adding borders for depth.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't set <code>--blur</code> to <code>none</code> or drop <code>backdrop-filter</code> — the kit becomes a flat pastel page and loses its identity.</li><li>Don't raise surface opacity above ~70%: frosted turns to painted.</li><li>Don't put two translucent panels directly on top of each other; nested glass muddies.</li><li>Don't use <code>{colors.primary}</code> as a large flat fill — it is an action colour on a pastel ground, not a background.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

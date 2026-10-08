@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometric Dimensions — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Geometric Dimensions kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Geometric Dimensions</h1>
+  <p class="spec-sub">Bauhaus geometry lifted off the page on hard ink shadows</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Geometric Dimensions
+description: Bauhaus geometry on a paper ground — 3px ink rules, hard square corners, and depth expressed as a hard offset shadow with zero blur.
+colors:
+  primary: &quot;#2b4bd8&quot;
+  primary-hover: &quot;#1f39b3&quot;
+  on-primary: &quot;#ffffff&quot;
+  secondary: &quot;#e8482f&quot;
+  tertiary: &quot;#f2b21a&quot;
+  neutral: &quot;#f4f1ea&quot;
+  surface: &quot;#fffdf7&quot;
+  surface-2: &quot;#f0ebe0&quot;
+  text: &quot;#14110f&quot;
+  text-muted: &quot;#4e463f&quot;
+  text-dim: &quot;#6b625a&quot;
+  ok: &quot;#1b6b3a&quot;
+  warn: &quot;#8a5300&quot;
+  danger: &quot;#b3261e&quot;
+  info: &quot;#0f5c8c&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Archivo&quot;
+    fontSize: &quot;2.6rem&quot;
+    fontWeight: 900
+    lineHeight: 1.02
+    letterSpacing: &quot;-0.01em&quot;
+  h1:
+    fontFamily: &quot;Archivo&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 900
+    lineHeight: 1.1
+    letterSpacing: &quot;-0.01em&quot;
+  h2:
+    fontFamily: &quot;Archivo&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 900
+    lineHeight: 1.15
+  h3:
+    fontFamily: &quot;Archivo&quot;
+    fontSize: &quot;1.05rem&quot;
+    fontWeight: 900
+    lineHeight: 1.2
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;Space Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 700
+    letterSpacing: &quot;0.1em&quot;
+
+rounded:
+  sm: &quot;0px&quot;
+  md: &quot;2px&quot;
+  lg: &quot;2px&quot;
+  pill: &quot;2px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  input-focus:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  media-block:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: &quot;96px&quot;
+  highlight:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;</code></pre></section>
+<h2 id="geometric-dimensions">Geometric Dimensions</h2>
+<h3 id="overview">Overview</h3>
+<p>A printed Bauhaus sheet. The ground is paper (<code>{colors.neutral}</code>), the ink is near-black (<code>{colors.text}</code>), every rule is 3px of that ink, and every corner is square. Nothing glows, nothing is frosted, nothing floats.</p>
+<p>The name is the whole idea: <strong>depth is a hard offset shadow, not a blur.</strong> A card is lifted off the page by 5px of solid ink to its bottom-right; the elevated card by 9px. There is no blurred shadow anywhere in the kit — the moment a soft shadow appears, this becomes a generic light theme instead of a sheet of printed board. That hard offset is what "dimensions" means here, and it is the single thing to preserve.</p>
+<h3 id="colors">Colors</h3>
+<p>Three primaries do the graphic work, and the discipline is that <strong>exactly one of them drives action</strong>:</p>
+<ul><li><strong>primary — <code>{colors.primary}</code> (blue) drives every action.</strong> Buttons, links, the focus ring, the active nav chip, the progress bar. It is the only one of the three primaries that clears 4.5:1 against a white label (6.77:1), so it is the only candidate for a filled control.</li><li><strong>secondary — <code>{colors.secondary}</code> (red) is structural only.</strong> Media fills, chart series, the second stop of the media gradient, a single graphic block. It never fills a button: white on red measures 3.89:1 and a black label would read as a different, heavier control than the blue one.</li><li><strong>tertiary — <code>{colors.tertiary}</code> (yellow) is graphic only.</strong> The highlight mark, a printed label block, a chart series. It is the loudest value in the kit and is therefore used in the smallest areas.</li><li><strong>neutral — <code>{colors.neutral}</code></strong> the paper ground. <code>{colors.surface}</code> is card stock (a shade lighter than the ground) and <code>{colors.surface-2}</code> is the bone tone for nested panels, inputs and badge fills.</li><li><strong>Status colours stay off the primaries.</strong> The brand is red/blue/yellow, so a status colour cannot escape those hue families entirely — the escape is <em>value</em>, not hue: forest green <code>{colors.ok}</code>, burnt amber <code>{colors.warn}</code>, brick <code>{colors.danger}</code> and steel <code>{colors.info}</code> are all darkened and desaturated so a "failed" badge is never the brand red and a "draft" badge is never the brand yellow. Keep them that way; a bright <code>#ff0000</code> danger would collide with <code>{colors.secondary}</code>.</li><li><strong>Borders are ink and are not a colour decision.</strong> <code>#14110f</code> is the only rule colour in the kit (see <code>--border</code> in <code>tokens.css</code>); the 3px weight, not the hue, is the design statement.</li></ul>
+<h3 id="typography">Typography</h3>
+<p><strong>Archivo</strong> at 900 for display — the Archivo Black cut: a heavy geometric grotesque with flat terminals and a near-monolinear skeleton, which is what a Bauhaus sheet wants in a headline. It is served at a single weight (900) on purpose: the shared lab asks headings for 600–700, and a single-weight family pinned at 900 resolves those requests to the true black face with <strong>no synthetic bold</strong>. <strong>Inter</strong> carries body and interface text; <strong>Space Mono</strong> — a mechanical, typewriter-derived mono — is labels only, uppercase, at <code>{typography.label.letterSpacing}</code>.</p>
+<p>Body copy is 0.95rem / 1.6 with generous leading: on a bright paper ground the risk is text vibrating against the surface, so the kit opens the leading rather than the tracking. Display tracking is barely tightened (<code>-0.01em</code>) — a black face needs almost none.</p>
+<h3 id="layout">Layout</h3>
+<p>The sheet is the layout unit. Content sits inside ink-ruled blocks on the paper ground, and blocks are separated by 3px rules and by <em>visible offsets</em>: a 28px gutter is preferred over a hairline, because the hard shadow needs room to land. Everything is left-aligned to a hard edge; nothing is centred except a genuine empty state.</p>
+<p>Keep surfaces flat against each other — this kit has no translucency and no overlays except the modal scrim (<code>rgba(20,17,15,.55)</code>), which is a flat veil rather than a blur.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Two steps, both hard offsets in solid ink:</p>
+<p>1. <strong><code>--shadow-1</code> = <code>5px 5px 0 var(--border)</code></strong> — the default card and the primary button's resting shadow. 2. <strong><code>--shadow-2</code> = <code>9px 9px 0 var(--border)</code></strong> — the elevated card.</p>
+<p>Both are <code>spread 0 / blur 0</code> — literally the box painted again, offset. <strong>No blurred shadow may appear anywhere in this kit</strong>, and no soft <code>box-shadow</code> ring: the input's focus state is an accent border plus the offset, not a glow. <code>--blur</code> is <code>none</code> and <code>templates/lab.css</code> therefore applies no <code>backdrop-filter</code> — there is nothing frosted here.</p>
+<p>The primary button carries a smaller 3px offset through <code>--glow</code>, because the shared lab wires <code>.btn-primary</code>'s <code>box-shadow</code> to <code>--glow</code> rather than to <code>--shadow-1</code>; a filled control that sat perfectly flat against the page would break the rule that everything in this kit is a lifted object.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 0px, <code>{rounded.md}</code> 2px, <code>{rounded.lg}</code> 2px, <code>{rounded.pill}</code> <strong>2px</strong>, <code>--cut: 0px</code>. Hard corners are the point. The pill token is deliberately 2px rather than 999px: badges and avatars read as small squares with a hint of print rounding, never as lozenges. Cut corners (the <code>--cut</code> clip-path family) belong to the sibling <code>carbon</code> kit, which is dark, square and neon; this kit is light, printed and dimensional, and uses a hard offset instead of a cut.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> fill, <code>{colors.on-primary}</code> label, 2px corner, and a 3px hard ink offset that reads as the button resting on the sheet. Hover deepens to <code>{colors.primary-hover}</code> and the offset is unchanged.</li><li><strong>button-secondary</strong> — card-stock fill with ink text and a 3px ink rule; the same hard offset. It must not become a translucent or ghosted button — glass is not in this kit's vocabulary.</li><li><strong>card</strong> — <code>{colors.surface}</code> with a 3px ink border, 2px corner and the 5px hard offset.</li><li><strong>card-elevated</strong> — <code>{colors.surface-2}</code> with the 9px offset; the extra distance <em>is</em> the elevation, there is no shadow softening to lean on.</li><li><strong>input</strong> — card-stock fill, 3px ink rim, square-ish corner; the focus state swaps the rim to <code>{colors.primary}</code> and keeps the offset.</li><li><strong>badge</strong> — square-ish (2px), mono, uppercase, bone fill; <code>badge-primary</code> is the blue-filled variant that is allowed because it is an <em>action</em> marker, not a status one.</li><li><strong>media-block</strong> — <code>{colors.secondary}</code> (red), the one place the second primary fills area.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the offset shadow hard: <code>Npx Npx 0</code> of <code>{colors.text}</code>. It is the kit's signature.</li><li>Use <code>{colors.primary}</code> for anything the user is meant to click or submit. Nothing else.</li><li>Keep rules at 3px. A 1px hairline turns a Bauhaus sheet into a blog.</li><li>Let red and yellow be large <em>graphic</em> shapes and small <em>text</em> colours — never a filled control.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't introduce a blurred <code>box-shadow</code>, a glow, or a <code>backdrop-filter</code>. Any of the three breaks the kit's identity.</li><li>Don't round a corner. Not a card, not a pill, not an avatar.</li><li>Don't put white text on <code>{colors.secondary}</code> (3.89:1) or on <code>{colors.tertiary}</code> — the red and the yellow take ink-coloured text or no text at all.</li><li>Don't use red or yellow as an action colour; if two of the three primaries start acting, the kit reads as decoration rather than hierarchy.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

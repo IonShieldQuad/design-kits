@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carbon — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Carbon kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Orbitron:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Carbon</h1>
+  <p class="spec-sub">Neon on carbon black, nothing round, everything cut</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Carbon
+description: Deep-space technical UI — neon cyan on carbon black, cut corners, mono labels.
+colors:
+  primary: &quot;#00e5ff&quot;
+  primary-hover: &quot;#2ae9ff&quot;
+  primary-ink: &quot;#04121a&quot;
+  secondary: &quot;#7c4dff&quot;
+  tertiary: &quot;#2f7bff&quot;
+  neutral: &quot;#0b0c10&quot;
+  surface: &quot;#13151c&quot;
+  surface-2: &quot;#1a1e27&quot;
+  text: &quot;#e6ebf2&quot;
+  text-muted: &quot;#9aa6b4&quot;
+  success: &quot;#3ddc97&quot;
+  warning: &quot;#ffc46b&quot;
+  error: &quot;#ff3d5e&quot;
+typography:
+  display:
+    fontFamily: Space Grotesk
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;-0.01em&quot;
+  heading:
+    fontFamily: Space Grotesk
+    fontSize: 1.3rem
+    fontWeight: 650
+    lineHeight: 1.2
+    letterSpacing: &quot;-0.005em&quot;
+  body:
+    fontFamily: Inter
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: JetBrains Mono
+    fontSize: 0.72rem
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: &quot;0.08em&quot;
+  tech:
+    fontFamily: Orbitron
+    fontSize: 1rem
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: &quot;0.06em&quot;
+rounded:
+  none: 0px
+  sm: 0px
+  md: 0px
+  lg: 0px
+  pill: 0px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-error:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  table-header:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p>Carbon is the technical end of the dark spectrum: a near-black board with neon cyan wiring. It came out of the msubinarylily portfolio, where the page is a machine bay — grid rules, a faceted plate, cut-corner plates, and mono labels that read as instrumentation rather than prose. The surface is almost an absence of colour; the colour arrives as light.</p>
+<p>The kit is for surfaces that want to look engineered: product marketing for developer tools, a portfolio, a launch page for something with a launch button. It is <strong>not</strong> for reading long text or for surfaces that must feel friendly.</p>
+<p>One sentence: <em>neon cyan on carbon black, nothing round, everything cut.</em></p>
+<h3 id="colors">Colors</h3>
+<p>The palette is monochrome-plus-light. There is one action colour and one atmosphere colour; everything else is a step of the ground or a status.</p>
+<ul><li><strong>Primary (#00e5ff):</strong> neon cyan. Every action, every focus ring, every "this is live" moment. It is a <em>fill and a glow</em>, not a body-text colour — cyan text on a light surface is where this palette would fail, so the source keeps a separate readable ink for that case.</li><li><strong>Secondary (#7c4dff):</strong> neon violet. It exists for gradients and media (the holo wash), never for a second call to action.</li><li><strong>Tertiary (#2f7bff):</strong> the cold pole of the source's binary motif — a supporting blue used for informational status and rules.</li><li><strong>Neutral (#0b0c10):</strong> carbon. The ground the whole system sits on.</li><li><strong>Surface (#13151c) / surface-2 (#1a1e27):</strong> two lifts off the ground for cards and inputs.</li><li><strong>Text (#e6ebf2) / text-muted (#9aa6b4):</strong> the two contrast-guaranteed text steps. Muted clears 7:1 on the card surface.</li><li><strong>Error (#ff3d5e):</strong> the source's hot pole, promoted to the danger colour.</li></ul>
+<p>Three tokens are defined in <code>tokens.css</code> but intentionally absent from the <code>colors</code> map above, because the DESIGN.md component schema has no property that can reference them (there is no <code>borderColor</code>, and a tertiary caption has no contrast guarantee to assert):</p>
+<ul><li><code>--text-dim: #7c8795</code> — captions, placeholders, timestamps. <code>--text-muted</code> pulled toward the ground; exempt from the 4.5:1 floor in WCAG and treated as such here.</li><li><code>--border: #2a2f3a</code> — the default 1px hairline (<code>--line-dark</code>).</li><li><code>--border-strong: #3b424f</code> — input rims and emphasised dividers.</li></ul>
+<p>Status colours (<code>success</code>, <code>warning</code>, <code>error</code>) are signal, not brand. They never carry a primary action.</p>
+<h3 id="typography">Typography</h3>
+<p>Four faces, each with one job, because the source already drew the line:</p>
+<ul><li><strong>Space Grotesk</strong> — display and headings. Geometric, slightly off-square, technical without being a gimmick.</li><li><strong>Inter</strong> — body. Everything you actually read.</li><li><strong>JetBrains Mono</strong> — labels, badges, table headers, code. Uppercase, tracked +0.08em. Mono is the kit's "instrument" voice: if a string is a fact rather than a sentence, it is mono.</li><li><strong>Orbitron</strong> — the wordmark face. It is exposed as <code>--font-tech</code> for the logotype and HUD labels only. It is deliberately <em>not</em> the display or the body font; Orbitron at paragraph size is unreadable, and the lab does not use it.</li></ul>
+<p>The display size is fluid (<code>clamp()</code>); the floor for mono labels is 12px.</p>
+<h3 id="layout">Layout</h3>
+<p>The lab is a single column at <code>min(1040px, 100% - 2.5rem)</code>. Carbon's own geometry is a gap-driven grid (<code>clamp(1rem, 3vw, 2rem)</code>) that collapses to one column below 640px and opens to two or three above 900px. Nothing here is bespoke to the kit — the shape language is what carries it.</p>
+<p>Density is medium: generous section padding (3.2–6rem) with tight internal rhythm, so the page reads as a board with plated modules rather than a document.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is light, not shadow. The signature elevation is <code>--glow</code> (<code>0 0 14px rgba(0,229,255,.35)</code>) under the primary action and the focus ring — the surface emits. Physical shadows (<code>--shadow-1</code>, <code>--shadow-2</code>) exist for menus and modals but are dark and tight; they are never the primary way a thing reads as raised.</p>
+<p>Blur is real: <code>--blur: blur(16px) saturate(1.35)</code> is the source header's glass, and the lab's cards consume it.</p>
+<h3 id="shapes">Shapes</h3>
+<p><strong>Nothing in this kit is round.</strong></p>
+<ul><li>Radii are 0 across the scale, including <code>--radius-pill</code>. Badges and avatars are squares; the cut corner is the only corner treatment in the language.</li><li><code>--cut: 14px</code> is the corner size, <code>--cut-lg: 22px</code> for large plates, and <code>--clip-btn: 10px</code> for controls. The polygon is exposed as <code>--clip</code> / <code>--clip-lg</code> / <code>--clip-btn</code> so a project can apply it with one declaration:</li></ul>
+<pre><code>  .plate { clip-path: var(--clip); }
+  .plate.btn { clip-path: var(--clip-btn); }</code></pre>
+<p>The shared lab does not clip anything, so <code>--cut</code> is documented rather than automatic — apply it yourself. When you do, draw borders as two clipped layers (rim + inset surface), because <code>clip-path</code> cuts a 1px border off along the diagonal.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a solid cyan plate with the near-black ink label. It carries the glow. Mono, uppercase, min-height 44px in the source.</li><li><strong>button-primary-hover</strong> — the lighter cyan top stop of the source's gradient.</li><li><strong>button-secondary</strong> — carbon plate, cyan label, cyan-tinted rim. The default "there is another option here" button.</li><li><strong>card / card-elevated</strong> — square plates on <code>surface</code> and <code>surface-2</code>, separated by a hairline rather than a radius.</li><li><strong>input</strong> — <code>surface-2</code> fill, <code>--border</code> hairline, cyan focus ring plus <code>--accent-soft</code> halo.</li><li><strong>badge</strong> — mono, uppercase, square. <code>badge-accent</code> inverts to a carbon chip with a neon rim.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> let cyan mean "act" or "live". One primary per screen.</li><li><strong>Do</strong> put facts in mono and sentences in Inter.</li><li><strong>Do</strong> apply <code>--clip</code> on plates and keep radii at 0. The cut <em>is</em> the brand.</li><li><strong>Do</strong> keep the board black. Colour is light on the board, not a wash across it.</li><li><strong>Don't</strong> use cyan for body copy on a light surface — use the darker readable ink instead.</li><li><strong>Don't</strong> introduce a third "look at me" colour. Violet is atmosphere; the poles are status.</li><li><strong>Don't</strong> round a corner. If a component needs a shape, cut it.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

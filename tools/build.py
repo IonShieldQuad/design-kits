@@ -71,6 +71,8 @@ OPTIONAL_TOKENS = [
     "--pixel-render",
 ]
 
+from mdview import md_to_html   # DESIGN.html viewer (see mdview.py)
+
 OK = "\033[92m✓\033[0m"
 WARN = "\033[93m!\033[0m"
 ERR = "\033[91m✗\033[0m"
@@ -440,6 +442,21 @@ class Kit:
             tpl = tpl.replace(k, v)
         return tpl
 
+    def design_page_html(self) -> str:
+        """Rendered DESIGN.md. GitHub Pages runs Jekyll, which rewrites front-matter .md files
+        into .html — so a link to the raw markdown 404s on the live site. This page is the
+        click target; the raw file stays one link away."""
+        fm_text = ""
+        raw = read(self.design_path) if self.design_path.exists() else ""
+        tpl = read(TPL / "design.html")
+        fonts = f'<link href="{html.escape(self.fonts_url, quote=True)}" rel="stylesheet">' if self.fonts_url else ""
+        return (
+            tpl.replace("{{KIT_NAME}}", html.escape(self.name))
+            .replace("{{TAGLINE}}", html.escape(self.tagline))
+            .replace("{{FONT_LINKS}}", fonts)
+            .replace("{{BODY}}", md_to_html(raw))
+        )
+
     def gallery_card(self) -> str:
         bg = self.vars.get("--bg", "#0b0d12")
         fg = self.vars.get("--text", "#e9edf5")
@@ -472,7 +489,7 @@ class Kit:
         <div class="g-links">
           <a class="primary" href="kits/{self.slug}/index.html">Open lab →</a>
           <span class="spacer"></span>
-          <a class="quiet" href="kits/{self.slug}/DESIGN.md">DESIGN.md</a>
+          <a class="quiet" href="kits/{self.slug}/DESIGN.html">spec</a>
           <a class="quiet" href="kits/{self.slug}/tokens.css">tokens.css</a>
         </div>
       </div>
@@ -493,6 +510,7 @@ class Kit:
             "colors": {k: v for k, v in (fm_block(self.fm, "colors")).items()},
             "files": {
                 "design": f"kits/{self.slug}/DESIGN.md",
+                "design_html": f"kits/{self.slug}/DESIGN.html",
                 "tokens": f"kits/{self.slug}/tokens.css",
                 "lab": f"kits/{self.slug}/index.html",
                 "readme": f"kits/{self.slug}/README.md",
@@ -678,6 +696,12 @@ def main() -> int:
             stale.append(f"kits/{kit.slug}/index.html")
             print(f"  {ERR} lab html stale")
 
+        if write_if_changed(kit.dir / "DESIGN.html", kit.design_page_html(), args.check):
+            print(f"  {OK} spec page (DESIGN.html)")
+        else:
+            stale.append(f"kits/{kit.slug}/DESIGN.html")
+            print(f"  {ERR} spec page stale")
+
         if not args.no_export and not args.check:
             for line in export_all(kit):
                 print(f"  {line}")
@@ -734,6 +758,14 @@ def main() -> int:
         .replace("{{KIT_COUNT}}", str(len(kits)))
         .replace("{{TOKEN_COUNT}}", str(len(REQUIRED_TOKENS)))
     )
+    # Pages must serve the repo verbatim: Jekyll rewrites front-matter .md files into .html,
+    # which is why every "DESIGN.md" link used to 404. The marker is generated so it cannot rot.
+    if write_if_changed(ROOT / ".nojekyll", "", args.check):
+        print(f"{OK} .nojekyll (Pages serves files verbatim)")
+    else:
+        stale.append(".nojekyll")
+        print(f"{ERR} .nojekyll missing — raw .md links will 404 on Pages")
+
     if write_if_changed(ROOT / "index.html", gallery, args.check):
         print(f"\n{OK} gallery index.html ({len(kits)} kits)")
     else:

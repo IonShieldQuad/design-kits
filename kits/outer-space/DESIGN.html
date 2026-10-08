@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outer Space — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Outer Space kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Outer Space</h1>
+  <p class="spec-sub">Starlight gold on a starfielded void</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Outer Space
+description: A deep blue-violet void shot through with a starfield, three nebula blooms and one warm starlight — vast, quiet, awe-struck.
+colors:
+  primary: &quot;#ffe9b8&quot;
+  primary-hover: &quot;#fff4d6&quot;
+  on-primary: &quot;#0a0e22&quot;
+  primary-soft: &quot;rgba(255, 233, 184, 0.14)&quot;
+  secondary: &quot;#7fe3f0&quot;
+  tertiary: &quot;#6b4bd6&quot;
+  neutral: &quot;#070a18&quot;
+  nebula-1: &quot;#6b4bd6&quot;
+  nebula-2: &quot;#c2418f&quot;
+  nebula-3: &quot;#4fd1e0&quot;
+  bg-stop-1: &quot;#0b0f26&quot;
+  bg-stop-2: &quot;#0a0e22&quot;
+  bg-stop-3: &quot;#05070f&quot;
+  surface: &quot;rgba(20, 26, 56, 0.55)&quot;
+  surface-2: &quot;rgba(28, 36, 78, 0.66)&quot;
+  surface-solid: &quot;#141a38&quot;
+  text: &quot;#eef1fb&quot;
+  text-muted: &quot;#bcc5e4&quot;
+  text-dim: &quot;#b0badb&quot;
+  ok: &quot;#5fe0a8&quot;
+  warn: &quot;#ffb066&quot;
+  danger: &quot;#ff6f86&quot;
+  info: &quot;#8fb6ff&quot;
+typography:
+  display:
+    fontFamily: &quot;Outfit&quot;
+    fontSize: &quot;2.9rem&quot;
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;-0.015em&quot;
+  h1:
+    fontFamily: &quot;Outfit&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: &quot;-0.015em&quot;
+  h2:
+    fontFamily: &quot;Outfit&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;-0.01em&quot;
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;IBM Plex Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: &quot;0.14em&quot;
+rounded:
+  sm: &quot;8px&quot;
+  md: &quot;14px&quot;
+  lg: &quot;24px&quot;
+  pill: &quot;999px&quot;
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;48px&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    height: &quot;2.5rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-lg:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.78rem 1.35rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.secondary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-solid:
+    backgroundColor: &quot;{colors.surface-solid}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.button}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.small}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-2:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-3:
+    backgroundColor: &quot;{colors.nebula-2}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.secondary}&quot;</code></pre></section>
+<h2 id="outer-space">Outer Space</h2>
+<h3 id="overview">Overview</h3>
+<p>Outer Space is the kit for the <em>wonder</em> of space, not the menace of it. Every other dark kit in this library is legible as an instrument: <code>carbon</code> is engineered, <code>cyberpunk</code> is loud, <code>signal</code> is instrumental, <code>dark-glass</code> is sleek. This one is a vista. You do not operate it; you look out of it.</p>
+<p>The ground is a deep blue-violet void — <code>{colors.bg-stop-1}</code> at the top falling to <code>{colors.bg-stop-3}</code> 2600px down — carrying a starfield of 1–2.4px specks and five vast, off-centre blooms: a warm gold star bloom at the top, violet (<code>{colors.nebula-1}</code>) at the top left, rose (<code>{colors.nebula-2}</code>) at the right, a wide ice lane (<code>{colors.nebula-3}</code>) low centre, and a deep violet floor bloom at the foot. Across the full page the ground's luminance runs from 0.0028 to 0.0444 — a <strong>20.4x spread</strong>. That range is the whole point: a flat field reads as charcoal, and a viewer scrolling this page should feel distance.</p>
+<p>The light comes from objects, not from the UI. Starlight gold (<code>{colors.primary}</code>) is the one action colour; ice cyan (<code>{colors.secondary}</code>) is the cool register; the violet and rose exist only as atmosphere you look <em>through</em>. Nothing here glows like a neon sign. It glows like a star.</p>
+<p>One sentence: <em>starlight gold on a starfielded void, deep enough to fall into.</em></p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>primary — <code>{colors.primary}</code></strong> starlight. The warm white-gold of a distant sun, and the single action colour of the kit: primary fills, focus rings, active nav, links. It is <em>light</em>, so the label on it is the void — <code>{colors.on-primary}</code> at 16.0:1, never white. This is the one decision that separates this kit from every other dark kit in the library, which all fill their primary button with a saturated neon and invert to white text.</li><li><strong>primary-hover — <code>{colors.primary-hover}</code></strong> starlight at its brightest. The button gets <em>lighter</em> on hover, not darker: a star flares when you look at it. The ink stays <code>{colors.on-primary}</code> (17.4:1).</li><li><strong>primary-soft — <code>{colors.primary-soft}</code></strong> a 14% starlight tint, derived not invented. Active nav chips, accent badges, inline code backgrounds, focus halos.</li><li><strong>secondary — <code>{colors.secondary}</code></strong> ice cyan. The cool register: gradient partner, chart series, media, the avatar fill. It is the counterweight to the gold and it never carries a primary action.</li><li><strong>tertiary — <code>{colors.tertiary}</code></strong> the violet of the top-left bloom, addressable a second time as <code>{colors.nebula-1}</code>. Terrible as a button, excellent as data and illustration: it is already in the page you are sitting on, so anything drawn in it looks continuous with the ground.</li><li><strong>neutral — <code>{colors.neutral}</code></strong> the deepest stop of the void. The real ground is a layered gradient (see <code>--bg</code> in <code>tokens.css</code>); this is the flat stand-in for print, email and canvas.</li><li><strong>The gradient stops ship as colours, deliberately.</strong> <code>{colors.nebula-1}</code>, <code>{colors.nebula-2}</code>, <code>{colors.nebula-3}</code> and <code>{colors.bg-stop-1}</code> / <code>{colors.bg-stop-2}</code> / <code>{colors.bg-stop-3}</code> are the raw stops the ground is built from, so a project can rebuild the vista, sample a chart from it, or print a swatch without ever re-typing an <code>rgba()</code>. The gradients themselves live only in <code>tokens.css</code>.</li><li><strong>Surfaces are translucent by design.</strong> <code>{colors.surface}</code> is a 55% pane and <code>{colors.surface-2}</code> a 66% pane over that same ground; <code>{colors.surface-solid}</code> is the opaque fallback. Do not substitute a flat hex — the translucency is how the vista shows through the UI.</li><li><strong>Status sits outside the starlight/ice pair.</strong> Aurora <code>{colors.ok}</code>, solar amber <code>{colors.warn}</code>, rose-hot <code>{colors.danger}</code>, glacial <code>{colors.info}</code>. The amber is kept warm and saturated on purpose so it can never be read as the pale gold of an action.</li></ul>
+<h3 id="typography">Typography</h3>
+<p>Two families and a mono, each with one job.</p>
+<ul><li><strong>Outfit</strong> is the display face: a wide, geometric grotesque with perfectly round counters that reads as <em>quiet</em> at 700 rather than shouty, which is exactly the register a vista wants. It is the on-the-nose choice for this subject the way a serif is for a newspaper, and it is a different skeleton from <code>carbon</code>'s Space Grotesk and <code>dark-glass</code>'s Sora — the three dark kits do not share a heading voice. Display is set tight at <code>-0.015em</code> so a large heading reads as one shape.</li><li><strong>Inter</strong> carries body and interface text at 0.95rem / 1.6. On a low-luminance ground generous leading matters more than on paper.</li><li><strong>IBM Plex Mono</strong> is labels, badges, table headers and code: uppercase, tracked <code>{typography.label.letterSpacing}</code> (0.14em). The wide tracking is the kit's "instrument voice", but at 0.14em rather than a HUD's 0.18em — this is a caption under a photograph, not a readout.</li></ul>
+<h3 id="layout">Layout</h3>
+<p>The lab is a single column at <code>min(1040px, 100% - 2.5rem)</code>. The kit's own rhythm is spacious: sections breathe at 2.25rem and panels are separated by 16–28px so the void reads <em>between</em> things, which is the whole reason to use this kit over a solid dark page. Spacing runs <code>{spacing.xs}</code> to <code>{spacing.xl}</code>, and the jump from <code>{spacing.lg}</code> to <code>{spacing.xl}</code> is large (28 → 48px) on purpose: the top end is where the vista opens up.</p>
+<p>Never full-bleed an opaque panel across the page. The ground must always be visible at the edges of the viewport — that edge is where "space" happens.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth here is atmospheric, not architectural. Four things make it, in order of importance:</p>
+<p>1. <strong>The ground is layered, not a ramp.</strong> It is four starfield tiles (1.1px, 0.9px, 1.3px and 2.4px specks on 137px, 89px, 211px and 373px tiles — deliberately coprime sizes, so the field never resolves into a visible grid) over five off-centre blooms over a five-stop ramp. <code>--bg-plain</code> is the same ground with the specks removed, for text-critical or print-adjacent use, and <code>--starfield</code> is the speck layers alone for overlaying a hero, a panel or a poster. 2. <strong>Frost needs something to frost.</strong> <code>templates/lab.css</code> applies <code>var(--blur)</code> (<code>blur(22px) saturate(140%)</code>) to every <code>.card</code>. A <code>backdrop-filter</code> over a smooth ramp is indistinguishable from flat paint — there is no high-frequency detail to smear. The starfield is what the glass frosts; the blooms are what <code>saturate()</code> lifts. Remove either and the panels flatten. 3. <strong>Glow is the elevation.</strong> <code>--glow</code> (<code>0 0 34px rgba(255,233,184,.30)</code>) is a soft starlight halo under the primary action. It is emitted light, never a drop shadow. 4. <strong>Shadows are quiet.</strong> <code>--shadow-1</code> and <code>--shadow-2</code> are deep blue-black, wide and soft, each carrying an <code>inset 0 1px 0</code> starlight lip along the top edge — that faint bright rim is what makes a panel read as a <em>pane</em> with a horizon rather than a hole punched in the page.</p>
+<p>Edges are hairline and cool: <code>--border</code> is <code>rgba(178,198,255,.13)</code>, <code>--border-strong</code> <code>rgba(190,208,255,.22)</code>, both at <code>--border-w: 1px</code>. A vista is bounded by light, so if a surface needs more separation, add glow or shadow — never weight.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 8px, <code>{rounded.md}</code> 14px, <code>{rounded.lg}</code> 24px, pills at 999px, <code>--cut: 0px</code> — this kit rounds; it does not cut. The panel radius is deliberately large: a viewport into something vast should not have sharp corners, and a generous radius on a translucent pane reads as an aperture. Nothing in this kit uses <code>clip-path</code>.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a starlight fill with the void as its label, carrying <code>--glow</code>. It is the only object on the page that emits.</li><li><strong>button-primary-hover</strong> — the star flares: the fill brightens to <code>{colors.primary-hover}</code> while the ink stays <code>{colors.on-primary}</code>.</li><li><strong>button-secondary</strong> — a translucent pane with an ice-cyan label and a cool hairline rim. The default "there is another option here" control, built to read as glass rather than as a stroke.</li><li><strong>card / card-elevated</strong> — the 55% and 66% panes, <code>{rounded.lg}</code>, <code>blur(22px)</code>; the second is denser rather than a second blur layer. <strong>card-solid</strong> is the opaque fallback.</li><li><strong>input</strong> — the denser <code>{colors.surface-2}</code> pane with a hairline rim; focus swaps the rim to starlight and adds a <code>{colors.primary-soft}</code> halo.</li><li><strong>badge</strong> — pill, mono, uppercase, translucent. <code>badge-accent</code> is the starlight-tinted variant.</li><li><strong>avatar / chart-1 / chart-2 / chart-3</strong> — where the cool register lives: ice cyan, nebula violet and nebula rose, i.e. the colours already in the ground.</li><li><strong>nav-item-active</strong> — a <code>{colors.primary-soft}</code> chip with starlight text: a small warm glow, not a filled pill.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Let the ground show at the edges of every screen — the vista <em>is</em> the kit.</li><li>Put starlight on exactly one thing per screen. One star, one action.</li><li>Keep panels translucent and let the starfield frost through them.</li><li>Verify any new text colour against the <em>brightest</em> pixel of the nebula, which is in the gold bloom near the top of the page — not against <code>{colors.neutral}</code>.</li><li>Composite a translucent surface over the ground before claiming a contrast number for it.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't fill a button with ice cyan, nebula violet or rose. Gold is the action; the rest is cosmos.</li><li>Don't use white text on <code>{colors.primary}</code> — it is starlight, and <code>{colors.on-primary}</code> is the ink that clears 16:1 on it.</li><li>Don't flatten <code>--bg</code> to a two-stop ramp. The frost and the saturate have nothing to work on and the whole kit turns into another dark blue page.</li><li>Don't set <code>--blur</code> to <code>none</code>.</li><li>Don't add a fourth "look at me" colour. There are two, plus one void, and that is the budget.</li><li>Don't make it loud. Neon is a different library entry; this one is quiet, and the quietness is what makes it feel large.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

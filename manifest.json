@@ -74,6 +74,7 @@
       },
       "files": {
         "design": "kits/carbon/DESIGN.md",
+        "design_html": "kits/carbon/DESIGN.html",
         "tokens": "kits/carbon/tokens.css",
         "lab": "kits/carbon/index.html",
         "readme": "kits/carbon/README.md"
@@ -113,6 +114,7 @@
       },
       "files": {
         "design": "kits/signal/DESIGN.md",
+        "design_html": "kits/signal/DESIGN.html",
         "tokens": "kits/signal/tokens.css",
         "lab": "kits/signal/index.html",
         "readme": "kits/signal/README.md"
@@ -152,6 +154,7 @@
       },
       "files": {
         "design": "kits/quiet/DESIGN.md",
+        "design_html": "kits/quiet/DESIGN.html",
         "tokens": "kits/quiet/tokens.css",
         "lab": "kits/quiet/index.html",
         "readme": "kits/quiet/README.md"
@@ -202,6 +205,7 @@
       },
       "files": {
         "design": "kits/cyberpunk/DESIGN.md",
+        "design_html": "kits/cyberpunk/DESIGN.html",
         "tokens": "kits/cyberpunk/tokens.css",
         "lab": "kits/cyberpunk/index.html",
         "readme": "kits/cyberpunk/README.md"
@@ -260,6 +264,7 @@
       },
       "files": {
         "design": "kits/summer-sunset/DESIGN.md",
+        "design_html": "kits/summer-sunset/DESIGN.html",
         "tokens": "kits/summer-sunset/tokens.css",
         "lab": "kits/summer-sunset/index.html",
         "readme": "kits/summer-sunset/README.md"
@@ -314,6 +319,7 @@
       },
       "files": {
         "design": "kits/chrome/DESIGN.md",
+        "design_html": "kits/chrome/DESIGN.html",
         "tokens": "kits/chrome/tokens.css",
         "lab": "kits/chrome/index.html",
         "readme": "kits/chrome/README.md"
@@ -369,6 +375,7 @@
       },
       "files": {
         "design": "kits/cyber-angel/DESIGN.md",
+        "design_html": "kits/cyber-angel/DESIGN.html",
         "tokens": "kits/cyber-angel/tokens.css",
         "lab": "kits/cyber-angel/index.html",
         "readme": "kits/cyber-angel/README.md"
@@ -410,6 +417,7 @@
       },
       "files": {
         "design": "kits/geometric-dimensions/DESIGN.md",
+        "design_html": "kits/geometric-dimensions/DESIGN.html",
         "tokens": "kits/geometric-dimensions/tokens.css",
         "lab": "kits/geometric-dimensions/index.html",
         "readme": "kits/geometric-dimensions/README.md"
@@ -462,6 +470,7 @@
       },
       "files": {
         "design": "kits/glass/DESIGN.md",
+        "design_html": "kits/glass/DESIGN.html",
         "tokens": "kits/glass/tokens.css",
         "lab": "kits/glass/index.html",
         "readme": "kits/glass/README.md"
@@ -510,6 +519,7 @@
       },
       "files": {
         "design": "kits/dark-glass/DESIGN.md",
+        "design_html": "kits/dark-glass/DESIGN.html",
         "tokens": "kits/dark-glass/tokens.css",
         "lab": "kits/dark-glass/index.html",
         "readme": "kits/dark-glass/README.md"
@@ -550,6 +560,7 @@
       },
       "files": {
         "design": "kits/inside-the-machine/DESIGN.md",
+        "design_html": "kits/inside-the-machine/DESIGN.html",
         "tokens": "kits/inside-the-machine/tokens.css",
         "lab": "kits/inside-the-machine/index.html",
         "readme": "kits/inside-the-machine/README.md"
@@ -602,6 +613,7 @@
       },
       "files": {
         "design": "kits/zen-garden/DESIGN.md",
+        "design_html": "kits/zen-garden/DESIGN.html",
         "tokens": "kits/zen-garden/tokens.css",
         "lab": "kits/zen-garden/index.html",
         "readme": "kits/zen-garden/README.md"
@@ -651,6 +663,7 @@
       },
       "files": {
         "design": "kits/outer-space/DESIGN.md",
+        "design_html": "kits/outer-space/DESIGN.html",
         "tokens": "kits/outer-space/tokens.css",
         "lab": "kits/outer-space/index.html",
         "readme": "kits/outer-space/README.md"
@@ -704,6 +717,7 @@
       },
       "files": {
         "design": "kits/kaleidoscope/DESIGN.md",
+        "design_html": "kits/kaleidoscope/DESIGN.html",
         "tokens": "kits/kaleidoscope/tokens.css",
         "lab": "kits/kaleidoscope/index.html",
         "readme": "kits/kaleidoscope/README.md"
@@ -762,6 +776,7 @@
       },
       "files": {
         "design": "kits/psychedelic/DESIGN.md",
+        "design_html": "kits/psychedelic/DESIGN.html",
         "tokens": "kits/psychedelic/tokens.css",
         "lab": "kits/psychedelic/index.html",
         "readme": "kits/psychedelic/README.md"
@@ -824,6 +839,7 @@
       },
       "files": {
         "design": "kits/glorious-morning/DESIGN.md",
+        "design_html": "kits/glorious-morning/DESIGN.html",
         "tokens": "kits/glorious-morning/tokens.css",
         "lab": "kits/glorious-morning/index.html",
         "readme": "kits/glorious-morning/README.md"
@@ -868,6 +884,7 @@
       },
       "files": {
         "design": "kits/cassette/DESIGN.md",
+        "design_html": "kits/cassette/DESIGN.html",
         "tokens": "kits/cassette/tokens.css",
         "lab": "kits/cassette/index.html",
         "readme": "kits/cassette/README.md"
@@ -924,6 +941,7 @@
       },
       "files": {
         "design": "kits/sakura/DESIGN.md",
+        "design_html": "kits/sakura/DESIGN.html",
         "tokens": "kits/sakura/tokens.css",
         "lab": "kits/sakura/index.html",
         "readme": "kits/sakura/README.md"
@@ -966,6 +984,7 @@
       },
       "files": {
         "design": "kits/gothic/DESIGN.md",
+        "design_html": "kits/gothic/DESIGN.html",
         "tokens": "kits/gothic/tokens.css",
         "lab": "kits/gothic/index.html",
         "readme": "kits/gothic/README.md"
@@ -1009,6 +1028,7 @@
       },
       "files": {
         "design": "kits/retro-anime/DESIGN.md",
+        "design_html": "kits/retro-anime/DESIGN.html",
         "tokens": "kits/retro-anime/tokens.css",
         "lab": "kits/retro-anime/index.html",
         "readme": "kits/retro-anime/README.md"
@@ -1051,6 +1071,7 @@
       },
       "files": {
         "design": "kits/city-pop/DESIGN.md",
+        "design_html": "kits/city-pop/DESIGN.html",
         "tokens": "kits/city-pop/tokens.css",
         "lab": "kits/city-pop/index.html",
         "readme": "kits/city-pop/README.md"
@@ -1097,6 +1118,7 @@
       },
       "files": {
         "design": "kits/win98/DESIGN.md",
+        "design_html": "kits/win98/DESIGN.html",
         "tokens": "kits/win98/tokens.css",
         "lab": "kits/win98/index.html",
         "readme": "kits/win98/README.md"
@@ -1140,6 +1162,7 @@
       },
       "files": {
         "design": "kits/pixel-dmg/DESIGN.md",
+        "design_html": "kits/pixel-dmg/DESIGN.html",
         "tokens": "kits/pixel-dmg/tokens.css",
         "lab": "kits/pixel-dmg/index.html",
         "readme": "kits/pixel-dmg/README.md"

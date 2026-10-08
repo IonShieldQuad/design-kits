@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel DMG — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Pixel DMG kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;family=VT323&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Pixel DMG</h1>
+  <p class="spec-sub">Four shades of green</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Pixel DMG
+description: The Game Boy DMG — a reflective monochrome LCD carrying four shades of green, dithered into a whole interface.
+colors:
+  primary: &quot;#0f380f&quot;
+  primary-hover: &quot;#1c4f1c&quot;
+  primary-ink: &quot;#b6d313&quot;
+  secondary: &quot;#8bac0f&quot;
+  tertiary: &quot;#306230&quot;
+  neutral: &quot;#9bbc0f&quot;
+  surface: &quot;#b4d212&quot;
+  surface-2: &quot;#9bbc0f&quot;
+  text: &quot;#082608&quot;
+  text-muted: &quot;#0f380f&quot;
+  text-dim: &quot;#1a481a&quot;
+  success: &quot;#0f380f&quot;
+  warning: &quot;#174117&quot;
+  error: &quot;#0a2a0a&quot;
+  info: &quot;#1c4a1c&quot;
+typography:
+  display:
+    fontFamily: Press Start 2P
+    fontSize: 2.4rem
+    fontWeight: 400
+    lineHeight: 1.25
+    letterSpacing: &quot;0.01em&quot;
+  heading:
+    fontFamily: Silkscreen
+    fontSize: 1.2rem
+    fontWeight: 700
+    lineHeight: 1.3
+  body:
+    fontFamily: Silkscreen
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: VT323
+    fontSize: 1.05rem
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: &quot;0.1em&quot;
+rounded:
+  sm: 0px
+  md: 0px
+  lg: 0px
+  pill: 0px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  card-media-2:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="pixel-dmg">Pixel DMG</h2>
+<h3 id="overview">Overview</h3>
+<p>The Game Boy DMG, at four shades of green. A reflective monochrome LCD behind a green polariser is the entire world of this kit: a pale lit field, a handful of dark inks, and <strong>nothing else</strong> — no second hue, no saturation to spend, no gradient that is not a hard-stop dither or a ramp between two of the four shades. Every decision a designer normally makes with colour has to be made with <em>distance in luminance</em> instead.</p>
+<p>The kit is built on the machine's canonical palette — <code>#0f380f</code> ink, <code>#306230</code> mid, <code>#8bac0f</code> light-mid, <code>#9bbc0f</code> LCD — and is honest about where that palette had to be extended. The darkest canonical shade reaches only <strong>6.02:1</strong> on the lightest, below the 7:1 the contract asks of body text; a reflective LCD has no backlight above <code>#9bbc0f</code>. So the kit derives one deeper ink and a <em>lit ladder</em> above the field, records both, and uses nothing else.</p>
+<p>Nothing in the kit is smooth. Radii are <code>0px</code>, every shadow is a zero-blur offset block, every gradient is a hard-stop dither, artwork is drawn small and scaled up with <code>--pixel-render</code>, and the page ground is a <strong>pixel-art landscape</strong> rather than a fading fill.</p>
+<h3 id="colors">Colors</h3>
+<p><code>#0f380f</code> is the action colour — the machine's own ink, used as a <strong>fill</strong> for the primary button, the toggle and the progress bar. It is dark enough to carry the lit LCD green <code>#b6d313</code> at 7.73:1, so accent-as-text and accent-as-fill are the same value; only a hover step (<code>#082808</code>) was needed.</p>
+<p>The ground is the LCD, drawn as a pixel landscape: a bright <code>#d4f41d</code> sky, a stepped pixel sun, blocky <code>#b6d313</code> clouds, a hard <code>#9bbc0f</code> horizon slab, and a dithered <code>#9bbc0f</code>/<code>#aed011</code> ground that continues to the foot of the page. The landscape is confined to the <strong>lit ladder</strong> on purpose: even the canonical light-mid <code>#8bac0f</code> (L .3503) drops <code>--text</code> to 6.2:1, so no ink shade is ever allowed under type. <code>--surface</code> (<code>#b4d212</code>) is one lift above the field — a card catching the room light — and <code>--surface-2</code> (<code>#9bbc0f</code>) is the inset.</p>
+<p>The subtlety that governs everything is <code>--text-dim</code>. On a pale field a mid-green is fatal: <code>#306230</code> scores 3.29:1 and fails the 4.55:1 floor. Dim text must be <strong>dark</strong> — <code>#1a481a</code> (4.83:1 minimum) — and <code>#306230</code> is spent on rules and focus instead, never on type.</p>
+<h3 id="typography">Typography</h3>
+<p>Three pixel faces, three jobs. <strong>Press Start 2P</strong> is the 8×8 arcade headline face, used only where a title should shout — it is square and enormously wide, so it is never set as body. <strong>Silkscreen</strong> (a 5×5 grid) carries body and headings. <strong>VT323</strong> is the narrow terminal face for data, labels and code, where it stays legible small. <code>--tracking-caps</code> is <code>0.1em</code>; display tracking stays positive (<code>.01em</code>) because the pixel faces are already wide.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is comfortable (<code>16px</code> gutters, <code>24px</code> blocks) so the chunky frames have air. The shape language is absolute: <strong>every corner is a right angle</strong>. There is no radius at all (<code>--radius-*: 0px</code>) and no chamfer (<code>--cut: 0px</code>), because pixels are 90 degrees and any curve betrays the medium. Borders are <code>2px</code> and <strong>opaque</strong> — a pixel frame is a solid rule, not a translucent hairline.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is a <strong>hard offset block</strong>, never a blur: <code>--shadow-1</code> and <code>--shadow-2</code> are <code>4px</code>/<code>6px</code> solid drops with zero blur radius, because a blurred shadow would introduce anti-aliased grey — a fifth colour — into a four-shade palette. The primary button wears a chunky pixel bevel (<code>--glow</code>, <code>inset</code> highlights top and bottom) rather than a bloom, fields get a hard inset (<code>--input-inset</code>), and the media panel is a hard-stop dither (<code>--media-bg</code>) at full opacity (<code>--media-op: 1</code>) rather than the lab's smooth two-stop default. <code>--blur</code> is <code>none</code>, and the masthead paints nothing over the ground (<code>--wash: transparent</code>).</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry lives in its <strong>pixel-art ground</strong> and its three signature motifs. The ground (<code>--bg</code>) is a 160×90 SVG — sky, dither, stepped sun, clouds, horizon, dithered ground — stretched to full width so its pixels stay square, with <code>--pixel-render: pixelated</code> keeping them crisp; a hard-stop checkerboard carries the field below. The motifs, all from the four shades: the <strong>dither</strong> (<code>--pixel-dmg-dither</code>, a 2px checkerboard — the machine's own trick for faking a shade), the <strong>dot-matrix</strong> (<code>--pixel-dmg-dotmatrix</code>, a 1px rule every 4px on both axes, the LCD's grain), and the <strong>sprite</strong> (<code>--pixel-dmg-sprite</code>, a pixel heart drawn as an inline SVG, because a glyph is not a gradient). Each does a different job — scene, shading, icon.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are ink fills with lit-green labels, or flat surfaces with ink labels; the danger button keeps the surface and takes the deepest green. Cards are the lifted <code>--surface</code> with a 2px mid-green frame and a hard drop; the elevated card drops to <code>--surface-2</code>. Inputs sit in the deepest well with a hard inset shadow. Badges are square stamped tiles in mono caps. Status is a <strong>depth of green</strong> (danger deepest, info lightest) and is always labelled.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> make every distinction a change in luminance. Hue is not available.</li><li><strong>Do</strong> keep dim text dark (<code>#1a481a</code>); a mid-green on the pale field fails.</li><li><strong>Do</strong> name status in words or an icon — never lean on green-vs-green alone.</li><li><strong>Don't</strong> add a fifth green, or any second hue; four shades is the whole point.</li><li><strong>Don't</strong> blur anything or round a corner; both betray the medium.</li><li><strong>Don't</strong> set Press Start 2P as body text — it is a headline face only.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

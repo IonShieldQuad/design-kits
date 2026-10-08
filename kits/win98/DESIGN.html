@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows 98 — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Windows 98 kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&amp;family=Public+Sans:wght@400;500;600;700&amp;family=VT323&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Windows 98</h1>
+  <p class="spec-sub">Windows 95/98 desktop chrome — grey face, hard 3D bevels, navy title bar</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Windows 98
+description: Windows 95/98 desktop chrome — a single grey plastic face, hard two-tone 3D bevels, one navy gradient title bar.
+colors:
+  primary: &quot;#000080&quot;
+  primary-hover: &quot;#0000a0&quot;
+  primary-ink: &quot;#ffffff&quot;
+  secondary: &quot;#008080&quot;
+  tertiary: &quot;#0a4fa0&quot;
+  neutral: &quot;#c0c0c0&quot;
+  surface: &quot;#d4d0c8&quot;
+  surface-2: &quot;#ffffff&quot;
+  text: &quot;#000000&quot;
+  text-muted: &quot;#333333&quot;
+  text-dim: &quot;#3a3a3a&quot;
+  border: &quot;#808080&quot;
+  border-strong: &quot;#000000&quot;
+  success: &quot;#008000&quot;
+  warning: &quot;#6b6b00&quot;
+  error: &quot;#800000&quot;
+  info: &quot;#1c5fb0&quot;
+typography:
+  display:
+    fontFamily: Silkscreen
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: &quot;0.02em&quot;
+  heading:
+    fontFamily: Silkscreen
+    fontSize: 1.3rem
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: Public Sans
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: VT323
+    fontSize: 0.9rem
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: &quot;0.06em&quot;
+  mono:
+    fontFamily: VT323
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.5
+rounded:
+  sm: 0px
+  md: 0px
+  lg: 0px
+  pill: 0px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 12px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 12px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 12px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    height: 96px
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    height: 96px
+  title-bar:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    height: 24px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: 2px
+  divider-strong:
+    backgroundColor: &quot;{colors.border-strong}&quot;
+    height: 2px
+  link:
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.body}&quot;
+  link-hover:
+    textColor: &quot;{colors.primary-hover}&quot;</code></pre></section>
+<h2 id="windows-98">Windows 98</h2>
+<h3 id="overview">Overview</h3>
+<p>The last great desktop chrome before gradients learned to blur. This kit is built from exactly three materials: one moulded grey plastic face (<code>#c0c0c0</code>), a hard two-tone 3D bevel that raises or sinks every control, and a single navy gradient title bar for the thing that is active. There is no soft light anywhere. A raised edge is a 1px white line against a 1px near-black line — hard, adjacent, unblurred — which is what a 1998 UI actually drew and what makes the whole thing still read as <em>physical</em> twenty-five years later.</p>
+<p>The palette is the 16-colour VGA family the OS shipped with: control grey <code>#c0c0c0</code>, caption navy <code>#000080</code>, and the teal <code>#008080</code> desktop a window sat on. Nothing has been invented where a historical value existed; where a value had to move for legibility on the white well (the olive "yellow", the alert red) it moved within its own family and the move is measured in the README.</p>
+<p>The register is deliberately plain-spoken. It is a skin for tools and nostalgia, not a poster — grey chrome, black ink, and one blue bar that tells you where you are.</p>
+<h3 id="colors">Colors</h3>
+<p>Navy <code>#000080</code> is the single action colour: the primary button, the active nav item, links, and the title bar. It is unusual among accents in that it is dark enough to be legible as a <em>label</em> as well as a fill — 8.8:1 on the grey face and 16:1 on the white well — so <code>--accent-ink</code> is the same navy rather than a separately darkened cousin. The hover step (<code>#0000a0</code>) stays a navy on purpose: a brighter Windows blue like <code>#1084d0</code> is 2.2:1 against grey and would disappear the moment it was used as text.</p>
+<p>Teal <code>#008080</code> is the second accent and is a <em>ground</em>, not an action: it is the desktop, and it reappears only in media plates, the second stop of a progress bar, and the charts. Neutral grey <code>#c0c0c0</code> is the page itself.</p>
+<p>The third surface is the important one. Fields, code, and every inset are pure white <code>#ffffff</code> — a text field was a recess milled into the grey shell, and it was white. That is a light-inside-light stack, so the <code>--text-on-surface-2*</code> tier is declared explicitly: inset text is black and its muted tier is <code>#333333</code>, both measured against the well rather than inherited from the page.</p>
+<p><code>tertiary</code> is not a third action colour: it is the <em>mid stop of the title-bar ramp</em> (<code>#0a4fa0</code>, between the dark navy and the bright steel blue). It is recorded so the caption's gradient ends are in the palette, and it is the one blue in the kit that still carries white ink comfortably (7.9:1).</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, three jobs. <strong>Silkscreen</strong> is the bitmap caption face — it is what a window title and a menu label should feel like, and it is unreadable in paragraphs, so it is confined to display sizes and never to body copy. <strong>Public Sans</strong> is the body: a neutral UI grotesque that stands in for MS Sans Serif, because a bitmap face at 15px body size is a legibility failure, not authenticity. <strong>VT323</strong> is the terminal — metrics, table headers, silkscreen labels, code — the DOS-VGA texture of a <code>dir</code> listing.</p>
+<p>Small labels sit at <code>0.06em</code> tracking so they read as stamped chrome rather than as shrunken prose. Nothing in the kit's own scale goes below <code>0.9rem</code> (~14.4px); UI chrome stays above the legibility floor.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is a tight 4/8/16/24/40 ladder — a 1998 dialog was dense, not airy, and the grey face is at its best when controls crowd it the way a real toolbar did. Corners are <strong>square</strong>: every radius token is <code>0</code>. A single rounded corner would break the illusion instantly, so badges are squares too and the pill token is deliberately zero.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is a <em>bevel</em>, never a shadow. <code>--shadow-1</code> and <code>--shadow-2</code> hold <strong>inset</strong> two-tone constructions — white on the top-left, near-black on the bottom-right, with the classic <code>#dfdfdf</code> / <code>#808080</code> inner step — so the generator applies a real 3D edge rather than painting a soft drop. <code>--shadow-2</code> adds a <em>hard</em> 2px offset block (<code>2px 2px 0</code>) for floating dialogs, because a 1998 popup cast a solid shadow, not a blur. Recessed fields get the inverse construction through the opt-in <code>--input-inset</code>: grey-then-black on the top-left, white on the bottom-right, the exact milled well a text field was.</p>
+<p><code>--blur</code> is <code>none</code>, always. Nothing here is glass. The name <code>--glow</code> is the contract's; its value is ours — it carries the raised <em>navy</em> bevel the lab wires to the primary button, so the action appears to catch the light rather than to emit any. No smooth surface survives: the masthead wash (<code>--wash</code>) is the flat face colour, and the media panel is the 2px navy/grey <strong>dither</strong> (<code>--media-bg</code> at full <code>--media-op</code>), the desktop wallpaper's own texture.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry is four tokens, each a different job. <code>--win98-titlebar</code> is the active caption: dark navy sweeping to the bright steel blue with a 1px white gloss line along the top, hard-banded rather than blended. <code>--win98-desktop</code> is the teal ground, dithered at 45° so the tile is never a flat plate. <code>--win98-bevel-out</code> and <code>--win98-bevel-in</code> are the two directions of the same bevel — a control cut proud of the face, and a field milled into it — drawn as literal 2px edges rather than as shadow tokens, so they can be dropped onto any element as a <code>background</code>. Four is the ceiling; a fifth would dilute them.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are grey faces with a hard raised bevel or navy fills with a raised <em>navy</em> bevel; the danger button keeps the grey and takes maroon text. Cards are the lighter <code>#d4d0c8</code> face — a part sitting on the desktop — and the elevated card is the white well with a hard offset shadow, a floating dialog. Inputs are white recesses with <code>--input-inset</code>. Badges are square chips in VT323 caps. Alerts are white wells with a 3px coloured left edge, the one place a status colour appears at full height. The table header is a white well with dim text, like a column header row in an Explorer list view.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep depth as hard two-tone bevels. If you find yourself reaching for <code>box-shadow</code> with a blur radius, you have left the kit.</li><li><strong>Do</strong> keep everything square. The geometry is the identity.</li><li><strong>Do</strong> let navy be the only action colour and teal be the only ground accent.</li><li><strong>Don't</strong> use a brighter Windows blue (<code>#1084d0</code>) as text — it is 2.2:1 on grey and vanishes.</li><li><strong>Don't</strong> add a third surface tone or a soft shadow; the kit has one face, one well, one bevel.</li><li><strong>Don't</strong> set Silkscreen or VT323 below the label size — bitmap faces disintegrate small.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

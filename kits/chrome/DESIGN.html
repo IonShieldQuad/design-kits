@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Chrome kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Orbitron:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Chrome</h1>
+  <p class="spec-sub">Liquid chrome on black — a metallic ramp, magenta action, cyan tertiary.</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Chrome
+description: Liquid chrome on black — a metallic four-stop ramp as the finish, magenta as the action, cyan as the cool tertiary, over hard 2px line work.
+colors:
+  primary: &quot;#ff2e88&quot;
+  accent-ink: &quot;#ff4796&quot;
+  secondary: &quot;#c9d0da&quot;
+  tertiary: &quot;#35e3ff&quot;
+  neutral: &quot;#08090d&quot;
+  bg: &quot;#08090d&quot;
+  bg-2: &quot;#0e1118&quot;
+  surface: &quot;#101319&quot;
+  surface-2: &quot;#171b23&quot;
+  overlay: &quot;rgba(3,4,7,0.78)&quot;
+  text: &quot;#eef1f6&quot;
+  text-muted: &quot;#a7b0bf&quot;
+  text-dim: &quot;#8b94a4&quot;
+  text-invert: &quot;#0b0d12&quot;
+  accent-hover: &quot;#ff5aa3&quot;
+  accent-soft: &quot;rgba(255,46,136,0.15)&quot;
+  ok: &quot;#2fe6a0&quot;
+  warn: &quot;#ffb347&quot;
+  danger: &quot;#ff4d4d&quot;
+  info: &quot;#35e3ff&quot;
+  border: &quot;rgba(201,208,218,0.20)&quot;
+  border-strong: &quot;rgba(201,208,218,0.46)&quot;
+  focus-ring: &quot;#35e3ff&quot;
+  chrome-1: &quot;#ffffff&quot;
+  chrome-2: &quot;#c9d0da&quot;
+  chrome-3: &quot;#7c8695&quot;
+  chrome-4: &quot;#2b3038&quot;
+typography:
+  display:
+    fontFamily: &quot;Orbitron&quot;
+    fontSize: &quot;2.75rem&quot;
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;0.02em&quot;
+  heading:
+    fontFamily: &quot;Orbitron&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;0.02em&quot;
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 600
+    letterSpacing: &quot;0.20em&quot;
+  code:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.8rem&quot;
+    lineHeight: 1.6
+rounded:
+  sm: &quot;2px&quot;
+  md: &quot;4px&quot;
+  lg: &quot;6px&quot;
+  pill: &quot;999px&quot;
+spacing:
+  xs: &quot;0.35rem&quot;
+  sm: &quot;0.6rem&quot;
+  md: &quot;1rem&quot;
+  lg: &quot;1.75rem&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.accent-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.secondary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  input-focus:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;</code></pre></section>
+<h2 id="chrome">Chrome</h2>
+<p>Liquid chrome on black. Where the rest of the dark kits pick a single neon and glow, this one is <strong>metal</strong>: a four-stop chrome ramp — specular white <code>#ffffff</code> → bright silver <code>#c9d0da</code> → mid steel <code>#7c8695</code> → dark steel <code>#2b3038</code> — running across headings, rims and media. Magenta <code>#ff2e88</code> is the action colour, cyan <code>#35e3ff</code> is the cool tertiary, and every surface is outlined in hard 2px steel.</p>
+<p>It is the <strong>dark sibling of Summer Sunset</strong>: same colour family (magenta + cyan over a bold-line language, 2px lines, small radii), opposite ground — the light kit is a printed poster, this one is polished metal in the dark.</p>
+<h3 id="overview">Overview</h3>
+<p>Two ideas carry the kit.</p>
+<p>1. <strong>A real metallic ramp, not a glow.</strong> <code>--chrome-1..4</code> are exposed as extras and composed into <code>--chrome-gradient</code> (a 135° sweep that travels white → silver → steel → dark steel and back), <code>--chrome-sheen</code> (a 180° white-to-transparent top highlight for raised surfaces) and <code>--accent-2</code>, which is set to the bright-silver stop <code>#c9d0da</code>. Because the shared lab paints media, progress bars and avatars with <code>linear-gradient(--accent, --accent-2)</code>, that single choice turns every lab gradient into <strong>magenta → chrome</strong>, which is the whole signature in one line of CSS. 2. <strong>Hard chrome line work.</strong> <code>--border-w: 2px</code> and every panel/input/badge is outlined in 20% silver (<code>--border</code>), hardened to 46% for the metal rim (<code>--border-strong</code>). Radii are 2–6px — machined, not rounded.</p>
+<p>Use it for developer tools, hardware and audio product pages, music and game UI, portfolios, and dashboards that should feel like a machined panel. Do not use it for long-form reading or anywhere a magenta error state could be confused with a magenta action — the kit keeps its status colours deliberately off-brand to prevent exactly that.</p>
+<h3 id="colors">Colors</h3>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Contrast</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Ground</td><td><code>--bg</code></td><td><code>#08090d</code></td><td>—</td></tr><tr><td>Raised ground</td><td><code>--surface</code> / <code>--surface-2</code></td><td><code>#101319</code> / <code>#171b23</code></td><td>—</td></tr><tr><td>Body text</td><td><code>--text</code></td><td><code>#eef1f6</code></td><td><strong>17.6:1</strong> on <code>--bg</code></td></tr><tr><td>Secondary text</td><td><code>--text-muted</code></td><td><code>#a7b0bf</code></td><td><strong>8.5:1</strong> on <code>--surface</code></td></tr><tr><td>Tertiary text</td><td><code>--text-dim</code></td><td><code>#8b94a4</code></td><td><strong>5.6:1</strong> on <code>--surface-2</code>, 6.5:1 on <code>--bg</code></td></tr><tr><td>On-magenta text</td><td><code>--text-invert</code></td><td><code>#0b0d12</code></td><td><strong>5.6:1</strong> on <code>--accent</code></td></tr><tr><td>Action</td><td><code>--accent</code></td><td><code>#ff2e88</code></td><td>magenta</td></tr><tr><td>Chrome / second accent</td><td><code>--accent-2</code></td><td><code>#c9d0da</code></td><td>bright silver</td></tr><tr><td>Tertiary</td><td><code>--tertiary</code></td><td><code>#35e3ff</code></td><td>cyan</td></tr><tr><td>Specular</td><td><code>--chrome-1</code></td><td><code>#ffffff</code></td><td>extra</td></tr><tr><td>Dark steel</td><td><code>--chrome-4</code></td><td><code>#2b3038</code></td><td>extra</td></tr></tbody></table>
+<p><strong>The chrome ramp is a set of colours plus a gradient the DESIGN.md <code>colors:</code> block cannot hold.</strong> The four stops ship as <code>chrome-1..4</code>; the composed gradients (<code>--chrome-gradient</code>, <code>--chrome-sheen</code>) live in <code>tokens.css</code> as extras and are meant to be applied to headings, rails and raised surfaces with a <code>background</code> + <code>background-clip: text</code> or a <code>border-image</code>.</p>
+<p><strong>Why <code>--accent-2</code> is silver, not cyan.</strong> The brief calls for cyan as the second brand hue, but <code>--accent-2</code> is the single token the shared lab feeds into its media, bar and avatar gradients. Setting it to chrome silver is what makes those gradients read as <strong>liquid chrome</strong> and, just as importantly, it keeps the kit from looking like the <code>cyberpunk</code> skin (which pairs the same magenta with a cyan second accent). Cyan keeps a real job here — <code>--focus-ring</code>, <code>--info</code> and the <code>--chrome-cyan</code> extra — without duplicating the neighbouring kit's signature.</p>
+<p><strong>Why <code>--text-invert</code> is dark.</strong> White on <code>#ff2e88</code> is only about 3.5:1. The kit keeps the magenta and puts near-black type on it — <strong>5.6:1</strong>, like ink on a hot-pink enamel badge. Do not "fix" this by lightening <code>--text-invert</code>.</p>
+<p><strong>Status stays off-brand.</strong> Magenta and cyan are both high-chroma and adjacent to obvious status hues, so <code>--ok</code> is mint <code>#2fe6a0</code> (not cyan), <code>--warn</code> is amber <code>#ffb347</code> (not magenta), <code>--danger</code> is a true red <code>#ff4d4d</code> (not a pink). The one deliberate overlap is <code>--info</code>, which borrows the tertiary cyan: informational, never an action.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, three jobs:</p>
+<ul><li><strong>Orbitron</strong> (display) — a wide geometric retro-future face. It is the chrome wordmark: <code>h1</code>–<code>h3</code>, card titles. Tracked out (<code>.02em</code>), never tracked in — the width is the point, and it is what makes a heading look machined.</li><li><strong>Inter</strong> (body) — everything you actually read. Neutral, so the display metal is the only loud thing on the page.</li><li><strong>JetBrains Mono</strong> (labels) — eyebrows, badges, table headers, timestamps, code. Uppercase at <code>.20em</code>; this is the instrument-panel voice and the widest tracking in the library's dark kits.</li></ul>
+<p>Display and mono are signposts, not prose — body copy is never Orbitron or JetBrains Mono.</p>
+<h3 id="layout">Layout</h3>
+<p>The shared 1040px measure, 1.75rem between blocks, 1rem grid gaps and a <code>0.35 / 0.6 / 1 / 1.75rem</code> scale. The rhythm is tight and even: chrome wants to look like a control panel, so blocks do not breathe much and the 2px rules do the separating.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>rim-light</strong>, not bloom.</p>
+<ul><li><code>--shadow-1</code> — cards: a near-black drop with a 1px inner white top-highlight. On a near-black ground the drop barely reads; the highlight is what makes a card feel like a polished plate.</li><li><code>--shadow-2</code> — elevated surfaces: a deeper drop plus a 1px silver ring, so a raised card picks up a chrome outline rather than a glow.</li><li><code>--glow</code> — the primary button only: a 1px magenta ring, a 1px inner <strong>white specular highlight</strong> and a tight magenta emanation. This is the rim-light: the button looks like polished metal catching a magenta light.</li><li><code>--blur: none</code> — hard metal, no frosted glass.</li></ul>
+<p>For the full liquid-chrome finish, apply <code>--chrome-gradient</code> to headings via <code>background: var(--chrome-gradient); -webkit-background-clip: text; color: transparent;</code> and lay <code>--chrome-sheen</code> over raised plates. The shared lab draws none of this for you; it is documented so a project can.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Sharp and machined: <code>--radius-sm: 2px</code>, <code>--radius-md: 4px</code>, <code>--radius-lg: 6px</code>; pills only on badges, avatars and toggles. <code>--cut: 0px</code> — nothing is notched; hard radii plus the 2px steel rim are the entire shape language. Above 8px the corners stop reading as metal.</p>
+<h3 id="components">Components</h3>
+<p>Every component colour resolves to a <code>{colors.*}</code> token; nothing is re-typed.</p>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> magenta fill, <code>{colors.text-invert}</code> near-black label, 4px radius, plus the rim-light <code>--glow</code>. The only lit object on a screen.</li><li><strong>button-primary-hover</strong> — <code>{colors.accent-hover}</code>, a <em>lighter</em> magenta, so hover reads as brighter, like a metal surface catching more light.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> plate, <code>{colors.secondary}</code> chrome-silver label and a 2px <code>{colors.border-strong}</code> steel rim. The "polished metal" button; hover steps up to <code>{colors.surface-2}</code> with <code>{colors.text}</code>.</li><li><strong>card</strong> — <code>{colors.surface}</code> on a 2px <code>{colors.border}</code> steel line at 6px, <code>--shadow-1</code>. Elevated cards step to <code>{colors.surface-2}</code> and pick up the chrome ring of <code>--shadow-2</code>.</li><li><strong>input</strong> — <code>{colors.surface-2}</code> fill behind a 2px <code>{colors.border}</code> rim; focus swaps the rim to <code>{colors.primary}</code> with a 3px <code>{colors.accent-soft}</code> ring, while the <em>keyboard</em> focus ring is <code>{colors.focus-ring}</code> cyan so hover and focus never look alike.</li><li><strong>badge</strong> — 2px <code>{colors.border}</code>, <code>{colors.text-muted}</code> mono caps at <code>.20em</code>. <code>badge-accent</code> is the magenta tint; <code>badge-ok</code> and <code>badge-danger</code> use the status mint and red.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Reach for the chrome ramp for <em>finish</em>, and magenta for <em>action</em>. Metal is the surface; pink is the signal.</li><li>Keep the 2px steel line work everywhere. It is what separates this from a plain dark theme.</li><li>Keep radii at 2–6px. Chrome is machined; round corners soften it into something else.</li><li>Put body copy on <code>--bg</code> or <code>--surface</code> in Inter. Let the metal and the magenta live in headings, rims and buttons.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't put white text on <code>--accent</code>; use <code>{colors.text-invert}</code> and keep the 5.6:1.</li><li>Don't set <code>--accent-2</code> back to cyan — that collapses the kit into the <code>cyberpunk</code> skin and loses the magenta → chrome gradients.</li><li>Don't tint status colours toward the brand; a pink "error" disappears next to a pink button.</li><li>Don't use <code>--glow</code> on more than the primary action, and don't apply <code>--blur</code> — this kit has no glass.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glorious Morning — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Glorious Morning kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Nunito+Sans:wght@400;500;600;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Glorious Morning</h1>
+  <p class="spec-sub">First light — a clear sky, a gold dawn band, and a light-ray wash.</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Glorious Morning
+description: First light as UI — a clear-sky gradient ground that opens on a gold dawn band, a light-ray wash over it, and one sunrise-gold action colour with a clear sky blue as its cool counterweight.
+colors:
+  primary: &quot;#f0a90c&quot;
+  primary-hover: &quot;#d99400&quot;
+  primary-text: &quot;#7d5200&quot;
+  primary-text-hover: &quot;#5f3d00&quot;
+  on-primary: &quot;#0f2136&quot;
+  secondary: &quot;#3a9be0&quot;
+  tertiary: &quot;#187a43&quot;
+  neutral: &quot;#f3faff&quot;
+  bg-stop-1: &quot;#eaf5ff&quot;
+  bg-stop-2: &quot;#d6e9fc&quot;
+  bg-stop-3: &quot;#ffecc6&quot;
+  bg-stop-4: &quot;#ffdf9e&quot;
+  bg-stop-5: &quot;#f9f0e1&quot;
+  bg-stop-6: &quot;#f3faff&quot;
+  bg-2: &quot;#f0f7ff&quot;
+  surface: &quot;#fbfdff&quot;
+  surface-2: &quot;#e9f2fd&quot;
+  overlay: &quot;rgba(12,32,58,0.42)&quot;
+  text: &quot;#0f2136&quot;
+  text-muted: &quot;#3a4c64&quot;
+  text-dim: &quot;#4d5d72&quot;
+  text-invert: &quot;#0f2136&quot;
+  accent-soft: &quot;rgba(240,169,12,0.16)&quot;
+  ok: &quot;#187a43&quot;
+  warn: &quot;#96631a&quot;
+  danger: &quot;#c2352f&quot;
+  info: &quot;#2f66c4&quot;
+  border: &quot;rgba(26,58,102,0.14)&quot;
+  border-strong: &quot;rgba(26,58,102,0.30)&quot;
+  focus-ring: &quot;#1668bf&quot;
+  ramp-sky: &quot;#8ecdf5&quot;
+  ramp-haze: &quot;#bcdcf3&quot;
+  ramp-gold: &quot;#f7b733&quot;
+  ramp-sun: &quot;#f0a90c&quot;
+  leaf: &quot;#38b26a&quot;
+typography:
+  display:
+    fontFamily: &quot;Fraunces&quot;
+    fontSize: &quot;2.75rem&quot;
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: &quot;-0.015em&quot;
+  heading:
+    fontFamily: &quot;Fraunces&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.22
+    letterSpacing: &quot;-0.01em&quot;
+  body:
+    fontFamily: &quot;Nunito Sans&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: &quot;DM Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 400
+    letterSpacing: &quot;0.12em&quot;
+  code:
+    fontFamily: &quot;DM Mono&quot;
+    fontSize: &quot;0.8rem&quot;
+    lineHeight: 1.6
+rounded:
+  sm: &quot;8px&quot;
+  md: &quot;12px&quot;
+  lg: &quot;18px&quot;
+  pill: &quot;999px&quot;
+spacing:
+  xs: &quot;0.4rem&quot;
+  sm: &quot;0.75rem&quot;
+  md: &quot;1rem&quot;
+  lg: &quot;2.25rem&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary-text-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  input-focus:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;</code></pre></section>
+<h2 id="glorious-morning">Glorious Morning</h2>
+<p>First light, rebuilt as a working UI kit. The ground is a clear-sky gradient that opens on a <strong>gold dawn band inside the first screen</strong>, a light-ray wash crosses it, and one <strong>sunrise-gold</strong> action colour sits against a <strong>clear sky blue</strong> — with a deep cool ink doing all the reading. Bright, awake, energetic; the opposite number to a rainy day.</p>
+<h3 id="overview">Overview</h3>
+<p>This kit is one of three in the library about a time of day, and the differentiator is <em>time and energy</em>, not hue:</p>
+<table><thead><tr><th>Kit</th><th>Time</th><th>Feeling</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td></tr><tr><td><code>zen-garden</code></td><td>overcast grey</td><td>quiet, static, restrained</td></tr><tr><td><code>summer-sunset</code></td><td>dusk</td><td>synthwave, nostalgic, warm-dark</td></tr><tr><td><strong><code>glorious-morning</code></strong></td><td><strong>first light</strong></td><td><strong>clear, awake, optimistic, energetic</strong></td></tr></tbody></table>
+<p>Two rules carry it:</p>
+<p>1. <strong>The ground is air, not paper.</strong> <code>--bg</code> is a very light <em>sky</em> tint — six stops of clear sky, warm haze, gold and settling air — never cream and never plain white. White would make it a document; cream would make it <code>summer-sunset</code>. 2. <strong>The signature is the dawn itself.</strong> A cool-sky-to-gold sunrise ramp, a light-ray wash, a low sun bloom in the top-left of the first screen and a dew sheen. All of it ships as <code>--glorious-morning-*</code> and is rendered in the lab's <strong>Signature</strong> section.</p>
+<p>It is deliberately <em>not</em> the other two light kits it could be confused with:</p>
+<ul><li><strong>Not <code>glass</code>.</strong> Glass is pastel translucency — <code>--surface</code> is <code>rgba(255,255,255,.58)</code> and <code>--blur</code> is a load-bearing <code>blur(20px)</code>. Here <code>--blur: none</code>, <code>--surface</code> is an opaque crisp <code>#fbfdff</code>, and the only translucency in the kit is the faint hairline. Nothing is frosted.</li><li><strong>Not <code>cyber-angel</code>.</strong> Cyber-angel is a structural light shell: <strong>black 1px rules</strong>, <strong>45° chamfers</strong> (<code>--cut: 12px</code> + <code>--clip</code>), holo cyan. Here there are <strong>no black rules</strong> (<code>--border</code> is a 14% cool-navy hairline) and <strong>no chamfers at all</strong> (<code>--cut: 0px</code>, <code>--clip</code> is never declared). This kit has no geometry — it has light.</li></ul>
+<p>Use it for morning-fresh product launches, wellness and habit apps, education and children's products, onboarding flows, and anything that should feel like a clear start. Do not use it for night-time, dense data tooling, or anything that wants menace.</p>
+<h3 id="colors">Colors</h3>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Contrast</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Ground</td><td><code>--bg</code></td><td>gradient <code>#eaf5ff</code> → <code>#f3faff</code></td><td>—</td></tr><tr><td>Ground (check stop)</td><td>—</td><td><code>#ffdf9e</code> (dawn band)</td><td>worst case for dark ink</td></tr><tr><td>Card</td><td><code>--surface</code></td><td><code>#fbfdff</code></td><td>—</td></tr><tr><td>Nested / input</td><td><code>--surface-2</code></td><td><code>#e9f2fd</code></td><td>—</td></tr><tr><td>Body ink</td><td><code>--text</code></td><td><code>#0f2136</code></td><td><strong>12.6:1</strong> on the dawn band, 16.0:1 on <code>--surface</code></td></tr><tr><td>Secondary ink</td><td><code>--text-muted</code></td><td><code>#3a4c64</code></td><td><strong>8.6:1</strong> on <code>--surface</code></td></tr><tr><td>Tertiary ink</td><td><code>--text-dim</code></td><td><code>#4d5d72</code></td><td><strong>5.2:1</strong> on the dawn band, 6.6:1 on <code>--surface</code></td></tr><tr><td>On-gold ink</td><td><code>--text-invert</code></td><td><code>#0f2136</code></td><td><strong>8.0:1</strong> on <code>--accent</code></td></tr><tr><td>Action (fill)</td><td><code>--accent</code></td><td><code>#f0a90c</code></td><td>sunrise gold</td></tr><tr><td>Action (<strong>text</strong>)</td><td><code>--accent-ink</code></td><td><code>#7d5200</code></td><td><strong>5.3:1</strong> on the dawn band</td></tr><tr><td>Cool counterweight</td><td><code>--accent-2</code></td><td><code>#3a9be0</code></td><td>clear sky blue</td></tr><tr><td>Third (structure)</td><td><code>--glorious-morning-leaf</code></td><td><code>#38b26a</code></td><td>leaf green, decorative</td></tr><tr><td>Focus</td><td><code>--focus-ring</code></td><td><code>#1668bf</code></td><td><strong>4.3:1</strong> on the dawn band</td></tr></tbody></table>
+<p><strong><code>--bg</code> is a gradient, and its stops are in PX.</strong> The body's gradient box is the whole document, so a <code>0–100%</code> ramp would smear these six stops over thousands of pixels: the first screen would render a single flat pale plate and the dawn band — the entire point of the kit — would sit far below the fold. With <code>0px … 760px</code> the full sequence lands in view at any page length. <code>--bg-2: #f0f7ff</code> is the solid stand-in for exports and for tools that cannot parse a gradient token.</p>
+<p>**Contrast is checked against the <em>darkest</em> stop, <code>#ffdf9e</code> (the dawn band).<strong> Of the six stops it has the lowest luminance, so it is the worst case for dark ink; the other five all score higher (13.1:1 to 15.4:1 for <code>--text</code>). This is the constraint that shapes the ink: the dawn band is much darker than a white page, so <code>--text-dim</code> </strong>cannot** be a pale grey — <code>#4d5d72</code> is the lightest cool slate that still clears 4.55:1 there. Lightening the ink is the wrong direction — a darker ink on a light ground is not the failure mode; a washed-out one is.</p>
+<p><strong>Ink is deep COOL navy and <code>--text-invert</code> equals <code>--text</code>.</strong> White on <code>#f0a90c</code> is about 1.9:1 — the sun is dark-on-gold, exactly as it is dark-on-orange in <code>summer-sunset</code>. Do not "fix" this by lightening <code>--text-invert</code>.</p>
+<p><strong>Gold is the classic <code>--accent-ink</code> trap, and this kit ships the fix.</strong> <code>#f0a90c</code> is a superb button fill (8.0:1 with ink on it) and an unreadable small label (1.9:1 on the ground). So the kit declares a separate member of the same family for accent-as-text: <code>--accent-ink: #7d5200</code> (5.3:1 on the dawn band, 6.7:1 on <code>--surface</code>), with <code>--accent-ink-hover: #674300</code>. The eyebrow, links, active nav/tab, secondary-button labels, inline code and <code>badge-accent</code> all use <code>--accent-ink</code>, never <code>--accent</code>.</p>
+<p><strong>The gold is gold, not orange.</strong> <code>#f0a90c</code> sits at hue 41°; <code>summer-sunset</code>'s action orange <code>#ff7a1a</code> is at hue 25°. They are the same <em>warmth</em> and a visibly different colour.</p>
+<p><strong>Status never borrows the brand hues.</strong> <code>--ok</code> is a fresh leaf green <code>#187a43</code> (the third colour, and readable at 4.8:1 on <code>--surface-2</code>), <code>--warn</code> is a deep ochre <code>#96631a</code> held well away from the gold action, <code>--danger</code> is a true red <code>#c2352f</code>, <code>--info</code> is a deeper sky blue <code>#2f66c4</code>. A failed state must never be mistakable for the gold primary.</p>
+<p><strong>The gradients themselves are not in the <code>colors:</code> map above</strong> — that block only accepts CSS colours. The six ground stops ship as <code>bg-stop-1..6</code>, the sunrise ramp's four stops ship as <code>ramp-sky / ramp-haze / ramp-gold / ramp-sun</code>, and the leaf ships as <code>leaf</code>. The live gradient definitions are in <code>tokens.css</code> as <code>--glorious-morning-sunrise</code>, <code>--glorious-morning-ray</code>, <code>--glorious-morning-sun</code> and <code>--glorious-morning-dew</code>.</p>
+<h3 id="typography">Typography</h3>
+<p>A three-face pairing chosen to sound like a good morning rather than a machine:</p>
+<ul><li><strong>Fraunces</strong> (display) — a warm humanist soft-serif with an optical-size axis. It reads like a hand-set greeting card: it is the one thing in the kit that is <em>human</em> rather than <em>celestial</em>, which is what keeps "first light" from turning into a weather report. Used for <code>h1</code>–<code>h3</code>, card titles and the wordmark.</li><li><strong>Nunito Sans</strong> (body) — a rounded humanist sans. Its open, slightly round terminals keep paragraphs friendly and daylight-bright; a neutral grotesque here would make the palette feel clinical.</li><li><strong>DM Mono</strong> (labels) — eyebrows, badges, table headers, timestamps, code. Quiet, low-contrast in texture, and warmer than the JetBrains/IBM Plex monos already in the library.</li></ul>
+<p>Display is barely tracked (<code>-0.015em</code>) because a soft serif wants only a whisper of tightening; mono labels are wide (<code>.12em</code>). Body copy is never set in the display or mono face.</p>
+<h3 id="layout">Layout</h3>
+<p>The shared 1040px measure, 2.25rem between blocks and a <code>0.4 / 0.75 / 1 / 2.25rem</code> spacing scale. Density is open but not sparse: the ground is doing work in the top third, so the content below it wants air around it to stay legible against the sky.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is light, and it is warm.</p>
+<ul><li><code>--shadow-1</code> — cards: a soft, wide, low-alpha cool-navy drop. It barely reads, which is right: the card is a <em>lift of air</em>, not an object.</li><li><code>--shadow-2</code> — elevated surfaces: the same, wider and slightly stronger.</li><li><code>--glow</code> — the primary button only: a warm gold halo beneath it, <code>0 10px 26px -10px rgba(240,169,12,.50)</code>. The gold button looks lit from underneath, like the sun arriving. It is deliberately the only warm shadow in the kit; <code>--glorious-morning-halo</code> is the same idea as a reusable extra.</li><li><code>--blur: none</code> — <strong>this is the line between <code>glorious-morning</code> and <code>glass</code>.</strong> Nothing is frosted. Air is transparent, not translucent.</li></ul>
+<h3 id="shapes">Shapes</h3>
+<p>Open and generous, never notched: <code>--radius-sm: 8px</code>, <code>--radius-md: 12px</code>, <code>--radius-lg: 18px</code>, pills on badges, avatars and toggles. <strong><code>--cut: 0px</code> and <code>--clip</code> is never declared</strong> — there are no chamfers anywhere. Sharp geometry belongs to <code>cyber-angel</code> and <code>geometric-dimensions</code>; this kit has no corners to cut because it has no edges, only hairlines.</p>
+<h3 id="components">Components</h3>
+<p>Every component colour resolves to a <code>{colors.*}</code> token; nothing is re-typed.</p>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> gold fill, <code>{colors.on-primary}</code> deep navy label, 12px radius, plus the warm <code>--glow</code> halo. The one solid gold object on a screen: the sun.</li><li><strong>button-primary-hover</strong> — <code>{colors.primary-hover}</code> deeper gold, so the button presses down into the horizon instead of lifting out of it.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> on a hairline with <code>{colors.primary-text}</code> (the readable bronze) type; hover fills with the 16% <code>{colors.accent-soft}</code> gold wash and steps the label to <code>{colors.primary-text-hover}</code>.</li><li><strong>card</strong> — <code>{colors.surface}</code> on a faint cool hairline at 18px with the soft <code>--shadow-1</code>. Elevated cards step to <code>{colors.surface-2}</code>. Because <code>--surface-2</code> stays light, card text needs no <code>--text-on-surface*</code> overrides — one ink family works on every surface here.</li><li><strong>input</strong> — <code>{colors.surface-2}</code> sky fill behind a 1px <code>{colors.border}</code> hairline; focus swaps to the gold border with a 3px <code>{colors.accent-soft}</code> ring, and the keyboard ring is <code>{colors.focus-ring}</code> sky blue so hover and focus never look alike.</li><li><strong>badge</strong> — hairline and <code>{colors.text-muted}</code> mono caps. <code>badge-accent</code> is the gold tint with <code>{colors.primary-text}</code> type; <code>badge-ok</code> and <code>badge-danger</code> use the status green and red.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the dawn band. <code>--glorious-morning-sunrise</code>, <code>--glorious-morning-sun</code>, the low <code>--glorious-morning-ray</code> wash and the masthead's <code>--accent-soft</code> bloom are the kit — drop them and it becomes a plain pale-blue theme.</li><li>Use <code>--accent-ink</code> for every piece of gold text, and <code>--accent</code> only for fills.</li><li>Keep <code>--border-w: 1px</code> and the hairline faint. Air, drawn once.</li><li>Keep <code>--blur: none</code>. The moment panels frost over, this is <code>glass</code> with a sun in it.</li><li>Let the gold live in buttons, the ramp and the sun. Prose stays in the cool navy ink.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't put white text on <code>--accent</code>; use <code>{colors.on-primary}</code> and keep the 8.0:1.</li><li>Don't set body copy in gold, leaf green or sky blue.</li><li>Don't add chamfers. <code>--cut: 0px</code> is the point; there is no geometry in morning light.</li><li>Don't lighten <code>--text-dim</code> to make the page feel airier — the dawn band is the binding constraint and <code>#4d5d72</code> is already at the floor there.</li><li>Don't tint the status colours toward the brand — a gold "error" is invisible next to the gold primary.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

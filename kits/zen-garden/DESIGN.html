@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zen Garden — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Zen Garden kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Zen Garden</h1>
+  <p class="spec-sub">Stillness for grey, rainy days: wet stone, moss sage, rain blue.</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Zen Garden
+description: Peace and tranquility on a grey, rainy day — an overcast ground, wet-stone charcoal ink, one deep moss-sage action colour and a rain-blue second accent.
+colors:
+  primary: &quot;#4a6658&quot;
+  accent-ink: &quot;#455f52&quot;
+  primary-hover: &quot;#40594b&quot;
+  secondary: &quot;#567694&quot;
+  tertiary: &quot;#40594b&quot;
+  neutral: &quot;#e8ecf0&quot;
+  bg-stop-1: &quot;#eef2f6&quot;
+  bg-stop-2: &quot;#e8ecf0&quot;
+  bg-stop-3: &quot;#e2e8ee&quot;
+  bg-2: &quot;#eef2f6&quot;
+  surface: &quot;#f2f5f8&quot;
+  surface-2: &quot;#e6eaf0&quot;
+  overlay: &quot;rgba(43,50,56,0.42)&quot;
+  text: &quot;#2b3238&quot;
+  text-muted: &quot;#4d585f&quot;
+  text-dim: &quot;#565f69&quot;
+  text-invert: &quot;#ffffff&quot;
+  accent-soft: &quot;rgba(74,102,88,0.10)&quot;
+  ok: &quot;#33714d&quot;
+  warn: &quot;#8a6220&quot;
+  danger: &quot;#a8453d&quot;
+  info: &quot;#43668e&quot;
+  border: &quot;#cdd5dd&quot;
+  border-strong: &quot;#aab6c2&quot;
+  focus-ring: &quot;#3c6b93&quot;
+typography:
+  display:
+    fontFamily: &quot;Source Serif 4&quot;
+    fontSize: &quot;2.9rem&quot;
+    fontWeight: 600
+    lineHeight: 1.12
+    letterSpacing: &quot;-0.012em&quot;
+  heading:
+    fontFamily: &quot;Source Serif 4&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: &quot;-0.006em&quot;
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.62
+  label:
+    fontFamily: &quot;IBM Plex Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: &quot;0.08em&quot;
+rounded:
+  sm: &quot;8px&quot;
+  md: &quot;10px&quot;
+  lg: &quot;14px&quot;
+  pill: &quot;999px&quot;
+spacing:
+  xs: &quot;0.35rem&quot;
+  sm: &quot;0.65rem&quot;
+  md: &quot;1.15rem&quot;
+  lg: &quot;2.25rem&quot;
+  xl: &quot;3.5rem&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  nav:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.4rem&quot;
+  nav-active:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  alert-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p>Zen Garden is a <strong>mood kit</strong>: peace and tranquility on a grey, rainy day. It is a light theme, and its ground is not white and not cream — it is a cool, slightly desaturated rainy-day grey, because cream would make the afternoon sunny and white would make it sterile. Everything else follows from that one decision.</p>
+<p>Three rules carry the mood:</p>
+<p>1. <strong>Overcast, not sunny.</strong> A cool grey ground (<code>#e8ecf0</code>) with mist (<code>#eef2f6</code>) above it and rain (<code>#e2e8ee</code>) below. No warm tint anywhere in the neutrals. 2. <strong>Wet stone and moss.</strong> Ink is a soft charcoal with a cool cast (<code>#2b3238</code>) — never pure black, which would be an edge. The single action colour is a deep moss sage (<code>#4a6658</code>); the one second hue is a rain-blue (<code>#567694</code>). 3. <strong>Quiet depth and generous air.</strong> 1px hairlines, soft wide shadows at low opacity, gentle 8–14px radii, a slower-than-usual transition. Nothing snaps, nothing glows, nothing is square.</p>
+<p>Use it for journaling, wellness and habit apps, calm reading interfaces, personal sites, meditation or breathwork tools — anywhere the interface should get out of the way. Do <strong>not</strong> use it for dashboards that need to alarm, dense data tooling, or marketing that must shout; this kit has deliberately spent its loudness budget on legibility and nothing is left over for emphasis.</p>
+<p>One sentence: <em>wet stone, moss sage and rain blue on an overcast afternoon.</em></p>
+<h3 id="colors">Colors</h3>
+<p>The palette is a grey ground plus exactly two hues. There is no third "look at me" colour, and it took a numeric pass to get the sage right.</p>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Contrast</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Overcast ground</td><td><code>--bg</code></td><td><code>#e8ecf0</code></td><td>—</td></tr><tr><td>Mist / ground lift</td><td><code>--bg-2</code></td><td><code>#eef2f6</code></td><td>—</td></tr><tr><td>Ground stops (for mist)</td><td><code>bg-stop-1/2/3</code></td><td><code>#eef2f6</code> / <code>#e8ecf0</code> / <code>#e2e8ee</code></td><td>—</td></tr><tr><td>Card</td><td><code>--surface</code></td><td><code>#f2f5f8</code></td><td>—</td></tr><tr><td>Nested panel / input</td><td><code>--surface-2</code></td><td><code>#e6eaf0</code></td><td>—</td></tr><tr><td>Body ink</td><td><code>--text</code></td><td><code>#2b3238</code></td><td><strong>10.94:1</strong> on <code>--bg</code></td></tr><tr><td>Secondary ink</td><td><code>--text-muted</code></td><td><code>#4d585f</code></td><td><strong>6.67:1</strong> on <code>--surface</code></td></tr><tr><td>Tertiary ink</td><td><code>--text-dim</code></td><td><code>#565f69</code></td><td><strong>5.37:1</strong> on the darkest ground</td></tr><tr><td>Ink on the action</td><td><code>--text-invert</code></td><td><code>#ffffff</code></td><td><strong>6.30:1</strong> on <code>--accent</code></td></tr><tr><td>Action (moss sage)</td><td><code>--accent</code></td><td><code>#4a6658</code></td><td><strong>5.31:1</strong> as a link on <code>--bg</code></td></tr><tr><td>Second accent (rain blue)</td><td><code>--accent-2</code></td><td><code>#567694</code></td><td>fill only, never text</td></tr><tr><td>Focus</td><td><code>--focus-ring</code></td><td><code>#3c6b93</code></td><td>deep rain blue</td></tr><tr><td>Hairline</td><td><code>--border</code></td><td><code>#cdd5dd</code></td><td>—</td></tr><tr><td>Emphasised line</td><td><code>--border-strong</code></td><td><code>#aab6c2</code></td><td>—</td></tr></tbody></table>
+<p><strong>Primary (<code>#4a6658</code>)</strong> is the whole action vocabulary: primary buttons, links, inline code, focus tint, active nav. It is a <em>deep</em> moss, not a mint — see below.</p>
+<p><strong>Secondary (<code>#567694</code>)</strong> is the rain-blue. It exists for gradients, media plates, chart bars and avatars — the moss-to-rain wash on <code>--card-media</code> and the progress bar is the one place the two accents meet. It is a fill, never body text, and never a second call to action.</p>
+<p><strong>Tertiary (<code>#40594b</code>)</strong> is the pressed step of primary, not a third hue. The DESIGN.md schema asks for a <code>tertiary</code>, and this kit's honest answer is that it has exactly two hues by design — so <code>tertiary</code> is the same colour family as <code>primary</code>, one step deeper. Adding a real third colour here would be the failure this kit is built to avoid.</p>
+<p><strong>Neutral (<code>#e8ecf0</code>)</strong> is the overcast ground. It is the single most important value in the kit; if you warm it, the rain stops.</p>
+<p><strong>The sage was darkened on purpose.</strong> The starting point was a lighter <code>#5f7d6a</code>. At that value, white on the sage measured <strong>4.54:1</strong> — a hair above the 4.5 floor — and, worse, sage used as a link colour on the overcast ground measured <strong>3.82:1</strong>, a real failure. Lightening the ground to fix it is the wrong move; it would push the kit toward cream. Darkening the accent to <code>#4a6658</code> lifts white-on-sage to 6.30:1 and sage-on-ground to 5.31:1 while keeping the kit unmistakably "muted botanical". Do not lighten it back.</p>
+<p><strong><code>--accent-soft</code> is a 10% tint, not 14%.</strong> Tinting the action colour's own background more heavily erodes the action colour's contrast against it; at 10% ( <code>rgba(74,102,88,.10)</code>) the sage still clears 4.5:1 on its own tint over any ground, which is what active nav and <code>badge-accent</code> depend on. Every tint in the kit is expressed as <code>rgba(...)</code> of <code>--accent</code> rather than as a new hand-picked hex, so it can never drift.</p>
+<p><strong>The mist gradient is not in this <code>colors:</code> map.</strong> A gradient is not a colour and the linter errors on one. Its three stops ship as <code>bg-stop-1/2/3</code> (<code>#eef2f6</code> / <code>#e8ecf0</code> / <code>#e2e8ee</code>), and the live gradient is <code>--zen-garden-mist</code> in <code>tokens.css</code>.</p>
+<p><strong>Status colours bracket the brand hues rather than borrow them.</strong> <code>ok</code> is a leaf green (<code>#33714d</code>) deliberately <em>more</em> saturated than the moss action; <code>warn</code> is ochre (<code>#8a6220</code>); <code>danger</code> is clay (<code>#a8453d</code>); <code>info</code> is a deeper rain blue (<code>#43668e</code>) than <code>--accent-2</code>, so an info alert never reads as a decorative gradient stop. A failed state must never be mistakable for the calm action.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, each with one job. The display face is the mood; the others stay quiet.</p>
+<ul><li><strong>Source Serif 4</strong> (display) — headings, the wordmark, card titles, the lab's <code>h1</code>. A <strong>humanist</strong> serif: open counters, calligraphic stress, and a low-contrast, unhurried rhythm. A serif reads as <em>contemplative</em> here — a garden journal or a temple inscription rather than a product headline — and, practically, it gives the kit real hierarchy: a serif over a sans body separates the two levels by letterform, not only by size, which is exactly the defence against a muted palette sliding into grey mush.</li><li><strong>Inter</strong> (body) — everything you actually read. Neutral on purpose, so the serif is the only warm voice on the page.</li><li><strong>IBM Plex Mono</strong> (labels) — eyebrows, badges, table headers, code. A <em>humanist</em> mono, softer than the library's JetBrains/Share Tech terminals, so labels stay legible without turning into a machine voice.</li></ul>
+<p>The alternative considered was a single gentle gothic sans — <strong>Zen Kaku Gothic New</strong> — for display and body. It was rejected: two sans faces flatten the hierarchy exactly where this palette can least afford it, and it would tie the kit to a Japanese aesthetic the brief never asked for. This kit is a <em>mood</em>, not a region.</p>
+<p>Display is only lightly tightened (<code>-0.012em</code> — a serif does not want more). Mono labels are tracked to <code>0.08em</code>, half the library's shout, because nothing here should be loud.</p>
+<h3 id="layout">Layout</h3>
+<p>The shared lab measure — <code>min(1040px, calc(100% - 2.5rem))</code> — with a <code>0.35 / 0.65 / 1.15 / 2.25 / 3.5rem</code> spacing scale. Density is <strong>loose</strong>: block padding, card padding and the gap scale all sit a notch above the library's defaults, because air is the mood. Generous space is what makes a thin hairline and a low-alpha shadow read as <em>calm</em> instead of as <em>timid</em>.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is weather, not architecture. Nothing lifts off the page; surfaces settle into air that is a little darker underneath.</p>
+<ul><li><code>--shadow-1</code> — cards: a 1px contact shadow plus a wide <code>26px</code> drop at <code>-14px</code> spread and 22% of the stone ink. Large radius, low opacity, barely there.</li><li><code>--shadow-2</code> — elevated surfaces: the same idea, wider (<code>52px</code>) and softer, so an elevated card reads as <em>further from the ground</em>, not as more raised.</li><li><code>--glow</code> — the primary button only, and it is <strong>a shadow, not a bloom</strong>: a sage-tinted <code>0 8px 22px -12px rgba(74,102,88,.50)</code>. There is no coloured light in this kit. If it ever looks like a glow, it is too strong.</li><li><code>--blur: none</code> — overcast is not glassy, and frosted glass would put a hard, high- contrast edge around every surface.</li></ul>
+<h3 id="shapes">Shapes</h3>
+<p>Gentle and continuous: <code>--radius-sm: 8px</code>, <code>--radius-md: 10px</code>, <code>--radius-lg: 14px</code>, and <code>999px</code> pills for badges, avatars, toggles and progress bars. <code>--cut: 0px</code> — nothing is notched, ever; a chamfer is a decision, and this kit's decision is that there are no decisions.</p>
+<p>The band is deliberate. Below 8px the corners start to read as crisp and technical, which fights the mood; above 14px every plate becomes a lozenge and the interface stops being able to hold a grid. 8–14px is the calm register.</p>
+<h3 id="components">Components</h3>
+<p>Every colour resolves to a <code>{colors.*}</code> token; nothing is re-typed. Shadows, hairlines and gradients live in the prose here and in <code>tokens.css</code>, because the component schema has no property to express them.</p>
+<ul><li><strong>button-primary</strong> — a solid <code>{colors.primary}</code> moss plate with <code>{colors.text-invert}</code>, 10px radius, the soft sage <code>--glow</code> beneath. It is the only solid saturated object on a screen, which is what makes the muted palette still have a clear focal point.</li><li><strong>button-primary-hover</strong> — <code>{colors.primary-hover}</code>, one step <em>deeper</em>. A calm interface presses down rather than lighting up.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> with a moss label and a moss-tinted rim (<code>color-mix</code> 45%); hover fills with the 10% <code>{colors.accent-soft}</code> wash.</li><li><strong>button-ghost</strong> — <code>{colors.text-muted}</code> with no rim at all; the quietest control.</li><li><strong>card / card-elevated</strong> — <code>{colors.surface}</code> and <code>{colors.surface-2}</code> at 14px, separated by a 1px <code>{colors.border}</code> hairline and <code>--shadow-1</code>, never by a hard edge.</li><li><strong>input</strong> — <code>{colors.surface-2}</code> settled <em>below</em> the card it sits in, ringed with <code>{colors.border-strong}</code> rather than the page hairline, so a field reads as a recess and not as a floating box. Focus swaps to the moss border with a <code>{colors.accent-soft}</code> halo; the keyboard ring is <code>{colors.focus-ring}</code> deep blue so hover and focus never look alike.</li><li><strong>badge</strong> — <code>{colors.text-muted}</code> mono caps in a pill on <code>{colors.surface-2}</code>. <code>badge-accent</code> is the 10% sage tint with a moss label; <code>badge-ok</code> / <code>badge-warn</code> / <code>badge-danger</code> use the status greens, ochre and clay.</li><li><strong>nav / nav-active</strong> — a <code>{colors.surface}</code> pill bar; the current item takes <code>{colors.accent-soft}</code> with a moss label, the calmest possible "you are here".</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the ground cool. Every neutral step — <code>--bg</code>, <code>--bg-2</code>, <code>--surface</code>, <code>--surface-2</code> — is blue-grey, and keeping the whole ramp cool is what makes the kit read as weather rather than as a paper app.</li><li>Let the moss mean "act" and the rain-blue mean "atmosphere". One primary per screen.</li><li>Keep hairlines at 1px and radii inside 8–14px. The restraint <em>is</em> the design.</li><li>Spend the space. Loose padding and slow transitions are doing as much work here as the colours are.</li><li>Reach for <code>--zen-garden-mist</code> (or the three <code>bg-stop-*</code> stops) when a surface needs weather behind it, and keep <code>--bg</code> itself solid so the shared lab's masthead wash keeps working.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't warm the neutrals. An off-white or a cream ground turns this into a generic light theme and the rain stops falling.</li><li>Don't lighten <code>--accent</code> back toward <code>#5f7d6a</code>. It fails as a link colour on this ground (3.82:1). Darken for failures; never lighten the ground.</li><li>Don't tint <code>--accent</code> backgrounds above 10%. <code>--accent-soft</code> is load-bearing: active nav and <code>badge-accent</code> put moss text on it, and a heavier tint drops them under 4.5:1.</li><li>Don't introduce a third hue, and don't use <code>--accent-2</code> as body text — it is a fill colour and measures under 4.5:1 on the ground.</li><li>Don't add a glow, a hard shadow or a 2px border. Leave the surfaces soft.</li><li>Don't put pure black on the page. <code>--text</code> is stone, not ink-black.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

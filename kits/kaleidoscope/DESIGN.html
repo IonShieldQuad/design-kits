@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaleidoscope — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Kaleidoscope kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Kaleidoscope</h1>
+  <p class="spec-sub">Mirrored jewel facets — symmetry instead of restraint</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Kaleidoscope
+description: Mirrored jewel facets on a deep indigo aperture — one ruby facet acts, sapphire answers it cool, and the other three are structure. The discipline is symmetry, not restraint.
+colors:
+  primary: &quot;#ff2d6f&quot;
+  secondary: &quot;#5b86ff&quot;
+  tertiary: &quot;#19dda0&quot;
+  neutral: &quot;#050410&quot;
+  accent-hover: &quot;#ff5b8f&quot;
+  accent-soft: &quot;rgba(255,45,111,0.15)&quot;
+  facet-ruby: &quot;#ff2d6f&quot;
+  facet-sapphire: &quot;#5b86ff&quot;
+  facet-emerald: &quot;#19dda0&quot;
+  facet-amber: &quot;#ffb020&quot;
+  facet-violet: &quot;#a678ff&quot;
+  bg: &quot;#0a0719&quot;
+  bg-deep: &quot;#050410&quot;
+  surface: &quot;#15112e&quot;
+  surface-2: &quot;#221d42&quot;
+  overlay: &quot;rgba(5,4,16,0.78)&quot;
+  text: &quot;#f6f3ff&quot;
+  text-muted: &quot;#b9b2dd&quot;
+  text-dim: &quot;#9590b8&quot;
+  text-invert: &quot;#08040d&quot;
+  ok: &quot;#35c98e&quot;
+  warn: &quot;#e0a13a&quot;
+  danger: &quot;#ff6b4a&quot;
+  info: &quot;#8aa6ff&quot;
+  border: &quot;rgba(170,150,255,0.24)&quot;
+  border-strong: &quot;rgba(186,170,255,0.44)&quot;
+  focus-ring: &quot;#5b86ff&quot;
+typography:
+  display:
+    fontFamily: &quot;Sora&quot;
+    fontSize: &quot;2.75rem&quot;
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: &quot;-0.02em&quot;
+  heading:
+    fontFamily: &quot;Sora&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: &quot;IBM Plex Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.15em&quot;
+  code:
+    fontFamily: &quot;IBM Plex Mono&quot;
+    fontSize: &quot;0.8rem&quot;
+    lineHeight: 1.6
+rounded:
+  sm: &quot;3px&quot;
+  md: &quot;5px&quot;
+  lg: &quot;7px&quot;
+  pill: &quot;6px&quot;
+spacing:
+  xs: &quot;0.35rem&quot;
+  sm: &quot;0.6rem&quot;
+  md: &quot;1rem&quot;
+  lg: &quot;1.75rem&quot;
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.body}&quot;
+    height: &quot;2.4rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.accent-hover}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.body}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  input-focus:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  chart-series-1:
+    backgroundColor: &quot;{colors.facet-ruby}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    width: &quot;12px&quot;
+    height: &quot;12px&quot;
+  chart-series-2:
+    backgroundColor: &quot;{colors.facet-emerald}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    width: &quot;12px&quot;
+    height: &quot;12px&quot;
+  chart-series-3:
+    backgroundColor: &quot;{colors.facet-amber}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    width: &quot;12px&quot;
+    height: &quot;12px&quot;
+  chart-series-4:
+    backgroundColor: &quot;{colors.facet-violet}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    width: &quot;12px&quot;
+    height: &quot;12px&quot;
+  chart-series-5:
+    backgroundColor: &quot;{colors.facet-sapphire}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    width: &quot;12px&quot;
+    height: &quot;12px&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;
+    width: &quot;100%&quot;
+  divider-strong:
+    backgroundColor: &quot;{colors.border-strong}&quot;
+    height: &quot;1px&quot;
+    width: &quot;100%&quot;
+  overlay-scrim:
+    backgroundColor: &quot;{colors.overlay}&quot;
+    width: &quot;100%&quot;
+    height: &quot;100%&quot;
+  focus-indicator:
+    backgroundColor: &quot;{colors.focus-ring}&quot;
+    height: &quot;2px&quot;
+    width: &quot;100%&quot;
+  input-ring:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+    height: &quot;3px&quot;
+    width: &quot;100%&quot;
+  facet-panel:
+    backgroundColor: &quot;{colors.bg-deep}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;1.15rem&quot;
+  media-block:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: &quot;96px&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  page-deep:
+    backgroundColor: &quot;{colors.bg}&quot;
+    textColor: &quot;{colors.text}&quot;</code></pre></section>
+<h2 id="kaleidoscope">Kaleidoscope</h2>
+<h3 id="overview">Overview</h3>
+<p>Every other kit in this library obeys <em>one accent plus one second accent</em>. This one does not, and that is the argument the kit exists to make. <strong>Symmetry replaces restraint.</strong> A kaleidoscope is multi-hue by construction — the image inside it is a riot of jewel colour — and it still reads as one object, because everything in it is <em>mirrored</em>. The discipline moved out of the palette and into the geometry: every pattern here is built from a mirrored pair of angles (0°/180°, 60°/120°, or a conic sequence that repeats its own first half back), and every corner is a cut rather than a curve. A rainbow is undisciplined; a kaleidoscope is a rainbow that has been folded. That fold is the whole kit.</p>
+<p>So there are five jewel facets — ruby, amber, emerald, sapphire, violet — and <strong>exactly one of them is allowed to act</strong>: ruby (<code>{colors.primary}</code>) fills the single primary control on a screen, and sapphire (<code>{colors.secondary}</code>) is its cool counterweight, carrying gradients, media and chart series. Amber, emerald and violet are structure and graphic: pattern stops, a lit edge, a prism ramp. They never fill a button and they are never text. The eye can hold five hues because only two of them are asking for anything.</p>
+<p>The ground is near-neutral: a very deep indigo aperture (<code>{colors.bg-deep}</code> at its darkest), light entering from above it, falling to near-black. It has to be near-neutral, or the facets stop reading as light through glass and start reading as more colour on colour. Nothing in this kit is soft: no blurred shadow, no frost, no organic curve.</p>
+<p>Use it where the page <em>is</em> the artefact — launch pages, game and music UI, a portfolio or gallery that should feel crafted rather than merely dark. Do not use it for long-form reading or dense data entry: five hues is a lot of signal for a form.</p>
+<p><strong>It is not <code>cyberpunk</code></strong> (one neon accent on black, 3–6px corners, magenta hairlines) and it is not <code>carbon</code> (cyan/violet, square). This kit is <em>pink-red ruby</em>, <em>cut at two opposite corners</em>, <em>multi-hue</em>, and <em>mirrored</em>. If the facets were reduced to one hue it would become a darker carbon with a chamfer.</p>
+<h3 id="colors">Colors</h3>
+<p>Five facets, three jobs.</p>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Job</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Ruby</td><td><code>{colors.facet-ruby}</code> = <code>{colors.primary}</code></td><td><code>#ff2d6f</code></td><td><strong>the one facet that acts</strong> — primary button, links, focus-adjacent states</td></tr><tr><td>Sapphire</td><td><code>{colors.facet-sapphire}</code> = <code>{colors.secondary}</code></td><td><code>#5b86ff</code></td><td>cool counterweight — media gradient, progress, focus ring</td></tr><tr><td>Emerald</td><td><code>{colors.facet-emerald}</code> = <code>{colors.tertiary}</code></td><td><code>#19dda0</code></td><td>graphic — pattern stop, chart series 2</td></tr><tr><td>Amber</td><td><code>{colors.facet-amber}</code></td><td><code>#ffb020</code></td><td>graphic — pattern stop, the spark at the centre</td></tr><tr><td>Violet</td><td><code>{colors.facet-violet}</code></td><td><code>#a678ff</code></td><td>graphic — pattern stop, the lit facet edge</td></tr></tbody></table>
+<p>Neutral ground and text:</p>
+<table><thead><tr><th>Role</th><th>Token</th><th>Value</th><th>Contrast</th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Ground (darkest stop)</td><td><code>--bg</code></td><td><code>#050410</code></td><td>—</td></tr><tr><td>Ground (base)</td><td><code>{colors.bg}</code></td><td><code>#0a0719</code></td><td>—</td></tr><tr><td>Card pane</td><td><code>{colors.surface}</code></td><td><code>#15112e</code></td><td>—</td></tr><tr><td>Lit pane</td><td><code>{colors.surface-2}</code></td><td><code>#221d42</code></td><td>—</td></tr><tr><td>Body text</td><td><code>{colors.text}</code></td><td><code>#f6f3ff</code></td><td><strong>18.60:1</strong> on the darkest stop</td></tr><tr><td>Secondary text</td><td><code>{colors.text-muted}</code></td><td><code>#b9b2dd</code></td><td><strong>9.10:1</strong> on <code>{colors.surface}</code></td></tr><tr><td>Tertiary text</td><td><code>{colors.text-dim}</code></td><td><code>#9590b8</code></td><td><strong>6.75:1</strong> on the ground, <strong>6.04:1</strong> on <code>{colors.surface}</code></td></tr><tr><td>Ink on a facet</td><td><code>{colors.text-invert}</code></td><td><code>#08040d</code></td><td><strong>5.67:1</strong> on ruby, <strong>6.91:1</strong> on its hover</td></tr><tr><td>Ruby as <em>text</em></td><td><code>--accent-ink</code> <code>#ff6f9c</code></td><td>—</td><td><strong>7.76:1</strong> on the ground, <strong>6.95:1</strong> on <code>{colors.surface}</code></td></tr></tbody></table>
+<p>Three things are worth stating plainly.</p>
+<p><strong>Who acts.</strong> Ruby only. <code>--accent</code> is <code>#ff2d6f</code>; it is the single filled control on a screen. Sapphire is <code>--accent-2</code> and is the <em>cool counterweight</em> — it never fills an action, it fills media. Emerald, amber and violet are not in the brand pair at all: they appear in patterns (<code>--kaleidoscope-star</code>, <code>--kaleidoscope-rose-window</code>, <code>--kaleidoscope-shard</code>, <code>--kaleidoscope-prism</code>), in chart series and in a lit edge. If you ever find yourself reaching for amber to fill a button, the kit has failed — that is the fifth "look at me" colour arriving.</p>
+<p><strong>Why the ink is near-black.</strong> White on ruby is 3.59:1, well under AA. Rather than lighten the facet (which would make it a pale pink and cost the kit its jewel value), the label is near-black <code>{colors.text-invert}</code>: 5.67:1, and it reads like ink on a lit stone. Do not "fix" this by lightening <code>{colors.text-invert}</code>.</p>
+<p><strong>Ruby as text is a different, lighter member of the same family.</strong> <code>#ff2d6f</code> is a fine <em>fill</em> and only 4.14:1 as a small label over the masthead's ruby wash. <code>--accent-ink</code> <code>#ff6f9c</code> is the same hue, lighter, and clears 4.5:1 everywhere it is used — links, the eyebrow, inline code, active nav, secondary-button labels.</p>
+<p><strong>Status colours sit off the facets by value, not by hue.</strong> The palette owns every hue family already, so escaping by hue is impossible; the escape is chroma and value. <code>{colors.ok}</code> is a sea-jade <em>duller and deeper</em> than the emerald facet, <code>{colors.warn}</code> a burnt gold duller than amber, <code>{colors.info}</code> a pale sapphire lighter than the sapphire facet, and <code>{colors.danger}</code> is deliberately pushed to <strong>orange-red vermilion</strong> so that a destructive state is never mistakable for the ruby action colour. Keep those four relationships.</p>
+<p><strong>Borders are facet edges, not grey rules.</strong> <code>--border</code> is 24% of a lavender violet (<code>rgba(170,150,255,.24)</code>), <code>--border-strong</code> 44%. On a near-black ground a neutral grey hairline reads as a fence; a violet one reads as the edge of a pane.</p>
+<h3 id="typography">Typography</h3>
+<p>One geometric sans, one neutral, one mono. <strong>The geometry is the star; the type does not compete</strong> — so there is no display face with a gimmick in it, and no more than two weights of anything.</p>
+<ul><li><strong>Sora</strong> (display) for <code>h1</code>–<code>h3</code>, card titles and the wordmark. A crisp geometric sans with flat terminals and a tight, almost mechanical counter set — geometric enough to sit beside a cut corner without arguing with it.</li><li><strong>Inter</strong> (body) for everything read. Deliberately plain: it is the one neutral voice on a page of five hues.</li><li><strong>IBM Plex Mono</strong> (labels) for eyebrows, badges, table headers, timestamps and code — uppercase at <code>{typography.label.letterSpacing}</code> <code>.15em</code>.</li></ul>
+<p>Display tracking is tight (<code>-0.02em</code>) because a geometric face opens up at large sizes; mono labels are wide. Never set body copy in Sora or in the mono — they are signposts, not prose.</p>
+<h3 id="layout">Layout</h3>
+<p>One 1040px measure, 2.25rem between blocks, 1rem grid gap, spacing scale <code>0.35 / 0.6 / 1 / 1.75rem</code>. The rhythm is even and quiet on purpose: the page is already busy with facets and cut corners, and a layout that also jumped around would be noise. Faceted content wants <em>regular</em> framing — that regularity is what makes the mirrored patterns read as deliberate rather than scattered.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>light through the material</strong>, not shadow on top of it. Two consequences, and the first one is a trap:</p>
+<p>1. <strong><code>clip-path</code> eats <code>box-shadow</code> and <code>outline</code>.</strong> This kit opts into <code>--clip</code> (below), and the shared lab applies it to cards, buttons, inputs, badges, alerts, nav and code blocks. Every <em>outer</em> drop shadow on those elements is clipped away — including a focus ring and any outside glow. This is a documented limitation of the chamfer capability, not a bug. So the kit leads its depth with <strong>insets</strong>, which are painted inside the box and survive the cut. 2. Therefore <code>--shadow-1</code> and <code>--shadow-2</code> are <em>inset facet edges first</em>, with an outer bloom appended for consumers who do not clip the element. <code>--shadow-2</code>'s bloom is not re-typed — it is <code>var(--kaleidoscope-glint)</code>, and <strong><code>--glow</code> is literally <code>var(--kaleidoscope-facet-edge)</code></strong>, so the primary button's lit rim and the surface bloom are the same two materials the lab renders in its Signature section. Derive, don't duplicate. <code>--shadow-1</code> stays nearly flat, because on a clipped card only its inset edge lands. 3. <code>--blur</code> is <code>none</code>. There is no frosted glass here: the surfaces are opaque, so the contrast of every pair is provable against a hex rather than a composite.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Everything is cut.</p>
+<ul><li><code>{rounded.sm}</code> 3px, <code>{rounded.md}</code> 5px, <code>{rounded.lg}</code> 7px — the measured corners.</li><li><code>{rounded.pill}</code> <strong>6px</strong>. A 999px pill cannot survive a chamfer: the diagonal would slice across the rounded end and produce a notched lozenge. Badges and avatars are chamfered chips in this kit, on purpose.</li><li><strong><code>--clip</code> (declared)</strong> — the chamfer, two <em>opposite</em> corners cut at <code>--cut: 10px</code>. This is the kit's baseline shape and the lab applies it for us. Its cost is that the two diagonal edges are borderless (the border is cut with the shape) — at 10px that is a thin bright sliver of missing hairline, and it is what makes the shape read as a cut stone rather than a box.</li><li><strong><code>--kaleidoscope-facet-clip</code> (declared, more aggressive)</strong> — an eight-point cut: <em>all four</em> corners at <code>--kaleidoscope-cut-lg: 22px</code>. This one is not what the shared lab applies; it is exported for hero panels, media frames and modal shells, and applied explicitly with <code>clip-path: var(--kaleidoscope-facet-clip)</code>. Two shapes, one language: 10px on two corners for controls, 22px on four for surfaces.</li></ul>
+<p>Because of the clip, the visible geometry is the <em>intersection</em> of the small radii with the cut polygon — sharp, crystalline, never soft.</p>
+<h3 id="components">Components</h3>
+<p>Every colour decision below resolves to a <code>{colors.*}</code> token; nothing is re-typed. Border colours, shadows and clip-paths are deliberately not listed per component — they live in <code>tokens.css</code> (see the note in Do's and Don'ts).</p>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> ruby fill, <code>{colors.text-invert}</code> ink, 5px corner, chamfered, and the inset lit edge (<code>--glow</code>). The <strong>only</strong> lit, filled control on a screen.</li><li><strong>button-primary-hover</strong> — <code>{colors.accent-hover}</code>, a <em>brighter</em> ruby, not a darker one: a facet catching more light. The label stays <code>{colors.text-invert}</code> at 6.9:1.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> pane with a <code>{colors.primary}</code> ruby label and a ruby hairline. Flat until hover, when it takes a 15% ruby wash — the same facet, barely lit. <em>That hover state is prose, not a component entry:</em> DESIGN.md cannot express "label on a translucent tint" without the linter comparing the label to the raw, uncomposited tint colour, which reports a contrast failure that does not exist on screen (the tint sits over the page ground, where <code>--accent-ink</code> measures 6.88:1). The state is specified in <code>tokens.css</code> (<code>--accent-soft</code>) and in this sentence.</li><li><strong>card</strong> — <code>{colors.surface}</code>, chamfered, <code>--shadow-1</code> (which on a clipped card is the inset top edge). <strong>Card text is <code>{colors.text}</code></strong> on a dark pane; no <code>--text-on-surface*</code> override is needed because all three grounds are dark.</li><li><strong>card-elevated</strong> — <code>{colors.surface-2}</code>, the <em>lighter</em> pane. Elevation here is luminance, not distance: a nested pane catches more light.</li><li><strong>input</strong> — <code>{colors.surface-2}</code> fill, chamfered, <code>{colors.text}</code> value text. Focus changes the border to ruby and lays a 3px <code>{colors.accent-soft}</code> ring; the <em>keyboard</em> focus ring is sapphire (<code>--focus-ring</code>) so hover, focus and action are three different colours — and note that a clipped element cannot show an outside outline, so keep the border-colour change.</li><li><strong>badge</strong> — <code>{colors.surface-2}</code> chip, <code>{colors.text-muted}</code> mono uppercase label, 6px "pill". Variants: <code>badge-primary</code> (ruby, an <em>action</em> marker), <code>badge-ok</code> / <code>badge-warn</code> / <code>badge-danger</code> / <code>badge-info</code> (status, on the lit pane).</li><li><strong>facet-panel</strong> — <code>{colors.bg-deep}</code> ground inside a lighter page: the dark inset of the stack, carried by <code>--kaleidoscope-facet-clip</code> at 22px.</li><li><strong>chart-series-1…5</strong> — the five facets as data ink, in role order (ruby, emerald, amber, violet, sapphire). This is the one place all five are permitted in one view, because a chart is a graphic and not a hierarchy.</li><li><strong>media-block</strong> — <code>{colors.secondary}</code> sapphire; the one place the counterweight fills area. Real media uses <code>--kaleidoscope-prism</code> (ruby → amber → emerald → sapphire → violet).</li><li><strong>divider</strong> / <strong>divider-strong</strong> — the hairline and the emphasised rule, as <code>{colors.border}</code> and <code>{colors.border-strong}</code> fills. DESIGN.md has no <code>borderColor</code> property, so the line colours are declared here as 1px fills instead — the honest way to keep them referenced.</li><li><strong>overlay-scrim</strong> — <code>{colors.overlay}</code>, the modal veil.</li><li><strong>focus-indicator</strong> / <strong>input-ring</strong> — the two rings, as fills: the 2px sapphire keyboard ring (<code>{colors.focus-ring}</code>) and the 3px <code>{colors.accent-soft}</code> halo the focused input lays down.</li><li><strong>page</strong> / <strong>page-deep</strong> — the ground, and its darkest stop.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Let ruby be the <em>single</em> filled control on a screen. One facet acts; four are structure.</li><li>Keep every pattern mirrored. Patterns ship as <code>--kaleidoscope-*</code> tokens; the conic fan repeats its own first half, the shard lattice pairs 60° with 120°, the rose window is radial. If you add a pattern, add a mirror.</li><li>Keep the insets. <code>--shadow-1</code>/<code>--shadow-2</code>/<code>--glow</code> are inset-only for a reason: the clip eats everything outside the silhouette.</li><li>Use <code>--kaleidoscope-facet-clip</code> (22px, four corners) for hero panels and <code>--clip</code> (10px, two corners) for controls. Never mix both on one element.</li><li>Keep <code>--text-invert</code> near-black and <code>--accent-ink</code> lighter than <code>--accent</code>. They are two different weights of the same decision.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't fill a control with amber, emerald or violet, and don't set text in them. They are graphics. A second filled control turns the kit into a rainbow.</li><li>Don't put white on <code>{colors.primary}</code> (3.6:1) or on any facet.</li><li>Don't soften anything: no blurred shadow, no <code>--blur</code>, no border radius above 7px, no organic curve. Softening one corner makes the rest of the kit look like an accident.</li><li>Don't rely on an outer glow or a focus outline on a clipped element — it will not render. Use a border-colour change instead.</li><li>Don't list <code>boxShadow</code>, <code>borderColor</code> or <code>backdropFilter</code> in a component here: DESIGN.md accepts only background/text/typography/rounded/padding/size/height/width, and anything else is silently dropped by the exports. Those values live in <code>tokens.css</code> and in this prose.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

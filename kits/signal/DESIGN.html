@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Signal kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Signal</h1>
+  <p class="spec-sub">A deep-navy HUD for dense data</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Signal
+description: Deep-navy HUD — Chakra Petch headings, mono labels, cyan/blue action, mint and amber status.
+colors:
+  primary: &quot;#37d7ff&quot;
+  primary-hover: &quot;#5fe0ff&quot;
+  primary-ink: &quot;#04121a&quot;
+  secondary: &quot;#4a9dff&quot;
+  tertiary: &quot;#8b6cff&quot;
+  neutral: &quot;#05070d&quot;
+  surface: &quot;#0c1426&quot;
+  surface-2: &quot;#101b32&quot;
+  text: &quot;#eaf3ff&quot;
+  text-muted: &quot;#8ea3c4&quot;
+  success: &quot;#43ffb4&quot;
+  warning: &quot;#ffc46b&quot;
+  error: &quot;#ff6b7a&quot;
+typography:
+  display:
+    fontFamily: Chakra Petch
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;0.01em&quot;
+  heading:
+    fontFamily: Chakra Petch
+    fontSize: 1.3rem
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: Inter
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: JetBrains Mono
+    fontSize: 0.72rem
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: &quot;0.14em&quot;
+rounded:
+  sm: 4px
+  md: 6px
+  lg: 10px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-ok:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.success}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-error:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  table-header:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p>Signal is an instrument panel. It came out of a resume site that reads like a HUD: a deep-navy ground with a fixed blue wash, faceted panels cut with a 16px chamfer, and mono labels doing the work of a readout. It carries more colour than Carbon but stays calm about it — cyan and blue are the brand, mint and amber are status, and nothing is saturated for its own sake.</p>
+<p>Use it for dashboards, data-dense tools, consoles, and résumés — anywhere the reader is scanning rather than reading. It is comfortable at small type and dense tables, which the other two kits in this family are not.</p>
+<p>One sentence: <em>a deep-navy HUD — brand cyan for action, mint and amber for status, mono for anything that is a fact.</em></p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>Primary (#37d7ff):</strong> cyan. Actions, links, focus, live indicators, telemetry.</li><li><strong>Secondary (#4a9dff):</strong> blue. The second accent — gradients, media plates, chart series.</li><li><strong>Tertiary (#8b6cff):</strong> violet. Informational status; <code>--info</code> in <code>tokens.css</code> is the same violet, because the source palette has exactly one and it already means "network/system".</li><li><strong>Neutral (#05070d):</strong> the ground — near-black with a blue cast, not pure black.</li><li><strong>Surface (#0c1426) / surface-2 (#101b32):</strong> the navy panel steps. The source declares these as translucent navies (<code>rgba(12,20,38,.82)</code> and <code>rgba(16,27,50,.55)</code>) to be read over a gradient background; on a flat page those composite to almost exactly these opaque values, so the kit publishes the flattened colour and keeps the frosted look via <code>--blur</code>.</li><li><strong>Text (#eaf3ff) / text-muted (#8ea3c4):</strong> the two contrast-guaranteed text steps.</li><li><strong>Success (#43ffb4) / warning (#ffc46b) / error (#ff6b7a):</strong> status. Mint and amber are the source's own; the red is derived, because the source has no danger colour and a status system without one is incomplete.</li></ul>
+<p><code>--text-dim: #7284a5</code> (the source's <code>--dim</code>), <code>--border: rgba(130,180,255,.16)</code> (the source's <code>--line</code>) and <code>--border-strong: rgba(130,180,255,.34)</code> are defined in <code>tokens.css</code> but kept out of the <code>colors</code> map above: the DESIGN.md component schema has no <code>borderColor</code> property and a tertiary caption asserts no contrast floor, so listing them would only produce orphan warnings for values that are very much in use.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, tight roles:</p>
+<ul><li><strong>Chakra Petch</strong> — display and headings. Square-cut, slightly mechanical, which is why the panel furniture can stay plain without the whole thing looking generic.</li><li><strong>Inter</strong> — body at 1.6 line-height. Data-dense surfaces need the reading text to be calm.</li><li><strong>JetBrains Mono</strong> — every label, badge, table header, and number. Uppercase, tracked +0.14em. Mono is the kit's instrument voice.</li></ul>
+<p>Display and heading sizes are fluid in the source; the floor for mono labels is 11–12px.</p>
+<h3 id="layout">Layout</h3>
+<p>A <code>min(1040px, 100% - 2.5rem)</code> column, matching the source's <code>--maxw</code>. Sections are separated by hairlines and generous vertical padding; inside a panel the rhythm is tight (8–16px) so readouts group by proximity rather than by boxes. Cards are a responsive auto-fit grid that collapses to one column on a phone.</p>
+<p>Dense is the point: the lab's table, badge row and progress bars should read as the natural content of this kit, not as an edge case.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is a navy step plus a dark shadow — <code>--shadow-2: 0 18px 50px rgba(0,0,0,.28)</code> is the source's own panel shadow, and it is unusually soft for a dark theme on purpose: panels float on the navy rather than sitting in a hole in it.</p>
+<p><code>--glow</code> (<code>0 0 14px rgba(55,215,255,.4)</code>) is reserved for the active control — the source lights its pressed language switch with exactly this. Panels carry <code>--blur: blur(10px)</code>, the source topbar's glass, so a card over content still reads as a pane.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Small radii, held tight: <code>--radius-sm: 4px</code>, <code>--radius-md: 6px</code> (the source's single radius), <code>--radius-lg: 10px</code>, and true pills for badges. Nothing is a large radius — 10px is the ceiling, and only for panels.</p>
+<p>The signature shape is a <strong>corner cut</strong>, not a radius: <code>--cut: 16px</code> drives <code>--clip-corner</code>, the polygon the source applies to its panels and icon buttons:</p>
+<pre><code>.panel { clip-path: var(--clip-corner); }   /* one 16px chamfer, bottom-right */</code></pre>
+<p>The lab does not clip anything, so this is opt-in. When applied, draw any border as two clipped layers (rim + inset surface) — <code>clip-path</code> slices a normal border off along the diagonal.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a solid cyan plate, near-black label, mono uppercase.</li><li><strong>button-primary-hover</strong> — cyan lifted one step; still an ink label, never white.</li><li><strong>button-secondary</strong> — navy plate with a cyan label. The default second action.</li><li><strong>card / card-elevated</strong> — navy panes, 10px radius, separated by a blue-tinted hairline.</li><li><strong>input</strong> — <code>surface-2</code> fill, <code>--border</code> hairline, cyan focus ring with a soft halo.</li><li><strong>badge</strong> — pill, mono, uppercase; <code>badge-accent</code>, <code>badge-success</code> and <code>badge-warning</code> recolor the label and leave the chip dark, so a row of status reads as lights, not blocks.</li><li><strong>alert-</strong>* — a navy pane with a 3px status rule down the left edge.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep cyan for action and mint/amber for state. They never swap roles.</li><li><strong>Do</strong> set facts, IDs and numbers in mono; the sans is for sentences.</li><li><strong>Do</strong> use the corner cut on panels and keep radii at 6–10px. Both belong to the language.</li><li><strong>Do</strong> let panels float — soft shadow, navy step, hairline. Never a hard black shadow.</li><li><strong>Don't</strong> put white text on cyan. The ink colour exists because cyan is a fill, not a page.</li><li><strong>Don't</strong> add a fourth hue. Violet is informational; that is the whole quota.</li><li><strong>Don't</strong> desaturate to "calm it down" — the calm comes from spacing, not from grey.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

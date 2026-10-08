@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dark Glass — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Dark Glass kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Dark Glass</h1>
+  <p class="spec-sub">Frosted panels over a violet-lit dark mesh</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Dark Glass
+description: Dark frosted glass — translucent panels over a violet- and cyan-lit near-black mesh, hairline light edges, depth from layered soft shadow and a top-edge highlight.
+colors:
+  primary: &quot;#8b7cff&quot;
+  primary-hover: &quot;#a094ff&quot;
+  on-primary: &quot;#0b0c14&quot;
+  primary-soft: &quot;rgba(139, 124, 255, 0.16)&quot;
+  secondary: &quot;#4fd8ff&quot;
+  tertiary: &quot;#c3b8ff&quot;
+  neutral: &quot;#0b0d16&quot;
+  surface: &quot;rgba(22, 26, 36, 0.55)&quot;
+  surface-2: &quot;rgba(28, 33, 45, 0.68)&quot;
+  surface-solid: &quot;#161a24&quot;
+  text: &quot;#eef2fb&quot;
+  text-muted: &quot;#b7c0d4&quot;
+  text-dim: &quot;#a0a9be&quot;
+  ok: &quot;#4fce8f&quot;
+  warn: &quot;#f5b942&quot;
+  danger: &quot;#ff6b81&quot;
+  info: &quot;#6b9dff&quot;
+  bg-stop-1: &quot;#0d0f1b&quot;
+  bg-stop-2: &quot;#090a13&quot;
+  bg-stop-3: &quot;#070810&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Sora&quot;
+    fontSize: &quot;2.6rem&quot;
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: &quot;-0.02em&quot;
+  h1:
+    fontFamily: &quot;Sora&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: &quot;-0.015em&quot;
+  h2:
+    fontFamily: &quot;Sora&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;-0.01em&quot;
+  body:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Inter&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.12em&quot;
+
+rounded:
+  sm: &quot;10px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;22px&quot;
+  pill: &quot;999px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-solid:
+    backgroundColor: &quot;{colors.surface-solid}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;</code></pre></section>
+<h2 id="dark-glass">Dark Glass</h2>
+<h3 id="overview">Overview</h3>
+<p>Dark Glass is the dark counterpart to the <code>glass</code> kit: the same structural idea — surfaces are genuinely translucent and the ground is visible <em>through</em> them — pointed at a deep, luminous dark instead of pastel light.</p>
+<p>The ground is a near-black mesh: a violet wash at the top-left, a cyan wash at the top-right and a wide deep-purple bloom low-centre — repeated at lower amplitude twice more down the page — laid over a close-spaced ramp from <code>{colors.bg-stop-1}</code> to <code>{colors.bg-stop-3}</code>. Panels float on it at 55% and 68% opacity with hairline <strong>light</strong> edges (<code>rgba(255,255,255,.14)</code>) and <code>backdrop-filter: blur(20px) saturate(140%)</code>. Nothing in the kit uses a dark outline — on a near-black ground a dark border is invisible, so the edge that reads is the light one.</p>
+<p>Restraint is the point. There are exactly two brand hues — a clear violet (<code>{colors.primary}</code>) and a cyan (<code>{colors.secondary}</code>) — and the cyan is graphic only: it appears in gradients, chart bars, media and the avatar, never on a button. The single action colour is the violet.</p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>primary — <code>{colors.primary}</code></strong> clear violet. The one action colour: button fills, active nav, links, focus rings. It carries <strong>dark</strong> label text (<code>{colors.on-primary}</code>), not white — white on this violet measures 3.2:1 and would fail the contract, so the kit deliberately inverts the usual "white on the accent" assumption for a luminous mid-tone accent.</li><li><strong>secondary — <code>{colors.secondary}</code></strong> cyan. Gradient partner and chart colour; it is also the wash in the top-right of the ground, so UI built on it looks continuous with the page.</li><li><strong>tertiary — <code>{colors.tertiary}</code></strong> pale violet. A quiet third hue for data series and illustrations, one step lighter than the accent so it never competes with it.</li><li><strong>neutral — <code>{colors.neutral}</code></strong> the solid stand-in for the page ground. The real ground is a mesh (see <code>--bg</code> in <code>tokens.css</code>), so when a surface genuinely cannot be a gradient or cannot be translucent — print, email, canvas — this is the colour to use.</li><li>The three mesh stops are addressable: <code>{colors.bg-stop-1}</code>, <code>{colors.bg-stop-2}</code>, <code>{colors.bg-stop-3}</code>.</li><li><strong>Surfaces are transparent by design:</strong> <code>{colors.surface}</code> and <code>{colors.surface-2}</code> are <code>rgba()</code> ground. Never substitute a flat hex — the translucency <em>is</em> the kit. <code>{colors.surface-solid}</code> is the documented opaque fallback.</li><li>Status colours sit outside the brand pair on purpose — green, amber, red and a brighter blue — so a "live" or "failed" badge can never be mistaken for the brand.</li></ul>
+<h3 id="typography">Typography</h3>
+<p>Two families and a mono. <strong>Sora</strong> is the display face — geometric, wide counters, set tight (<code>-0.02em</code>) so a large heading reads as one block rather than a row of letters. <strong>Inter</strong> carries body and interface text at 0.95rem / 1.6; on a low-luminance ground generous leading matters more than on paper. <strong>JetBrains Mono</strong> is labels only, uppercase, at <code>{typography.label.letterSpacing}</code>.</p>
+<p>Sora rather than the sibling <code>glass</code> kit's Plus Jakarta Sans is deliberate: same humanist-geometric family of faces, visibly different skeleton, so a thumbnail of the two kits reads as two kits.</p>
+<h3 id="layout">Layout</h3>
+<p>Panels are the layout unit and the mesh is the canvas. Content sits on frosted cards, cards float on the mesh, and the mesh should always be visible at the edges — a full-bleed opaque page destroys the idea. Keep 16–28px between surfaces so the ground reads between them, and never stack two frosted panels directly (nested translucency composites to mud; use <code>--surface-2</code>, the denser panel, for the nested layer).</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Three layers, distinguished by opacity and shadow rather than colour:</p>
+<p>1. the mesh on <code>--bg</code>; 2. <code>{colors.surface}</code> at 55% with <code>backdrop-filter: blur(20px) saturate(140%)</code>; 3. <code>{colors.surface-2}</code> at 68% with the deeper <code>--shadow-2</code>.</p>
+<p>Both steps add an <code>inset 0 1px 0 rgba(255,255,255,.10–.14)</code> highlight along the top edge — on a dark ground that faint bright lip is what makes a panel read as a <em>pane</em> rather than a hole.</p>
+<p><code>--blur</code> is load-bearing: <code>templates/lab.css</code> applies <code>var(--blur)</code> to every <code>.card</code>, and a kit that sets <code>--blur: none</code> gets no frost at all. The <code>saturate(140%)</code> matters as much as the blur — it keeps the violet and cyan from going grey behind the glass.</p>
+<p><strong>Frost needs something to frost.</strong> A <code>backdrop-filter</code> over a perfectly smooth ramp is indistinguishable from flat paint: there is no high-frequency detail for the blur to smear and no tint gradient for the saturate to lift. That is exactly why <code>--bg</code> is a mesh of offset blobs on a close-spaced ramp rather than a single slow gradient — the blobs guarantee there is structure behind every panel, and the blur turns that structure into the soft luminous smear that reads as frosted glass. The mesh <strong>continues down the whole document</strong> (six washes at px y-positions 40 / 120 / 640 / 1500 / 2050 / 2750, the lower ones at lower amplitude): a single top-of-page wash leaves everything below the fold flat black, and every panel down there loses its frost. Do not "simplify" <code>--bg</code> to a two-stop ramp; the frosted panels stop reading.</p>
+<p>Edges are hairline <strong>light</strong> (<code>{colors.border}</code> at <code>rgba(255,255,255,.14)</code>), and exist only to catch that light. There is no dark border token anywhere in this kit: on a near-black ground an ink hairline is invisible. If a surface needs more separation, add shadow rather than a heavier line.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 10px, <code>{rounded.md}</code> 16px, <code>{rounded.lg}</code> 22px, pills at 999px, <code>--cut: 0px</code> — this kit rounds; it does not cut. Radius is generous and consistent, so panels feel cut from the same mould as the ground they float on.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> fill with a <code>{colors.on-primary}</code> label and a soft violet cast; hover lifts to <code>{colors.primary-hover}</code>.</li><li><strong>button-secondary</strong> — a translucent <code>{colors.surface}</code> pane with <code>{colors.primary}</code> text; the edge is the same hairline light line as a card, so it reads as glass, not as a stroked button.</li><li><strong>card</strong> — 55% panel, 1px light edge, <code>blur(20px) saturate(140%)</code>, <code>--shadow-1</code>.</li><li><strong>card-elevated</strong> — the 68% panel with <code>--shadow-2</code>; the extra opacity is what makes it feel lifted, not the shadow alone.</li><li><strong>input</strong> — the denser <code>{colors.surface-2}</code> panel as a fill; focus adds the accent rim and a soft <code>{colors.primary-soft}</code> ring.</li><li><strong>badge</strong> — pill, mono, uppercase, translucent; <code>badge-accent</code> is the violet-tinted variant.</li><li><strong>avatar / chart-1</strong> — the two places cyan is allowed: avatar fills and data series.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the mesh visible between panels — that is where the kit lives.</li><li>Verify any new text colour against the <em>lightest</em> pixel of the mesh, not against <code>{colors.neutral}</code>.</li><li>Reach for <code>--shadow-1</code> / <code>--shadow-2</code> (both carry the top-edge highlight) instead of adding borders.</li><li>Composite translucent surfaces before claiming a contrast number.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't set <code>--blur</code> to <code>none</code> or drop <code>backdrop-filter</code> — the kit becomes a flat dark page.</li><li>Don't raise surface opacity above ~72%; frosted turns to painted.</li><li>Don't put two frosted panels directly on top of each other.</li><li>Don't put white text on <code>{colors.primary}</code> — it measures 3.2:1. Use <code>{colors.on-primary}</code>.</li><li>Don't flatten <code>--bg</code> to a smooth two-stop ramp; a blur with nothing behind it is invisible.</li><li>Don't use <code>{colors.secondary}</code> as a button fill — cyan is graphic, the violet is the action.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

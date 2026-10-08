@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Quiet kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Quiet</h1>
+  <p class="spec-sub">Calm surfaces for tools you live in</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Quiet
+description: Quiet dark app chrome — one soft indigo accent, small radii, generous space, no decoration.
+colors:
+  primary: &quot;#5b7cfa&quot;
+  primary-hover: &quot;#7390ff&quot;
+  primary-ink: &quot;#7490fb&quot;
+  secondary: &quot;#7d6ce8&quot;
+  tertiary: &quot;#6b93e0&quot;
+  neutral: &quot;#0b0e13&quot;
+  surface: &quot;#12161f&quot;
+  surface-2: &quot;#171c27&quot;
+  text: &quot;#e8ecf3&quot;
+  text-muted: &quot;#b9c2d0&quot;
+  success: &quot;#5fbf8f&quot;
+  warning: &quot;#e0b26b&quot;
+  error: &quot;#ff8383&quot;
+typography:
+  display:
+    fontFamily: Inter
+    fontSize: 2.6rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;-0.02em&quot;
+  heading:
+    fontFamily: Inter
+    fontSize: 1.3rem
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: &quot;-0.01em&quot;
+  body:
+    fontFamily: Inter
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontFamily: Inter
+    fontSize: 0.78rem
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: &quot;0.02em&quot;
+  data:
+    fontFamily: &#x27;ui-monospace, &quot;Cascadia Mono&quot;, Consolas, monospace&#x27;
+    fontSize: 0.8rem
+    fontWeight: 400
+    lineHeight: 1.5
+    fontFeature: &#x27;&quot;tnum&quot;&#x27;
+rounded:
+  sm: 6px
+  md: 8px
+  lg: 12px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 20px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-ok:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.success}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-error:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  table-header:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p>Quiet is the app chrome you stop noticing. It came out of a small business landing page — near-black indigo ground, one soft periwinkle accent, 10–16px radii, no gradients behind content, no ornament — and it is the kit for the surfaces you spend hours in: settings panels, dashboards that are mostly reading, editors, long forms.</p>
+<p>The only material change from the source is type: raw <code>Segoe UI</code> is replaced with Inter, which keeps the plainness and adds a consistent voice, plus a real monospace for numbers. Nothing else about the kit is loud enough to need a change.</p>
+<p>One sentence: <em>near-black indigo, one soft accent, small radii, and a lot of air.</em></p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>Primary (#5b7cfa):</strong> soft indigo. The only action colour. Hover is a lighter step of the same hue, not a different colour.</li><li><strong>Secondary (#7d6ce8):</strong> a related violet, one step around the wheel. It exists for gradients and media plates and never appears as a second call to action.</li><li><strong>Tertiary (#6b93e0):</strong> a muted blue for informational status — the least assertive of the accent family, which is what an "info" colour should be.</li><li><strong>Neutral (#0b0e13):</strong> the page ground. Near-black with a faint blue cast, deliberately not pure black — pure black makes the accent glow, and this kit does not glow.</li><li><strong>Surface (#12161f) / surface-2 (#171c27):</strong> the panel steps. Surface is the source's <code>--panel</code>; surface-2 is one visible lift for inputs and nested panels.</li><li><strong>Text (#e8ecf3) / text-muted (#b9c2d0):</strong> the two contrast-guaranteed text steps. Muted is unusually bright (10:1 on a panel) on purpose — this is the body colour for long text, not a caption grey.</li><li><strong>Error (#ff8383):</strong> the source's soft red, kept exactly.</li><li><strong>Success (#5fbf8f) / warning (#e0b26b):</strong> derived. The source only needed an error, so the other two statuses are mixed to sit at the same low saturation as <code>#ff8383</code> rather than arriving as saturated system colours.</li></ul>
+<p><code>--text-dim: #8a93a3</code>, <code>--border: #2a3140</code> (the source's <code>--line</code>) and <code>--border-strong: #3a4356</code> live in <code>tokens.css</code> but not in the <code>colors</code> map above: the DESIGN.md component schema has no property that can reference a line colour, and a caption asserts no contrast floor, so listing them would only produce orphan warnings.</p>
+<h3 id="typography">Typography</h3>
+<p>One family and one monospace. That is the whole system, and it is a feature.</p>
+<ul><li><strong>Inter</strong> — display, headings, body, labels. Sizes and weights do all the differentiation: 2.6rem/700 display, 1.3rem/600 headings, 0.95rem/400 body at 1.6, 0.78rem/500 labels.</li><li><strong>System monospace</strong> (<code>ui-monospace</code>, Cascadia Mono, Consolas) — numbers, IDs, code. Tabular figures are on by default so columns of digits do not shimmer. No webfont is fetched for it; a tool that runs offline should not pay for a mono it already has.</li></ul>
+<p>Display tracking is <code>-0.02em</code> — tight enough to read as designed, not so tight that it becomes a styling statement.</p>
+<h3 id="layout">Layout</h3>
+<p>A single centred column. Cards are a responsive grid that collapses to one column on a phone; inputs are full-width inside their field. Vertical rhythm is generous (1.1–2.25rem between blocks, 40px between sections) because the content of this kit is usually a form or a list, and cramped forms are how "quiet" turns into "hostile".</p>
+<p>Small radii are not the same as small spacing: keep the corners tight, keep the air large.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Almost none — and that is the design. <code>--glow: none</code> and <code>--blur: none</code> are hard zeros: nothing in this kit emits light or frosts. Depth is one hairline (<code>--border</code>) plus a soft, tight shadow (<code>--shadow-1: 0 1px 2px rgba(0,0,0,.4)</code>) for genuinely floating surfaces like menus, and <code>--shadow-2</code> for modals. A card is a panel, not a raised object.</p>
+<p>If a component needs to be noticed, it gets the accent, not a shadow.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Small and consistent: <code>--radius-sm: 6px</code>, <code>--radius-md: 8px</code>, <code>--radius-lg: 12px</code>, true pills for badges and the toggle. <code>--cut: 0px</code> — this kit does not cut corners; the chamfer is another kit's signature and mixing the two would make both arbitrary.</p>
+<p>Card radius is the largest value in the system at 12px. There is no 20px+ "soft card" look here, and no fully-round buttons.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a flat indigo plate with the page ink as the label. No glow, no gradient, no shadow.</li><li><strong>button-primary-hover</strong> — the lighter indigo. The button does not move; only its colour does.</li><li><strong>button-secondary</strong> — the ground as a plate with an indigo label and a hairline rim.</li><li><strong>card</strong> — a panel with a hairline and a 12px radius; <code>card-elevated</code> steps the fill up rather than adding shadow.</li><li><strong>input</strong> — <code>surface-2</code> fill, <code>--border</code> hairline, an indigo focus ring drawn as a soft halo (no hard 2px outline), matching the source.</li><li><strong>badge</strong> — a pill. Soft by default; <code>badge-accent</code> is the only one that carries the indigo.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> use spacing for hierarchy. This kit has almost no other tool.</li><li><strong>Do</strong> keep one action colour; hover is a lighter step of the same hue.</li><li><strong>Do</strong> put numbers in the system monospace with tabular figures.</li><li><strong>Do</strong> let muted text stay bright when it is body copy. Dim is for captions only.</li><li><strong>Don't</strong> add a shadow to a card, a glow to a button, or a gradient behind content.</li><li><strong>Don't</strong> drop below 6px radius or go above 12px. The scale is intentionally narrow.</li><li><strong>Don't</strong> introduce a second accent family. Violet and blue are steps of the same idea.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

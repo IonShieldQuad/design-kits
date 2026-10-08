@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Angel — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Cyber Angel kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Nova+Flat&amp;family=Syncopate:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Cyber Angel</h1>
+  <p class="spec-sub">Chamfered light, holo cyan, unafraid</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Cyber Angel
+description: A light shell with dark wells — 1px black rules and 45° chamfers on #D9D9D9 panels, the Figma file&#x27;s holo cyan as the one action colour, and its dark Panel #242424 for everything inset.
+colors:
+  primary: &quot;#15b9ff&quot;
+  primary-hover: &quot;#4fcbff&quot;
+  on-primary: &quot;#313131&quot;
+  secondary: &quot;#89dcff&quot;
+  tertiary: &quot;#005e85&quot;
+  neutral: &quot;#d9d9d9&quot;
+  neutral-2: &quot;#e0e0e0&quot;
+  canvas: &quot;#2e2f30&quot;
+  surface: &quot;#e0e0e0&quot;
+  surface-2: &quot;#242424&quot;
+  text: &quot;#292929&quot;
+  text-muted: &quot;#444444&quot;
+  text-dim: &quot;#5c5c5c&quot;
+  text-invert: &quot;#313131&quot;
+  on-surface: &quot;#292929&quot;
+  on-surface-muted: &quot;#444444&quot;
+  on-surface-2: &quot;#89dcff&quot;
+  on-surface-2-muted: &quot;#7fbfda&quot;
+  border: &quot;#000000&quot;
+  border-strong: &quot;#000000&quot;
+  accent-soft: &quot;rgba(21, 185, 255, 0.14)&quot;
+  ok: &quot;#5fe3a1&quot;
+  warn: &quot;#ffc46b&quot;
+  danger: &quot;#b32017&quot;
+  danger-panel: &quot;#ff948f&quot;
+  info: &quot;#89dcff&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Syncopate&quot;
+    fontSize: &quot;2.6rem&quot;
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: &quot;0.02em&quot;
+  h1:
+    fontFamily: &quot;Syncopate&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: &quot;0.02em&quot;
+  h2:
+    fontFamily: &quot;Syncopate&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: &quot;0.02em&quot;
+  h3:
+    fontFamily: &quot;Syncopate&quot;
+    fontSize: &quot;1.05rem&quot;
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: &quot;0.02em&quot;
+  body:
+    fontFamily: &quot;Montserrat&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: &quot;Montserrat&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  input:
+    fontFamily: &quot;Nova Flat&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 400
+    lineHeight: 1.4
+  label:
+    fontFamily: &quot;Nova Flat&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: &quot;0.09em&quot;
+
+rounded:
+  sm: &quot;2px&quot;
+  md: &quot;3px&quot;
+  lg: &quot;4px&quot;
+  pill: &quot;2px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
+  surface:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+  hero:
+    backgroundColor: &quot;{colors.neutral-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.display}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.on-surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-body:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.on-surface-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated-body:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2-muted}&quot;
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.neutral-2}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2}&quot;
+    typography: &quot;{typography.input}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  input-placeholder:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2-muted}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger-panel}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+  table-header:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+  table-rule:
+    backgroundColor: &quot;{colors.border-strong}&quot;
+    height: &quot;1px&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;
+  focus-ring:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    height: &quot;2px&quot;
+  tint-surface:
+    backgroundColor: &quot;{colors.accent-soft}&quot;
+  scrim:
+    backgroundColor: &quot;{colors.canvas}&quot;
+  alert:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  alert-strong:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.on-surface-2}&quot;
+  alert-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger-panel}&quot;
+  toggle-track:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    height: &quot;1.3rem&quot;
+  toggle-knob:
+    backgroundColor: &quot;{colors.text-invert}&quot;
+    size: &quot;0.95rem&quot;
+  avatar:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-series-1:
+    backgroundColor: &quot;{colors.primary}&quot;
+  chart-series-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+  chart-series-3:
+    backgroundColor: &quot;{colors.tertiary}&quot;</code></pre></section>
+<h2 id="cyber-angel">Cyber Angel</h2>
+<h3 id="overview">Overview</h3>
+<p>Cyber Angel is the angel of the singularity as it was actually drawn: a light shell with dark wells. The page and its panels are light grey — <code>{colors.neutral}</code> under <code>{colors.surface}</code> — and everything inset into them (inputs, badges, alerts, code, elevated cards) is the design's dark Panel, <code>{colors.surface-2}</code>. The two are held together by pure black rules at 1px, <code>{colors.border}</code>, and by a 12px 45° chamfer on opposite corners that cuts the corner off every card, button, input, nav and badge in the kit.</p>
+<p>The single action colour is the file's holo cyan, <code>{colors.primary}</code>, with its own light tone <code>{colors.secondary}</code> as the gradient partner and <code>{colors.tertiary}</code> as the deep ink used wherever accent-coloured <em>text</em> has to sit on a light ground. Warmth is not part of this design and is not faked: the optimism here is lit, forward-leaning holo blue, not a sunset.</p>
+<p>Use it for bright, confident, technological work — product launches, AI and vision pages, tools that want to look like an instrument panel rather than a terminal. Do <strong>not</strong> use it where surfaces must be soft, translucent or pastel: that is <code>glass</code>, and its opposite is <code>carbon</code>.</p>
+<h3 id="colors">Colors</h3>
+<p>Every value below is a token from the Figma frame (<em>Marketplace-Cyber-Angel → UI Kit → Cyber Angel</em>) or a documented derivation from one; <code>README.md</code> lists the raw Figma names next to each.</p>
+<ul><li><strong>primary — <code>{colors.primary}</code></strong> the file's <em>Outline</em> holo cyan. It is a <strong>fill</strong>, not an ink: it carries dark label text (<code>{colors.on-primary}</code>, the file's <em>On Holo Dark</em>, 5.8:1) and it glows, because the file ships cyan halos at radius 2 / 4 / 8. Where cyan has to be legible <em>as text</em> on a light ground the kit uses <code>{colors.tertiary}</code> instead — a deeper cut of the same hue (5.1:1) — because no single cyan can serve both polarities: 1.6:1 as text on the light ground, 5.8:1 as a fill under dark ink, and the two cannot be one value.</li><li><strong>secondary — <code>{colors.secondary}</code></strong> the file's <em>Primary</em> / <em>On Panel</em> light holo. It is the gradient partner (media plates, progress bars, the avatar), the <code>info</code> status, and the rim colour on a focused input.</li><li><strong>tertiary — <code>{colors.tertiary}</code></strong> deep holo cyan: links, the active nav pill, the eyebrow, secondary-button labels, inline code. This is the one accent value that is <em>ink</em> on a light surface.</li><li><strong>neutral — <code>{colors.neutral}</code></strong> the file's <em>Background 2</em>: the page. <code>{colors.neutral-2}</code> (its <em>Surface</em>) is the lit stop the masthead ramps into, so the header is brighter than the page rather than darker.</li><li><strong><code>{colors.surface}</code> / <code>{colors.surface-2}</code></strong> are the two grounds that make this kit: light panels, dark wells. They are opposite polarities on purpose, and they are why the kit owns <strong>four</strong> text tokens instead of one.</li><li><strong><code>{colors.canvas}</code></strong> is the file's <em>Background</em>, the dark canvas these components were drawn on. It survives as the modal scrim, not as the page: a light reading of this file means the canvas yields to the panels.</li><li><strong><code>{colors.border}</code> and <code>{colors.border-strong}</code></strong> both resolve to the file's single border colour, <code>#000000</code>. The file uses one black rule everywhere; splitting it into two greys would soften the thing that makes the design read as a UI kit.</li><li>Status: <code>{colors.ok}</code>, <code>{colors.warn}</code>, <code>{colors.danger}</code>, <code>{colors.info}</code>. The file colours its semantics for the <strong>dark panel</strong> (<em>On Panel Error</em> <code>{colors.danger-panel}</code>), which no light ground can carry, so red exists twice: <code>{colors.danger}</code> is <em>Holo Error</em> <code>#ff554a</code> deepened for the light ground (a Delete button, an invalid-field hint), and <code>{colors.danger-panel}</code> is the file's own on-panel red for the wells (7.3:1). <code>ok</code> and <code>warn</code> only ever appear on the wells, so they are tuned to the panel.</li><li>The file's <strong>disabled</strong> pair (<code>#606060</code> Disabled Dark, <code>#FFFFFF</code> Disabled Light) is held for the disabled state and recorded here rather than in the token list: <code>#606060</code> on <code>{colors.neutral}</code> is 4.45:1 — an honest disabled tone, deliberately below the body-text floor.</li></ul>
+<h3 id="typography">Typography</h3>
+<p>Three families, and the voice belongs to the first: <strong>Syncopate</strong> for every heading — wide, squared, cap-set, counters knocked out of the letterforms. It is the reason this kit does not look like every other light theme, and it is set <strong>open</strong>, not tight: <code>{typography.display.letterSpacing}</code> is a positive <code>0.02em</code>, the opposite of the usual editorial display setting and exactly what the design does.</p>
+<p>The file's own ladder is 42 / 32 / 16 for Syncopate headers, 24 / 18 / 12 for Nova Flat subheads and inputs, and 14 / 12 / 10 for Montserrat body. The sizes declared above are the ones the shared lab actually renders; keep the file's ladder in mind when sizing new work.</p>
+<p><strong>Nova Flat</strong> takes the third slot — subheads, form and UI chrome (labels, badges, placeholders, captions). It is not literally monospaced and the design never asks for a mono: what it asks for is a flat, technical detail voice, and Nova Flat is it. <strong>Montserrat</strong> carries body copy at 0.95rem / 1.6. Buttons are Syncopate in the file, on a 24 / 16 / 12 ladder — the lab's <code>.btn</code> inherits the body face, so set them explicitly in your own build.</p>
+<h3 id="layout">Layout</h3>
+<p>Borders do the structure. 1px black rules separate every section, frame every card and outline every input and badge, so a page built with this kit reads as a stack of ruled panes rather than a set of floating surfaces. Keep <code>spacing.md</code> (16px) as the floor between two surfaces and <code>spacing.lg</code> (28px) between groups.</p>
+<p>The chamfer means a shape never has four square corners, so give the diagonal room: do not butt two clipped shapes together on the cut edge, and do not put a rounded child inside a chamfered parent.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>The file's depth is an <strong>emboss plus a holo halo</strong>, and both are reproduced:</p>
+<ul><li><code>--shadow-1</code> — resting cards: drop <code>2px 4px 4px rgba(0,0,0,.25)</code> plus an inner light <code>inset 1px 1px 2px rgba(205,205,205,.25)</code>, the file's <code>#CDCDCD40</code> emboss.</li><li><code>--shadow-2</code> — elevated cards: the same pair at <code>4px 8px 8px / .30</code>.</li><li><code>--glow</code> — the primary button and only the primary button: the file's cyan halo stack, <code>#15B9FF40</code> at radius 2 and 8.</li><li><code>--blur: blur(2px)</code> — the file's background-blur radius is 2, and that is all the frost this kit gets. It is texture, not glassmorphism.</li></ul>
+<p><code>clip-path</code> clips an element's box-shadow and outline along with its pixels, so on the chamfered buttons and cards the halo and the outer drop are re-expressed as <code>drop-shadow()</code> filters, which follow the clipped silhouette. The inner emboss needs no such treatment — it is painted inside the shape.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Two systems, one language. Radii are 2 / 3 / 4px (<code>{rounded.sm}</code> / <code>{rounded.md}</code> / <code>{rounded.lg}</code>) — the file rounds 2-4px at most — and <code>{rounded.pill}</code> is <strong>2px</strong>, because this kit has no pills: a badge is a chamfered tag and the avatar is a clipped chip.</p>
+<p>The signature is <code>--cut: 12px</code> plus the <code>--clip</code> polygon, a 45° chamfer on opposite corners (top-left and bottom-right). <code>--cut</code> is the single knob: raise it for a more brutal silhouette, set the polygon to <code>none</code> to opt out.</p>
+<p>One caveat, by construction: <strong><code>clip-path</code> cuts the border along the diagonal</strong>. The chamfered edge is borderless — a 45° black rule cannot follow a 45° cut twice. That is a known limitation of the technique, not a bug, and the straight edges still carry the rule.</p>
+<p>The file's brand glyph is a diagonal slash; <code>--cyber-angel-slash</code> in <code>tokens.css</code> exposes it as a repeatable 45° hatch for hero art, dividers and print, alongside <code>--cyber-angel-holo</code> (the fill ramp), <code>--cyber-angel-halo</code> (the halo as a radial wash) and <code>--cyber-angel-halo-ink</code> (<code>#15B9FF40</code>, which is also the drop-shadow under the primary button).</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — <code>{colors.primary}</code> holo fill with <code>{colors.on-primary}</code> ink, 3px radius, a 12px chamfer and the cyan halo. Hover brightens to <code>{colors.primary-hover}</code> (the file's halo light) rather than darkening: the label is dark ink, so a lighter fill means <em>more</em> contrast, not less (7.0:1).</li><li><strong>button-secondary</strong> — transparent, a black rim and a <code>{colors.tertiary}</code> label; hover fills with the 14% <code>{colors.accent-soft}</code> tint. It reads as a pane of the page inside a heavy frame.</li><li><strong>card</strong> — <code>{colors.surface}</code> inside a 1px <code>{colors.border}</code> rule with the emboss. Hover the ghost button inside it and you meet the other ground: <code>card-elevated</code> steps the fill to <code>{colors.surface-2}</code>, the dark Panel, and swaps its ink to <code>{colors.on-surface-2}</code>.</li><li><strong>input</strong> — the dark Panel with a black rim and <code>{colors.on-surface-2}</code> ink (10.2:1); the placeholder drops to <code>{colors.on-surface-2-muted}</code> (7.7:1). Focus swaps the rim to the holo light <code>{colors.secondary}</code> — a ring would be clipped away by the chamfer.</li><li><strong>badge</strong> — a chamfered tag, 2px radius, Nova Flat, uppercase, on the dark Panel: <code>{colors.on-surface-2-muted}</code> by default, the status inks for the variants, and <code>{colors.danger-panel}</code> where a danger badge needs the panel's own red.</li><li><strong>avatar / media / progress</strong> — any gradient runs <code>{colors.primary}</code> → <code>{colors.secondary}</code>, holo fill to holo light, with <code>{colors.on-primary}</code> ink on top (8.5:1 at the light end).</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the two polarities honest: light shell (<code>{colors.surface}</code>), dark wells (<code>{colors.surface-2}</code>). Every ink choice in this kit follows from which of the two it sits on.</li><li>Use <code>{colors.tertiary}</code> wherever accent text meets a light ground, and the <code>{colors.on-surface-2}</code> pair on the wells.</li><li>Let the black rule and the chamfer do the work — they are the identity at thumbnail size.</li><li>Keep the holo halo for the primary action only; a page of glows is a page of noise.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't use <code>{colors.primary}</code> as a text colour on a light ground (1.6:1), and don't put <code>{colors.text}</code> on <code>{colors.surface-2}</code> — the wells have their own ink pair.</li><li>Don't round anything above 4px, and don't reintroduce pills.</li><li>Don't put <code>{colors.warn}</code> or <code>{colors.ok}</code> on a light ground; they are panel colours.</li><li>Don't put a gradient in <code>colors:</code> — the holo ramp lives in <code>tokens.css</code> (<code>--cyber-angel-holo</code>), and the file's two gradient stops are shipped as <code>{colors.primary}</code> and <code>{colors.secondary}</code>.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>
