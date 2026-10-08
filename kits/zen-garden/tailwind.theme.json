@@ -3,6 +3,7 @@
     "extend": {
       "colors": {
         "primary": "#4a6658",
+        "accent-ink": "#455f52",
         "primary-hover": "#40594b",
         "secondary": "#567694",
         "tertiary": "#40594b",

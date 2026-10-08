@@ -4,6 +4,7 @@ name: Cyberpunk
 description: Neon on near-black. Hot magenta drives every action, electric cyan and acid yellow carry gradients and hazards, and magenta hairlines make the grid itself glow.
 colors:
   primary: "#ff2e88"
+  accent-ink: "#ff3d91"
   secondary: "#22e0ff"
   tertiary: "#e8ff2e"
   neutral: "#08070d"

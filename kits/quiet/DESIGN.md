@@ -5,7 +5,7 @@ description: Quiet dark app chrome — one soft indigo accent, small radii, gene
 colors:
   primary: "#5b7cfa"
   primary-hover: "#7390ff"
-  primary-ink: "#0b0e13"
+  primary-ink: "#7490fb"
   secondary: "#7d6ce8"
   tertiary: "#6b93e0"
   neutral: "#0b0e13"

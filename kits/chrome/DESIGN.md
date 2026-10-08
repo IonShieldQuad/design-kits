@@ -4,6 +4,7 @@ name: Chrome
 description: Liquid chrome on black — a metallic four-stop ramp as the finish, magenta as the action, cyan as the cool tertiary, over hard 2px line work.
 colors:
   primary: "#ff2e88"
+  accent-ink: "#ff4796"
   secondary: "#c9d0da"
   tertiary: "#35e3ff"
   neutral: "#08090d"

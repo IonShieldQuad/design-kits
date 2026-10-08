@@ -1,0 +1,159 @@
+/* ============================================================================
+   design-kits · pixel-dmg                                    contract v1
+   ----------------------------------------------------------------------------
+   THE GAME BOY DMG. A reflective, monochrome LCD behind a green polariser:
+   FOUR shades of green and no fifth, because the hardware had no colour to
+   spend. The machine's discipline is that every distinction — hierarchy,
+   status, emphasis — must be a DISTANCE IN LUMINANCE, never a change of hue.
+
+   THE FOUR SHADES (the kit's entire palette, and its logo):
+     #0f380f   ink        the darkest pixels
+     #306230   mid        dithering, rules, the shell's shadow
+     #8bac0f   light-mid  half-tone fields, the second accent
+     #9bbc0f   LCD        the unlit field — the page itself
+
+   THE FOUR-SHADE PROBLEM, MEASURED. The canonical four cannot carry a WCAG-AA
+   page on their own. The darkest ink #0f380f reaches only 6.02:1 on the
+   lightest field #9bbc0f — below the 7:1 the contract asks of --text — and the
+   reflective LCD has no backlight above #9bbc0f. So this kit EXTENDS THE RAMP,
+   and records the derivation:
+     DEEP  #082608                      = #0f380f darkened to ~35% (7.43:1)
+     LIT   #a3c510 #b6d313 #cbea19 …    = #9bbc0f lifted 8-100%: the notional
+           #dcf823                        backlight ladder a reflective panel
+                                          does not have, used for the artwork
+   Every other value is one of the four shades, or a mix of two of them.
+
+   THE PAGE GROUND IS CONFINED TO THE LIT LADDER, on purpose. Even the canonical
+   light-mid #8bac0f (L .3503) drops --text to 6.2:1 — under 7:1 — so the pixel
+   landscape drawn into --bg is built ONLY from #9bbc0f and lighter. The ink
+   shades live in the components and the signature motifs, never under type.
+
+   STATUS IS DISTINGUISHED BY LUMINANCE, NOT HUE. With only greens there can be
+   no red-vs-green: --ok / --warn / --danger / --info are four DEPTHS of the
+   same green (danger deepest at 7.11:1, ok 6.02, warn 5.32, info 4.69 on
+   --surface-2) and the UI always names them — colour alone never carries meaning.
+
+   NOTHING SMOOTH: radii are 0; every shadow is a zero-blur offset block; every
+   gradient is a hard-stop dither; artwork is drawn small and scaled up with
+   --pixel-render; --blur is none. kit.css squares the last four lab curves.
+
+   Type: Press Start 2P (8x8 headline) · Silkscreen (body) · VT323 (data)
+   Contract: docs/KIT-SPEC.md v1 — every required name present, incl. --border-w.
+   ========================================================================== */
+:root{
+  /* -- surfaces: the lit LCD field --------------------------------------- */
+  /* --bg is a PIXEL-ART LANDSCAPE, not a smooth ramp. A 160x90 SVG (sky, dither,
+     sun, clouds, a hard horizon slab and a dithered ground) is stretched to the
+     full width with `100% auto` so the art pixels stay square and land ~8px wide
+     on a desktop; --pixel-render: pixelated keeps them crisp. Below the band a
+     hard-stop checkerboard carries the field to the foot of the page. A smoothly
+     fading --bg would be the single biggest giveaway of a smooth kit. */
+  --bg:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nOTAnIHZpZXdCb3g9JzAgMCAxNjAgOTAnIHNoYXBlLXJlbmRlcmluZz0nY3Jpc3BFZGdlcyc+PGRlZnM+PHBhdHRlcm4gaWQ9J2QnIHdpZHRoPScyJyBoZWlnaHQ9JzInIHBhdHRlcm5Vbml0cz0ndXNlclNwYWNlT25Vc2UnPjxyZWN0IHdpZHRoPScyJyBoZWlnaHQ9JzInIGZpbGw9JyM5YmJjMGYnLz48cmVjdCB3aWR0aD0nMScgaGVpZ2h0PScxJyBmaWxsPScjYWVkMDExJy8+PHJlY3QgeD0nMScgeT0nMScgd2lkdGg9JzEnIGhlaWdodD0nMScgZmlsbD0nI2FlZDAxMScvPjwvcGF0dGVybj48cGF0dGVybiBpZD0naCcgd2lkdGg9JzInIGhlaWdodD0nMicgcGF0dGVyblVuaXRzPSd1c2VyU3BhY2VPblVzZSc+PHJlY3Qgd2lkdGg9JzInIGhlaWdodD0nMicgZmlsbD0nI2Q0ZjQxZCcvPjxyZWN0IHdpZHRoPScxJyBoZWlnaHQ9JzEnIGZpbGw9JyNiNmQzMTMnLz48cmVjdCB4PScxJyB5PScxJyB3aWR0aD0nMScgaGVpZ2h0PScxJyBmaWxsPScjYjZkMzEzJy8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0nMTYwJyBoZWlnaHQ9JzkwJyBmaWxsPScjZDRmNDFkJy8+PHJlY3QgeD0nMTI0JyB5PScxJyB3aWR0aD0nMScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTE5JyB5PScyJyB3aWR0aD0nMTEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExNycgeT0nMycgd2lkdGg9JzE1JyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTUnIHk9JzQnIHdpZHRoPScxOScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTE0JyB5PSc1JyB3aWR0aD0nMjEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExMycgeT0nNicgd2lkdGg9JzIzJyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTInIHk9JzcnIHdpZHRoPScyNScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTExJyB5PSc4JyB3aWR0aD0nMjcnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExMScgeT0nOScgd2lkdGg9JzI3JyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTAnIHk9JzEwJyB3aWR0aD0nMjknIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExMCcgeT0nMTEnIHdpZHRoPScyOScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTA5JyB5PScxMicgd2lkdGg9JzMxJyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMDknIHk9JzEzJyB3aWR0aD0nMzEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzEwOScgeT0nMTQnIHdpZHRoPSczMScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTA5JyB5PScxNScgd2lkdGg9JzMxJyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMDknIHk9JzE2JyB3aWR0aD0nMzEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzEwOCcgeT0nMTcnIHdpZHRoPSczMycgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTA5JyB5PScxOCcgd2lkdGg9JzMxJyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMDknIHk9JzE5JyB3aWR0aD0nMzEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzEwOScgeT0nMjAnIHdpZHRoPSczMScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTA5JyB5PScyMScgd2lkdGg9JzMxJyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMDknIHk9JzIyJyB3aWR0aD0nMzEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExMCcgeT0nMjMnIHdpZHRoPScyOScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTEwJyB5PScyNCcgd2lkdGg9JzI5JyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTEnIHk9JzI1JyB3aWR0aD0nMjcnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExMScgeT0nMjYnIHdpZHRoPScyNycgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTEyJyB5PScyNycgd2lkdGg9JzI1JyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTMnIHk9JzI4JyB3aWR0aD0nMjMnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExNCcgeT0nMjknIHdpZHRoPScyMScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTE1JyB5PSczMCcgd2lkdGg9JzE5JyBoZWlnaHQ9JzEnIGZpbGw9JyNlOGZmMzMnLz48cmVjdCB4PScxMTcnIHk9JzMxJyB3aWR0aD0nMTUnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzExOScgeT0nMzInIHdpZHRoPScxMScgaGVpZ2h0PScxJyBmaWxsPScjZThmZjMzJy8+PHJlY3QgeD0nMTI0JyB5PSczMycgd2lkdGg9JzEnIGhlaWdodD0nMScgZmlsbD0nI2U4ZmYzMycvPjxyZWN0IHg9JzEyNCcgeT0nNycgd2lkdGg9JzEnIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzEyMCcgeT0nOCcgd2lkdGg9JzknIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExOCcgeT0nOScgd2lkdGg9JzEzJyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTcnIHk9JzEwJyB3aWR0aD0nMTUnIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExNicgeT0nMTEnIHdpZHRoPScxNycgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nMTE2JyB5PScxMicgd2lkdGg9JzE3JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTUnIHk9JzEzJyB3aWR0aD0nMTknIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExNScgeT0nMTQnIHdpZHRoPScxOScgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nMTE1JyB5PScxNScgd2lkdGg9JzE5JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTUnIHk9JzE2JyB3aWR0aD0nMTknIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExNCcgeT0nMTcnIHdpZHRoPScyMScgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nMTE1JyB5PScxOCcgd2lkdGg9JzE5JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTUnIHk9JzE5JyB3aWR0aD0nMTknIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExNScgeT0nMjAnIHdpZHRoPScxOScgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nMTE1JyB5PScyMScgd2lkdGg9JzE5JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTYnIHk9JzIyJyB3aWR0aD0nMTcnIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzExNicgeT0nMjMnIHdpZHRoPScxNycgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nMTE3JyB5PScyNCcgd2lkdGg9JzE1JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMTgnIHk9JzI1JyB3aWR0aD0nMTMnIGhlaWdodD0nMScgZmlsbD0nI2Y2ZmY3MCcvPjxyZWN0IHg9JzEyMCcgeT0nMjYnIHdpZHRoPSc5JyBoZWlnaHQ9JzEnIGZpbGw9JyNmNmZmNzAnLz48cmVjdCB4PScxMjQnIHk9JzI3JyB3aWR0aD0nMScgaGVpZ2h0PScxJyBmaWxsPScjZjZmZjcwJy8+PHJlY3QgeD0nNCcgeT0nMTAnIHdpZHRoPSczMCcgaGVpZ2h0PSc1JyBmaWxsPScjYjZkMzEzJy8+PHJlY3QgeD0nMCcgeT0nMTUnIHdpZHRoPSc0NCcgaGVpZ2h0PSc0JyBmaWxsPScjYjZkMzEzJy8+PHJlY3QgeD0nOCcgeT0nOCcgd2lkdGg9JzE2JyBoZWlnaHQ9JzMnIGZpbGw9JyNjMmUwMTgnLz48cmVjdCB4PScxNCcgeT0nMTknIHdpZHRoPScyMicgaGVpZ2h0PSczJyBmaWxsPScjYzJlMDE4Jy8+PHJlY3QgeD0nNTYnIHk9JzEyJyB3aWR0aD0nMjgnIGhlaWdodD0nNScgZmlsbD0nI2I2ZDMxMycvPjxyZWN0IHg9JzUwJyB5PScxNycgd2lkdGg9JzQwJyBoZWlnaHQ9JzMnIGZpbGw9JyNiNmQzMTMnLz48cmVjdCB4PSc2MicgeT0nMTAnIHdpZHRoPScxNCcgaGVpZ2h0PSczJyBmaWxsPScjYzJlMDE4Jy8+PHJlY3QgeD0nMicgeT0nMzAnIHdpZHRoPScyMicgaGVpZ2h0PSc0JyBmaWxsPScjYjZkMzEzJy8+PHJlY3QgeD0nNjAnIHk9JzI4JyB3aWR0aD0nMjYnIGhlaWdodD0nNCcgZmlsbD0nI2I2ZDMxMycvPjxyZWN0IHg9Jzk2JyB5PSczNicgd2lkdGg9JzMyJyBoZWlnaHQ9JzQnIGZpbGw9JyNiNmQzMTMnLz48cmVjdCB4PSc4MCcgeT0nNDInIHdpZHRoPScyNCcgaGVpZ2h0PSczJyBmaWxsPScjYzJlMDE4Jy8+PHJlY3QgeT0nNDAnIHdpZHRoPScxNjAnIGhlaWdodD0nNycgZmlsbD0ndXJsKCNoKScvPjxyZWN0IHk9JzQ3JyB3aWR0aD0nMTYwJyBoZWlnaHQ9JzUnIGZpbGw9JyM5YmJjMGYnLz48cmVjdCB5PSc1Micgd2lkdGg9JzE2MCcgaGVpZ2h0PScxJyBmaWxsPScjYWVkMDExJy8+PHJlY3QgeT0nNTMnIHdpZHRoPScxNjAnIGhlaWdodD0nMzcnIGZpbGw9J3VybCgjZCknLz48cmVjdCB4PScxMDQnIHk9JzUzJyB3aWR0aD0nMjYnIGhlaWdodD0nNicgZmlsbD0nI2FlZDAxMScvPjxyZWN0IHg9JzExMCcgeT0nNTknIHdpZHRoPScxNCcgaGVpZ2h0PSc1JyBmaWxsPScjYWVkMDExJy8+PHJlY3QgeD0nMjQnIHk9JzY2JyB3aWR0aD0nMjInIGhlaWdodD0nNicgZmlsbD0nI2FlZDAxMScvPjwvc3ZnPg==") 0 0 / 100% auto no-repeat,
+    repeating-conic-gradient(#9bbc0f 0% 25%, #aed011 0% 50%) 0 0 / 16px 16px repeat,
+    #9bbc0f;
+  --bg-2:          #b6d313;                 /* solid stand-in: masthead, exports */
+  --surface:       #b4d212;                 /* cards: one lift ABOVE the field —
+                                               the panel catches the room light */
+  --surface-2:     #9bbc0f;                 /* insets / inputs / badges / code */
+  --overlay:       rgba(15, 56, 15, .62);   /* scrim: the shell at night, green */
+  /* the masthead paints NOTHING over the ground — the pixel landscape IS the
+     masthead, and a smooth radial bloom would be a smooth thing. */
+  --wash:          transparent;
+  /* art is drawn small and scaled: nearest-neighbour keeps it chunky, not soft */
+  --pixel-render:  pixelated;
+
+  /* -- text: all four tiers are dark greens; the ground is pale ---------- */
+  --text:          #082608;                 /* DEEP — 7.43:1 on the darkest ground */
+  --text-muted:    #0f380f;                 /* the DMG's own ink — 6.02:1 minimum */
+  --text-dim:      #1a481a;                 /* captions/placeholders — 4.83:1 min.
+                                               NOT #306230: a mid-green is 3.29:1
+                                               on the pale field and FAILS 4.55:1. */
+  --text-invert:   #b6d313;                 /* LCD-lit label ON the ink plate: 7.73:1 */
+
+  /* -- brand: the ink IS the action colour ------------------------------- */
+  --accent:        #0f380f;
+  --accent-hover:  #1c4f1c;                 /* one dither step lighter on press */
+  --accent-2:      #8bac0f;                 /* the light-mid green: dithering,
+                                               charts, media — never an action */
+  --accent-soft:   rgba(15, 56, 15, .16);   /* 16% ink tint, derived from --accent */
+
+  /* -- accent as TEXT (the ink is a fill, so labels take the same ink) --- */
+  --accent-ink:        #0f380f;             /* 6.02:1 minimum over every ground */
+  --accent-ink-hover:  #082808;             /* one step deeper on hover */
+
+  /* -- status: four DEPTHS of one green, never four hues ---------------- */
+  --ok:            #0f380f;                 /* nominal  6.02:1 on --surface-2 */
+  --warn:          #174117;                 /* caution  5.32:1 */
+  --danger:        #0a2a0a;                 /* fault    7.11:1 — the deepest */
+  --info:          #1c4a1c;                 /* data     4.69:1 */
+
+  /* -- lines: chunky, SOLID, dark green --------------------------------- */
+  --border:        #306230;
+  --border-strong: #0f380f;
+  --border-w:      2px;
+  --focus-ring:    #306230;                 /* 3.29:1 (>=3), distinct from the ink */
+
+  /* -- shape: hard pixel corners. NO CURVES AT ALL ----------------------- */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   0px;                      /* a badge is a stamped tile */
+  --cut:           0px;
+
+  /* -- type: three pixel faces, three jobs ----------------------------- */
+  --font-display:  "Press Start 2P", "Silkscreen", ui-monospace, monospace;
+  --font-body:     "Silkscreen", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "VT323", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .1em;
+  --tracking-display: .01em;
+
+  /* -- depth: HARD offset drops, ZERO blur ------------------------------ */
+  /* A pixel-art shadow is a solid block offset by whole pixels; any blur would
+     put anti-aliased grey into a four-shade palette. */
+  --shadow-1:      4px 4px 0 0 rgba(15, 56, 15, .30);
+  --shadow-2:      6px 6px 0 0 rgba(15, 56, 15, .36);
+  /* --glow is a chunky pixel BEVEL on the primary button, not a bloom. */
+  --glow:          inset 0 2px 0 rgba(180, 210, 18, .35),
+                   inset 0 -2px 0 rgba(8, 38, 8, .60);
+  --input-inset:   inset 2px 2px 0 rgba(10, 42, 10, .30);
+  --blur:          none;                    /* an LCD is not frosted glass */
+
+  /* -- motion: a sprite step, quick and dry ---------------------------- */
+  --dur:           .12s;
+  --ease:          cubic-bezier(.3, .9, .4, 1);
+
+  /* -- the media panel: a HARD-STOP dither, not the lab's smooth default -- */
+  --media-bg:      repeating-conic-gradient(#306230 0% 25%, #8bac0f 0% 50%) 0 0 / 6px 6px repeat;
+  --media-op:      1;                        /* dithered panels are opaque */
+  /* progress + avatar fill: the lab's smooth accent ramp, replaced by a hard-stop dither */
+  --fill-bg: repeating-conic-gradient(var(--accent) 0% 25%, var(--accent-2) 0% 50%) 0 0 / 4px 4px repeat;
+  /* square controls: native checkbox/radio ignore --radius-pill, so the box is drawn */
+  --check-appearance: none;
+  --check-bg:         var(--surface-2);
+  --check-border:     var(--border-w, 1px) solid var(--border);
+  --check-checked:    var(--accent);
+
+  /* ----------------------------------------------------------- signature */
+  /* THREE motifs, three jobs, all built from the four shades. */
+
+  /* 1 · DITHER — the machine's own trick for faking shades: a 2px checkerboard
+     mixes #306230 with the field. A repeating-CONIC gradient is the one
+     primitive that draws a true checkerboard. */
+  --pixel-dmg-dither:
+    repeating-conic-gradient(#306230 0% 25%, #b4d212 0% 50%) 0 0 / 4px 4px repeat,
+    linear-gradient(180deg, #b4d212 0px, #9bbc0f 100%);
+
+  /* 2 · DOT-MATRIX — the LCD's physical pixel grid: a 1px dark line every 4px
+     on both axes over the lit field. The screen's grain. */
+  --pixel-dmg-dotmatrix:
+    repeating-linear-gradient(180deg, rgba(48,98,48,.50) 0px, rgba(48,98,48,.50) 1px, rgba(48,98,48,0) 1px, rgba(48,98,48,0) 4px),
+    repeating-linear-gradient(90deg,  rgba(48,98,48,.26) 0px, rgba(48,98,48,.26) 1px, rgba(48,98,48,0) 1px, rgba(48,98,48,0) 4px),
+    linear-gradient(180deg, #b4d212 0px, #9bbc0f 100%);
+
+  /* 3 · SPRITE — DRAWN ARTWORK at 7x6, scaled to an 84x72 box. Base64, NEVER
+     hand-percent-encoded: a double-encoded '#' fails silently as a blank tile. */
+  --pixel-dmg-sprite:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4NCcgaGVpZ2h0PSc3Micgdmlld0JveD0nMCAwIDcgNicgc2hhcGUtcmVuZGVyaW5nPSdjcmlzcEVkZ2VzJz48cmVjdCB3aWR0aD0nNycgaGVpZ2h0PSc2JyBmaWxsPScjYjRkMjEyJy8+PHBhdGggZmlsbD0nIzBmMzgwZicgZD0nTTEgMGgydjFoLTJ6TTQgMGgydjFoLTJ6TTAgMWg3djFoLTd6TTAgMmg3djFoLTd6TTEgM2g1djFoLTV6TTIgNGgzdjFoLTN6TTMgNWgxdjFoLTF6Jy8+PHBhdGggZmlsbD0nIzMwNjIzMCcgZD0nTTEgMGgydjFoLTJ6TTEgMWgydjFoLTJ6Jy8+PC9zdmc+") center / 84px 72px no-repeat,
+    linear-gradient(180deg, #b4d212 0px, #9bbc0f 100%);
+}

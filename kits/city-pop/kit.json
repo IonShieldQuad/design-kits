@@ -1,0 +1,23 @@
+{
+  "name": "City Pop",
+  "tagline": "A Tokyo bay in daylight — cream sky, coral sun, ocean teal",
+  "signature": [
+    "--city-pop-sky",
+    "--city-pop-skyline",
+    "--city-pop-sea"
+  ],
+  "order": 130,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap",
+  "fonts_label": "Sora · Manrope · Space Mono",
+  "mode": "light",
+  "source": "original (re-tuned from a twilight draft to the daytime register the brief asked for)",
+  "tags": [
+    "light",
+    "retro",
+    "city-pop",
+    "pastel",
+    "sunset",
+    "80s"
+  ],
+  "use_when": "daytime nostalgia for music, media and lifestyle pages: album and stream branding, editorial features, anything that should feel like a Tokyo bay in the afternoon"
+}

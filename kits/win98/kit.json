@@ -1,0 +1,17 @@
+{
+  "name": "Windows 98",
+  "tagline": "Windows 95/98 desktop chrome — grey face, hard 3D bevels, navy title bar",
+  "signature": [
+    "--win98-titlebar",
+    "--win98-desktop",
+    "--win98-bevel-out",
+    "--win98-bevel-in"
+  ],
+  "order": 135,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Public+Sans:wght@400;500;600;700&family=VT323&display=swap",
+  "fonts_label": "Silkscreen · Public Sans · VT323",
+  "mode": "light",
+  "source": "original — the classic 16-colour Windows 95/98 UI palette (#c0c0c0 face, #000080 caption, #008080 desktop TEAL) reinterpreted as a modern token set",
+  "tags": ["light", "retro", "windows", "desktop", "ui", "pixel", "90s"],
+  "use_when": "a page that should FEEL like a 1998 desktop OS — nostalgic product pages, retro dev tools, easter-egg modes, anything that wants grey chrome and one navy title bar"
+}

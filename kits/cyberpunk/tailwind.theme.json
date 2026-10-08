@@ -3,6 +3,7 @@
     "extend": {
       "colors": {
         "primary": "#ff2e88",
+        "accent-ink": "#ff3d91",
         "secondary": "#22e0ff",
         "tertiary": "#e8ff2e",
         "neutral": "#08070d",

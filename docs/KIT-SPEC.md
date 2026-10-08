@@ -24,7 +24,8 @@ renders (fallbacks) but is considered incomplete and `build.py` will warn.
 ```css
 :root{
   /* surfaces */
-  --bg:            /* page background — hex OR gradient */
+  --bg:            /* page background — hex, gradient, OR image (a url() with its own size/position)
+                      e.g. url("data:image/svg+xml;base64,...") center / cover no-repeat */
   --bg-2:          /* secondary background / gradient stop */
   --surface:       /* cards, panels */
   --surface-2:     /* nested panels, inputs, subtle fills */
@@ -84,6 +85,41 @@ These are not required, but the shared lab honours them when present:
 
 Three-tier stacks (dark canvas → light card → dark inset) are what these exist for; without
 them the lab can only express one text colour per page.
+
+| Token | Effect |
+|---|---|
+| `--media-bg` | replaces the `.card-media` panel's hardcoded two-stop accent gradient. Media panels are where a kit shows a surface rather than a colour, so this is the hook for a dithered, hard-banded, photographed or pixel-art panel. Falls back to the accent→accent-2 ramp. |
+| `--media-op` | the `.card-media` opacity (default `.85`). A dithered or dark panel often wants `1`. |
+| `--wash` | replaces the masthead's radial `--accent-soft` bloom. A flat or pixel kit wants no smooth radial gradient over its ground. |
+| `--btn-shadow` | applied to **every** button variant. Previously `box-shadow` reached `.btn-primary` only (through `--glow`), so a kit whose controls are physical — a 90s bevel, a pixel offset — could only chrome one of its five variants. A kit that declares it gets its chrome on all of them. |
+| `--check-appearance` + `--check-bg` / `--check-border` / `--check-checked` | squares the checkbox and radio. Native controls ignore `border-radius`, so a kit with `--radius-pill: 0px` still renders round radios — a real break of a pixel/90s kit's only rule. Declare `--check-appearance: none` with a box; the checked state is a filled box. Defaults are `revert` (the browser's own rendering). |
+| `--fill-bg` | the fill behind `.bar > i` (progress) and `.avatar`. Both were a hardcoded smooth two-stop accent ramp, so a kit could not make them hard-stopped, dithered or blocky. Falls back to the accent→accent-2 ramp. |
+| `--pixel-render` | sets `image-rendering` on every element carrying a background image (page ground, media panels, signature tiles, `img`). `pixelated` is what makes a **low-resolution** asset scale up into chunky pixels instead of a soft blur. |
+
+## Non-smooth kits (pixel art, 8-bit, 90s chrome)
+
+A pixel kit fails in a specific way: the palette and the pixel *font* are right, but every
+surface is still smoothly rendered, so it reads as "retro colours" rather than as a low-resolution
+screen. Smoothness enters through five doors, and all five have to be shut:
+
+1. **Curves.** Set `--radius-*` to `0px`. A rounded pixel UI does not exist. Note that native
+   checkbox/radio ignore `border-radius` — square those too with `--check-appearance: none` plus
+   the `--check-*` box tokens, or the kit's one absolute rule is visibly false.
+2. **Soft shadows.** Use **zero-blur offset** shadows (`4px 4px 0 0 var(--border)`) — a dark
+   square offset is the pixel idiom; a blurred drop shadow is a modern one.
+3. **Gradients.** Use hard stops (two stops sharing a position) or a dither
+   (`repeating-conic-gradient(<a> 0 25%, <b> 0 50%)` with `background-size: 2px 2px`) instead of a
+   smooth ramp. A `--bg` that fades is the single biggest giveaway.
+4. **Scaled artwork.** `--pixel-render: pixelated`. Then **draw the asset small** — a 160x100 SVG
+   scaled to fill the page gives genuinely chunky pixels; drawing it at full size and scaling it
+   renders smooth and defeats the purpose.
+5. **The blur/glow door.** Set `--blur: none` and avoid `backdrop-filter`. If the kit wants depth,
+   use a hard offset or a stepped border, not a bloom.
+
+Also worth doing: give the media panels a dither via `--media-bg`, and set `--wash` to the ground
+colour so no radial gradient sits over the page. If the kit wants corners that are "cut" rather
+than rounded, supply a **stepped** `--clip` polygon (a staircase of 1px/2px steps) — that reads as
+pixel-art geometry where a straight diagonal reads as a modern chamfer.
 
 ## `kit.css` — the escape hatch (optional)
 
@@ -207,6 +243,17 @@ Rules that save real time:
   can clear both families; the provable ceiling on the inverted ground is 3.31:1. In that case
   the paired `--text-on-surface-2*` tokens carry that tier, and the kit must state the ceiling
   in its README rather than lightening the ground. Run the linter; fix warnings.
+- **Grade the ink against the pixels it actually sits on — composite translucent grounds.** An
+  ink sitting on a tint must be measured against the **composited** colour, not against the
+  tint's declared value and not against the solid underneath it. Concretely: a badge with
+  `--accent-soft` (a ~16% tint of the accent) behind `--accent-ink` is graded as
+  `ratio(accent-ink, composite(accent-soft over the surface))`. This is the check that gets
+  missed — grading against solids alone passed nine kits whose accent badges, alerts and
+  secondary-button labels rendered at 3.3–4.4:1. `tools/verify-lab.cjs` now composites the real
+  DOM stack and fails the kit, so treat a `composited text contrast` error as a real defect.
+- **`--accent-ink` is required in practice, not optional in spirit.** If a kit uses the accent
+  as text anywhere (eyebrow, link, active nav, badge label, secondary button), declare
+  `--accent-ink`; falling back to `--accent` means the *fill* colour is being used as a label.
 - **One accent, one second accent.** A third "look at me" colour is how kits start looking
   like a rainbow. Status colours don't count toward this.
 - **Typography comes from a real pairing**, not five fonts. Two families (display + body) and

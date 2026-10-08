@@ -4,6 +4,7 @@ name: Summer Sunset
 description: An 80s synthwave sunset poster as UI — a warm sunset-sky gradient ground, bold 2px aubergine outlines, and orange, cyan and magenta over the top.
 colors:
   primary: "#ff7a1a"
+  primary-ink: "#8f3b00"
   secondary: "#06a9c4"
   tertiary: "#ff2ea6"
   neutral: "#fff5ec"
@@ -83,13 +84,13 @@ components:
     rounded: "{rounded.md}"
   button-secondary:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.primary}"
+    textColor: "{colors.primary-ink}"
     typography: "{typography.label}"
     rounded: "{rounded.md}"
     padding: "0.58rem 1rem"
   button-secondary-hover:
     backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.accent-hover}"
+    textColor: "{colors.primary-ink}"
     rounded: "{rounded.md}"
   card:
     backgroundColor: "{colors.surface}"
@@ -118,7 +119,7 @@ components:
     padding: "0.2rem 0.55rem"
   badge-accent:
     backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.primary}"
+    textColor: "{colors.primary-ink}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
   badge-ok:

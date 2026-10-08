@@ -33,7 +33,7 @@
   /* ----------------------------------------------------------------- text */
   --text:          #1c2033;   /* 14.3:1 on the lightest gradient stop */
   --text-muted:    #454b63;   /* 8.2:1 on the composited .55 surface */
-  --text-dim:      #656c87;   /* captions, placeholders */
+  --text-dim: #585e76;   /* captions, placeholders */
   --text-invert:   #ffffff;   /* 5.9:1 on --accent */
 
   /* ---------------------------------------------------------------- brand */
@@ -41,6 +41,7 @@
   --accent-hover:  #3944d6;
   --accent-2:      #b39dff;  /* lilac — gradients, charts, media */
   --accent-soft:   rgba(69, 80, 232, .12);
+  --accent-ink: #2a36e5;               /* the accent as TEXT: measured on every ground, incl. its own 16% tint */
 
   /* --------------------------------------------------------------- status */
   --ok:            #0f7350;

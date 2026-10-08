@@ -1,0 +1,16 @@
+{
+  "name": "Pixel DMG",
+  "tagline": "Four shades of green",
+  "signature": [
+    "--pixel-dmg-dither",
+    "--pixel-dmg-dotmatrix",
+    "--pixel-dmg-sprite"
+  ],
+  "order": 140,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap",
+  "fonts_label": "Press Start 2P · Silkscreen · VT323",
+  "mode": "light",
+  "source": "original — the palette is the Game Boy DMG's canonical four green shades (#0f380f #306230 #8bac0f #9bbc0f), extended one step at each end so WCAG-AA text can exist on a reflective LCD",
+  "tags": ["light", "retro", "pixel", "gameboy", "monochrome", "arcade"],
+  "use_when": "retro-computing and emulator pages, chiptune and game tools, playful portfolios and 8-bit microsites that want one screen and four greens"
+}

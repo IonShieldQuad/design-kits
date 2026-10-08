@@ -92,6 +92,9 @@ order, palette limits.
 | [`sakura`](kits/sakura/DESIGN.md) | light · spring · floral · fresh · bright · colourful | spring campaigns, florals and lifestyle brands that want real colour |
 | [`gothic`](kits/gothic/DESIGN.md) | dark · bold · organic · editorial | music, subculture zines, nightlife, fashion/dark editorial |
 | [`retro-anime`](kits/retro-anime/DESIGN.md) | dark · retro · anime · neon · synthwave · city-pop | night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like 1987 |
+| [`city-pop`](kits/city-pop/DESIGN.md) | light · retro · city-pop · pastel · sunset · 80s | daytime nostalgia for music, media and lifestyle pages: album and stream branding, editorial features, anything that should feel like a Tokyo bay in the afternoon |
+| [`win98`](kits/win98/DESIGN.md) | light · retro · windows · desktop · ui · pixel · 90s | a page that should FEEL like a 1998 desktop OS — nostalgic product pages, retro dev tools, easter-egg modes, anything that wants grey chrome and one navy title bar |
+| [`pixel-dmg`](kits/pixel-dmg/DESIGN.md) | light · retro · pixel · gameboy · monochrome · arcade | retro-computing and emulator pages, chiptune and game tools, playful portfolios and 8-bit microsites that want one screen and four greens |
 <!-- END KITS -->
 
 ## Token contract (v1)

@@ -1,0 +1,198 @@
+/* ============================================================================
+   design-kits · win98                                                    contract v1
+   ----------------------------------------------------------------------------
+   WINDOWS 95/98 DESKTOP CHROME. This is not a flat UI kit and not a "retro
+   filter" — it is a PHYSICAL CONTROL PANEL cut from one grey plastic part. The
+   entire visual language is three things: a single moulded GREY FACE, a hard
+   two-tone 3D bevel that raises or sinks every control, and ONE navy gradient
+   title bar for the active thing.
+
+   THE GREY IS THE LIGHT SOURCE. #c0c0c0 is the classic control face. Nothing
+   here is white-on-dark or dark-on-white flatness: depth is carried by bevels,
+   not by shadow blur. --shadow-* and --glow hold INSET two-tone steps, not
+   soft drops, because a 1998 toolkit had no blurred shadows — a raised lip is
+   a 1px white line and a 1px near-black line, hard, at the same edge.
+
+   ONE ACTION COLOUR. Navy #000080 fills the primary button and the title bar
+   (the active caption), and nothing else. It reads as text too (8.8:1 on the
+   grey face), so it does double duty as --accent and --accent-ink; the hover
+   step is a slightly brighter navy. Teal #008080 is the second accent and is
+   the DESKTOP, not an action — it belongs to card media and the progress bar.
+
+   THE THIRD SURFACE IS A WHITE WELL. Insets (fields, code, badges, alerts) are
+   #ffffff, exactly as a text field was a white recess milled into the grey
+   shell. That is a light-in-light stack, so the --text-on-surface-2* tier is
+   declared to carry inset text explicitly.
+
+   Fonts: Silkscreen (display / caption chrome) · Public Sans (body) ·
+   VT323 (metrics, silkscreen labels). Contract: docs/KIT-SPEC.md v1 — every
+   required name is present below, including --border-w. See README.md for the
+   measured contrast table.
+   ========================================================================== */
+:root {
+  /* -- surfaces ---------------------------------------------------------- */
+  /* --bg is a GRADIENT with PX stops, not %: the gradient box is the whole
+     document, so a % ramp would smear over thousands of pixels and the first
+     screen would read as one flat plate. All stops stay at or above #c0c0c0 so
+     the DARKEST stop the page ever shows is the classic control grey, which is
+     what --text (black) and --text-dim are measured against. */
+  --bg:            linear-gradient(180deg, #d8d5d0 0px, #cecbc6 220px, #c4c1bc 520px, #c0c0c0 860px);
+  --bg-2:          #c0c0c0;                 /* the solid control face — exports + masthead */
+  --surface:       #d4d0c8;                 /* cards/panels — the slightly LIGHTER 3D face,
+                                               so a window reads as a part ON the desktop */
+  --surface-2:     #ffffff;                 /* the white well: fields, code, badges, alerts */
+  --overlay:       rgba(0, 0, 0, .52);      /* modal scrim — a hard dim, not a soft glass */
+
+  /* -- text — pure black ink, exactly what a 1998 UI drew ----------------- */
+  --text:          #000000;                 /* 11.5:1 on the darkest bg stop */
+  --text-muted:    #333333;                 /* 6.9:1 on the grey face */
+  --text-dim:      #3a3a3a;                 /* captions/hints — 5.9:1 on the darkest bg
+                                               stop, 4.7:1 on the masthead's accent wash */
+  --text-invert:   #ffffff;                 /* the caption/button ink ON navy: 16:1 */
+
+  /* -- brand ------------------------------------------------------------- */
+  /* The active caption / primary action. Navy is dark enough to be legible as
+     a label as well as a fill, so --accent-ink is the same family — and the
+     hover step stays a NAVY (a brighter blue like #1084d0 is 2.2:1 on grey and
+     would vanish as text). */
+  --accent:        #000080;
+  --accent-hover:  #0000a0;                 /* the button LIFTS on press */
+  --accent-2:      #008080;                 /* DESKTOP TEAL — the second accent, ground
+                                               work only: media plates, progress, charts */
+  --accent-soft:   rgba(0, 0, 128, .12);    /* 12% navy tint — active nav/tab, inline code */
+
+  /* -- accent as TEXT (declared, not assumed) ---------------------------- */
+  --accent-ink:        #000080;             /* 8.8:1 on grey, 16:1 on the white well */
+  --accent-ink-hover:  #0000a0;
+
+  /* -- status — the 16-colour VGA family, darkened only where the white well
+        demands it (olive #808000 is 4.19:1 on white; #6b6b00 is 5.63:1) ---- */
+  --ok:            #008000;                 /* 5.14:1 on the well */
+  --warn:          #6b6b00;                 /* dark olive — the compliant "yellow" */
+  --danger:        #800000;                 /* maroon, the classic alert red: 10.9:1 */
+  --info:          #1c5fb0;                 /* a link blue held clear of the action navy */
+
+  /* -- lines — 1px seams; the 3D is carried by inset shadows, not by borders */
+  --border:        #808080;                 /* the grey edge line of a raised part */
+  --border-strong: #000000;
+  --border-w:      1px;
+  --focus-ring:    #000080;                 /* navy ring, 8.8:1 — never the hover lamp */
+
+  /* -- shape — SQUARE. There is no radius in this UI ---------------------- */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   0px;                     /* badges are squares, not pills */
+  --cut:           0px;                     /* no chamfer — it is a rectangle */
+
+  /* -- type — a pixel caption face, a neutral UI grotesque, a terminal mono  */
+  --font-display:  "Silkscreen", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "VT323", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .06em;
+  --tracking-display: -.01em;
+
+  /* -- depth — HARD INSET BEVELS. Two tones, 1px and 2px, no blur ---------- */
+  /* Raised (button up / window face): white on the top-left, near-black on the
+     bottom-right, with the classic inner #dfdfdf / #808080 step. This is the
+     98.css construction expressed as a token, so the generator APPLIES it
+     rather than painting it. */
+  --shadow-1:      inset -1px -1px #000000,
+                   inset 1px 1px #ffffff,
+                   inset -2px -2px #808080,
+                   inset 2px 2px #dfdfdf;
+  /* Elevated (a floating dialog): the same raised bevel plus a HARD offset
+     shadow — a 1998 popup cast a solid 2px block, never a blur. */
+  --shadow-2:      2px 2px 0 rgba(0, 0, 0, .35),
+                   inset -1px -1px #000000,
+                   inset 1px 1px #ffffff,
+                   inset -2px -2px #808080,
+                   inset 2px 2px #dfdfdf;
+  /* --glow is wired by the lab to .btn-primary's box-shadow. There is no glow
+     in this UI, so it carries the RAISED NAVY BEVEL instead: a button you can
+     see the light catch on. (The name is the contract's; the value is ours.) */
+  --glow:          inset -1px -1px #000033,
+                   inset 1px 1px #7fa8e0,
+                   inset -2px -2px #000066,
+                   inset 2px 2px #4a7bbf;
+  --blur:          none;                    /* a solid part is not frosted */
+
+  /* -- opt-in recess: the white well is MILLED IN ------------------------- */
+  /* Sunken construction: grey then black on the top-left, white then #dfdfdf
+     on the bottom-right. Wired by the lab to inputs/selects/textareas. */
+  --input-inset:   inset 1px 1px #808080,
+                   inset 2px 2px #000000,
+                   inset -1px -1px #ffffff,
+                   inset -2px -2px #dfdfdf;
+
+  /* -- three-tier text — the white well sits INSIDE the grey shell, so the
+        inset tier is declared explicitly rather than left to the --text chain -- */
+  --text-on-surface:        #000000;
+  --text-on-surface-muted:  #333333;
+  --text-on-surface-2:      #000000;        /* field / code text on white */
+  --text-on-surface-2-muted:#333333;
+
+  /* -- motion — a 1998 control had no easing curve; keep it a hard snap ----- */
+  --dur:           .1s;
+  --ease:          cubic-bezier(.2, .8, .3, 1);
+
+  /* -- lab capability hooks (lab v1.1) ------------------------------------ */
+  /* The masthead is a WASH over the ground. The lab's default is a smooth
+     radial accent bloom — exactly the soft gradient this UI never had — so it is
+     set to the flat face colour: the header is the same moulded grey as the page. */
+  --wash:          #c0c0c0;
+  /* The media panel's default is a smooth two-stop accent gradient. It is
+     replaced with the 2px 50% DITHER — the desktop-wallpaper texture — because a
+     smooth blend is the single thing that reads as "modern", not 1998. */
+  --media-bg:      repeating-conic-gradient(#000080 0 25%, #c0c0c0 0 50%) 0 0 / 2px 2px;
+  --media-op:      1;                       /* a dither is opaque, not a .85 wash */
+  /* progress + avatar fill: blocky two-tone, the way Win98 painted a progress trough */
+  --fill-bg: repeating-linear-gradient(90deg, var(--accent) 0 4px, var(--accent-2) 4px 8px);
+  /* square controls: native checkbox/radio ignore --radius-pill, so the box is drawn */
+  --check-appearance: none;
+  --check-bg:         var(--surface-2);
+  --check-border:     var(--border-w, 1px) solid var(--border);
+  --check-checked:    var(--accent);
+  /* every button variant gets the moulded bevel, not just the primary one */
+  --btn-shadow: var(--shadow-1);
+
+  /* ----------------------------------------------------------------------
+     signature motifs — declared in kit.json `signature`, rendered in the lab's
+     Signature section as ~168x72 tiles on --surface-2. All four are BACKGROUND
+     values (so the tiles paint, not just apply), and each does a different job:
+     the caption chrome, the desktop ground, and the two directions of bevel.
+     ---------------------------------------------------------------------- */
+
+  /* 1 · ACTIVE TITLE BAR. The whole identity in one ramp: dark navy sweeping to
+     the bright steel Windows blue, with a 1px white gloss line along the top.
+     Hard-banded, not a soft blend — the two navy stops are distinct. */
+  --win98-titlebar:
+                   linear-gradient(180deg, rgba(255, 255, 255, .38) 0px, rgba(255, 255, 255, 0) 1px),
+                   linear-gradient(90deg, #000080 0px, #0a4fa0 150px, #1084d0 300px);
+
+  /* 2 · DESKTOP. The classic teal a window sat on, dithered so the tile is
+     never a flat plate — a 45° 1px dither over a darker-down teal ramp. */
+  --win98-desktop:
+                   repeating-linear-gradient(45deg,
+                     rgba(255, 255, 255, .07) 0px, rgba(255, 255, 255, .07) 1px,
+                     rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px),
+                   linear-gradient(180deg, #0a9a9a 0px, #008080 60%, #006060 100%);
+
+  /* 3 · RAISED BEVEL (a control, cut proud of the face). White catches the
+     top-left, near-black turns the bottom-right, grey face between. */
+  --win98-bevel-out:
+                   linear-gradient(180deg, #ffffff 0px, #ffffff 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(90deg,  #ffffff 0px, #ffffff 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(0deg,   #000000 0px, #000000 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(270deg, #000000 0px, #000000 2px, rgba(0, 0, 0, 0) 2px),
+                   #c0c0c0;
+
+  /* 4 · SUNKEN WELL (a field, milled into the face). The opposite hand: a grey
+     then black lip on the top-left, white on the bottom-right, white floor. */
+  --win98-bevel-in:
+                   linear-gradient(180deg, #808080 0px, #808080 1px, #000000 1px, #000000 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(90deg,  #808080 0px, #808080 1px, #000000 1px, #000000 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(0deg,   #ffffff 0px, #ffffff 2px, rgba(0, 0, 0, 0) 2px),
+                   linear-gradient(270deg, #ffffff 0px, #ffffff 2px, rgba(0, 0, 0, 0) 2px),
+                   #ffffff;
+}

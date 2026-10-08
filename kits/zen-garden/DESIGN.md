@@ -4,6 +4,7 @@ name: Zen Garden
 description: Peace and tranquility on a grey, rainy day — an overcast ground, wet-stone charcoal ink, one deep moss-sage action colour and a rain-blue second accent.
 colors:
   primary: "#4a6658"
+  accent-ink: "#455f52"
   primary-hover: "#40594b"
   secondary: "#567694"
   tertiary: "#40594b"

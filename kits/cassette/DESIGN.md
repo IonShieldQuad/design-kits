@@ -5,7 +5,7 @@ description: Warm 70s/80s hi-fi hardware — a beige plastic shell with a moulde
 colors:
   primary: "#e86f0a"
   primary-hover: "#fb8118"
-  primary-ink: "#241708"
+  primary-ink: "#703200"
   primary-text: "#7a3600"
   primary-text-hover: "#632900"
   secondary: "#2f8e85"

@@ -1,0 +1,152 @@
+/* ============================================================================
+   City Pop — design kit tokens                                    contract v1
+   ----------------------------------------------------------------------------
+   A TOKYO BAY IN DAYLIGHT. City pop is the Japanese soft-rock / AOR sound of the
+   late 70s and early 80s, and its sleeve art is a single recurring scene: a bay,
+   a skyline, and a sun sitting on the water. The kit is that scene in three
+   tokens — the sky, the skyline, the sea — photographed in the afternoon, not at
+   the hour the neon comes on.
+
+   The ground is warm CREAM settling into sky-blue, never a neutral grey and
+   never a navy dusk (that is #retro-anime). Every ink is measured against the
+   PALEST stop (#dceff3), and the warm stops live in --city-pop-sky and
+   --media-bg, never behind body copy.
+
+   TWO ACCENTS, TWO JOBS. Coral (#d62f4b) is the sun on the bay and the only
+   ACTION colour; it is set dark enough to carry a CREAM label (4.57:1) because a
+   fill has to carry text. Ocean teal (#1f9aa8) belongs to water and to
+   controls-as-state: focus, media, charts, progress. Coral is under 4.5:1 as a
+   small label on cream, so accent-as-text ships separately as --accent-ink.
+
+   Depth is PAPER, not glass: --blur stays none (a sleeve is printed, not
+   frosted) and a soft warm drop plus a teal/coral ring give the one lit object
+   on a page its lift. No chamfer: the sleeves are airbrushed, never cut.
+
+   Fonts: Sora (display) · Manrope (body) · Space Mono (labels, code)
+   Contract: docs/KIT-SPEC.md v1 — every required name present. Contrast table
+   and the palette rationale are in README.md.
+   ========================================================================== */
+:root {
+  /* -- surfaces ---------------------------------------------------------- */
+  /* --bg uses PX stops (not %): the body gradient box is the whole document,
+     so a percentage ramp would show one flat colour in the viewport and hide
+     the whole point of the kit. Daytime: cream at the top, a warm horizon,
+     then pale sky-blue as the page settles. */
+  --bg:            linear-gradient(180deg, #fff8f1 0px, #ffe9d9 300px, #dceff3 700px, #f2f6fa 1200px, #fff8f1 100%);
+  --bg-2:          #fbf3ec;                 /* solid stand-in for exports / no-gradient tools */
+  --surface:       #ffffff;                 /* cards — a clean paper panel in daylight */
+  --surface-2:     #f6efe9;                 /* inputs, badges, code — a warm inset, not a well */
+  --overlay:       rgba(24, 20, 36, .55);   /* modal scrim: warm ink, never neutral grey */
+
+  /* -- text -------------------------------------------------------------- */
+  --text:          #2f2a40;                 /* 11.6:1 on the deepest ground, 12.8:1 on paper */
+  --text-muted:    #5d5670;                 /* 5.8:1 on the deepest ground */
+  --text-dim:      #6b6480;                 /* captions/hints/placeholders — 4.70:1 on the
+                                               PALEST ground (#dceff3), which is the binding one */
+  --text-invert:   #fff8f1;                 /* label ON the coral fill (cream): 4.57:1 */
+
+  /* -- brand ------------------------------------------------------------- */
+  /* The action colour is a warm coral-pink, the colour of the sun on the bay
+     at four in the afternoon — not the neon pink of the night register. It is
+     graded as a FILL (white label on it clears 4.5:1), which is why it sits
+     darker than the day is bright. */
+  --accent:        #d62f4b;
+  --accent-hover:  #c92843;                 /* it deepens on press: with a cream label the fill can only get darker */
+  --accent-2:      #1f9aa8;                 /* OCEAN AQUA — sea, data, media, focus.
+                                               Daylight teal, not the night's cyan */
+  --accent-soft:   rgba(214, 47, 75, .12);  /* 12% coral tint — backs the active nav,
+                                               rings, soft chips */
+
+  /* -- accent as TEXT (the fill-vs-label split) -------------------------- */
+  --accent-ink: #a3203a;              /* 6.3:1 on the palest ground, 5.6:1 even on its own
+                                         12% tint composited over paper — the badge case */
+  --accent-ink-hover: #8c1a31;
+
+  /* -- status ----------------------------------------------------------- */
+  --ok:            #19784f;                 /* sea-glass green, deepened for daylight (4.6:1) */
+  --warn:          #8a5a10;                 /* the sun's gold, held as a status only */
+  --danger:        #b3243a;                 /* coral-red, kept clear of the pink in HUE */
+  --info:          #2c68c4;                 /* daylight blue — data and telemetry */
+
+  /* -- lines — warm ink hairlines, not white translucency ---------------- */
+  --border:        rgba(47, 42, 64, .20);
+  --border-strong: rgba(47, 42, 64, .42);
+  --border-w:      1px;                     /* airbrushed sleeve: a hairline, not a moulded step */
+  --focus-ring:    #1f7fa8;                 /* 3.8:1 on the palest ground — aqua still does focus */
+
+  /* -- shape — soft, glossy, generous ------------------------------------ */
+  --radius-sm:      5px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --radius-pill:  999px;
+  --cut:            0px;                    /* no chamfer: city-pop is airbrushed, never cut */
+
+  /* -- type — a soft geometric + a space-age mono ------------------------ */
+  --font-display:  "Sora", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .14em;                /* a sleeve credit line is spaced, not shouting */
+  --tracking-display: -.01em;
+
+  /* -- depth — a soft warm drop, one lit ring ---------------------------- */
+  --shadow-1:      0 4px 16px rgba(47, 42, 64, .10);
+  --shadow-2:      0 12px 34px rgba(47, 42, 64, .15);
+  /* --glow is the ONE energised object: an aqua ring with a coral lift. The lab
+     applies it to the focused/active element. */
+  --glow:          0 0 0 1px rgba(31, 154, 168, .55),
+                   0 6px 18px rgba(216, 55, 82, .18);
+  --blur:          none;                    /* a printed sleeve, not glass */
+
+  /* -- motion: a smooth glide, not a snap -------------------------------- */
+  --dur:           .26s;
+  --ease:          cubic-bezier(.22, .61, .36, 1);
+
+  /* ----------------------------------------------------------------------
+     extras — the three tokens that ARE the sleeve, declared in kit.json
+     `signature` and rendered in the lab's Signature section. Each is a DRAWN
+     scene layer (inline SVG, base64) with its own colour base beneath it, so
+     the tile never shows only the kit's flat surface.
+     ---------------------------------------------------------------------- */
+
+  /* 1 · THE SKY. A vertical dusk ramp (blue → periwinkle → mauve → coral →
+     gold) with the sun low in the frame and soft cloud streaks across it. Drawn
+     rather than a plain linear-gradient so the sun reads as a disc and the
+     streaks as bands, not as one smooth wash of fog. */
+  --city-pop-sky:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMzYiIGhlaWdodD0iMTQ0IiB2aWV3Qm94PSIwIDAgMzM2IDE0NCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InMiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWMyYTYzIi8+CjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iIzRhNGE5ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNTIiIHN0b3AtY29sb3I9IiM5YTVmOWUiLz4KPHN0b3Agb2Zmc2V0PSIwLjcyIiBzdG9wLWNvbG9yPSIjZGM3Njg4Ii8+CjxzdG9wIG9mZnNldD0iMC44OCIgc3RvcC1jb2xvcj0iI2ZmYTg3OCIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ0OWEiLz4KPC9saW5lYXJHcmFkaWVudD4KPHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMC41IiBjeT0iMC41IiByPSIwLjUiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmYyY2YiLz4KPHN0b3Agb2Zmc2V0PSIwLjQwIiBzdG9wLWNvbG9yPSIjZmZjZTg4IiBzdG9wLW9wYWNpdHk9IjAuOTUiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY4ZjZlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzM2IiBoZWlnaHQ9IjE0NCIgZmlsbD0idXJsKCNzKSIvPgo8Y2lyY2xlIGN4PSIyMzgiIGN5PSIxMDYiIHI9IjcwIiBmaWxsPSJ1cmwoI2cpIi8+CjxjaXJjbGUgY3g9IjIzOCIgY3k9IjEwNiIgcj0iMjIiIGZpbGw9IiNmZmU3YjQiLz4KPGcgZmlsbD0iI2ZmZmZmZiI+CjxyZWN0IHg9IjAiIHk9IjM0IiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjIiIG9wYWNpdHk9IjAuMTAiLz4KPHJlY3QgeD0iMzAiIHk9IjQ2IiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjIiIG9wYWNpdHk9IjAuMDkiLz4KPHJlY3QgeD0iMCIgeT0iNTgiIHdpZHRoPSIzMzYiIGhlaWdodD0iMyIgb3BhY2l0eT0iMC4xMyIvPgo8cmVjdCB4PSI2MCIgeT0iNzIiIHdpZHRoPSIyNTAiIGhlaWdodD0iMiIgb3BhY2l0eT0iMC4xMSIvPgo8cmVjdCB4PSIwIiB5PSI4NiIgd2lkdGg9IjMzNiIgaGVpZ2h0PSIzIiBvcGFjaXR5PSIwLjE1Ii8+CjxyZWN0IHg9IjE4IiB5PSIxMDIiIHdpZHRoPSIzMDAiIGhlaWdodD0iMyIgb3BhY2l0eT0iMC4xMyIvPgo8cmVjdCB4PSIwIiB5PSIxMTgiIHdpZHRoPSIzMzYiIGhlaWdodD0iNCIgb3BhY2l0eT0iMC4xNiIvPgo8cmVjdCB4PSI0OCIgeT0iMTMyIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjMiIG9wYWNpdHk9IjAuMTIiLz4KPC9nPgo8L3N2Zz4=") center / cover no-repeat,
+    linear-gradient(180deg, #232a63 0%, #5a4f9e 40%, #a05f9a 62%, #e07a86 82%, #ffb27a 100%);
+
+  /* 2 · THE SKYLINE. Irregular rooftops with a single antenna tower and lit
+     windows, in near-black silhouette against the sunset. A repeating gradient
+     cannot draw this: building tops are uneven, so any tiling reads as a
+     crenellation, not a city. */
+  --city-pop-skyline:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMzYiIGhlaWdodD0iMTQ0IiB2aWV3Qm94PSIwIDAgMzM2IDE0NCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImsiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjQzMDcwIi8+CjxzdG9wIG9mZnNldD0iMC41IiBzdG9wLWNvbG9yPSIjN2E0ZjkyIi8+CjxzdG9wIG9mZnNldD0iMC44IiBzdG9wLWNvbG9yPSIjZTA3YTg2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmYjI3YSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIzMzYiIGhlaWdodD0iMTQ0IiBmaWxsPSJ1cmwoI2spIi8+CjxjaXJjbGUgY3g9IjI2NiIgY3k9Ijk0IiByPSIzMCIgZmlsbD0iI2ZmZGNhNiIgb3BhY2l0eT0iMC45MiIvPgo8ZyBmaWxsPSIjMTQxNzMzIj4KPHJlY3QgeD0iMCIgeT0iOTgiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0NiIvPgo8cmVjdCB4PSIyNiIgeT0iODIiIHdpZHRoPSIxNiIgaGVpZ2h0PSI2MiIvPgo8cmVjdCB4PSI0NCIgeT0iMTA2IiB3aWR0aD0iMjgiIGhlaWdodD0iMzgiLz4KPHJlY3QgeD0iNzQiIHk9IjY4IiB3aWR0aD0iMTgiIGhlaWdodD0iNzYiLz4KPHJlY3QgeD0iOTQiIHk9IjkwIiB3aWR0aD0iMzAiIGhlaWdodD0iNTQiLz4KPHJlY3QgeD0iMTI2IiB5PSI1OCIgd2lkdGg9IjIyIiBoZWlnaHQ9Ijg2Ii8+CjxyZWN0IHg9IjE1MCIgeT0iODYiIHdpZHRoPSIyNCIgaGVpZ2h0PSI1OCIvPgo8cmVjdCB4PSIxNzYiIHk9IjQ0IiB3aWR0aD0iMTgiIGhlaWdodD0iMTAwIi8+CjxyZWN0IHg9IjE5NiIgeT0iOTQiIHdpZHRoPSIyNiIgaGVpZ2h0PSI1MCIvPgo8cmVjdCB4PSIyMjQiIHk9Ijc0IiB3aWR0aD0iMjAiIGhlaWdodD0iNzAiLz4KPHJlY3QgeD0iMjQ2IiB5PSIxMDIiIHdpZHRoPSIzMCIgaGVpZ2h0PSI0MiIvPgo8cmVjdCB4PSIyNzgiIHk9Ijg0IiB3aWR0aD0iMTgiIGhlaWdodD0iNjAiLz4KPHJlY3QgeD0iMjk4IiB5PSIxMTAiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIvPgo8L2c+CjxwYXRoIGQ9Ik0xODUgNDQgVjIyIE0xNzkgMzAgTDE4NSAyMiBMMTkxIDMwIiBzdHJva2U9IiMxNDE3MzMiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8ZyBmaWxsPSIjZmZkYzlhIj4KPHJlY3QgeD0iNzgiIHk9Ijc2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iODYiIHk9Ijc2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CjxyZWN0IHg9Ijc4IiB5PSI4NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9Ijg2IiB5PSI5NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIxMzAiIHk9IjY2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTM4IiB5PSI2NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIxMzAiIHk9Ijc4IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTM4IiB5PSI5MCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIxODAiIHk9IjU0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTg4IiB5PSI1NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIxODAiIHk9IjY2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTg4IiB5PSI3OCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSI0OCIgeT0iMTE0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNTYiIHk9IjExNCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSI5OCIgeT0iOTgiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIxMDYiIHk9IjEwOCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIyMjgiIHk9IjgyIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjM2IiB5PSI5MiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIyODIiIHk9IjkyIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjkwIiB5PSIxMDIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KPC9nPgo8L3N2Zz4=") center / cover no-repeat,
+    linear-gradient(180deg, #243070 0%, #7a4f92 55%, #e07a86 86%, #ffb27a 100%);
+
+  /* 3 · THE SEA. Hard horizontal water bands with the sun's broken glitter path
+     stacked down the centre — the reflection column is real structure, so it
+     is drawn; a smooth gradient would read as a second sky, not water. */
+  --city-pop-sea:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMzYiIGhlaWdodD0iMTQ0IiB2aWV3Qm94PSIwIDAgMzM2IDE0NCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjM2Q4NmE2Ii8+CjxzdG9wIG9mZnNldD0iMC4xNiIgc3RvcC1jb2xvcj0iIzJhNmE5MiIvPgo8c3RvcCBvZmZzZXQ9IjAuNTUiIHN0b3AtY29sb3I9IiMxYjRmN2MiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGMyNDUwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0iciIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmU2YjAiIHN0b3Atb3BhY2l0eT0iMC44MiIvPgo8c3RvcCBvZmZzZXQ9IjAuNDIiIHN0b3AtY29sb3I9IiNmZmNmOTYiIHN0b3Atb3BhY2l0eT0iMC40MiIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmIyN2EiIHN0b3Atb3BhY2l0eT0iMC4wNSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIzMzYiIGhlaWdodD0iMTQ0IiBmaWxsPSJ1cmwoI3cpIi8+CjxwYXRoIGQ9Ik0xNTggMCBDMTU0IDM0IDE0NiA2NiAxMzIgOTYgQzEyNCAxMTQgMTE0IDEzMCAxMDMgMTQ0IEwyMzMgMTQ0IEMyMjIgMTMwIDIxMiAxMTQgMjA0IDk2IEMxOTAgNjYgMTgyIDM0IDE3OCAwIFoiIGZpbGw9InVybCgjcikiLz4KPGcgZmlsbD0iI2ZmZjBjOCI+CjxlbGxpcHNlIGN4PSIxNzAiIGN5PSIyMCIgcng9IjQiIHJ5PSIxLjYiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjE2MyIgY3k9IjM0IiByeD0iMyIgcnk9IjEuNCIgb3BhY2l0eT0iMC43Ii8+CjxlbGxpcHNlIGN4PSIxNzgiIGN5PSI0NCIgcng9IjUiIHJ5PSIxLjYiIG9wYWNpdHk9IjAuNjUiLz4KPGVsbGlwc2UgY3g9IjE2MCIgY3k9IjU4IiByeD0iMy41IiByeT0iMS40IiBvcGFjaXR5PSIwLjYiLz4KPGVsbGlwc2UgY3g9IjE4NSIgY3k9IjcyIiByeD0iNiIgcnk9IjEuOCIgb3BhY2l0eT0iMC41NSIvPgo8ZWxsaXBzZSBjeD0iMTY4IiBjeT0iODYiIHJ4PSI0IiByeT0iMS42IiBvcGFjaXR5PSIwLjUiLz4KPGVsbGlwc2UgY3g9IjE5NiIgY3k9IjEwMiIgcng9IjciIHJ5PSIyIiBvcGFjaXR5PSIwLjQ1Ii8+CjxlbGxpcHNlIGN4PSIxNTAiIGN5PSIxMTgiIHJ4PSI1IiByeT0iMS44IiBvcGFjaXR5PSIwLjQiLz4KPGVsbGlwc2UgY3g9IjIwNiIgY3k9IjEzMiIgcng9IjgiIHJ5PSIyIiBvcGFjaXR5PSIwLjM1Ii8+CjxlbGxpcHNlIGN4PSIxNDAiIGN5PSIxNDAiIHJ4PSI2IiByeT0iMiIgb3BhY2l0eT0iMC4zIi8+CjwvZz4KPGcgc3Ryb2tlPSIjOGZlM2Q2IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMzQiPgo8cGF0aCBkPSJNMCAyNCBRNDIgMTkgODQgMjQgVDE2OCAyNCBUMjUyIDI0IFQzMzYgMjQiLz4KPHBhdGggZD0iTTAgNDMgUTU2IDM4IDExMiA0MyBUMjI0IDQzIFQzMzYgNDMiLz4KPHBhdGggZD0iTTAgNjIgUTcwIDU2IDE0MCA2MiBUMjgwIDYyIFQzMzYgNjIiLz4KPHBhdGggZD0iTTAgODQgUTgwIDc4IDE2MCA4NCBUMzIwIDg0Ii8+CjxwYXRoIGQ9Ik0wIDEwOCBROTAgMTAxIDE4MCAxMDggVDMzNiAxMDgiLz4KPHBhdGggZD0iTTAgMTMwIFExMDAgMTIzIDIwMCAxMzAgVDMzNiAxMzAiLz4KPC9nPgo8ZyBmaWxsPSIjMWI0ZjdjIiBvcGFjaXR5PSIwLjM1Ij4KPGNpcmNsZSBjeD0iMTE4IiBjeT0iMjAiIHI9IjIiLz48Y2lyY2xlIGN4PSIyMjgiIGN5PSI1MiIgcj0iMi40Ii8+PGNpcmNsZSBjeD0iMTEwIiBjeT0iOTAiIHI9IjIuNiIvPgo8Y2lyY2xlIGN4PSIyNDAiIGN5PSIxMTgiIHI9IjMiLz48Y2lyY2xlIGN4PSIxMjYiIGN5PSIxMzQiIHI9IjIuOCIvPgo8L2c+Cjwvc3ZnPg==") center / cover no-repeat,
+    linear-gradient(180deg, #2f7d9c 0%, #1b4f7c 45%, #0f2a52 100%);
+
+  /* --------------------------------------------------- opt-in lab capabilities */
+  /* --wash replaces the lab masthead's default radial accent bloom. It is a
+     background LAYER (transparent at its edges), so the page's own daylight ramp
+     shows through beneath it — this is a warm afternoon glow over the sky,
+     not a plate. Kept translucent so masthead copy keeps its 7:1: modelled
+     against the page's own stop ramp the wash's worst case is --text-dim at
+     5.79:1 (and --text 10.6:1) across the whole masthead. */
+  --wash:          radial-gradient(130% 150% at 15% 0%, rgba(255, 233, 217, .85) 0%, rgba(255, 248, 241, 0) 62%);
+
+  /* --media-bg replaces the .card-media panel's hardcoded accent ramp. A media
+     panel is exactly where a city-pop kit should show its scene: the whole
+     sleeve in one postcard — dusk sky, setting sun, skyline, and the bay with
+     the sun's glitter path. Drawn (inline SVG) because the skyline and the
+     reflection column need real geometry. --media-op: 1 lifts the default .85
+     dim so the postcard reads at full strength. */
+  --media-op:      1;
+  --media-bg:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InMiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWMyYTYzIi8+CjxzdG9wIG9mZnNldD0iMC4zNCIgc3RvcC1jb2xvcj0iIzRhNGE5ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNTgiIHN0b3AtY29sb3I9IiM5YTVmOWUiLz4KPHN0b3Agb2Zmc2V0PSIwLjc4IiBzdG9wLWNvbG9yPSIjZGM3Njg4Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmYjI3YSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSIwLjUiIGN5PSIwLjUiIHI9IjAuNSI+CjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZjJjZiIvPgo8c3RvcCBvZmZzZXQ9IjAuNDAiIHN0b3AtY29sb3I9IiNmZmNlODgiIHN0b3Atb3BhY2l0eT0iMC45NSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZjhmNmUiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjM2Q4NmE2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBjMjQ1MCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiBmaWxsPSJ1cmwoI3MpIi8+CjxjaXJjbGUgY3g9IjMzOCIgY3k9IjExNiIgcj0iNzYiIGZpbGw9InVybCgjZykiLz4KPGNpcmNsZSBjeD0iMzM4IiBjeT0iMTE2IiByPSIyMSIgZmlsbD0iI2ZmZTdiNCIvPgo8ZyBmaWxsPSIjMTQxNzMzIj4KPHJlY3QgeD0iMCIgeT0iODYiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyOCIvPjxyZWN0IHg9IjMyIiB5PSI3NCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjQwIi8+CjxyZWN0IHg9IjU2IiB5PSI5NCIgd2lkdGg9IjM0IiBoZWlnaHQ9IjIwIi8+PHJlY3QgeD0iOTIiIHk9IjY0IiB3aWR0aD0iMjQiIGhlaWdodD0iNTAiLz4KPHJlY3QgeD0iMTE4IiB5PSI4MiIgd2lkdGg9IjM2IiBoZWlnaHQ9IjMyIi8+PHJlY3QgeD0iMTU2IiB5PSI1NiIgd2lkdGg9IjI2IiBoZWlnaHQ9IjU4Ii8+CjxyZWN0IHg9IjE4NCIgeT0iNzgiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzNiIvPjxyZWN0IHg9IjIxNiIgeT0iNDYiIHdpZHRoPSIyMiIgaGVpZ2h0PSI2OCIvPgo8cmVjdCB4PSIyNDAiIHk9Ijg0IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiLz48cmVjdCB4PSIyNzIiIHk9IjY2IiB3aWR0aD0iMjYiIGhlaWdodD0iNDgiLz4KPHJlY3QgeD0iMzAwIiB5PSI5MCIgd2lkdGg9IjM0IiBoZWlnaHQ9IjI0Ii8+PHJlY3QgeD0iMzM2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQyIi8+CjxyZWN0IHg9IjM2MiIgeT0iOTgiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxNiIvPjxyZWN0IHg9IjQwNCIgeT0iODAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIzNCIvPgo8cmVjdCB4PSI0MzIiIHk9IjkyIiB3aWR0aD0iNDgiIGhlaWdodD0iMjIiLz4KPC9nPgo8cGF0aCBkPSJNMjI3IDQ2IFYyOCBNMjIwIDM1IEwyMjcgMjggTDIzNCAzNSIgc3Ryb2tlPSIjMTQxNzMzIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPGcgZmlsbD0iI2ZmZGM5YSI+CjxyZWN0IHg9Ijk4IiB5PSI3MiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjEwNiIgeT0iNzIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KPHJlY3QgeD0iOTgiIHk9Ijg0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTYyIiB5PSI2NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIxNzAiIHk9IjY0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTYyIiB5PSI3NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIyMjIiIHk9IjU0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjI5IiB5PSI1NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIyMjIiIHk9IjY2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjc4IiB5PSI3NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSIyODYiIHk9Ijg0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMzA4IiB5PSI5OCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSI0MTAiIHk9Ijg4IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNDE4IiB5PSI5OCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgo8cmVjdCB4PSI0NDAiIHk9IjEwMCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjQ0OCIgeT0iMTEwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CjwvZz4KPHJlY3QgeD0iMCIgeT0iMTE0IiB3aWR0aD0iNDgwIiBoZWlnaHQ9IjQ2IiBmaWxsPSJ1cmwoI3cpIi8+CjxnIGZpbGw9IiNmZmYwYzgiPgo8ZWxsaXBzZSBjeD0iMzQwIiBjeT0iMTIwIiByeD0iMTYiIHJ5PSIyLjQiIG9wYWNpdHk9IjAuOCIvPgo8ZWxsaXBzZSBjeD0iMzM0IiBjeT0iMTI4IiByeD0iMTIiIHJ5PSIyIiBvcGFjaXR5PSIwLjYyIi8+CjxlbGxpcHNlIGN4PSIzNDgiIGN5PSIxMzUiIHJ4PSIyMiIgcnk9IjIuNiIgb3BhY2l0eT0iMC43Ii8+CjxlbGxpcHNlIGN4PSIzMzYiIGN5PSIxNDMiIHJ4PSIxNCIgcnk9IjIuMiIgb3BhY2l0eT0iMC41NSIvPgo8ZWxsaXBzZSBjeD0iMzUyIiBjeT0iMTUxIiByeD0iMzAiIHJ5PSIzIiBvcGFjaXR5PSIwLjYiLz4KPGVsbGlwc2UgY3g9IjMzMCIgY3k9IjE1OCIgcng9IjIwIiByeT0iMi42IiBvcGFjaXR5PSIwLjQ1Ii8+CjwvZz4KPGcgc3Ryb2tlPSIjOGZlM2Q2IiBzdHJva2Utd2lkdGg9IjEuNiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC4zIj4KPHBhdGggZD0iTTAgMTI0IFE2MCAxMjAgMTIwIDEyNCBUMjQwIDEyNCBUMzYwIDEyNCBUNDgwIDEyNCIvPgo8cGF0aCBkPSJNMCAxMzggUTcwIDEzMyAxNDAgMTM4IFQyODAgMTM4IFQ0ODAgMTM4Ii8+CjxwYXRoIGQ9Ik0wIDE1MiBRODAgMTQ3IDE2MCAxNTIgVDMyMCAxNTIgVDQ4MCAxNTIiLz4KPC9nPgo8L3N2Zz4=") center / cover no-repeat;
+}

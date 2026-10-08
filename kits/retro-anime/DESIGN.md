@@ -5,7 +5,7 @@ description: 80s anime key art at dusk — indigo night, magenta neon, cyan tech
 colors:
   primary: "#ec4b8f"
   primary-hover: "#ff5fa2"
-  primary-ink: "#1a0f2b"
+  primary-ink: "#ffadce"
   secondary: "#44a6d7"
   tertiary: "#ffb57b"
   neutral: "#19152b"

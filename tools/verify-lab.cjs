@@ -164,7 +164,87 @@ async function main() {
         }
         if (tokenCheck.captionOverflow) entry.errors.push("desktop: a swatch caption overflows its cell");
 
-        // 2. did the declared web fonts actually load?
+        // 2. TEXT CONTRAST, SAMPLED FROM THE RENDERED PIXELS.
+        //    Two traps, both hit here: a ratio taken against a solid ground is wrong for an ink on
+        //    a translucent tint (accent badges sit on a ~16% tint of the accent itself), and a
+        //    ratio taken against a gradient's worst stop is wrong when that stop is 2000px below
+        //    the text. So: collect the text candidates with their real colour and box, then sample
+        //    the actual background pixel just outside each text box. That is the ground the user
+        //    sees, whatever produced it.
+        const candidates = await page.evaluate(() => {
+          const parse = (c) => {
+            const m = (c || "").match(/rgba?\(([^)]+)\)/);
+            if (!m) return null;
+            const p = m[1].split(/[,\s/]+/).filter(Boolean).map(Number);
+            return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 };
+          };
+          const SEL = ".kicker, .eyebrow, .badge, a, .btn-secondary, .btn-ghost, .card-title, " +
+                      ".card-body, .note, .dim, .input, .alert";
+          const seen = new Set(), out = [];
+          document.querySelectorAll(SEL).forEach((el) => {
+            const txt = (el.textContent || "").trim();
+            if (!txt || el.offsetParent === null) return;
+            const cs = getComputedStyle(el);
+            const fg = parse(cs.color);
+            if (!fg) return;
+            const size = parseFloat(cs.fontSize), weight = parseInt(cs.fontWeight, 10) || 400;
+            const need = (size >= 24 || (size >= 18.66 && weight >= 700)) ? 3.0 : 4.5;
+            const key = el.className.toString().slice(0, 30) + "@" + Math.round(size);
+            if (seen.has(key)) return;
+            seen.add(key);
+            const r = el.getBoundingClientRect();
+            if (r.width < 4 || r.height < 4) return;
+            out.push({ cls: el.className.toString().slice(0, 30), fg, need,
+                       size: Math.round(size), box: { x: r.x, y: r.y, w: r.width, h: r.height } });
+          });
+          return out.slice(0, 14);
+        }).catch(() => []);
+
+        for (const c of candidates) {
+          // a 6x2 strip just outside the text box: background by definition, wherever the ink is
+          let sx = Math.max(0, c.box.x + 2);
+          let sy = c.box.y - 3;
+          if (sy < 2) { sx = Math.min(1900, c.box.x + c.box.w + 4); sy = c.box.y + 2; }
+          let png;
+          try {
+            png = await page.screenshot({ clip: { x: sx, y: Math.max(0, sy), width: 6, height: 2 } });
+          } catch (_) { continue; }
+          const b64 = Buffer.from(png).toString("base64");
+          const avg = await page.evaluate(async (data) => {
+            const img = new Image();
+            img.src = "data:image/png;base64," + data;
+            try { await img.decode(); } catch (_) { return null; }
+            const cv = document.createElement("canvas");
+            cv.width = img.width; cv.height = img.height;
+            const cx = cv.getContext("2d");
+            cx.drawImage(img, 0, 0);
+            const d = cx.getImageData(0, 0, img.width, img.height).data;
+            let r = 0, g = 0, b = 0, n = 0;
+            for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; }
+            return n ? { r: r / n, g: g / n, b: b / n, a: 1 } : null;
+          }, b64).catch(() => null);
+          if (!avg) continue;
+          const fgc = c.fg.a < 1
+            ? { r: c.fg.r * c.fg.a + avg.r * (1 - c.fg.a),
+                g: c.fg.g * c.fg.a + avg.g * (1 - c.fg.a),
+                b: c.fg.b * c.fg.a + avg.b * (1 - c.fg.a), a: 1 }
+            : c.fg;
+          const L = (x) => {
+            const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+            return 0.2126 * f(x.r) + 0.7152 * f(x.g) + 0.0722 * f(x.b);
+          };
+          const la = L(fgc), lb = L(avg);
+          const ratio = (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+          const rounded = Math.round(ratio * 100) / 100;
+          if (ratio < c.need - 0.05) {
+            entry.errors.push(`desktop: text contrast ${rounded}:1 (need ${c.need}) on .${c.cls} ` +
+                              `at ${c.size}px — sampled background rgb(${Math.round(avg.r)},${Math.round(avg.g)},${Math.round(avg.b)})`);
+          } else if (process.env.KIT_CONTRAST_DEBUG) {
+            entry.warnings.push(`contrast ok ${rounded}:1 on .${c.cls} at ${c.size}px`);
+          }
+        }
+
+        // 3. did the declared web fonts actually load?
         //    NOTE: fonts.check('16px "X"') answers for ONE weight — Google serves a face per
         //    weight, so a 400 probe returns false while the 700 face is loaded. Ask per face
         //    instead, and treat "family declared but zero faces ever fetched" as the failure.

@@ -1,5 +1,6 @@
 @theme {
   --color-primary: #4550e8;
+  --color-accent-ink: #2a36e5;
   --color-primary-hover: #3944d6;
   --color-primary-border: #a9b0fa;
   --color-on-primary: #ffffff;
@@ -15,7 +16,7 @@
   --color-surface-solid: #f3f5fb;
   --color-text: #1c2033;
   --color-text-muted: #454b63;
-  --color-text-dim: #656c87;
+  --color-text-dim: #585e76;
   --color-border: #ffffffb3;
   --color-border-strong: #1c203324;
   --color-ok: #0f7350;

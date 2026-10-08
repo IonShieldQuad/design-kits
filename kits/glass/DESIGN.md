@@ -4,6 +4,7 @@ name: Glass
 description: Frosted, translucent panels over a soft pastel gradient — restrained glassmorphism with layered depth instead of borders.
 colors:
   primary: "#4550e8"
+  accent-ink: "#2a36e5"
   primary-hover: "#3944d6"
   primary-border: "#a9b0fa"
   on-primary: "#ffffff"
@@ -19,7 +20,7 @@ colors:
   surface-solid: "#f3f5fb"
   text: "#1c2033"
   text-muted: "#454b63"
-  text-dim: "#656c87"
+  text-dim: "#585e76"
   border: "rgba(255, 255, 255, 0.70)"
   border-strong: "rgba(28, 32, 51, 0.14)"
   ok: "#0f7350"

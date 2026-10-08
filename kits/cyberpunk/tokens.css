@@ -27,6 +27,7 @@
   --accent-hover:  #ff5aa0;                 /* lighter magenta on hover */
   --accent-2:      #22e0ff;                 /* electric cyan — gradients, media */
   --accent-soft:   rgba(255,46,136,.14);    /* 14% magenta tint, derived */
+  --accent-ink: #ff3d91;               /* the accent as TEXT: measured on every ground, incl. its own 16% tint */
 
   /* -- status (deliberately off the neon brand hues) --------------------- */
   --ok:            #2fe6a0;                 /* mint, away from cyan */

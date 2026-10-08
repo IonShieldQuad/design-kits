@@ -33,6 +33,7 @@
   --accent-2:      #35e3ff;                 /* CYAN — the cool counterweight, and it must actually
                                                reach the UI: media gradients, bars, avatars */
   --accent-soft:   rgba(255,46,136,.15);    /* 15% magenta tint, derived */
+  --accent-ink: #ff4796;               /* the accent as TEXT: measured on every ground, incl. its own 16% tint */
 
   /* -- status (deliberately off the brand hues) -------------------------- */
   --ok:            #2fe6a0;                 /* mint, away from cyan */

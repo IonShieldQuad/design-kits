@@ -23,6 +23,7 @@
   --accent-hover: #7390ff;                /* --accent-hover */
   --accent-2: #7d6ce8;                    /* derived: one step around the wheel */
   --accent-soft: rgba(91, 124, 250, .16);
+  --accent-ink: #7490fb;               /* the accent as TEXT: measured on every ground, incl. its own 16% tint */
 
   /* ----------------------------------------------------------------- status */
   --ok: #5fbf8f;                          /* derived */

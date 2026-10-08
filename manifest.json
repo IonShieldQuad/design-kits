@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 20,
+  "kit_count": 23,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -138,7 +138,7 @@
       "colors": {
         "primary": "#5b7cfa",
         "primary-hover": "#7390ff",
-        "primary-ink": "#0b0e13",
+        "primary-ink": "#7490fb",
         "secondary": "#7d6ce8",
         "tertiary": "#6b93e0",
         "neutral": "#0b0e13",
@@ -176,6 +176,7 @@
       "source": "original",
       "colors": {
         "primary": "#ff2e88",
+        "accent-ink": "#ff3d91",
         "secondary": "#22e0ff",
         "tertiary": "#e8ff2e",
         "neutral": "#08070d",
@@ -226,6 +227,7 @@
       "source": "original",
       "colors": {
         "primary": "#ff7a1a",
+        "primary-ink": "#8f3b00",
         "secondary": "#06a9c4",
         "tertiary": "#ff2ea6",
         "neutral": "#fff5ec",
@@ -283,6 +285,7 @@
       "source": "original",
       "colors": {
         "primary": "#ff2e88",
+        "accent-ink": "#ff4796",
         "secondary": "#c9d0da",
         "tertiary": "#35e3ff",
         "neutral": "#08090d",
@@ -433,6 +436,7 @@
       "source": "original",
       "colors": {
         "primary": "#4550e8",
+        "accent-ink": "#2a36e5",
         "primary-hover": "#3944d6",
         "primary-border": "#a9b0fa",
         "on-primary": "#ffffff",
@@ -448,7 +452,7 @@
         "surface-solid": "#f3f5fb",
         "text": "#1c2033",
         "text-muted": "#454b63",
-        "text-dim": "#656c87",
+        "text-dim": "#585e76",
         "border": "rgba(255, 255, 255, 0.70)",
         "border-strong": "rgba(28, 32, 51, 0.14)",
         "ok": "#0f7350",
@@ -571,6 +575,7 @@
       "source": "original",
       "colors": {
         "primary": "#4a6658",
+        "accent-ink": "#455f52",
         "primary-hover": "#40594b",
         "secondary": "#567694",
         "tertiary": "#40594b",
@@ -845,7 +850,7 @@
       "colors": {
         "primary": "#e86f0a",
         "primary-hover": "#fb8118",
-        "primary-ink": "#241708",
+        "primary-ink": "#703200",
         "primary-text": "#7a3600",
         "primary-text-hover": "#632900",
         "secondary": "#2f8e85",
@@ -990,7 +995,7 @@
       "colors": {
         "primary": "#ec4b8f",
         "primary-hover": "#ff5fa2",
-        "primary-ink": "#1a0f2b",
+        "primary-ink": "#ffadce",
         "secondary": "#44a6d7",
         "tertiary": "#ffb57b",
         "neutral": "#19152b",
@@ -1007,6 +1012,137 @@
         "tokens": "kits/retro-anime/tokens.css",
         "lab": "kits/retro-anime/index.html",
         "readme": "kits/retro-anime/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "city-pop",
+      "name": "City Pop",
+      "tagline": "A Tokyo bay in daylight — cream sky, coral sun, ocean teal",
+      "description": "A Tokyo bay in daylight — cream sky, coral sun, ocean teal, airbrushed and airy.",
+      "index": "21",
+      "order": 130,
+      "mode": "light",
+      "tags": [
+        "light",
+        "retro",
+        "city-pop",
+        "pastel",
+        "sunset",
+        "80s"
+      ],
+      "fonts": "Sora · Manrope · Space Mono",
+      "source": "original (re-tuned from a twilight draft to the daytime register the brief asked for)",
+      "colors": {
+        "primary": "#d62f4b",
+        "primary-hover": "#d62f4b",
+        "primary-ink": "#a3203a",
+        "secondary": "#1f9aa8",
+        "tertiary": "#8a5a10",
+        "neutral": "#fff8f1",
+        "surface": "#ffffff",
+        "surface-2": "#f6efe9",
+        "text": "#2f2a40",
+        "text-muted": "#5d5670",
+        "success": "#19784f",
+        "warning": "#8a5a10",
+        "error": "#b3243a",
+        "info": "#2c68c4"
+      },
+      "files": {
+        "design": "kits/city-pop/DESIGN.md",
+        "tokens": "kits/city-pop/tokens.css",
+        "lab": "kits/city-pop/index.html",
+        "readme": "kits/city-pop/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "win98",
+      "name": "Windows 98",
+      "tagline": "Windows 95/98 desktop chrome — grey face, hard 3D bevels, navy title bar",
+      "description": "Windows 95/98 desktop chrome — a single grey plastic face, hard two-tone 3D bevels, one navy gradient title bar.",
+      "index": "22",
+      "order": 135,
+      "mode": "light",
+      "tags": [
+        "light",
+        "retro",
+        "windows",
+        "desktop",
+        "ui",
+        "pixel",
+        "90s"
+      ],
+      "fonts": "Silkscreen · Public Sans · VT323",
+      "source": "original — the classic 16-colour Windows 95/98 UI palette (#c0c0c0 face, #000080 caption, #008080 desktop TEAL) reinterpreted as a modern token set",
+      "colors": {
+        "primary": "#000080",
+        "primary-hover": "#0000a0",
+        "primary-ink": "#ffffff",
+        "secondary": "#008080",
+        "tertiary": "#0a4fa0",
+        "neutral": "#c0c0c0",
+        "surface": "#d4d0c8",
+        "surface-2": "#ffffff",
+        "text": "#000000",
+        "text-muted": "#333333",
+        "text-dim": "#3a3a3a",
+        "border": "#808080",
+        "border-strong": "#000000",
+        "success": "#008000",
+        "warning": "#6b6b00",
+        "error": "#800000",
+        "info": "#1c5fb0"
+      },
+      "files": {
+        "design": "kits/win98/DESIGN.md",
+        "tokens": "kits/win98/tokens.css",
+        "lab": "kits/win98/index.html",
+        "readme": "kits/win98/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "pixel-dmg",
+      "name": "Pixel DMG",
+      "tagline": "Four shades of green",
+      "description": "The Game Boy DMG — a reflective monochrome LCD carrying four shades of green, dithered into a whole interface.",
+      "index": "23",
+      "order": 140,
+      "mode": "light",
+      "tags": [
+        "light",
+        "retro",
+        "pixel",
+        "gameboy",
+        "monochrome",
+        "arcade"
+      ],
+      "fonts": "Press Start 2P · Silkscreen · VT323",
+      "source": "original — the palette is the Game Boy DMG's canonical four green shades (#0f380f #306230 #8bac0f #9bbc0f), extended one step at each end so WCAG-AA text can exist on a reflective LCD",
+      "colors": {
+        "primary": "#0f380f",
+        "primary-hover": "#1c4f1c",
+        "primary-ink": "#b6d313",
+        "secondary": "#8bac0f",
+        "tertiary": "#306230",
+        "neutral": "#9bbc0f",
+        "surface": "#b4d212",
+        "surface-2": "#9bbc0f",
+        "text": "#082608",
+        "text-muted": "#0f380f",
+        "text-dim": "#1a481a",
+        "success": "#0f380f",
+        "warning": "#174117",
+        "error": "#0a2a0a",
+        "info": "#1c4a1c"
+      },
+      "files": {
+        "design": "kits/pixel-dmg/DESIGN.md",
+        "tokens": "kits/pixel-dmg/tokens.css",
+        "lab": "kits/pixel-dmg/index.html",
+        "readme": "kits/pixel-dmg/README.md"
       },
       "warnings": []
     }

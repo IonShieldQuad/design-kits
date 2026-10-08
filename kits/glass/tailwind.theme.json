@@ -3,6 +3,7 @@
     "extend": {
       "colors": {
         "primary": "#4550e8",
+        "accent-ink": "#2a36e5",
         "primary-hover": "#3944d6",
         "primary-border": "#a9b0fa",
         "on-primary": "#ffffff",
@@ -18,7 +19,7 @@
         "surface-solid": "#f3f5fb",
         "text": "#1c2033",
         "text-muted": "#454b63",
-        "text-dim": "#656c87",
+        "text-dim": "#585e76",
         "border": "#ffffffb3",
         "border-strong": "#1c203324",
         "ok": "#0f7350",

@@ -25,8 +25,8 @@
   --accent-hover: #ff5fa2;                /* derived: one step brighter — the poster's hot pink */
   --accent-2: #44a6d7;                    /* sampled: the cyan neon (median of five) */
   --accent-soft: rgba(236, 75, 143, .18); /* derived: the magenta as a tint */
-  --accent-ink: #ff9cc4;                  /* sampled magenta, lightened until it reads as text */
-  --accent-ink-hover: #ffb3d3;
+  --accent-ink: #ffadce;                  /* sampled magenta, lightened until it reads as text */
+  --accent-ink-hover: #ffb0d0;
 
   /* ----------------------------------------------------------------- status */
   --ok: #45d6a4;

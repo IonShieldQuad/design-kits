@@ -3,6 +3,7 @@
     "extend": {
       "colors": {
         "primary": "#ff7a1a",
+        "primary-ink": "#8f3b00",
         "secondary": "#06a9c4",
         "tertiary": "#ff2ea6",
         "neutral": "#fff5ec",

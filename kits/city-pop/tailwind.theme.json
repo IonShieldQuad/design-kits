@@ -1,0 +1,88 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#d62f4b",
+        "primary-hover": "#d62f4b",
+        "primary-ink": "#a3203a",
+        "secondary": "#1f9aa8",
+        "tertiary": "#8a5a10",
+        "neutral": "#fff8f1",
+        "surface": "#ffffff",
+        "surface-2": "#f6efe9",
+        "text": "#2f2a40",
+        "text-muted": "#5d5670",
+        "success": "#19784f",
+        "warning": "#8a5a10",
+        "error": "#b3243a",
+        "info": "#2c68c4"
+      },
+      "fontFamily": {
+        "display": [
+          "Sora"
+        ],
+        "heading": [
+          "Sora"
+        ],
+        "body": [
+          "Manrope"
+        ],
+        "label": [
+          "Space Mono"
+        ],
+        "tech": [
+          "Space Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.85rem",
+          {
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "400"
+          }
+        ],
+        "tech": [
+          "0.9rem",
+          {
+            "letterSpacing": "0.04em",
+            "fontWeight": "700"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "5px",
+        "md": "10px",
+        "lg": "16px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

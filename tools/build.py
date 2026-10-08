@@ -59,8 +59,16 @@ SWATCH_TOKENS = [
 #   --text-on-surface*      text inside .card (when --surface contrasts with --bg)
 #   --text-on-surface-2*    text inside inputs/badges/alerts (when --surface-2 contrasts)
 OPTIONAL_TOKENS = [
-    "--clip", "--accent-ink", "--accent-ink-hover", "--text-on-surface", "--text-on-surface-muted",
+    # text accessibility
+    "--accent-ink", "--accent-ink-hover", "--text-on-surface", "--text-on-surface-muted",
     "--text-on-surface-2", "--text-on-surface-2-muted",
+    # shape / construction
+    "--clip", "--input-inset", "--btn-shadow",
+    "--check-appearance", "--check-bg", "--check-border", "--check-checked",
+    # surfaces the lab would otherwise hardcode
+    "--media-bg", "--media-op", "--wash", "--fill-bg",
+    # rendering
+    "--pixel-render",
 ]
 
 OK = "\033[92m✓\033[0m"
@@ -616,6 +624,9 @@ def main() -> int:
     ap.add_argument("--check", action="store_true", help="verify generated files are current")
     ap.add_argument("--no-export", action="store_true", help="skip npx token exports")
     ap.add_argument("--no-lint", action="store_true", help="skip the DESIGN.md linter")
+    ap.add_argument("--only", action="append", metavar="SLUG",
+                    help="build just these kits (repeatable). Skips the shared gallery, manifest "
+                         "and picker tables, so parallel kit authors cannot race on them.")
     args = ap.parse_args()
 
     if not KITS_DIR.exists():
@@ -639,10 +650,18 @@ def main() -> int:
                 f"from order (now {i:02d}); the field is ignored"
             )
 
+    if args.only:
+        known = {k.slug for k in kits}
+        unknown = [s for s in args.only if s not in known]
+        if unknown:
+            print(f"{ERR} no such kit(s): {', '.join(unknown)}")
+            return 2
+    todo = [k for k in kits if not args.only or k.slug in args.only]
+
     stale: list[str] = []
     lint_errors = 0
 
-    for kit in kits:
+    for kit in todo:
         kit.check_tokens()
         print(f"\n▸ {kit.slug}  ({kit.name})")
         for p in kit.problems:
@@ -674,6 +693,11 @@ def main() -> int:
                 print(f"  {line}")
                 if line.startswith(ERR):
                     lint_errors += 1
+
+    if args.only:
+        print(f"\n{OK} built {len(todo)} kit(s) only — the shared gallery, manifest and picker "
+              f"tables are left to the aggregating run")
+        return 1 if lint_errors else 0
 
     # ---------------------------------------------------------------- gallery
     font_links = "\n".join(

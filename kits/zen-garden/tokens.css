@@ -50,6 +50,7 @@
   --accent-hover:  #40594b;                 /* the pressed step: settles, does not glow */
   --accent-2:      #567694;                 /* RAIN BLUE — gradients, media, charts only */
   --accent-soft:   rgba(74, 102, 88, .10);  /* 10% sage tint — rings, active nav, badges */
+  --accent-ink: #455f52;               /* the accent as TEXT: measured on every ground, incl. its own 16% tint */
 
   /* ----------------------------------------------------------------- status */
   /* Off the brand hues on purpose, and held at the same low saturation as the

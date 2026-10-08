@@ -78,8 +78,8 @@
   /* #e86f0a as a small label on beige is 1.85:1 — a lamp is not an ink. Fill and
      text are different jobs, so accent-as-text is a much darker burnt orange of
      the same family. 5.3:1 on the shell, 4.8:1 on the deepest inset bay. */
-  --accent-ink:       #7a3600;
-  --accent-ink-hover: #632900;              /* the hover step for accent TEXT */
+  --accent-ink: #703200;
+  --accent-ink-hover: #6d3100;              /* the hover step for accent TEXT */
 
   /* -- status (kept clear of the amber action by VALUE) ------------------ */
   --ok:            #18522a;                 /* moulded green lamp: nominal.
