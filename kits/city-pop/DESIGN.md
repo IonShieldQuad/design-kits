@@ -158,7 +158,7 @@ light source. Type is Sora for the soft geometric display, Manrope for the human
 Mono for the space-age machine labels the era's credit blocks were full of.
 
 The register is *airy and pastel*, and that is the distinction from the rest of the retro family:
-`retro-anime` is this decade at night (indigo, magenta, cyan neon), `summer-sunset` is this decade
+`synthwave` is this decade at night (indigo, magenta, cyan neon), `summer-sunset` is this decade
 as a saturated poster. City pop is the low-contrast, hairline, elegant one.
 
 ## Colors
@@ -234,5 +234,5 @@ generic accent ramp — and the sun-bar carries the gold.
 - **Do** grade labels against the palest ground, not the average one. The blue stop binds, not the
   cream.
 - **Don't** use the coral fill as a text colour; `primary-ink` exists because it does not pass.
-- **Don't** let it drift to dusk. The moment the ground goes navy this kit becomes `retro-anime`
+- **Don't** let it drift to dusk. The moment the ground goes navy this kit becomes `synthwave`
   with the wrong palette — the daylight is the whole distinction.

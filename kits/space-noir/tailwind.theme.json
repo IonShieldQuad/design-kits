@@ -1,0 +1,80 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#c06a30",
+        "primary-hover": "#d67f42",
+        "primary-ink": "#e0904f",
+        "primary-ink-hover": "#eda468",
+        "secondary": "#2f6f68",
+        "tertiary": "#d9a441",
+        "neutral": "#1a1714",
+        "surface": "#1e1a17",
+        "surface-2": "#151311",
+        "text": "#ece4d6",
+        "text-muted": "#bdb3a4",
+        "text-dim": "#9c9284",
+        "ink": "#191210",
+        "success": "#8fae5f",
+        "error": "#cb7266",
+        "info": "#5c9d97"
+      },
+      "fontFamily": {
+        "display": [
+          "Barlow Condensed"
+        ],
+        "heading": [
+          "Barlow Condensed"
+        ],
+        "body": [
+          "Barlow"
+        ],
+        "label": [
+          "Courier Prime"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "0.005em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.32rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "body": [
+          "0.98rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "400"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "2px",
+        "md": "4px",
+        "lg": "8px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

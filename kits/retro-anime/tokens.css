@@ -1,86 +1,216 @@
 /* ============================================================================
-   Retro Anime — design kit tokens
-   Derived from five reference illustrations (city-pop / 80s-anime / outrun
-   sunset key art). Every palette value below is the MEDIAN sampled from those
-   images, not an eyeball estimate; DESIGN.md holds the normative values and
-   README.md carries the sampling table.
-   ========================================================================== */
+   design-kits · retro-anime                                        contract v1
+   ----------------------------------------------------------------------------
+   90s SHOUJO MAGICAL-GIRL ANIME — celestial pastels, ribbons, a crescent moon,
+   a shoujo sparkle, drawn in flat cel-shaded fills.
 
+   PROVENANCE. The register is "90s shoujo magical-girl anime" as a design
+   language — cel shading, high-key pastel key art, celestial iconography, gold
+   trim. It is NOT any one series, character, costume or logo. Every motif here
+   is generic vocabulary anyone may draw: a face-free crescent moon, a four-point
+   sparkle, a ribbon bow, a starfield.
+
+   A LIGHT, HIGH-KEY KIT — the library's only celestial one. The ground is a
+   warm CREAM/ivory that cools to a pale night-sky lavender, never pure white.
+   Blush ROSE and SKY BLUE are the two working accents; deep NAVY is the ink;
+   cel-animation GOLD is the trim (a flat ochre, not metallic).
+
+   CEL SHADING IS THE DEPTH CUE. 90s animation is flat fills with ONE hard
+   second tone for shadow. So depth here is a hard-edged, ZERO-BLUR offset (the
+   cel plate), a two-tone fill, and crisp 2px outlines — there is no soft drop
+   shadow and no bloom anywhere in this kit.
+
+   DIFFERENTIATION — the two kits this could drift into, and why it does not:
+     · kawaii          sticker-cute and PLAYFUL: 12-28px radii, pills on every
+                       control, a bouncy overshoot ease, confetti and hearts.
+                       retro-anime is ROMANTIC and CELESTIAL — navy ink, moon
+                       and stars, an elegant Mincho display, 5-14px radii, a
+                       calm ease, and cel-shaded (not sticker) motifs.
+     · tropical-breeze pastel BEACH: sand, sea, turquoise, coral, a palm frond.
+                       retro-anime is a NIGHT SKY in daylight — navy, rose and
+                       sky-blue, a crescent, sparkles and a ribbon. No warm
+                       terra, no plant life, no sun-on-water.
+
+   CONTRAST. A light kit's binding ground is the PALEST one, so every ink is
+   graded against --surface (#fffdf8) and every --bg stop, and the accent badge
+   is graded against its own --accent-soft tint COMPOSITED over each ground.
+   Measured table in README.md.
+
+   Fonts: Shippori Mincho (display) · Nunito Sans (body) · IBM Plex Mono (labels)
+   Contract: docs/KIT-SPEC.md v1 — every required name present.
+   ========================================================================== */
 :root {
-  /* --------------------------------------------------------------- surfaces */
-  --bg: linear-gradient(180deg, #2a1440 0px, #622c80 170px, #4a1f63 300px, #6e3520 420px, #2a1440 540px, #19152b 100%);
-  --bg-2: #19152b;                        /* sampled: the silhouette / near-field mass */
-  --surface: #221a3a;                     /* derived: --bg-2 lifted for panels */
-  --surface-2: #171129;                   /* derived: --bg-2 pushed down for insets, inputs */
-  --overlay: rgba(14, 10, 26, .74);       /* derived: the night, deepened for modal scrims */
+  /* ---------------------------------------------------------------- surfaces */
+  /* --bg uses PX stops (never %): the body gradient box is the whole document,
+     so a percentage ramp would show one flat colour in the viewport and waste
+     the idea. Dusk at the top of the page, settling through lilac and blush to
+     a warm cream at the foot — a night sky that has not gone dark. */
+  --bg:            linear-gradient(180deg, #eef4fb 0px, #f6eefc 340px, #fdf3f2 720px, #fdf8f1 1200px, #fdf7ee 100%);
+  --bg-2:          #fbf3f4;                 /* solid stand-in for exports */
+  --surface:       #fffdf8;                 /* cards — warm ivory paper, a touch
+                                               under white. The PALEST ground, so
+                                               the binding one for contrast. */
+  --surface-2:     #f5eef4;                 /* inputs, badges, code, and the
+                                               Signature tile base — a blush-grey
+                                               inset, cooler than the ground */
+  --overlay:       rgba(27, 35, 65, .55);   /* modal scrim: navy, never neutral */
 
   /* ------------------------------------------------------------------- text */
-  --text: #f7ecff;                        /* derived: warm white carrying a violet cast */
-  --text-muted: #cbb8e4;                  /* derived: sampled violet, lightened */
-  --text-dim: #c2b2df;                    /* derived: measured against every ground below */
-  --text-invert: #1a0f2b;                 /* the night, for labels on the neon fill */
+  /* Deep NAVY ink, never grey — a grey on a cream page reads as an office doc,
+     and this kit's whole premise is a night sky. */
+  --text:          #1e2749;                 /* 12.8:1 on the palest ground (--surface) */
+  --text-muted:    #414c72;                 /* 9.4:1 on --surface, 7.4:1 on --surface-2 */
+  --text-dim:      #49547b;                 /* captions/placeholders — 6.5:1 on --surface-2,
+                                               8.4:1 on --surface. The token that fails
+                                               most often; solved against the palest stop. */
+  --text-invert:   #fff8f0;                 /* the label ON the rose fill: a CREAM white,
+                                               not #fff — 4.77:1 on --accent, 5.65:1 on
+                                               --accent-hover (a light fill takes a light
+                                               label only because the rose is deep). */
 
   /* ------------------------------------------------------------------ brand */
-  --accent: #ec4b8f;                      /* sampled: #bb4085 magenta, driven to neon */
-  --accent-hover: #ff5fa2;                /* derived: one step brighter — the poster's hot pink */
-  --accent-2: #44a6d7;                    /* sampled: the cyan neon (median of five) */
-  --accent-soft: rgba(236, 75, 143, .18); /* derived: the magenta as a tint */
-  --accent-ink: #ffadce;                  /* sampled magenta, lightened until it reads as text */
-  --accent-ink-hover: #ffb0d0;
+  /* A DEEP ROSE, not a pastel pink. A blush pink that works as a tint is only
+     ~2.6:1 as a label and cannot carry a cream label as a fill, so the ACTION
+     colour is the rose the ribbon is drawn in, and the blush itself lives in
+     --accent-soft and the motif tiles. */
+  --accent:        #c53a68;                 /* the ribbon rose — the action FILL */
+  --accent-hover:  #b2335e;                 /* pressed: one step deeper, never a glow */
+  --accent-2:      #3f7fd0;                 /* SKY BLUE — the second accent, structural:
+                                               media, progress, focus, charts. 3.6:1 at
+                                               worst, so never a small label. */
+  --accent-soft:   rgba(197, 58, 104, .14); /* a 14% tint of --accent, derived — it can
+                                               only ever be the rose */
+
+  /* -- accent as TEXT (the fill-vs-label split) -------------------------- */
+  --accent-ink:        #ae2a5e;             /* rose AS TEXT (eyebrow, links, active nav,
+                                               secondary-button label, badge label). 5.6:1
+                                               on --surface-2, and 4.63:1 on its own 14%
+                                               tint composited over --surface-2. */
+  --accent-ink-hover:  #94214f;             /* the hover step for rose text — deeper */
 
   /* ----------------------------------------------------------------- status */
-  --ok: #45d6a4;
-  --warn: #ffc46b;                        /* sampled: near the sun's gold */
-  --danger: #ff5f77;
-  --info: #44a6d7;
+  /* Off the rose/sky pair so a status never reads as decoration, and deepened
+     to clear 4.5:1 on --surface-2, where badges and alerts actually sit. */
+  --ok:            #1f7a5a;                 /* a deep cel-forest green, not the sky blue */
+  --warn:          #8f6410;                 /* the gold, inked — a status only */
+  --danger:        #bd3a22;                 /* a TRUE vermilion red — hot and orange-red,
+                                               clearly not the rose in hue */
+  --info:          #2b6fb5;                 /* the sky blue, inked for data/telemetry */
 
   /* ------------------------------------------------------------------ lines */
-  --border: #3b2a5c;                      /* derived: violet hairline on the indigo ground */
-  --border-strong: #55407e;
-  --border-w: 1px;
-  --focus-ring: #44a6d7;                  /* the cyan neon does focus duty */
+  /* Crisp navy hairlines at 2px — a cel drawing has a visible ink outline, and
+     this is the one place the kit is not delicate about weight. */
+  --border:        rgba(30, 39, 73, .16);
+  --border-strong: rgba(30, 39, 73, .36);
+  --border-w:      2px;
+  --focus-ring:    #2f6fc0;                 /* SKY. 4.4:1 at worst — a focus ring can
+                                               never be confused with the rose action */
 
   /* ------------------------------------------------------------------ shape */
-  --radius-sm: 3px;                       /* poster-print corners: softened, never round */
-  --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-pill: 999px;
-  --cut: 0px;                             /* no chamfer — the poster's geometry is the sun and grid */
+  /* Softened, never round and never square: an animation cel is a soft-edged
+     frame, and cel shading has no chamfer. */
+  --radius-sm:      5px;
+  --radius-md:      9px;
+  --radius-lg:     14px;
+  --radius-pill:  999px;                    /* badges only — nothing else is a pill */
+  --cut:            0px;                    /* cel shading cuts nothing */
 
   /* ------------------------------------------------------------------- type */
-  --font-display: "Audiowide", "Rajdhani", system-ui, sans-serif;
-  --font-body: "Rajdhani", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", monospace;
-  --tracking-caps: .12em;
-  --tracking-display: .01em;
+  /* Shippori Mincho — a Japanese Mincho serif: the elegant, slightly retro
+     letterform of a 90s title card, and a display voice nothing else in the
+     library uses. Nunito Sans keeps the body clean and readable at 12-13px.
+     IBM Plex Mono is the light machine voice for chips and code. */
+  --font-display:  "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", Georgia, "Times New Roman", serif;
+  --font-body:     "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .16em;                /* a title-card credit line is spaced */
+  --tracking-display: 0em;                  /* a Mincho is drawn, not tracked */
 
   /* ------------------------------------------------------------------ depth */
-  --shadow-1: 0 6px 22px rgba(9, 6, 18, .55);
-  --shadow-2: 0 16px 44px rgba(9, 6, 18, .68);
-  --glow: 0 0 0 1px rgba(68, 166, 215, .55), 0 0 20px rgba(68, 166, 215, .38);
-  --blur: none;                           /* a print, not glass — panels stay flat */
+  /* THE CEL PLATE: a hard-edged, ZERO-BLUR offset in a cool navy-shadow tone
+     (a cel shadow is a second tone of the ground, never a grey blur). */
+  --shadow-1:      4px 4px 0 0 rgba(38, 44, 86, .18);
+  --shadow-2:      6px 6px 0 0 rgba(38, 44, 86, .24);
+  /* --glow is NOT a bloom: it is a hard gold-and-rose ring plus the same cel
+     offset, applied to the one lit object (the primary button). */
+  --glow:          0 0 0 2px rgba(197, 58, 104, .45), 4px 4px 0 0 rgba(38, 44, 86, .22);
+  --blur:          none;                    /* a cel is opaque film, never frosted glass */
 
   /* ----------------------------------------------------------------- motion */
-  --dur: .28s;
-  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur:           .22s;
+  --ease:          cubic-bezier(.22, .61, .36, 1);
 
-  /* ------------------------------------------------------------- kit extras */
-  /* The four devices the references actually share: the sunset ramp, the striped
-     outrun sun, the perspective floor grid, and chrome. Values sampled or built
-     from sampled stops — see README. */
-  --retro-anime-sky:
-    linear-gradient(180deg, #622c80 0px, #8f3376 60px, #bb4085 110px, #faa071 165px, #ffb57b 195px, #2a1440 250px);
-  --retro-anime-sun:
-    /* DRAWN: a solid disc with bars cut across its lower half, widening downward. A repeating
-       gradient cannot do this — it would stripe the whole tile, not the disc. */
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMTQwJyB2aWV3Qm94PScwIDAgMjAwIDE0MCc+IDxkZWZzPiA8bGluZWFyR3JhZGllbnQgaWQ9J2QnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz4gPHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZlOWM0Jy8+PHN0b3Agb2Zmc2V0PScuMycgc3RvcC1jb2xvcj0nI2ZmYzk4ZCcvPiA8c3RvcCBvZmZzZXQ9Jy41OCcgc3RvcC1jb2xvcj0nI2ZmOWU2ZCcvPjxzdG9wIG9mZnNldD0nLjgyJyBzdG9wLWNvbG9yPScjZjA3MDlhJy8+IDxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nI2JiNDA4NScvPjwvbGluZWFyR3JhZGllbnQ+IDxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZiNTdiJyBzdG9wLW9wYWNpdHk9Jy40MicvPiA8c3RvcCBvZmZzZXQ9Jy41NScgc3RvcC1jb2xvcj0nI2VjNGI4Zicgc3RvcC1vcGFjaXR5PScuMjAnLz4gPHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZWM0YjhmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PiA8Y2xpcFBhdGggaWQ9J2MnPjxjaXJjbGUgY3g9JzEwMCcgY3k9JzcwJyByPSc1MCcvPjwvY2xpcFBhdGg+IDwvZGVmcz4gPHJlY3Qgd2lkdGg9JzIwMCcgaGVpZ2h0PScxNDAnIGZpbGw9JyMxOTE1MmInLz4gPGNpcmNsZSBjeD0nMTAwJyBjeT0nNzAnIHI9JzkyJyBmaWxsPSd1cmwoI2cpJy8+IDxjaXJjbGUgY3g9JzEwMCcgY3k9JzcwJyByPSc1MCcgZmlsbD0ndXJsKCNkKScvPiA8ZyBjbGlwLXBhdGg9J3VybCgjYyknIGZpbGw9JyMxOTE1MmInPiA8cmVjdCB4PSc0MCcgeT0nNzYnIHdpZHRoPScxMjAnIGhlaWdodD0nMycvPjxyZWN0IHg9JzQwJyB5PSc4NCcgd2lkdGg9JzEyMCcgaGVpZ2h0PSczJy8+IDxyZWN0IHg9JzQwJyB5PSc5Mycgd2lkdGg9JzEyMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nNDAnIHk9JzEwNCcgd2lkdGg9JzEyMCcgaGVpZ2h0PSc0Jy8+IDxyZWN0IHg9JzQwJyB5PScxMTYnIHdpZHRoPScxMjAnIGhlaWdodD0nNScvPjwvZz4gPGNpcmNsZSBjeD0nMTAwJyBjeT0nNzAnIHI9JzUwJyBmaWxsPSdub25lJyBzdHJva2U9JyNmZmQ3OWInIHN0cm9rZS1vcGFjaXR5PScuNTUnLz4gPC9zdmc+") 0 0 / 100% 100% no-repeat;
-  --retro-anime-grid:
-    /* DRAWN: verticals converging to a vanishing point, horizontals widening toward the viewer.
-       Two repeating gradients give graph paper — parallel, no depth. */
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMTMwJyB2aWV3Qm94PScwIDAgMjAwIDEzMCc+IDxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nYicgeDE9JzAnIHkxPScwJyB4Mj0nMCcgeTI9JzEnPiA8c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMzYTFjNTYnLz48c3RvcCBvZmZzZXQ9Jy4yOCcgc3RvcC1jb2xvcj0nIzJhMTQ0MCcvPiA8c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxOTE1MmInLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4gPHJlY3Qgd2lkdGg9JzIwMCcgaGVpZ2h0PScxMzAnIGZpbGw9J3VybCgjYiknLz4gPGcgc3Ryb2tlPScjNDRhNmQ3JyBzdHJva2Utb3BhY2l0eT0nLjcyJyBzdHJva2Utd2lkdGg9JzEnPjxwYXRoIGQ9J00xMDAgMzAgTC0xNjQgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMLTEyMCAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwtNzYgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMLTMyIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDEyIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDU2IDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDEwMCAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwxNDQgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMMTg4IDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDIzMiAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwyNzYgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMMzIwIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDM2NCAxMzAnLz48L2c+IDxnIHN0cm9rZT0nI2JiNDA4NScgc3Ryb2tlLW9wYWNpdHk9Jy42MCcgc3Ryb2tlLXdpZHRoPScxJz48bGluZSB4MT0nMCcgeTE9JzMwJyB4Mj0nMjAwJyB5Mj0nMzAnLz48bGluZSB4MT0nMCcgeTE9JzM2JyB4Mj0nMjAwJyB5Mj0nMzYnLz48bGluZSB4MT0nMCcgeTE9JzQ0JyB4Mj0nMjAwJyB5Mj0nNDQnLz48bGluZSB4MT0nMCcgeTE9JzU1JyB4Mj0nMjAwJyB5Mj0nNTUnLz48bGluZSB4MT0nMCcgeTE9JzcxJyB4Mj0nMjAwJyB5Mj0nNzEnLz48bGluZSB4MT0nMCcgeTE9Jzk1JyB4Mj0nMjAwJyB5Mj0nOTUnLz48bGluZSB4MT0nMCcgeTE9JzEyNycgeDI9JzIwMCcgeTI9JzEyNycvPjwvZz4gPGxpbmUgeDE9JzAnIHkxPSczMCcgeDI9JzIwMCcgeTI9JzMwJyBzdHJva2U9JyNmZmQ3OWInIHN0cm9rZS1vcGFjaXR5PScuNjUnIHN0cm9rZS13aWR0aD0nMS41Jy8+IDwvc3ZnPg==") 0 100% / 100% 100% no-repeat;
-  --retro-anime-chrome:
-    /* chrome is HARD BANDS, not a blur: a crisp dark band in the middle of the ramp is what
-       makes it read as metal. Smooth stops read as fog. */
-    linear-gradient(180deg, #f4f7fb 0%, #f4f7fb 16%, #c3ceda 16%, #c3ceda 34%, #6c7a8c 34%,
-      #2c3340 42%, #2c3340 54%, #e8eef4 54%, #e8eef4 72%, #8e9daa 72%, #525d6b 100%);
+  /* --------------------------------------------------- opt-in lab capabilities */
+  /* --btn-shadow reaches EVERY button variant, so all five read as the same cel
+     plate. --glow overrides it on the primary. */
+  --btn-shadow:      4px 4px 0 0 rgba(38, 44, 86, .18);
+  /* the nav is a cel plate too: the bar is the plate, the current item is the
+     rose plate riding on it. */
+  --bar-shadow:      2px 2px 0 0 rgba(38, 44, 86, .14);
+  --bar-item-shadow: 2px 2px 0 0 rgba(197, 58, 104, .32);
+  --bar-item-pad:    .65rem;
+  --toggle-shadow:      inset 0 0 0 1.5px rgba(30, 39, 73, .22);
+  --toggle-knob-shadow: 2px 2px 0 0 rgba(30, 39, 73, .28);
+  /* a field is pressed into the page with a hard 2px top inset, not a blur */
+  --input-inset:     inset 0 2px 0 0 rgba(30, 39, 73, .10);
+  /* progress + avatar take the NIGHT: a navy plate, so cream initials clear 12:1 */
+  --fill-bg:         linear-gradient(135deg, #2a3466 0px, #1b2350 100%);
+
+  /* --wash replaces the masthead's radial accent bloom with two soft pastel
+     lights over the page's own ground — a blush at the left, the sky at the
+     right. Both are translucent and only DARKEN the palest ground toward its
+     tint, so masthead copy keeps its contrast (verified in README). */
+  --wash:          radial-gradient(120% 150% at 14% 0%, rgba(197,58,104,.07) 0%, rgba(197,58,104,0) 58%), radial-gradient(95% 130% at 86% 4%, rgba(63,127,208,.08) 0%, rgba(63,127,208,0) 60%);
+
+  /* --media-bg replaces the .card-media ramp with the kit's own material: the
+     night sky — a navy field with a hard cel cloud band, a crescent and a
+     scatter of sparkles. Drawn (inline SVG) because a crescent, a four-point
+     sparkle and a hard perspective band are geometry no gradient makes.
+     --media-op: 1 lifts the default .85 dim so the night reads at full strength. */
+  --media-op:      1;
+  --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0ODAnIGhlaWdodD0nMTcwJyB2aWV3Qm94PScwIDAgNDgwIDE3MCc+IDxkZWZzPjxtYXNrIGlkPSdtbScgbWFza1VuaXRzPSd1c2VyU3BhY2VPblVzZScgeD0nMCcgeT0nMCcgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnPjxyZWN0IHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyBmaWxsPScjMDAwJy8+PGNpcmNsZSBjeD0nNjAnIGN5PSc2Micgcj0nNDAnIGZpbGw9JyNmZmYnLz48Y2lyY2xlIGN4PSc5MicgY3k9JzYyJyByPSc0MCcgZmlsbD0nIzAwMCcvPjwvbWFzaz4gPGxpbmVhckdyYWRpZW50IGlkPSdza3knIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz4gPHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMmIzNTY4Jy8+IDxzdG9wIG9mZnNldD0nMC41JyBzdG9wLWNvbG9yPScjMWYyODUwJy8+IDxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzExMTgzOCcvPiA8L2xpbmVhckdyYWRpZW50PiAgPC9kZWZzPiA8cmVjdCB3aWR0aD0nNDgwJyBoZWlnaHQ9JzE3MCcgZmlsbD0ndXJsKCNza3kpJy8+IDxyZWN0IHk9JzExOCcgd2lkdGg9JzQ4MCcgaGVpZ2h0PScxOCcgZmlsbD0nIzI2MzA1ZicvPiA8ZyB0cmFuc2Zvcm09J3RyYW5zbGF0ZSgzNTIsMzApIHNjYWxlKDAuNjYpJz48ZyBtYXNrPSd1cmwoI21tKSc+PGNpcmNsZSBjeD0nNjAnIGN5PSc2Micgcj0nNDAnIGZpbGw9JyNkY2IyNTcnLz48cGF0aCBkPSdNLTYgLTggTDU2IC04IEw0MiAxMzIgTC02IDEzMiBaJyBmaWxsPScjZmZmNmRmJy8+PC9nPjwvZz4gPHBhdGggZD0nTTYwIDI1IFE2Mi41NSAzNy40NSA3NSA0MCBRNjIuNTUgNDIuNTUgNjAgNTUgUTU3LjQ1IDQyLjU1IDQ1IDQwIFE1Ny40NSAzNy40NSA2MCAyNSBaJyBmaWxsPScjZmZmNmRmJyBvcGFjaXR5PScxLjAnLz4gPHBhdGggZD0nTTE1MCA4NyBRMTUxLjcxIDk0LjI5IDE1OSA5NiBRMTUxLjcxIDk3LjcxIDE1MCAxMDUgUTE0OC4yOSA5Ny43MSAxNDEgOTYgUTE0OC4yOSA5NC4yOSAxNTAgODcgWicgZmlsbD0nI2ZmZTlhZCcgb3BhY2l0eT0nMC45MicvPiA8cGF0aCBkPSdNMjQwIDI3IFEyNDEuNCAzMi42IDI0NyAzNCBRMjQxLjQgMzUuNCAyNDAgNDEgUTIzOC42IDM1LjQgMjMzIDM0IFEyMzguNiAzMi42IDI0MCAyNyBaJyBmaWxsPScjZmZmZmZmJyBvcGFjaXR5PScwLjknLz4gPHBhdGggZD0nTTMwMCAxMjkgUTMwMS45OCAxMzguMDIgMzExIDE0MCBRMzAxLjk4IDE0MS45OCAzMDAgMTUxIFEyOTguMDIgMTQxLjk4IDI4OSAxNDAgUTI5OC4wMiAxMzguMDIgMzAwIDEyOSBaJyBmaWxsPScjZmZlOWFkJyBvcGFjaXR5PScwLjg4Jy8+IDxwYXRoIGQ9J000MzAgODMgUTQzMi4zNCA5My42NiA0NDMgOTYgUTQzMi4zNCA5OC4zNCA0MzAgMTA5IFE0MjcuNjYgOTguMzQgNDE3IDk2IFE0MjcuNjYgOTMuNjYgNDMwIDgzIFonIGZpbGw9JyNmZmY2ZGYnIG9wYWNpdHk9JzAuOTUnLz4gPHBhdGggZD0nTTIwMCAxMzggUTIwMS42IDE0NC40IDIwOCAxNDYgUTIwMS42IDE0Ny42IDIwMCAxNTQgUTE5OC40IDE0Ny42IDE5MiAxNDYgUTE5OC40IDE0NC40IDIwMCAxMzggWicgZmlsbD0nI2ZmZmZmZicgb3BhY2l0eT0nMC44NScvPiA8cGF0aCBkPSdNNDE0IDE3IFE0MTUuOCAyNC4yIDQyMyAyNiBRNDE1LjggMjcuOCA0MTQgMzUgUTQxMi4yIDI3LjggNDA1IDI2IFE0MTIuMiAyNC4yIDQxNCAxNyBaJyBmaWxsPScjZmZlOWFkJyBvcGFjaXR5PScwLjknLz4gPGNpcmNsZSBjeD0nMTIwJyBjeT0nMTMyJyByPScyLjQnIGZpbGw9JyNmZmZmZmYnLz4gPGNpcmNsZSBjeD0nMjY0JyBjeT0nODYnIHI9JzInIGZpbGw9JyNmZmU5YWQnLz4gPGNpcmNsZSBjeD0nMzUwJyBjeT0nMTIwJyByPScyLjInIGZpbGw9JyNmZmZmZmYnLz4gPGNpcmNsZSBjeD0nNDYnIGN5PSc5Micgcj0nMS45JyBmaWxsPScjZmZmZmZmJy8+IDxjaXJjbGUgY3g9JzQ1MicgY3k9JzE0Nicgcj0nMi4xJyBmaWxsPScjZmZlOWFkJy8+IDxjaXJjbGUgY3g9JzE4NicgY3k9JzE4JyByPScxLjgnIGZpbGw9JyNmZmZmZmYnLz4gPC9zdmc+") center / cover no-repeat,
+                   linear-gradient(180deg, #2b3568 0%, #1b2350 60%, #111838 100%);
+
+  /* ------------------------------------------------------------------------
+     SIGNATURE — the kit's drawn artwork. Four motifs, each a DIFFERENT job:
+       the crescent is the EMBLEM, the sparkle is the GLINT, the ribbon is the
+       OBJECT, the starfield is the FIELD. Each is DRAWN (inline SVG, base64 —
+       never hand-percent-encoded, which double-encodes '#' and fails silently)
+       and each carries its own base layer so no tile shows only --surface-2.
+     ------------------------------------------------------------------------ */
+
+  /* gold trim, addressable: the cel-animation flat ochre (>=3:1 on every light
+     ground so it survives as a visible rule, and it is the trim on the night
+     tiles where it is far brighter) */
+  --retro-anime-gold: #a87d2a;
+
+  /* 1 · CRESCENT MOON — the EMBLEM. Two arcs meeting at two horn tips: an outer
+     arc bulging left and an inner arc carving the bite. A crescent is THE one
+     form a radial gradient fakes worst (rings read as a bullseye and a lone
+     spiral as a rosette). Face-free by design — generic celestial vocabulary.
+     The lit/shadow split is a HARD straight edge through a clip, i.e. cel
+     shading, not a bloom. The night base is itself two hard bands (a cel sky). */
+  --retro-anime-moon:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+PGRlZnM+PG1hc2sgaWQ9J20nPjxyZWN0IHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyBmaWxsPScjMDAwJy8+PGNpcmNsZSBjeD0nNjAnIGN5PSc2Micgcj0nNDAnIGZpbGw9JyNmZmYnLz48Y2lyY2xlIGN4PSc5MicgY3k9JzYyJyByPSc0MCcgZmlsbD0nIzAwMCcvPjwvbWFzaz48L2RlZnM+PGcgbWFzaz0ndXJsKCNtKSc+PGNpcmNsZSBjeD0nNjAnIGN5PSc2Micgcj0nNDAnIGZpbGw9JyNkY2IyNTcnLz48cGF0aCBkPSdNLTYgLTggTDU2IC04IEw0MiAxMzIgTC02IDEzMiBaJyBmaWxsPScjZmZmNmRmJy8+PC9nPjxwYXRoIGQ9J00xMDAgMjAgUTEwMS45IDI4LjEgMTEwIDMwIFExMDEuOSAzMS45IDEwMCA0MCBROTguMSAzMS45IDkwIDMwIFE5OC4xIDI4LjEgMTAwIDIwIFonIGZpbGw9JyNmZmU5YWQnLz48cGF0aCBkPSdNMjIgNzggUTIzLjYgODQuNCAzMCA4NiBRMjMuNiA4Ny42IDIyIDk0IFEyMC40IDg3LjYgMTQgODYgUTIwLjQgODQuNCAyMiA3OCBaJyBmaWxsPScjZmZlOWFkJyBvcGFjaXR5PScwLjk1Jy8+PGNpcmNsZSBjeD0nMTA2JyBjeT0nNzYnIHI9JzEuOScgZmlsbD0nI2ZmZjZkZicvPjxjaXJjbGUgY3g9JzcyJyBjeT0nMTYnIHI9JzEuNicgZmlsbD0nI2ZmZjZkZicvPjwvc3ZnPg==") center / 62px 62px no-repeat, linear-gradient(155deg, #2b3568 0px, #202a56 44px, #16203f 44px, #101634 100%);
+
+  /* 2 · SPARKLE — the GLINT. A four-point shoujo sparkle burst: a big concave
+     star, a gold inner star, a rose core and smaller satellites. A four-point
+     sparkle is concave geometry — no gradient makes it. A different JOB from
+     the moon (an accent mark, not an emblem) and a different BASE (blush, where
+     the moon is navy). */
+  --retro-anime-sparkle:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNTAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTUwIDEyMCc+IDxwYXRoIGQ9J003NSA2IFE4Mi44IDUwLjIgMTI3IDU4IFE4Mi44IDY1LjggNzUgMTEwIFE2Ny4yIDY1LjggMjMgNTggUTY3LjIgNTAuMiA3NSA2IFonIGZpbGw9JyNmZmZmZmYnIG9wYWNpdHk9JzEuMCcgc3Ryb2tlPScjOGYyMjQ2JyBzdHJva2Utd2lkdGg9JzIuOCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPiA8cGF0aCBkPSdNNzUgMjUgUTgwLjI4IDUyLjcyIDEwOCA1OCBRODAuMjggNjMuMjggNzUgOTEgUTY5LjcyIDYzLjI4IDQyIDU4IFE2OS43MiA1Mi43MiA3NSAyNSBaJyBmaWxsPScjZjZjNDUzJyBvcGFjaXR5PScxLjAnIHN0cm9rZT0nIzhmMjI0Nicgc3Ryb2tlLXdpZHRoPScyLjInIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4gPHBhdGggZD0nTTIyIDUgUTI0Ljg1IDE3LjE1IDM3IDIwIFEyNC44NSAyMi44NSAyMiAzNSBRMTkuMTUgMjIuODUgNyAyMCBRMTkuMTUgMTcuMTUgMjIgNSBaJyBmaWxsPScjZmZmZmZmJyBvcGFjaXR5PScxLjAnIHN0cm9rZT0nIzhmMjI0Nicgc3Ryb2tlLXdpZHRoPScyLjInIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4gPHBhdGggZD0nTTEyOSAxMCBRMTMyLjI0IDI0Ljc2IDE0NyAyOCBRMTMyLjI0IDMxLjI0IDEyOSA0NiBRMTI1Ljc2IDMxLjI0IDExMSAyOCBRMTI1Ljc2IDI0Ljc2IDEyOSAxMCBaJyBmaWxsPScjZmZmZmZmJyBvcGFjaXR5PScwLjk4JyBzdHJva2U9JyM4ZjIyNDYnIHN0cm9rZS13aWR0aD0nMi4yJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+IDxwYXRoIGQ9J00xMTkgODUgUTEyMS42IDk1LjQgMTMyIDk4IFExMjEuNiAxMDAuNiAxMTkgMTExIFExMTYuNCAxMDAuNiAxMDYgOTggUTExNi40IDk1LjQgMTE5IDg1IFonIGZpbGw9JyM4ZjIyNDYnIG9wYWNpdHk9JzEuMCcgc3Ryb2tlPScjNWUxMjMwJyBzdHJva2Utd2lkdGg9JzEuOScgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPiA8cGF0aCBkPSdNMjkgODkgUTMxLjMxIDk3LjY5IDQwIDEwMCBRMzEuMzEgMTAyLjMxIDI5IDExMSBRMjYuNjkgMTAyLjMxIDE4IDEwMCBRMjYuNjkgOTcuNjkgMjkgODkgWicgZmlsbD0nIzhmMjI0Nicgb3BhY2l0eT0nMS4wJyBzdHJva2U9JyM1ZTEyMzAnIHN0cm9rZS13aWR0aD0nMS45JyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+IDxjaXJjbGUgY3g9Jzc1JyBjeT0nNTgnIHI9JzcuNScgZmlsbD0nIzhmMjI0NicvPiA8Y2lyY2xlIGN4PScxMDAnIGN5PScxNycgcj0nMycgZmlsbD0nI2ZmZmZmZicvPiA8Y2lyY2xlIGN4PSc1NCcgY3k9JzEwNicgcj0nMi42JyBmaWxsPScjZmZmZmZmJy8+IDxjaXJjbGUgY3g9JzEzOCcgY3k9JzcyJyByPScyLjQnIGZpbGw9JyM4ZjIyNDYnLz4gPC9zdmc+") center / 104px 83px no-repeat, linear-gradient(180deg, #ef9dbc 0px, #e988ad 30px, #e07aa4 30px, #d46a95 100%);
+
+  /* 3 · RIBBON BOW — the OBJECT. Two loops split by a straight fold line (the
+     lower leaf one tone darker: a real cel crease, not a blur), a hard specular
+     on the upper leaf, tails with a swallowtail notch, and a gold knot. A
+     ribbon is the one motif that is a THING rather than a light or a sky. */
+  --retro-anime-ribbon:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNTAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTUwIDEyMCc+IDxnIHN0cm9rZT0nIzFiMjM1MCcgc3Ryb2tlLXdpZHRoPScyLjYnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCc+IDwhLS0gdGFpbHMsIHdpdGggYSBzd2FsbG93dGFpbCBub3RjaCBhdCBlYWNoIGVuZCAtLT4gPHBhdGggZD0nTTY4IDY0IEw0NiAxMDggTDU2IDEwNiBMNjIgMTEyIEw3NCA3MiBaJyBmaWxsPScjYzUzYTY4Jy8+IDxwYXRoIGQ9J004MiA2NCBMMTA0IDEwOCBMOTQgMTA2IEw4OCAxMTIgTDc2IDcyIFonIGZpbGw9JyNjNTNhNjgnLz4gPHBhdGggZD0nTTY4IDY0IEw0NiAxMDggTDU2IDEwNiBMNjIgMTEyIEw3NCA3MiBaJyBmaWxsPScjOGYyMjQ2JyBvcGFjaXR5PScwLjQyJy8+IDxwYXRoIGQ9J004MiA2NCBMMTA0IDEwOCBMOTQgMTA2IEw4OCAxMTIgTDc2IDcyIFonIGZpbGw9JyM4ZjIyNDYnIG9wYWNpdHk9JzAuNDInLz4gPCEtLSBsb29wcyAtLT4gPHBhdGggZD0nTTc1IDUyIEM1MCAyOCAyMCAzMiAyMCA1MiBDMjAgNzIgNTAgNzYgNzUgNTIgWicgZmlsbD0nI2M1M2E2OCcvPiA8cGF0aCBkPSdNNzUgNTIgQzEwMCAyOCAxMzAgMzIgMTMwIDUyIEMxMzAgNzIgMTAwIDc2IDc1IDUyIFonIGZpbGw9JyNjNTNhNjgnLz4gPCEtLSB0aGUgY3JlYXNlOiB0aGUgbG93ZXIgbGVhZiBvZiBlYWNoIGxvb3AsIG9uZSB0b25lIGRhcmtlciAtLT4gPHBhdGggZD0nTTc1IDUyIEwyMCA1MiBDMjAgNjQgNDAgNzIgNTYgNjggQzY2IDY2IDcyIDYwIDc1IDUyIFonIGZpbGw9JyM4ZjIyNDYnLz4gPHBhdGggZD0nTTc1IDUyIEwxMzAgNTIgQzEzMCA2NCAxMTAgNzIgOTQgNjggQzg0IDY2IDc4IDYwIDc1IDUyIFonIGZpbGw9JyM4ZjIyNDYnLz4gPCEtLSBoYXJkIGhpZ2hsaWdodCBvbiB0aGUgdXBwZXIgbGVhZiAtLT4gPHBhdGggZD0nTTU2IDQwIEM0NiAzOSAzNCA0MiAyOSA0NyBDMzggNDMgNDggNDMgNTYgNDYgWicgZmlsbD0nI2YwOThiNCcvPiA8cGF0aCBkPSdNOTQgNDAgQzEwNCAzOSAxMTYgNDIgMTIxIDQ3IEMxMTIgNDMgMTAyIDQzIDk0IDQ2IFonIGZpbGw9JyNmMDk4YjQnLz4gPCEtLSBrbm90IC0tPiA8cmVjdCB4PSc2NycgeT0nNDAnIHdpZHRoPScxNicgaGVpZ2h0PScyNCcgcng9JzUnIGZpbGw9JyNjOWEyNGEnLz4gPHBhdGggZD0nTTc1IDQwIEw3NSA2NCcgc3Ryb2tlPScjMWIyMzUwJyBzdHJva2Utd2lkdGg9JzEuNicgb3BhY2l0eT0nMC40NScvPiA8L2c+IDwvc3ZnPg==") center / 100px 80px no-repeat, linear-gradient(180deg, #e8f2fd 0px, #d4e7fb 30px, #c3daf8 30px, #aecbf4 100%);
+
+  /* 4 · STARFIELD — the FIELD. A tiled scatter of four-point stars and dots at
+     fixed sizes on the night. This is the GROUND's fabric: texture you tile
+     behind something, which is a different job from all three marks above. */
+  --retro-anime-starfield:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgdmlld0JveD0nMCAwIDgwIDgwJz4gPHJlY3Qgd2lkdGg9JzgwJyBoZWlnaHQ9JzgwJyBmaWxsPScjMWIyMzUwJy8+IDxwYXRoIGQ9J00xNiA3IFExNy44NyAxNi4xMyAyNyAxOCBRMTcuODcgMTkuODcgMTYgMjkgUTE0LjEyOTk5OTk5OTk5OTk5OSAxOS44NyA1IDE4IFExNC4xMjk5OTk5OTk5OTk5OTkgMTYuMTMgMTYgNyBaJyBmaWxsPScjZmZmNmRmJyBvcGFjaXR5PScxLjAnLz4gPHBhdGggZD0nTTU0IDE5LjUgUTU1LjMgMjQuNyA2MC41IDI2IFE1NS4zIDI3LjMgNTQgMzIuNSBRNTIuNyAyNy4zIDQ3LjUgMjYgUTUyLjcgMjQuNyA1NCAxOS41IFonIGZpbGw9JyNmZmU5YWQnIG9wYWNpdHk9JzAuOScvPiA8cGF0aCBkPSdNMzQgNDcgUTM1LjYyIDU0LjM4IDQzIDU2IFEzNS42MiA1Ny42MiAzNCA2NSBRMzIuMzggNTcuNjIgMjUgNTYgUTMyLjM4IDU0LjM4IDM0IDQ3IFonIGZpbGw9JyNmZmZmZmYnIG9wYWNpdHk9JzAuOTInLz4gPHBhdGggZD0nTTY0IDU3LjUgUTY0Ljk5IDYxLjAxIDY4LjUgNjIgUTY0Ljk5IDYyLjk5IDY0IDY2LjUgUTYzLjAxIDYyLjk5IDU5LjUgNjIgUTYzLjAxIDYxLjAxIDY0IDU3LjUgWicgZmlsbD0nI2ZmZTlhZCcgb3BhY2l0eT0nMC44NScvPiA8Y2lyY2xlIGN4PSc0NCcgY3k9JzEwJyByPScyLjEnIGZpbGw9JyNmZmZmZmYnLz4gPGNpcmNsZSBjeD0nOCcgY3k9JzQwJyByPScxLjgnIGZpbGw9JyNmZmU5YWQnLz4gPGNpcmNsZSBjeD0nNTAnIGN5PSc0OCcgcj0nMS42JyBmaWxsPScjZmZmZmZmJy8+IDxjaXJjbGUgY3g9JzcwJyBjeT0nMTgnIHI9JzEuNycgZmlsbD0nI2ZmZmZmZicvPiA8Y2lyY2xlIGN4PScyMicgY3k9JzcwJyByPScxLjknIGZpbGw9JyNmZmU5YWQnLz4gPGNpcmNsZSBjeD0nNzAnIGN5PSc0Micgcj0nMS41JyBmaWxsPScjZmZmZmZmJy8+IDwvc3ZnPg==") 0 0 / 80px 80px repeat;
 }

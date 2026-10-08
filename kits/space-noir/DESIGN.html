@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Space Noir — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Space Noir kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@600;700;800&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Space Noir</h1>
+  <p class="spec-sub">Aged 90s jazz-poster ink — inked ground, film grain, a halftone screen and one burnt-orange action</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Space Noir
+description: 90s space-noir jazz poster — an inked ground, film grain, a halftone screen and one burnt-orange action.
+colors:
+  primary: &quot;#c06a30&quot;
+  primary-hover: &quot;#d67f42&quot;
+  primary-ink: &quot;#e0904f&quot;
+  primary-ink-hover: &quot;#eda468&quot;
+  secondary: &quot;#2f6f68&quot;
+  tertiary: &quot;#d9a441&quot;
+  neutral: &quot;#1a1714&quot;
+  surface: &quot;#1e1a17&quot;
+  surface-2: &quot;#151311&quot;
+  text: &quot;#ece4d6&quot;
+  text-muted: &quot;#bdb3a4&quot;
+  text-dim: &quot;#9c9284&quot;
+  ink: &quot;#191210&quot;
+  success: &quot;#8fae5f&quot;
+  error: &quot;#cb7266&quot;
+  info: &quot;#5c9d97&quot;
+typography:
+  display:
+    fontFamily: Barlow Condensed
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: &quot;0.005em&quot;
+  heading:
+    fontFamily: Barlow Condensed
+    fontSize: 1.32rem
+    fontWeight: 700
+    lineHeight: 1.18
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: Barlow
+    fontSize: 0.98rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: Courier Prime
+    fontSize: 0.72rem
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: &quot;0.14em&quot;
+rounded:
+  sm: 2px
+  md: 4px
+  lg: 8px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="space-noir">Space Noir</h2>
+<h3 id="overview">Overview</h3>
+<p>Nineteen-nineties space-noir as a printed jazz poster, a decade after the ink dried. The register is <strong>muted, grainy and cinematic</strong>: a warm charred-black ground, bone/cream type, a single burnt-orange action, a muted deep teal as the cool counterpoint and a dusty red for alerts. Nothing in the kit is saturated and nothing glows — the whole surface should look like a poster that has been through a press, an envelope and thirty years of ultraviolet.</p>
+<p>This is <strong>design provenance, not a franchise.</strong> The kit is named for the genre, not a show, and the material here — an inked ground with film grain, a halftone dot screen, interlocking discs as poster geometry, a perforated film strip — is the period's generic print vocabulary. No character, ship, logotype, poster artwork or trade dress is reproduced anywhere in it.</p>
+<p>Two ideas do the work. First, <strong>the kit is print, not glass</strong>: depth is a hard zero-blur offset (a plate sitting proud of its ground), an edge is a crisp rule, and there is no blur, bloom or frosted surface anywhere. Second, <strong>grain and halftone are the material, not a colour</strong>: the ground carries a drawn film-grain tile, a drawn halftone screen sits in the media panel and in a signature tile, and the masthead's highlight is a screened shadow rather than the lab's default radial bloom.</p>
+<h3 id="colors">Colors</h3>
+<p>Burnt orange <code>#c06a30</code> is the one action colour, and it takes <strong>ink</strong> as its label — an orange field carrying near-black type (<code>#191210</code>) is the jazz-album move, and it is also the strongest contrast the kit owns. Deep teal <code>#2f6f68</code> is the cool counterpoint and belongs to <em>media and data</em>, never to action: media panels, charts, the <code>info</code> alert. Aged amber <code>#d9a441</code> is the kit's one warm tertiary — it is the same tone as the warning rung, which is deliberate: in a three-colour poster, the caution and the warm accent share a hue. Dusty red <code>#cb7266</code> is the alert colour, printed and faded so it reads as a warning without ever being mistaken for the orange action.</p>
+<p>The ground is a warm charred black (<code>#221e1a</code> at the top, settling to <code>#121110</code>) — a <em>brown</em> cast, not a neutral grey and never <code>#000</code>, because the references are printed on stock that has aged warm. The type is bone/cream <code>#ece4d6</code>, the paper's own colour, not white.</p>
+<p>Because the orange is an excellent <em>fill</em> but only 4.7:1 as a small label, the readable member ships separately: <code>--accent-ink</code> <code>#e0904f</code> carries every READ word — eyebrows, links, active nav, badge and secondary-button labels — and is graded against each ground and against the accent's own 16% tint composited over it.</p>
+<h3 id="typography">Typography</h3>
+<p>Barlow Condensed is the <strong>display face only</strong>: a heavy condensed grotesque whose width is the poster punchline, used at 600–800 for headings, titles and the type scale. Barlow is the sturdy body face — the same superfamily, a wider cut, legible in quantity — so the two voices contrast by <em>width</em> rather than by a second temperament, which is exactly how a poster sets a shout against its standfirst. Courier Prime is the mono: a typewriter face for swatches, labels, table headers and metrics, chosen because the kit's small-print voice is a <strong>print</strong> artifact, not a terminal readout. Caps labels run at <code>0.14em</code>, a screened poster legend rather than a UI chip.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is poster-generous (<code>16px</code> gutters, <code>24px</code> between blocks) so the ink has air. Corners are barely softened (<code>2px</code>–<code>8px</code>) — a printed panel is a rectangle, and the only true pill is the badge. Every panel edge is a hairline cream rule; the "frame" in this kit is a crisp edge plus a hard zero-blur offset, never a soft shadow.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>hard-edged and flat</strong>, the way ink sits on paper. <code>--blur</code> is <code>none</code> and no panel carries a <code>backdrop-filter</code>. Elevation is a zero-blur offset: <code>--shadow-1</code>/<code>--shadow-2</code> are dark squares pushed 3px/6px down-right under a panel, ringed by a faint cream hairline, and <code>--glow</code> — the primary button's chrome — is a crisp ink ring plus a hard orange offset, not a bloom. Grain supplies the only "texture": a drawn <code>feTurbulence</code> tile in <code>--bg</code> and <code>--media-bg</code> that only <em>darkens</em>, so every contrast pair is solved against the ungrained ground and stays conservative.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The geometry lives in three signature tokens, each with a different job. <code>--space-noir-halftone</code> is the <strong>material</strong> — a drawn dot screen whose dots grow left to right, the screened gradient of a 90s print, expressed as base64 SVG because a radial gradient fakes a halftone as a smooth ramp. <code>--space-noir-discs</code> is the <strong>poster geometry</strong> — two overlapping discs, orange and teal, cream-ringed with centre dots over a bold baseline rule, drawn and generic, a poster device rather than a mark or a logo. <code>--space-noir-film</code> is the <strong>frame</strong> — a perforated film band with two rows of sprocket holes and hard frame dividers, joining the print material to the film material. Three motifs, three jobs; a fourth would dilute them.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are burnt-orange fills with ink labels, or flat surface plates with lifted-orange labels; the danger button keeps the surface and takes dusty-red text. Cards stay flat on the ink with a cream hairline; the elevated card deepens to <code>--surface-2</code> and gains the larger hard offset. Inputs sit in the deepest well, recessed by a zero-blur inset. Badges are pills carrying Courier Prime caps, sitting on <code>--surface-2</code>. Media panels are the one place the kit shows a <em>surface</em> rather than a colour: a halftone screen and grain over a muted orange→rust→teal press ramp, opaque.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep burnt orange for action and deep teal for media and data. Two accents, two jobs.</li><li><strong>Do</strong> let the grain and the halftone carry the texture — they are the kit, not decoration.</li><li><strong>Do</strong> use ink (<code>--text-invert</code>) on the orange fill; cream on orange fails, and ink is the poster.</li><li><strong>Don't</strong> add a third saturated colour. The palette survives on one warm action and one cool counterpoint; a third makes it a rainbow instead of a poster.</li><li><strong>Don't</strong> round the corners further, add a blurred shadow, or introduce glass — the flatness <em>is</em> the print.</li><li><strong>Don't</strong> brighten the teal into neon. It is a counterpoint, not a light source.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

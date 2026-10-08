@@ -91,6 +91,42 @@ async function main() {
     : [];
   const targets = only.length ? slugs.filter((s) => only.includes(s)) : slugs;
 
+  // The kits fetch webfonts from Google. With waitUntil:"load" navigation waits on every
+  // subresource, so one stalled font request times out EVERY kit — the harness could not run at all
+  // on a machine where the CDN is blocked or throttled (measured: fonts.googleapis.com timing out at
+  // 12s while the same local file opened in 48ms). So: abort off-machine requests, settle on DOM
+  // ready, give webfonts a bounded chance, and remember whether the CDN was reachable at all so the
+  // font assertions can DOWNGRADE to warnings instead of quietly passing or falsely failing.
+  let FONT_CDN = true;
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 6000);
+    await fetch("https://fonts.googleapis.com/css2?family=Inter&display=swap", { signal: ctrl.signal });
+    clearTimeout(timer);
+  } catch {
+    FONT_CDN = false;
+  }
+  if (!FONT_CDN) console.log("! font CDN unreachable this run — webfont assertions downgraded to warnings");
+
+  // Healthy network: behave exactly as before (wait for the full load, so the webfont assertions
+  // keep their teeth — CI has network and must not lose that coverage). CDN unreachable: stop waiting
+  // on it, block the hanging requests, and let the assertions downgrade with a reason.
+  const open = async (page, file) => {
+    if (!FONT_CDN) {
+      await page.route("**/*", (route) => {
+        const u = route.request().url();
+        if (u.startsWith("file:") || u.startsWith("data:") || u.startsWith("about:") || u.startsWith("blob:")) return route.continue();
+        if (/fonts\.(googleapis|gstatic)\.com/.test(u)) page.__abortedCdn = (page.__abortedCdn || 0) + 1;
+        return route.abort();
+      });
+    }
+    await page.goto("file:///" + file.replace(/\\/g, "/"), {
+      waitUntil: FONT_CDN ? "load" : "domcontentloaded",
+      timeout: 30000,
+    });
+    await page.evaluate(() => Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))])).catch(() => {});
+  };
+
   const report = { browser: exe, chromium: browser.version(), kits: [], verdict: "pass" };
 
   for (const slug of targets) {
@@ -101,10 +137,27 @@ async function main() {
       const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, deviceScaleFactor: 2 });
       const page = await ctx.newPage();
       page.on("pageerror", (e) => entry.errors.push(`${vp.name}: ${e.message}`));
-      page.on("console", (m) => { if (m.type() === "error") entry.consoleErrors.push(`${vp.name}: ${m.text()}`); });
-      page.on("requestfailed", (r) => entry.consoleErrors.push(`${vp.name}: requestfailed ${r.url().slice(0, 90)}`));
+      // When the font CDN is unreachable we abort its requests on purpose, so the browser's own
+      // "failed to load resource / requestfailed" noise for those hosts is expected and must not be
+      // reported as a console error. A genuine error from any other host still fails the run.
+      const isFontCdn = (s) => /fonts\.(googleapis|gstatic)\.com/.test(s);
+      page.on("console", (m) => {
+        if (m.type() !== "error") return;
+        if (!FONT_CDN) {
+          const where = (typeof m.location === "function" && m.location() && m.location().url) || "";
+          if (isFontCdn(m.text()) || isFontCdn(where)) return;
+          // Chromium reports a blocked subresource with no URL in the message text; spend one of the
+          // aborts we deliberately caused rather than blaming the kit.
+          if (/Failed to load resource/.test(m.text()) && (page.__abortedCdn || 0) > 0) { page.__abortedCdn--; return; }
+        }
+        entry.consoleErrors.push(`${vp.name}: ${m.text()}`);
+      });
+      page.on("requestfailed", (r) => {
+        if (!FONT_CDN && isFontCdn(r.url())) return;
+        entry.consoleErrors.push(`${vp.name}: requestfailed ${r.url().slice(0, 90)}`);
+      });
 
-      await page.goto("file:///" + file.replace(/\\/g, "/"), { waitUntil: "load" });
+      await open(page, file);
       await page.evaluate(() => document.fonts.ready);
       await page.waitForTimeout(350);
 
@@ -300,7 +353,11 @@ async function main() {
         // a declared family with no faces at all, or no face ever loaded, means every heading
         // silently fell back to a system font — the exact bug a screenshot will not reveal
         for (const [fam, st] of Object.entries(entry.fonts.families || {})) {
-          if (!st.loadedFaces && !st.fileRequested) entry.errors.push(`desktop: webfont never served: ${fam}`);
+          if (!st.loadedFaces && !st.fileRequested) {
+            const msg = `desktop: webfont never served: ${fam}`;
+            if (FONT_CDN) entry.errors.push(msg);
+            else entry.warnings.push(`${msg} — font CDN unreachable this run, not a kit defect`);
+          }
           else if (!st.loadedFaces) entry.warnings.push(`desktop: webfont declared but no face loaded: ${fam}`);
         }
       }
@@ -314,7 +371,7 @@ async function main() {
     // desktop viewport-only crop of the masthead: what the gallery thumbnail has to sell
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 1780 }, deviceScaleFactor: 2 });
     const page = await ctx.newPage();
-    await page.goto("file:///" + file.replace(/\\/g, "/"), { waitUntil: "load" });
+    await open(page, file);
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(250);
     const hero = path.join(OUT, `${slug}-hero.png`);

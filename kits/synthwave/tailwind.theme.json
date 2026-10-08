@@ -1,0 +1,87 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ec4b8f",
+        "primary-hover": "#ff5fa2",
+        "primary-ink": "#ffadce",
+        "secondary": "#44a6d7",
+        "tertiary": "#ffb57b",
+        "neutral": "#19152b",
+        "surface": "#221a3a",
+        "surface-2": "#171129",
+        "text": "#f7ecff",
+        "text-muted": "#cbb8e4",
+        "success": "#45d6a4",
+        "warning": "#ffc46b",
+        "error": "#ff5f77"
+      },
+      "fontFamily": {
+        "display": [
+          "Audiowide"
+        ],
+        "heading": [
+          "Rajdhani"
+        ],
+        "body": [
+          "Rajdhani"
+        ],
+        "label": [
+          "Share Tech Mono"
+        ],
+        "tech": [
+          "Audiowide"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "400"
+          }
+        ],
+        "heading": [
+          "1.32rem",
+          {
+            "letterSpacing": "0.005em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.98rem",
+          {
+            "fontWeight": "500"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "400"
+          }
+        ],
+        "tech": [
+          "1rem",
+          {
+            "letterSpacing": "0.06em",
+            "fontWeight": "400"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "3px",
+        "md": "6px",
+        "lg": "10px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "40px"
+      }
+    }
+  }
+}

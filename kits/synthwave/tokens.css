@@ -1,0 +1,86 @@
+/* ============================================================================
+   Retro Anime — design kit tokens
+   Derived from five reference illustrations (city-pop / 80s-anime / outrun
+   sunset key art). Every palette value below is the MEDIAN sampled from those
+   images, not an eyeball estimate; DESIGN.md holds the normative values and
+   README.md carries the sampling table.
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  --bg: linear-gradient(180deg, #2a1440 0px, #622c80 170px, #4a1f63 300px, #6e3520 420px, #2a1440 540px, #19152b 100%);
+  --bg-2: #19152b;                        /* sampled: the silhouette / near-field mass */
+  --surface: #221a3a;                     /* derived: --bg-2 lifted for panels */
+  --surface-2: #171129;                   /* derived: --bg-2 pushed down for insets, inputs */
+  --overlay: rgba(14, 10, 26, .74);       /* derived: the night, deepened for modal scrims */
+
+  /* ------------------------------------------------------------------- text */
+  --text: #f7ecff;                        /* derived: warm white carrying a violet cast */
+  --text-muted: #cbb8e4;                  /* derived: sampled violet, lightened */
+  --text-dim: #c2b2df;                    /* derived: measured against every ground below */
+  --text-invert: #1a0f2b;                 /* the night, for labels on the neon fill */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent: #ec4b8f;                      /* sampled: #bb4085 magenta, driven to neon */
+  --accent-hover: #ff5fa2;                /* derived: one step brighter — the poster's hot pink */
+  --accent-2: #44a6d7;                    /* sampled: the cyan neon (median of five) */
+  --accent-soft: rgba(236, 75, 143, .18); /* derived: the magenta as a tint */
+  --accent-ink: #ffadce;                  /* sampled magenta, lightened until it reads as text */
+  --accent-ink-hover: #ffb0d0;
+
+  /* ----------------------------------------------------------------- status */
+  --ok: #45d6a4;
+  --warn: #ffc46b;                        /* sampled: near the sun's gold */
+  --danger: #ff5f77;
+  --info: #44a6d7;
+
+  /* ------------------------------------------------------------------ lines */
+  --border: #3b2a5c;                      /* derived: violet hairline on the indigo ground */
+  --border-strong: #55407e;
+  --border-w: 1px;
+  --focus-ring: #44a6d7;                  /* the cyan neon does focus duty */
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm: 3px;                       /* poster-print corners: softened, never round */
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --cut: 0px;                             /* no chamfer — the poster's geometry is the sun and grid */
+
+  /* ------------------------------------------------------------------- type */
+  --font-display: "Audiowide", "Rajdhani", system-ui, sans-serif;
+  --font-body: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", monospace;
+  --tracking-caps: .12em;
+  --tracking-display: .01em;
+
+  /* ------------------------------------------------------------------ depth */
+  --shadow-1: 0 6px 22px rgba(9, 6, 18, .55);
+  --shadow-2: 0 16px 44px rgba(9, 6, 18, .68);
+  --glow: 0 0 0 1px rgba(68, 166, 215, .55), 0 0 20px rgba(68, 166, 215, .38);
+  --blur: none;                           /* a print, not glass — panels stay flat */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur: .28s;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* ------------------------------------------------------------- kit extras */
+  /* The four devices the references actually share: the sunset ramp, the striped
+     outrun sun, the perspective floor grid, and chrome. Values sampled or built
+     from sampled stops — see README. */
+  --synthwave-sky:
+    linear-gradient(180deg, #622c80 0px, #8f3376 60px, #bb4085 110px, #faa071 165px, #ffb57b 195px, #2a1440 250px);
+  --synthwave-sun:
+    /* DRAWN: a solid disc with bars cut across its lower half, widening downward. A repeating
+       gradient cannot do this — it would stripe the whole tile, not the disc. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMTQwJyB2aWV3Qm94PScwIDAgMjAwIDE0MCc+IDxkZWZzPiA8bGluZWFyR3JhZGllbnQgaWQ9J2QnIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScxJz4gPHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZlOWM0Jy8+PHN0b3Agb2Zmc2V0PScuMycgc3RvcC1jb2xvcj0nI2ZmYzk4ZCcvPiA8c3RvcCBvZmZzZXQ9Jy41OCcgc3RvcC1jb2xvcj0nI2ZmOWU2ZCcvPjxzdG9wIG9mZnNldD0nLjgyJyBzdG9wLWNvbG9yPScjZjA3MDlhJy8+IDxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nI2JiNDA4NScvPjwvbGluZWFyR3JhZGllbnQ+IDxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZiNTdiJyBzdG9wLW9wYWNpdHk9Jy40MicvPiA8c3RvcCBvZmZzZXQ9Jy41NScgc3RvcC1jb2xvcj0nI2VjNGI4Zicgc3RvcC1vcGFjaXR5PScuMjAnLz4gPHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZWM0YjhmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PiA8Y2xpcFBhdGggaWQ9J2MnPjxjaXJjbGUgY3g9JzEwMCcgY3k9JzcwJyByPSc1MCcvPjwvY2xpcFBhdGg+IDwvZGVmcz4gPHJlY3Qgd2lkdGg9JzIwMCcgaGVpZ2h0PScxNDAnIGZpbGw9JyMxOTE1MmInLz4gPGNpcmNsZSBjeD0nMTAwJyBjeT0nNzAnIHI9JzkyJyBmaWxsPSd1cmwoI2cpJy8+IDxjaXJjbGUgY3g9JzEwMCcgY3k9JzcwJyByPSc1MCcgZmlsbD0ndXJsKCNkKScvPiA8ZyBjbGlwLXBhdGg9J3VybCgjYyknIGZpbGw9JyMxOTE1MmInPiA8cmVjdCB4PSc0MCcgeT0nNzYnIHdpZHRoPScxMjAnIGhlaWdodD0nMycvPjxyZWN0IHg9JzQwJyB5PSc4NCcgd2lkdGg9JzEyMCcgaGVpZ2h0PSczJy8+IDxyZWN0IHg9JzQwJyB5PSc5Mycgd2lkdGg9JzEyMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nNDAnIHk9JzEwNCcgd2lkdGg9JzEyMCcgaGVpZ2h0PSc0Jy8+IDxyZWN0IHg9JzQwJyB5PScxMTYnIHdpZHRoPScxMjAnIGhlaWdodD0nNScvPjwvZz4gPGNpcmNsZSBjeD0nMTAwJyBjeT0nNzAnIHI9JzUwJyBmaWxsPSdub25lJyBzdHJva2U9JyNmZmQ3OWInIHN0cm9rZS1vcGFjaXR5PScuNTUnLz4gPC9zdmc+") 0 0 / 100% 100% no-repeat;
+  --synthwave-grid:
+    /* DRAWN: verticals converging to a vanishing point, horizontals widening toward the viewer.
+       Two repeating gradients give graph paper — parallel, no depth. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMTMwJyB2aWV3Qm94PScwIDAgMjAwIDEzMCc+IDxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nYicgeDE9JzAnIHkxPScwJyB4Mj0nMCcgeTI9JzEnPiA8c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMzYTFjNTYnLz48c3RvcCBvZmZzZXQ9Jy4yOCcgc3RvcC1jb2xvcj0nIzJhMTQ0MCcvPiA8c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMxOTE1MmInLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4gPHJlY3Qgd2lkdGg9JzIwMCcgaGVpZ2h0PScxMzAnIGZpbGw9J3VybCgjYiknLz4gPGcgc3Ryb2tlPScjNDRhNmQ3JyBzdHJva2Utb3BhY2l0eT0nLjcyJyBzdHJva2Utd2lkdGg9JzEnPjxwYXRoIGQ9J00xMDAgMzAgTC0xNjQgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMLTEyMCAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwtNzYgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMLTMyIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDEyIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDU2IDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDEwMCAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwxNDQgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMMTg4IDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDIzMiAxMzAnLz48cGF0aCBkPSdNMTAwIDMwIEwyNzYgMTMwJy8+PHBhdGggZD0nTTEwMCAzMCBMMzIwIDEzMCcvPjxwYXRoIGQ9J00xMDAgMzAgTDM2NCAxMzAnLz48L2c+IDxnIHN0cm9rZT0nI2JiNDA4NScgc3Ryb2tlLW9wYWNpdHk9Jy42MCcgc3Ryb2tlLXdpZHRoPScxJz48bGluZSB4MT0nMCcgeTE9JzMwJyB4Mj0nMjAwJyB5Mj0nMzAnLz48bGluZSB4MT0nMCcgeTE9JzM2JyB4Mj0nMjAwJyB5Mj0nMzYnLz48bGluZSB4MT0nMCcgeTE9JzQ0JyB4Mj0nMjAwJyB5Mj0nNDQnLz48bGluZSB4MT0nMCcgeTE9JzU1JyB4Mj0nMjAwJyB5Mj0nNTUnLz48bGluZSB4MT0nMCcgeTE9JzcxJyB4Mj0nMjAwJyB5Mj0nNzEnLz48bGluZSB4MT0nMCcgeTE9Jzk1JyB4Mj0nMjAwJyB5Mj0nOTUnLz48bGluZSB4MT0nMCcgeTE9JzEyNycgeDI9JzIwMCcgeTI9JzEyNycvPjwvZz4gPGxpbmUgeDE9JzAnIHkxPSczMCcgeDI9JzIwMCcgeTI9JzMwJyBzdHJva2U9JyNmZmQ3OWInIHN0cm9rZS1vcGFjaXR5PScuNjUnIHN0cm9rZS13aWR0aD0nMS41Jy8+IDwvc3ZnPg==") 0 100% / 100% 100% no-repeat;
+  --synthwave-chrome:
+    /* chrome is HARD BANDS, not a blur: a crisp dark band in the middle of the ramp is what
+       makes it read as metal. Smooth stops read as fog. */
+    linear-gradient(180deg, #f4f7fb 0%, #f4f7fb 16%, #c3ceda 16%, #c3ceda 34%, #6c7a8c 34%,
+      #2c3340 42%, #2c3340 54%, #e8eef4 54%, #e8eef4 72%, #8e9daa 72%, #525d6b 100%);
+}

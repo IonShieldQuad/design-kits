@@ -1,0 +1,23 @@
+{
+  "name": "Space Noir",
+  "tagline": "Aged 90s jazz-poster ink — inked ground, film grain, a halftone screen and one burnt-orange action",
+  "signature": [
+    "--space-noir-halftone",
+    "--space-noir-discs",
+    "--space-noir-film"
+  ],
+  "order": 175,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Courier+Prime:wght@400;700&display=swap",
+  "fonts_label": "Barlow Condensed · Barlow · Courier Prime",
+  "mode": "dark",
+  "source": "original — '90s space-noir anime' jazz-poster provenance (era design language only; no character, ship, logotype or trade dress reproduced)",
+  "tags": [
+    "dark",
+    "retro",
+    "poster",
+    "noir",
+    "print",
+    "cinematic"
+  ],
+  "use_when": "cinematic, adult, poster-grade branding — music and film pages, album and event covers, editorial features, anything that should feel like a printed 90s poster"
+}

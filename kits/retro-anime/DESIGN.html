@@ -8,7 +8,7 @@
 <link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Rajdhani:wght@400;500;600;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../templates/gallery.css">
 <style>
   .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
@@ -48,59 +48,58 @@
     <a href="DESIGN.md">raw markdown</a>
   </nav>
   <h1 class="spec-h1">Retro Anime</h1>
-  <p class="spec-sub">80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun</p>
+  <p class="spec-sub">90s shoujo celestial — cel-shaded pastels, a crescent moon, ribbons and a night-sky sparkle</p>
   <article class="spec-body">
 <section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
 name: Retro Anime
-description: 80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun.
+description: A light, high-key pastel kit with cel-shaded depth — cream ground, navy ink, a deep rose action and sky-blue structure, and four drawn celestial motifs.
 colors:
-  primary: &quot;#ec4b8f&quot;
-  primary-hover: &quot;#ff5fa2&quot;
-  primary-ink: &quot;#ffadce&quot;
-  secondary: &quot;#44a6d7&quot;
-  tertiary: &quot;#ffb57b&quot;
-  neutral: &quot;#19152b&quot;
-  surface: &quot;#221a3a&quot;
-  surface-2: &quot;#171129&quot;
-  text: &quot;#f7ecff&quot;
-  text-muted: &quot;#cbb8e4&quot;
-  success: &quot;#45d6a4&quot;
-  warning: &quot;#ffc46b&quot;
-  error: &quot;#ff5f77&quot;
+  primary: &quot;#c53a68&quot;
+  primary-hover: &quot;#b2335e&quot;
+  primary-ink: &quot;#ae2a5e&quot;
+  primary-ink-hover: &quot;#94214f&quot;
+  secondary: &quot;#3f7fd0&quot;
+  tertiary: &quot;#a87d2a&quot;
+  neutral: &quot;#fdf7ee&quot;
+  surface: &quot;#fffdf8&quot;
+  surface-2: &quot;#f5eef4&quot;
+  text: &quot;#1e2749&quot;
+  text-muted: &quot;#414c72&quot;
+  text-dim: &quot;#49547b&quot;
+  text-invert: &quot;#fff8f0&quot;
+  accent-tint: &quot;#eed5e0&quot;
+  night: &quot;#1b2350&quot;
+  success: &quot;#1f7a5a&quot;
+  warning: &quot;#8f6410&quot;
+  error: &quot;#bd3a22&quot;
+  info: &quot;#2b6fb5&quot;
 typography:
   display:
-    fontFamily: Audiowide
-    fontSize: 2.9rem
-    fontWeight: 400
-    lineHeight: 1.06
-    letterSpacing: &quot;0.01em&quot;
+    fontFamily: Shippori Mincho
+    fontSize: 2.7rem
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: &quot;0em&quot;
   heading:
-    fontFamily: Rajdhani
-    fontSize: 1.32rem
+    fontFamily: Shippori Mincho
+    fontSize: 1.3rem
     fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: &quot;0.005em&quot;
+    lineHeight: 1.25
   body:
-    fontFamily: Rajdhani
-    fontSize: 0.98rem
-    fontWeight: 500
-    lineHeight: 1.55
+    fontFamily: Nunito Sans
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.6
   label:
-    fontFamily: Share Tech Mono
+    fontFamily: IBM Plex Mono
     fontSize: 0.72rem
     fontWeight: 400
     lineHeight: 1
-    letterSpacing: &quot;0.12em&quot;
-  tech:
-    fontFamily: Audiowide
-    fontSize: 1rem
-    fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: &quot;0.06em&quot;
+    letterSpacing: &quot;0.16em&quot;
 rounded:
-  sm: 3px
-  md: 6px
-  lg: 10px
+  sm: 5px
+  md: 9px
+  lg: 14px
   pill: 999px
 spacing:
   xs: 4px
@@ -109,25 +108,28 @@ spacing:
   lg: 24px
   xl: 40px
 components:
+  page:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text}&quot;
   button-primary:
     backgroundColor: &quot;{colors.primary}&quot;
-    textColor: &quot;{colors.primary-ink}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
     typography: &quot;{typography.label}&quot;
     rounded: &quot;{rounded.md}&quot;
     padding: 16px
   button-primary-hover:
     backgroundColor: &quot;{colors.primary-hover}&quot;
-    textColor: &quot;{colors.primary-ink}&quot;
+    textColor: &quot;{colors.text-invert}&quot;
     rounded: &quot;{rounded.md}&quot;
   button-secondary:
     backgroundColor: &quot;{colors.surface}&quot;
-    textColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
     typography: &quot;{typography.label}&quot;
     rounded: &quot;{rounded.md}&quot;
     padding: 16px
   button-secondary-hover:
     backgroundColor: &quot;{colors.surface-2}&quot;
-    textColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink-hover}&quot;
     rounded: &quot;{rounded.md}&quot;
   button-danger:
     backgroundColor: &quot;{colors.surface}&quot;
@@ -150,7 +152,7 @@ components:
     textColor: &quot;{colors.text}&quot;
     typography: &quot;{typography.heading}&quot;
   card-media:
-    backgroundColor: &quot;{colors.primary}&quot;
+    backgroundColor: &quot;{colors.night}&quot;
     rounded: &quot;{rounded.md}&quot;
     height: 96px
   card-media-2:
@@ -170,23 +172,23 @@ components:
     rounded: &quot;{rounded.pill}&quot;
     padding: 4px
   badge-accent:
-    backgroundColor: &quot;{colors.neutral}&quot;
-    textColor: &quot;{colors.primary}&quot;
+    backgroundColor: &quot;{colors.accent-tint}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
     typography: &quot;{typography.label}&quot;
     rounded: &quot;{rounded.pill}&quot;
   badge-success:
-    backgroundColor: &quot;{colors.neutral}&quot;
+    backgroundColor: &quot;{colors.surface-2}&quot;
     textColor: &quot;{colors.success}&quot;
     typography: &quot;{typography.label}&quot;
     rounded: &quot;{rounded.pill}&quot;
   badge-warning:
-    backgroundColor: &quot;{colors.neutral}&quot;
+    backgroundColor: &quot;{colors.surface-2}&quot;
     textColor: &quot;{colors.warning}&quot;
     typography: &quot;{typography.label}&quot;
     rounded: &quot;{rounded.pill}&quot;
   alert-info:
     backgroundColor: &quot;{colors.surface-2}&quot;
-    textColor: &quot;{colors.secondary}&quot;
+    textColor: &quot;{colors.info}&quot;
     typography: &quot;{typography.body}&quot;
     rounded: &quot;{rounded.md}&quot;
     padding: 14px
@@ -198,31 +200,36 @@ components:
     padding: 14px
   table-header:
     backgroundColor: &quot;{colors.surface-2}&quot;
-    textColor: &quot;{colors.text-muted}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
     typography: &quot;{typography.label}&quot;
   link:
-    textColor: &quot;{colors.primary}&quot;
-    typography: &quot;{typography.body}&quot;</code></pre></section>
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;
+  rule:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    height: 2px</code></pre></section>
 <h2 id="retro-anime">Retro Anime</h2>
 <h3 id="overview">Overview</h3>
-<p>Eighties anime key art, at the hour the neon comes on. A deep indigo night is the ground; the sunset is a band across the top of the page; magenta is the one action colour and cyan is the technology. The kit is built from five reference illustrations of the genre, and <strong>every palette value is the median sampled from those images</strong> rather than an estimate — the sampled set is <code>#19152b</code> indigo night · <code>#622c80</code> violet sky · <code>#bb4085</code> magenta · <code>#44a6d7</code> cyan neon · <code>#faa071</code>/<code>#ffb57b</code> gold horizon. Where a token had to move for contrast it was moved in the accent's own family and recorded in <code>README.md</code>.</p>
-<p>The register is warm nostalgia rendered in cold light: saturated, cinematic, unapologetically neon, but with the flatness of a printed poster rather than the gloss of a dashboard. Type is Audiowide for the wide 80s technical display, Rajdhani for the condensed humanist body, and Share Tech Mono for machine labels.</p>
+<p>Nineties shoujo magical-girl anime, as a design language: a high-key pastel key art, a crescent moon and a field of stars, ribbons and sparkle, and a gold trim — all drawn in the flat cel-shaded fills of the era. The register is the <em>title card and the transformation sequence</em>: romantic, celestial and unapologetically decorative, but built so a real page stays legible.</p>
+<p>The ground is a warm <strong>cream/ivory that cools toward a pale night-sky lavender</strong>, never pure white — the page is a night sky that has not gone dark. Deep <strong>navy</strong> is the ink, a <strong>blush rose</strong> and a <strong>sky blue</strong> are the two working accents, and a flat cel-animation <strong>gold</strong> is the trim. Every motif is generic celestial vocabulary (a face-free crescent, a four-point sparkle, a ribbon bow, a starfield); none is a specific series, character, costume or logo.</p>
+<p>Depth is <strong>cel shading</strong>, not shadow: flat fills with one hard second tone, hard-edged zero-blur offsets, and crisp 2px outlines. There is no soft drop shadow and no bloom in the kit.</p>
 <h3 id="colors">Colors</h3>
-<p>Magenta <code>#ec4b8f</code> is the primary action colour — the neon sign doing the persuading, and the only saturated object most pages will contain. Cyan <code>#44a6d7</code> is the second accent and belongs to <em>technology</em>, not to action: media panels, progress, focus, charts. Gold <code>#ffb57b</code> is the sun and appears in the sky ramp, never as a control colour.</p>
-<p>The night is <code>#19152b</code>, a violet-black rather than a neutral one — the references never contain a grey, and a neutral black would flatten the warm/cool tension the whole genre depends on.</p>
-<p>Because the fill magenta is only 5.2:1 against dark ink and far less as a label, text-magenta ships separately: <code>--accent-ink</code> and <code>--accent-ink-hover</code> exist so eyebrow, links, active nav and badge labels can be magenta family without failing contrast.</p>
+<p>The <strong>rose</strong> <code>#c53a68</code> is the single action colour — the ribbon the whole kit is drawn in. It is deep on purpose: a pastel blush is only ~2.6:1 as a label and cannot carry a cream label as a fill, so the <em>tint</em> blush lives in <code>--accent-soft</code> and the motif tiles, while the working action is this deeper rose.</p>
+<p>The <strong>sky blue</strong> <code>#3f7fd0</code> is the second accent and belongs to <em>structure and the night</em>, not to action: media, progress, focus, charts. The <strong>gold</strong> <code>#a87d2a</code> is trim — a flat cel ochre, not a metal — and appears as a rule, the knot of the ribbon, and the lit star of the media scene.</p>
+<p>The page ground is <strong>cream</strong> <code>#fdf7ee</code> cooling to lavender <code>#eef4fb</code>; the card is warm ivory <code>#fffdf8</code>. No grey appears anywhere in the kit — a grey on a cream page reads as an office document, and the whole premise here is a night sky.</p>
+<p>Because the rose fill cannot be a label, text-rose ships separately: <code>--accent-ink</code> <code>#ae2a5e</code> (and <code>--accent-ink-hover</code> <code>#94214f</code>) carry the eyebrow, links, active nav, the secondary-button label and badge labels.</p>
 <h3 id="typography">Typography</h3>
-<p>Audiowide is deliberately the <strong>display face only</strong>. Its 1970s-technical, single-weight letterforms are exactly the genre's title lettering, and they are unreadable in quantity — so the body is Rajdhani, a condensed sans with the same engineering-drawing feel at reading size. Share Tech Mono handles labels, metrics and code. The wide <code>0.12em</code> tracking on caps is what makes small labels read as silkscreen rather than as body text.</p>
+<p><strong>Shippori Mincho</strong> leads the display stack: a Japanese Mincho serif, which is the elegant, slightly retro letterform of a 90s title card and a voice no other kit in the library uses. It is a <em>display</em> face only — set a long paragraph in it and the page becomes a poster, so the body is <strong>Nunito Sans</strong>, a clean humanist sans that stays readable down to 12px. <strong>IBM Plex Mono</strong> is the light machine voice for chips, table headers and code. The wide <code>0.16em</code> tracking on caps is what makes a small label read as a title-card credit line rather than as body text.</p>
 <h3 id="layout">Layout</h3>
-<p>Spacing is comfortable rather than dense (<code>16px</code> gutters, <code>24px</code> between blocks) so the neon has air around it. Corners are barely softened — <code>3px</code> to <code>10px</code> — because the references are printed posters: geometry, not pillows. Nothing is a pill except badges.</p>
+<p>Spacing is comfortable (<code>16px</code> gutters, <code>24px</code> between blocks) so the celestial motifs have room. Corners are softened, never round and never square — <code>5px</code>/<code>9px</code>/<code>14px</code> — because an animation cel is a soft-edged frame; a pill is reserved for badges and avatars only. Nothing is chamfered: cel shading cuts nothing.</p>
 <h3 id="elevation-depth">Elevation &amp; Depth</h3>
-<p>Depth is <strong>light</strong>, not glass: <code>--blur: none</code> and panels stay flat, because a poster has no frosted surfaces. Elevation comes from two devices instead — a magenta/base tint for nested panels, and <code>--glow</code>, a cyan neon ring plus bloom, used sparingly on focused or active elements. <code>--shadow-1</code>/<code>--shadow-2</code> are near-black indigo drops that read as night, not as grey.</p>
+<p>Depth is <strong>cel shading</strong>. Every elevation is a hard-edged, zero-blur offset in a cool navy-shadow tone — the <strong>cel plate</strong> (<code>4px 4px 0</code>, <code>6px 6px 0</code>) — never a blurred drop. Fills are two-tone with a hard break: the crescent is split by a straight lit/shadow edge through a clip, the ribbon loops carry a fold line, and the night skies are two hard bands. <code>--blur</code> is <code>none</code>: a cel is opaque film, not frosted glass. The one "lit" object is the primary button, whose <code>--glow</code> is not a bloom but a hard rose ring stacked on the same cel offset.</p>
 <h3 id="shapes">Shapes</h3>
-<p>The kit's geometry lives in its signature tokens rather than in its corners: the striped outrun sun (<code>--retro-anime-sun</code>), the perspective floor grid (<code>--retro-anime-grid</code>), the px-stop sunset ramp (<code>--retro-anime-sky</code>) and the chrome ramp (<code>--retro-anime-chrome</code>). Those four are the genre's actual vocabulary — a sun with hard horizontal bars cutting through it, a grid running to a vanishing point, and metal that reads as chrome because its ramp has a <strong>dark band in the middle</strong>. The sun and the grid are drawn artwork (inline SVG) because neither is expressible with repeating gradients: a bar pattern stripes the whole tile rather than the disc, and two straight gradient families produce graph paper instead of depth. Four motifs is the ceiling — a fifth dilutes the rest.</p>
+<p>The kit's geometry lives in four <strong>drawn</strong> signature tokens rather than in its corners: the the crescent moon (<code>--retro-anime-moon</code>), the shoujo sparkle (<code>--retro-anime-sparkle</code>), the ribbon bow (<code>--retro-anime-ribbon</code>) and the starfield (<code>--retro-anime-starfield</code>). Each is inline SVG (base64) because a crescent, a concave four-point star, a swallowtail ribbon and a banded night sky are geometry no gradient family produces — a radial ring reads as a bullseye and a lone spiral as a rosette. The media panel takes the same night sky at full width as the card's one big celestial moment, and the masthead wash is two soft pastel lights (a blush and the sky) over the page's own ground.</p>
 <h3 id="components">Components</h3>
-<p>Buttons are magenta fills with indigo labels, or flat surfaces with magenta labels; the danger button keeps the surface and takes vermilion text. Cards stay flat on the night with a hairline violet border; the elevated card deepens to <code>--surface-2</code>. Inputs sit in the deepest well. Badges are pills carrying mono caps. Media panels use the magenta and cyan ramps.</p>
+<p>Buttons are rose fills with a <strong>cream</strong> label, or flat ivory surfaces with a rose label; the danger button keeps the surface and takes a true vermilion red, held a clear 29° of hue off the rose so a destructive action never reads as the accent. Every button is the same cel plate (<code>--btn-shadow</code>) except the primary, which also wears the hard rose ring. Cards sit flat on the ground with a crisp 2px navy outline and the cel offset; the elevated card deepens to <code>--surface-2</code>. Inputs are the blush inset with a hard 2px top press. Badges are pills carrying mono caps, the accent badge on the rose tint. Media panels are the night: a navy field with a crescent and a sparkle field.</p>
 <h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
-<ul><li><strong>Do</strong> keep magenta for action and cyan for technology. Two accents, two jobs.</li><li><strong>Do</strong> let the sunset band live in the top viewport, then settle to night — a full-page gradient in <code>%</code> stops would show one flat colour and waste the whole idea.</li><li><strong>Don't</strong> put the gold on a control, and don't set body text over the sky band's gold stop.</li><li><strong>Don't</strong> add a third neon. The genre survives on magenta-vs-cyan; a third colour makes it a rainbow instead of a night.</li><li><strong>Don't</strong> round the corners further or add glass — the flatness is the poster.</li></ul>
+<ul><li><strong>Do</strong> keep the ink navy and the action rose. Two accents, two jobs.</li><li><strong>Do</strong> express depth as a hard offset or a hard two-tone fill, never as a blur.</li><li><strong>Don't</strong> lighten the rose to a pastel for the button fill — a pastel fill cannot carry a cream label, and the tint is what <code>--accent-soft</code> is for.</li><li><strong>Don't</strong> put the gold behind small text; it is trim, and <code>--warn</code> is the inked status.</li><li><strong>Don't</strong> round past <code>14px</code> or pill a control — that is <code>kawaii</code>, not this kit.</li></ul>
   </article>
   <p class="spec-foot">
     Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not

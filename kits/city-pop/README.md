@@ -15,7 +15,7 @@ was photographed. The kit is built as that one scene — the page ground is crea
 horizon and settling into sky-blue, and the three signature tokens are the three layers of the
 scene: **sky, skyline, sea**.
 
-It is deliberately the *daytime* member of the retro family. `retro-anime` is this decade at night —
+It is deliberately the *daytime* member of the retro family. `synthwave` is this decade at night —
 indigo, magenta, cyan neon, a striped sun over a wireframe grid. `summer-sunset` is this decade as a
 saturated poster. City pop is the **airy, pastel, elegant** one: low contrast between surfaces,
 hairlines instead of borders, soft radii, and no colour that shouts. Same decade, three registers.
@@ -129,4 +129,4 @@ oversight.
 Daytime nostalgia with salt in the air: music, media and lifestyle pages, album and stream branding,
 editorial features, portfolios that want warmth without weight. Avoid it for anything that must feel
 clinical or night-time — that is `quiet`, `glass` or `dark-glass`. For this decade at **night**, use
-`retro-anime`; as a saturated **poster**, `summer-sunset`; in **hardware**, `cassette`.
+`synthwave`; as a saturated **poster**, `summer-sunset`; in **hardware**, `cassette`.

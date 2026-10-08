@@ -2,77 +2,72 @@
   "theme": {
     "extend": {
       "colors": {
-        "primary": "#ec4b8f",
-        "primary-hover": "#ff5fa2",
-        "primary-ink": "#ffadce",
-        "secondary": "#44a6d7",
-        "tertiary": "#ffb57b",
-        "neutral": "#19152b",
-        "surface": "#221a3a",
-        "surface-2": "#171129",
-        "text": "#f7ecff",
-        "text-muted": "#cbb8e4",
-        "success": "#45d6a4",
-        "warning": "#ffc46b",
-        "error": "#ff5f77"
+        "primary": "#c53a68",
+        "primary-hover": "#b2335e",
+        "primary-ink": "#ae2a5e",
+        "primary-ink-hover": "#94214f",
+        "secondary": "#3f7fd0",
+        "tertiary": "#a87d2a",
+        "neutral": "#fdf7ee",
+        "surface": "#fffdf8",
+        "surface-2": "#f5eef4",
+        "text": "#1e2749",
+        "text-muted": "#414c72",
+        "text-dim": "#49547b",
+        "text-invert": "#fff8f0",
+        "accent-tint": "#eed5e0",
+        "night": "#1b2350",
+        "success": "#1f7a5a",
+        "warning": "#8f6410",
+        "error": "#bd3a22",
+        "info": "#2b6fb5"
       },
       "fontFamily": {
         "display": [
-          "Audiowide"
+          "Shippori Mincho"
         ],
         "heading": [
-          "Rajdhani"
+          "Shippori Mincho"
         ],
         "body": [
-          "Rajdhani"
+          "Nunito Sans"
         ],
         "label": [
-          "Share Tech Mono"
-        ],
-        "tech": [
-          "Audiowide"
+          "IBM Plex Mono"
         ]
       },
       "fontSize": {
         "display": [
-          "2.9rem",
+          "2.7rem",
           {
-            "letterSpacing": "0.01em",
-            "fontWeight": "400"
+            "letterSpacing": "0em",
+            "fontWeight": "700"
           }
         ],
         "heading": [
-          "1.32rem",
+          "1.3rem",
           {
-            "letterSpacing": "0.005em",
             "fontWeight": "600"
           }
         ],
         "body": [
-          "0.98rem",
+          "0.95rem",
           {
-            "fontWeight": "500"
+            "fontWeight": "400"
           }
         ],
         "label": [
           "0.72rem",
           {
-            "letterSpacing": "0.12em",
-            "fontWeight": "400"
-          }
-        ],
-        "tech": [
-          "1rem",
-          {
-            "letterSpacing": "0.06em",
+            "letterSpacing": "0.16em",
             "fontWeight": "400"
           }
         ]
       },
       "borderRadius": {
-        "sm": "3px",
-        "md": "6px",
-        "lg": "10px",
+        "sm": "5px",
+        "md": "9px",
+        "lg": "14px",
         "pill": "999px"
       },
       "spacing": {

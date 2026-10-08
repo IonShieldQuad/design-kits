@@ -9,7 +9,7 @@ Read, in this order:
 
 1. this file — your contract and workflow;
 2. `docs/KIT-SPEC.md` — the authoring contract (required tokens, optional capabilities);
-3. `kits/retro-anime/` — the most recent full kit; copy its level of rigour and file shape;
+3. `kits/synthwave/` — the most recent full kit; copy its level of rigour and file shape;
 4. `templates/lab.css` — what the shared lab actually consumes.
 
 ## The one architectural rule
@@ -96,7 +96,7 @@ as ~168×72 tiles on `--surface-2`. Rules:
   mechanism, a perspective, a glyph). Use an inline SVG data URL, **base64**:
   `url("data:image/svg+xml;base64,…") 0 0 / 74px 74px repeat, <a base layer>`.
   Never hand-percent-encode — a double-encoded `#` fails *silently* as a blank tile (base64 avoids
-  the whole class). Worked examples: `kits/gothic/tokens.css`, `kits/retro-anime/tokens.css`,
+  the whole class). Worked examples: `kits/gothic/tokens.css`, `kits/synthwave/tokens.css`,
   `kits/pixel-dmg/tokens.css`.
 - Give drawn artwork a base layer and scale it explicitly (`center / 92px 92px no-repeat` for a
   mark, `0 0 / 74px 74px repeat` for a field).

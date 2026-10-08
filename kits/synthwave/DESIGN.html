@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthwave — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Synthwave kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Rajdhani:wght@400;500;600;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Synthwave</h1>
+  <p class="spec-sub">80s synthwave key art at dusk — indigo night, magenta neon, cyan tech, one striped sun</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Synthwave
+description: 80s synthwave key art at dusk — indigo night, magenta neon, cyan tech, one striped sun.
+colors:
+  primary: &quot;#ec4b8f&quot;
+  primary-hover: &quot;#ff5fa2&quot;
+  primary-ink: &quot;#ffadce&quot;
+  secondary: &quot;#44a6d7&quot;
+  tertiary: &quot;#ffb57b&quot;
+  neutral: &quot;#19152b&quot;
+  surface: &quot;#221a3a&quot;
+  surface-2: &quot;#171129&quot;
+  text: &quot;#f7ecff&quot;
+  text-muted: &quot;#cbb8e4&quot;
+  success: &quot;#45d6a4&quot;
+  warning: &quot;#ffc46b&quot;
+  error: &quot;#ff5f77&quot;
+typography:
+  display:
+    fontFamily: Audiowide
+    fontSize: 2.9rem
+    fontWeight: 400
+    lineHeight: 1.06
+    letterSpacing: &quot;0.01em&quot;
+  heading:
+    fontFamily: Rajdhani
+    fontSize: 1.32rem
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;0.005em&quot;
+  body:
+    fontFamily: Rajdhani
+    fontSize: 0.98rem
+    fontWeight: 500
+    lineHeight: 1.55
+  label:
+    fontFamily: Share Tech Mono
+    fontSize: 0.72rem
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: &quot;0.12em&quot;
+  tech:
+    fontFamily: Audiowide
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.1
+    letterSpacing: &quot;0.06em&quot;
+rounded:
+  sm: 3px
+  md: 6px
+  lg: 10px
+  pill: 999px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  card-media-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.secondary}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="synthwave">Synthwave</h2>
+<h3 id="overview">Overview</h3>
+<p>Eighties synthwave key art, at the hour the neon comes on. A deep indigo night is the ground; the sunset is a band across the top of the page; magenta is the one action colour and cyan is the technology. The kit is built from five reference illustrations of the genre, and <strong>every palette value is the median sampled from those images</strong> rather than an estimate — the sampled set is <code>#19152b</code> indigo night · <code>#622c80</code> violet sky · <code>#bb4085</code> magenta · <code>#44a6d7</code> cyan neon · <code>#faa071</code>/<code>#ffb57b</code> gold horizon. Where a token had to move for contrast it was moved in the accent's own family and recorded in <code>README.md</code>.</p>
+<p>The register is warm nostalgia rendered in cold light: saturated, cinematic, unapologetically neon, but with the flatness of a printed poster rather than the gloss of a dashboard. Type is Audiowide for the wide 80s technical display, Rajdhani for the condensed humanist body, and Share Tech Mono for machine labels.</p>
+<h3 id="colors">Colors</h3>
+<p>Magenta <code>#ec4b8f</code> is the primary action colour — the neon sign doing the persuading, and the only saturated object most pages will contain. Cyan <code>#44a6d7</code> is the second accent and belongs to <em>technology</em>, not to action: media panels, progress, focus, charts. Gold <code>#ffb57b</code> is the sun and appears in the sky ramp, never as a control colour.</p>
+<p>The night is <code>#19152b</code>, a violet-black rather than a neutral one — the references never contain a grey, and a neutral black would flatten the warm/cool tension the whole genre depends on.</p>
+<p>Because the fill magenta is only 5.2:1 against dark ink and far less as a label, text-magenta ships separately: <code>--accent-ink</code> and <code>--accent-ink-hover</code> exist so eyebrow, links, active nav and badge labels can be magenta family without failing contrast.</p>
+<h3 id="typography">Typography</h3>
+<p>Audiowide is deliberately the <strong>display face only</strong>. Its 1970s-technical, single-weight letterforms are exactly the genre's title lettering, and they are unreadable in quantity — so the body is Rajdhani, a condensed sans with the same engineering-drawing feel at reading size. Share Tech Mono handles labels, metrics and code. The wide <code>0.12em</code> tracking on caps is what makes small labels read as silkscreen rather than as body text.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is comfortable rather than dense (<code>16px</code> gutters, <code>24px</code> between blocks) so the neon has air around it. Corners are barely softened — <code>3px</code> to <code>10px</code> — because the references are printed posters: geometry, not pillows. Nothing is a pill except badges.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>light</strong>, not glass: <code>--blur: none</code> and panels stay flat, because a poster has no frosted surfaces. Elevation comes from two devices instead — a magenta/base tint for nested panels, and <code>--glow</code>, a cyan neon ring plus bloom, used sparingly on focused or active elements. <code>--shadow-1</code>/<code>--shadow-2</code> are near-black indigo drops that read as night, not as grey.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry lives in its signature tokens rather than in its corners: the striped outrun sun (<code>--synthwave-sun</code>), the perspective floor grid (<code>--synthwave-grid</code>), the px-stop sunset ramp (<code>--synthwave-sky</code>) and the chrome ramp (<code>--synthwave-chrome</code>). Those four are the genre's actual vocabulary — a sun with hard horizontal bars cutting through it, a grid running to a vanishing point, and metal that reads as chrome because its ramp has a <strong>dark band in the middle</strong>. The sun and the grid are drawn artwork (inline SVG) because neither is expressible with repeating gradients: a bar pattern stripes the whole tile rather than the disc, and two straight gradient families produce graph paper instead of depth. Four motifs is the ceiling — a fifth dilutes the rest.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are magenta fills with indigo labels, or flat surfaces with magenta labels; the danger button keeps the surface and takes vermilion text. Cards stay flat on the night with a hairline violet border; the elevated card deepens to <code>--surface-2</code>. Inputs sit in the deepest well. Badges are pills carrying mono caps. Media panels use the magenta and cyan ramps.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep magenta for action and cyan for technology. Two accents, two jobs.</li><li><strong>Do</strong> let the sunset band live in the top viewport, then settle to night — a full-page gradient in <code>%</code> stops would show one flat colour and waste the whole idea.</li><li><strong>Don't</strong> put the gold on a control, and don't set body text over the sky band's gold stop.</li><li><strong>Don't</strong> add a third neon. The genre survives on magenta-vs-cyan; a third colour makes it a rainbow instead of a night.</li><li><strong>Don't</strong> round the corners further or add glass — the flatness is the poster.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

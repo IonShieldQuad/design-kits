@@ -131,5 +131,5 @@ as a muddy yellow→black gradient). Base64 data URIs are used throughout (never
 Controlled, institutional danger: industrial and monitoring dashboards, safety and ops tooling, incident
 and telemetry UIs, science and medical instrument panels, anything that wants to feel *contained* rather
 than cosy. Avoid it for warm, social, editorial or nightlife surfaces — that is `city-pop`,
-`summer-sunset`, `retro-anime` or `sakura`. For a dark control-room register instead of a daylight
+`summer-sunset`, `synthwave` or `sakura`. For a dark control-room register instead of a daylight
 one, use `inside-the-machine` or `cyberpunk`.

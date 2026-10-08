@@ -1,0 +1,140 @@
+/* ============================================================================
+   design-kits · space-noir                                       contract v1
+   ----------------------------------------------------------------------------
+   90s SPACE-NOIR JAZZ-POSTER ANIME — design provenance, not a franchise.
+
+   Evokes the era's PRINT language: a muted adult palette, film grain, a halftone
+   screen, bold condensed poster type and hard-edged zero-blur "poster frames".
+   No character, ship, logotype or trade dress is reproduced — the vocabulary
+   here (interlocking discs, a halftone dot field, perforated film, a burnt-orange
+   action colour on an inked ground) is generic mid-century / jazz-poster geometry.
+
+   PALETTE — muted, aged, nothing saturated, nothing neon
+     ground   warm ink/charcoal (#221e1a -> #121110), a printed black with a
+              brown cast — never neutral, never pure #000
+     type     bone / cream (#ece4d6) — the poster's stock, not white
+     action   burnt orange (#c06a30) with an INK label (#191210): an orange field
+              carrying near-black type, the jazz-album move
+     cool     muted deep teal (#2f6f68) — the counterpoint: media, charts, data
+     alert    dusty red (#cb7266) — faded, printed, clearly not the action
+     read     a lifted orange (#e0904f) carries every READ word (--accent-ink)
+
+   MATERIAL — the kit is PRINT, so smoothness is shut out where it shows:
+     · film grain (a drawn feTurbulence tile) sits in --bg and --media-bg
+     · a halftone dot screen is DRAWN (base64 SVG), never a radial fake
+     · every shadow is a ZERO-BLUR offset; the "glow" is a hard poster edge
+     · --blur: none — a poster has no frosted glass
+
+   TYPE: Barlow Condensed (heavy condensed poster display) · Barlow (sturdy body)
+         · Courier Prime (typewriter mono for swatches and labels — print, not terminal)
+   ========================================================================== */
+:root {
+  /* ---- surfaces: printed ink, warm, banded ------------------------------- */
+  --bg:
+    /* film grain first (top layer): a DRAWN feTurbulence tile. It only DARKENS
+       (the colour matrix maps luminance to black alpha), so every contrast pair
+       below is solved against the ungrained ground and stays conservative. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNDAnIGhlaWdodD0nMTQwJz48ZmlsdGVyIGlkPSdnJyB4PScwJyB5PScwJyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMS4wNScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcgc2VlZD0nNycvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjg1IDAgMCAtMC4zMiAwJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE0MCcgaGVpZ2h0PScxNDAnIGZpbHRlcj0ndXJsKCNnKScvPjwvc3ZnPg==") 0 0 / 140px 140px repeat,
+    linear-gradient(180deg, #221e1a 0px, #1a1714 360px, #121110 100%);
+  --bg-2:          #131110;               /* the dominant stop / near-field */
+  --surface:       #1e1a17;               /* panels, one step up */
+  --surface-2:     #151311;               /* insets, inputs, the tile base */
+  --overlay:       rgba(9, 8, 7, .82);    /* modal scrim */
+
+  /* ---- text: bone, dust and ink ------------------------------------------ */
+  --text:          #ece4d6;               /* 13.1:1 on the brightest ground */
+  --text-muted:    #bdb3a4;               /*  8.0:1 */
+  --text-dim:      #9c9284;               /*  5.4:1 — the binding tier */
+  --text-invert:   #191210;               /* ink ON the orange fill (4.7:1) */
+
+  /* ---- brand: one burnt orange, one deep teal ---------------------------- */
+  --accent:        #c06a30;               /* burnt orange — the action colour */
+  --accent-hover:  #d67f42;               /* the orange warmed one step */
+  --accent-2:      #2f6f68;               /* muted deep teal — the cool counterpoint */
+  --accent-soft:   rgba(192, 106, 48, .16); /* 16% tint of --accent, derived */
+
+  /* the orange as TEXT: a fill colour never reads as a small label, so the
+     readable member ships separately */
+  --accent-ink:        #e0904f;           /* 6.5:1 on ground, 5.4:1 on accent-soft */
+  --accent-ink-hover:  #eda468;
+
+  /* ---- status: desaturated one step past shouting ------------------------ */
+  --ok:            #8fae5f;               /* muted sage */
+  --warn:          #d9a441;               /* aged amber */
+  --danger:        #cb7266;               /* dusty red — printed, faded, not neon */
+  --info:          #5c9d97;               /* light teal: data, telemetry */
+
+  /* ---- lines: cream hairlines -------------------------------------------- */
+  --border:        rgba(236, 228, 214, .14);
+  --border-strong: rgba(236, 228, 214, .28);
+  --border-w:      1px;
+  --focus-ring:    #e0934f;               /* the orange lifted; 6.7:1 */
+
+  /* ---- shape: printed, barely softened ----------------------------------- */
+  --radius-sm:     2px;
+  --radius-md:     4px;
+  --radius-lg:     8px;
+  --radius-pill:   999px;
+  --cut:           0px;                    /* no chamfer — crisp poster corners */
+
+  /* ---- type -------------------------------------------------------------- */
+  --font-display:  "Barlow Condensed", "Oswald", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Barlow", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "Courier Prime", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;                 /* a screened poster label */
+  --tracking-display: .005em;
+
+  /* ---- depth: HARD EDGES, zero blur -------------------------------------- */
+  --shadow-1:      3px 3px 0 0 rgba(0, 0, 0, .55), 0 0 0 1px rgba(236, 228, 214, .05);
+  --shadow-2:      6px 6px 0 0 rgba(0, 0, 0, .62), 0 0 0 1px rgba(236, 228, 214, .09);
+  --glow:          0 0 0 1px #191210, 3px 3px 0 0 rgba(192, 106, 48, .55);
+  --blur:          none;                  /* a poster, not glass */
+
+  /* ---- motion: a print doesn't glide ------------------------------------- */
+  --dur:           .2s;
+  --ease:          cubic-bezier(.25, .7, .3, 1);
+
+  /* ---- opt-in capabilities the lab honours ------------------------------- */
+  /* the masthead default is a smooth radial bloom; the noir masthead gets a
+     SCREENED SHADOW instead — a drawn dot screen of near-black, which can only
+     darken the ground, so no text pair is risked by it. */
+  --wash:          url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMic+PGNpcmNsZSBjeD0nNicgY3k9JzYnIHI9JzIuNicgZmlsbD0nIzAwMCcgZmlsbC1vcGFjaXR5PScwLjMwJy8+PC9zdmc+") 0 0 / 10px 10px repeat;
+  /* the media panel is where the kit shows a SURFACE: a halftone screen and film
+     grain over a muted orange->rust->teal press ramp. Opaque. */
+  --media-bg:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNDAnIGhlaWdodD0nMTQwJz48ZmlsdGVyIGlkPSdnJyB4PScwJyB5PScwJyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMS4wNScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcgc2VlZD0nNycvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjg1IDAgMCAtMC4zMiAwJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE0MCcgaGVpZ2h0PScxNDAnIGZpbHRlcj0ndXJsKCNnKScvPjwvc3ZnPg==") 0 0 / 140px 140px repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+PGNpcmNsZSBjeD0nNScgY3k9JzUnIHI9JzIuMCcgZmlsbD0nI2VmZTdkOCcgZmlsbC1vcGFjaXR5PScwLjIwJy8+PC9zdmc+") 0 0 / 11px 11px repeat,
+    linear-gradient(115deg, #c06a30 0%, #8a4a26 44%, #2f6f68 100%);
+  --media-op:      1;
+  --input-inset:   inset 0 2px 0 rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(0, 0, 0, .35);
+  --btn-shadow:    2px 2px 0 0 rgba(0, 0, 0, .55);   /* every button wears the hard edge */
+  --bar-shadow:    0 2px 0 0 rgba(0, 0, 0, .40);     /* nav / tabs: a printed rule */
+  --bar-item-shadow: 2px 2px 0 0 rgba(0, 0, 0, .50); /* the plate riding on it */
+  --bar-item-pad:  .35rem;
+  /* progress + avatar: a hard-banded screen print; both stops are light enough
+     that the ink avatar label still reads (5.2:1) */
+  --fill-bg:       repeating-linear-gradient(90deg, #cc6f2e 0px, #cc6f2e 7px, #d9813f 7px, #d9813f 9px);
+
+  /* ---- signature: three motifs, three jobs ------------------------------- */
+  /* 1 · HALFTONE SCREEN — the MATERIAL. A dot field whose dots grow left to
+        right: the classic screened gradient of a 90s print. DRAWN (base64 SVG),
+        because a repeating radial-gradient fakes a halftone as a smooth ramp and
+        the brief calls that out. Cream dots on an inked plate. */
+  --space-noir-halftone:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInPjxnIGZpbGw9JyNlZmU3ZDgnIGZpbGwtb3BhY2l0eT0nMC45Myc+PGNpcmNsZSBjeD0nMTEnIGN5PSc1JyByPScwLjYnLz48Y2lyY2xlIGN4PScxOScgY3k9JzUnIHI9JzAuNycvPjxjaXJjbGUgY3g9JzI3JyBjeT0nNScgcj0nMC44Jy8+PGNpcmNsZSBjeD0nMzUnIGN5PSc1JyByPScxLjAnLz48Y2lyY2xlIGN4PSc0MycgY3k9JzUnIHI9JzEuMScvPjxjaXJjbGUgY3g9JzUxJyBjeT0nNScgcj0nMS4yJy8+PGNpcmNsZSBjeD0nNTknIGN5PSc1JyByPScxLjQnLz48Y2lyY2xlIGN4PSc2NycgY3k9JzUnIHI9JzEuNScvPjxjaXJjbGUgY3g9Jzc1JyBjeT0nNScgcj0nMS43Jy8+PGNpcmNsZSBjeD0nODMnIGN5PSc1JyByPScxLjgnLz48Y2lyY2xlIGN4PSc5MScgY3k9JzUnIHI9JzIuMCcvPjxjaXJjbGUgY3g9Jzk5JyBjeT0nNScgcj0nMi4xJy8+PGNpcmNsZSBjeD0nMTA3JyBjeT0nNScgcj0nMi4zJy8+PGNpcmNsZSBjeD0nMTE1JyBjeT0nNScgcj0nMi41Jy8+PGNpcmNsZSBjeD0nMTIzJyBjeT0nNScgcj0nMi42Jy8+PGNpcmNsZSBjeD0nMTMxJyBjeT0nNScgcj0nMi44Jy8+PGNpcmNsZSBjeD0nMTM5JyBjeT0nNScgcj0nMy4wJy8+PGNpcmNsZSBjeD0nMTQ3JyBjeT0nNScgcj0nMy4xJy8+PGNpcmNsZSBjeD0nMTU1JyBjeT0nNScgcj0nMy4zJy8+PGNpcmNsZSBjeD0nMTYzJyBjeT0nNScgcj0nMy41Jy8+PGNpcmNsZSBjeD0nMTcxJyBjeT0nNScgcj0nMy42Jy8+PGNpcmNsZSBjeD0nNycgY3k9JzEzJyByPScwLjYnLz48Y2lyY2xlIGN4PScxNScgY3k9JzEzJyByPScwLjcnLz48Y2lyY2xlIGN4PScyMycgY3k9JzEzJyByPScwLjgnLz48Y2lyY2xlIGN4PSczMScgY3k9JzEzJyByPScwLjknLz48Y2lyY2xlIGN4PSczOScgY3k9JzEzJyByPScxLjAnLz48Y2lyY2xlIGN4PSc0NycgY3k9JzEzJyByPScxLjInLz48Y2lyY2xlIGN4PSc1NScgY3k9JzEzJyByPScxLjMnLz48Y2lyY2xlIGN4PSc2MycgY3k9JzEzJyByPScxLjUnLz48Y2lyY2xlIGN4PSc3MScgY3k9JzEzJyByPScxLjYnLz48Y2lyY2xlIGN4PSc3OScgY3k9JzEzJyByPScxLjgnLz48Y2lyY2xlIGN4PSc4NycgY3k9JzEzJyByPScxLjknLz48Y2lyY2xlIGN4PSc5NScgY3k9JzEzJyByPScyLjEnLz48Y2lyY2xlIGN4PScxMDMnIGN5PScxMycgcj0nMi4yJy8+PGNpcmNsZSBjeD0nMTExJyBjeT0nMTMnIHI9JzIuNCcvPjxjaXJjbGUgY3g9JzExOScgY3k9JzEzJyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjcnIGN5PScxMycgcj0nMi43Jy8+PGNpcmNsZSBjeD0nMTM1JyBjeT0nMTMnIHI9JzIuOScvPjxjaXJjbGUgY3g9JzE0MycgY3k9JzEzJyByPSczLjEnLz48Y2lyY2xlIGN4PScxNTEnIGN5PScxMycgcj0nMy4yJy8+PGNpcmNsZSBjeD0nMTU5JyBjeT0nMTMnIHI9JzMuNCcvPjxjaXJjbGUgY3g9JzE2NycgY3k9JzEzJyByPSczLjYnLz48Y2lyY2xlIGN4PScxNzUnIGN5PScxMycgcj0nMy42Jy8+PGNpcmNsZSBjeD0nMTEnIGN5PScyMScgcj0nMC42Jy8+PGNpcmNsZSBjeD0nMTknIGN5PScyMScgcj0nMC43Jy8+PGNpcmNsZSBjeD0nMjcnIGN5PScyMScgcj0nMC44Jy8+PGNpcmNsZSBjeD0nMzUnIGN5PScyMScgcj0nMS4wJy8+PGNpcmNsZSBjeD0nNDMnIGN5PScyMScgcj0nMS4xJy8+PGNpcmNsZSBjeD0nNTEnIGN5PScyMScgcj0nMS4yJy8+PGNpcmNsZSBjeD0nNTknIGN5PScyMScgcj0nMS40Jy8+PGNpcmNsZSBjeD0nNjcnIGN5PScyMScgcj0nMS41Jy8+PGNpcmNsZSBjeD0nNzUnIGN5PScyMScgcj0nMS43Jy8+PGNpcmNsZSBjeD0nODMnIGN5PScyMScgcj0nMS44Jy8+PGNpcmNsZSBjeD0nOTEnIGN5PScyMScgcj0nMi4wJy8+PGNpcmNsZSBjeD0nOTknIGN5PScyMScgcj0nMi4xJy8+PGNpcmNsZSBjeD0nMTA3JyBjeT0nMjEnIHI9JzIuMycvPjxjaXJjbGUgY3g9JzExNScgY3k9JzIxJyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjMnIGN5PScyMScgcj0nMi42Jy8+PGNpcmNsZSBjeD0nMTMxJyBjeT0nMjEnIHI9JzIuOCcvPjxjaXJjbGUgY3g9JzEzOScgY3k9JzIxJyByPSczLjAnLz48Y2lyY2xlIGN4PScxNDcnIGN5PScyMScgcj0nMy4xJy8+PGNpcmNsZSBjeD0nMTU1JyBjeT0nMjEnIHI9JzMuMycvPjxjaXJjbGUgY3g9JzE2MycgY3k9JzIxJyByPSczLjUnLz48Y2lyY2xlIGN4PScxNzEnIGN5PScyMScgcj0nMy42Jy8+PGNpcmNsZSBjeD0nNycgY3k9JzI5JyByPScwLjYnLz48Y2lyY2xlIGN4PScxNScgY3k9JzI5JyByPScwLjcnLz48Y2lyY2xlIGN4PScyMycgY3k9JzI5JyByPScwLjgnLz48Y2lyY2xlIGN4PSczMScgY3k9JzI5JyByPScwLjknLz48Y2lyY2xlIGN4PSczOScgY3k9JzI5JyByPScxLjAnLz48Y2lyY2xlIGN4PSc0NycgY3k9JzI5JyByPScxLjInLz48Y2lyY2xlIGN4PSc1NScgY3k9JzI5JyByPScxLjMnLz48Y2lyY2xlIGN4PSc2MycgY3k9JzI5JyByPScxLjUnLz48Y2lyY2xlIGN4PSc3MScgY3k9JzI5JyByPScxLjYnLz48Y2lyY2xlIGN4PSc3OScgY3k9JzI5JyByPScxLjgnLz48Y2lyY2xlIGN4PSc4NycgY3k9JzI5JyByPScxLjknLz48Y2lyY2xlIGN4PSc5NScgY3k9JzI5JyByPScyLjEnLz48Y2lyY2xlIGN4PScxMDMnIGN5PScyOScgcj0nMi4yJy8+PGNpcmNsZSBjeD0nMTExJyBjeT0nMjknIHI9JzIuNCcvPjxjaXJjbGUgY3g9JzExOScgY3k9JzI5JyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjcnIGN5PScyOScgcj0nMi43Jy8+PGNpcmNsZSBjeD0nMTM1JyBjeT0nMjknIHI9JzIuOScvPjxjaXJjbGUgY3g9JzE0MycgY3k9JzI5JyByPSczLjEnLz48Y2lyY2xlIGN4PScxNTEnIGN5PScyOScgcj0nMy4yJy8+PGNpcmNsZSBjeD0nMTU5JyBjeT0nMjknIHI9JzMuNCcvPjxjaXJjbGUgY3g9JzE2NycgY3k9JzI5JyByPSczLjYnLz48Y2lyY2xlIGN4PScxNzUnIGN5PScyOScgcj0nMy42Jy8+PGNpcmNsZSBjeD0nMTEnIGN5PSczNycgcj0nMC42Jy8+PGNpcmNsZSBjeD0nMTknIGN5PSczNycgcj0nMC43Jy8+PGNpcmNsZSBjeD0nMjcnIGN5PSczNycgcj0nMC44Jy8+PGNpcmNsZSBjeD0nMzUnIGN5PSczNycgcj0nMS4wJy8+PGNpcmNsZSBjeD0nNDMnIGN5PSczNycgcj0nMS4xJy8+PGNpcmNsZSBjeD0nNTEnIGN5PSczNycgcj0nMS4yJy8+PGNpcmNsZSBjeD0nNTknIGN5PSczNycgcj0nMS40Jy8+PGNpcmNsZSBjeD0nNjcnIGN5PSczNycgcj0nMS41Jy8+PGNpcmNsZSBjeD0nNzUnIGN5PSczNycgcj0nMS43Jy8+PGNpcmNsZSBjeD0nODMnIGN5PSczNycgcj0nMS44Jy8+PGNpcmNsZSBjeD0nOTEnIGN5PSczNycgcj0nMi4wJy8+PGNpcmNsZSBjeD0nOTknIGN5PSczNycgcj0nMi4xJy8+PGNpcmNsZSBjeD0nMTA3JyBjeT0nMzcnIHI9JzIuMycvPjxjaXJjbGUgY3g9JzExNScgY3k9JzM3JyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjMnIGN5PSczNycgcj0nMi42Jy8+PGNpcmNsZSBjeD0nMTMxJyBjeT0nMzcnIHI9JzIuOCcvPjxjaXJjbGUgY3g9JzEzOScgY3k9JzM3JyByPSczLjAnLz48Y2lyY2xlIGN4PScxNDcnIGN5PSczNycgcj0nMy4xJy8+PGNpcmNsZSBjeD0nMTU1JyBjeT0nMzcnIHI9JzMuMycvPjxjaXJjbGUgY3g9JzE2MycgY3k9JzM3JyByPSczLjUnLz48Y2lyY2xlIGN4PScxNzEnIGN5PSczNycgcj0nMy42Jy8+PGNpcmNsZSBjeD0nNycgY3k9JzQ1JyByPScwLjYnLz48Y2lyY2xlIGN4PScxNScgY3k9JzQ1JyByPScwLjcnLz48Y2lyY2xlIGN4PScyMycgY3k9JzQ1JyByPScwLjgnLz48Y2lyY2xlIGN4PSczMScgY3k9JzQ1JyByPScwLjknLz48Y2lyY2xlIGN4PSczOScgY3k9JzQ1JyByPScxLjAnLz48Y2lyY2xlIGN4PSc0NycgY3k9JzQ1JyByPScxLjInLz48Y2lyY2xlIGN4PSc1NScgY3k9JzQ1JyByPScxLjMnLz48Y2lyY2xlIGN4PSc2MycgY3k9JzQ1JyByPScxLjUnLz48Y2lyY2xlIGN4PSc3MScgY3k9JzQ1JyByPScxLjYnLz48Y2lyY2xlIGN4PSc3OScgY3k9JzQ1JyByPScxLjgnLz48Y2lyY2xlIGN4PSc4NycgY3k9JzQ1JyByPScxLjknLz48Y2lyY2xlIGN4PSc5NScgY3k9JzQ1JyByPScyLjEnLz48Y2lyY2xlIGN4PScxMDMnIGN5PSc0NScgcj0nMi4yJy8+PGNpcmNsZSBjeD0nMTExJyBjeT0nNDUnIHI9JzIuNCcvPjxjaXJjbGUgY3g9JzExOScgY3k9JzQ1JyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjcnIGN5PSc0NScgcj0nMi43Jy8+PGNpcmNsZSBjeD0nMTM1JyBjeT0nNDUnIHI9JzIuOScvPjxjaXJjbGUgY3g9JzE0MycgY3k9JzQ1JyByPSczLjEnLz48Y2lyY2xlIGN4PScxNTEnIGN5PSc0NScgcj0nMy4yJy8+PGNpcmNsZSBjeD0nMTU5JyBjeT0nNDUnIHI9JzMuNCcvPjxjaXJjbGUgY3g9JzE2NycgY3k9JzQ1JyByPSczLjYnLz48Y2lyY2xlIGN4PScxNzUnIGN5PSc0NScgcj0nMy42Jy8+PGNpcmNsZSBjeD0nMTEnIGN5PSc1Mycgcj0nMC42Jy8+PGNpcmNsZSBjeD0nMTknIGN5PSc1Mycgcj0nMC43Jy8+PGNpcmNsZSBjeD0nMjcnIGN5PSc1Mycgcj0nMC44Jy8+PGNpcmNsZSBjeD0nMzUnIGN5PSc1Mycgcj0nMS4wJy8+PGNpcmNsZSBjeD0nNDMnIGN5PSc1Mycgcj0nMS4xJy8+PGNpcmNsZSBjeD0nNTEnIGN5PSc1Mycgcj0nMS4yJy8+PGNpcmNsZSBjeD0nNTknIGN5PSc1Mycgcj0nMS40Jy8+PGNpcmNsZSBjeD0nNjcnIGN5PSc1Mycgcj0nMS41Jy8+PGNpcmNsZSBjeD0nNzUnIGN5PSc1Mycgcj0nMS43Jy8+PGNpcmNsZSBjeD0nODMnIGN5PSc1Mycgcj0nMS44Jy8+PGNpcmNsZSBjeD0nOTEnIGN5PSc1Mycgcj0nMi4wJy8+PGNpcmNsZSBjeD0nOTknIGN5PSc1Mycgcj0nMi4xJy8+PGNpcmNsZSBjeD0nMTA3JyBjeT0nNTMnIHI9JzIuMycvPjxjaXJjbGUgY3g9JzExNScgY3k9JzUzJyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjMnIGN5PSc1Mycgcj0nMi42Jy8+PGNpcmNsZSBjeD0nMTMxJyBjeT0nNTMnIHI9JzIuOCcvPjxjaXJjbGUgY3g9JzEzOScgY3k9JzUzJyByPSczLjAnLz48Y2lyY2xlIGN4PScxNDcnIGN5PSc1Mycgcj0nMy4xJy8+PGNpcmNsZSBjeD0nMTU1JyBjeT0nNTMnIHI9JzMuMycvPjxjaXJjbGUgY3g9JzE2MycgY3k9JzUzJyByPSczLjUnLz48Y2lyY2xlIGN4PScxNzEnIGN5PSc1Mycgcj0nMy42Jy8+PGNpcmNsZSBjeD0nNycgY3k9JzYxJyByPScwLjYnLz48Y2lyY2xlIGN4PScxNScgY3k9JzYxJyByPScwLjcnLz48Y2lyY2xlIGN4PScyMycgY3k9JzYxJyByPScwLjgnLz48Y2lyY2xlIGN4PSczMScgY3k9JzYxJyByPScwLjknLz48Y2lyY2xlIGN4PSczOScgY3k9JzYxJyByPScxLjAnLz48Y2lyY2xlIGN4PSc0NycgY3k9JzYxJyByPScxLjInLz48Y2lyY2xlIGN4PSc1NScgY3k9JzYxJyByPScxLjMnLz48Y2lyY2xlIGN4PSc2MycgY3k9JzYxJyByPScxLjUnLz48Y2lyY2xlIGN4PSc3MScgY3k9JzYxJyByPScxLjYnLz48Y2lyY2xlIGN4PSc3OScgY3k9JzYxJyByPScxLjgnLz48Y2lyY2xlIGN4PSc4NycgY3k9JzYxJyByPScxLjknLz48Y2lyY2xlIGN4PSc5NScgY3k9JzYxJyByPScyLjEnLz48Y2lyY2xlIGN4PScxMDMnIGN5PSc2MScgcj0nMi4yJy8+PGNpcmNsZSBjeD0nMTExJyBjeT0nNjEnIHI9JzIuNCcvPjxjaXJjbGUgY3g9JzExOScgY3k9JzYxJyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjcnIGN5PSc2MScgcj0nMi43Jy8+PGNpcmNsZSBjeD0nMTM1JyBjeT0nNjEnIHI9JzIuOScvPjxjaXJjbGUgY3g9JzE0MycgY3k9JzYxJyByPSczLjEnLz48Y2lyY2xlIGN4PScxNTEnIGN5PSc2MScgcj0nMy4yJy8+PGNpcmNsZSBjeD0nMTU5JyBjeT0nNjEnIHI9JzMuNCcvPjxjaXJjbGUgY3g9JzE2NycgY3k9JzYxJyByPSczLjYnLz48Y2lyY2xlIGN4PScxNzUnIGN5PSc2MScgcj0nMy42Jy8+PGNpcmNsZSBjeD0nMTEnIGN5PSc2OScgcj0nMC42Jy8+PGNpcmNsZSBjeD0nMTknIGN5PSc2OScgcj0nMC43Jy8+PGNpcmNsZSBjeD0nMjcnIGN5PSc2OScgcj0nMC44Jy8+PGNpcmNsZSBjeD0nMzUnIGN5PSc2OScgcj0nMS4wJy8+PGNpcmNsZSBjeD0nNDMnIGN5PSc2OScgcj0nMS4xJy8+PGNpcmNsZSBjeD0nNTEnIGN5PSc2OScgcj0nMS4yJy8+PGNpcmNsZSBjeD0nNTknIGN5PSc2OScgcj0nMS40Jy8+PGNpcmNsZSBjeD0nNjcnIGN5PSc2OScgcj0nMS41Jy8+PGNpcmNsZSBjeD0nNzUnIGN5PSc2OScgcj0nMS43Jy8+PGNpcmNsZSBjeD0nODMnIGN5PSc2OScgcj0nMS44Jy8+PGNpcmNsZSBjeD0nOTEnIGN5PSc2OScgcj0nMi4wJy8+PGNpcmNsZSBjeD0nOTknIGN5PSc2OScgcj0nMi4xJy8+PGNpcmNsZSBjeD0nMTA3JyBjeT0nNjknIHI9JzIuMycvPjxjaXJjbGUgY3g9JzExNScgY3k9JzY5JyByPScyLjUnLz48Y2lyY2xlIGN4PScxMjMnIGN5PSc2OScgcj0nMi42Jy8+PGNpcmNsZSBjeD0nMTMxJyBjeT0nNjknIHI9JzIuOCcvPjxjaXJjbGUgY3g9JzEzOScgY3k9JzY5JyByPSczLjAnLz48Y2lyY2xlIGN4PScxNDcnIGN5PSc2OScgcj0nMy4xJy8+PGNpcmNsZSBjeD0nMTU1JyBjeT0nNjknIHI9JzMuMycvPjxjaXJjbGUgY3g9JzE2MycgY3k9JzY5JyByPSczLjUnLz48Y2lyY2xlIGN4PScxNzEnIGN5PSc2OScgcj0nMy42Jy8+PC9nPjwvc3ZnPg==") 0 0 / 168px 72px no-repeat,
+    linear-gradient(135deg, #26201c 0%, #12100e 100%);
+
+  /* 2 · INTERLOCKING DISCS — the POSTER GEOMETRY. Two overlapping discs, burnt
+        orange and deep teal, cream-ringed, each with a centre dot, over a bold
+        baseline rule. Drawn, generic; a poster device, not a mark or a logo. */
+  --space-noir-discs:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxjaXJjbGUgY3g9JzYyJyBjeT0nNDAnIHI9JzMwJyBmaWxsPScjYzA2YTMwJy8+PGNpcmNsZSBjeD0nMTA0JyBjeT0nMzInIHI9JzMwJyBmaWxsPScjMmY2ZjY4Jy8+PGNpcmNsZSBjeD0nNjInIGN5PSc0MCcgcj0nMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VmZTdkOCcgc3Ryb2tlLXdpZHRoPScyLjInLz48Y2lyY2xlIGN4PScxMDQnIGN5PSczMicgcj0nMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VmZTdkOCcgc3Ryb2tlLXdpZHRoPScyLjInLz48Y2lyY2xlIGN4PSc2MicgY3k9JzQwJyByPSc0LjInIGZpbGw9JyNlZmU3ZDgnLz48Y2lyY2xlIGN4PScxMDQnIGN5PSczMicgcj0nNC4yJyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nOCcgeT0nNjcnIHdpZHRoPScxNTInIGhlaWdodD0nMycgZmlsbD0nI2VmZTdkOCcgZmlsbC1vcGFjaXR5PScwLjknLz48L3N2Zz4=") center / 168px 72px no-repeat,
+    linear-gradient(135deg, #211b17 0%, #12100e 100%);
+
+  /* 3 · FILM STRIP — the FRAME. A perforated film band: two rows of sprocket
+        holes, hard frame dividers and a crisp cream edge — the kit's framing cue
+        and the print/film material joining the halftone. */
+  --space-noir-film:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInPjxyZWN0IHg9JzAnIHk9JzE2JyB3aWR0aD0nMTY4JyBoZWlnaHQ9JzQwJyBmaWxsPScjMGYwYzBhJy8+PHJlY3QgeD0nLTAuNScgeT0nMTYnIHdpZHRoPScxJyBoZWlnaHQ9JzQwJyBmaWxsPScjMDAwJyBmaWxsLW9wYWNpdHk9JzAuNScvPjxyZWN0IHg9JzIzLjUnIHk9JzE2JyB3aWR0aD0nMScgaGVpZ2h0PSc0MCcgZmlsbD0nIzAwMCcgZmlsbC1vcGFjaXR5PScwLjUnLz48cmVjdCB4PSc0Ny41JyB5PScxNicgd2lkdGg9JzEnIGhlaWdodD0nNDAnIGZpbGw9JyMwMDAnIGZpbGwtb3BhY2l0eT0nMC41Jy8+PHJlY3QgeD0nNzEuNScgeT0nMTYnIHdpZHRoPScxJyBoZWlnaHQ9JzQwJyBmaWxsPScjMDAwJyBmaWxsLW9wYWNpdHk9JzAuNScvPjxyZWN0IHg9Jzk1LjUnIHk9JzE2JyB3aWR0aD0nMScgaGVpZ2h0PSc0MCcgZmlsbD0nIzAwMCcgZmlsbC1vcGFjaXR5PScwLjUnLz48cmVjdCB4PScxMTkuNScgeT0nMTYnIHdpZHRoPScxJyBoZWlnaHQ9JzQwJyBmaWxsPScjMDAwJyBmaWxsLW9wYWNpdHk9JzAuNScvPjxyZWN0IHg9JzE0My41JyB5PScxNicgd2lkdGg9JzEnIGhlaWdodD0nNDAnIGZpbGw9JyMwMDAnIGZpbGwtb3BhY2l0eT0nMC41Jy8+PHJlY3QgeD0nMTY3LjUnIHk9JzE2JyB3aWR0aD0nMScgaGVpZ2h0PSc0MCcgZmlsbD0nIzAwMCcgZmlsbC1vcGFjaXR5PScwLjUnLz48cmVjdCB4PSc2JyB5PScyMCcgd2lkdGg9JzcnIGhlaWdodD0nNicgcng9JzEuNScgZmlsbD0nI2VmZTdkOCcvPjxyZWN0IHg9JzYnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMjAnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMjAnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMzQnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMzQnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNDgnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNDgnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNjInIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNjInIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNzYnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nNzYnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nOTAnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nOTAnIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMTA0JyB5PScyMCcgd2lkdGg9JzcnIGhlaWdodD0nNicgcng9JzEuNScgZmlsbD0nI2VmZTdkOCcvPjxyZWN0IHg9JzEwNCcgeT0nNDYnIHdpZHRoPSc3JyBoZWlnaHQ9JzYnIHJ4PScxLjUnIGZpbGw9JyNlZmU3ZDgnLz48cmVjdCB4PScxMTgnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMTE4JyB5PSc0Nicgd2lkdGg9JzcnIGhlaWdodD0nNicgcng9JzEuNScgZmlsbD0nI2VmZTdkOCcvPjxyZWN0IHg9JzEzMicgeT0nMjAnIHdpZHRoPSc3JyBoZWlnaHQ9JzYnIHJ4PScxLjUnIGZpbGw9JyNlZmU3ZDgnLz48cmVjdCB4PScxMzInIHk9JzQ2JyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMTQ2JyB5PScyMCcgd2lkdGg9JzcnIGhlaWdodD0nNicgcng9JzEuNScgZmlsbD0nI2VmZTdkOCcvPjxyZWN0IHg9JzE0NicgeT0nNDYnIHdpZHRoPSc3JyBoZWlnaHQ9JzYnIHJ4PScxLjUnIGZpbGw9JyNlZmU3ZDgnLz48cmVjdCB4PScxNjAnIHk9JzIwJyB3aWR0aD0nNycgaGVpZ2h0PSc2JyByeD0nMS41JyBmaWxsPScjZWZlN2Q4Jy8+PHJlY3QgeD0nMTYwJyB5PSc0Nicgd2lkdGg9JzcnIGhlaWdodD0nNicgcng9JzEuNScgZmlsbD0nI2VmZTdkOCcvPjxyZWN0IHg9JzAuNzUnIHk9JzE2Ljc1JyB3aWR0aD0nMTY2LjUnIGhlaWdodD0nMzguNScgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWZlN2Q4JyBzdHJva2Utd2lkdGg9JzEuNScvPjwvc3ZnPg==") center / 168px 72px no-repeat,
+    linear-gradient(135deg, #211b17 0%, #12100e 100%);
+}

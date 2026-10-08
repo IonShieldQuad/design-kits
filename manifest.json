@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 28,
+  "kit_count": 30,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -992,23 +992,22 @@
       "warnings": []
     },
     {
-      "slug": "retro-anime",
-      "name": "Retro Anime",
-      "tagline": "80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun",
-      "description": "80s anime key art at dusk — indigo night, magenta neon, cyan tech, one striped sun.",
+      "slug": "synthwave",
+      "name": "Synthwave",
+      "tagline": "80s synthwave key art at dusk — indigo night, magenta neon, cyan tech, one striped sun",
+      "description": "80s synthwave key art at dusk — indigo night, magenta neon, cyan tech, one striped sun.",
       "index": "20",
       "order": 125,
       "mode": "dark",
       "tags": [
         "dark",
         "retro",
-        "anime",
         "neon",
         "synthwave",
         "city-pop"
       ],
       "fonts": "Audiowide · Rajdhani · Share Tech Mono",
-      "source": "derived from five reference illustrations (city-pop / 80s-anime / outrun sunset key art) supplied by the user; palette values are per-image median colour samples, not estimates",
+      "source": "derived from five reference illustrations (city-pop / 80s key art / outrun sunset) supplied by the user; palette values are per-image median colour samples, not estimates",
       "colors": {
         "primary": "#ec4b8f",
         "primary-hover": "#ff5fa2",
@@ -1025,11 +1024,11 @@
         "error": "#ff5f77"
       },
       "files": {
-        "design": "kits/retro-anime/DESIGN.md",
-        "design_html": "kits/retro-anime/DESIGN.html",
-        "tokens": "kits/retro-anime/tokens.css",
-        "lab": "kits/retro-anime/index.html",
-        "readme": "kits/retro-anime/README.md"
+        "design": "kits/synthwave/DESIGN.md",
+        "design_html": "kits/synthwave/DESIGN.html",
+        "tokens": "kits/synthwave/tokens.css",
+        "lab": "kits/synthwave/index.html",
+        "readme": "kits/synthwave/README.md"
       },
       "warnings": []
     },
@@ -1217,8 +1216,8 @@
     {
       "slug": "mecha-pilot",
       "name": "Mecha Pilot",
-      "tagline": "The pilot's instrument panel — amber readouts, a reticle, a range scale and hazard tape on gunmetal",
-      "description": "The pilot's instrument panel — amber readouts, a targeting reticle, a range scale and hazard tape on gunmetal, with no smooth edge anywhere.",
+      "tagline": "The pilot's military HUD — phosphor-green readouts, a targeting reticle, a range scale and caution tape on a dark olive board",
+      "description": "The pilot's military HUD — phosphor-green readouts, a targeting reticle, a range scale and caution tape on a dark olive board, with no smooth edge anywhere.",
       "index": "25",
       "order": 150,
       "mode": "dark",
@@ -1226,25 +1225,26 @@
         "dark",
         "mecha",
         "hud",
+        "military",
         "cockpit",
-        "technical",
         "instrumentation"
       ],
       "fonts": "Chakra Petch · Saira · Share Tech Mono",
       "source": "original",
       "colors": {
-        "primary": "#ffab2b",
-        "primary-hover": "#ffbc4d",
-        "primary-ink": "#ffc061",
-        "secondary": "#3fd0e6",
-        "tertiary": "#ffd24a",
-        "neutral": "#0d1116",
-        "surface": "#171d24",
-        "surface-2": "#111720",
-        "text": "#e8eef5",
-        "text-muted": "#9aa6b3",
-        "success": "#4ee08a",
-        "error": "#ff5a4d"
+        "primary": "#4dff9e",
+        "primary-hover": "#7dffb8",
+        "primary-ink": "#8fffc4",
+        "secondary": "#43d9e6",
+        "tertiary": "#ffb03a",
+        "neutral": "#10140a",
+        "surface": "#1e2416",
+        "surface-2": "#141910",
+        "text": "#e7f0dc",
+        "text-muted": "#a7b59b",
+        "success": "#8bf24d",
+        "error": "#ff5147",
+        "info": "#43d9e6"
       },
       "files": {
         "design": "kits/mecha-pilot/DESIGN.md",
@@ -1387,6 +1387,99 @@
         "tokens": "kits/radioactive/tokens.css",
         "lab": "kits/radioactive/index.html",
         "readme": "kits/radioactive/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "retro-anime",
+      "name": "Retro Anime",
+      "tagline": "90s shoujo celestial — cel-shaded pastels, a crescent moon, ribbons and a night-sky sparkle",
+      "description": "A light, high-key pastel kit with cel-shaded depth — cream ground, navy ink, a deep rose action and sky-blue structure, and four drawn celestial motifs.",
+      "index": "29",
+      "order": 170,
+      "mode": "light",
+      "tags": [
+        "light",
+        "retro",
+        "anime",
+        "shoujo",
+        "celestial",
+        "pastel"
+      ],
+      "fonts": "Shippori Mincho · Nunito Sans · IBM Plex Mono",
+      "source": "original — '90s shoujo magical-girl anime' as a design provenance (cel shading, high-key pastel key art, celestial iconography, gold trim), not any specific series, character, costume or logo",
+      "colors": {
+        "primary": "#c53a68",
+        "primary-hover": "#b2335e",
+        "primary-ink": "#ae2a5e",
+        "primary-ink-hover": "#94214f",
+        "secondary": "#3f7fd0",
+        "tertiary": "#a87d2a",
+        "neutral": "#fdf7ee",
+        "surface": "#fffdf8",
+        "surface-2": "#f5eef4",
+        "text": "#1e2749",
+        "text-muted": "#414c72",
+        "text-dim": "#49547b",
+        "text-invert": "#fff8f0",
+        "accent-tint": "#eed5e0",
+        "night": "#1b2350",
+        "success": "#1f7a5a",
+        "warning": "#8f6410",
+        "error": "#bd3a22",
+        "info": "#2b6fb5"
+      },
+      "files": {
+        "design": "kits/retro-anime/DESIGN.md",
+        "design_html": "kits/retro-anime/DESIGN.html",
+        "tokens": "kits/retro-anime/tokens.css",
+        "lab": "kits/retro-anime/index.html",
+        "readme": "kits/retro-anime/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "space-noir",
+      "name": "Space Noir",
+      "tagline": "Aged 90s jazz-poster ink — inked ground, film grain, a halftone screen and one burnt-orange action",
+      "description": "90s space-noir jazz poster — an inked ground, film grain, a halftone screen and one burnt-orange action.",
+      "index": "30",
+      "order": 175,
+      "mode": "dark",
+      "tags": [
+        "dark",
+        "retro",
+        "poster",
+        "noir",
+        "print",
+        "cinematic"
+      ],
+      "fonts": "Barlow Condensed · Barlow · Courier Prime",
+      "source": "original — '90s space-noir anime' jazz-poster provenance (era design language only; no character, ship, logotype or trade dress reproduced)",
+      "colors": {
+        "primary": "#c06a30",
+        "primary-hover": "#d67f42",
+        "primary-ink": "#e0904f",
+        "primary-ink-hover": "#eda468",
+        "secondary": "#2f6f68",
+        "tertiary": "#d9a441",
+        "neutral": "#1a1714",
+        "surface": "#1e1a17",
+        "surface-2": "#151311",
+        "text": "#ece4d6",
+        "text-muted": "#bdb3a4",
+        "text-dim": "#9c9284",
+        "ink": "#191210",
+        "success": "#8fae5f",
+        "error": "#cb7266",
+        "info": "#5c9d97"
+      },
+      "files": {
+        "design": "kits/space-noir/DESIGN.md",
+        "design_html": "kits/space-noir/DESIGN.html",
+        "tokens": "kits/space-noir/tokens.css",
+        "lab": "kits/space-noir/index.html",
+        "readme": "kits/space-noir/README.md"
       },
       "warnings": []
     }
