@@ -77,11 +77,15 @@ Nothing in this kit is translucent, so every ratio is computed directly against 
 | caption/hint | `--text-dim` `#6b625a` | `--bg` `#f4f1ea` | **5.29:1** | ≥ 4.55:1 ✓ |
 | caption/hint | `--text-dim` `#6b625a` | `--surface` `#fffdf7` | **5.87:1** | ≥ 4.55:1 ✓ |
 | caption/hint | `--text-dim` `#6b625a` | `--surface-2` `#f0ebe0` | **5.02:1** | ≥ 4.55:1 ✓ |
+| caption/hint | `--text-dim` `#6b625a` | `--bg` — paper **+ a major grid rule** (50%-covered 6×2 window) | **4.88:1** | ≥ 4.55:1 ✓ |
 
-`--text-dim` is the pair that usually fails on a light kit, and here it has to clear **three**
-grounds. `--surface-2` (`#f0ebe0`) is the *darkest* of the three, and it is the binding case for
+`--text-dim` is the pair that usually fails on a light kit, and here it has to clear **four**
+grounds. `--surface-2` (`#f0ebe0`) is the darkest solid, and it is the binding case for
 dim-on-light — the pale card stock `--surface` is trivially easy, the bone panel is not. 5.02:1
-leaves about 10% headroom, so if you lighten `--surface-2` toward white, re-run the check.
+leaves about 10% headroom, so if you lighten `--surface-2` toward white, re-run the check. The
+**ground grid** adds a fourth: the paper deepened by a major rule. Graded over the worst 6×2 window
+a rule can cover (50%), `--text-dim` still measures **4.88:1** — the rules were dropped from an
+initial `.085` to `.08` until even a fully-covered window cleared every floor.
 
 ### Supplementary
 
@@ -108,9 +112,11 @@ leaves about 10% headroom, so if you lighten `--surface-2` toward white, re-run 
 - **`--glow` is not a glow.** The name is the lab's slot for `.btn-primary`'s `box-shadow`; here it
   carries `3px 3px 0 var(--border)`, a hard ink offset. A reader who assumes `--glow` means a light
   bloom will be surprised — the alternative was a flat primary button, which would be a worse lie.
-- **`--bg` is a flat paper colour, so the masthead shows its own wash.** Unlike a gradient-ground
-  kit, `templates/lab.css`'s masthead `linear-gradient(180deg, var(--bg-2), var(--bg))` resolves
-  normally here, and the masthead sits a shade warmer than the page body.
+- **The ground carries a measured grid.** `--bg` is the paper laid with the kit's own ink as a
+  **hard-stopped** rule — a minor line every 32px and a major every 160px — built from two
+  `repeating-linear-gradient`s per weight (no image, no `kit.css`). The rules only *darken* the
+  paper, so `--text-dim` is graded against the worst 6×2 window a rule can cover (`4.88:1`) rather
+  than the bare paper (`5.29:1`). The grid is the kit's own geometry as the page itself.
 - **Display tracking is barely tightened.** Archivo Black is a very wide face; `-0.01em` is about as
   far as it can be pushed before the counters start to close at small sizes.
 - **`--warn` and `--info` are unusual on purpose.** A burnt amber and a steel blue are less

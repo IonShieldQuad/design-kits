@@ -169,7 +169,9 @@ cel-shaded fills of the era. The register is the *title card and the transformat
 romantic, celestial and unapologetically decorative, but built so a real page stays legible.
 
 The ground is a warm **cream/ivory that cools toward a pale night-sky lavender**, never pure
-white — the page is a night sky that has not gone dark. Deep **navy** is the ink, a **blush
+white — the page is a night sky that has not gone dark — and it **carries the kit's starfield**:
+a tiled field of low-alpha navy stars, gold sparkles and pinprick dots over the gradient, so the
+celestial register is the page ground itself, not only a signature tile. Deep **navy** is the ink, a **blush
 rose** and a **sky blue** are the two working accents, and a flat cel-animation **gold** is the
 trim. Every motif is generic celestial vocabulary (a face-free crescent, a four-point sparkle, a
 ribbon bow, a starfield); none is a specific series, character, costume or logo.
@@ -228,8 +230,9 @@ the crescent moon (`--retro-anime-moon`), the shoujo sparkle (`--retro-anime-spa
 because a crescent, a concave four-point star, a swallowtail ribbon and a banded night sky are
 geometry no gradient family produces — a radial ring reads as a bullseye and a lone spiral as a
 rosette. The media panel takes the same night sky at full width as the card's one big celestial
-moment, and the masthead wash is two soft pastel lights (a blush and the sky) over the page's own
-ground.
+moment, the **starfield is also tiled into `--bg`** as the page ground (a low-alpha navy/gold
+field over the gradient, graded against its worst composite), and the masthead wash is two soft
+pastel lights (a blush and the sky) over the page's own ground.
 
 ## Components
 

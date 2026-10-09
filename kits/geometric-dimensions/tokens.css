@@ -20,7 +20,17 @@
    ========================================================================== */
 :root{
   /* ------------------------------------------------------------- surfaces */
-  --bg:            #f4f1ea;   /* paper / bone */
+  --bg:
+    /* a MEASURED GRID ground — the kit's own ink at two weights: a minor rule
+       every 32px and a major rule every 160px, hard-stopped (no fade, the
+       printed edge). The rules only DARKEN the paper, so every ink is graded
+       against the worst case — the paper deepened by a major rule (measured
+       in README.md), which still clears every floor. */
+    repeating-linear-gradient(0deg, rgba(20,17,15,.05) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(20,17,15,.05) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(0deg, rgba(20,17,15,.08) 0 1px, transparent 1px 160px),
+    repeating-linear-gradient(90deg, rgba(20,17,15,.08) 0 1px, transparent 1px 160px),
+    #f4f1ea;
   --bg-2:          #efe9dd;   /* the sheet lifted one step (masthead stop) */
   --surface:       #fffdf7;   /* printed card stock */
   --surface-2:     #f0ebe0;   /* nested panels, inputs, badge fills */

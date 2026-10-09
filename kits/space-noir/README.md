@@ -35,6 +35,10 @@ visible, and the kit says so rather than faking it.
   matrix maps luminance to *black* alpha, so the layer can only lower luminance. Every contrast pair is
   therefore graded against the ungrained ground and stays conservative — the image layer on `--bg`
   cannot quietly break a number.
+- **The ground is printed stock, not a smooth ramp.** `--bg` stacks the drawn **halftone dot screen**
+  over the film grain over the warm ink ramp, so the page itself shows the screened tooth of a press
+  rather than a fading gradient. Both image layers are composed of near-black marks and only *darken*,
+  which is why every ratio below is still solved against the lightest (ungrained, unscreened) ground.
 - **The masthead wash is a screened shadow, not a bloom.** The lab's default is a radial
   `--accent-soft` glow; a noir masthead wants the opposite. `--wash` is a drawn screen of near-black
   dots, which only darkens, so the masthead's eyebrow and meta text are not put at risk.
@@ -97,8 +101,10 @@ and diluted the three that have distinct jobs. Three is the cap here.
 - **The burnt orange is a mid tone, not a deep one.** A deeper burnt orange cannot carry a cream label
   at 4.5:1 in both its resting and hover states, so the kit takes the jazz-album route instead: a
   mid-orange field with an *ink* label. `--accent-2` (teal) is a fill/media token only and is never text.
-- **Grain lives on the ground, halftone on the media panel.** The brief allows one or the other; using
-  both everywhere would turn a poster into noise. The grain is also darkening-only, see above.
+- **Grain *and* halftone live on the ground; the media panel gets the fuller press.** `--bg` carries
+  both the film grain and a halftone dot screen (the printed stock); the media panel layers that
+  halftone over a muted orange→rust→teal press ramp. Both are drawn, and both ground image layers are
+  darkening-only, so no contrast pair is risked by them (see above).
 - **No `kit.css`.** The kit needed no construction the tokens could not carry — the hard offset, the
   screened wash, the recessed input and the halftone fields are all token values, which is the intended
   outcome.

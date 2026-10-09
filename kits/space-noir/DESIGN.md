@@ -178,9 +178,12 @@ logotype, poster artwork or trade dress is reproduced anywhere in it.
 
 Two ideas do the work. First, **the kit is print, not glass**: depth is a hard zero-blur offset (a
 plate sitting proud of its ground), an edge is a crisp rule, and there is no blur, bloom or frosted
-surface anywhere. Second, **grain and halftone are the material, not a colour**: the ground carries a
-drawn film-grain tile, a drawn halftone screen sits in the media panel and in a signature tile, and
-the masthead's highlight is a screened shadow rather than the lab's default radial bloom.
+surface anywhere. Second, **grain and halftone are the material, not a colour**: `--bg` is printed
+stock — a drawn halftone dot screen stacked over a drawn film-grain tile over the warm ink ramp —
+and the same halftone screen sits in the media panel and in a signature tile, while the masthead's
+highlight is a screened shadow rather than the lab's default radial bloom. Both ground image layers
+are drawn from near-black marks and can only *darken*, so every contrast pair is graded against the
+lightest ground and stays conservative.
 
 ## Colors
 

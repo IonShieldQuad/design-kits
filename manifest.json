@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 30,
+  "kit_count": 31,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -1480,6 +1480,51 @@
         "tokens": "kits/space-noir/tokens.css",
         "lab": "kits/space-noir/index.html",
         "readme": "kits/space-noir/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "holographic",
+      "name": "Holographic",
+      "tagline": "Iridescent foil on dark — hard-banded prismatic diffraction, one blue action, one violet counterpoint",
+      "description": "An iridescent foil theme for dark interfaces — hue-shifting charcoal plates carrying hard-banded prismatic surfaces, a diffraction grating, a prism split and a rainbow iris, over one blue action and a violet counterpoint.",
+      "index": "31",
+      "order": 180,
+      "mode": "dark",
+      "tags": [
+        "dark",
+        "iridescent",
+        "prismatic",
+        "futuristic",
+        "chrome",
+        "glow"
+      ],
+      "fonts": "Gruppo · Space Grotesk · Space Mono",
+      "source": "derived from the user's Figma reference (fileKey 4tEWhmZzpqWsjjwJrqS8lg, node 4:2 'Glowy stuff') — its gradient-stroked palette, aperture geometry and Gruppo type, re-expressed as hard-banded diffraction rather than soft neon glow",
+      "colors": {
+        "primary": "#54adff",
+        "primary-hover": "#6fbcff",
+        "primary-ink": "#6ec0ff",
+        "primary-ink-hover": "#8ed0ff",
+        "secondary": "#b64ce8",
+        "tertiary": "#48cfe0",
+        "neutral": "#212a38",
+        "surface": "#252633",
+        "surface-2": "#16171f",
+        "text": "#edeff7",
+        "text-muted": "#bcc1cf",
+        "text-dim": "#aeb5c7",
+        "ink": "#0d0e14",
+        "success": "#46e0a0",
+        "warning": "#ffc46b",
+        "error": "#ff7585"
+      },
+      "files": {
+        "design": "kits/holographic/DESIGN.md",
+        "design_html": "kits/holographic/DESIGN.html",
+        "tokens": "kits/holographic/tokens.css",
+        "lab": "kits/holographic/index.html",
+        "readme": "kits/holographic/README.md"
       },
       "warnings": []
     }

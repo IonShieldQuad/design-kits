@@ -1,0 +1,170 @@
+/* ============================================================================
+   design-kits · holographic                                          contract v1
+   ----------------------------------------------------------------------------
+   IRIDESCENT / PRISMATIC FOIL ON DARK. A holographic surface is DIFFRACTION,
+   not a glow: colour that shifts with position, as hard prismatic BANDS with
+   crisp transitions — never a soft two-stop fade.
+
+   PROVENANCE — derived from the user's Figma reference, fileKey
+   4tEWhmZzpqWsjjwJrqS8lg, node 4:2 ("Glowy stuff"): a dark charcoal shelf of
+   gradient-stroked badge shapes (circle, hexagon, keyhole, squircle, octagon),
+   a rainbow camera-aperture pinwheel and a "Cool Sci-fi thing" label set in
+   Gruppo at #54adff. The reference supplied the PALETTE (its gradient strokes —
+   mint->cyan->violet->magenta), the GEOMETRY (the aperture/pinwheel, prismatic
+   edges) and the TYPE (Gruppo). The reference itself renders as soft neon GLOW;
+   the register here is deliberately NON-SMOOTH — the glows are re-expressed as
+   hard-banded diffraction with zero-blur offsets and crisp edges, because a
+   smooth holographic kit is a missed opportunity. IP: the kit is named by genre;
+   no logo or trade dress is reproduced — the vocabulary is generic optical
+   geometry (a grating, a prism, an iris).
+
+   NON-SMOOTH — the five doors, shut:
+     1 curves       --radius-* stay tight (3/7/13px); badge pills only
+     2 soft shadows every shadow is a ZERO-BLUR offset; --blur: none
+     3 gradients    every signature ramp is HARD-STOPPED (two stops, one px pos)
+     4 art          motifs are DRAWN at tile size (base64 SVG), crisp not scaled
+     5 blur/glow    no backdrop-filter, no bloom — a hard ring is the "glow"
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* Three HARD-banded foil PLATES that shift hue like foil catching light —
+     a violet-cast top (#33304a), a blue-cast mid (#212a38) and the deep base
+     (#16171f) — not a fade. The plates carry the iridescence; the brightest,
+     #33304a, binds every contrast pair below (for a dark kit the binding ground
+     is the brightest). */
+  --bg: linear-gradient(155deg,
+    #33304a 0px,   #33304a 170px,
+    #212a38 170px, #212a38 400px,
+    #16171f 400px, #16171f 100%);
+  --bg-2:          #212a38;   /* the dominant mid plate */
+  --surface:       #252633;   /* panels, one plate up (a faint violet cast) */
+  --surface-2:     #16171f;   /* insets, inputs, the signature tile base */
+  --overlay:       rgba(9, 10, 16, .80);
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #edeff7;   /* 11.00:1 on the brightest plate */
+  --text-muted:    #bcc1cf;   /*  7.02:1 — and 5.48:1 over the masthead wash */
+  --text-dim:      #aeb5c7;   /*  6.16:1 — the binding tier; 4.81:1 on the wash */
+  --text-invert:   #0d0e14;   /* ink, for labels on the prismatic fills */
+
+  /* ------------------------------------------------------------------ brand */
+  /* one action (the reference's #54adff blue) and one counterpoint (the
+     reference's #b64ce8 violet). The rainbow lives in the signature ramps,
+     not in a third accent. */
+  --accent:        #54adff;   /* sampled from the reference's "Cool Sci-fi thing" */
+  --accent-hover:  #6fbcff;
+  --accent-2:      #b64ce8;   /* sampled: the reference's violet rounded square */
+  --accent-soft:   rgba(84, 173, 255, .16); /* a 16% tint of --accent, derived */
+
+  /* the blue as READ text: the fill is fine as a chip, so a lightened member
+     ships for eyebrows, links, active nav and accent badge labels */
+  --accent-ink:        #6ec0ff;  /* 6.40:1 on plate; 4.86:1 on the accent tint */
+  --accent-ink-hover:  #8ed0ff;
+
+  /* ----------------------------------------------------------------- status */
+  --ok:            #46e0a0;   /* the reference's mint */
+  --warn:          #ffc46b;   /* aged amber */
+  --danger:        #ff7585;   /* the reference's "Neon Letters" red, lifted to read */
+  --info:          #48cfe0;   /* cyan, a step apart from the blue action */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        rgba(184, 200, 255, .16);
+  --border-strong: rgba(184, 200, 255, .34);
+  --border-w:      1px;
+  --focus-ring:    #6ec0ff;   /* 6.40:1 on plate */
+
+  /* ------------------------------------------------------------------ shape */
+  --radius-sm:     3px;
+  --radius-md:     7px;
+  --radius-lg:     13px;      /* the reference's rounded badge corners, not squares */
+  --radius-pill:   999px;
+  --cut:           0px;       /* crisp rectangles; the rounding is the badge motif */
+
+  /* ------------------------------------------------------------------- type */
+  /* Gruppo is the reference's own face — a geometric rounded display, a foil
+     label / security-print voice. Space Grotesk is a wider technical body to
+     contrast by width, Space Mono the small-print. */
+  --font-display:  "Gruppo", "Space Grotesk", system-ui, sans-serif;
+  --font-body:     "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .18em;     /* a security-print legend */
+  --tracking-display: .01em;
+
+  /* ------------------------------------------------------------------ depth */
+  /* HARD EDGES, ZERO BLUR — depth is a dark plate pushed down-right, ringed by
+     a faint prismatic hairline. There is no bloom anywhere. */
+  --shadow-1:      0 0 0 1px rgba(140, 170, 255, .07), 4px 4px 0 0 rgba(0, 0, 0, .55);
+  --shadow-2:      0 0 0 1px rgba(140, 170, 255, .11), 8px 8px 0 0 rgba(0, 0, 0, .62);
+  --glow:          0 0 0 1px #0d0e14, 3px 3px 0 0 rgba(84, 173, 255, .55);
+  --blur:          none;      /* foil, not glass */
+
+  /* ----------------------------------------------------------------- motion */
+  --dur:           .22s;
+  --ease:          cubic-bezier(.2, .7, .3, 1);
+
+  /* ------------------------------ opt-in capabilities the lab honours ------ */
+  /* the masthead default is a smooth radial bloom; a holographic masthead gets
+     a HARD-BANDED prismatic shear instead. Peak band alpha .14, transparent
+     gaps, so the masthead's eyebrow/meta still clear their floors (measured
+     against the worst composite, #384263). */
+  --wash: repeating-linear-gradient(100deg,
+    transparent 0 44px,  rgba(84, 173, 255, .14) 44px 60px,
+    transparent 60px 84px,  rgba(182, 76, 232, .14) 84px 100px,
+    transparent 100px 128px, rgba(255, 79, 216, .11) 128px 144px,
+    transparent 144px 196px);
+  --media-bg: linear-gradient(100deg,
+    #0d1730 0px, #0d1730 10px,
+    #2f6bd8 10px, #2f6bd8 34px,
+    #48c8ff 34px, #48c8ff 58px,
+    #b8f2ff 58px, #b8f2ff 66px,
+    #0d1730 66px, #0d1730 84px,
+    #8a6bf0 84px, #8a6bf0 108px,
+    #d44be8 108px, #d44be8 132px,
+    #ffb0d8 132px, #ffb0d8 140px,
+    #0d1730 140px, #0d1730 178px,
+    #1fd0c0 178px, #1fd0c0 208px,
+    #ffd36a 208px, #ffd36a 236px,
+    #0d1730 236px, #0d1730 260px);
+  --media-op:      1;
+  --input-inset:   inset 0 2px 0 rgba(0, 0, 0, .50), inset 0 0 0 1px rgba(0, 0, 0, .35);
+  --btn-shadow:    2px 2px 0 0 rgba(0, 0, 0, .50);      /* every button wears the hard plate */
+  --bar-shadow:    0 2px 0 0 rgba(0, 0, 0, .40);        /* nav / tabs: a milled channel */
+  --bar-item-shadow: 2px 2px 0 0 rgba(0, 0, 0, .45);    /* the plate riding in it */
+  --bar-item-pad:  .35rem;
+  --toggle-shadow: inset 0 1px 0 rgba(0, 0, 0, .45), 1px 1px 0 0 rgba(0, 0, 0, .40);
+  --toggle-knob-shadow: 1px 1px 0 0 rgba(0, 0, 0, .55);
+  --fill-bg:       repeating-linear-gradient(90deg, #7cc4ff 0px, #7cc4ff 7px, #c58cf5 7px, #c58cf5 9px);
+  --check-appearance: none;
+  --check-bg:      #16171f;
+  --check-border:  1px solid rgba(184, 200, 255, .34);
+  --check-checked: #54adff;
+
+  /* --------------- signature: three motifs, three jobs -------------------- */
+  /* 1 · DIFFRACTION GRATING — the MATERIAL. Hard-banded prismatic spectrum with
+        a dark "land" between each band; a repeat so it is an infinite grating,
+        not a single ramp. A hard-stopped gradient can express this exactly. */
+  --holographic-diffraction:
+    repeating-linear-gradient(115deg,
+      #0d1730 0px,   #0d1730 5px,
+      #2f6bd8 5px,   #2f6bd8 13px,
+      #48c8ff 13px,  #48c8ff 21px,
+      #8a6bf0 21px,  #8a6bf0 29px,
+      #d44be8 29px,  #d44be8 37px,
+      #ff6f9a 37px,  #ff6f9a 45px,
+      #ffd36a 45px,  #ffd36a 53px,
+      #9ff06a 53px,  #9ff06a 61px,
+      #3ee0c8 61px,  #3ee0c8 69px,
+      #0d1730 69px,  #0d1730 74px);
+  /* 2 · PRISM SPLIT — the GEOMETRY. A beam enters a triangle and leaves as an
+        ordered FAN of hard bands; a linear gradient cannot fan from a point, so
+        this is DRAWN (base64 SVG). */
+  --holographic-prism:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxyZWN0IHdpZHRoPScxNjgnIGhlaWdodD0nNzInIGZpbGw9JyMwODBjMTQnLz48cmVjdCB4PScwJyB5PScyOScgd2lkdGg9JzYyJyBoZWlnaHQ9JzYnIGZpbGw9JyNlYWY0ZmYnIG9wYWNpdHk9Jy45NicvPjxwb2x5Z29uIHBvaW50cz0nNDYsNjIgOTYsNjIgNzEsMTQnIGZpbGw9JyMwZDE1MjYnIHN0cm9rZT0nIzhmZTRmZicgc3Ryb2tlLXdpZHRoPScxLjYnLz48cG9seWdvbiBwb2ludHM9JzQ2LDYyIDk2LDYyIDcxLDE0JyBmaWxsPScjOGZlNGZmJyBvcGFjaXR5PScuMTEnLz48cG9seWdvbiBwb2ludHM9JzgwLDI2LjAgMTY4LDQuMCAxNjgsMTEuNCcgZmlsbD0nI2ZmNWY4ZicvPjxwb2x5Z29uIHBvaW50cz0nODAsMjcuMSAxNjgsMTIuMyAxNjgsMTkuNycgZmlsbD0nI2ZmOWY2YScvPjxwb2x5Z29uIHBvaW50cz0nODAsMjguMyAxNjgsMjAuNiAxNjgsMjguMCcgZmlsbD0nI2ZmZDM2YScvPjxwb2x5Z29uIHBvaW50cz0nODAsMjkuNCAxNjgsMjguOSAxNjgsMzYuMycgZmlsbD0nIzlmZjA2YScvPjxwb2x5Z29uIHBvaW50cz0nODAsMzAuNiAxNjgsMzcuMiAxNjgsNDQuNicgZmlsbD0nIzNlZTBjOCcvPjxwb2x5Z29uIHBvaW50cz0nODAsMzEuNyAxNjgsNDUuNSAxNjgsNTIuOScgZmlsbD0nIzQ4YzhmZicvPjxwb2x5Z29uIHBvaW50cz0nODAsMzIuOSAxNjgsNTMuOCAxNjgsNjEuMicgZmlsbD0nIzhhNmJmMCcvPjxwb2x5Z29uIHBvaW50cz0nODAsMzQuMCAxNjgsNjIuMSAxNjgsNjkuNScgZmlsbD0nI2Q0NGJlOCcvPjwvc3ZnPg==") 0 0 / 100% 100% no-repeat,
+    linear-gradient(180deg, #0b1020 0px, #0b1020 100%);
+  /* 3 · APERTURE — the GLYPH. The reference's eight-bladed rainbow iris: a
+        camera aperture that is also a spectrum wheel. Drawn; an aperture is
+        arcs at angles a gradient cannot fake. */
+  --holographic-aperture:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInPjxyZWN0IHdpZHRoPScxNjgnIGhlaWdodD0nNzInIGZpbGw9JyMwODBjMTQnLz48cGF0aCBkPSdNOTMuMCwzNi4wIEwxMTQuMCwzNi4wIEEzMCwzMCAwIDAgMSAxMDcuNiw1NC41IEw5MS4xLDQxLjUgQTksOSAwIDAgMCA5My4wLDM2LjAgWicgZmlsbD0nIzNlZTBjOCcvPjxwYXRoIGQ9J005MC40LDQyLjQgTDEwNS4yLDU3LjIgQTMwLDMwIDAgMCAxIDg3LjcsNjUuOCBMODUuMSw0NC45IEE5LDkgMCAwIDAgOTAuNCw0Mi40IFonIGZpbGw9JyM0OGM4ZmYnLz48cGF0aCBkPSdNODQuMCw0NS4wIEw4NC4wLDY2LjAgQTMwLDMwIDAgMCAxIDY1LjUsNTkuNiBMNzguNSw0My4xIEE5LDkgMCAwIDAgODQuMCw0NS4wIFonIGZpbGw9JyM2ZjhiZmYnLz48cGF0aCBkPSdNNzcuNiw0Mi40IEw2Mi44LDU3LjIgQTMwLDMwIDAgMCAxIDU0LjIsMzkuNyBMNzUuMSwzNy4xIEE5LDkgMCAwIDAgNzcuNiw0Mi40IFonIGZpbGw9JyNhODZiZjAnLz48cGF0aCBkPSdNNzUuMCwzNi4wIEw1NC4wLDM2LjAgQTMwLDMwIDAgMCAxIDYwLjQsMTcuNSBMNzYuOSwzMC41IEE5LDkgMCAwIDAgNzUuMCwzNi4wIFonIGZpbGw9JyNlMDVmZDgnLz48cGF0aCBkPSdNNzcuNiwyOS42IEw2Mi44LDE0LjggQTMwLDMwIDAgMCAxIDgwLjMsNi4yIEw4Mi45LDI3LjEgQTksOSAwIDAgMCA3Ny42LDI5LjYgWicgZmlsbD0nI2ZmNWY4ZicvPjxwYXRoIGQ9J004NC4wLDI3LjAgTDg0LjAsNi4wIEEzMCwzMCAwIDAgMSAxMDIuNSwxMi40IEw4OS41LDI4LjkgQTksOSAwIDAgMCA4NC4wLDI3LjAgWicgZmlsbD0nI2ZmOWY2YScvPjxwYXRoIGQ9J005MC40LDI5LjYgTDEwNS4yLDE0LjggQTMwLDMwIDAgMCAxIDExMy44LDMyLjMgTDkyLjksMzQuOSBBOSw5IDAgMCAwIDkwLjQsMjkuNiBaJyBmaWxsPScjZmZkMzZhJy8+PGNpcmNsZSBjeD0nODQnIGN5PSczNicgcj0nMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2E4ZThmZicgc3Ryb2tlLW9wYWNpdHk9Jy42JyBzdHJva2Utd2lkdGg9JzEuMicvPjxjaXJjbGUgY3g9Jzg0JyBjeT0nMzYnIHI9JzknIGZpbGw9JyMwODBjMTQnLz48L3N2Zz4=") 0 0 / 100% 100% no-repeat,
+    linear-gradient(180deg, #0b1020 0px, #0b1020 100%);
+}

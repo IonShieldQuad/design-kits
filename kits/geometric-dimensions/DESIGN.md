@@ -160,9 +160,10 @@ components:
 
 ## Overview
 
-A printed Bauhaus sheet. The ground is paper (`{colors.neutral}`), the ink is near-black
-(`{colors.text}`), every rule is 3px of that ink, and every corner is square. Nothing glows, nothing
-is frosted, nothing floats.
+A printed Bauhaus sheet. The ground is paper (`{colors.neutral}`) laid with a **measured grid** —
+the kit's own ink as a hard-stopped rule, a minor line every 32px and a major every 160px — the
+ink is near-black (`{colors.text}`), every rule is 3px of that ink, and every corner is square.
+Nothing glows, nothing is frosted, nothing floats.
 
 The name is the whole idea: **depth is a hard offset shadow, not a blur.** A card is lifted off the
 page by 5px of solid ink to its bottom-right; the elevated card by 9px. There is no blurred shadow
@@ -184,7 +185,9 @@ action**:
 - **tertiary — `{colors.tertiary}` (yellow) is graphic only.** The highlight mark, a printed label
   block, a chart series. It is the loudest value in the kit and is therefore used in the smallest
   areas.
-- **neutral — `{colors.neutral}`** the paper ground. `{colors.surface}` is card stock (a shade
+- **neutral — `{colors.neutral}`** the paper ground, laid with a **measured grid** in the kit's own
+  ink (`--bg`): a hard-stopped minor rule every 32px and a major every 160px, so the page is ruled
+  like a Bauhaus sheet. `{colors.surface}` is card stock (a shade
   lighter than the ground) and `{colors.surface-2}` is the bone tone for nested panels, inputs and
   badge fills.
 - **Status colours stay off the primaries.** The brand is red/blue/yellow, so a status colour cannot

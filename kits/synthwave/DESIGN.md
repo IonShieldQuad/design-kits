@@ -215,7 +215,10 @@ genre's actual vocabulary — a sun with hard horizontal bars cutting through it
 a vanishing point, and metal that reads as chrome because its ramp has a **dark band in the
 middle**. The sun and the grid are drawn artwork (inline SVG) because neither is expressible with
 repeating gradients: a bar pattern stripes the whole tile rather than the disc, and two straight
-gradient families produce graph paper instead of depth. Four motifs is the ceiling — a fifth
+gradient families produce graph paper instead of depth. A **second, fainter perspective floor** is
+now drawn directly into the page ground (`--bg`): it overlays the lower ~46% of the page — the night
+end of the ramp — so the page itself is an outrun scene. Its faint lines were graded against the
+ground for contrast, not just the signature tile. Four motifs is the ceiling — a fifth
 dilutes the rest.
 
 ## Components

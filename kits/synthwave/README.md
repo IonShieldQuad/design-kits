@@ -47,6 +47,12 @@ near-black that is **violet** (`#19152b`), never neutral grey.
   Depth comes from neon glow and near-black indigo drops.
 - **The sunset is px stops**, so the band lands inside the first viewport and the page settles to
   night below it. `%` stops over a 3000px document would have shown one flat colour.
+- **The ground is the scene.** `--bg` layers a faint drawn **perspective floor** — converging cyan
+  verticals, magenta horizontals widening toward the viewer and a gold horizon line — into the lower
+  ~46% of the page over the sunset ramp, so the page reads as an outrun scene rather than a violet
+  ramp. The lines are faint and sit over the *night* end of the ramp, well clear of the sky band's
+  bright stops, and the pair was re-graded: the worst 6×2 window over the floor keeps `--text-dim` at
+  **5.35:1** on the ground it actually sits on.
 - **The page's horizon stop is a *dark* warm brown** (`#6e3520`), not the sampled gold. Gold at
   `#ffb57b` under body text fails badly; a dark warm stop still reads as a horizon band between
   the violet sky and the night, and every contrast pair survives it (verified, not assumed).
@@ -75,6 +81,8 @@ so the two tiles competed instead of forming a system. Four is the ceiling.
 
 - **The page cannot be the poster.** A UI cannot put body text on a saturated sunset, so the
   bright gold lives in the signature tokens and the sky band, and the working ground stays night.
+  The **perspective floor** is drawn into `--bg` at faint alpha over the night end of the ramp, so
+  the ground reads as a scene while every text pair stays clear.
 - **Audiowide is single-weight.** It is display-only by design; headings use Rajdhani 600 rather
   than asking a 400-only face to pretend it has weight.
 - **`--accent-2` is a media/fill token, not a label.** It clears 3:1 (WCAG 1.4.11, graphical

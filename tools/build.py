@@ -142,7 +142,7 @@ def normalize_gradient(v: str) -> str:
     return head + ", ".join(leading + stops) + tail
 
 
-def frame_ring(clip_value: str) -> str | None:
+def frame_ring(clip_value: str, cut_value: str | None = None, fw_value: str | None = None) -> str | None:
     """Derive a frame ring from a kit's `--clip` polygon.
 
     A `clip-path` removes the border along a chamfer: the border is painted ON the box edge, which
@@ -175,12 +175,18 @@ def frame_ring(clip_value: str) -> str | None:
             return "var(--fw)"
         if re.fullmatch(r"100%", c):
             return "calc(100% - var(--fw))"
+        # A chamfer coordinate sits on the diagonal, where a uniform inward offset of --fw meets the
+        # edge it runs into: the inner line must be at x + y = cut + fw*sqrt(2), so the vertex moves
+        # by fw*(sqrt(2)-1) ALONG the edge (not by the full fw, and not by fw in both axes — that
+        # overshot the diagonal by 41% and sloped the inner edge, which showed up as a step and a
+        # thin grey diagonal where the straight edges stayed solid).
+        k = "calc(var(--fw) * 0.41421)"
         mm = re.fullmatch(r"calc\(100% - (var\(--cut\))\)", c)
         if mm:                                     # a chamfer coordinate measured from the far edge
-            return f"calc(100% - {mm.group(1)} - var(--fw))"
+            return f"calc(100% - {mm.group(1)} - {k})"
         mm = re.fullmatch(r"(var\(--cut\))", c)
         if mm:                                     # a chamfer coordinate measured from the near edge
-            return f"calc({mm.group(1)} + var(--fw))"
+            return f"calc({mm.group(1)} + {k})"
         return c
 
     def split_point(p: str) -> list[str]:
@@ -213,7 +219,50 @@ def frame_ring(clip_value: str) -> str | None:
         x, y = xy
         inner.append(f"{inset_coord(x, 'x')} {inset_coord(y, 'y')}")
         outer.append(f"{x} {y}")
-    return "polygon(evenodd," + ", ".join(outer) + ", " + ", ".join(inner) + ")"
+    ring = "polygon(evenodd," + ", ".join(outer) + ", " + ", ".join(inner) + ")"
+    # Self-check the geometry the ring claims. Pairing each OUTER edge with the INNER edge of the same
+    # index makes the test orientation-agnostic: the inner polygon has the same vertices in the same
+    # order, so a correct miter offset gives a constant thickness on every edge — including both
+    # diagonals. Measured on a representative box, since the coordinates are expressions.
+    try:
+        cut_n = float(re.sub(r"[^0-9.]", "", str(cut_value or "")) or 0)
+        fw_n = float(re.sub(r"[^0-9.]", "", str(fw_value or "")) or 0)
+        if cut_n and fw_n:
+            W, H = 1000.0, 800.0
+            def ev(tok: str, ext: float) -> float:
+                e = tok.replace("var(--fw)", str(fw_n)).replace("var(--cut)", str(cut_n))
+                e = e.replace("100%", str(ext)).replace("calc", "")
+                return eval(e, {"__builtins__": {}}, {})
+            def pts_of(words: list[str]) -> list[tuple[float, float]]:
+                out = []
+                for p in words:
+                    toks, depth, buf = [], 0, []
+                    for ch in p:
+                        if ch == "(": depth += 1
+                        elif ch == ")": depth -= 1
+                        if ch.isspace() and depth == 0:
+                            if buf: toks.append("".join(buf)); buf = []
+                        else: buf.append(ch)
+                    if buf: toks.append("".join(buf))
+                    out.append((ev(toks[0], W), ev(toks[1], H)))
+                return out
+            o, i2 = pts_of(outer), pts_of(inner)
+            thick = []
+            for k in range(len(o)):
+                (x1, y1), (x2, y2) = o[k], o[(k + 1) % len(o)]
+                (u1, v1) = i2[k]
+                dx, dy = x2 - x1, y2 - y1
+                L = (dx * dx + dy * dy) ** 0.5
+                if L:
+                    thick.append(abs(dx * (v1 - y1) - dy * (u1 - x1)) / L)
+            bad = [t for t in thick if abs(t - fw_n) > 0.02]
+            if bad:
+                raise ValueError(f"frame ring is not uniform: {['%.2f' % t for t in thick]} vs fw={fw_n}")
+    except ValueError:
+        raise
+    except Exception:
+        pass          # a self-check must never break a build
+    return ring
 
 
 VAR_REF_RE = re.compile(r"var\(\s*(--[a-zA-Z0-9-]+)\s*(?:,([^)]*))?\)")
@@ -531,17 +580,32 @@ class Kit:
             # The frame ring is DERIVED from the kit's own --clip, so it cannot live in the authored
             # tokens.css; it is injected into the generated page instead. Empty for the 25 kits with
             # no clip, where the rule in lab.css is inert.
-            "{{FRAME_STYLE}}": (
-                '<style>:root{--fw:var(--border-w, 1px);--frame-ring:'
-                + frame_ring(self.vars.get("--clip", "")) + ';}</style>'
-                if frame_ring(self.vars.get("--clip", "")) else ""
-            ),
+            "{{FRAME_STYLE}}": self.frame_style(),
             "{{KIT_CSS}}": ('<link rel="stylesheet" href="kit.css">'
                             if (self.dir / "kit.css").exists() else ""),
         }
         for k, v in rep.items():
             tpl = tpl.replace(k, v)
         return tpl
+
+    def frame_style(self) -> str:
+        """The generated <style> that keeps a chamfered kit's frame on its diagonals.
+
+        Derived from the kit's own --clip, so it cannot live in the authored tokens.css; empty for
+        the 25 kits with no clip, where the lab rule's zero-area fallback keeps it completely inert.
+
+        The ring IS the frame for a clipped kit, so the component's own border is made transparent:
+        a translucent border stacked under the ring rendered the straight edges darker than the
+        diagonal, which read as "the diagonal is thinner". Only the colour changes, never geometry.
+        """
+        ring = frame_ring(self.vars.get("--clip", ""), self.vars.get("--cut"), self.vars.get("--border-w"))
+        if not ring:
+            return ""
+        return (
+            "<style>:root{--fw:var(--border-w, 1px);--frame-ring:" + ring + ";}"
+            ".btn,.badge,.card,.nav,pre.code,code.code,.alert,.ctrl,"
+            ".ctrl>.input,.ctrl>.select,.ctrl>.textarea{border-color:transparent}</style>"
+        )
 
     def design_page_html(self) -> str:
         """Rendered DESIGN.md. GitHub Pages runs Jekyll, which rewrites front-matter .md files

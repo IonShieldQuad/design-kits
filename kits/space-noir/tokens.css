@@ -31,9 +31,13 @@
 :root {
   /* ---- surfaces: printed ink, warm, banded ------------------------------- */
   --bg:
-    /* film grain first (top layer): a DRAWN feTurbulence tile. It only DARKENS
-       (the colour matrix maps luminance to black alpha), so every contrast pair
-       below is solved against the ungrained ground and stays conservative. */
+    /* the PRINTED STOCK, top-down: a drawn HALFTONE dot screen first — a
+       DRAWN tile of near-black dots (a real screened stock, not a smooth
+       ramp) — then the film grain, then the warm ink ramp. BOTH image layers
+       can only DARKEN, so every contrast pair below is solved against the
+       unscreened, ungrained ground and stays conservative. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNCcgaGVpZ2h0PScxNCcgdmlld0JveD0nMCAwIDE0IDE0Jz48ZyBmaWxsPScjMDgwNzA2JyBmaWxsLW9wYWNpdHk9JzAuNjAnPjxjaXJjbGUgY3g9JzMuNScgY3k9JzMuNScgcj0nMi4wJy8+PGNpcmNsZSBjeD0nMTAuNScgY3k9JzEwLjUnIHI9JzIuMCcvPjxjaXJjbGUgY3g9JzMuNScgY3k9JzEwLjUnIHI9JzEuNCcvPjxjaXJjbGUgY3g9JzEwLjUnIGN5PSczLjUnIHI9JzEuNCcvPjwvZz48L3N2Zz4=") 0 0 / 14px 14px repeat,
+    /* film grain (a DRAWN feTurbulence tile) — again darkening only. */
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNDAnIGhlaWdodD0nMTQwJz48ZmlsdGVyIGlkPSdnJyB4PScwJyB5PScwJyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMS4wNScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcgc2VlZD0nNycvPjxmZUNvbG9yTWF0cml4IHR5cGU9J21hdHJpeCcgdmFsdWVzPScwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjg1IDAgMCAtMC4zMiAwJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE0MCcgaGVpZ2h0PScxNDAnIGZpbHRlcj0ndXJsKCNnKScvPjwvc3ZnPg==") 0 0 / 140px 140px repeat,
     linear-gradient(180deg, #221e1a 0px, #1a1714 360px, #121110 100%);
   --bg-2:          #131110;               /* the dominant stop / near-field */

@@ -1,0 +1,23 @@
+{
+  "name": "Holographic",
+  "tagline": "Iridescent foil on dark — hard-banded prismatic diffraction, one blue action, one violet counterpoint",
+  "signature": [
+    "--holographic-diffraction",
+    "--holographic-prism",
+    "--holographic-aperture"
+  ],
+  "order": 180,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Gruppo&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap",
+  "fonts_label": "Gruppo · Space Grotesk · Space Mono",
+  "mode": "dark",
+  "source": "derived from the user's Figma reference (fileKey 4tEWhmZzpqWsjjwJrqS8lg, node 4:2 'Glowy stuff') — its gradient-stroked palette, aperture geometry and Gruppo type, re-expressed as hard-banded diffraction rather than soft neon glow",
+  "tags": [
+    "dark",
+    "iridescent",
+    "prismatic",
+    "futuristic",
+    "chrome",
+    "glow"
+  ],
+  "use_when": "iridescent, futuristic, premium-tech branding — product launches, sci-fi and music media, AI/dev-tool marketing, anything that should look like foil catching light"
+}

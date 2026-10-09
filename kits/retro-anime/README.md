@@ -64,8 +64,9 @@ masthead wash is included, which is why the wash itself had to be dialled back (
 
 **Worst pair in the table: `--accent-ink` on its own `--accent-soft` tint composited over
 `--surface-2` — 4.63:1** (target 4.5), on `#eed5e0`. That is the composite the accent badge
-actually renders, and the node the whole kit is closest to the floor at. `verify-lab.cjs`
-composites the real DOM stack and reports **0 contrast errors**.
+actually renders, and the node the whole kit is closest to the floor at. (The starfield ground
+adds a marginally tighter bound at **4.61:1** — see *The celestial ground* below.)
+`verify-lab.cjs` composites the real DOM stack and reports **0 contrast errors**.
 
 Two consequences worth stating:
 
@@ -111,6 +112,29 @@ observer, and each tile's non-flatness was read from the real render rather than
   version laid the dark tone as a generic inner shadow and read as a flat, crease-less bow.
 - **Four is the ceiling.** The genre tempts a fifth shape (a wand, wings, a heart locket); a fifth
   tile only dilutes the four that identify the kit.
+
+## The celestial ground
+
+The **page ground carries the starfield**, not only a tile. `--bg` now layers the drawn
+starfield vocabulary — navy four-point stars, faint gold sparkles and pinprick dots — as a
+**tiled, transparent** field over the same cream→lavender night gradient, so the whole page is
+a night sky that has not gone dark. The marks are **darkening-only** (low-alpha navy/gold on the
+palest stops) and sparse, so the high-key ground survives.
+
+Because the marks can only *lower* luminance, they were re-graded against the worst case — the
+palest stop deepened by a star, on the masthead wash where the `--eyebrow` `--accent-ink` sits.
+The verifier's own 6×2 sampling window was slid across the rendered ground; the worst window
+under any text clears its floor:
+
+| pair | worst ground-star composite | target |
+|---|---|---|
+| `--accent-ink` `#ae2a5e` (eyebrow, over the masthead wash) | **4.61:1** | ≥ 4.5 |
+| `--text-dim` `#49547b` (notes, captions, footer) | 5.35:1 | ≥ 4.55 |
+| `--text` `#1e2749` | 10.5:1 | ≥ 7 |
+
+`verify-lab.cjs` reports **0 contrast errors**; the layered `--bg` is graded against the
+worst-case composite, never the clean gradient (the marks were toned down from a first cut at
+`.15` until even a fully-covered window cleared every floor).
 
 ## Key choices
 
