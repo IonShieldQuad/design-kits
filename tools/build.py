@@ -142,6 +142,27 @@ def normalize_gradient(v: str) -> str:
     return head + ", ".join(leading + stops) + tail
 
 
+VAR_REF_RE = re.compile(r"var\(\s*(--[a-zA-Z0-9-]+)\s*(?:,([^)]*))?\)")
+
+
+def resolve_vars(value: str, table: dict[str, str], depth: int = 5) -> str:
+    """Substitute `var(--token)` from a kit's own tokens.
+
+    The gallery page does not define a kit's tokens, so a `--bg` that references one — kaleidoscope's
+    ground, psychedelic's overprint ink — would resolve to nothing there and the preview would lose
+    the very background that is the kit's identity. Tokens are resolved against the kit's own table,
+    falling back to the value's own declared fallback and then to `transparent`.
+    """
+    for _ in range(depth):
+        new = VAR_REF_RE.sub(
+            lambda m: table.get(m.group(1), (m.group(2) or "transparent").strip()), value
+        )
+        if new == value:
+            break
+        value = new
+    return value
+
+
 def swatch_label(v: str) -> str:
     """Caption with a break opportunity after each comma.
 
@@ -467,13 +488,27 @@ class Kit:
             for t in self.tags[:4]
         )
         font_chip = f'<span class="g-tag">{html.escape(self.fonts_label.split(" · ")[0])}</span>'
-        # A radial accent wash over the kit's own ground makes the preview readable at a glance.
-        preview_bg = (
-            f"background:{html.escape(bg, quote=True)};"
-            f"background-image:radial-gradient(120% 130% at 18% 0%,"
-            f"{html.escape(self.vars.get('--accent-soft', 'transparent'), quote=True)} 0%,transparent 60%),"
-            f"linear-gradient(180deg,{html.escape(surf, quote=True)} 0%,transparent 100%);"
-        )
+        # The preview must show the kit's OWN ground: for many kits the background IS the identity
+        # (a sunset, a facet field, a grain) and a row of colour chips cannot carry it.
+        #
+        # Two traps this avoids. (1) Emitting `background:<kit bg>` and then `background-image:<wash>`
+        # in the same declaration REPLACES the kit's own image layer — and a gradient value also nulls
+        # background-color — so every gradient or drawn-texture kit previewed as the card's own surface
+        # plus a wash, i.e. with no theme at all. (2) A page ground is authored for a page height, so a
+        # 118px preview clamps it to its first stop; normalise_gradient resamples those px stops
+        # (preview only — the tooltip and tokens.css keep the authored value).
+        #
+        # The synthetic wash exists to give a FLAT ground some life, so it is emitted only when the kit
+        # has no gradient or image to show. That is the "when applicable" rule.
+        bg_value = normalize_gradient(resolve_vars(bg, self.vars))
+        flat_bg = "gradient(" not in bg_value and "url(" not in bg_value
+        preview_bg = f"background:{html.escape(bg_value, quote=True)};"
+        if flat_bg:
+            preview_bg += (
+                f"background-image:radial-gradient(120% 130% at 18% 0%,"
+                f"{html.escape(self.vars.get('--accent-soft', 'transparent'), quote=True)} 0%,transparent 60%),"
+                f"linear-gradient(180deg,{html.escape(surf, quote=True)} 0%,transparent 100%);"
+            )
         return f"""    <article class="g-card" data-tags="{html.escape(' '.join(self.tags))}">
       <div class="g-preview" style="{preview_bg}color:{html.escape(fg, quote=True)}">
         <span class="aa" style="font-family:{html.escape(self.vars.get('--font-display', 'inherit'), quote=True)}">Aa</span>
