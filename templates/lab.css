@@ -80,6 +80,26 @@ section.block:first-of-type { border-top: 0; }
 .swatch i b { display: block; width: 100%; height: 100%; }
 .swatch span { display: block; overflow-wrap: anywhere; word-break: keep-all; }
 
+/* ------------------------------------------------------------------ frame ring
+   A clip-path removes the border along a chamfer: the border is painted ON the box edge, and the
+   clip cuts that edge away — so a 1px border can never appear along a 14px diagonal, and a
+   chamfered kit loses its frame on exactly the edges that define it. The frame is drawn instead as
+   a RING: the clip shape with an inset copy of itself punched out (`evenodd`), which follows the
+   diagonal exactly. build.py derives --frame-ring from the kit's own --clip, and --fw is the ring's
+   thickness (the component's own border width, so the frame matches the flat edges).
+
+   For a kit with no clip, --frame-ring is absent and the fallback `inset(50%)` is a zero-area clip,
+   so the whole rule is inert. The colour comes from the component's own border token, so each
+   variant keeps its own frame colour. */
+.btn, .badge, .card, .nav, pre.code, code.code, .alert, .ctrl { position: relative; }
+.btn::before, .badge::before, .card::before, .nav::before, pre.code::before, code.code::before,
+.alert::before, .ctrl::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--_bd, var(--border, currentColor));
+  clip-path: var(--frame-ring, inset(50%));
+}
+.ctrl { display: block; }        /* the wrapper is the control's own box, so the ring fits it */
+
 /* ------------------------------------------------------------------ buttons */
 .btn {
   --_bg: var(--surface-2, rgba(255,255,255,.06));

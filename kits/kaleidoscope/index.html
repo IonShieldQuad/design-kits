@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="../../templates/lab.css">
 <link rel="stylesheet" href="tokens.css">
 
+<style>:root{--fw:var(--border-w, 1px);--frame-ring:polygon(evenodd,var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut), calc(var(--cut) + var(--fw)) var(--fw), calc(100% - var(--fw)) var(--fw), calc(100% - var(--fw)) calc(100% - var(--cut) - var(--fw)), calc(100% - var(--cut) - var(--fw)) calc(100% - var(--fw)), var(--fw) calc(100% - var(--fw)), var(--fw) calc(var(--cut) + var(--fw)));}</style>
 </head>
 <body>
 
@@ -59,27 +60,27 @@
       <div class="stack">
         <div class="field">
           <label for="k-name">Project name</label>
-          <input class="input" id="k-name" placeholder="horizon-chamber">
+          <span class="ctrl"><input class="input" id="k-name" placeholder="horizon-chamber"></span>
           <span class="hint">Lowercase, hyphenated.</span>
         </div>
         <div class="field">
           <label for="k-stack">Stack</label>
-          <select class="select" id="k-stack">
+          <span class="ctrl"><select class="select" id="k-stack">
             <option>Python · FastAPI</option>
             <option>JavaScript · Canvas</option>
             <option>Lua · Hyperspace</option>
-          </select>
+          </select></span>
         </div>
         <div class="field is-invalid">
           <label for="k-mail">Email</label>
-          <input class="input" id="k-mail" value="not-an-email">
+          <span class="ctrl"><input class="input" id="k-mail" value="not-an-email"></span>
           <span class="hint">Enter a valid email address.</span>
         </div>
       </div>
       <div class="stack">
         <div class="field">
           <label for="k-notes">Notes</label>
-          <textarea class="textarea" id="k-notes" placeholder="What changed and why…"></textarea>
+          <span class="ctrl"><textarea class="textarea" id="k-notes" placeholder="What changed and why…"></textarea></span>
         </div>
         <label class="check"><input type="checkbox" checked> Notify me on completion</label>
         <label class="check"><input type="radio" name="vis" checked> Public</label>

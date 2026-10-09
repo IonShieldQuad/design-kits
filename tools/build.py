@@ -142,6 +142,80 @@ def normalize_gradient(v: str) -> str:
     return head + ", ".join(leading + stops) + tail
 
 
+def frame_ring(clip_value: str) -> str | None:
+    """Derive a frame ring from a kit's `--clip` polygon.
+
+    A `clip-path` removes the border along a chamfer: the border is painted ON the box edge, which
+    the clip cuts away, so a 1px border can never appear along a 14px diagonal — every chamfered kit
+    lost its frame on exactly the edges that define it. The fix is to draw the frame as a RING: the
+    same polygon with an inset copy of itself punched out, filled with the component's border colour.
+    One polygon with `evenodd` expresses that (no winding rules to get wrong).
+
+    Insetting a chamfered rectangle is arithmetic on its vertices: a coordinate on an edge moves in
+    by the frame width, and a chamfer coordinate (which always pairs with an edge coordinate on the
+    other axis) moves in by the width too, keeping the diagonal parallel. `--fw` is the ring's
+    thickness, taken from the component's own border width so the frame matches the flat edges.
+
+    Returns the ring polygon, or None when there is nothing to frame.
+    """
+    m = re.search(r"polygon\((.*)\)\s*$", clip_value.strip(), re.S)
+    if not m:
+        return None
+    raw = " ".join(m.group(1).split())
+    if raw.lower().startswith(("evenodd", "nonzero")):
+        raw = raw.split(" ", 1)[1]
+    pts = [p.strip() for p in raw.split(",") if p.strip()]
+    if len(pts) < 3:
+        return None
+
+    def inset_coord(coord: str, edge: str) -> str:
+        """Move one axis coordinate inward by --fw. `edge` is 'start' (0) or 'end' (100%)."""
+        c = " ".join(coord.split())
+        if re.fullmatch(r"0%?", c):
+            return "var(--fw)"
+        if re.fullmatch(r"100%", c):
+            return "calc(100% - var(--fw))"
+        mm = re.fullmatch(r"calc\(100% - (var\(--cut\))\)", c)
+        if mm:                                     # a chamfer coordinate measured from the far edge
+            return f"calc(100% - {mm.group(1)} - var(--fw))"
+        mm = re.fullmatch(r"(var\(--cut\))", c)
+        if mm:                                     # a chamfer coordinate measured from the near edge
+            return f"calc({mm.group(1)} + var(--fw))"
+        return c
+
+    def split_point(p: str) -> list[str]:
+        """Split a polygon point into its two coordinates.
+
+        A plain `split()` is wrong: `calc(100% - var(--cut))` is ONE coordinate that contains spaces,
+        and it splits into four tokens, so the generator bailed on every real clip value. Split on
+        whitespace at paren depth 0 instead.
+        """
+        out, depth, buf = [], 0, []
+        for ch in p:
+            if ch == "(":
+                depth += 1; buf.append(ch)
+            elif ch == ")":
+                depth -= 1; buf.append(ch)
+            elif ch.isspace() and depth == 0:
+                if buf:
+                    out.append("".join(buf)); buf = []
+            else:
+                buf.append(ch)
+        if buf:
+            out.append("".join(buf))
+        return out
+
+    outer, inner = [], []
+    for p in pts:
+        xy = split_point(p)
+        if len(xy) != 2:
+            return None
+        x, y = xy
+        inner.append(f"{inset_coord(x, 'x')} {inset_coord(y, 'y')}")
+        outer.append(f"{x} {y}")
+    return "polygon(evenodd," + ", ".join(outer) + ", " + ", ".join(inner) + ")"
+
+
 VAR_REF_RE = re.compile(r"var\(\s*(--[a-zA-Z0-9-]+)\s*(?:,([^)]*))?\)")
 
 
@@ -454,6 +528,14 @@ class Kit:
             # a kit that needs an actual CONSTRUCTION rather than a colour ships kit.css
             # (layered panels, bespoke patterning). Absent by default — the whole point of the
             # token contract is that most kits never need one.
+            # The frame ring is DERIVED from the kit's own --clip, so it cannot live in the authored
+            # tokens.css; it is injected into the generated page instead. Empty for the 25 kits with
+            # no clip, where the rule in lab.css is inert.
+            "{{FRAME_STYLE}}": (
+                '<style>:root{--fw:var(--border-w, 1px);--frame-ring:'
+                + frame_ring(self.vars.get("--clip", "")) + ';}</style>'
+                if frame_ring(self.vars.get("--clip", "")) else ""
+            ),
             "{{KIT_CSS}}": ('<link rel="stylesheet" href="kit.css">'
                             if (self.dir / "kit.css").exists() else ""),
         }

@@ -316,6 +316,27 @@ async function main() {
           }
         }
 
+        // 2b. a chamfered kit must keep its frame. clip-path removes the border along the diagonal,
+        //     so the frame is drawn as a ring polygon derived from the kit's own --clip. If a kit
+        //     declares --clip but no ring arrives, the diagonal silently loses its border — which is
+        //     exactly the defect this guards (it shipped in 5 kits and only an eye caught it).
+        const frameRing = await page.evaluate(() => {
+          const cs = getComputedStyle(document.documentElement);
+          const clip = cs.getPropertyValue("--clip").trim();
+          const ring = cs.getPropertyValue("--frame-ring").trim();
+          const before = document.querySelector(".card")
+            ? getComputedStyle(document.querySelector(".card"), "::before") : null;
+          return { clip: clip.slice(0, 40), ring: ring.slice(0, 40),
+                   pseudoClip: before ? before.clipPath.slice(0, 40) : "", pseudoBg: before ? before.backgroundColor : "" };
+        });
+        const clipped = frameRing.clip && frameRing.clip !== "none";
+        if (clipped && !/^polygon\(evenodd/.test(frameRing.ring)) {
+          entry.errors.push("desktop: kit clips its corners but declares no frame ring — the border will be missing along the diagonal");
+        }
+        if (clipped && frameRing.pseudoClip === "none") {
+          entry.errors.push("desktop: the frame ring is not applied to .card::before");
+        }
+
         // 3. did the declared web fonts actually load?
         //    NOTE: fonts.check('16px "X"') answers for ONE weight — Google serves a face per
         //    weight, so a 400 probe returns false while the 700 face is loaded. Ask per face

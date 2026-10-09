@@ -12,6 +12,17 @@ Read, in this order:
 3. `kits/synthwave/` — the most recent full kit; copy its level of rigour and file shape;
 4. `templates/lab.css` — what the shared lab actually consumes.
 
+## If you chamfer, the frame is drawn for you
+
+Declare `--clip` (a clip-path polygon built from your own `--cut`) and the lab draws the frame
+around it automatically: `clip-path` removes the border along the diagonal — the border is painted
+*on* the box edge that the clip cuts away — so a ring polygon derived from your clip is painted
+instead, in the component's own border colour, at your `--border-w` thickness. Two consequences
+worth knowing: a `border` on a chamfered component is still correct on the straight edges, so leave
+it; and buttons, cards, badges, nav, code and alerts carry the ring directly, while `input`,
+`select` and `textarea` are replaced elements that cannot host a pseudo-element, so the lab wraps
+them in `.ctrl` and rings the wrapper.
+
 ## The one architectural rule
 
 **A kit is a skin, not a layout.** `templates/lab.html` and `templates/lab.css` are shared and
