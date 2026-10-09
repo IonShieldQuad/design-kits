@@ -72,7 +72,8 @@ section.block:first-of-type { border-top: 0; }
   position: relative; display: block; height: 40px; margin-bottom: .3rem;
   border-radius: var(--radius-sm, 4px); overflow: hidden;
   border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
-  /* checkerboard: a translucent or gradient swatch is invisible on its own ground */
+  /* checkerboard under EVERY swatch: an opaque value paints over it, a translucent one needs it,
+     and a gradient's own alpha shows through where it is meant to (the @supports-free trick). */
   background-image: repeating-conic-gradient(#8b93a3 0% 25%, #eef1f6 0% 50%);
   background-size: 11px 11px;
 }

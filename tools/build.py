@@ -159,17 +159,7 @@ def swatch_label(v: str) -> str:
     return "<wbr>,".join(html.escape(p) for p in s.split(","))
 
 
-def is_translucent(v: str) -> bool:
-    """True when the swatch needs a checkerboard under it or it disappears into the page."""
-    v = v.strip().lower()
-    if "gradient(" in v:
-        return True  # gradients often start/end translucent; the checker costs nothing
-    if v.startswith("rgba("):
-        try:
-            return float(v[v.rindex(",") + 1: v.rindex(")")].strip()) < 0.98
-        except ValueError:
-            return True
-    return v in ("transparent", "none")
+
 
 
 # ------------------------------------------------------------------ css parsing
