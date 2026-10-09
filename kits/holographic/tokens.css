@@ -3,7 +3,9 @@
    ----------------------------------------------------------------------------
    IRIDESCENT / PRISMATIC FOIL ON DARK. A holographic surface is DIFFRACTION,
    not a glow: colour that shifts with position, as hard prismatic BANDS with
-   crisp transitions — never a soft two-stop fade.
+   crisp transitions — never a soft two-stop fade. The iridescence lives in the
+   MATERIAL (a stamped foil) and in the COMPONENTS (a chromatic-aberration edge
+   on every control), not only in decorative tiles.
 
    PROVENANCE — derived from the user's Figma reference, fileKey
    4tEWhmZzpqWsjjwJrqS8lg, node 4:2 ("Glowy stuff"): a dark charcoal shelf of
@@ -21,9 +23,21 @@
    NON-SMOOTH — the five doors, shut:
      1 curves       --radius-* stay tight (3/7/13px); badge pills only
      2 soft shadows every shadow is a ZERO-BLUR offset; --blur: none
-     3 gradients    every signature ramp is HARD-STOPPED (two stops, one px pos)
+     3 gradients    every ramp is HARD-STOPPED (two stops, one px pos), the
+                    ground is banded, and the foil is DRAWN, not faded
      4 art          motifs are DRAWN at tile size (base64 SVG), crisp not scaled
      5 blur/glow    no backdrop-filter, no bloom — a hard ring is the "glow"
+
+   THE FOIL. A holographic foil is a MATERIAL, not a gradient: a stamped sheet
+   whose bands flip between silver, blue, pink and gold with ABRUPT transitions
+   and a crisp dark land between them. It ships as --holographic-diffraction
+   (drawn, base64 SVG) and is reused as the card media panel via --media-bg, so
+   the surface a card shows is real foil rather than a generic two-stop ramp.
+
+   THE COMPONENT EDGE. Iridescence is put into the CONTROLS, not just the tiles:
+   every button, field, bar and switch carries a hard, zero-blur prismatic edge
+   (violet #b64ce8 -> magenta #ff5fd0 -> teal #3ee0c8) — chromatic aberration as
+   chrome — so the working parts of the UI shift hue exactly as the foil does.
    ========================================================================== */
 :root {
   /* --------------------------------------------------------------- surfaces */
@@ -37,7 +51,20 @@
     #212a38 170px, #212a38 400px,
     #16171f 400px, #16171f 100%);
   --bg-2:          #212a38;   /* the dominant mid plate */
-  --surface:       #252633;   /* panels, one plate up (a faint violet cast) */
+  /* Panels are a foil sheet too: hard hue-shifting charcoal bands (violet-,
+     blue-, plum- and teal-cast) that read as foil at card scale without ever
+     becoming a worse ground for type. Every band stays darker than the binding
+     plate and clears the text floors — the worst, #17304d, still holds
+     --text-dim at 6.53:1 (text 11.68, muted 7.45). Luminance is near-constant,
+     so the shift is HUE, not darkness — a dark WCAG-stable iridescence. */
+  --surface: linear-gradient(100deg,
+    #252633 0px,   #252633 40px,
+    #2d2348 40px,  #2d2348 84px,
+    #17304d 84px,  #17304d 140px,
+    #3a1e42 140px, #3a1e42 188px,
+    #12323a 188px, #12323a 240px,
+    #2b2540 240px, #2b2540 292px,
+    #252633 292px, #252633 340px);
   --surface-2:     #16171f;   /* insets, inputs, the signature tile base */
   --overlay:       rgba(9, 10, 16, .80);
 
@@ -49,8 +76,8 @@
 
   /* ------------------------------------------------------------------ brand */
   /* one action (the reference's #54adff blue) and one counterpoint (the
-     reference's #b64ce8 violet). The rainbow lives in the signature ramps,
-     not in a third accent. */
+     reference's #b64ce8 violet). The rainbow lives in the foil and the prism /
+     iris ramps, not in a third accent. */
   --accent:        #54adff;   /* sampled from the reference's "Cool Sci-fi thing" */
   --accent-hover:  #6fbcff;
   --accent-2:      #b64ce8;   /* sampled: the reference's violet rounded square */
@@ -68,8 +95,10 @@
   --info:          #48cfe0;   /* cyan, a step apart from the blue action */
 
   /* ------------------------------------------------------------------ lines */
-  --border:        rgba(184, 200, 255, .16);
-  --border-strong: rgba(184, 200, 255, .34);
+  /* hairlines are tinted toward the foil: violet on the default rule, a blue
+     a shade stronger on emphasis. Not text grounds — the frame of the foil. */
+  --border:        rgba(186, 172, 255, .17);
+  --border-strong: rgba(150, 196, 255, .34);
   --border-w:      1px;
   --focus-ring:    #6ec0ff;   /* 6.40:1 on plate */
 
@@ -92,10 +121,19 @@
 
   /* ------------------------------------------------------------------ depth */
   /* HARD EDGES, ZERO BLUR — depth is a dark plate pushed down-right, ringed by
-     a faint prismatic hairline. There is no bloom anywhere. */
-  --shadow-1:      0 0 0 1px rgba(140, 170, 255, .07), 4px 4px 0 0 rgba(0, 0, 0, .55);
-  --shadow-2:      0 0 0 1px rgba(140, 170, 255, .11), 8px 8px 0 0 rgba(0, 0, 0, .62);
-  --glow:          0 0 0 1px #0d0e14, 3px 3px 0 0 rgba(84, 173, 255, .55);
+     a faint prismatic hairline; the elevated card adds a violet refraction
+     band beyond its dark offset. There is no bloom anywhere. */
+  --shadow-1:      0 0 0 1px rgba(150, 130, 255, .10), 4px 4px 0 0 rgba(0, 0, 0, .55);
+  --shadow-2:      0 0 0 1px rgba(150, 130, 255, .14), 6px 6px 0 0 rgba(0, 0, 0, .62),
+                   8px 8px 0 0 rgba(182, 76, 232, .34);
+  /* the primary halo: a crisp ink ring plus a HARD prismatic offset — three
+     zero-blur plates (violet, magenta, teal), i.e. chromatic aberration. The
+     hues are visible here and the offset is invisible to the text-contrast
+     gate, which samples the button's own fill, not its shadow. Never blurred. */
+  --glow:          0 0 0 1px #0d0e14,
+                   2px 2px 0 0 #b64ce8,
+                   4px 4px 0 0 #ff5fd0,
+                   6px 6px 0 0 #3ee0c8;
   --blur:          none;      /* foil, not glass */
 
   /* ----------------------------------------------------------------- motion */
@@ -112,49 +150,64 @@
     transparent 60px 84px,  rgba(182, 76, 232, .14) 84px 100px,
     transparent 100px 128px, rgba(255, 79, 216, .11) 128px 144px,
     transparent 144px 196px);
-  --media-bg: linear-gradient(100deg,
-    #0d1730 0px, #0d1730 10px,
-    #2f6bd8 10px, #2f6bd8 34px,
-    #48c8ff 34px, #48c8ff 58px,
-    #b8f2ff 58px, #b8f2ff 66px,
-    #0d1730 66px, #0d1730 84px,
-    #8a6bf0 84px, #8a6bf0 108px,
-    #d44be8 108px, #d44be8 132px,
-    #ffb0d8 132px, #ffb0d8 140px,
-    #0d1730 140px, #0d1730 178px,
-    #1fd0c0 178px, #1fd0c0 208px,
-    #ffd36a 208px, #ffd36a 236px,
-    #0d1730 236px, #0d1730 260px);
+  /* the card media panel is the FOIL itself — the same drawn material as the
+     signature tile, so the surface a card shows is stamped foil, not a ramp. */
+  --media-bg:      var(--holographic-diffraction);
   --media-op:      1;
-  --input-inset:   inset 0 2px 0 rgba(0, 0, 0, .50), inset 0 0 0 1px rgba(0, 0, 0, .35);
-  --btn-shadow:    2px 2px 0 0 rgba(0, 0, 0, .50);      /* every button wears the hard plate */
-  --bar-shadow:    0 2px 0 0 rgba(0, 0, 0, .40);        /* nav / tabs: a milled channel */
-  --bar-item-shadow: 2px 2px 0 0 rgba(0, 0, 0, .45);    /* the plate riding in it */
+  /* fields read as milled into the plate: a dark recess with a violet left lip
+     and a blue right lip — the prismatic edge of a cut in metal. */
+  --input-inset:   inset 0 2px 0 rgba(0, 0, 0, .50),
+                   inset 2px 0 0 rgba(182, 76, 232, .35),
+                   inset -2px 0 0 rgba(84, 173, 255, .35),
+                   inset 0 0 0 1px rgba(0, 0, 0, .35);
+  /* every button wears the chromatic-aberration edge — violet, magenta, teal,
+     three zero-blur plates stacked down-right (the kit's own hard offset
+     idiom, in prismatic hues). Reaches all five variants. */
+  --btn-shadow:    2px 2px 0 0 #b64ce8,
+                   4px 4px 0 0 #ff5fd0,
+                   6px 6px 0 0 #3ee0c8;
+  /* nav / tabs: a milled channel whose inner lips catch violet and blue, over a
+     dark bottom rule */
+  --bar-shadow:    0 2px 0 0 rgba(0, 0, 0, .40),
+                   inset 2px 0 0 rgba(182, 76, 232, .30),
+                   inset -2px 0 0 rgba(84, 173, 255, .30),
+                   inset 0 -2px 0 rgba(62, 224, 200, .22);
+  /* the plate riding in it: the same prismatic offset */
+  --bar-item-shadow: 2px 2px 0 0 #b64ce8, 4px 4px 0 0 #54adff;
   --bar-item-pad:  .35rem;
-  --toggle-shadow: inset 0 1px 0 rgba(0, 0, 0, .45), 1px 1px 0 0 rgba(0, 0, 0, .40);
-  --toggle-knob-shadow: 1px 1px 0 0 rgba(0, 0, 0, .55);
-  --fill-bg:       repeating-linear-gradient(90deg, #7cc4ff 0px, #7cc4ff 7px, #c58cf5 7px, #c58cf5 9px);
+  /* the switch: a recessed track with prismatic lips, and a knob edged in
+     violet + blue */
+  --toggle-shadow: inset 0 1px 0 rgba(0, 0, 0, .45),
+                   inset 2px 0 0 rgba(182, 76, 232, .35),
+                   inset -2px 0 0 rgba(84, 173, 255, .35),
+                   1px 1px 0 0 rgba(0, 0, 0, .40);
+  --toggle-knob-shadow: 1px 1px 0 0 #b64ce8, 2px 2px 0 0 #54adff;
+  /* progress + avatar fills: four hard prismatic bands, no fade. Every stop
+     holds the ink label at >=4.7:1 (#54adff 8.07, #b64ce8 4.76, #ff5fd0 7.16,
+     #3ee0c8 11.65) — the violet stop is the binding one. */
+  --fill-bg:       repeating-linear-gradient(90deg,
+                     #54adff 0px,  #54adff 5px,
+                     #b64ce8 5px,  #b64ce8 9px,
+                     #ff5fd0 9px,  #ff5fd0 12px,
+                     #3ee0c8 12px, #3ee0c8 17px);
   --check-appearance: none;
   --check-bg:      #16171f;
-  --check-border:  1px solid rgba(184, 200, 255, .34);
+  --check-border:  1px solid rgba(182, 76, 232, .45);
   --check-checked: #54adff;
 
   /* --------------- signature: three motifs, three jobs -------------------- */
-  /* 1 · DIFFRACTION GRATING — the MATERIAL. Hard-banded prismatic spectrum with
-        a dark "land" between each band; a repeat so it is an infinite grating,
-        not a single ramp. A hard-stopped gradient can express this exactly. */
+  /* 1 · HOLOGRAPHIC FOIL — the MATERIAL. The grating has been re-cut as a
+        STAMPED FOIL: a sheet whose bands flip between silver, blue, cyan,
+        violet, magenta, gold and teal with ABRUPT transitions, with a crisp
+        dark land between them and silver specular highlights where metal would
+        catch the light. DRAWN (base64 SVG) because a stamped sheet is a
+        material with hard edges, not a fade — and because drawing it lets the
+        band count be high enough that the banding is unmistakable at 168x72
+        (19 bands across the tile). Vertical bands tile seamlessly; it is
+        reused as --media-bg. */
   --holographic-diffraction:
-    repeating-linear-gradient(115deg,
-      #0d1730 0px,   #0d1730 5px,
-      #2f6bd8 5px,   #2f6bd8 13px,
-      #48c8ff 13px,  #48c8ff 21px,
-      #8a6bf0 21px,  #8a6bf0 29px,
-      #d44be8 29px,  #d44be8 37px,
-      #ff6f9a 37px,  #ff6f9a 45px,
-      #ffd36a 45px,  #ffd36a 53px,
-      #9ff06a 53px,  #9ff06a 61px,
-      #3ee0c8 61px,  #3ee0c8 69px,
-      #0d1730 69px,  #0d1730 74px);
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nNzInIHZpZXdCb3g9JzAgMCAxNjggNzInIHByZXNlcnZlQXNwZWN0UmF0aW89J25vbmUnPjxyZWN0IHdpZHRoPScxNjgnIGhlaWdodD0nNzInIGZpbGw9JyMwYjEwMjAnLz48cmVjdCB4PScwJyB5PScwJyB3aWR0aD0nNicgaGVpZ2h0PSc3MicgZmlsbD0nIzBkMTczMCcvPjxyZWN0IHg9JzYnIHk9JzAnIHdpZHRoPScxMCcgaGVpZ2h0PSc3MicgZmlsbD0nI2RmZTdmMicvPjxyZWN0IHg9JzE2JyB5PScwJyB3aWR0aD0nNicgaGVpZ2h0PSc3MicgZmlsbD0nIzJmNmJkOCcvPjxyZWN0IHg9JzIyJyB5PScwJyB3aWR0aD0nMTAnIGhlaWdodD0nNzInIGZpbGw9JyM3ZmU2ZmYnLz48cmVjdCB4PSczMicgeT0nMCcgd2lkdGg9JzYnIGhlaWdodD0nNzInIGZpbGw9JyMwZDE3MzAnLz48cmVjdCB4PSczOCcgeT0nMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzcyJyBmaWxsPScjOGE2YmYwJy8+PHJlY3QgeD0nNDgnIHk9JzAnIHdpZHRoPScxMCcgaGVpZ2h0PSc3MicgZmlsbD0nI2ZmNWZkMCcvPjxyZWN0IHg9JzU4JyB5PScwJyB3aWR0aD0nNycgaGVpZ2h0PSc3MicgZmlsbD0nI2U4ZWVmNycvPjxyZWN0IHg9JzY1JyB5PScwJyB3aWR0aD0nNycgaGVpZ2h0PSc3MicgZmlsbD0nIzBkMTczMCcvPjxyZWN0IHg9JzcyJyB5PScwJyB3aWR0aD0nMTInIGhlaWdodD0nNzInIGZpbGw9JyNmZmQzNmEnLz48cmVjdCB4PSc4NCcgeT0nMCcgd2lkdGg9JzknIGhlaWdodD0nNzInIGZpbGw9JyNmZmYwYjgnLz48cmVjdCB4PSc5MycgeT0nMCcgd2lkdGg9JzgnIGhlaWdodD0nNzInIGZpbGw9JyMzZWUwYzgnLz48cmVjdCB4PScxMDEnIHk9JzAnIHdpZHRoPSc3JyBoZWlnaHQ9JzcyJyBmaWxsPScjMGQxNzMwJy8+PHJlY3QgeD0nMTA4JyB5PScwJyB3aWR0aD0nMTInIGhlaWdodD0nNzInIGZpbGw9JyM1NGFkZmYnLz48cmVjdCB4PScxMjAnIHk9JzAnIHdpZHRoPScxMicgaGVpZ2h0PSc3MicgZmlsbD0nI2ZmYjBkOCcvPjxyZWN0IHg9JzEzMicgeT0nMCcgd2lkdGg9JzgnIGhlaWdodD0nNzInIGZpbGw9JyNlNGViZjUnLz48cmVjdCB4PScxNDAnIHk9JzAnIHdpZHRoPSc3JyBoZWlnaHQ9JzcyJyBmaWxsPScjMGQxNzMwJy8+PHJlY3QgeD0nMTQ3JyB5PScwJyB3aWR0aD0nMTUnIGhlaWdodD0nNzInIGZpbGw9JyNiNjRjZTgnLz48cmVjdCB4PScxNjInIHk9JzAnIHdpZHRoPSc2JyBoZWlnaHQ9JzcyJyBmaWxsPScjMGQxNzMwJy8+PC9zdmc+") 0 0 / 168px 100% repeat-x,
+    linear-gradient(90deg, #0b1020 0px, #0b1020 100%);
   /* 2 · PRISM SPLIT — the GEOMETRY. A beam enters a triangle and leaves as an
         ordered FAN of hard bands; a linear gradient cannot fan from a point, so
         this is DRAWN (base64 SVG). */

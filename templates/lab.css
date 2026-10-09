@@ -242,7 +242,10 @@ section.block:first-of-type { border-top: 0; }
   /* native checkbox/radio ignore border-radius, so a square kit keeps round controls. A kit that
      wants square ones declares --check-appearance: none plus its own box. Defaults are `revert`,
      i.e. exactly the browser's own rendering. */
-  border-radius: var(--radius-pill, 50%);
+  /* Its own radius rather than --radius-pill: a kit whose badges are pills still needs to be able
+     to square (or slightly round) its native controls, and binding one token to two jobs meant
+     squaring the checkbox also unsquared every badge. */
+  border-radius: var(--check-radius, var(--radius-pill, 50%));
   appearance: var(--check-appearance, auto);
   background-color: var(--check-bg, revert);
   border: var(--check-border, none);

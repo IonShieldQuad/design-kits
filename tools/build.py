@@ -67,7 +67,7 @@ OPTIONAL_TOKENS = [
     # bars and switches: the lab chromed .nav/.tabs/.toggle directly and offered no shadow hook, so a
     # kit could not make a milled channel or a seated knob without a kit.css. Now it can.
     "--bar-shadow", "--bar-item-shadow", "--bar-item-pad", "--toggle-shadow", "--toggle-knob-shadow",
-    "--check-appearance", "--check-bg", "--check-border", "--check-checked",
+    "--check-appearance", "--check-bg", "--check-border", "--check-checked", "--check-radius",
     "--style-display", "--focus-inset",
     # surfaces the lab would otherwise hardcode
     "--media-bg", "--media-op", "--wash", "--fill-bg",
