@@ -1,0 +1,224 @@
+/* ============================================================================
+   design-kits · photonic                                            contract v1
+   ----------------------------------------------------------------------------
+   TRANSPARENT FILM, LIT AT THE RIM — PROJECTED OFF A SCREEN. Two layers, and
+   the kit is the relationship between them:
+
+     BACK LAYER   a sci-fi tablet display: a dark emissive ground with a
+                  scanline grille over the honeycomb emitter lattice, a
+                  backlight bloom at its top edge and a vignette at its rim.
+                  It is the light source and the surface the interface is
+                  drawn on.
+     FRONT LAYERS translucent panes floating IN FRONT of that screen: a 62%
+                  dark film you can see through, a hue-coded rim as their only
+                  emitter, the hue bleeding inward and dying at the centre, and
+                  a soft occluding halo underneath so they read as lifted off
+                  the display rather than painted onto it.
+
+   A hologram is not a flat panel with a glow painted on; it is something you
+   look through, standing between you and a lit surface.
+
+   PROVENANCE — derived from the user's Figma reference, fileKey
+   4tEWhmZzpqWsjjwJrqS8lg, node 4:2 ("Glowy stuff"), the same node the
+   `holographic` kit came from. That kit kept the reference's GEOMETRY and threw
+   away its LIGHT (non-smooth, --blur: none, hard-banded foil). This one keeps
+   the light: the measured construction of the reference's tiles — a ~30%
+   neutral film in MULTIPLY over the ground (measured: canvas #414141 -> pane
+   #393a3a, i.e. ground x 0.88), a 1-3px saturated rim, `inset 2px 4px 10px 4px`
+   inward bleed, `0 0 8px 4px` outward bloom, and a honeycomb at a 14px pitch
+   whose cell edges sit ~10-12 levels below the cell fill. Multiply is not
+   reachable from a token, so the film is expressed the way it BEHAVES on a dark
+   ground: a black-alpha pane that darkens the ground by ~62% and keeps its hue.
+   Palette hues are the reference's own four tiles (cyan 15b9ff, violet b64ce8,
+   mint 15ffab, coral ff554a); its conic disc (node 10:2) supplies the spectrum.
+
+   THE BACKDROP IS PART OF THE THEME. Every surface here is translucent, so its
+   value is DERIVED, not declared: pane = ground x 0.38 + film. Over the kit's
+   own ground that lands at #09121c; over a white page the same pane composites
+   to #5e6166 and --text-muted falls to 3.07:1. This kit therefore ships its
+   ground. Swapping --bg for anything light is not a variant of this kit, it is
+   a different (broken) theme. Numbers in README.md.
+
+   THE PAINT IS 1px AND THE LIGHT IS WIDE. Separation between a pane and its
+   ground comes from the rim + the bloom, never from a heavier border: a 2px
+   ink line on near-black is what makes a projected interface look printed.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces *
+     The back layer: `--photonic-screen` is the tablet display itself (grille +
+     emitter lattice + backlight + vignette, declared once and reused by --bg,
+     --media-bg and the signature tile). Under it, six low-amplitude hue washes
+     give the screen something to glow through all the way down a long
+     document, and a near-black ramp is the floor. Washes are sized in px, not
+     %, so they stay anchored to the viewport instead of smearing down a
+     4000px page. The front layers are `--surface` / `--surface-2`. */
+  --bg: var(--photonic-screen),
+        radial-gradient(760px 600px at 15% 60px,  rgba(21,185,255,.10) 0%, rgba(21,185,255,0) 70%),
+        radial-gradient(660px 540px at 86% 140px, rgba(21,255,171,.07) 0%, rgba(21,255,171,0) 72%),
+        radial-gradient(880px 660px at 50% 640px, rgba(182,76,232,.09) 0%, rgba(182,76,232,0) 74%),
+        radial-gradient(780px 600px at 18% 1520px, rgba(21,185,255,.07) 0%, rgba(21,185,255,0) 72%),
+        radial-gradient(720px 560px at 82% 2120px, rgba(182,76,232,.06) 0%, rgba(182,76,232,0) 74%),
+        linear-gradient(165deg, #060910 0px, #05070d 420px, #060812 900px, #04060b 1500px, #04050a 2200px);
+  --bg-2:          #070a11;                   /* masthead stop / solid stand-in */
+  /* the pane is a film WITH light falling through it: a faint cyan wash at the
+     top (light from the screen arriving under the pane) over the film. Its
+     value is still derived from the ground — 46% of the ground shows through. */
+  --surface:       linear-gradient(180deg, rgba(126,231,255,.055) 0%, rgba(126,231,255,.015) 34%, rgba(2,4,9,.06) 100%),
+                   rgba(3, 6, 13, .54);
+  --surface-2:     rgba(2, 4, 9, .78);        /* nested panel, fields, alerts */
+  --overlay:       rgba(2, 4, 8, .72);        /* modal scrim */
+
+  /* ----------------------------------------------------------------- text *
+     Graded against the COMPOSITED pane (the lightest ground pixel x the film),
+     never against --bg alone. See README for the full table. */
+  --text:          #e8f3fa;   /* 16.7:1 on the pane  ·  13.9:1 on the ground */
+  --text-muted:    #a9b8c4;   /*  9.3:1 on the pane  ·   7.7:1 on the ground */
+  --text-dim:      #8e9dab;   /*  6.8:1 on the pane  ·   5.6:1 on the ground */
+  --text-invert:   #061019;   /*  8.6:1 on --accent */
+
+  /* ---------------------------------------------------------------- brand *
+     ONE action + ONE counterpoint, exactly as the contract asks. The
+     reference's other two tiles (mint, coral) are not accents here — they are
+     the status ladder, which is why this kit can carry four hues. */
+  --accent:        #15b9ff;   /* holo cyan — the reference's system channel */
+  --accent-ink:    #8fe3ff;   /* cyan AS TEXT — 13.1:1 on the pane; the fill
+                                 colour itself is only 8.5:1 as a small label */
+  --accent-ink-hover: #b6ecff;
+  --accent-hover:  #4acaff;
+  --accent-2:      #b64ce8;   /* violet — gradients, charts, the spectrum */
+  --accent-soft:   rgba(21, 185, 255, .16);
+
+  /* --------------------------------------------------------------- status *
+     The reference's own tile hues: mint (ok), coral (danger), plus the amber
+     and indigo stops taken from its conic disc. */
+  --ok:            #15ffab;
+  --warn:          #ffa23a;
+  --danger:        #ff554a;
+  --info:          #6c8cf5;
+
+  /* ---------------------------------------------------------------- lines *
+     The rim is the light source, not a divider: a translucent cyan at 42%,
+     which reads as emitted rather than drawn. --border-w stays at 1px. */
+  --border:        rgba(21, 185, 255, .42);
+  --border-strong: rgba(21, 185, 255, .72);
+  --border-w:      1px;
+  --focus-ring:    #7fdcff;
+
+  /* ---------------------------------------------------------------- shape *
+     The reference's own radii: r8 on its flat panel, ~18% on the 180px tile.
+     Panes are generous, chips are not. */
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     26px;
+  --radius-pill:   999px;
+  --cut:           0px;       /* this kit rounds, it does not cut */
+
+  /* ----------------------------------------------------------------- type *
+     Genos (squared technical display) + Rubik (body) + Azeret Mono (labels).
+     The reference's own label face is Gruppo, which the `holographic` kit
+     already carries from this same node — deliberately not doubled up here. */
+  --font-display:  "Genos", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body:     "Rubik", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Azeret Mono", ui-monospace, "Cascadia Mono", "SFMono-Regular", monospace;
+  --tracking-caps: .18em;
+  --tracking-display: .004em;   /* a squared face wants air, not a squeeze */
+
+  /* ---------------------------------------------------------------- depth *
+     The reference's measured construction, straight through:
+       inset 2px 4px 10px 4px  ->  the hue bleeding inward from the rim
+       0 0 8px 4px             ->  the bloom the rim throws outward
+     Plus the two this layer model needs: a lit top edge (light from the
+     screen arriving under the pane) and a wide, soft OCCLUDING halo beneath
+     it. The halo is what makes a pane read as floating in front of the
+     display rather than printed on it — without it the projection collapses
+     into a bordered panel. Step 2 deepens both for a surface that must float
+     off another pane. */
+  --shadow-1:      inset 2px 4px 10px 4px rgba(21,185,255,.26),
+                   inset 0 1px 0 rgba(126,231,255,.22),
+                   0 0 12px 2px rgba(21,185,255,.30),
+                   0 10px 30px rgba(1,3,7,.55);
+  --shadow-2:      inset 2px 4px 14px 4px rgba(21,185,255,.34),
+                   inset 0 1px 0 rgba(126,231,255,.28),
+                   0 0 22px 5px rgba(21,185,255,.26),
+                   0 20px 44px rgba(1,3,7,.66);
+  --glow:          0 0 12px 2px rgba(21,185,255,.45), 0 0 36px 8px rgba(21,185,255,.16);
+  --blur:          blur(6px) saturate(108%);    /* load-bearing: .card uses this */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .24s;
+  --ease:          cubic-bezier(.22, .68, .24, 1);
+
+  /* ======================================================== opt-in hooks === */
+  /* every button wears the rim; only the primary carries the full bloom */
+  --btn-shadow:    inset 0 0 0 1px rgba(21,185,255,.34), 0 0 7px 0 rgba(21,185,255,.12);
+  /* fields are shallow lens recesses: a dark well with a lit lip */
+  --input-inset:   inset 2px 4px 10px 2px rgba(21,185,255,.13),
+                   inset 0 0 0 1px rgba(21,185,255,.22);
+  --bar-shadow:    inset 0 0 14px -6px rgba(21,185,255,.28);
+  --bar-item-shadow: inset 0 0 10px -3px rgba(21,185,255,.45), 0 0 8px 0 rgba(21,185,255,.18);
+  --bar-item-pad:  .6rem;
+  --toggle-shadow: inset 0 0 8px -2px rgba(21,185,255,.40);
+  --toggle-knob-shadow: 0 0 8px 0 rgba(21,185,255,.55);
+  --check-radius:  var(--radius-sm);   /* native controls take the chip radius */
+  /* progress + avatar wear the conic spectrum (the reference's disc, node 10:2) */
+  --fill-bg:       var(--photonic-spectrum);
+  /* the card media panel is a lit region of the screen showing a projection */
+  --media-bg:      var(--photonic-screen),
+                   radial-gradient(120% 130% at 22% 10%, rgba(21,185,255,.30) 0%, rgba(21,185,255,0) 58%),
+                   radial-gradient(120% 130% at 86% 94%, rgba(182,76,232,.26) 0%, rgba(182,76,232,0) 62%),
+                   linear-gradient(160deg, #0a1622 0%, #060a12 58%, #0a0d1c 100%);
+  --media-op:      1;                 /* the panel is dark, not a bright ramp */
+  --wash:          radial-gradient(120% 150% at 50% -6%, rgba(21,185,255,.16) 0%, transparent 62%),
+                   radial-gradient(70% 120% at 88% 6%, rgba(182,76,232,.10) 0%, transparent 64%);
+
+  /* ==================================================================== *
+     EXTRAS — the material, kept addressable: a project can rebuild the field,
+     a rim-lit pane, the spectrum or the print stand-in without re-typing rgba,
+     and the lab renders the first three as signature tiles.
+     ==================================================================== */
+  /* THE BACK LAYER — the tablet display, as one reusable value, ordered as a
+     display is built: a flare along the top edge, 32px display ROWS (coarse on
+     purpose: a 3px scanline grille beats against the 14px lattice and moires
+     on scaled displays), the honeycomb emitter lattice, a backlight blooming
+     down from the top edge, and a vignette that darkens toward the screen's
+     rim so the ground reads as a lit surface rather than as wallpaper. Every
+     layer is transparent, so it can be laid over any ground — or over the
+     signature tile — without painting one.
+     ORDER MATTERS: the vignette sits ABOVE the lattice so the weave dims and
+     the rows fall off toward the screen's rim, while the backlight sits above
+     it too and washes the lattice out where the light is strongest — that
+     non-uniformity is the difference between a display and wallpaper. */
+  --photonic-screen: linear-gradient(180deg, rgba(126,231,255,.055) 0%, rgba(126,231,255,0) 26%),
+                     repeating-linear-gradient(0deg, rgba(126,231,255,.05) 0 1px, rgba(126,231,255,0) 1px 32px),
+                     radial-gradient(150% 110% at 50% 42%, rgba(2,4,8,0) 42%, rgba(2,4,8,.66) 100%),
+                     radial-gradient(92% 46% at 50% -8%, rgba(21,185,255,.17) 0%, rgba(21,185,255,0) 76%),
+                     var(--photonic-halo-img) 0 0 / 42px 24.2487px repeat,
+                     var(--photonic-weave-img) 0 0 / 42px 24.2487px repeat,
+                     var(--photonic-grain-img) 0 0 / 64px 64px repeat;
+  /* the drawn honeycomb lattice. 14px pitch, .9px lit edges — the reference's
+     weave, inverted for a near-black ground (it is a mid-gray canvas there, so
+     its dark dividers read as LIT lines once the ground goes to black). Here
+     it doubles as the screen's emitter matrix. */
+  --photonic-halo-img: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0Mi4wJyBoZWlnaHQ9JzI0LjI0ODcnIHZpZXdCb3g9JzAgMCA0Mi4wIDI0LjI0ODcnPjxkZWZzPjxmaWx0ZXIgaWQ9J2InIHg9Jy0yMCUnIHk9Jy0yMCUnIHdpZHRoPScxNDAlJyBoZWlnaHQ9JzE0MCUnPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249JzIuNicvPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWxsPSdub25lJyBzdHJva2U9JyM3ZWU3ZmYnIHN0cm9rZS1vcGFjaXR5PScwLjInIHN0cm9rZS13aWR0aD0nLjknIGZpbHRlcj0ndXJsKCNiKSc+PHBhdGggZD0nTS0yOC4wMCAtMTYuMTdMLTIxLjAwIC0yMC4yMUwtMjEuMDAgLTI4LjI5TC0yOC4wMCAtMzIuMzNMLTM1LjAwIC0yOC4yOUwtMzUuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J00tMTQuMDAgLTE2LjE3TC03LjAwIC0yMC4yMUwtNy4wMCAtMjguMjlMLTE0LjAwIC0zMi4zM0wtMjEuMDAgLTI4LjI5TC0yMS4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTTAuMDAgLTE2LjE3TDcuMDAgLTIwLjIxTDcuMDAgLTI4LjI5TDAuMDAgLTMyLjMzTC03LjAwIC0yOC4yOUwtNy4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTTE0LjAwIC0xNi4xN0wyMS4wMCAtMjAuMjFMMjEuMDAgLTI4LjI5TDE0LjAwIC0zMi4zM0w3LjAwIC0yOC4yOUw3LjAwIC0yMC4yMVonLz48cGF0aCBkPSdNMjguMDAgLTE2LjE3TDM1LjAwIC0yMC4yMUwzNS4wMCAtMjguMjlMMjguMDAgLTMyLjMzTDIxLjAwIC0yOC4yOUwyMS4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTTQyLjAwIC0xNi4xN0w0OS4wMCAtMjAuMjFMNDkuMDAgLTI4LjI5TDQyLjAwIC0zMi4zM0wzNS4wMCAtMjguMjlMMzUuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J001Ni4wMCAtMTYuMTdMNjMuMDAgLTIwLjIxTDYzLjAwIC0yOC4yOUw1Ni4wMCAtMzIuMzNMNDkuMDAgLTI4LjI5TDQ5LjAwIC0yMC4yMVonLz48cGF0aCBkPSdNNzAuMDAgLTE2LjE3TDc3LjAwIC0yMC4yMUw3Ny4wMCAtMjguMjlMNzAuMDAgLTMyLjMzTDYzLjAwIC0yOC4yOUw2My4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTS0yMS4wMCAtNC4wNEwtMTQuMDAgLTguMDhMLTE0LjAwIC0xNi4xN0wtMjEuMDAgLTIwLjIxTC0yOC4wMCAtMTYuMTdMLTI4LjAwIC04LjA4WicvPjxwYXRoIGQ9J00tNy4wMCAtNC4wNEwwLjAwIC04LjA4TDAuMDAgLTE2LjE3TC03LjAwIC0yMC4yMUwtMTQuMDAgLTE2LjE3TC0xNC4wMCAtOC4wOFonLz48cGF0aCBkPSdNNy4wMCAtNC4wNEwxNC4wMCAtOC4wOEwxNC4wMCAtMTYuMTdMNy4wMCAtMjAuMjFMMC4wMCAtMTYuMTdMMC4wMCAtOC4wOFonLz48cGF0aCBkPSdNMjEuMDAgLTQuMDRMMjguMDAgLTguMDhMMjguMDAgLTE2LjE3TDIxLjAwIC0yMC4yMUwxNC4wMCAtMTYuMTdMMTQuMDAgLTguMDhaJy8+PHBhdGggZD0nTTM1LjAwIC00LjA0TDQyLjAwIC04LjA4TDQyLjAwIC0xNi4xN0wzNS4wMCAtMjAuMjFMMjguMDAgLTE2LjE3TDI4LjAwIC04LjA4WicvPjxwYXRoIGQ9J000OS4wMCAtNC4wNEw1Ni4wMCAtOC4wOEw1Ni4wMCAtMTYuMTdMNDkuMDAgLTIwLjIxTDQyLjAwIC0xNi4xN0w0Mi4wMCAtOC4wOFonLz48cGF0aCBkPSdNNjMuMDAgLTQuMDRMNzAuMDAgLTguMDhMNzAuMDAgLTE2LjE3TDYzLjAwIC0yMC4yMUw1Ni4wMCAtMTYuMTdMNTYuMDAgLTguMDhaJy8+PHBhdGggZD0nTTc3LjAwIC00LjA0TDg0LjAwIC04LjA4TDg0LjAwIC0xNi4xN0w3Ny4wMCAtMjAuMjFMNzAuMDAgLTE2LjE3TDcwLjAwIC04LjA4WicvPjxwYXRoIGQ9J00tMjguMDAgOC4wOEwtMjEuMDAgNC4wNEwtMjEuMDAgLTQuMDRMLTI4LjAwIC04LjA4TC0zNS4wMCAtNC4wNEwtMzUuMDAgNC4wNFonLz48cGF0aCBkPSdNLTE0LjAwIDguMDhMLTcuMDAgNC4wNEwtNy4wMCAtNC4wNEwtMTQuMDAgLTguMDhMLTIxLjAwIC00LjA0TC0yMS4wMCA0LjA0WicvPjxwYXRoIGQ9J00wLjAwIDguMDhMNy4wMCA0LjA0TDcuMDAgLTQuMDRMMC4wMCAtOC4wOEwtNy4wMCAtNC4wNEwtNy4wMCA0LjA0WicvPjxwYXRoIGQ9J00xNC4wMCA4LjA4TDIxLjAwIDQuMDRMMjEuMDAgLTQuMDRMMTQuMDAgLTguMDhMNy4wMCAtNC4wNEw3LjAwIDQuMDRaJy8+PHBhdGggZD0nTTI4LjAwIDguMDhMMzUuMDAgNC4wNEwzNS4wMCAtNC4wNEwyOC4wMCAtOC4wOEwyMS4wMCAtNC4wNEwyMS4wMCA0LjA0WicvPjxwYXRoIGQ9J000Mi4wMCA4LjA4TDQ5LjAwIDQuMDRMNDkuMDAgLTQuMDRMNDIuMDAgLTguMDhMMzUuMDAgLTQuMDRMMzUuMDAgNC4wNFonLz48cGF0aCBkPSdNNTYuMDAgOC4wOEw2My4wMCA0LjA0TDYzLjAwIC00LjA0TDU2LjAwIC04LjA4TDQ5LjAwIC00LjA0TDQ5LjAwIDQuMDRaJy8+PHBhdGggZD0nTTcwLjAwIDguMDhMNzcuMDAgNC4wNEw3Ny4wMCAtNC4wNEw3MC4wMCAtOC4wOEw2My4wMCAtNC4wNEw2My4wMCA0LjA0WicvPjxwYXRoIGQ9J00tMjEuMDAgMjAuMjFMLTE0LjAwIDE2LjE3TC0xNC4wMCA4LjA4TC0yMS4wMCA0LjA0TC0yOC4wMCA4LjA4TC0yOC4wMCAxNi4xN1onLz48cGF0aCBkPSdNLTcuMDAgMjAuMjFMMC4wMCAxNi4xN0wwLjAwIDguMDhMLTcuMDAgNC4wNEwtMTQuMDAgOC4wOEwtMTQuMDAgMTYuMTdaJy8+PHBhdGggZD0nTTcuMDAgMjAuMjFMMTQuMDAgMTYuMTdMMTQuMDAgOC4wOEw3LjAwIDQuMDRMMC4wMCA4LjA4TDAuMDAgMTYuMTdaJy8+PHBhdGggZD0nTTIxLjAwIDIwLjIxTDI4LjAwIDE2LjE3TDI4LjAwIDguMDhMMjEuMDAgNC4wNEwxNC4wMCA4LjA4TDE0LjAwIDE2LjE3WicvPjxwYXRoIGQ9J00zNS4wMCAyMC4yMUw0Mi4wMCAxNi4xN0w0Mi4wMCA4LjA4TDM1LjAwIDQuMDRMMjguMDAgOC4wOEwyOC4wMCAxNi4xN1onLz48cGF0aCBkPSdNNDkuMDAgMjAuMjFMNTYuMDAgMTYuMTdMNTYuMDAgOC4wOEw0OS4wMCA0LjA0TDQyLjAwIDguMDhMNDIuMDAgMTYuMTdaJy8+PHBhdGggZD0nTTYzLjAwIDIwLjIxTDcwLjAwIDE2LjE3TDcwLjAwIDguMDhMNjMuMDAgNC4wNEw1Ni4wMCA4LjA4TDU2LjAwIDE2LjE3WicvPjxwYXRoIGQ9J003Ny4wMCAyMC4yMUw4NC4wMCAxNi4xN0w4NC4wMCA4LjA4TDc3LjAwIDQuMDRMNzAuMDAgOC4wOEw3MC4wMCAxNi4xN1onLz48cGF0aCBkPSdNLTI4LjAwIDMyLjMzTC0yMS4wMCAyOC4yOUwtMjEuMDAgMjAuMjFMLTI4LjAwIDE2LjE3TC0zNS4wMCAyMC4yMUwtMzUuMDAgMjguMjlaJy8+PHBhdGggZD0nTS0xNC4wMCAzMi4zM0wtNy4wMCAyOC4yOUwtNy4wMCAyMC4yMUwtMTQuMDAgMTYuMTdMLTIxLjAwIDIwLjIxTC0yMS4wMCAyOC4yOVonLz48cGF0aCBkPSdNMC4wMCAzMi4zM0w3LjAwIDI4LjI5TDcuMDAgMjAuMjFMMC4wMCAxNi4xN0wtNy4wMCAyMC4yMUwtNy4wMCAyOC4yOVonLz48cGF0aCBkPSdNMTQuMDAgMzIuMzNMMjEuMDAgMjguMjlMMjEuMDAgMjAuMjFMMTQuMDAgMTYuMTdMNy4wMCAyMC4yMUw3LjAwIDI4LjI5WicvPjxwYXRoIGQ9J00yOC4wMCAzMi4zM0wzNS4wMCAyOC4yOUwzNS4wMCAyMC4yMUwyOC4wMCAxNi4xN0wyMS4wMCAyMC4yMUwyMS4wMCAyOC4yOVonLz48cGF0aCBkPSdNNDIuMDAgMzIuMzNMNDkuMDAgMjguMjlMNDkuMDAgMjAuMjFMNDIuMDAgMTYuMTdMMzUuMDAgMjAuMjFMMzUuMDAgMjguMjlaJy8+PHBhdGggZD0nTTU2LjAwIDMyLjMzTDYzLjAwIDI4LjI5TDYzLjAwIDIwLjIxTDU2LjAwIDE2LjE3TDQ5LjAwIDIwLjIxTDQ5LjAwIDI4LjI5WicvPjxwYXRoIGQ9J003MC4wMCAzMi4zM0w3Ny4wMCAyOC4yOUw3Ny4wMCAyMC4yMUw3MC4wMCAxNi4xN0w2My4wMCAyMC4yMUw2My4wMCAyOC4yOVonLz48cGF0aCBkPSdNLTIxLjAwIDQ0LjQ2TC0xNC4wMCA0MC40MUwtMTQuMDAgMzIuMzNMLTIxLjAwIDI4LjI5TC0yOC4wMCAzMi4zM0wtMjguMDAgNDAuNDFaJy8+PHBhdGggZD0nTS03LjAwIDQ0LjQ2TDAuMDAgNDAuNDFMMC4wMCAzMi4zM0wtNy4wMCAyOC4yOUwtMTQuMDAgMzIuMzNMLTE0LjAwIDQwLjQxWicvPjxwYXRoIGQ9J003LjAwIDQ0LjQ2TDE0LjAwIDQwLjQxTDE0LjAwIDMyLjMzTDcuMDAgMjguMjlMMC4wMCAzMi4zM0wwLjAwIDQwLjQxWicvPjxwYXRoIGQ9J00yMS4wMCA0NC40NkwyOC4wMCA0MC40MUwyOC4wMCAzMi4zM0wyMS4wMCAyOC4yOUwxNC4wMCAzMi4zM0wxNC4wMCA0MC40MVonLz48cGF0aCBkPSdNMzUuMDAgNDQuNDZMNDIuMDAgNDAuNDFMNDIuMDAgMzIuMzNMMzUuMDAgMjguMjlMMjguMDAgMzIuMzNMMjguMDAgNDAuNDFaJy8+PHBhdGggZD0nTTQ5LjAwIDQ0LjQ2TDU2LjAwIDQwLjQxTDU2LjAwIDMyLjMzTDQ5LjAwIDI4LjI5TDQyLjAwIDMyLjMzTDQyLjAwIDQwLjQxWicvPjxwYXRoIGQ9J002My4wMCA0NC40Nkw3MC4wMCA0MC40MUw3MC4wMCAzMi4zM0w2My4wMCAyOC4yOUw1Ni4wMCAzMi4zM0w1Ni4wMCA0MC40MVonLz48cGF0aCBkPSdNNzcuMDAgNDQuNDZMODQuMDAgNDAuNDFMODQuMDAgMzIuMzNMNzcuMDAgMjguMjlMNzAuMDAgMzIuMzNMNzAuMDAgNDAuNDFaJy8+PHBhdGggZD0nTS0yOC4wMCA1Ni41OEwtMjEuMDAgNTIuNTRMLTIxLjAwIDQ0LjQ2TC0yOC4wMCA0MC40MUwtMzUuMDAgNDQuNDZMLTM1LjAwIDUyLjU0WicvPjxwYXRoIGQ9J00tMTQuMDAgNTYuNThMLTcuMDAgNTIuNTRMLTcuMDAgNDQuNDZMLTE0LjAwIDQwLjQxTC0yMS4wMCA0NC40NkwtMjEuMDAgNTIuNTRaJy8+PHBhdGggZD0nTTAuMDAgNTYuNThMNy4wMCA1Mi41NEw3LjAwIDQ0LjQ2TDAuMDAgNDAuNDFMLTcuMDAgNDQuNDZMLTcuMDAgNTIuNTRaJy8+PHBhdGggZD0nTTE0LjAwIDU2LjU4TDIxLjAwIDUyLjU0TDIxLjAwIDQ0LjQ2TDE0LjAwIDQwLjQxTDcuMDAgNDQuNDZMNy4wMCA1Mi41NFonLz48cGF0aCBkPSdNMjguMDAgNTYuNThMMzUuMDAgNTIuNTRMMzUuMDAgNDQuNDZMMjguMDAgNDAuNDFMMjEuMDAgNDQuNDZMMjEuMDAgNTIuNTRaJy8+PHBhdGggZD0nTTQyLjAwIDU2LjU4TDQ5LjAwIDUyLjU0TDQ5LjAwIDQ0LjQ2TDQyLjAwIDQwLjQxTDM1LjAwIDQ0LjQ2TDM1LjAwIDUyLjU0WicvPjxwYXRoIGQ9J001Ni4wMCA1Ni41OEw2My4wMCA1Mi41NEw2My4wMCA0NC40Nkw1Ni4wMCA0MC40MUw0OS4wMCA0NC40Nkw0OS4wMCA1Mi41NFonLz48cGF0aCBkPSdNNzAuMDAgNTYuNThMNzcuMDAgNTIuNTRMNzcuMDAgNDQuNDZMNzAuMDAgNDAuNDFMNjMuMDAgNDQuNDZMNjMuMDAgNTIuNTRaJy8+PC9nPjwvc3ZnPg==");
+  /* the raster grain the reference's own texture carried, at 4%: it hides banding in
+     the ramp and stops the field reading as clean vector work. */
+  --photonic-grain-img: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2NCcgaGVpZ2h0PSc2NCc+PGZpbHRlciBpZD0nbic+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9Jy45JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJyByZXN1bHQ9J3QnLz48ZmVDb2xvck1hdHJpeCBpbj0ndCcgdHlwZT0nbWF0cml4JyB2YWx1ZXM9JzAgMCAwIDAgMCAgMCAwIDAgMCAwICAwIDAgMCAwIDAgIC4zMCAuMzAgLjMwIDAgLS4zMCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSc2NCcgaGVpZ2h0PSc2NCcgZmlsdGVyPSd1cmwoJTIzbiknLz48L3N2Zz4=");
+  --photonic-weave-img: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0Mi4wJyBoZWlnaHQ9JzI0LjI0ODcnIHZpZXdCb3g9JzAgMCA0Mi4wIDI0LjI0ODcnPjxnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzdlZTdmZicgc3Ryb2tlLW9wYWNpdHk9JzAuMTUnIHN0cm9rZS13aWR0aD0nLjknPjxwYXRoIGQ9J00tMjguMDAgLTE2LjE3TC0yMS4wMCAtMjAuMjFMLTIxLjAwIC0yOC4yOUwtMjguMDAgLTMyLjMzTC0zNS4wMCAtMjguMjlMLTM1LjAwIC0yMC4yMVonLz48cGF0aCBkPSdNLTE0LjAwIC0xNi4xN0wtNy4wMCAtMjAuMjFMLTcuMDAgLTI4LjI5TC0xNC4wMCAtMzIuMzNMLTIxLjAwIC0yOC4yOUwtMjEuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J00wLjAwIC0xNi4xN0w3LjAwIC0yMC4yMUw3LjAwIC0yOC4yOUwwLjAwIC0zMi4zM0wtNy4wMCAtMjguMjlMLTcuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J00xNC4wMCAtMTYuMTdMMjEuMDAgLTIwLjIxTDIxLjAwIC0yOC4yOUwxNC4wMCAtMzIuMzNMNy4wMCAtMjguMjlMNy4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTTI4LjAwIC0xNi4xN0wzNS4wMCAtMjAuMjFMMzUuMDAgLTI4LjI5TDI4LjAwIC0zMi4zM0wyMS4wMCAtMjguMjlMMjEuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J000Mi4wMCAtMTYuMTdMNDkuMDAgLTIwLjIxTDQ5LjAwIC0yOC4yOUw0Mi4wMCAtMzIuMzNMMzUuMDAgLTI4LjI5TDM1LjAwIC0yMC4yMVonLz48cGF0aCBkPSdNNTYuMDAgLTE2LjE3TDYzLjAwIC0yMC4yMUw2My4wMCAtMjguMjlMNTYuMDAgLTMyLjMzTDQ5LjAwIC0yOC4yOUw0OS4wMCAtMjAuMjFaJy8+PHBhdGggZD0nTTcwLjAwIC0xNi4xN0w3Ny4wMCAtMjAuMjFMNzcuMDAgLTI4LjI5TDcwLjAwIC0zMi4zM0w2My4wMCAtMjguMjlMNjMuMDAgLTIwLjIxWicvPjxwYXRoIGQ9J00tMjEuMDAgLTQuMDRMLTE0LjAwIC04LjA4TC0xNC4wMCAtMTYuMTdMLTIxLjAwIC0yMC4yMUwtMjguMDAgLTE2LjE3TC0yOC4wMCAtOC4wOFonLz48cGF0aCBkPSdNLTcuMDAgLTQuMDRMMC4wMCAtOC4wOEwwLjAwIC0xNi4xN0wtNy4wMCAtMjAuMjFMLTE0LjAwIC0xNi4xN0wtMTQuMDAgLTguMDhaJy8+PHBhdGggZD0nTTcuMDAgLTQuMDRMMTQuMDAgLTguMDhMMTQuMDAgLTE2LjE3TDcuMDAgLTIwLjIxTDAuMDAgLTE2LjE3TDAuMDAgLTguMDhaJy8+PHBhdGggZD0nTTIxLjAwIC00LjA0TDI4LjAwIC04LjA4TDI4LjAwIC0xNi4xN0wyMS4wMCAtMjAuMjFMMTQuMDAgLTE2LjE3TDE0LjAwIC04LjA4WicvPjxwYXRoIGQ9J00zNS4wMCAtNC4wNEw0Mi4wMCAtOC4wOEw0Mi4wMCAtMTYuMTdMMzUuMDAgLTIwLjIxTDI4LjAwIC0xNi4xN0wyOC4wMCAtOC4wOFonLz48cGF0aCBkPSdNNDkuMDAgLTQuMDRMNTYuMDAgLTguMDhMNTYuMDAgLTE2LjE3TDQ5LjAwIC0yMC4yMUw0Mi4wMCAtMTYuMTdMNDIuMDAgLTguMDhaJy8+PHBhdGggZD0nTTYzLjAwIC00LjA0TDcwLjAwIC04LjA4TDcwLjAwIC0xNi4xN0w2My4wMCAtMjAuMjFMNTYuMDAgLTE2LjE3TDU2LjAwIC04LjA4WicvPjxwYXRoIGQ9J003Ny4wMCAtNC4wNEw4NC4wMCAtOC4wOEw4NC4wMCAtMTYuMTdMNzcuMDAgLTIwLjIxTDcwLjAwIC0xNi4xN0w3MC4wMCAtOC4wOFonLz48cGF0aCBkPSdNLTI4LjAwIDguMDhMLTIxLjAwIDQuMDRMLTIxLjAwIC00LjA0TC0yOC4wMCAtOC4wOEwtMzUuMDAgLTQuMDRMLTM1LjAwIDQuMDRaJy8+PHBhdGggZD0nTS0xNC4wMCA4LjA4TC03LjAwIDQuMDRMLTcuMDAgLTQuMDRMLTE0LjAwIC04LjA4TC0yMS4wMCAtNC4wNEwtMjEuMDAgNC4wNFonLz48cGF0aCBkPSdNMC4wMCA4LjA4TDcuMDAgNC4wNEw3LjAwIC00LjA0TDAuMDAgLTguMDhMLTcuMDAgLTQuMDRMLTcuMDAgNC4wNFonLz48cGF0aCBkPSdNMTQuMDAgOC4wOEwyMS4wMCA0LjA0TDIxLjAwIC00LjA0TDE0LjAwIC04LjA4TDcuMDAgLTQuMDRMNy4wMCA0LjA0WicvPjxwYXRoIGQ9J00yOC4wMCA4LjA4TDM1LjAwIDQuMDRMMzUuMDAgLTQuMDRMMjguMDAgLTguMDhMMjEuMDAgLTQuMDRMMjEuMDAgNC4wNFonLz48cGF0aCBkPSdNNDIuMDAgOC4wOEw0OS4wMCA0LjA0TDQ5LjAwIC00LjA0TDQyLjAwIC04LjA4TDM1LjAwIC00LjA0TDM1LjAwIDQuMDRaJy8+PHBhdGggZD0nTTU2LjAwIDguMDhMNjMuMDAgNC4wNEw2My4wMCAtNC4wNEw1Ni4wMCAtOC4wOEw0OS4wMCAtNC4wNEw0OS4wMCA0LjA0WicvPjxwYXRoIGQ9J003MC4wMCA4LjA4TDc3LjAwIDQuMDRMNzcuMDAgLTQuMDRMNzAuMDAgLTguMDhMNjMuMDAgLTQuMDRMNjMuMDAgNC4wNFonLz48cGF0aCBkPSdNLTIxLjAwIDIwLjIxTC0xNC4wMCAxNi4xN0wtMTQuMDAgOC4wOEwtMjEuMDAgNC4wNEwtMjguMDAgOC4wOEwtMjguMDAgMTYuMTdaJy8+PHBhdGggZD0nTS03LjAwIDIwLjIxTDAuMDAgMTYuMTdMMC4wMCA4LjA4TC03LjAwIDQuMDRMLTE0LjAwIDguMDhMLTE0LjAwIDE2LjE3WicvPjxwYXRoIGQ9J003LjAwIDIwLjIxTDE0LjAwIDE2LjE3TDE0LjAwIDguMDhMNy4wMCA0LjA0TDAuMDAgOC4wOEwwLjAwIDE2LjE3WicvPjxwYXRoIGQ9J00yMS4wMCAyMC4yMUwyOC4wMCAxNi4xN0wyOC4wMCA4LjA4TDIxLjAwIDQuMDRMMTQuMDAgOC4wOEwxNC4wMCAxNi4xN1onLz48cGF0aCBkPSdNMzUuMDAgMjAuMjFMNDIuMDAgMTYuMTdMNDIuMDAgOC4wOEwzNS4wMCA0LjA0TDI4LjAwIDguMDhMMjguMDAgMTYuMTdaJy8+PHBhdGggZD0nTTQ5LjAwIDIwLjIxTDU2LjAwIDE2LjE3TDU2LjAwIDguMDhMNDkuMDAgNC4wNEw0Mi4wMCA4LjA4TDQyLjAwIDE2LjE3WicvPjxwYXRoIGQ9J002My4wMCAyMC4yMUw3MC4wMCAxNi4xN0w3MC4wMCA4LjA4TDYzLjAwIDQuMDRMNTYuMDAgOC4wOEw1Ni4wMCAxNi4xN1onLz48cGF0aCBkPSdNNzcuMDAgMjAuMjFMODQuMDAgMTYuMTdMODQuMDAgOC4wOEw3Ny4wMCA0LjA0TDcwLjAwIDguMDhMNzAuMDAgMTYuMTdaJy8+PHBhdGggZD0nTS0yOC4wMCAzMi4zM0wtMjEuMDAgMjguMjlMLTIxLjAwIDIwLjIxTC0yOC4wMCAxNi4xN0wtMzUuMDAgMjAuMjFMLTM1LjAwIDI4LjI5WicvPjxwYXRoIGQ9J00tMTQuMDAgMzIuMzNMLTcuMDAgMjguMjlMLTcuMDAgMjAuMjFMLTE0LjAwIDE2LjE3TC0yMS4wMCAyMC4yMUwtMjEuMDAgMjguMjlaJy8+PHBhdGggZD0nTTAuMDAgMzIuMzNMNy4wMCAyOC4yOUw3LjAwIDIwLjIxTDAuMDAgMTYuMTdMLTcuMDAgMjAuMjFMLTcuMDAgMjguMjlaJy8+PHBhdGggZD0nTTE0LjAwIDMyLjMzTDIxLjAwIDI4LjI5TDIxLjAwIDIwLjIxTDE0LjAwIDE2LjE3TDcuMDAgMjAuMjFMNy4wMCAyOC4yOVonLz48cGF0aCBkPSdNMjguMDAgMzIuMzNMMzUuMDAgMjguMjlMMzUuMDAgMjAuMjFMMjguMDAgMTYuMTdMMjEuMDAgMjAuMjFMMjEuMDAgMjguMjlaJy8+PHBhdGggZD0nTTQyLjAwIDMyLjMzTDQ5LjAwIDI4LjI5TDQ5LjAwIDIwLjIxTDQyLjAwIDE2LjE3TDM1LjAwIDIwLjIxTDM1LjAwIDI4LjI5WicvPjxwYXRoIGQ9J001Ni4wMCAzMi4zM0w2My4wMCAyOC4yOUw2My4wMCAyMC4yMUw1Ni4wMCAxNi4xN0w0OS4wMCAyMC4yMUw0OS4wMCAyOC4yOVonLz48cGF0aCBkPSdNNzAuMDAgMzIuMzNMNzcuMDAgMjguMjlMNzcuMDAgMjAuMjFMNzAuMDAgMTYuMTdMNjMuMDAgMjAuMjFMNjMuMDAgMjguMjlaJy8+PHBhdGggZD0nTS0yMS4wMCA0NC40NkwtMTQuMDAgNDAuNDFMLTE0LjAwIDMyLjMzTC0yMS4wMCAyOC4yOUwtMjguMDAgMzIuMzNMLTI4LjAwIDQwLjQxWicvPjxwYXRoIGQ9J00tNy4wMCA0NC40NkwwLjAwIDQwLjQxTDAuMDAgMzIuMzNMLTcuMDAgMjguMjlMLTE0LjAwIDMyLjMzTC0xNC4wMCA0MC40MVonLz48cGF0aCBkPSdNNy4wMCA0NC40NkwxNC4wMCA0MC40MUwxNC4wMCAzMi4zM0w3LjAwIDI4LjI5TDAuMDAgMzIuMzNMMC4wMCA0MC40MVonLz48cGF0aCBkPSdNMjEuMDAgNDQuNDZMMjguMDAgNDAuNDFMMjguMDAgMzIuMzNMMjEuMDAgMjguMjlMMTQuMDAgMzIuMzNMMTQuMDAgNDAuNDFaJy8+PHBhdGggZD0nTTM1LjAwIDQ0LjQ2TDQyLjAwIDQwLjQxTDQyLjAwIDMyLjMzTDM1LjAwIDI4LjI5TDI4LjAwIDMyLjMzTDI4LjAwIDQwLjQxWicvPjxwYXRoIGQ9J000OS4wMCA0NC40Nkw1Ni4wMCA0MC40MUw1Ni4wMCAzMi4zM0w0OS4wMCAyOC4yOUw0Mi4wMCAzMi4zM0w0Mi4wMCA0MC40MVonLz48cGF0aCBkPSdNNjMuMDAgNDQuNDZMNzAuMDAgNDAuNDFMNzAuMDAgMzIuMzNMNjMuMDAgMjguMjlMNTYuMDAgMzIuMzNMNTYuMDAgNDAuNDFaJy8+PHBhdGggZD0nTTc3LjAwIDQ0LjQ2TDg0LjAwIDQwLjQxTDg0LjAwIDMyLjMzTDc3LjAwIDI4LjI5TDcwLjAwIDMyLjMzTDcwLjAwIDQwLjQxWicvPjxwYXRoIGQ9J00tMjguMDAgNTYuNThMLTIxLjAwIDUyLjU0TC0yMS4wMCA0NC40NkwtMjguMDAgNDAuNDFMLTM1LjAwIDQ0LjQ2TC0zNS4wMCA1Mi41NFonLz48cGF0aCBkPSdNLTE0LjAwIDU2LjU4TC03LjAwIDUyLjU0TC03LjAwIDQ0LjQ2TC0xNC4wMCA0MC40MUwtMjEuMDAgNDQuNDZMLTIxLjAwIDUyLjU0WicvPjxwYXRoIGQ9J00wLjAwIDU2LjU4TDcuMDAgNTIuNTRMNy4wMCA0NC40NkwwLjAwIDQwLjQxTC03LjAwIDQ0LjQ2TC03LjAwIDUyLjU0WicvPjxwYXRoIGQ9J00xNC4wMCA1Ni41OEwyMS4wMCA1Mi41NEwyMS4wMCA0NC40NkwxNC4wMCA0MC40MUw3LjAwIDQ0LjQ2TDcuMDAgNTIuNTRaJy8+PHBhdGggZD0nTTI4LjAwIDU2LjU4TDM1LjAwIDUyLjU0TDM1LjAwIDQ0LjQ2TDI4LjAwIDQwLjQxTDIxLjAwIDQ0LjQ2TDIxLjAwIDUyLjU0WicvPjxwYXRoIGQ9J000Mi4wMCA1Ni41OEw0OS4wMCA1Mi41NEw0OS4wMCA0NC40Nkw0Mi4wMCA0MC40MUwzNS4wMCA0NC40NkwzNS4wMCA1Mi41NFonLz48cGF0aCBkPSdNNTYuMDAgNTYuNThMNjMuMDAgNTIuNTRMNjMuMDAgNDQuNDZMNTYuMDAgNDAuNDFMNDkuMDAgNDQuNDZMNDkuMDAgNTIuNTRaJy8+PHBhdGggZD0nTTcwLjAwIDU2LjU4TDc3LjAwIDUyLjU0TDc3LjAwIDQ0LjQ2TDcwLjAwIDQwLjQxTDYzLjAwIDQ0LjQ2TDYzLjAwIDUyLjU0WicvPjwvZz48L3N2Zz4=");
+  --photonic-weave: var(--photonic-weave-img) 0 0 / 42px 24.2487px repeat,
+                    radial-gradient(120% 130% at 30% 18%, rgba(21,185,255,.10) 0%, rgba(21,185,255,0) 62%),
+                    linear-gradient(165deg, #070a11 0%, #04060b 100%);
+  /* the pane interior: dark at the centre, hue at the rim. This is the token
+     that makes a pane read as projected rather than painted. */
+  --photonic-bloom: radial-gradient(closest-side, rgba(0,0,0,.55) 0%, rgba(0,0,0,.18) 42%,
+                    rgba(21,185,255,.10) 72%, rgba(21,185,255,.34) 100%),
+                    linear-gradient(165deg, #091321 0%, #060a12 100%);
+  /* the conic disc: 11 stops sampled clockwise off the reference's node 10:2 */
+  --photonic-spectrum: conic-gradient(from 210deg,
+                    #49f2b7 0%, #49f2d9 9%, #49e1f2 18%, #49bff2 27%, #498ff2 36%, #6249f2 45%,
+                    #bd49f2 54%, #f249ce 63%, #f2497c 72%, #f25449 81%, #f29949 90%, #49f2b7 100%);
+  --photonic-film: rgba(3, 6, 13, .62);        /* the pane as data */
+  --photonic-pane-solid: #09121c;              /* derived: film over the lightest
+                                                  ground pixel — print/email fallback */
+  --photonic-rim: rgba(21, 185, 255, .42);     /* the reference's four channel rims */
+  --photonic-rim-2: rgba(182, 76, 232, .42);   /* (violet channel: media, charts) */
+}

@@ -1,0 +1,115 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#15b9ff",
+        "primary-hover": "#4acaff",
+        "on-primary": "#061019",
+        "primary-soft": "#15b9ff29",
+        "secondary": "#b64ce8",
+        "tertiary": "#8fe3ff",
+        "neutral": "#05070d",
+        "surface": "#03060d9e",
+        "surface-2": "#020409c7",
+        "surface-solid": "#09121c",
+        "text": "#e8f3fa",
+        "text-muted": "#a9b8c4",
+        "text-dim": "#8e9dab",
+        "ok": "#15ffab",
+        "warn": "#ffa23a",
+        "danger": "#ff554a",
+        "info": "#6c8cf5",
+        "border": "#15b9ff6b",
+        "border-strong": "#15b9ffb8",
+        "bg-stop-1": "#060910",
+        "bg-stop-2": "#05070d",
+        "bg-stop-3": "#04050a",
+        "weave": "#7ee7ff"
+      },
+      "fontFamily": {
+        "display": [
+          "Genos"
+        ],
+        "h1": [
+          "Genos"
+        ],
+        "h2": [
+          "Genos"
+        ],
+        "body": [
+          "Rubik"
+        ],
+        "small": [
+          "Rubik"
+        ],
+        "button": [
+          "Rubik"
+        ],
+        "label": [
+          "Azeret Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.7rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "600"
+          }
+        ],
+        "h1": [
+          "1.75rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "600"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "500"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "button": [
+          "0.875rem",
+          {
+            "fontWeight": "500"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.18em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "8px",
+        "md": "14px",
+        "lg": "26px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

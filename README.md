@@ -103,6 +103,7 @@ order, palette limits.
 | [`retro-anime`](kits/retro-anime/DESIGN.md) | light · retro · anime · shoujo · celestial · pastel | retro-romantic and magical: fan and fandom pages, game and visual-novel UI, zine and event branding, anything that should feel like a 90s shoujo title card |
 | [`space-noir`](kits/space-noir/DESIGN.md) | dark · retro · poster · noir · print · cinematic | cinematic, adult, poster-grade branding — music and film pages, album and event covers, editorial features, anything that should feel like a printed 90s poster |
 | [`holographic`](kits/holographic/DESIGN.md) | dark · iridescent · prismatic · futuristic · chrome · glow | iridescent, futuristic, premium-tech branding — product launches, sci-fi and music media, AI/dev-tool marketing, anything that should look like foil catching light |
+| [`photonic`](kits/photonic/DESIGN.md) | dark · sci-fi · holographic · translucent · luminous · screen | projected and in-world interfaces — sci-fi, space and hardware product pages, HUD and telemetry overlays, ambient status displays, AI and vision marketing, anything that should look lit from its own edges rather than printed |
 <!-- END KITS -->
 
 ## Token contract (v1)

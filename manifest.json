@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 31,
+  "kit_count": 32,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -1525,6 +1525,58 @@
         "tokens": "kits/holographic/tokens.css",
         "lab": "kits/holographic/index.html",
         "readme": "kits/holographic/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "photonic",
+      "name": "Photonic",
+      "tagline": "Hologram layers floating off a dark tablet screen — transparent panes lit at the rim",
+      "description": "Transparent film lit at the rim — panes you see through, a glowing hue-coded edge that bleeds inward and dies at the centre, a drawn honeycomb light-field, and one spectrum that lives in the material.",
+      "index": "32",
+      "order": 185,
+      "mode": "dark",
+      "tags": [
+        "dark",
+        "sci-fi",
+        "holographic",
+        "translucent",
+        "luminous",
+        "screen"
+      ],
+      "fonts": "Genos · Rubik · Azeret Mono",
+      "source": "derived from the user's Figma reference (fileKey 4tEWhmZzpqWsjjwJrqS8lg, node 4:2 \"Glowy stuff\") — the same node the holographic kit was taken from, read the other way: its measured light (a ~30% neutral film in multiply over the ground = ground x 0.88, a 1-3px saturated rim, inset 2px 4px 10px 4px inward bleed, 0 0 8px 4px outward bloom, a 14px honeycomb weave) is kept rather than re-expressed as hard-banded foil",
+      "colors": {
+        "primary": "#15b9ff",
+        "primary-hover": "#4acaff",
+        "on-primary": "#061019",
+        "primary-soft": "rgba(21, 185, 255, 0.16)",
+        "secondary": "#b64ce8",
+        "tertiary": "#8fe3ff",
+        "neutral": "#05070d",
+        "surface": "rgba(3, 6, 13, 0.62)",
+        "surface-2": "rgba(2, 4, 9, 0.78)",
+        "surface-solid": "#09121c",
+        "text": "#e8f3fa",
+        "text-muted": "#a9b8c4",
+        "text-dim": "#8e9dab",
+        "ok": "#15ffab",
+        "warn": "#ffa23a",
+        "danger": "#ff554a",
+        "info": "#6c8cf5",
+        "border": "rgba(21, 185, 255, 0.42)",
+        "border-strong": "rgba(21, 185, 255, 0.72)",
+        "bg-stop-1": "#060910",
+        "bg-stop-2": "#05070d",
+        "bg-stop-3": "#04050a",
+        "weave": "#7ee7ff"
+      },
+      "files": {
+        "design": "kits/photonic/DESIGN.md",
+        "design_html": "kits/photonic/DESIGN.html",
+        "tokens": "kits/photonic/tokens.css",
+        "lab": "kits/photonic/index.html",
+        "readme": "kits/photonic/README.md"
       },
       "warnings": []
     }

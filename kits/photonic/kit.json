@@ -1,0 +1,23 @@
+{
+  "name": "Photonic",
+  "tagline": "Hologram layers floating off a dark tablet screen — transparent panes lit at the rim",
+  "signature": [
+    "--photonic-screen",
+    "--photonic-bloom",
+    "--photonic-spectrum"
+  ],
+  "order": 185,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&family=Genos:wght@500;600;700&family=Rubik:wght@400;500;600;700&display=swap",
+  "fonts_label": "Genos · Rubik · Azeret Mono",
+  "mode": "dark",
+  "source": "derived from the user's Figma reference (fileKey 4tEWhmZzpqWsjjwJrqS8lg, node 4:2 \"Glowy stuff\") — the same node the holographic kit was taken from, read the other way: its measured light (a ~30% neutral film in multiply over the ground = ground x 0.88, a 1-3px saturated rim, inset 2px 4px 10px 4px inward bleed, 0 0 8px 4px outward bloom, a 14px honeycomb weave) is kept rather than re-expressed as hard-banded foil",
+  "tags": [
+    "dark",
+    "sci-fi",
+    "holographic",
+    "translucent",
+    "luminous",
+    "screen"
+  ],
+  "use_when": "projected and in-world interfaces — sci-fi, space and hardware product pages, HUD and telemetry overlays, ambient status displays, AI and vision marketing, anything that should look lit from its own edges rather than printed"
+}

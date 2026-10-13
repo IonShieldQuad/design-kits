@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photonic — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Photonic kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&amp;family=Genos:wght@500;600;700&amp;family=Rubik:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Photonic</h1>
+  <p class="spec-sub">Hologram layers floating off a dark tablet screen — transparent panes lit at the rim</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Photonic
+description: Transparent film lit at the rim — panes you see through, a glowing hue-coded edge that bleeds inward and dies at the centre, a drawn honeycomb light-field, and one spectrum that lives in the material.
+colors:
+  primary: &quot;#15b9ff&quot;
+  primary-hover: &quot;#4acaff&quot;
+  on-primary: &quot;#061019&quot;
+  primary-soft: &quot;rgba(21, 185, 255, 0.16)&quot;
+  secondary: &quot;#b64ce8&quot;
+  tertiary: &quot;#8fe3ff&quot;
+  neutral: &quot;#05070d&quot;
+  surface: &quot;rgba(3, 6, 13, 0.62)&quot;
+  surface-2: &quot;rgba(2, 4, 9, 0.78)&quot;
+  surface-solid: &quot;#09121c&quot;
+  text: &quot;#e8f3fa&quot;
+  text-muted: &quot;#a9b8c4&quot;
+  text-dim: &quot;#8e9dab&quot;
+  ok: &quot;#15ffab&quot;
+  warn: &quot;#ffa23a&quot;
+  danger: &quot;#ff554a&quot;
+  info: &quot;#6c8cf5&quot;
+  border: &quot;rgba(21, 185, 255, 0.42)&quot;
+  border-strong: &quot;rgba(21, 185, 255, 0.72)&quot;
+  bg-stop-1: &quot;#060910&quot;
+  bg-stop-2: &quot;#05070d&quot;
+  bg-stop-3: &quot;#04050a&quot;
+  weave: &quot;#7ee7ff&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Genos&quot;
+    fontSize: &quot;2.7rem&quot;
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: &quot;0.004em&quot;
+  h1:
+    fontFamily: &quot;Genos&quot;
+    fontSize: &quot;1.75rem&quot;
+    fontWeight: 600
+    lineHeight: 1.12
+    letterSpacing: &quot;0.004em&quot;
+  h2:
+    fontFamily: &quot;Genos&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: &quot;Rubik&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.62
+  small:
+    fontFamily: &quot;Rubik&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Rubik&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;Azeret Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.18em&quot;
+
+rounded:
+  sm: &quot;8px&quot;
+  md: &quot;14px&quot;
+  lg: &quot;26px&quot;
+  pill: &quot;999px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-solid:
+    backgroundColor: &quot;{colors.surface-solid}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-3:
+    backgroundColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;</code></pre></section>
+<h2 id="photonic">Photonic</h2>
+<p><strong>Transparent film, lit at the rim.</strong> Not a dark card with a coloured border: a pane you can see through, whose only light source is its own edge. The rim is a saturated hue, the hue bleeds inward and dies at the centre, the pane darkens whatever is behind it by 62%, and everything sits on a drawn honeycomb light-field at a 14px pitch. There is one spectrum (the reference's conic disc) and it lives in the material — a progress fill, an avatar, a media panel — never as a third accent.</p>
+<h3 id="overview">Overview</h3>
+<p>A hologram is an optical object before it is a UI style: light leaves an edge, passes through a film, and what you see is the <em>combination</em> of that film with whatever is behind it. This kit is built from that sentence, and every decision below follows from it.</p>
+<ul><li><strong>The back layer is a screen.</strong> A tablet display: a flare along its top edge, 32px display rows, the honeycomb emitter lattice, a backlight blooming down from the top and a vignette at the rim. It is the light source, and it is part of the theme rather than a neutral backdrop.</li><li><strong>The front layers float off it.</strong> <code>{colors.surface}</code> is a 54% film with a faint cyan wash falling through it, so 46% of the screen shows through every pane; the film over the kit's lightest ground pixel lands at <code>#132a38</code>, over a white page at <code>#727a80</code>. A pane's value is <em>derived</em>, and the soft occluding halo in <code>--shadow-1</code> is what lifts it off the display.</li><li><strong>The rim is the emitter.</strong> <code>{colors.border}</code> at <code>rgba(21,185,255,.42)</code> plus the inward bleed and outward bloom of <code>--shadow-1</code> — the reference's measured <code>inset 2px 4px 10px 4px</code> and <code>0 0 8px 4px</code>.</li><li><strong>The lattice is drawn.</strong> A honeycomb at a 14px pitch (the reference's own measurement), drawn as base64 SVG and tiled — here it doubles as the screen's emitter matrix rather than sitting behind the page as decoration.</li><li><strong>Hue codes function, not decoration.</strong> Cyan is the action, violet the counterpoint, and the reference's other two tiles — mint, coral — become the status ladder.</li></ul>
+<h3 id="colors">Colors</h3>
+<p><code>{colors.primary}</code> is the reference's system cyan, taken from the file's own label glow. It is the only action colour: primary buttons, links, active nav, the focus ring. <code>{colors.secondary}</code> violet is the counterpoint, confined to media, charts and the spectrum. <code>{colors.tertiary}</code> is the same cyan family re-tuned for <strong>text</strong> — the fill colour is 8.5:1 on a pane but only as a large label, so small type uses the lighter member.</p>
+<p>The status ladder is the reference's remaining tile hues: <code>{colors.ok}</code> is its mint, <code>{colors.danger}</code> its coral, <code>{colors.warn}</code> and <code>{colors.info}</code> are stops sampled out of its conic disc.</p>
+<p><code>{colors.neutral}</code> is the ground. It is not a preference: it is the floor the film was graded against, and the lightest pixel any viewer can scroll to is <code>#122535</code> (three washes overlapping).</p>
+<h3 id="typography">Typography</h3>
+<p>Genos for display — a squared technical face that reads as signage rather than as a HUD readout — Rubik for body text, Azeret Mono for labels, keys and metadata. Labels are uppercase mono at <code>{typography.label}</code> (12px floor) with <code>{typography.label.letterSpacing}</code>, the register of an instrument that names its own channels rather than a poster.</p>
+<p>The reference's own label face is Gruppo; the <code>holographic</code> kit already carries it from this same node, so it is deliberately not doubled here. The reference's heading face (Nova Flat) belongs to <code>cyber-angel</code>.</p>
+<h3 id="layout">Layout</h3>
+<p>The page is a display, so the ground is never blank: the screen's rows, lattice, backlight and vignette carry the top of the document and stay anchored in px as it scrolls. A 12-column feel with generous vertical rhythm (<code>{spacing.lg}</code> between sections, <code>{spacing.xl}</code> for hero pacing). Panes can overlap — a translucent surface over another pane is the one composition this kit affords and no other dark kit does — but never more than one level deep, because two 62% films stack to 86% and the second one stops reading as film at all.</p>
+<p>The weave is pitched in px, not %, so the field's scale is constant from the masthead to the footer of a long document.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>emitted, then occluded</strong>. <code>--shadow-1</code> is four parts: the inward hue bleed (<code>inset 2px 4px 10px 4px</code>) and the outward bloom (<code>0 0 12px 2px</code>) from the reference, plus a lit top edge — light from the screen arriving under the pane — and a wide, soft <em>occluding</em> halo beneath it. That halo is the one thing the reference could not teach: there the panels were drawn on a flat canvas and needed no separation, while here a pane floats in front of a lit display and collapses into a bordered card without it. <code>--shadow-2</code> deepens both for a surface that must float off another pane.</p>
+<p><code>--blur</code> at <code>blur(10px) saturate(112%)</code> is load-bearing: a 54% film over an emissive ground is see-through by design, and the blur is what keeps the screen's own lattice from reading through the text on top of it. Remove it and the pane stays transparent but stops being legible.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 8px (the reference's own panel radius), <code>{rounded.md}</code> 14px, <code>{rounded.lg}</code> 26px for panes, pills at 999px, <code>--cut: 0px</code>. A hologram has no mitered corners — this kit rounds, and it rounds generously, the way the reference's 180px tile carries an 18% corner radius.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a solid <code>{colors.primary}</code> plate with a <code>{colors.on-primary}</code> label and the full <code>--glow</code> bloom. It is the one filled, opaque thing in the kit, which is exactly how it stays distinguishable from the status hues it sits beside.</li><li><strong>button-secondary</strong> — <code>{colors.surface}</code> film with cyan text and the <code>--btn-shadow</code> rim: a lit pane, not a stroked button.</li><li><strong>card</strong> — the film, a 1px rim, <code>--shadow-1</code>, <code>--blur</code>. Its value is derived from the ground.</li><li><strong>card-elevated</strong> — the denser film with <code>--shadow-2</code>; the extra opacity is what lifts it.</li><li><strong>input</strong> — a shallow lens recess: <code>--input-inset</code> is a dark well with a lit lip, so a field looks machined into the pane rather than printed on it.</li><li><strong>badge</strong> — mono, uppercase, pill; <code>badge-accent</code> carries the cyan tint, the others take a status hue with a tinted rim.</li><li><strong>avatar / chart-1..3</strong> — where the spectrum and the counterpoint are allowed.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the ground. A pane's value comes from what is behind it — that is the kit, not a detail.</li><li>Grade any new text colour against the <strong>composited</strong> pane (film over the lightest ground pixel).</li><li>Reach for the rim and the bloom before reaching for a heavier border.</li><li>Keep the weave at a 14px pitch. Finer and it reads as noise; coarser and it reads as wallpaper.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't set <code>--blur</code> to <code>none</code>. Without it the film stops hiding what is behind it.</li><li>Don't swap <code>--bg</code> for a light ground: <code>--text-muted</code> falls to 3.07:1 on a white page.</li><li>Don't stack more than one translucent pane.</li><li>Don't use <code>{colors.secondary}</code> (violet) as an action colour or as small text — it is 4.7:1 on a pane and belongs to media and charts.</li><li>Don't add a third accent. The four reference hues are one action, one counterpoint and two status colours; a fifth hue makes a hologram look like a dashboard.</li><li>Don't put the weave behind text at a higher amplitude than the token ships — it is a field, not a pattern.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>
