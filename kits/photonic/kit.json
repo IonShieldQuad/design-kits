@@ -3,7 +3,7 @@
   "tagline": "Hologram layers floating off a dark tablet screen — transparent panes lit at the rim",
   "signature": [
     "--photonic-screen",
-    "--photonic-bloom",
+    "--photonic-pane",
     "--photonic-spectrum"
   ],
   "order": 185,

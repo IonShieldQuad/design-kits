@@ -196,10 +196,18 @@ built from that sentence, and every decision below follows from it.
 - **The back layer is a screen.** A tablet display: a flare along its top edge, 32px display rows,
   the honeycomb emitter lattice, a backlight blooming down from the top and a vignette at the rim.
   It is the light source, and it is part of the theme rather than a neutral backdrop.
-- **The front layers float off it.** `{colors.surface}` is a 54% film with a faint cyan wash falling
-  through it, so 46% of the screen shows through every pane; the film over the kit's lightest ground
-  pixel lands at `#132a38`, over a white page at `#727a80`. A pane's value is *derived*, and the
-  soft occluding halo in `--shadow-1` is what lifts it off the display.
+- **The front layers float off it.** `{colors.surface}` is the *pane material*, not a fill: the woven
+  lattice (a 14px pitch) + the rim light (dark through the middle, cyan arriving at the edge, violet
+  rising in one corner) + a 56% blue film. 44% of the screen still shows through every pane; the film
+  over the kit's lightest ground pixel lands at `#0f3046`, over a white page at `#657b8a`. A pane's
+  value is *derived*, and the soft occluding halo in `--shadow-1` is what lifts it off the display.
+- **The field is inside the weave, never on its own.** `{colors.surface-2}` — inputs, alerts, badges,
+  progress tracks, code blocks — carries the same two layers as a card, at about half the strength and
+  at three times the cell size, so a small control shows one cell edge rather than a pattern.
+- **The material is saturated; the ground is not.** The reference's tiles are vivid — hue at full
+  saturation on a thin rim, bleeding inward — and a neutral film on a near-black ground renders as
+  dead grey. So the colour is spent where it belongs (rims, blooms, the card's own weave, the
+  spectrum) and the ground's lattice is pitched at 3× the cell size with a third of the contrast.
 - **The rim is the emitter.** `{colors.border}` at `rgba(21,185,255,.42)` plus the inward bleed and
   outward bloom of `--shadow-1` — the reference's measured `inset 2px 4px 10px 4px` and
   `0 0 8px 4px`.
@@ -211,8 +219,9 @@ built from that sentence, and every decision below follows from it.
 
 ## Colors
 
-`{colors.primary}` is the reference's system cyan, taken from the file's own label glow. It is the
-only action colour: primary buttons, links, active nav, the focus ring. `{colors.secondary}` violet
+`{colors.primary}` is the reference's system cyan, taken from the file's own label glow, at the
+saturation the reference drew it (its rims are 100% saturation — the kit does not soften them). It is
+the only action colour: primary buttons, links, active nav, the focus ring. `{colors.secondary}` violet
 is the counterpoint, confined to media, charts and the spectrum. `{colors.tertiary}` is the same
 cyan family re-tuned for **text** — the fill colour is 8.5:1 on a pane but only as a large label,
 so small type uses the lighter member.
@@ -246,11 +255,17 @@ films stack to 86% and the second one stops reading as film at all.
 The weave is pitched in px, not %, so the field's scale is constant from the masthead to the footer
 of a long document.
 
+The colour field inside a card **decays with distance from the nearest border** rather than from the
+centre: deep cyan arrives from the top and bottom, deep violet from the left and right, each reaching
+about 40–46% into the box and falling to nothing. A corner, being nearest two borders, is therefore the
+brightest point of a card and the middle is its quietest — the same model the reference's tiles use.
+
 ## Elevation & Depth
 
 Depth is **emitted, then occluded**. `--shadow-1` is four parts: the inward hue bleed (`inset 2px 4px
-10px 4px`) and the outward bloom (`0 0 12px 2px`) from the reference, plus a lit top edge — light
-from the screen arriving under the pane — and a wide, soft *occluding* halo beneath it. That halo is
+10px 4px` at 34%) and the outward bloom (`0 0 14px 2px` at 45%) from the reference — its own measured
+rim glow is 45–50%, so the bloom is *bright*, not wide — plus a lit top edge, light from the screen
+arriving under the pane, and a wide, soft *occluding* halo beneath it. That halo is
 the one thing the reference could not teach: there the panels were drawn on a flat canvas and needed
 no separation, while here a pane floats in front of a lit display and collapses into a bordered card
 without it. `--shadow-2` deepens both for a surface that must float off another pane.
@@ -292,6 +307,9 @@ rounds generously, the way the reference's 180px tile carries an 18% corner radi
 **Don't**
 
 - Don't set `--blur` to `none`. Without it the film stops hiding what is behind it.
+- Don't flatten a card onto `{colors.surface-2}` or a solid fill; `{colors.surface}` *is* the material.
+- Don't shrink the ground's cells back to the card's pitch — the two scales are what keep the page and
+  the panes from fighting.
 - Don't swap `--bg` for a light ground: `--text-muted` falls to 3.07:1 on a white page.
 - Don't stack more than one translucent pane.
 - Don't use `{colors.secondary}` (violet) as an action colour or as small text — it is 4.7:1 on a

@@ -21,11 +21,11 @@ file — the light, kept and made usable. The value is in what the reference act
 
 | measured on the reference | value | where it lands here |
 |---|---|---|
-| the tile's fill | `#979a9a` at 30% in **multiply** over the canvas (ground × 0.88) | `--surface` — a dark film that darkens whatever is behind it, hue preserved |
-| the rim | 1–3px saturated hue, constant around the perimeter (hue varies < 3° all the way round) | `--border` at 42%, `--border-w: 1px` |
-| the inward bleed | `inset 2px 4px 10px 4px` at 25–50% | `--shadow-1` first layer |
-| the outward bloom | `0 0 8px 4px` at 50% | `--shadow-1` second layer |
-| the surface behind it | a honeycomb weave, **14 CSS px** lattice, ~1px edges sitting 10–12 levels below the cell fill | `--photonic-weave-img`: a drawn base64 SVG tiled at 42 × 24.25px, `--bg` + `--media-bg` |
+| the tile's fill | `#979a9a` at 30% in **multiply** over the canvas (ground × 0.88) | the film inside `--photonic-pane` — a blue-tinted 56% pane, so the ground still shows through it |
+| the rim | 1–3px saturated hue, constant around the perimeter (hue varies < 3° all the way round) | `--border` at 58%, `--border-w: 1px` |
+| the inward bleed | `inset 2px 4px 10px 4px` at 25–50% | `--shadow-1` first layer, at 34% |
+| the outward bloom | `0 0 8px 4px` at 50% | `--shadow-1` second layer, at 45% |
+| the surface behind it | a honeycomb weave, **14 CSS px** lattice, ~1px edges sitting 10–12 levels below the cell fill | `--photonic-weave-img`: the card's own material, drawn as base64 SVG |
 | the disc | a 12-stop conic spectrum, darker at the centre, vivid at the rim | `--photonic-spectrum` (11 stops, sampled clockwise off node `10:2`) |
 
 The screen is built as a display is: a flare along its top edge, 32px **display rows**, the emitter
@@ -40,8 +40,30 @@ doubling as the emitter matrix. It is deliberately not an LCD/shadow-mask grid: 
 surface inside a fiction, not a photograph of hardware.
 
 Multiply is not reachable from a token, so the film is expressed the way it *behaves* on a dark
-ground — a black-alpha pane that darkens the ground by 62% and keeps its hue — which is the same
-arithmetic over the grounds this kit is valid on.
+ground: a blue-tinted pane at 56%, which darkens the ground and keeps its hue — the same arithmetic
+over the grounds this kit is valid on. It is blue rather than neutral because the reference's tiles
+are *saturated*: a neutral film on a near-black ground renders as dead grey, and the kit's colour is
+supposed to look like light through glass, not like a dark box.
+
+**The field decays with distance from the nearest border — it is not a radial.** Four edge gradients:
+deep cyan arriving from the top and bottom, deep violet from the left and right, each reaching ~40–46%
+into the box and falling to nothing. Intensity is therefore highest *against a border* and the middle
+is the quietest part of a card; and because it follows distance-to-border rather than
+distance-to-centre, a corner (nearest two borders) is the brightest point — the reference's own
+behaviour. Text lives in the 12–20% band, which is the brightest ink ground in a card, so the alphas
+are set where `--text-dim` still clears its floor *there*: a bright accent cyan at 0.26 in that band
+measured 3.3:1, which is why the field is built from deep hues (a saturated mid-blue at 0.32, a deep
+violet at 0.20) rather than the bright ones.
+
+**The material, and where it lives.** A card is not a fill. `--surface` is `--photonic-pane`: the
+woven lattice + that field + the film — one value, because a wash on its own is a printing fault and
+only becomes material once the weave is over it. `--surface-2` — the nested tier worn by inputs,
+alerts, badges, progress tracks and code blocks — carries the same two layers at roughly half the
+strength and at three times the cell size (42px, so a 40px control shows one cell edge and reads as
+detail rather than pattern). The ground is deliberately the *opposite* of the card: a
+lattice at 3× the cell size (42px) carrying a third of the contrast, so the page stays a quiet surface
+and the ground never reads as texture inside a card — the card's own weave is pitched at 14px and
+drawn stronger than the ground's, which is what keeps the two from fighting.
 
 **One weave, deliberately inverted.** On the reference the weave is dark dividers on a mid-gray
 canvas. The same weave on a near-black ground would be invisible, so here it is drawn as *lit* edges
@@ -51,27 +73,26 @@ requires.
 ## The backdrop contract
 
 **This is the one kit in the library whose surfaces are derived rather than declared, so the ground
-is part of the theme.** `--surface` is 62% film: the pane is `ground × 0.38 + film`, never a fixed
-colour. Measured, with the film composited channel-by-channel in sRGB:
+is part of the theme.** `--surface` is a 56% film: the pane is `ground × 0.44 + film`, never a fixed
+colour. Measured, with the film and its in-card gradient composited channel-by-channel in sRGB:
 
 | ground behind the pane | pane composites to | `--text` | `--text-muted` |
 |---|---|---|---|
-| the kit's own lightest pixel `#183b50` (screen backlight + three washes) | `#132a38` | 13.2:1 | 7.3:1 |
-| the kit's darkest pixel `#030408` | `#0a1218` | 16.8:1 | 9.3:1 |
-| mid-gray (the reference's own canvas `#414141`) | `#252c31` | 12.6:1 | 7.0:1 |
-| a light photo-ish gray `#c9d2da` | `#606b73` | 4.8:1 | **2.7:1** |
-| a white page `#f2f5f8` | `#727a80` | **3.9:1** | **2.1:1** |
+| the kit's own lightest pixel `#18394e` (screen backlight + three washes) | `#19294d` | 12.7:1 | 7.9:1 (dim 6.4:1) |
+| the kit's darkest pixel `#030408` | `#131a39` | 15.1:1 | 9.3:1 (dim 7.6:1) |
+| mid-gray (the reference's own canvas `#414141`) | `#242c49` | 12.2:1 | 7.6:1 (dim 6.1:1) |
+| a light photo-ish gray `#c9d2da` | `#4b5575` | 6.5:1 | **4.0:1** |
+| a white page `#f2f5f8` | `#575f7e` | **5.6:1** | **3.4:1** |
 
-Solving for the crossing point: `--text` still clears 7:1 over a plain ground as light as `#999999`,
-`--text-muted` 4.5:1 up to `#848484`, and `--text-dim` 4.55:1 up to `#535353`. A light *ground* is not
+Solving for the crossing point: `--text` still clears 7:1 over a plain ground as light as `#c0c0c0`, `--text-muted` 4.5:1 up to `#b8b8b8`, and `--text-dim` 4.55:1 up to `#878787`. A light *ground* is not
 the failure — a light ground *behind a pane* is, because the film turns it milky while the ink stays put. Three consequences, all intentional:
 
 1. **Never replace `--bg`.** It ships with the kit because it is the floor the film was graded
    against. Propping these panes over a page you did not control is the failure this table predicts.
-2. **`--blur` is not decoration.** `blur(10px) saturate(112%)` is what stops high-frequency content
+2. **`--blur` is not decoration.** `blur(6px) saturate(108%)` is what stops high-frequency content
    behind a pane from reading straight through its text. Set it to `none` and the film is still
    transparent — it just stops being legible.
-3. **Two panes never stack.** 54% over 54% is 79%, at which point the second layer is a painted
+3. **Two panes never stack.** 56% over 56% is 81%, at which point the second layer is a painted
    panel with a hologram's rim drawn on it.
 
 If a project genuinely needs a light ground, that is a different kit (see `glass`), not an override.
@@ -104,8 +125,19 @@ If a project genuinely needs a light ground, that is a different kit (see `glass
   drawn artwork, and it carries a base layer so the tile is never an empty chip.
 - **`--media-op: 1`.** The media panel is a lit region of the screen, not a bright ramp; the default
   0.85 would grey it out.
-- **The rim is 1px and the bloom is small.** The edge is the emitter, so it does not need a wide halo
-  to be seen — the wide halo was tried and it flattened every control into the same neon blur.
+- **The in-card gradient is capped at 0.34, and the glow carries the rest.** A stronger gradient inside a
+  card looks richer in isolation and washes the text sitting on it, so the light was moved out of the
+  fill and onto the edge (`--shadow-1`'s bloom is 60%) — which is also where the reference put it.
+- **The rim is 1px, the bloom is not small.** The reference's own rim glow measures 45–50%; a thin
+  rim under a wide halo reads as a soft neon wash and flattens every control into the same blur, which
+  is why `--shadow-1` keeps the bloom tight (14px) and puts the *brightness* up rather than the spread.
+- **The rim and the film carry different jobs.** The rim is saturated (58% cyan); the film is dark and
+  blue. Making the film lighter to look more colourful greys the whole kit out instead.
+- **The nested tier is not a flat rectangle.** Code blocks in particular were reading as a plain blue
+  box, so `--surface-2` gained the same weave-plus-edge-wash construction as a card, just quieter and
+  coarser; the least that stops a bordered rectangle from looking like a wireframe.
+- **The signature row shows `--photonic-pane`, not just `--photonic-screen`.** The pane is where the
+  colour is; the screen is deliberately the quiet half.
 - **The `--photonic-screen` signature tile is a dark chip, on purpose.** A display is dark; its
   presence at 168×72 comes from the lattice, the rows and the flare along its top edge, not from a
   bright fill. Its two siblings (`--photonic-bloom`, `--photonic-spectrum`) carry the colour.

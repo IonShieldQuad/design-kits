@@ -63,7 +63,7 @@ OPTIONAL_TOKENS = [
     "--accent-ink", "--accent-ink-hover", "--text-on-surface", "--text-on-surface-muted",
     "--text-on-surface-2", "--text-on-surface-2-muted",
     # shape / construction
-    "--clip", "--input-inset", "--btn-shadow",
+    "--clip", "--input-inset", "--btn-shadow", "--btn-shadow-active",
     # bars and switches: the lab chromed .nav/.tabs/.toggle directly and offered no shadow hook, so a
     # kit could not make a milled channel or a seated knob without a kit.css. Now it can.
     "--bar-shadow", "--bar-item-shadow", "--bar-item-pad", "--toggle-shadow", "--toggle-knob-shadow",
