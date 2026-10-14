@@ -6,7 +6,7 @@
     "--photonic-pane",
     "--photonic-spectrum"
   ],
-  "order": 185,
+  "order": 195,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&family=Genos:wght@500;600;700&family=Rubik:wght@400;500;600;700&display=swap",
   "fonts_label": "Genos · Rubik · Azeret Mono",
   "mode": "dark",

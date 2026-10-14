@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 32,
+  "kit_count": 34,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -1529,12 +1529,103 @@
       "warnings": []
     },
     {
+      "slug": "space-program",
+      "name": "Space Program",
+      "tagline": "The room the mission is run from — white flight-checklist plates, one agency blue that acts, and a console of stencils, graduations and status lamps",
+      "description": "Mission control — a near-white engineering drawing sheet with a rimmed border and a module grid, white plates bolted onto it, one agency blue that acts, and a console of drawn telemetry — a checklist, a block number and a lamp cluster. The room the mission is run from, not the sky it flies through.",
+      "index": "32",
+      "order": 185,
+      "mode": "light",
+      "tags": [
+        "light",
+        "mission-control",
+        "engineering",
+        "console",
+        "telemetry",
+        "checklist"
+      ],
+      "fonts": "Big Shoulders Display · IBM Plex Sans · Overpass Mono",
+      "source": "original",
+      "colors": {
+        "primary": "#12539f",
+        "primary-hover": "#0d3f80",
+        "primary-ink": "#0e3f8f",
+        "secondary": "#2b6fc4",
+        "tertiary": "#8f5404",
+        "neutral": "#fbfcfe",
+        "surface": "#ffffff",
+        "surface-2": "#e9eef5",
+        "text": "#0d1b2a",
+        "text-muted": "#4a5768",
+        "text-dim": "#55627a",
+        "invert": "#ffffff",
+        "success": "#10703a",
+        "warning": "#8f5404",
+        "error": "#b81b12",
+        "info": "#17427e"
+      },
+      "files": {
+        "design": "kits/space-program/DESIGN.md",
+        "design_html": "kits/space-program/DESIGN.html",
+        "tokens": "kits/space-program/tokens.css",
+        "lab": "kits/space-program/index.html",
+        "readme": "kits/space-program/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "moon-rover",
+      "name": "Moon Rover",
+      "tagline": "Dust, grit and one hard sun — the lunar surface, not the sky",
+      "description": "The lunar surface and the machine standing on it — grey-brown regolith under one unfiltered sun, a cast shadow with no penumbra, drawn dust, and a single dust-covered amber for action.",
+      "index": "33",
+      "order": 190,
+      "mode": "light",
+      "tags": [
+        "light",
+        "mineral",
+        "dusty",
+        "hard-shadow",
+        "technical",
+        "aerospace"
+      ],
+      "fonts": "Saira Condensed · Saira · Fira Mono",
+      "source": "original — a lunar-surface register: regolith greys, hard sun and shadow, drawn dust. No agency, mission, rover or patch artwork is referenced or reproduced; the hardware motif is three primitives (a post, an arm, a box).",
+      "colors": {
+        "primary": "#d9821c",
+        "primary-hover": "#eb9a33",
+        "primary-ink": "#191410",
+        "primary-text": "#5e2b03",
+        "primary-text-hover": "#4a2102",
+        "secondary": "#4a6a86",
+        "tertiary": "#26405a",
+        "neutral": "#ded9cd",
+        "ground-top": "#e6e2d7",
+        "ground-bottom": "#d2ccbf",
+        "surface": "#eeeae0",
+        "surface-2": "#c4beb0",
+        "text": "#1e1c17",
+        "text-muted": "#38332b",
+        "success": "#1f4a28",
+        "warning": "#553d04",
+        "error": "#7a2714"
+      },
+      "files": {
+        "design": "kits/moon-rover/DESIGN.md",
+        "design_html": "kits/moon-rover/DESIGN.html",
+        "tokens": "kits/moon-rover/tokens.css",
+        "lab": "kits/moon-rover/index.html",
+        "readme": "kits/moon-rover/README.md"
+      },
+      "warnings": []
+    },
+    {
       "slug": "photonic",
       "name": "Photonic",
       "tagline": "Hologram layers floating off a dark tablet screen — transparent panes lit at the rim",
       "description": "Transparent film lit at the rim — panes you see through, a glowing hue-coded edge that bleeds inward and dies at the centre, a drawn honeycomb light-field, and one spectrum that lives in the material.",
-      "index": "32",
-      "order": 185,
+      "index": "34",
+      "order": 195,
       "mode": "dark",
       "tags": [
         "dark",

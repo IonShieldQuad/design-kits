@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Space Program — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Space Program kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Overpass+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Space Program</h1>
+  <p class="spec-sub">The room the mission is run from — white flight-checklist plates, one agency blue that acts, and a console of stencils, graduations and status lamps</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Space Program
+description: Mission control — a near-white engineering drawing sheet with a rimmed border and a module grid, white plates bolted onto it, one agency blue that acts, and a console of drawn telemetry — a checklist, a block number and a lamp cluster. The room the mission is run from, not the sky it flies through.
+colors:
+  primary: &quot;#12539f&quot;
+  primary-hover: &quot;#0d3f80&quot;
+  primary-ink: &quot;#0e3f8f&quot;
+  secondary: &quot;#2b6fc4&quot;
+  tertiary: &quot;#8f5404&quot;
+  neutral: &quot;#fbfcfe&quot;
+  surface: &quot;#ffffff&quot;
+  surface-2: &quot;#e9eef5&quot;
+  text: &quot;#0d1b2a&quot;
+  text-muted: &quot;#4a5768&quot;
+  text-dim: &quot;#55627a&quot;
+  invert: &quot;#ffffff&quot;
+  success: &quot;#10703a&quot;
+  warning: &quot;#8f5404&quot;
+  error: &quot;#b81b12&quot;
+  info: &quot;#17427e&quot;
+typography:
+  display:
+    fontFamily: Big Shoulders Display
+    fontSize: 2.8rem
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: &quot;0.005em&quot;
+  heading:
+    fontFamily: Big Shoulders Display
+    fontSize: 1.32rem
+    fontWeight: 600
+    lineHeight: 1.18
+  body:
+    fontFamily: IBM Plex Sans
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: Overpass Mono
+    fontSize: 0.75rem
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: &quot;0.14em&quot;
+  readout:
+    fontFamily: Overpass Mono
+    fontSize: 0.9rem
+    fontWeight: 500
+    lineHeight: 1.3
+    letterSpacing: &quot;0.03em&quot;
+rounded:
+  sm: 2px
+  md: 3px
+  lg: 4px
+  pill: 2px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.invert}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-primary-active:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.invert}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-body:
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  status-caution:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  lamp-go:
+    backgroundColor: &quot;{colors.success}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    size: 24px
+  lamp-caution:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    size: 24px
+  lamp-abort:
+    backgroundColor: &quot;{colors.error}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    size: 24px
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 14px
+  table-header:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h2 id="space-program">Space Program</h2>
+<h3 id="overview">Overview</h3>
+<p>Mission control: the room the mission is run from. Not the sky — <code>outer-space</code> owns the sky — and not the pilot's weapons HUD, which is <code>mecha-pilot</code>. This is the <em>program</em>: an engineering drawing sheet, white plates bolted onto it, and the paperwork a mission is actually flown by. A checklist, a block number, a lamp cluster, a plotted trace.</p>
+<p>The register is <strong>documentation</strong>, and the ground is <strong>white on purpose</strong>. <code>--surface</code> is pure white (the wall plates), <code>--surface-2</code> is a pale cool well (fields, badges, readouts), and <code>--bg</code> is a near-white drawing sheet with a rimmed border 14px in from the page edge, a 48px module grid and a fine 8px drafting grid. Depth is a <em>hard cast edge</em>, not a shadow: a card is a plate standing two pixels proud of the sheet. Ink is deep and institutional — the dark of a printed form, never a blue-grey haze.</p>
+<p>One colour acts. Agency blue <code>#12539f</code> is the only thing on the page that means "do this"; the signal ladder — GO green, CAUTION amber, ABORT red — carries <em>state</em> and never an action. The second accent, <code>#2b6fc4</code>, is the plotter pen: the same family one step brighter, for charts, second series and the traced line. Nothing glows. Nothing is blurred. A control room clicks rather than fades.</p>
+<h4 id="deliberately-not-its-neighbours">Deliberately not its neighbours</h4>
+<table><thead><tr><th></th><th><code>outer-space</code></th><th><code>mecha-pilot</code></th><th><code>radioactive</code></th><th><strong><code>space-program</code></strong></th></tr></thead><tbody><tr><td>---</td><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>Mode</td><td>dark</td><td>dark</td><td>light</td><td><strong>light, white-dominant</strong></td></tr><tr><td>Premise</td><td>the vista</td><td>the pilot's HUD</td><td>the containment site</td><td><strong>the program office / console room</strong></td></tr><tr><td>Action colour</td><td>starlight gold</td><td>phosphor green</td><td>acid green</td><td><strong>agency blue</strong></td></tr><tr><td>Ground</td><td>starfield void</td><td>olive CRT</td><td>green-grey concrete</td><td><strong>white drawing sheet + module grid</strong></td></tr><tr><td>Motifs</td><td>nebulae, starfield</td><td>reticle, range scale, caution tape</td><td>trefoil, hazard tape, spill</td><td><strong>checklist, block number, lamp cluster</strong></td></tr><tr><td>Depth</td><td>blurred glow + glass</td><td>zero-blur offset</td><td>soft institutional drop</td><td><strong>zero-blur cast plate, no glow at all</strong></td></tr></tbody></table>
+<h3 id="colors">Colors</h3>
+<p>Agency blue <code>#12539f</code> is the action: the primary key, the focus ring, the active tab, and the ink of every link and label that means "go here". Its text-safe member ships separately as <code>--accent-ink</code> (<code>#0e3f8f</code>, 8.47:1 on the pale well and 6.69:1 even on its own 13% tint composited over it) because a fill that carries a white label is not automatically a fill that reads as an 11px legend.</p>
+<p>The second accent, <code>#2b6fc4</code>, is the <strong>plotter pen</strong> — the same family one step brighter. It belongs to charts, second data series and the traced line in the media panel. It is never an action, and it is deliberately not a third hue: a console room has one blue, and adding a teal "because technology" would make this kit a different, noisier one.</p>
+<p>The signal ladder is <strong>clarity colouring</strong> — colour for legibility, not decoration. GO <code>#10703a</code> (5.30:1), CAUTION <code>#8f5404</code> (5.24:1), ABORT <code>#b81b12</code> (5.57:1) are each the brightest value their hue can take and still carry a badge <em>label</em> on the pale well. The lamp <strong>glass</strong> in the drawn motifs is the same hue one step brighter (<code>#16a34a</code>, <code>#e08a0c</code>, <code>#d02014</code>) — which is how a real lamp works: bright glass, dark legend. That split is the whole of the kit's relationship to status colour.</p>
+<p>The ground is white and the plate is white; they are told apart by a cast edge and a 1px joint line, not by tint. Because a near-white kit is graded the <em>other way round</em> from a dark one, every ink is solved against the <strong>darkest</strong> ground that carries type — <code>--surface-2</code> and the module-grid intersection — and never against white. See the table in <code>README.md</code>; the numbers there are worst-case.</p>
+<h3 id="typography">Typography</h3>
+<p>Three faces, three jobs. <strong>Big Shoulders Display</strong> is the display: a condensed, sign-painter's grotesque with an engineeering-signage gait, used for headings and card titles only. <strong>IBM Plex Sans</strong> is the body — a utilitarian text face designed for technical documentation, and the reason a paragraph of this kit stays a paragraph. <strong>Overpass Mono</strong> is the readout: every kicker, legend, badge, table header, caption and metric is set in it, because on this page anything that is a <em>fact</em> is printed in the telemetry face. Overpass comes from highway signage, so it holds up at 12px in caps.</p>
+<p>Caps labels run <code>+0.14em</code> — stencilled, but narrower than a HUD (<code>mecha-pilot</code> uses <code>.16em</code>), because this is a formed legend on a plate rather than a glow on a screen.</p>
+<h3 id="layout">Layout</h3>
+<p>Spacing is documentation-tight and completely regular: <code>16px</code> gutters, <code>24px</code> between blocks, and a background that draws the <em>sheet</em> rather than decorating it — a rimmed border, a 48px module grid and an 8px drafting grid, all hard-edged. Panels align to the module grid and to each other; there is no asymmetry and no airiness, because a form is laid out by a draughtsman. Corners are machined, 2–4px, not rounded and not chamfered (<code>carbon</code> owns the cut corner).</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is a <strong>cast edge</strong>, never a shadow. A card is a white plate standing 2px proud of the sheet on two hard rules (<code>--shadow-1</code>); an elevated card is 4px (<code>--shadow-2</code>). Fields are <strong>milled into</strong> the plate rather than laid on it (<code>--input-inset</code>), the navigation is a <strong>milled console channel</strong> (<code>--bar-shadow</code>) with the current item riding in it as a plate (<code>--bar-item-shadow</code>), and the switch is a seated track with a machined knob (<code>--toggle-shadow</code>, <code>--toggle-knob-shadow</code>).</p>
+<p>Controls are <strong>analog keys</strong>. A button rests on a cast edge with a top inner highlight (<code>--btn-shadow</code>), and on press that edge <strong>collapses into an inset well</strong> (<code>--btn-shadow-active</code>) — the control visibly travels into the panel. <code>--dur</code> is 80ms and <code>--ease</code> is <code>linear</code>, so the transition snaps instead of easing: it clicks. Nothing in the kit is blurred: <code>--blur: none</code>, and there is not a single radial gradient in the file.</p>
+<h3 id="shapes">Shapes</h3>
+<p>The kit's geometry is three drawn devices, each doing a different job — the procedure, the identity, the state:</p>
+<ul><li><code>--space-program-checklist</code> — <strong>the procedure</strong>. A blocky flight-checklist strip: a filled header bar, three ruled columns, three <em>ticked</em> square boxes and one open box, with value leaders struck down the right. A repeating gradient makes an even rule pattern; it cannot make a tick inside a box.</li><li><code>--space-program-blocknumber</code> — <strong>the identity</strong>. A drawing title block: a heavy frame, a hatched revision cell, a dark binding edge, and a stencil numeral (<code>04</code>) drawn as exact geometry with its stencil breaks, plus a legend rule beneath it.</li><li><code>--space-program-lamps</code> — <strong>the state</strong>. A console lamp cluster: four square lamps in dark bezels with a bright glass, a hard specular band and a leader rule, seated in a milled channel — GO · CAUTION · ABORT · OFF.</li></ul>
+<p>The plotted trace and the graduation strip are <strong>not</strong> a fourth tile: they live on the card media panel (<code>--media-bg</code>, a plotter output with a drafting grid, a two-pen trace and a numbered graduation), which is where a plot belongs.</p>
+<h3 id="components">Components</h3>
+<p>Buttons are agency-blue keys with white labels or white plates with blue labels; <strong>every</strong> variant wears the same cast edge and the same collapsed pressed state, so the whole control layer is one physical object. Cards are white plates on a cast edge; the elevated card is the pale well. Inputs are milled, with a square native checkbox drawn as a checklist box (<code>--check-appearance: none</code>, <code>--check-radius: 0px</code>). Badges are stamped plates carrying mono caps: on the pale well for the neutral one, on the sheet for the signal ones. Media panels are plotter output, opaque. Progress and the avatar are a <strong>segmented console channel</strong> (<code>--fill-bg</code>), hard-stopped, with both segments dark enough for the white label.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep the ground white and the plates whiter. This kit's whole premise is that a console room is a bright room.</li><li><strong>Do</strong> keep exactly one action colour. Blue acts; green, amber and red only report.</li><li><strong>Do</strong> keep the ladder legible: a status colour is used at the brightest value that still clears 4.5:1 as a label, and lamp <em>glass</em> is brighter than lamp <em>legend</em>.</li><li><strong>Do</strong> keep every control a physical key — cast edge at rest, inset well when pressed, 80ms linear.</li><li><strong>Do</strong> let the checklist, the block number and the lamp cluster do the identifying work.</li><li><strong>Don't</strong> add a glow, a blur or a soft shadow. There is no bloom in this kit; <code>--glow</code> is a machined rim on the primary key, not a halo.</li><li><strong>Don't</strong> round anything above 4px or chamfer a corner — <code>carbon</code> owns the cut corner.</li><li><strong>Don't</strong> put a starfield, a nebula or a spacecraft in it. That is <code>outer-space</code>, and it is the sky; this is the room.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

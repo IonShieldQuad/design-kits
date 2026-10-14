@@ -1,0 +1,230 @@
+/* ============================================================================
+   design-kits · space-program · order 185 · mode light        contract v1
+   ----------------------------------------------------------------------------
+   MISSION CONTROL — the room the mission is run from. This is PROGRAM
+   DOCUMENTATION: an engineering drawing sheet with a rimmed border and a module
+   grid, WHITE plates bolted onto it, deep institutional ink, and one agency blue
+   that acts. The vocabulary is telemetry and paperwork — a checklist, a block
+   number, a status lamp row, a plotted trace — DRAWN, not implied.
+
+   WHITE-DOMINANT ON PURPOSE (the register is a control room, not a night sky).
+   --surface is pure white, --surface-2 is a pale cool well, --bg is a near-white
+   drawing sheet. A near-white kit is graded the other way round from a dark one:
+   the binding ground is the DARKEST one, so every ink below is solved against
+   --surface-2 and against the darkest page pixel (the sheet border at 34% blue),
+   not against white. See README.md — the table is worst-case, not best.
+
+   CLARITY COLOURS. The signal ladder is legible-on-white, not decorative:
+       --ok      #10703a   GO      5.30:1 on --surface-2
+       --warn    #8f5404   CAUTION 5.24:1 on --surface-2
+       --danger  #b81b12   ABORT   5.57:1 on --surface-2
+   Each is dark enough to carry a badge LABEL on the pale well and saturated
+   enough to read at a glance. The lamp GLASS in the motif artwork is the same
+   hue one step brighter, which is how a real lamp works: bright glass, dark
+   legend. Agency blue is the one action colour; nothing else acts.
+
+   ANALOG CONTROLS. Every control is a physical key. It rests on a zero-blur
+   offset plate (--btn-shadow, --glow on the primary) and COLLAPSES into an
+   inset well on :active (--btn-shadow-active) — the key visibly travels into
+   the panel. --dur is 80ms and --ease is linear, so a state change snaps
+   instead of easing: a control room clicks, it does not fade.
+
+   NOTHING SMOOTH. No radius above 4px, no blurred shadow, no radial gradient in
+   the file at all (--wash is a flat tint), and every gradient is hard-stopped.
+
+   IP: genre only. No agency mark, no real mission name, no patch artwork — the
+   grammar of program documentation and nothing else.
+
+   Fonts: Big Shoulders Display · IBM Plex Sans · Overpass Mono
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------- surfaces */
+  /* --bg is a DRAWING SHEET painted bottom-up: two hard-stopped white plates, a
+     fine 8px drafting grid, a 48px module grid, and a rimmed border 14px in from
+     the edge (one layer draws the top+bottom rules with a vertical hard-stop
+     gradient, a second draws the left+right rules with a horizontal one). Every
+     overlay only ever DARKENS, so the lightest ground type sits on is the plate
+     and the darkest is the sheet border — both are graded in README.md. The
+     border is kept clear of type by construction: the content column is never
+     closer than 20px to the viewport edge. */
+  --bg:
+    linear-gradient(180deg, rgba(18, 83, 159, .34) 0px, rgba(18, 83, 159, .34) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) calc(100% - 1px), rgba(18, 83, 159, .34) calc(100% - 1px), rgba(18, 83, 159, .34) 100%) 14px 14px / calc(100% - 28px) calc(100% - 28px) no-repeat,
+    linear-gradient(90deg, rgba(18, 83, 159, .34) 0px, rgba(18, 83, 159, .34) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) calc(100% - 1px), rgba(18, 83, 159, .34) calc(100% - 1px), rgba(18, 83, 159, .34) 100%) 14px 14px / calc(100% - 28px) calc(100% - 28px) no-repeat,
+    repeating-linear-gradient(90deg, rgba(18, 83, 159, .075) 0px, rgba(18, 83, 159, .075) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 48px),
+    repeating-linear-gradient(180deg, rgba(18, 83, 159, .075) 0px, rgba(18, 83, 159, .075) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 48px),
+    repeating-linear-gradient(90deg, rgba(18, 83, 159, .04) 0px, rgba(18, 83, 159, .04) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 8px),
+    repeating-linear-gradient(180deg, rgba(18, 83, 159, .04) 0px, rgba(18, 83, 159, .04) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 8px),
+    linear-gradient(180deg, #fbfcfe 0px, #fbfcfe 780px, #f2f6fb 780px, #f2f6fb 100%);
+  --bg-2:          #f2f6fb;               /* the second plate, solid — masthead/exports */
+  --surface:       #ffffff;               /* the wall plate: cards are pure white */
+  --surface-2:     #e9eef5;               /* the pale well: inputs, badges, code, tile base.
+                                             The DARKEST common ground — the binding one. */
+  --overlay:       rgba(13, 26, 48, .55); /* modal scrim: the room lights dimmed */
+
+  /* ------------------------------------------------------------------- text */
+  --text:          #0d1b2a;               /* 15.4:1 on --surface-2 · 13.9:1 on the sheet border */
+  --text-muted:    #4a5768;               /*  6.3:1 on --surface-2 */
+  --text-dim:      #55627a;               /*  5.2:1 on --surface-2 — captions, hints, legends */
+  --text-invert:   #ffffff;               /* panel white ON the agency blue: 7.6:1 */
+
+  /* ------------------------------------------------------------------ brand */
+  --accent:        #12539f;               /* AGENCY BLUE — the one action colour */
+  --accent-hover:  #0d3f80;               /* it goes deeper under load (fill hover) */
+  --accent-2:      #2b6fc4;               /* the PLOTTER PEN: same family one step
+                                             brighter. Charts, second series, the trace.
+                                             Never an action. */
+  --accent-soft:   rgba(18, 83, 159, .15);/* derived: a 15% tint of --accent */
+
+  --accent-ink:        #0e3f8f;           /* blue AS TEXT — 8.4:1 on --surface-2, 7.6:1 on
+                                             its own tint composited over it (the badge case) */
+  --accent-ink-hover:  #0a3170;
+
+  /* ----------------------------------------------------------------- status */
+  /* The readability ladder. All three are fills AND text inks, so each is the
+     brightest value its hue can take and still clear 4.5:1 as a label on the
+     pale well — colour for legibility, which is what "clarity coloured" means. */
+  --ok:            #10703a;               /* GO       · nominal   (5.30:1 on --surface-2) */
+  --warn:          #8f5404;               /* CAUTION  · hold      (5.24:1) */
+  --danger:        #b81b12;               /* ABORT    · no-go     (5.39:1 on the module
+                                             grid — the darkest ground that carries type) */
+  --info:          #17427e;               /* reference / telemetry blue (8.15:1 on the grid) */
+
+  /* ------------------------------------------------------------------ lines */
+  --border:        rgba(13, 26, 48, .16); /* a cast joint line in the plate */
+  --border-strong: rgba(13, 26, 48, .34); /* input rims, emphasised rules  */
+  --border-w:      1px;
+  --focus-ring:    #0f4ba8;               /* 8.10:1 on white · 6.66:1 on the module grid */
+
+  /* ------------------------------------------------------------------ shape */
+  /* Machined, not rounded and not chamfered: a panel key has a 2-4px cast
+     corner, and a checklist box is square (--check-radius: 0px below). */
+  --radius-sm:     2px;
+  --radius-md:     3px;
+  --radius-lg:     4px;
+  --radius-pill:   4px;                   /* a badge is a stamped plate, a switch thumb is
+                                             not: a square thumb read as a checkbox dropped in
+                                             a bar, so the thumb gets a 4px cast corner while
+                                             the native control stays perfectly square */
+  --cut:           0px;                   /* no chamfer: carbon owns the cut corner */
+
+  /* ------------------------------------------------------------------- type */
+  --font-display:  "Big Shoulders Display", "Archivo Narrow", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "Overpass Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:    .14em;              /* stencilled legend spacing */
+  --tracking-display: .005em;
+
+  /* ------------------------------------------------------------------ depth */
+  /* ZERO-BLUR everywhere. A plate is lifted off the sheet by a CAST EDGE — two
+     hard bands (a light lip, then its darker underside) with no blur radius at
+     all. There is no blurred drop shadow in the kit. */
+  --shadow-1:      0 2px 0 0 var(--space-program-plate), 0 4px 0 0 var(--space-program-plate-deep);
+  --shadow-2:      0 3px 0 0 var(--space-program-plate), 0 6px 0 0 var(--space-program-plate-deep);
+  /* --glow is the PRIMARY KEY'S machined edge, not a bloom: the accent fill is
+     seated on a 6px stack of hard bands (darker blue, darker still, then the
+     cast). This kit has no halo — the token keeps its name, not its meaning. */
+  --glow:          0 2px 0 0 #0a3a75, 0 4px 0 0 #08315f, 0 6px 0 0 rgba(13, 26, 48, .24);
+  --blur:          none;                  /* a control room is not frosted glass */
+
+  /* ----------------------------------------------------------------- motion */
+  /* A switch throws. 80ms, linear: instant and mechanical, never eased. */
+  --dur:           .08s;
+  --ease:          linear;
+
+  /* ------------------------------------------------- lab capability hooks ---- */
+  /* the masthead is a FLAT tint, not the default radial bloom — there is no
+     radial gradient anywhere in this kit */
+  --wash:          linear-gradient(180deg, rgba(18, 83, 159, .05) 0px, rgba(18, 83, 159, .05) 100%);
+
+  /* A KEY, NOT A STRIP: the control is seated on a 4px cast edge (two hard
+     bands) with a top inner highlight — a panel key standing proud of the sheet. */
+  --btn-shadow:        0 2px 0 0 var(--space-program-plate-deep), 0 4px 0 0 rgba(13, 26, 48, .22),
+                       inset 0 1px 0 rgba(255, 255, 255, .95);
+  /* PRESSED: the 4px cast edge collapses to one hard line and an inset well opens
+     at the top, so the key visibly TRAVELS into the panel. With .08s linear this
+     reads as a click, not a fade. */
+  --btn-shadow-active: inset 0 3px 0 0 rgba(13, 26, 48, .34), inset 0 4px 0 0 rgba(13, 26, 48, .12),
+  /* the key travels: hover lifts, press seats it into the panel (the lab had no transform
+     hook for this — it was reported and added, and the inert 1px lift is why it needed one) */
+  --btn-hover-lift: -1px;
+  --btn-press: 1px;
+                       0 1px 0 0 rgba(13, 26, 48, .12);
+  /* fields are MILLED into the plate, not laid on it */
+  --input-inset:       inset 0 2px 0 0 rgba(13, 26, 48, .34), inset 0 -2px 0 0 #ffffff;
+  /* nav + tabs are a RAISED RAIL — the same cast edge as every other plate in the
+     kit — and the current/hovered item is a KEY riding on it, with its own cast
+     and a top inner highlight. (An inset channel was tried first and read as
+     nothing: on a white plate a 2px inset lip merges with the bar's own border.) */
+  --bar-shadow:        0 2px 0 0 var(--space-program-plate-deep), 0 4px 0 0 rgba(13, 26, 48, .20);
+  --bar-item-shadow:   0 2px 0 0 rgba(13, 26, 48, .22), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --bar-item-pad:      .55rem;
+  /* the switch: a seated track with a machined knob */
+  --toggle-shadow:      inset 0 3px 0 0 rgba(13, 26, 48, .45), inset 0 -3px 0 0 rgba(255, 255, 255, .40);
+  --toggle-knob-shadow: 0 2px 0 0 rgba(13, 26, 48, .55), 0 0 0 1.5px rgba(13, 26, 48, .45);
+  /* SQUARE CONTROLS: native checkbox/radio ignore border-radius, so a checklist
+     box is drawn rather than reverted — square, ruled, and filled when checked */
+  --check-appearance: none;
+  --check-radius:     0px;
+  --check-bg:         #ffffff;
+  --check-border:     2px solid #2b3a4d;
+  --check-checked:    var(--accent);
+  /* an inset ring inside the key on focus, so the indicator survives the plate */
+  --focus-inset:      2px;
+
+  /* PROGRESS + AVATAR: a SEGMENTED console channel, hard-stopped. Both segments
+     are dark enough that the panel-white label reads on either. */
+  --fill-bg:       repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 10px,
+                     #0a3a75 10px, #0a3a75 12px);
+
+  /* THE CARD MEDIA PANEL is a PLOTTER OUTPUT, not an accent ramp: a pale
+     drafting grid, a hard two-pen trace, a graduation strip with block numerals
+     and a data strip with its own status lamps. Opaque. */
+  --media-op:      1;
+  --media-bg:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNDgwIDE2MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTE2IDBIMFYxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGNlNWYxIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMTYwIiBmaWxsPSIjZjJmNmZiIi8+PHJlY3Qgd2lkdGg9IjQ4MCIgaGVpZ2h0PSIxNjAiIGZpbGw9InVybCgjZykiLz48cmVjdCB4PSIwIiB5PSIxMyIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSIxLjQiIGZpbGw9IiM5M2EyYjYiLz48cGF0aCBkPSJNNiAxNC40IHYxMSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xOCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTMwIDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNNDIgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik01NCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTY2IDE0LjQgdjExIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTc4IDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNOTAgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMDIgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMTQgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMjYgMTQuNCB2MTEiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTM4IDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTUwIDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTYyIDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTc0IDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTg2IDE0LjQgdjExIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTE5OCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIxMCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIyMiAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIzNCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTI0NiAxNC40IHYxMSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yNTggMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yNzAgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yODIgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yOTQgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0zMDYgMTQuNCB2MTEiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzE4IDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzMwIDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzQyIDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzU0IDE0LjQgdjUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzY2IDE0LjQgdjExIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTM3OCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTM5MCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQwMiAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQxNCAxNC40IHY1IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQyNiAxNC40IHYxMSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00MzggMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NTAgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NjIgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NzQgMTQuNCB2NSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00ODYgMTQuNCB2MTEiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDgwIiBoZWlnaHQ9IjYiIGZpbGw9IiMxNjI3M2MiLz48dGV4dCB4PSI0MCIgeT0iMjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MDAwPC90ZXh0Pjx0ZXh0IHg9IjEzOCIgeT0iMjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MDI1PC90ZXh0Pjx0ZXh0IHg9IjIzNiIgeT0iMjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MDUwPC90ZXh0Pjx0ZXh0IHg9IjMzNCIgeT0iMjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MDc1PC90ZXh0Pjx0ZXh0IHg9IjQzMiIgeT0iMjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MTAwPC90ZXh0PjxwYXRoIGQ9Ik0zMDAgMjIgSDMyMiIgc3Ryb2tlPSIjMTI1MzlmIiBzdHJva2Utd2lkdGg9IjMiLz48cmVjdCB4PSIzMjYiIHk9IjE5LjUiIHdpZHRoPSIxOCIgaGVpZ2h0PSI1IiBmaWxsPSIjNDM1MzZiIi8+PHBhdGggZD0iTTM1MiAyMiBIMzcyIiBzdHJva2U9IiM4ZmIwZDkiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjM3NiIgeT0iMTkuNSIgd2lkdGg9IjEzIiBoZWlnaHQ9IjUiIGZpbGw9IiM4ZDk5YWIiLz48cmVjdCB4PSIzNCIgeT0iMzYiIHdpZHRoPSI0MTIiIGhlaWdodD0iODIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2M4ZDJlMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTQyIDExMCBMMTA0IDEwNiBMMTQ2IDk0IEwxOTggOTggTDI1MCA3MiBMMzAwIDc2IEwzNDAgNTQgTDM5NCA0MiBMNDM4IDM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxMjUzOWYiIHN0cm9rZS13aWR0aD0iMi41Ii8+PHBhdGggZD0iTTQyIDk4IEwxMDQgODYgTDE0NiA5MCBMMTk4IDc0IEwyNTAgODAgTDMwMCA2MCBMMzQwIDY0IEwzOTQgNDggTDQzOCA1MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGZiMGQ5IiBzdHJva2Utd2lkdGg9IjEuOCIvPjxyZWN0IHg9IjAiIHk9IjEyMiIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSIxLjQiIGZpbGw9IiM5M2EyYjYiLz48cGF0aCBkPSJNNiAxMjIgdi0xMCIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xOCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTMwIDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNNDIgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik01NCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTY2IDEyMiB2LTEwIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTc4IDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNOTAgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMDIgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMTQgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0xMjYgMTIyIHYtMTAiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTM4IDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTUwIDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTYyIDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTc0IDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMTg2IDEyMiB2LTEwIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTE5OCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIxMCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIyMiAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTIzNCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTI0NiAxMjIgdi0xMCIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yNTggMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yNzAgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yODIgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0yOTQgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik0zMDYgMTIyIHYtMTAiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzE4IDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzMwIDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzQyIDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzU0IDEyMiB2LTUiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cGF0aCBkPSJNMzY2IDEyMiB2LTEwIiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTM3OCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTM5MCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQwMiAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQxNCAxMjIgdi01IiBzdHJva2U9IiM5M2EyYjYiIHN0cm9rZS13aWR0aD0iMS4yIi8+PHBhdGggZD0iTTQyNiAxMjIgdi0xMCIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00MzggMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NTAgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NjIgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00NzQgMTIyIHYtNSIgc3Ryb2tlPSIjOTNhMmI2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik00ODYgMTIyIHYtMTAiIHN0cm9rZT0iIzkzYTJiNiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48dGV4dCB4PSI0MCIgeT0iMTQ2IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM1NTYyN2EiPjAwMDwvdGV4dD48dGV4dCB4PSIxMzgiIHk9IjE0NiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjNTU2MjdhIj4wMjU8L3RleHQ+PHRleHQgeD0iMjM2IiB5PSIxNDYiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NjI3YSI+MDUwPC90ZXh0Pjx0ZXh0IHg9IjMzNCIgeT0iMTQ2IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM1NTYyN2EiPjA3NTwvdGV4dD48dGV4dCB4PSI0MzIiIHk9IjE0NiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjNTU2MjdhIj4xMDA8L3RleHQ+PHJlY3QgeD0iMjg2IiB5PSIxMTgiIHdpZHRoPSIxOTQiIGhlaWdodD0iNDIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2M4ZDJlMCIvPjxyZWN0IHg9IjI4NiIgeT0iMTE4IiB3aWR0aD0iMTk0IiBoZWlnaHQ9IjMuNSIgZmlsbD0iIzE2MjczYyIvPjxyZWN0IHg9IjI5NCIgeT0iMTI4IiB3aWR0aD0iNTgiIGhlaWdodD0iNSIgZmlsbD0iIzQzNTM2YiIvPjxyZWN0IHg9IjI5NCIgeT0iMTM5IiB3aWR0aD0iMzQiIGhlaWdodD0iNCIgZmlsbD0iIzkzYTJiNiIvPjxyZWN0IHg9IjI5NCIgeT0iMTQ4IiB3aWR0aD0iNDYiIGhlaWdodD0iNCIgZmlsbD0iIzkzYTJiNiIvPjxyZWN0IHg9IjM2OCIgeT0iMTI2IiB3aWR0aD0iMTA0IiBoZWlnaHQ9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOGQyZTAiLz48cmVjdCB4PSIzNjgiIHk9IjEyNiIgd2lkdGg9IjEwNCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzEyNTM5ZiIgb3BhY2l0eT0iLjEyIi8+PHJlY3QgeD0iMzc2IiB5PSIxMzIiIHdpZHRoPSIzNCIgaGVpZ2h0PSI2IiBmaWxsPSIjMTI1MzlmIi8+PHJlY3QgeD0iMzc2IiB5PSIxNDMiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0IiBmaWxsPSIjOTNhMmI2Ii8+PHBhdGggZD0iTTM2OCAxNDEgSDQ3MiIgc3Ryb2tlPSIjYzhkMmUwIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=") center / cover no-repeat,
+                   linear-gradient(180deg, #f2f6fb 0px, #f2f6fb 100%);
+
+  /* ------------------------------------------------------------------------
+     extras — addressable so a project can rebuild the sheet, seat a plate or
+     light a lamp without re-typing a hex. Only the three motifs below are
+     declared in kit.json's `signature`, so only they render as tiles.
+     ---------------------------------------------------------------------- */
+  --space-program-sheet:       #fbfcfe;   /* the near-white drawing sheet */
+  --space-program-sheet-2:     #f2f6fb;   /* its second plate */
+  --space-program-plate:       #cdd7e4;   /* the cast edge under a raised plate */
+  --space-program-plate-deep:  #b3c0d2;   /* its second step */
+  --space-program-grid:        rgba(18, 83, 159, .075);  /* the module grid line */
+  --space-program-rim:         rgba(18, 83, 159, .34);   /* the sheet border */
+  --space-program-lamp-go:     #16a34a;   /* lamp GLASS: the token hue, one step brighter */
+  --space-program-lamp-caution:#e08a0c;
+  --space-program-lamp-abort:  #d02014;
+  --space-program-lamp-off:    #55627a;
+
+  /* --------------------------------------------------------------- signature
+     Three motifs, three DIFFERENT jobs — the PROCEDURE, the IDENTITY, the STATE.
+     All three are DRAWN (base64 SVG) because a form with blocks, ticks and
+     lamp bezels cannot be expressed by a gradient. Each carries its own hard-
+     stopped base layer, so no tile ever shows the kit's flat surface. */
+
+  /* 1 · CHECKLIST — the PROCEDURE. A blocky flight-checklist strip: a filled
+     header bar, three ruled columns, three TICKED square boxes and one open
+     box, with struck-through value leaders down the right. A repeating gradient
+     makes an even rule pattern; it cannot make a tick inside a box. */
+  --space-program-checklist:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMTA0IiB2aWV3Qm94PSIwIDAgMjQwIDEwNCI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIxMDQiIGZpbGw9IiNmN2Y5ZmMiLz48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjE3IiBmaWxsPSIjMTI1MzlmIi8+PHJlY3QgeD0iNyIgeT0iNiIgd2lkdGg9IjMwIiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSI0MyIgeT0iNiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9Ii42Ii8+PHJlY3QgeD0iNjMiIHk9IjYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9Ii42Ii8+PHJlY3QgeD0iMTc2IiB5PSI2IiB3aWR0aD0iMjQiIGhlaWdodD0iNCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iLjYiLz48cmVjdCB4PSIyMDYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIuNiIvPjxyZWN0IHk9IjE3IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjIiIGZpbGw9IiMxNjI3M2MiLz48cmVjdCB4PSIxNTAiIHk9IjE5IiB3aWR0aD0iMiIgaGVpZ2h0PSI4MyIgZmlsbD0iI2M4ZDJlMCIvPjxyZWN0IHk9IjEwMiIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyIiBmaWxsPSIjMTYyNzNjIi8+PHJlY3QgeD0iOSIgeT0iMjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMmIzYTRkIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxwYXRoIGQ9Ik0xMS40IDMxLjUgbCAzIDMuMiBsIDYuNCAtNy42IiBmaWxsPSJub25lIiBzdHJva2U9IiMxMDcwM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIi8+PHJlY3QgeD0iMzAiIHk9IjMwIiB3aWR0aD0iMjYiIGhlaWdodD0iNCIgZmlsbD0iIzQzNTM2YiIvPjxyZWN0IHg9IjYyIiB5PSIzMSIgd2lkdGg9IjM2IiBoZWlnaHQ9IjIiIGZpbGw9IiM5M2EyYjYiLz48cmVjdCB4PSIxNjAiIHk9IjMwIiB3aWR0aD0iMzAiIGhlaWdodD0iNCIgZmlsbD0iIzEyNTM5ZiIvPjxyZWN0IHg9IjE5NSIgeT0iMzEiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyIiBmaWxsPSIjOTNhMmI2Ii8+PHJlY3QgeD0iOSIgeT0iNDQiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMmIzYTRkIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxwYXRoIGQ9Ik0xMS40IDQ5LjUgbCAzIDMuMiBsIDYuNCAtNy42IiBmaWxsPSJub25lIiBzdHJva2U9IiMxMDcwM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIi8+PHJlY3QgeD0iMzAiIHk9IjQ4IiB3aWR0aD0iMzIiIGhlaWdodD0iNCIgZmlsbD0iIzQzNTM2YiIvPjxyZWN0IHg9IjY4IiB5PSI0OSIgd2lkdGg9IjI4IiBoZWlnaHQ9IjIiIGZpbGw9IiM5M2EyYjYiLz48cmVjdCB4PSIxNjAiIHk9IjQ4IiB3aWR0aD0iMjQiIGhlaWdodD0iNCIgZmlsbD0iIzEyNTM5ZiIvPjxyZWN0IHg9IjE4OSIgeT0iNDkiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyIiBmaWxsPSIjOTNhMmI2Ii8+PHJlY3QgeD0iOSIgeT0iNjIiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMmIzYTRkIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxwYXRoIGQ9Ik0xMS40IDY3LjUgbCAzIDMuMiBsIDYuNCAtNy42IiBmaWxsPSJub25lIiBzdHJva2U9IiMxMDcwM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIi8+PHJlY3QgeD0iMzAiIHk9IjY2IiB3aWR0aD0iMjIiIGhlaWdodD0iNCIgZmlsbD0iIzQzNTM2YiIvPjxyZWN0IHg9IjU4IiB5PSI2NyIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjIiIGZpbGw9IiM5M2EyYjYiLz48cmVjdCB4PSIxNjAiIHk9IjY2IiB3aWR0aD0iMzQiIGhlaWdodD0iNCIgZmlsbD0iIzEyNTM5ZiIvPjxyZWN0IHg9IjE5OSIgeT0iNjciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyIiBmaWxsPSIjOTNhMmI2Ii8+PHJlY3QgeD0iOSIgeT0iODAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMmIzYTRkIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxyZWN0IHg9IjMwIiB5PSI4NCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjQiIGZpbGw9IiM5M2EyYjYiLz48cmVjdCB4PSI2NiIgeT0iODUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyIiBmaWxsPSIjOTNhMmI2Ii8+PHJlY3QgeD0iMTYwIiB5PSI4NCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjQiIGZpbGw9IiMxMjUzOWYiLz48cmVjdCB4PSIxOTEiIHk9Ijg1IiB3aWR0aD0iMjQiIGhlaWdodD0iMiIgZmlsbD0iIzkzYTJiNiIvPjwvc3ZnPg==") center / 168px 72px no-repeat,
+    linear-gradient(180deg, #eef2f8 0px, #eef2f8 20px, #e3eaf4 20px, #e3eaf4 100%);
+
+  /* 2 · BLOCK NUMBER — the IDENTITY. A drawing title block: a heavy frame with a
+     hatched revision cell, a dark binding edge, and a stencil numeral (04) with
+     its stencil breaks and a legend rule under it. A numeral is exact geometry —
+     only vector draws it. */
+  --space-program-blocknumber:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjgiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCAxNjggNzIiPjxkZWZzPjxwYXR0ZXJuIGlkPSJoIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI2UyZThmMSIvPjxyZWN0IHdpZHRoPSI0LjQiIGhlaWdodD0iMTAiIGZpbGw9IiM4ZTlkYjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxNjgiIGhlaWdodD0iNzIiIGZpbGw9IiNmN2Y5ZmMiLz48cmVjdCB4PSIzLjUiIHk9IjMuNSIgd2lkdGg9IjE2MSIgaGVpZ2h0PSI2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYyNzNjIiBzdHJva2Utd2lkdGg9IjMiLz48cmVjdCB4PSIzLjUiIHk9IjMuNSIgd2lkdGg9IjE1IiBoZWlnaHQ9IjY1IiBmaWxsPSIjMTYyNzNjIi8+PHJlY3QgeD0iMTEyIiB5PSIzLjUiIHdpZHRoPSI1Mi41IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI2gpIi8+PHJlY3QgeD0iMTEyIiB5PSIyMy41IiB3aWR0aD0iNTMiIGhlaWdodD0iMiIgZmlsbD0iIzE2MjczYyIvPjxyZWN0IHg9IjM2IiB5PSIxNyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjciIGZpbGw9IiMwZDFiMmEiLz48cmVjdCB4PSIzNiIgeT0iNTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI3IiBmaWxsPSIjMGQxYjJhIi8+PHJlY3QgeD0iMzYiIHk9IjE3IiB3aWR0aD0iNyIgaGVpZ2h0PSI0MCIgZmlsbD0iIzBkMWIyYSIvPjxyZWN0IHg9IjUzIiB5PSIxNyIgd2lkdGg9IjciIGhlaWdodD0iNDAiIGZpbGw9IiMwZDFiMmEiLz48cG9seWdvbiBwb2ludHM9IjM2LDE3IDQ1LDE3IDM2LDI2IiBmaWxsPSIjZjdmOWZjIi8+PHBvbHlnb24gcG9pbnRzPSI2MCwxNyA1MSwxNyA2MCwyNiIgZmlsbD0iI2Y3ZjlmYyIvPjxwb2x5Z29uIHBvaW50cz0iMzYsNTcgNDUsNTcgMzYsNDgiIGZpbGw9IiNmN2Y5ZmMiLz48cG9seWdvbiBwb2ludHM9IjYwLDU3IDUxLDU3IDYwLDQ4IiBmaWxsPSIjZjdmOWZjIi8+PHJlY3QgeD0iMzYiIHk9IjI1IiB3aWR0aD0iNyIgaGVpZ2h0PSI0IiBmaWxsPSIjZjdmOWZjIi8+PHJlY3QgeD0iNTMiIHk9IjQ1IiB3aWR0aD0iNyIgaGVpZ2h0PSI0IiBmaWxsPSIjZjdmOWZjIi8+PHBvbHlnb24gcG9pbnRzPSI2OCw0NiA3NCw0NiA4OSwxNyA4MywxNyIgZmlsbD0iIzBkMWIyYSIvPjxyZWN0IHg9IjY4IiB5PSI0MyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjciIGZpbGw9IiMwZDFiMmEiLz48cmVjdCB4PSI4NSIgeT0iMTciIHdpZHRoPSI3IiBoZWlnaHQ9IjQwIiBmaWxsPSIjMGQxYjJhIi8+PHJlY3QgeD0iODUiIHk9IjM5IiB3aWR0aD0iNyIgaGVpZ2h0PSI0IiBmaWxsPSIjZjdmOWZjIi8+PHJlY3QgeD0iMzYiIHk9IjYyIiB3aWR0aD0iMTIiIGhlaWdodD0iMyIgZmlsbD0iIzhlOWRiMSIvPjxyZWN0IHg9IjUyIiB5PSI2MiIgd2lkdGg9IjYiIGhlaWdodD0iMyIgZmlsbD0iIzhlOWRiMSIvPjxyZWN0IHg9IjYyIiB5PSI2MiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4ZTlkYjEiLz48cmVjdCB4PSI3NiIgeT0iNjIiIHdpZHRoPSI4IiBoZWlnaHQ9IjMiIGZpbGw9IiM4ZTlkYjEiLz48cmVjdCB4PSIxMjAiIHk9IjMwIiB3aWR0aD0iMzgiIGhlaWdodD0iNCIgZmlsbD0iIzhlOWRiMSIvPjxyZWN0IHg9IjEyMCIgeT0iNDAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIzIiBmaWxsPSIjYjljNWQ2Ii8+PHJlY3QgeD0iMTIwIiB5PSI0OSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMiIGZpbGw9IiNiOWM1ZDYiLz48cmVjdCB4PSIxMjAiIHk9IjU4IiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iI2I5YzVkNiIvPjwvc3ZnPg==") center / 168px 72px no-repeat,
+    linear-gradient(180deg, #eef2f8 0px, #eef2f8 20px, #e3eaf4 20px, #e3eaf4 100%);
+
+  /* 3 · STATUS LAMPS — the STATE. A console lamp cluster: four square lamps with
+     dark bezels, a bright glass, a hard specular band and a legend rule, seated
+     in a milled channel. GO · CAUTION · ABORT · OFF. Bright glass, dark legend. */
+  --space-program-lamps:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjgiIGhlaWdodD0iNzIiIHZpZXdCb3g9IjAgMCAxNjggNzIiPjxyZWN0IHdpZHRoPSIxNjgiIGhlaWdodD0iNzIiIGZpbGw9IiNmN2Y5ZmMiLz48cmVjdCB4PSIzLjUiIHk9IjMuNSIgd2lkdGg9IjE2MSIgaGVpZ2h0PSI2NSIgZmlsbD0iI2VlZjJmOCIgc3Ryb2tlPSIjYzJjY2RiIiBzdHJva2Utd2lkdGg9IjEuNSIvPjxyZWN0IHg9IjUiIHk9IjUiIHdpZHRoPSIxNTgiIGhlaWdodD0iMiIgZmlsbD0iI2I5YzVkNiIvPjxyZWN0IHg9IjUiIHk9IjY1IiB3aWR0aD0iMTU4IiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIxNCIgeT0iMTIiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzI2MzEzZiIvPjxyZWN0IHg9IjE4IiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjMTZhMzRhIi8+PHJlY3QgeD0iMTgiIHk9IjE2IiB3aWR0aD0iMjQiIGhlaWdodD0iOCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iLjMwIi8+PHJlY3QgeD0iMTgiIHk9IjE2IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBkMWIyYSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cmVjdCB4PSIyMCIgeT0iNDgiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjMGY3YzM3Ii8+PHRleHQgeD0iMzAiIHk9IjY0IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iNzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMGY3YzM3Ij5HTzwvdGV4dD48cmVjdCB4PSI1MiIgeT0iMTIiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzI2MzEzZiIvPjxyZWN0IHg9IjU2IiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjZTA4YTBjIi8+PHJlY3QgeD0iNTYiIHk9IjE2IiB3aWR0aD0iMjQiIGhlaWdodD0iOCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iLjMwIi8+PHJlY3QgeD0iNTYiIHk9IjE2IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBkMWIyYSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48cmVjdCB4PSI1OCIgeT0iNDgiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjYTg2MDBhIi8+PHRleHQgeD0iNjgiIHk9IjY0IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iNzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTg2MDBhIj5DQVVUPC90ZXh0PjxyZWN0IHg9IjkwIiB5PSIxMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMjYzMTNmIi8+PHJlY3QgeD0iOTQiIHk9IjE2IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNkMDIwMTQiLz48cmVjdCB4PSI5NCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIuMzAiLz48cmVjdCB4PSI5NCIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQxYjJhIiBzdHJva2Utd2lkdGg9IjEuMiIvPjxyZWN0IHg9Ijk2IiB5PSI0OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM5NjE1MGQiLz48dGV4dCB4PSIxMDYiIHk9IjY0IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iNzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTYxNTBkIj5BQlJUPC90ZXh0PjxyZWN0IHg9IjEyOCIgeT0iMTIiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzI2MzEzZiIvPjxyZWN0IHg9IjEzMiIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iIzU1NjI3YSIvPjxyZWN0IHg9IjEzMiIgeT0iMTYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQxYjJhIiBzdHJva2Utd2lkdGg9IjEuMiIvPjxyZWN0IHg9IjEzNCIgeT0iNDgiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjM2Y0YTVjIi8+PHRleHQgeD0iMTQ0IiB5PSI2NCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9IjcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzNmNGE1YyI+T0ZGPC90ZXh0Pjwvc3ZnPg==") center / 168px 72px no-repeat,
+    linear-gradient(180deg, #eef2f8 0px, #eef2f8 20px, #e3eaf4 20px, #e3eaf4 100%);
+}

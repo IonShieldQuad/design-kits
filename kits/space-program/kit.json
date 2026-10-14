@@ -1,0 +1,16 @@
+{
+  "name": "Space Program",
+  "tagline": "The room the mission is run from — white flight-checklist plates, one agency blue that acts, and a console of stencils, graduations and status lamps",
+  "signature": [
+    "--space-program-checklist",
+    "--space-program-blocknumber",
+    "--space-program-lamps"
+  ],
+  "order": 185,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap",
+  "fonts_label": "Big Shoulders Display · IBM Plex Sans · Overpass Mono",
+  "mode": "light",
+  "source": "original",
+  "tags": ["light", "mission-control", "engineering", "console", "telemetry", "checklist"],
+  "use_when": "program documentation and control-room surfaces: mission and ops consoles, telemetry and monitoring dashboards, checklists and procedure UIs, engineering and safety tooling, anything that should read as a white drawing sheet with a status lamp ladder rather than a night sky (the dark, hardware-side counterpart is outer-space; this is the room, not the sky)"
+}

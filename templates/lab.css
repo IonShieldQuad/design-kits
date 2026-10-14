@@ -116,11 +116,13 @@ section.block:first-of-type { border-top: 0; }
               transform var(--dur, .16s) var(--ease, ease);
   text-decoration: none; white-space: nowrap;
 }
-.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn:hover { text-decoration: none; transform: translateY(var(--btn-hover-lift, -1px)); }
 /* A pressed control should change shape, not just colour — that is most of what makes a button read
    as a physical switch. Its own hook (it defaults to the resting shadow, so nothing else moves):
    pair it with a short --dur and a linear/stepped --ease for a snappy, non-eased press. */
-.btn:active { box-shadow: var(--btn-shadow-active, var(--btn-shadow, none)); }
+.btn:active { box-shadow: var(--btn-shadow-active, var(--btn-shadow, none));
+  /* the key travels: an analogue control moves DOWN as it is pressed, where the web default lifts */
+  transform: translateY(var(--btn-press, var(--btn-hover-lift, -1px))); }
 .btn:focus-visible { outline: 2px solid var(--focus-ring, var(--accent, #6aa2ff)); outline-offset: 2px; }
 /* A clip-path eats `outline` (and box-shadow) along the diagonal, so a chamfered control loses its
    keyboard focus indicator entirely. An INSET ring paints inside the silhouette, where the chamfer

@@ -1,0 +1,16 @@
+{
+  "name": "Moon Rover",
+  "tagline": "Dust, grit and one hard sun — the lunar surface, not the sky",
+  "signature": [
+    "--moon-rover-regolith",
+    "--moon-rover-tracks",
+    "--moon-rover-mast"
+  ],
+  "order": 190,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Saira:wght@400;500;600;700&family=Fira+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Saira Condensed · Saira · Fira Mono",
+  "mode": "light",
+  "source": "original — a lunar-surface register: regolith greys, hard sun and shadow, drawn dust. No agency, mission, rover or patch artwork is referenced or reproduced; the hardware motif is three primitives (a post, an arm, a box).",
+  "tags": ["light", "mineral", "dusty", "hard-shadow", "technical", "aerospace"],
+  "use_when": "lunar and field-hardware pages, mission-ground products, anything that should feel like dust under one unfiltered sun rather than a view of space"
+}

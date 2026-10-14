@@ -1,0 +1,91 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#d9821c",
+        "primary-hover": "#eb9a33",
+        "primary-ink": "#191410",
+        "primary-text": "#5e2b03",
+        "primary-text-hover": "#4a2102",
+        "secondary": "#4a6a86",
+        "tertiary": "#26405a",
+        "neutral": "#ded9cd",
+        "ground-top": "#e6e2d7",
+        "ground-bottom": "#d2ccbf",
+        "surface": "#eeeae0",
+        "surface-2": "#c4beb0",
+        "text": "#1e1c17",
+        "text-muted": "#38332b",
+        "success": "#1f4a28",
+        "warning": "#553d04",
+        "error": "#7a2714"
+      },
+      "fontFamily": {
+        "display": [
+          "Saira Condensed"
+        ],
+        "heading": [
+          "Saira Condensed"
+        ],
+        "body": [
+          "Saira"
+        ],
+        "label": [
+          "Fira Mono"
+        ],
+        "readout": [
+          "Fira Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.9rem",
+          {
+            "letterSpacing": "-0.005em",
+            "fontWeight": "700"
+          }
+        ],
+        "heading": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.002em",
+            "fontWeight": "700"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.12em",
+            "fontWeight": "500"
+          }
+        ],
+        "readout": [
+          "0.9rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "2px",
+        "md": "3px",
+        "lg": "5px",
+        "pill": "3px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

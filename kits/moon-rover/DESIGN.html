@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Rover — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Moon Rover kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&amp;family=Saira:wght@400;500;600;700&amp;family=Fira+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Moon Rover</h1>
+  <p class="spec-sub">Dust, grit and one hard sun — the lunar surface, not the sky</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Moon Rover
+description: The lunar surface and the machine standing on it — grey-brown regolith under one unfiltered sun, a cast shadow with no penumbra, drawn dust, and a single dust-covered amber for action.
+colors:
+  primary: &quot;#d9821c&quot;
+  primary-hover: &quot;#eb9a33&quot;
+  primary-ink: &quot;#191410&quot;
+  primary-text: &quot;#5e2b03&quot;
+  primary-text-hover: &quot;#4a2102&quot;
+  secondary: &quot;#4a6a86&quot;
+  tertiary: &quot;#26405a&quot;
+  neutral: &quot;#ded9cd&quot;
+  ground-top: &quot;#e6e2d7&quot;
+  ground-bottom: &quot;#d2ccbf&quot;
+  surface: &quot;#eeeae0&quot;
+  surface-2: &quot;#c4beb0&quot;
+  text: &quot;#1e1c17&quot;
+  text-muted: &quot;#38332b&quot;
+  success: &quot;#1f4a28&quot;
+  warning: &quot;#553d04&quot;
+  error: &quot;#7a2714&quot;
+typography:
+  display:
+    fontFamily: Saira Condensed
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: &quot;-0.005em&quot;
+  heading:
+    fontFamily: Saira Condensed
+    fontSize: 1.3rem
+    fontWeight: 700
+    lineHeight: 1.18
+    letterSpacing: &quot;0.002em&quot;
+  body:
+    fontFamily: Saira
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.58
+  label:
+    fontFamily: Fira Mono
+    fontSize: 0.72rem
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: &quot;0.12em&quot;
+  readout:
+    fontFamily: Fira Mono
+    fontSize: 0.9rem
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: &quot;0.01em&quot;
+rounded:
+  sm: 2px
+  md: 3px
+  lg: 5px
+  pill: 3px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 28px
+  xl: 44px
+components:
+  page:
+    backgroundColor: &quot;{colors.ground-top}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+  ground-lower:
+    backgroundColor: &quot;{colors.ground-bottom}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 20px
+  card-media:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    height: 96px
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px 20px
+    height: 40px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px 20px
+    height: 40px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-text-hover}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px 20px
+  button-danger:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px 20px
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+    height: 40px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  badge-ok:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  badge-warn:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  badge-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 5px
+  table-header:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+  nav:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  alert-ok:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  alert-warn:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  alert-error:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  link:
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.body}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p><strong>This kit is the ground, not the sky.</strong> It is the surface a mission is standing on: grey-brown regolith (#e6e2d7 at the top of the page settling to #d2ccbf), a near-black warm ink, one dust-covered amber for action, and a cold blue-grey that appears for exactly one reason — on the Moon the shadow really <em>is</em> blue, because airless shadow is lit by earthshine and starlight and nothing else. There is no violet, no neon, no glow, no starfield and no black in this palette. It is a mineral register, and the material is granular.</p>
+<p><strong>Two grades of one material.</strong> Regolith is drawn, not sampled, and it ships in two grades because one cannot do both of this kit's jobs:</p>
+<ul><li><code>--moon-rover-dust</code> — the <strong>ground grade</strong>. Sunlit chalk grains with every darkening element capped at 11% alpha, because type sits on it. Composited from the shipped artwork, the worst pixel — every darkening layer of the texture landing on the same spot, over the darkest <code>--bg</code> stop — still measures <strong>7.53:1</strong> for <code>{colors.text}</code> and <strong>4.78:1</strong> for <code>--text-dim</code>.</li><li><code>--moon-rover-grit</code> — the <strong>material grade</strong>. The same regolith with its micro-shadows kept: each grain has a lit facet and a real shaded facet and a hairline cast sliver. It is used only where no type can sit — the card media panel and the signature tiles.</li></ul>
+<p>That split is the kit's load-bearing decision. Regolith with honest micro-shadows is not a background you can set 12px captions on; pretending otherwise is how a kit ships as "dusty colours" with unreadable hints.</p>
+<p><strong>The hard sun is a geometry, not a blur.</strong> Every shadow is a <strong>zero-blur offset plate</strong> — <code>--shadow-1</code>/<code>--shadow-2</code>, <code>--btn-shadow</code>, <code>--bar-shadow</code>, <code>--bar-item-shadow</code>, <code>--toggle-shadow</code>, <code>--toggle-knob-shadow</code>, <code>--glow</code>. The media panel's shadow is a <strong>caster and its projection</strong>: a low boulder field in the artwork, and that silhouette put through a shear matrix — so the shadow is <em>longer than the object</em>, which is the one thing a drop shadow can never say — drawn translucent so the grain of the ground still reads inside the darkness. (The first version of that panel used a straight hard-stop gradient band: in a real 300×96 card it read as a stray dark overlay, because a shadow with no caster, no contact line and no shape is a stripe.) <code>--blur</code> is <code>none</code>; an airless body has no diffusion.</p>
+<p>One sentence: <em>the lunar surface and the machine standing on it — grey-brown regolith under one unfiltered sun, hard black shadow plates, drawn dust, and one dust-covered amber doing all the acting.</em></p>
+<h3 id="colors">Colors</h3>
+<ul><li><strong>Primary (#d9821c) — the dusty amber, and it is a FILL.</strong> It fills the primary button, the checked controls, the progress bar and the avatar, and nothing else. It is the colour of hardware that has been out in the dust: saturated enough to act, dirty enough not to glow. As a label on this ground it measures <strong>1.83:1</strong> — a fill is not an ink.</li><li><strong>Primary-hover (#eb9a33) — the dust is blown off it.</strong> The plate comes <em>up</em> on press, which is both the physically honest move (a sunlit surface under a hand) and the legible one: its own label rises from 6.23:1 to <strong>8.01:1</strong>.</li><li><strong>Primary-ink (#191410)</strong> — dust-black printed <em>on</em> the amber plate. An amber fill takes dark ink, never white (white on #d9821c is ~2.2:1).</li><li><strong>Primary-text (#5e2b03) / primary-text-hover (#4a2102)</strong> — the amber <em>as text</em>: eyebrows, links, active nav and tab labels, secondary-button labels, inline code, <code>.table code</code>. A wet-rust brown of the same family: <strong>6.22:1</strong> on the deepest recess and <strong>5.76:1</strong> on its own 15% tint composited over that recess. This pair is why the palette works at all.</li><li><strong>Secondary (#4a6a86) — shadow blue-grey.</strong> The one cold colour in the kit and the reason the palette is not monochrome-warm. It is the shadow side of the media panel and the second stop of fills; it <strong>never acts</strong>. Its darker family members are <code>--info</code> (#26405a) and <code>--focus-ring</code> (#2e4a63).</li><li><strong>Tertiary (#26405a) — telemetry blue.</strong> Data and readouts, so an instrument never borrows the action colour. (It is <code>--info</code> in <code>tokens.css</code>.)</li><li><strong>Neutral (#ded9cd)</strong> — the ground's dominant stop and the solid stand-in, since <code>colors:</code> cannot hold a gradient (the linter errors on one). The two ramp stops ship as colours of their own: <strong>ground-top (#e6e2d7)</strong> and <strong>ground-bottom (#d2ccbf)</strong>, referenced by <code>page</code> and <code>ground-lower</code>.</li><li><strong>Surface (#eeeae0) / surface-2 (#c4beb0)</strong> — and note the <em>direction</em>, because it is the whole light model: a <strong>card is a sunlit plate</strong>, a shade <strong>lighter</strong> than the ground (#eeeae0 against a #d2ccbf lower ground), and an <strong>inset is a scooped recess</strong>, a shade <strong>darker</strong> (#c4beb0) — the same regolith with the sun taken off it. Neither is white paper, neither is a black well.</li><li><strong>Text (#1e1c17) / text-muted (#38332b)</strong> — the near-black warm ink and its second step.</li><li><strong>Success (#1f4a28) / warning (#553d04) / error (#7a2714)</strong> — deep mineral inks: a dark dusty green, a deep ochre and an oxide red. All three are solved on <code>--surface-2</code>, the <strong>darkest</strong> ground any of them is drawn on (a badge keeps its own recess background), not on the easy pale card. <code>--warn</code> is deliberately an ochre rather than a dimmed amber, so a caution never reads as the action.</li></ul>
+<p>Deliberately not in the map above: <code>--text-dim: #423d31</code> (captions, hints, table headers, the binding pair in this kit), <code>--accent-ink-hover</code>, <code>--border: #a49c8a</code> / <code>--border-strong: #786f5d</code> (the hard seams — the DESIGN.md component schema has no <code>borderColor</code> property), <code>--accent-soft: rgba(217,130,28,.15)</code> (a translucent tint is not a colour), <code>--focus-ring</code> (#2e4a63) and <code>--accent-2</code> as a fill. Listing any of them would only produce orphan warnings for values that are very much in use. Exact values are in <code>tokens.css</code>.</p>
+<h3 id="typography">Typography</h3>
+<p>A <strong>stamped-hardware voice</strong>, in two families plus an instrument mono:</p>
+<ul><li><strong>Saira Condensed — display.</strong> A condensed technical grotesque. Hardware lettering <em>is</em> condensed and heavy, because it is stencilled onto a curved plate with a pantograph rather than set in a book; the condensed face is the closest honest analogue of a stamped data plate in the Google library. It sets the h1, section headings and card titles.</li><li><strong>Saira — body.</strong> The same superfamily at text width, so a plate's label and a plate's note share a hand rather than merely coexisting. This is the face a paragraph is read in.</li><li><strong>Fira Mono — labels, eyebrows, badges, table headers, readouts.</strong> A rover's data plate, not a HUD and not a terminal: mono is what an instrument prints in. The <code>readout</code> register (0.9rem, +0.01em) carries IDs, version strings and numerals so a column of figures lines up as instrumentation.</li><li>Caps labels are tracked <strong>+0.12em</strong> — stamped and tracked, tighter than a HUD's 0.14–0.18em, because a pressed label is compressed into metal, not spaced out on glass.</li><li><strong>Upright, always.</strong> <code>--style-display: normal</code>: stencils do not lean. The contract names a font <em>family</em>, never its style, so <code>--style-display</code> is declared rather than left to a fallback.</li></ul>
+<p>There is no third face and nothing decorative: this kit's character is in the material, not in the lettering.</p>
+<h3 id="layout">Layout</h3>
+<p>The shared column (<code>min(1040px, 100% - 2.5rem)</code>) over a dust-textured regolith ground. Section boundaries are 2px machined seams; inside a panel the rhythm is tight (8–14px) so controls group by proximity rather than by boxing. Cards are an auto-fit grid that collapses to one column on a phone.</p>
+<p>Controls are 40px tall with 12px×20px button padding and 20px card padding. The spacing scale runs 4 · 8 · 16 · 28 · 44, and the gap between the ground band and the ground band below it is the 44px step, so the page breathes the way a wide flat surface does.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p><strong>Depth is a plate of shadow, not a haze.</strong> <code>--shadow-1</code> is <code>4px 4px 0 0 var(--moon-rover-shade)</code> plus a one-pixel sunlit lip (<code>inset 1px 1px 0 rgba(255,253,246,.58)</code>); <code>--shadow-2</code> is the same at <code>7px 7px</code>. The plate measures <strong>2.2:1 against the ground</strong> — a shadow you can see, not a hint. Both are zero-blur, because a shallow sun throws a plate of shadow and that plate has an edge. There is no blurred drop shadow anywhere in this kit.</p>
+<ul><li><strong>Every button variant</strong> wears <code>--btn-shadow</code> (<code>3px 3px 0 0</code>), not just the primary: on a surface where everything is lit from one direction, everything casts.</li><li><strong>The primary plate casts further</strong> (<code>--glow</code>: <code>5px 5px</code>), because a raised plate on a sunlit surface throws a longer shadow than a flush one. <code>--glow</code> is reused as the hard plate rather than a halo — there is nothing to glow here.</li><li><strong>Nav and tabs are milled into the ground</strong> (<code>--bar-shadow</code>: <code>inset 0 2px 0</code>), and the current item is a plate riding in that channel (<code>--bar-item-shadow</code>).</li><li><strong>Inputs are scooped</strong> (<code>--input-inset</code>): the sunward inner wall of the scoop is in shadow (dark, top-left) and the wall opposite catches the light (lit, bottom-right). That is the same light model as the cast shadows, inverted — and it is why the recess reads as a hole rather than as a raised bevel.</li><li><code>--blur: none</code>. <code>card-elevated</code> uses <code>--surface-2</code> and <code>--shadow-2</code>, so it is <em>more</em> recessed, not more lifted.</li></ul>
+<h3 id="shapes">Shapes</h3>
+<p>Crisp plate geometry: <code>--radius-sm: 2px</code>, <code>--radius-md: 3px</code>, <code>--radius-lg: 5px</code>, and <strong><code>--radius-pill: 3px</code></strong> — deliberately <em>not</em> a capsule. Nothing on a rover is rounded, so badges, the toggle track, the switch knob, status dots and the avatar are all square-ish machined plates; that single decision does more to distinguish this kit's silhouette than any colour.</p>
+<p><code>--cut: 0px</code> and <strong>no <code>--clip</code></strong>: this kit wants its 2px frame on all four edges. A chamfer would cut the border along the diagonal, eat the zero-blur cast shadows that <em>are</em> the kit, and force the focus ring inward — three costs for a silhouette this palette does not want.</p>
+<p><strong>Square native controls.</strong> <code>--check-appearance: none</code> with a 2px rim (<code>--check-border</code>), a pale plate (<code>--check-bg: #eeeae0</code>) and a filled amber square when checked (<code>--check-checked</code>). Native checkboxes ignore <code>border-radius</code>, so without this a kit whose only shape rule is "square" would render round radios.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — the amber plate: dust-black label (<code>{colors.primary-ink}</code>) in the mono label style, 3px radius, 2px rim, and the longest hard shadow in the kit. It is a fill, never a text colour.</li><li><strong>button-primary-hover</strong> — the same plate with the dust blown off (<code>{colors.primary-hover}</code>), still dust-black. See Colors for why the fill brightens rather than darkens.</li><li><strong>button-secondary / button-ghost / button-danger</strong> — plates in the sunlit surface, the ground tone or open, taking wet-rust, muted-ink or oxide-red labels. Secondary actions are recessed or flush, never filled: only one thing in this kit is amber.</li><li><strong>card / ground-lower / card-media</strong> — the sunlit plate, the ground's lower stop, and the media panel. The media panel is where the kit paints a <strong>surface</strong> rather than a colour: a boulder field and its cast shadow, regolith at two scales, opaque (<code>--media-op: 1</code>).</li><li><strong>card-title</strong> — Saira Condensed at weight 650–700: a stencilled plate heading, read across a field.</li><li><strong>input</strong> — the scooped recess (<code>{colors.surface-2}</code>) with a 2px machined rim; on focus the rim takes the amber and the well takes a 3px <code>--accent-soft</code> halo.</li><li><strong>badge / badge-accent / badge-ok / badge-warn / badge-danger</strong> — 3px-radius stamped plates in the recess, with the amber tint carrying the accent label and the deep mineral inks carrying status. None of them is a capsule.</li><li><strong>table-header</strong> — mono, uppercase, +0.12em, muted: the engraved column legend.</li><li><strong>nav / alert-\</strong>* — a milled channel with a plate riding in it, and recessed frames with a 3px rule down the left edge (telemetry blue, dusty green, ochre, oxide red), one step wider than the kit's own 2px seam so the rule reads as a warning lamp.</li><li><strong>link</strong> — wet rust, underlined on hover: the same ink family as the action, because a link is an action even when it cannot be a fill.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep the amber for fills. Set accent text in <code>{colors.primary-text}</code> (#5e2b03) — the fill is 1.83:1 as a label and no weight rescues it.</li><li><strong>Do</strong> use the ground grade of the texture anywhere type sits, and the material grade only where it does not. That split is the kit.</li><li><strong>Do</strong> express depth as a hard offset plate. If something needs a blur to be legible, it is the wrong element.</li><li><strong>Do</strong> keep radii at 2–5px, including badges. The 3px "pill" is a specification, not an oversight.</li><li><strong>Do</strong> let the shadow be longer than the object — that is what a low sun does.</li><li><strong>Do</strong> keep the blue-grey for shadow, telemetry and focus. It is the only cool note.</li><li><strong>Don't</strong> add a third saturated colour, a glow, a starfield, a violet, or anything that could be called cosmic. This is the ground, and the sky is out of frame.</li><li><strong>Don't</strong> put white on the amber plate. It takes dust-black (#191410).</li><li><strong>Don't</strong> blur anything: <code>--blur</code> is <code>none</code>, and a soft shadow would undo the entire premise.</li><li><strong>Don't</strong> lighten the ground to "calm it down". The inks are solved against the darkest stop and the texture's worst composite; raising the ground past #ded9cd starts costing margins that were paid for.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>
