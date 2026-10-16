@@ -135,6 +135,7 @@ section.block:first-of-type { border-top: 0; }
    forward (broadcast, racing, editorial) had to ship a kit.css just to say `italic`. */
 .t-display, .t-h1, .t-h2, .t-h3, .card-title, .masthead h1, .avatar {
   font-style: var(--style-display, normal);
+  font-weight: var(--weight-display, 700);   /* the display voice's weight (a light-weight display is a register, not a bug) */
 }
 
 .btn-primary { --_bg: var(--accent, #5b7cfa); --_fg: var(--text-invert, #fff); --_bd: transparent;

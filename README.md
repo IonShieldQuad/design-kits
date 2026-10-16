@@ -106,6 +106,7 @@ order, palette limits.
 | [`space-program`](kits/space-program/DESIGN.md) | light · mission-control · engineering · console · telemetry · checklist | program documentation and control-room surfaces: mission and ops consoles, telemetry and monitoring dashboards, checklists and procedure UIs, engineering and safety tooling, anything that should read as a white drawing sheet with a status lamp ladder rather than a night sky (the dark, hardware-side counterpart is outer-space; this is the room, not the sky) |
 | [`moon-rover`](kits/moon-rover/DESIGN.md) | light · mineral · dusty · hard-shadow · technical · aerospace | lunar and field-hardware pages, mission-ground products, anything that should feel like dust under one unfiltered sun rather than a view of space |
 | [`photonic`](kits/photonic/DESIGN.md) | dark · sci-fi · holographic · translucent · luminous · screen | projected and in-world interfaces — sci-fi, space and hardware product pages, HUD and telemetry overlays, ambient status displays, AI and vision marketing, anything that should look lit from its own edges rather than printed |
+| [`frutiger-aero`](kits/frutiger-aero/DESIGN.md) | light · glossy · translucent · 2000s · sky · friendly | consumer software, device and OS-adjacent marketing, playful dashboards and onboarding, media and lifestyle products — anything that should feel bright, glossy and friendly rather than severe |
 <!-- END KITS -->
 
 ## Token contract (v1)

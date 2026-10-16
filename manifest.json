@@ -1,7 +1,7 @@
 {
   "generated_by": "tools/build.py",
   "contract_version": 1,
-  "kit_count": 34,
+  "kit_count": 35,
   "required_tokens": [
     "--bg",
     "--bg-2",
@@ -1668,6 +1668,68 @@
         "tokens": "kits/photonic/tokens.css",
         "lab": "kits/photonic/index.html",
         "readme": "kits/photonic/README.md"
+      },
+      "warnings": []
+    },
+    {
+      "slug": "frutiger-aero",
+      "name": "Frutiger Aero",
+      "tagline": "Sky-and-grass optimism — translucent glass with a hard specular band, bubbles and water droplets",
+      "description": "Sky-and-grass optimism — a sky-blue-to-white ground with a green foot, seen through translucent glass whose top edge carries a hard white specular band, with bubbles and water droplets in the air.",
+      "index": "35",
+      "order": 200,
+      "mode": "light",
+      "tags": [
+        "light",
+        "glossy",
+        "translucent",
+        "2000s",
+        "sky",
+        "friendly"
+      ],
+      "fonts": "Hind · IBM Plex Mono",
+      "source": "original — the 2004–2013 consumer-tech register (sky above, grass below, gloss over both), built with generic optics only; no Microsoft trade dress, and the display face is a Frutiger-adjacent free humanist sans because the real Frutiger is a commercial Linotype licence",
+      "colors": {
+        "primary": "#0d6db3",
+        "primary-hover": "#0b62a4",
+        "primary-ink": "#0a5590",
+        "primary-ink-hover": "#084d84",
+        "on-primary": "#ffffff",
+        "secondary": "#2fa85e",
+        "tertiary": "#86cff2",
+        "neutral": "#eef9ff",
+        "sky": "#b4e0fb",
+        "sky-2": "#c3e7fc",
+        "air": "#eef9ff",
+        "grass": "#cdecce",
+        "grass-2": "#bfe8b2",
+        "grass-deep": "#a4db7c",
+        "horizon-spec": "#fbfeff",
+        "surface": "rgba(255, 255, 255, 0.34)",
+        "surface-2": "rgba(255, 255, 255, 0.44)",
+        "surface-solid": "#eef9ff",
+        "glass-band": "rgba(255, 255, 255, 0.95)",
+        "badge-tint": "rgba(13, 109, 179, 0.14)",
+        "overlay": "rgba(10, 38, 64, 0.44)",
+        "text": "#10334f",
+        "text-muted": "#2c4a66",
+        "text-dim": "#3a5872",
+        "border": "rgba(84, 152, 206, 0.42)",
+        "border-strong": "rgba(16, 58, 94, 0.32)",
+        "fill-top": "#0f6aa8",
+        "fill-low": "#0b4f80",
+        "fill-foot": "#116b48",
+        "ok": "#0f6b3d",
+        "warn": "#7d4d00",
+        "danger": "#b0203c",
+        "info": "#0b5f9e"
+      },
+      "files": {
+        "design": "kits/frutiger-aero/DESIGN.md",
+        "design_html": "kits/frutiger-aero/DESIGN.html",
+        "tokens": "kits/frutiger-aero/tokens.css",
+        "lab": "kits/frutiger-aero/index.html",
+        "readme": "kits/frutiger-aero/README.md"
       },
       "warnings": []
     }

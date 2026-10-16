@@ -1,0 +1,304 @@
+/* ============================================================================
+   Frutiger Aero — design kit tokens                                  contract v1
+   ----------------------------------------------------------------------------
+   THE 2004-2013 CONSUMER-TECH REGISTER: sky-and-grass optimism on a LIGHT
+   ground, translucent glass with a real specular highlight, bubbles and water
+   droplets in the air. Friendly and clean, never corporate grey.
+
+   THIS KIT IS THE LIBRARY'S DELIBERATE EXCEPTION TO THE NON-SMOOTH RULE.
+   Everywhere else a smooth ramp, a blurred shadow or a bloom is a defect; here
+   they ARE the material. So: gradients ramp smoothly, --blur is real and
+   load-bearing (templates/lab.css applies var(--blur) to every .card), shadows
+   are soft and cast, and there is a bloom in the masthead. What is NOT
+   negotiable is legibility — and that is the whole trade: gloss costs contrast
+   headroom. The glass sits at 46-50% white over a pale ground, every ink is
+   graded against the DARKEST stop of the ground (a light kit binds on its most
+   saturated ground, not its palest one) and the full table is in README.md.
+
+   WHY THE GROUND IS PALE BUT NOT WASHED OUT: --text-dim is the token that
+   fails first under gloss, and it must clear 4.55:1 on every ground the lab can
+   put it on. Solving that backwards fixes the ceiling on the ground: the most
+   saturated stop may not go below L 0.70. --frutiger-aero-sky (#b4e0fb,
+   L 0.6998) is therefore the bright end of the sky, not the vivid mid-blue the
+   register would use on a poster — the vivid blues live where nothing is
+   typeset (.card-media, the drawn motifs, --fill-bg under a WHITE label at a
+   measured 4.71:1).
+
+   TYPE: "Hind" is a Frutiger-adjacent FREE humanist sans, chosen because the
+   real Frutiger is commercial (Linotype) and this repo is public. "Frutiger"
+   appears only as a system fallback in the stack — never as a Google Fonts
+   request. IBM Plex Mono carries the token captions.
+
+   IP: no Microsoft trade dress. No Windows logo, no window chrome copied from
+   a screenshot, no Vista/7 branding. The vocabulary here is generic optics —
+   glass, a specular band, a bubble, a droplet, a horizon.
+
+   Contract: docs/KIT-SPEC.md v1 — every required name is present below.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  /* The ground is a SCENE, not a flat tint: a drawn bubble field (the wallpaper),
+     two sky blooms at the top, a grass bloom at the foot, over a blue-to-white-to-
+     green ramp. Stops are in px, not %, so the whole sky-and-grass walk happens
+     inside the first few screens instead of smearing over a 4000px document.
+
+     Every layer here only ever RAISES luminance (white and near-white washes, a
+     white-stroked bubble field), so the darkest pixel on the page stays the first
+     stop of the ramp — which is what makes the contrast table provable. */
+  --bg:
+    /* DRAWN: the floating bubble field. Spheres are a form, not a gradient — a
+       radial-gradient ring reads as a bullseye, so this is drawn artwork at
+       168px. White strokes and white fills only: the field cannot darken type. */
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjgnIGhlaWdodD0nMTY4JyB2aWV3Qm94PScwIDAgMTY4IDE2OCc+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSdmMScgY3g9JzAuMzYnIGN5PScwLjMnIHI9JzAuNzgnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjUwJy8+PHN0b3Agb2Zmc2V0PScwLjU4JyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAuMTgnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyNmZmZmZmYnIHN0b3Atb3BhY2l0eT0nMC4zNicvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxnIHN0cm9rZT0nI2ZmZmZmZicgZmlsbD0nbm9uZSc+PGNpcmNsZSBjeD0nMzYnIGN5PSc0NCcgcj0nMjgnIGZpbGw9J3VybCgjZjEpJyBzdHJva2Utb3BhY2l0eT0nMC42Micgc3Ryb2tlLXdpZHRoPScxLjgnLz48ZWxsaXBzZSBjeD0nMjcnIGN5PSczNCcgcng9JzknIHJ5PSc1LjInIHRyYW5zZm9ybT0ncm90YXRlKC0zMiAyNyAzNCknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMC41MCcgc3Ryb2tlPSdub25lJy8+PGNpcmNsZSBjeD0nMTI0JyBjeT0nMjYnIHI9JzE1JyBmaWxsPSd1cmwoI2YxKScgc3Ryb2tlLW9wYWNpdHk9JzAuNDgnIHN0cm9rZS13aWR0aD0nMS4zJy8+PGVsbGlwc2UgY3g9JzExOScgY3k9JzIxJyByeD0nNC42JyByeT0nMi44JyB0cmFuc2Zvcm09J3JvdGF0ZSgtMzIgMTE5IDIxKScgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjQyJyBzdHJva2U9J25vbmUnLz48Y2lyY2xlIGN4PSc5MicgY3k9JzExNCcgcj0nOS41JyBmaWxsPSd1cmwoI2YxKScgc3Ryb2tlLW9wYWNpdHk9JzAuNDAnIHN0cm9rZS13aWR0aD0nMS4xJy8+PGNpcmNsZSBjeD0nMTUwJyBjeT0nMTA0JyByPScyMCcgZmlsbD0ndXJsKCNmMSknIHN0cm9rZS1vcGFjaXR5PScwLjM2JyBzdHJva2Utd2lkdGg9JzEuNScvPjxlbGxpcHNlIGN4PScxNDQnIGN5PSc5Nycgcng9JzYuNCcgcnk9JzMuOCcgdHJhbnNmb3JtPSdyb3RhdGUoLTMyIDE0NCA5NyknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMC4zNCcgc3Ryb2tlPSdub25lJy8+PGNpcmNsZSBjeD0nMjInIGN5PScxNTAnIHI9JzEyJyBmaWxsPSd1cmwoI2YxKScgc3Ryb2tlLW9wYWNpdHk9JzAuMzInIHN0cm9rZS13aWR0aD0nMS4yJy8+PGNpcmNsZSBjeD0nNzInIGN5PScyMCcgcj0nNi41JyBmaWxsPSd1cmwoI2YxKScgc3Ryb2tlLW9wYWNpdHk9JzAuMjgnIHN0cm9rZS13aWR0aD0nMScvPjwvZz48L3N2Zz4=") 0 0 / 168px 168px repeat,
+    radial-gradient(880px 600px at 14% -140px, rgba(255,255,255,.52) 0%, rgba(255,255,255,0) 68%),
+    radial-gradient(720px 520px at 88% -60px, rgba(214,244,255,.44) 0%, rgba(214,244,255,0) 72%),
+    radial-gradient(1100px 780px at 74% 2960px, rgba(248,255,244,.50) 0%, rgba(248,255,244,0) 74%),
+    linear-gradient(176deg, #b4e0fb 0px, #bfe3fc 420px, #c9e8fc 900px, #d3ecfd 1500px,
+                    #e6f6ff 2100px, #f2fbf7 2500px, #dcefd2 2900px, #bfe8b2 3400px);
+  --bg-2:          #c9e8fc;                   /* masthead stop / solid stand-in */
+  /* THE GLASS. A uniformly frosted base (40% white — held down deliberately, see
+     below) with a specular band whose lower edge is HARD: .52 at 12px straight to
+     .06 at 13px, a 1px fall. That hard edge is the difference between glass and
+     fog: a soft blur with no highlight is fog.
+
+     THE BASE IS 40%, NOT 60%, AND THAT IS A MEASURED CORRECTION. The first build
+     of this kit used 46% white plus a `brightness(1.04)` in --blur, and the band
+     was INVISIBLE on the rendered card: over the pale middle of the ground the
+     panel composited to L 0.989 and the band's 13px plateau to L 0.991 — a step of
+     0.002, i.e. nothing. A specular highlight needs headroom above the surface it
+     sits on, and a near-white panel has none. At 40% with no brightness boost the
+     same step measures 0.086 over the sky (plateau L 0.9039 -> below-cut L 0.8181,
+     rgb #e9f6fe -> #d5edfd) and the panel reads a real 0.108 above its ground.
+
+     The band is 13px, not "the top third", and that is measured too: the lab puts
+     the first line of type 18px below a card's top edge and ~17px below a nav
+     item's, so a percentage band's edge lands INSIDE .card-body on the Cards row
+     (a hard white line across a paragraph). The top-third band lives on
+     .card-media and on the masthead lip, where nothing is ever typeset. */
+  --surface:
+    linear-gradient(180deg,
+      rgba(255,255,255,.94) 0px,
+      rgba(255,255,255,.58) 9px,
+      rgba(255,255,255,.52) 12px,
+      rgba(255,255,255,.02) 13px,
+      rgba(255,255,255,.26) 100%),
+    linear-gradient(rgba(255,255,255,.34), rgba(255,255,255,.34));
+  /* Nested panels, inputs, badges, code. Deliberately a SOFT glass with no band:
+     the same token backs .input, .badge, .alert, pre.code, .toggle and .bare, and
+     a hard edge at 46% of a 41px field cuts straight through the text inside it. */
+  --surface-2:
+    linear-gradient(180deg, rgba(255,255,255,.36) 0%, rgba(255,255,255,.12) 62%, rgba(255,255,255,.22) 100%),
+    linear-gradient(rgba(255,255,255,.44), rgba(255,255,255,.44));
+  --overlay:       rgba(10, 38, 64, .44);     /* modal scrim */
+
+  /* ----------------------------------------------------------------- text */
+  /* Graded against the darkest ground stop (#b4e0fb, L 0.6998) AND against the
+     palest possible panel (the specular band at full alpha over the palest stop,
+     i.e. white). Both are in the table; the darker number is the one quoted. */
+  --text:          #10334f;   /* 9.32:1 on the darkest ground, 13.06:1 on the gloss band */
+  --text-muted:    #2c4a66;   /* 6.58:1 on the darkest ground, 7.84:1 on a glass card */
+  --text-dim:      #3a5872;   /* 5.32:1 worst case — captions, hints, placeholders */
+  --text-invert:   #ffffff;   /* 5.45:1 on --accent; the button label and the avatar monogram */
+
+  /* ---------------------------------------------------------------- brand */
+  /* ONE action colour, one counterweight. The blue is deep enough to carry a
+     white label (5.45:1) — a register-true sky blue (#2196f3) gives white 3.10:1
+     and cannot be a button. The green owns gradients, media, charts and the
+     grass end of the ramp; it is never text. */
+  --accent:        #0d6db3;   /* azure — the one action colour */
+  --accent-hover:  #0b62a4;   /* one step deeper: a gloss darkens, it does not wash out */
+  --accent-2:      #2fa85e;   /* grass green — gradients, media, the horizon */
+  --accent-soft:   rgba(13, 109, 179, .14);
+  --accent-ink:    #0a5590;   /* the accent AS TEXT: 5.52:1 on the darkest ground and
+                                 5.33:1 on its own 14% tint composited over the glass */
+  --accent-ink-hover: #084d84;
+
+  /* --------------------------------------------------------------- status */
+  /* All four are solved for the PAGE GROUND, not just for a white card: the
+     Forms row puts a .hint (which goes --danger when the field is invalid) and
+     its labels straight on the sky, with no panel behind them. */
+  --ok:            #0f6b3d;   /* 4.70:1 on the darkest ground — the tightest pair in the kit */
+  --warn:          #7d4d00;   /* 5.11:1 */
+  --danger:        #b0203c;   /* 4.81:1 */
+  --info:          #0b5f9e;   /* 4.77:1 */
+
+  /* ---------------------------------------------------------------- lines */
+  /* A COOL rim, not a white one. On this ground a white hairline is invisible
+     (that is glass's documented compromise); a soft sky-blue line reads as the
+     edge of a pane on both the sky and the glass, and is the reason section
+     rules still exist on this page. The bright edge of the glass is a different
+     job and is done by the inset white line inside --shadow-1. */
+  --border:        rgba(84, 152, 206, .42);
+  --border-strong: rgba(16, 58, 94, .32);
+  --border-w:      1px;
+  --focus-ring:    #0a5590;   /* 5.52:1 on the ground — a 3:1 ring with room to spare */
+
+  /* ---------------------------------------------------------------- shape */
+  /* Generous and consistent: this is the Aqua-era idiom, and it is the second
+     thing (after the gloss) that separates the kit from the crisp-cornered
+     dark-tech half of the library. No chamfer anywhere — --cut stays 0 and no
+     --clip is declared, so --frame-ring is inert here by design. */
+  --radius-sm:     10px;
+  --radius-md:     16px;
+  --radius-lg:     22px;
+  --radius-pill:   999px;
+  --cut:           0px;
+
+  /* ----------------------------------------------------------------- type */
+  /* Hind: Frutiger-adjacent, free, humanist, open apertures. "Frutiger" is a
+     SYSTEM FALLBACK STRING ONLY — the real face is commercial and this repo is
+     public, so it is never requested from Google Fonts. */
+  --font-display:  "Hind", "Frutiger", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Hind", "Frutiger", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  --tracking-caps: .13em;
+  --tracking-display: -0.008em;   /* near-neutral: the register is not the tight modern SaaS voice */
+
+  /* ---------------------------------------------------------------- depth */
+  /* Soft and CAST — the one place the kit uses a genuinely blurred shadow, and
+     it should. The glass floats a few percent above its ground in luminance, so
+     the shadow plus the inset top highlight is what defines a panel. */
+  --shadow-1:      0 12px 26px -10px rgba(16, 58, 94, .30), 0 3px 8px -4px rgba(16, 58, 94, .18),
+                   inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(255, 255, 255, .35);
+  --shadow-2:      0 24px 48px -14px rgba(16, 58, 94, .36), 0 8px 18px -8px rgba(16, 58, 94, .22),
+                   inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(255, 255, 255, .45);
+  /* The primary button's own lift: a cast shadow plus an inner gloss. --glow is
+     what .btn-primary reads (lab.css overrides --btn-shadow there). */
+  --glow:          0 10px 20px -8px rgba(13, 109, 179, .62), 0 2px 6px -2px rgba(13, 109, 179, .35),
+                   inset 0 1px 0 rgba(255, 255, 255, .85),
+                   inset 0 -10px 14px -12px rgba(255, 255, 255, .60);
+  /* LOAD-BEARING. lab.css applies var(--blur) to every .card; set it to none and
+     this kit is a flat pastel page. There is deliberately NO brightness() term: it
+     was there in the first build as "the bloom", and measurement showed it pushed
+     the panel to L 0.989 and left the specular band a 0.002 step — it destroyed the
+     very thing it was meant to help. The bloom lives in --bg and --wash, where it
+     lightens the ground BEFORE the glass is composited over it, which also means it
+     can only ever raise the luminance under card text. */
+  --blur:          blur(16px) saturate(155%);
+
+  /* --------------------------------------------------------------- motion */
+  /* Short and slightly eased: a gel button should answer immediately. */
+  --dur:           .15s;
+  --ease:          cubic-bezier(.22, .72, .28, 1);
+
+  /* ------------------------------------------------------------------------
+     OPT-IN HOOKS
+     ------------------------------------------------------------------------ */
+  /* Physically pressed controls: hover lifts 1px, the press travels 1px DOWN
+     into the panel as the bevel collapses — the analogue behaviour, not the web
+     default. */
+  --btn-hover-lift: -1px;
+  --btn-press:      1px;
+  /* Applied to EVERY button variant. Insets only, on purpose: four of the five
+     variants (.btn-secondary, .btn-ghost, .btn-danger and .btn-link) are
+     transparent, and a cast shadow on a transparent box is a floating grey blob
+     with no plate under it. The bevel therefore has to be inner light. */
+  --btn-shadow:    inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -10px 12px -12px rgba(255, 255, 255, .55);
+  --btn-shadow-active: inset 0 2px 5px rgba(16, 58, 94, .30), inset 0 1px 0 rgba(255, 255, 255, .30);
+  /* A recessed field with a bright lower bevel — the lit lip of a pressed-in pane. */
+  --input-inset:   inset 0 2px 5px rgba(16, 58, 94, .22), inset 0 1px 0 rgba(16, 58, 94, .10),
+                   inset 0 -1px 0 rgba(255, 255, 255, .95);
+  /* The bars: .nav and .tabs become a glass rail with a specular plate under the
+     current item. */
+  --bar-shadow:     0 10px 22px -12px rgba(16, 58, 94, .42), inset 0 1px 0 rgba(255, 255, 255, .95);
+  --bar-item-shadow: 0 4px 10px -4px rgba(16, 58, 94, .35), inset 0 1px 0 rgba(255, 255, 255, .90);
+  --bar-item-pad:  .6rem;
+  /* The switch: a recessed track, a raised glossy knob. */
+  --toggle-shadow:      inset 0 2px 3px rgba(16, 58, 94, .20), inset 0 -1px 0 rgba(255, 255, 255, .90);
+  --toggle-knob-shadow: 0 1px 3px rgba(16, 58, 94, .38), inset 0 1px 0 rgba(255, 255, 255, .95),
+                        inset 0 -2px 3px rgba(16, 58, 94, .12);
+  /* Native check/radio keep the browser's own rendering (accent-color) so a
+     radio stays a circle; only the corner is set, so the box is a rounded
+     square. --check-appearance is deliberately NOT declared: the contract gives
+     one switch for both controls, and squaring the radio to get a square
+     checkbox trades a correct control for an incorrect one. */
+  --check-radius:  6px;
+  /* The masthead. Its default is a radial accent bloom; this is the kit's own —
+     a DIAGONAL gloss sweep (a horizontal band would have to cross the h1), a
+     36px specular lip at the very top (type starts at 40px), and two blooms.
+     Every layer here only lightens. */
+  --wash:
+    linear-gradient(103deg, rgba(255,255,255,.90) 0px, rgba(255,255,255,.34) 260px, rgba(255,255,255,0) 600px),
+    linear-gradient(180deg, rgba(255,255,255,.92) 0px, rgba(255,255,255,.58) 26px,
+      rgba(255,255,255,.06) 36px, rgba(255,255,255,.06) 36px, rgba(255,255,255,.20) 100%),
+    radial-gradient(120% 150% at 12% -34%, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 62%),
+    radial-gradient(90% 120% at 88% 4%, rgba(220,246,236,.55) 0%, rgba(220,246,236,0) 62%),
+    radial-gradient(70% 100% at 52% -10%, rgba(186,231,255,.45) 0%, rgba(186,231,255,0) 72%);
+  /* The material sample. .card-media is the one surface in the lab where the
+     hardness of the band and the saturation of the sky can both be full-tilt:
+     nothing is ever typeset on it. */
+  --media-bg:      var(--frutiger-aero-horizon);
+  --media-op:      1;
+  /* Progress and avatar. A HARD-BANDED gloss, and the white label is why: .avatar
+     typesets a white monogram on this, so the upper band is capped at 10% white
+     over #0f6aa8 (4.71:1 measured) and the lower at 14% over #0b4f80 (5.99:1).
+     A prettier, brighter band fails the avatar — this is the trade, quantified. */
+  --fill-bg:
+    linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.05) 47%,
+      rgba(255,255,255,.02) 48%, rgba(255,255,255,.14) 100%),
+    linear-gradient(180deg, #0f6aa8 0%, #0f6aa8 48%, #0b4f80 48%, #116b48 100%);
+
+  /* ------------------------------------------------------------------------
+     EXTRAS — the material, kept addressable.
+     The three below `gloss` are the kit's SIGNATURE (kit.json lists them, so
+     only these render as tiles: three motifs, three different jobs — a sphere,
+     a teardrop, a plane).
+     ------------------------------------------------------------------------ */
+  /* A SPHERE. Rim + body gradient + ONE hard-edged specular. The rim is split
+     deliberately: bright on the lit (upper-left) arc, weightier and darker
+     through the lower-right, because a uniform outline reads as a sticker.
+     A sphere cannot be built from gradients — nested radial rings read as a
+     bullseye — so it is drawn. */
+  --frutiger-aero-bubble:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSdiJyBjeD0nMC4zMycgY3k9JzAuMjcnIHI9JzAuODQnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjk2Jy8+PHN0b3Agb2Zmc2V0PScwLjI2JyBzdG9wLWNvbG9yPScjZWFmOGZmJyBzdG9wLW9wYWNpdHk9JzAuNzInLz48c3RvcCBvZmZzZXQ9JzAuNTInIHN0b3AtY29sb3I9JyNjMmU2ZmEnIHN0b3Atb3BhY2l0eT0nMC40MicvPjxzdG9wIG9mZnNldD0nMC43Nicgc3RvcC1jb2xvcj0nIzhhYzRlYScgc3RvcC1vcGFjaXR5PScwLjQwJy8+PHN0b3Agb2Zmc2V0PScwLjkyJyBzdG9wLWNvbG9yPScjNGY5ZWQ2JyBzdG9wLW9wYWNpdHk9JzAuNTUnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdjYScgY3g9JzAuNScgY3k9JzAuNScgcj0nMC41Jz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyNmZmZmZmYnIHN0b3Atb3BhY2l0eT0nMC41OCcvPjxzdG9wIG9mZnNldD0nMC41NScgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjI4Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc0NicgZmlsbD0ndXJsKCNiKScvPjxlbGxpcHNlIGN4PSc1MCcgY3k9JzcwJyByeD0nMjUnIHJ5PScxMycgZmlsbD0ndXJsKCNjYSknLz48cGF0aCBkPSdNNyA2NiBBNDYgNDYgMCAwIDEgOTMgMzQnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZmZmZmZicgc3Ryb2tlLW9wYWNpdHk9JzAuOTQnIHN0cm9rZS13aWR0aD0nMi42Jy8+PHBhdGggZD0nTTk2IDU2IEE0NiA0NiAwIDAgMSA0NCA5NScgZmlsbD0nbm9uZScgc3Ryb2tlPScjMmY4NmM0JyBzdHJva2Utb3BhY2l0eT0nMC41OCcgc3Ryb2tlLXdpZHRoPSczLjYnLz48ZWxsaXBzZSBjeD0nMzYnIGN5PSczMCcgcng9JzEzJyByeT0nOCcgdHJhbnNmb3JtPSdyb3RhdGUoLTMwIDM2IDMwKScgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjIyJy8+PGVsbGlwc2UgY3g9JzM0JyBjeT0nMjgnIHJ4PSc4LjYnIHJ5PSc1LjQnIHRyYW5zZm9ybT0ncm90YXRlKC0zMCAzNCAyOCknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMScvPjxjaXJjbGUgY3g9JzI0JyBjeT0nNDEnIHI9JzIuNicgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjkyJy8+PC9zdmc+") 18px 8px / 56px 56px no-repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSdiJyBjeD0nMC4zMycgY3k9JzAuMjcnIHI9JzAuODQnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjk2Jy8+PHN0b3Agb2Zmc2V0PScwLjI2JyBzdG9wLWNvbG9yPScjZWFmOGZmJyBzdG9wLW9wYWNpdHk9JzAuNzInLz48c3RvcCBvZmZzZXQ9JzAuNTInIHN0b3AtY29sb3I9JyNjMmU2ZmEnIHN0b3Atb3BhY2l0eT0nMC40MicvPjxzdG9wIG9mZnNldD0nMC43Nicgc3RvcC1jb2xvcj0nIzhhYzRlYScgc3RvcC1vcGFjaXR5PScwLjQwJy8+PHN0b3Agb2Zmc2V0PScwLjkyJyBzdG9wLWNvbG9yPScjNGY5ZWQ2JyBzdG9wLW9wYWNpdHk9JzAuNTUnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdjYScgY3g9JzAuNScgY3k9JzAuNScgcj0nMC41Jz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyNmZmZmZmYnIHN0b3Atb3BhY2l0eT0nMC41OCcvPjxzdG9wIG9mZnNldD0nMC41NScgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjI4Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc0NicgZmlsbD0ndXJsKCNiKScvPjxlbGxpcHNlIGN4PSc1MCcgY3k9JzcwJyByeD0nMjUnIHJ5PScxMycgZmlsbD0ndXJsKCNjYSknLz48cGF0aCBkPSdNNyA2NiBBNDYgNDYgMCAwIDEgOTMgMzQnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZmZmZmZicgc3Ryb2tlLW9wYWNpdHk9JzAuOTQnIHN0cm9rZS13aWR0aD0nMi42Jy8+PHBhdGggZD0nTTk2IDU2IEE0NiA0NiAwIDAgMSA0NCA5NScgZmlsbD0nbm9uZScgc3Ryb2tlPScjMmY4NmM0JyBzdHJva2Utb3BhY2l0eT0nMC41OCcgc3Ryb2tlLXdpZHRoPSczLjYnLz48ZWxsaXBzZSBjeD0nMzYnIGN5PSczMCcgcng9JzEzJyByeT0nOCcgdHJhbnNmb3JtPSdyb3RhdGUoLTMwIDM2IDMwKScgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjIyJy8+PGVsbGlwc2UgY3g9JzM0JyBjeT0nMjgnIHJ4PSc4LjYnIHJ5PSc1LjQnIHRyYW5zZm9ybT0ncm90YXRlKC0zMCAzNCAyOCknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMScvPjxjaXJjbGUgY3g9JzI0JyBjeT0nNDEnIHI9JzIuNicgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjkyJy8+PC9zdmc+") 94px 28px / 36px 36px no-repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSdiJyBjeD0nMC4zMycgY3k9JzAuMjcnIHI9JzAuODQnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjk2Jy8+PHN0b3Agb2Zmc2V0PScwLjI2JyBzdG9wLWNvbG9yPScjZWFmOGZmJyBzdG9wLW9wYWNpdHk9JzAuNzInLz48c3RvcCBvZmZzZXQ9JzAuNTInIHN0b3AtY29sb3I9JyNjMmU2ZmEnIHN0b3Atb3BhY2l0eT0nMC40MicvPjxzdG9wIG9mZnNldD0nMC43Nicgc3RvcC1jb2xvcj0nIzhhYzRlYScgc3RvcC1vcGFjaXR5PScwLjQwJy8+PHN0b3Agb2Zmc2V0PScwLjkyJyBzdG9wLWNvbG9yPScjNGY5ZWQ2JyBzdG9wLW9wYWNpdHk9JzAuNTUnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdjYScgY3g9JzAuNScgY3k9JzAuNScgcj0nMC41Jz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyNmZmZmZmYnIHN0b3Atb3BhY2l0eT0nMC41OCcvPjxzdG9wIG9mZnNldD0nMC41NScgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjI4Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc0NicgZmlsbD0ndXJsKCNiKScvPjxlbGxpcHNlIGN4PSc1MCcgY3k9JzcwJyByeD0nMjUnIHJ5PScxMycgZmlsbD0ndXJsKCNjYSknLz48cGF0aCBkPSdNNyA2NiBBNDYgNDYgMCAwIDEgOTMgMzQnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZmZmZmZicgc3Ryb2tlLW9wYWNpdHk9JzAuOTQnIHN0cm9rZS13aWR0aD0nMi42Jy8+PHBhdGggZD0nTTk2IDU2IEE0NiA0NiAwIDAgMSA0NCA5NScgZmlsbD0nbm9uZScgc3Ryb2tlPScjMmY4NmM0JyBzdHJva2Utb3BhY2l0eT0nMC41OCcgc3Ryb2tlLXdpZHRoPSczLjYnLz48ZWxsaXBzZSBjeD0nMzYnIGN5PSczMCcgcng9JzEzJyByeT0nOCcgdHJhbnNmb3JtPSdyb3RhdGUoLTMwIDM2IDMwKScgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjIyJy8+PGVsbGlwc2UgY3g9JzM0JyBjeT0nMjgnIHJ4PSc4LjYnIHJ5PSc1LjQnIHRyYW5zZm9ybT0ncm90YXRlKC0zMCAzNCAyOCknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMScvPjxjaXJjbGUgY3g9JzI0JyBjeT0nNDEnIHI9JzIuNicgZmlsbD0nI2ZmZmZmZicgZmlsbC1vcGFjaXR5PScwLjkyJy8+PC9zdmc+") 130px 8px / 24px 24px no-repeat,
+    radial-gradient(72% 96% at 22% 0%, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 68%),
+    linear-gradient(180deg, #cfe9fb 0%, #dff2fd 52%, #eaf7ff 100%);
+  /* A TEARDROP — a genuinely different silhouette (pointed top, bulbous base),
+     and lit differently: the light RIMS the upper-left of the droplet and the
+     caustic pools low in the bulb, where a droplet actually concentrates it.
+     It sits on the grass ground, not the sky, so the two tiles never read as
+     one motif twice. */
+  --frutiger-aero-droplet:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdkJyB4MT0nMC4yNCcgeTE9JzAnIHgyPScwLjc4JyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAuOTQnLz48c3RvcCBvZmZzZXQ9JzAuMjQnIHN0b3AtY29sb3I9JyNlOGY3ZmYnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjxzdG9wIG9mZnNldD0nMC41Nicgc3RvcC1jb2xvcj0nI2E4ZGFmNCcgc3RvcC1vcGFjaXR5PScwLjU2Jy8+PHN0b3Agb2Zmc2V0PScwLjg2JyBzdG9wLWNvbG9yPScjNWFhOWRjJyBzdG9wLW9wYWNpdHk9JzAuNTgnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMzZjk3Y2YnIHN0b3Atb3BhY2l0eT0nMC43MCcvPjwvbGluZWFyR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nMC40NCcgY3k9JzAuOTAnIHI9JzAuNDYnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjU1Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0ncycgY3g9JzAuNzQnIGN5PScwLjYyJyByPScwLjYyJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC4zMCcvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzJmODZjNCcgc3RvcC1vcGFjaXR5PScwJy8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI2QpJy8+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI3MpJy8+PGVsbGlwc2UgY3g9JzQ5JyBjeT0nODInIHJ4PScxOScgcnk9JzExJyBmaWxsPSd1cmwoI2spJy8+PHBhdGggZD0nTTUwIDggQzM5IDMxIDIwIDQ3IDIwIDY4IEEzMCAzMCAwIDAgMCA1MCA5OCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmZmZmJyBzdHJva2Utb3BhY2l0eT0nMC44Nicgc3Ryb2tlLXdpZHRoPScyLjgnLz48cGF0aCBkPSdNNTAgOTggQTMwIDMwIDAgMCAxIDgxIDY4JyBmaWxsPSdub25lJyBzdHJva2U9JyMyZjg2YzQnIHN0cm9rZS1vcGFjaXR5PScwLjQyJyBzdHJva2Utd2lkdGg9JzMuNCcvPjxlbGxpcHNlIGN4PSczNScgY3k9JzYyJyByeD0nMTMnIHJ5PSc4LjUnIHRyYW5zZm9ybT0ncm90YXRlKC0zOCAzNSA2MiknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxlbGxpcHNlIGN4PSczMycgY3k9JzYwJyByeD0nNy41JyByeT0nNC44JyB0cmFuc2Zvcm09J3JvdGF0ZSgtMzggMzMgNjApJyBmaWxsPScjZmZmZmZmJyBmaWxsLW9wYWNpdHk9JzAuOTYnLz48L3N2Zz4=") 26px 6px / 48px 58px no-repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdkJyB4MT0nMC4yNCcgeTE9JzAnIHgyPScwLjc4JyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAuOTQnLz48c3RvcCBvZmZzZXQ9JzAuMjQnIHN0b3AtY29sb3I9JyNlOGY3ZmYnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjxzdG9wIG9mZnNldD0nMC41Nicgc3RvcC1jb2xvcj0nI2E4ZGFmNCcgc3RvcC1vcGFjaXR5PScwLjU2Jy8+PHN0b3Agb2Zmc2V0PScwLjg2JyBzdG9wLWNvbG9yPScjNWFhOWRjJyBzdG9wLW9wYWNpdHk9JzAuNTgnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMzZjk3Y2YnIHN0b3Atb3BhY2l0eT0nMC43MCcvPjwvbGluZWFyR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nMC40NCcgY3k9JzAuOTAnIHI9JzAuNDYnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjU1Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0ncycgY3g9JzAuNzQnIGN5PScwLjYyJyByPScwLjYyJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC4zMCcvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzJmODZjNCcgc3RvcC1vcGFjaXR5PScwJy8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI2QpJy8+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI3MpJy8+PGVsbGlwc2UgY3g9JzQ5JyBjeT0nODInIHJ4PScxOScgcnk9JzExJyBmaWxsPSd1cmwoI2spJy8+PHBhdGggZD0nTTUwIDggQzM5IDMxIDIwIDQ3IDIwIDY4IEEzMCAzMCAwIDAgMCA1MCA5OCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmZmZmJyBzdHJva2Utb3BhY2l0eT0nMC44Nicgc3Ryb2tlLXdpZHRoPScyLjgnLz48cGF0aCBkPSdNNTAgOTggQTMwIDMwIDAgMCAxIDgxIDY4JyBmaWxsPSdub25lJyBzdHJva2U9JyMyZjg2YzQnIHN0cm9rZS1vcGFjaXR5PScwLjQyJyBzdHJva2Utd2lkdGg9JzMuNCcvPjxlbGxpcHNlIGN4PSczNScgY3k9JzYyJyByeD0nMTMnIHJ5PSc4LjUnIHRyYW5zZm9ybT0ncm90YXRlKC0zOCAzNSA2MiknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxlbGxpcHNlIGN4PSczMycgY3k9JzYwJyByeD0nNy41JyByeT0nNC44JyB0cmFuc2Zvcm09J3JvdGF0ZSgtMzggMzMgNjApJyBmaWxsPScjZmZmZmZmJyBmaWxsLW9wYWNpdHk9JzAuOTYnLz48L3N2Zz4=") 72px 26px / 28px 34px no-repeat,
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdkJyB4MT0nMC4yNCcgeTE9JzAnIHgyPScwLjc4JyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAuOTQnLz48c3RvcCBvZmZzZXQ9JzAuMjQnIHN0b3AtY29sb3I9JyNlOGY3ZmYnIHN0b3Atb3BhY2l0eT0nMC43NCcvPjxzdG9wIG9mZnNldD0nMC41Nicgc3RvcC1jb2xvcj0nI2E4ZGFmNCcgc3RvcC1vcGFjaXR5PScwLjU2Jy8+PHN0b3Agb2Zmc2V0PScwLjg2JyBzdG9wLWNvbG9yPScjNWFhOWRjJyBzdG9wLW9wYWNpdHk9JzAuNTgnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMzZjk3Y2YnIHN0b3Atb3BhY2l0eT0nMC43MCcvPjwvbGluZWFyR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nMC40NCcgY3k9JzAuOTAnIHI9JzAuNDYnPjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicgc3RvcC1vcGFjaXR5PScwLjU1Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjZmZmZmZmJyBzdG9wLW9wYWNpdHk9JzAnLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0ncycgY3g9JzAuNzQnIGN5PScwLjYyJyByPScwLjYyJz48c3RvcCBvZmZzZXQ9JzAnIHN0b3AtY29sb3I9JyMyZjg2YzQnIHN0b3Atb3BhY2l0eT0nMC4zMCcvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzJmODZjNCcgc3RvcC1vcGFjaXR5PScwJy8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI2QpJy8+PHBhdGggZD0nTTUwIDcgQzYxIDMwIDgxIDQ3IDgxIDY4IEEzMSAzMSAwIDAgMSAxOSA2OCBDMTkgNDcgMzkgMzAgNTAgNyBaJyBmaWxsPSd1cmwoI3MpJy8+PGVsbGlwc2UgY3g9JzQ5JyBjeT0nODInIHJ4PScxOScgcnk9JzExJyBmaWxsPSd1cmwoI2spJy8+PHBhdGggZD0nTTUwIDggQzM5IDMxIDIwIDQ3IDIwIDY4IEEzMCAzMCAwIDAgMCA1MCA5OCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmZmZmJyBzdHJva2Utb3BhY2l0eT0nMC44Nicgc3Ryb2tlLXdpZHRoPScyLjgnLz48cGF0aCBkPSdNNTAgOTggQTMwIDMwIDAgMCAxIDgxIDY4JyBmaWxsPSdub25lJyBzdHJva2U9JyMyZjg2YzQnIHN0cm9rZS1vcGFjaXR5PScwLjQyJyBzdHJva2Utd2lkdGg9JzMuNCcvPjxlbGxpcHNlIGN4PSczNScgY3k9JzYyJyByeD0nMTMnIHJ5PSc4LjUnIHRyYW5zZm9ybT0ncm90YXRlKC0zOCAzNSA2MiknIGZpbGw9JyNmZmZmZmYnIGZpbGwtb3BhY2l0eT0nMC4zMicvPjxlbGxpcHNlIGN4PSczMycgY3k9JzYwJyByeD0nNy41JyByeT0nNC44JyB0cmFuc2Zvcm09J3JvdGF0ZSgtMzggMzMgNjApJyBmaWxsPScjZmZmZmZmJyBmaWxsLW9wYWNpdHk9JzAuOTYnLz48L3N2Zz4=") 106px 4px / 22px 26px no-repeat,
+    radial-gradient(70% 92% at 24% 0%, rgba(255,255,255,.62) 0%, rgba(255,255,255,0) 66%),
+    linear-gradient(180deg, #dff5cf 0%, #cdecce 54%, #b5e3a0 100%);
+  /* A PLANE: sky over grass with a hard specular line ON the horizon, under a
+     gloss sweep whose edge is hard. Structure, not a smooth fade. */
+  --frutiger-aero-horizon:
+    /* the gloss band. Its edge is at 22px, not a percentage: a specular band's
+       height is set by the light source, not by the box, so a 96px media panel and
+       a 72px tile should carry the SAME band (23% and 31% respectively) rather than
+       a band that grows with the container. The first draft cut at 34% and the two
+       structures collided — the band's edge and the horizon landed within a few
+       pixels of each other on the tile and the whole thing read as one muddy smear
+       (measured on the rendered tile, then re-drawn). Three zones that cannot be
+       confused: the gloss band, the sky, the hard horizon, the grass. */
+    linear-gradient(180deg,
+      rgba(255,255,255,.95) 0px, rgba(255,255,255,.58) 18px,
+      rgba(255,255,255,.50) 21.5px, rgba(255,255,255,.05) 22px,
+      rgba(255,255,255,.12) 100%),
+    radial-gradient(30% 15% at 50% 58%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 80%),
+    /* the sky-to-grass transition is only 1.4% of the height (1.3px on the media
+       panel) so the horizon stays a LINE, with a specular line laid on it */
+    linear-gradient(180deg, #6cc3ee 0%, #8ed2f4 22%, #b6e2fa 44%, #d9f1fd 55%,
+                    #f6feff 58%, #effce9 58.6%, #c6e7a6 59.4%,
+                    #bfe8b2 66%, #a4db7c 82%, #92d166 100%);
+
+  /* the ramp stops and the band, addressable (no component references these —
+     they exist so a project can rebuild the ground or print a swatch without
+     re-typing a hex, and they are documented as orphans in README.md) */
+  --frutiger-aero-sky:     #b4e0fb;   /* the most saturated ground stop — the contrast ceiling */
+  --frutiger-aero-sky-2:   #c3e7fc;
+  --frutiger-aero-air:     #eef9ff;   /* the white middle of the ramp */
+  --frutiger-aero-grass:   #cdecce;
+  --frutiger-aero-grass-2: #bfe8b2;   /* the green register at the foot of the page */
+  --frutiger-aero-gloss:
+    linear-gradient(180deg, rgba(255,255,255,.95) 0px, rgba(255,255,255,.62) 10px,
+      rgba(255,255,255,.10) 13px, rgba(255,255,255,.30) 100%);
+  --frutiger-aero-rim:  inset 0 1px 0 rgba(255, 255, 255, .95);
+  --frutiger-aero-solid: #eef9ff;   /* opaque stand-in (print, email, canvas) */
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Frutiger Aero",
+  "tagline": "Sky-and-grass optimism — translucent glass with a hard specular band, bubbles and water droplets",
+  "signature": [
+    "--frutiger-aero-bubble",
+    "--frutiger-aero-droplet",
+    "--frutiger-aero-horizon"
+  ],
+  "order": 200,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+  "fonts_label": "Hind · IBM Plex Mono",
+  "mode": "light",
+  "source": "original — the 2004–2013 consumer-tech register (sky above, grass below, gloss over both), built with generic optics only; no Microsoft trade dress, and the display face is a Frutiger-adjacent free humanist sans because the real Frutiger is a commercial Linotype licence",
+  "tags": [
+    "light",
+    "glossy",
+    "translucent",
+    "2000s",
+    "sky",
+    "friendly"
+  ],
+  "use_when": "consumer software, device and OS-adjacent marketing, playful dashboards and onboarding, media and lifestyle products — anything that should feel bright, glossy and friendly rather than severe"
+}
