@@ -1,249 +1,255 @@
 # Frutiger Aero
 
-**Sky-and-grass optimism, in glass.** A sky-blue-to-white ground with a green register at the
-foot, seen through genuinely translucent panels whose top edge carries a **hard-edged white
-specular band** — with drawn bubbles and water droplets in the air. Light, friendly, clean;
-never corporate grey.
+**Sky-and-grass optimism, in glass — over a place, not a pattern.** A sunlit meadow: clear
+sky ramping to the masthead, a low sun in the upper right, three ranges of rolling green hills
+receding into their own haze, and the mown field you are standing in. The panels float on it as
+translucent glass whose top edge carries a **hard-edged white specular band**. Bubbles and water
+droplets live on the **tiles**, not on the wallpaper.
 
 - Kit: `frutiger-aero` · order `200` · mode `light` · source `original`
 - Fonts: Hind (display + body) · IBM Plex Mono (captions, labels)
-- Tags: `light`, `glossy`, `translucent`, `2000s`, `sky`, `friendly`
+- Tags: `light`, `glossy`, `translucent`, `2000s`, `meadow`, `friendly`
 - Signature: `--frutiger-aero-bubble`, `--frutiger-aero-droplet`, `--frutiger-aero-horizon`
-- No `kit.css` — everything here is a token, including the drawn artwork.
+- No `kit.css` — everything here is a token, including the drawn landscape.
 
 ## Stance
 
-This kit is **the library's deliberate exception to its own non-smooth rule.** Every other kit
-is required to shut five doors against smoothness — square corners, zero-blur shadows,
-hard-stopped gradients, upscaled artwork, no blur. Frutiger Aero *is* smoothness: gradients
-ramp, shadows are soft and cast, `--blur` is real and load-bearing on every card, and the
-masthead carries a bloom. Softening this kit is not restraint, it is failure.
+This kit is **the library's deliberate exception to its own non-smooth rule.** Every other kit is
+required to shut five doors against smoothness — square corners, zero-blur shadows, hard-stopped
+gradients, upscaled artwork, no blur. Frutiger Aero *is* smoothness: gradients ramp, shadows are
+soft and cast, `--blur` is real and load-bearing on every card, and the masthead carries a bloom.
 
-The one line that is not negotiable is legibility, and it is where the whole design is
-constrained: **gloss costs contrast headroom.** See *The trade* below — it is the reason the
-ground's most saturated stop is `#b4e0fb` and the specular band is 13px rather than a third of
-the panel.
+The line that is not negotiable is legibility — and it is where the whole design is constrained.
+**Gloss costs contrast headroom, and so does a field.** A green meadow is a mid-luminance ground,
+not a near-white one: compared with the pale-ground values this kit used to ship, its body ink now
+sits **59% lower in relative luminance**, `--text-dim` 45% lower and the status colours 45–60%
+lower, and its glass is 12 points denser. A "success" green had to become a forest green to be
+readable on grass. Every number below was measured off the rendered page.
 
-## What makes it glass rather than fog
+## The ground is a scene
 
-One structural decision carries the material: **the specular band's lower edge is hard.**
-`rgba(255,255,255,.52)` at 12px drops straight to `rgba(255,255,255,.02)` at 13px. A soft blur
-with no highlight is fog; a blurred panel carrying a crisp white band across its top is glass.
+`--bg` is nine layers, top-down:
 
-Measured on the rendered card (deviceScaleFactor 4, sampled across the panel's full width):
-
-| | rendered RGB | luminance |
+| # | Layer | What it does |
 |---|---|---|
-| card rim (1px) | 177, 212, 236 | 0.60 |
-| band, top | 250, 253, 254 | 0.988 |
-| band, at the cut (12px) | 239, 250, 254 | 0.949 |
-| just below the cut (13.5px) | 229, 247, 254 | 0.925 |
-| card body (15px down) | 224, 246, 254 | 0.902 |
+| 1 | sun core, 104px | the light source: a small hot cream core at **82% / 250px** |
+| 2 | sun bloom, 520×430 | the wide low glow that lifts the upper-right sky |
+| 3–5 | three cloud banks | flattened white ellipses — something has to be *in* the sky |
+| 6 | **drawn landscape** (one base64 SVG, 1280×760, anchored `82% 570px`) | sky left transparent; three ranges, each veiled before the nearer one is painted over it; mown contours and blade grain in the near field |
+| 7–8 | two broad daylight pools | sunlight lying on the meadow at y≈1900 and y≈3000, at 0.18–0.20 alpha |
+| 9 | the ramp | px-stopped sky → haze → far → mid → meadow, **and the fallback**: without the artwork this is still a horizon, not a bubble field |
 
-So the band is a strip **~20 units whiter in red** than the body below it, and the cut is a
-step of **~15 units across a single pixel**. It is a lip, not a haze.
+**Aerial perspective is the whole trick.** Each range is painted, then covered by a pale haze
+veil that is strongest at its foot, then the nearer range is painted over the veil. What survives
+is a band of haze between every two crests — cool and pale at the top of each range, warm and
+deep at the foot. Measured across one row of the meadow (y=900), the green runs
+`rgb(154,192,121)` on the left flank to `rgb(173,204,136)` on the sunlit right: **one light source,
+upper right**, and every range is cool on its left and warm on its right.
+
+**The mown field.** Eight contour swaths (15→45px wide, 0.04–0.11 alpha, alternating light and
+dark) whose spacing widens toward the viewer, plus ~420 scattered blade strokes at 0.07–0.19
+alpha. Both live inside a mask that fades to zero at the image's bottom edge, so the texture
+*dissolves* into the ramp at ~1300px instead of stopping at a line. It is deliberately faint:
+broad swaths, no high-frequency pattern, nothing that competes with a paragraph.
+
+**Why the horizon is at 570px.** The masthead is 476–499px tall depending on whether Hind has
+loaded. At 570 the first viewport shows a clear band of sky under the masthead rule, then the
+whole landscape — far, mid and near crests plus meadow with visible mowing — before the fold at
+900px. The first build of this pass put the artwork at 520 and the crest read as *tangent* to the
+masthead rule: two competing horizontals 40px apart. 570 is the measured fix.
+
+**Why `82%` and not `50%`.** The artwork is 1280px wide, so on a wide viewport its position is
+immaterial. Below 1280 it matters: anchored at 82% the image stays on the sun, and the sun stays
+in frame at 390px instead of being cropped away with the centre.
+
+**Why px stops.** The body's gradient box is the whole document (~3,560px). A `0% → 100%` ramp
+smears the sky over several thousand pixels and the first viewport reads as flat near-white. Every
+stop is in px so the sky-to-field walk happens inside the first screen and the meadow holds its
+colour for the 2,500px below it.
 
 ## Key choices
 
-- **The band is 13px on content panels and a hard-edged top third on the material sample.**
-  Measured, not timid: the shared lab puts the first line of type 18px below a card's top edge
-  and ~17px below a nav item's, so a *percentage* band's edge lands inside `.card-body` on the
-  Cards row — a hard white line across a paragraph. So the band keeps its hard edge and moves
-  its edge instead: 13px on `--surface` (cards, nav), and the full top third on
-  `.card-media`/the horizon token and the masthead lip (a 22px band, i.e. 23% of the 96px media
-  panel and 31% of the 72px tile), where nothing is ever typeset. A specular band's height is
-  set by the light source, not by the box, which is why it is px rather than a percentage.
-  `--surface-2` has **no** band at all, because the same token backs `.input`, `.badge`,
-  `.alert` and `pre.code` — a hard edge inside a 41px field cuts through the text in it.
-- **The glass base is 34% white, and that is a measured correction.** The first build used 46%
-  plus a `brightness(1.04)` in `--blur`, and the band came back **invisible**: the panel
-  composited to L 0.989 and the band's plateau to L 0.991 — a step of **0.002**. A specular
-  highlight needs headroom above the surface it sits on, and a near-white panel has none. The
-  `brightness()` term is gone and the base came down; the bloom now lives in `--bg` and
-  `--wash`, where it lightens the ground *before* the glass is composited over it (so it can
-  only ever *raise* the luminance under card text, which keeps the contrast table conservative).
-- **`--blur` is real and load-bearing:** `blur(16px) saturate(155%)`. `templates/lab.css`
-  applies `var(--blur)` to every `.card`; set it to `none` and this kit is a flat pastel page.
-- **A cool rim, not a white one.** `--border` is `rgba(84,152,206,.42)`. A white hairline is
-  invisible on a sky (that is `glass`'s documented compromise); a soft blue line reads as the
-  edge of a pane on both the sky and the glass, so section rules still exist on this page. The
-  *bright* edge of a pane is a separate job and lives inside `--shadow-1` as an inset white
-  line.
-- **One action colour, one counterweight, no third.** Azure for action; grass green for
-  gradients, media, charts and the green end of the ramp. The green is never text.
-- **`--accent-ink` ships separately.** `--accent` is 3.89:1 as a small label on the sky, so
-  every link, eyebrow, active nav/tab, badge label and secondary-button label uses
-  `--accent-ink` at 5.52:1.
-- **Saturated blue lives where nothing is typeset** — `.card-media`, the drawn motifs, and the
-  progress/avatar fill under a *measured* white label. The ink stays dark; the sky stays pale
-  enough to carry it.
-- **Derived, not invented:** `--accent-soft` is a 14% tint of `--accent`; `--fill-bg`,
-  `--gloss`, `--glow` and both shadows are `rgba()`/`linear-gradient()` expressions of the
-  declared palette, not new hues.
-- **No chamfer.** `--clip` is not declared, so `--frame-ring` is inert here. Generous radii
-  only: 10 / 16 / 22px.
+- **The specular band's lower edge is hard.** `rgba(255,255,255,.52)` at 12px drops straight to
+  `.02` at 13px. Measured on the rendered card at deviceScaleFactor 4, down a column through the
+  top edge:
 
-## Trade-offs and deviations
+  | | rendered RGB | luminance |
+  |---|---|---|
+  | field behind the card | 160, 198, 124 | 0.496 |
+  | band, y+1.5px | 255, 255, 254 | 0.999 |
+  | band, at the cut (y+13px) | 222, 240, 206 | 0.821 |
+  | just below the cut (y+14px) | 197, 229, 168 | 0.714 |
+  | card body, y+22px | 197, 229, 168 | 0.713 |
 
-- **The ground's most saturated stop is capped by contrast, not by taste.** `--text-dim` is
-  the token that fails first under gloss, and it must clear 4.55:1 on *every* ground the lab
-  can put it on — for this kit that is the page ground itself (the Forms row sets labels and
-  hints straight on the sky, with no panel behind them). Solving it backwards fixes a ceiling:
-  the darkest ground stop may not go below **L 0.6998**, and the darkest *interpolated* point
-  along the ramp measures exactly the same 0.6998, so the ramp never dips below its own first
-  stop. `--frutiger-aero-sky` (`#b4e0fb`) is therefore the *bright* end of the sky, not the
-  poster-vivid mid-blue the register would use. The vivid blues moved to the fills, the media
-  panel, the motifs and the progress bar, where no text sits.
-- **`--accent` is `#0d6db3`, not a register-true sky blue.** `#2196f3` gives a white label
-  **3.10:1** — a lovely fill and an unusable button. `#0d6db3` measures 5.45:1 with white. A
-  gloss is a fill, and on a light kit a fill has to carry a label.
-- **The progress/avatar fill's gloss is capped at 10% white.** `.avatar` typesets a white
-  monogram (`.avatar { color: var(--text-invert) }`), so the fill has to keep white ≥ 4.5:1
-  across *all* of its bands: 10% white over `#0f6aa8` = **4.71:1**, 14% over `#0b4f80` =
-  **5.99:1**, 14% over the green foot `#116b48` = **4.77:1**. A brighter, prettier gloss band
-  measured **2.13:1** and was rejected. This is the trade in one token.
-- **`.card-elevated` carries no band** — the shared lab reads `--surface-2` for
-  `.card-elevated`, not `--surface`, so the raised panel in the Cards row is the *denser nested
-  glass* (smooth, banded only by its top-edge highlight and its shadow). Shown honestly rather
-  than worked around: giving both card tiers the band would mean putting one on `--surface-2`,
-  which would band every input, badge, alert and code block. The band appears on the base card,
-  the nav, the masthead lip and the media panel.
-- **`--check-appearance` is deliberately not declared.** The contract gives one switch that
-  squares both the checkbox *and* the radio, and the checked state is a filled box. Squaring
-  the radio to get a square checkbox trades a correct control for an incorrect one, so the kit
-  takes the browser's own rendering (with `accent-color` = the azure) and sets only
-  `--check-radius: 6px`.
-- **`--btn-shadow` is insets only.** Four of the five button variants (`.btn-secondary`,
-  `.btn-ghost`, `.btn-danger`, `.btn-link`) are *transparent*, and a cast shadow on a
-  transparent box is a grey blob with no plate under it. The bevel is therefore inner light on
-  all variants; the cast shadow lives on `--glow` (the primary button) and on the panels.
-- **The masthead's band is 36px and the sweep is diagonal.** A horizontal gloss band across the
-  masthead would have to cross the `h1` (type starts at 40px), so the masthead lip is a 36px
-  specular at the very top and the *sweep* is a 103deg diagonal — the one place a gradient's
-  angle is doing structural work rather than decoration.
-- **Two independent visual passes failed to see the card's band, and both were wrong.** At 50%
-  scale and even in a 4× crop, an unprimed look reported "no bright band, no hard edge" on a
-  panel where the pixel profile above is unambiguous. A specular band on an already-pale panel
-  is a *quiet* feature; the brief's rule that an independent look is reliable for presence but
-  unreliable for colour, thickness and hard-vs-smooth banding held here, and the measurement
-  decided it. It is left quiet on purpose: the loud version (a top-third band on a content card)
-  puts a white line through `.card-body`, which was measured, not assumed.
-- **The gallery preview will look softer than the lab.** The kit's ground is a gradient, so
-  `tools/build.py` skips its synthetic wash and paints the kit's own `--bg` (bubbles and all) —
-  but the preview is 118px tall, so only the first stop of the ramp is in view. **The lab page
-  is the reference view.**
-- **The bubble field on the ground only ever *raises* luminance.** It is drawn in white strokes
-  and white fills (168px tile), so it cannot darken type. Restated against the measurement: of
-  725,920 gutter pixels down the whole 3490px page, exactly **208 are darker than the ramp's
-  first stop** — one single row (y=425), the 1px full-width hairline under the masthead, on
-  which nothing is typeset. Every other ground pixel is at or above `#b4e0fb`. That is what
-  makes the contrast table provable.
-- **`--text-dim` is a dark slate, not a light grey.** On a saturated ground the caption tier has
-  to be dark to survive; the hierarchy is carried by `--text` (13.06:1 on the gloss band) /
-  `--text-muted` (7.42:1 on a card) / `--text-dim` (6.00:1) rather than by lightness alone.
+  So the cut is a step of **0.107 in luminance across about three-quarters of a CSS pixel**, and
+  the panel's body sits **0.218 above the field** behind it. A soft blur with no highlight is fog;
+  a blurred panel carrying a crisp white band is glass.
+- **The band is 13px, not "the top third".** The shared lab puts the first line of type 18px below
+  a card's top edge and ~17px below a nav item's, so a *percentage* band's edge lands inside
+  `.card-body` on the Cards row — a hard white line across a paragraph. The band keeps its hard
+  edge and moves its edge instead. The unconstrained top-third band lives only on `.card-media`,
+  the `--frutiger-aero-horizon` token and the masthead lip, where nothing is ever typeset.
+- **The glass got denser: 34% → 46%, and 44% → 58% for the nested tier.** Over the previous pale
+  ground 34% was enough. Over a meadow at L 0.50 a 34% pane composites to L 0.61 — 0.11 above the
+  grass, which reads as a *stain*, not a surface. 46% puts the card body at L 0.652 (worst case,
+  over the darkest grass) and 0.714 where it actually sits, which is 0.22 above the field. Above
+  ~55% the field stops reading through the glass at all. `--surface-2` stays denser on purpose:
+  it is the pane inside the pane, and it is also the base the signature tiles are judged on.
+- **`--blur` is real and load-bearing:** `blur(16px) saturate(155%)`. `templates/lab.css` applies
+  `var(--blur)` to every `.card`; set it to `none` and this kit is a flat pastel page.
+- **A cool rim, and now a deeper one.** `--border` is `rgba(38,116,168,.46)`. A white hairline was
+  invisible on the pale sky; on grass it would be invisible twice over. A saturated mid-blue reads
+  as the edge of a pane against *both* grounds it has to work on — the field at L 0.43 and the
+  glass at L 0.65–0.72.
+- **The masthead wash now fades to zero at its bottom edge.** Its last stop used to be `.20`
+  white at 100%, which on a pale ground read as a soft edge and on grass drew a hard horizontal
+  seam across the landscape — at exactly the height where the eye is looking for a horizon. The
+  wash fades out, and a warm sun bloom aligned to the pixel with `--bg`'s sun (82% / 250px) sits
+  on top of the gloss sweep so the disk cannot be cut off by the masthead box.
+- **One action colour, one counterweight.** Azure for action; grass green for gradients, media,
+  charts and the far ranges. The green is never text.
+- **`--accent-ink` ships separately, and it matters more now.** `--accent` is **2.49:1** as a small
+  label on the grass (3.65:1 on a card), so every link, eyebrow, active nav/tab, badge label and
+  secondary-button label uses `--accent-ink` at 5.20:1.
+- **Derived, not invented:** `--accent-soft` is a 14% tint of `--accent`; `--fill-bg`, `--gloss`,
+  `--glow` and both shadows are `rgba()`/`linear-gradient()` expressions of the declared palette.
+- **No chamfer.** `--clip` is not declared, so `--frame-ring` is inert here. Generous radii only:
+  10 / 16 / 22px.
 
 ## How it differs from its nearest neighbours
 
-| Kit | Same as | Different |
+Three kits in this library are also light, optimistic and green-ish. The difference is not the
+palette; it is what the ground *is*.
+
+| Kit | Its ground | How this kit differs |
 |---|---|---|
-| `glass` | light, translucent, `--blur` load-bearing, one accent | `glass` is *restrained pastel* — a rose/lilac/mint/sky ramp, saturation held down, **no specular band at all** (its sheen is a soft 135deg wash), hairline **white** edges, and a periwinkle-indigo accent. Frutiger Aero is a **scene** (sky over grass), its glass carries a **hard-edged** specular band, its rim is a cool blue line, its second colour is a grass green, and it draws bubbles and droplets. `glass` is quiet; this is optimistic. |
-| `dark-glass` | the same material | it is the *dark* pole: a near-black ground with light ink, light hairline rims, a violet/cyan mesh, and no specular band. Here the ground is light, the ink is dark, the rim is cool, the band is hard, and there are motifs. Different polarity, different rim logic, different motifs. |
-| `chrome` | gloss | chrome is **reflective metal on black**: a brushed-metal ramp *as* the surface, magenta/cyan, hard 2px line work, and smoothness deliberately shut (zero-blur shadows). This is **transmissive** glass on a sky — you see the ground through it — with a soft cast shadow and a real blur. |
-| `holographic` | surface-as-identity | holographic is **diffraction**: hard-banded prismatic iridescence on charcoal, with its five smoothness doors deliberately shut. Here smoothness is the point, the material is refraction rather than diffraction, and the ground is daylight rather than dark. |
-| `tropical-breeze` | light, optimistic, blue + green, three structural hues | it is **paper, not glass**: cards are clean warm paper, `--blur: none` ("open air, not glass"), coral is the single action colour, and its motifs are a frond, a wave and a parasol. Frutiger Aero is translucent, blurred, azure, and its motifs are a sphere, a teardrop and a horizon. The mood overlaps; the **material** does not. |
-| `kawaii` | light, generous radii, playful | kawaii is a **sticker sheet**: pastel pink/lilac/mint, `--blur: none` (its own comment reads *"glass owns that"* — this kit is the one it means), a bouncy overshoot ease and drawn sparkles/hearts/confetti. Frutiger Aero rounds generously too, but its register is clean consumer tech rather than sticker-cute, and its third dimension is the material. |
+| `glorious-morning` | **First light.** A clear sky with a gold dawn band and a light-ray wash, sunrise gold as the action colour, and nothing frosted (`--blur: none`). | That is a moment — dawn, radiant, and flat by design. This is a **place**: a field with a horizon, seen through glass that actually blurs. Its sun is a low white-cream daylight sun, not a gold dawn; its accent is azure, not sunrise gold; and its depth comes from haze between ranges, not from light rays. |
+| `tropical-breeze` | **A warm coastal afternoon.** Sand, sea-foam and palm green in a flat warm ramp, coral as the single action colour, cards of clean warm paper (`--blur: none`). | That is a *palette* on paper; this is a *scene* under glass. Tropical breeze has no horizon, no distance and no mown texture — its green is palm, warm and yellow-leaning. This kit's green is meadow, cooler, and structured into three hazy ranges you can see the depth of. |
+| `zen-garden` | **Stillness.** Wet stone, moss sage and rain blue in a three-stop grey ramp; muted, minimal, `--radius` 8/10/14px. | Zen garden is quiet and *indoor*: a misted stone surface with no sky, no light source and no perspective. This kit is outdoors, midday, saturated and sunny — and deliberately glossy where zen-garden is matte. If zen-garden is a rainy courtyard, this is a field in July. |
+| `glass` | light, translucent, `--blur` load-bearing | `glass` is restrained pastel over a flat rose/lilac/mint/sky ramp with **no specular band at all**. This kit's ground is a landscape and its glass carries a hard-edged band. |
+| `dark-glass` | the same material, dark pole | near-black ground, light ink, no specular band. Different polarity, different rim logic, different motifs. |
 
-## The trade: gloss costs contrast headroom
+## Contrast — measured, not asserted
 
-Three specific places where the register and readability pull against each other, and what was
-chosen:
+The ground is a drawn scene with a sun bloom over it and glass over that, so no single flat hex
+proves anything. Three bounds are measured:
 
-1. **A bright sky ground vs. dark ink.** Every ink here is graded against the *darkest* ground
-   stop. A light kit binds on its most saturated ground, not its palest one — the palest ground
-   is the easy case for dark ink. The saturation ceiling (`#b4e0fb`, L 0.6998) is set by
-   `--text-dim`, which backs every caption, hint, placeholder and swatch label.
-2. **A glossy fill vs. a white label.** Capped at 10% white over `#0f6aa8` for the avatar
-   (4.71:1); a 38% band measured 2.13:1.
-3. **The specular band vs. a line of text.** Capped at 13px, so the hard edge never crosses a
-   glyph; the unconstrained top-third band lives only where nothing is typeset. And the base
-   itself is capped at 34% white, because a panelless whiter than that leaves the band
-   invisible (measured: a 0.002 step at 46% + `brightness(1.04)`).
+- **The darkest field pixel: `rgb(148,186,117)`, L 0.4270.** Sampled from the rendered page across
+  769,824 gutter pixels (two 108px strips × the full 3,564px document). That pixel is a *shade
+  of a mown swath* — the 1st percentile is L 0.4527 and the median is L 0.5034 — but a
+  caption can land on one, so it is the number the whole table is solved against.
+- **The darkest *declared* ramp stop: `#9fc67a`, L 0.4916** (the page foot). The drawn scene is
+  12% darker than the stop the ramp itself declares, which is exactly why grading against the
+  declared stops alone would have been wrong.
+- **The sky under the masthead: `rgb(197,228,240)` at its most saturated down to `rgb(237,247,253)`
+  in the wash's hotspot.** That is the easy case for dark ink — `--text` measures 12.58:1 and
+  15.46:1 across it — and it is where the h1, the eyebrow and the swatch captions sit.
 
-## Contrast — the compositing maths
+### Required pairs — graded against the darkest field pixel
 
-The ground is a gradient, panels are translucent, and the specular band is the palest thing on
-the page, so a single flat hex proves nothing. Two worst cases bound everything:
+| Pair | Foreground | On `rgb(148,186,117)` | Target |
+|---|---|---|---|
+| body text | `--text` `#091f30` | **7.63:1** | ≥ 7:1 ✓ |
+| secondary text | `--text-muted` `#1d3b52` | **5.30:1** | ≥ 4.5:1 ✓ |
+| tertiary text | `--text-dim` `#24425a` | **4.77:1** | ≥ 4.55:1 ✓ |
+| accent as text | `--accent-ink` `#053c63` | **5.20:1** | ≥ 4.5:1 ✓ |
+| status ok | `--ok` `#094526` | **5.05:1** | ≥ 4.5:1 ✓ |
+| status warn | `--warn` `#583700` | **4.86:1** | ≥ 4.5:1 ✓ |
+| status danger | `--danger` `#7d1526` | **4.75:1** | ≥ 4.5:1 ✓ |
+| status info | `--info` `#06406e` | **4.85:1** | ≥ 4.5:1 ✓ |
+| focus ring | `#053c63` | **5.20:1** | ≥ 3:1 ✓ |
+| button label | `--text-invert` `#ffffff` | on `--accent` `#0d6db3` → **5.45:1** | ≥ 4.5:1 ✓ |
 
-- **Ground worst case = the darkest (most saturated) stop of the ramp**, `#b4e0fb`
-  **L = 0.6998**. Every bloom and the bubble field only raise luminance, and the darkest
-  *interpolated* point along the ramp measures 0.6998 too; the only darker pixels on the page
-  are 1px hairlines that carry no type (measured: 208 of 725,920 sampled gutter pixels).
-- **Palest case = the gloss band at full alpha over the palest stop**, i.e. effectively white,
-  L = 1.0. Nothing in this kit is light-coloured text except `--text-invert`, which only ever
-  sits on `--accent` and on the progress/avatar fill.
+**Worst pair in the kit: `--danger` `#7d1526` on the darkest field pixel at 4.75:1** (target
+4.5:1). It is `.btn-danger`'s label and the invalid-field hint, both of which sit on bare grass
+with no panel behind them.
 
-### Required pairs
+### Composited pairs — glass over grass, tints over glass
 
-| Pair | Foreground | Ground (worst case) | Ratio | Target |
-|---|---|---|---|---|
-| body text | `--text` `#10334f` | darkest stop `#b4e0fb` | **9.32:1** | ≥ 7:1 ✓ |
-| secondary text | `--text-muted` `#2c4a66` | darkest stop `#b4e0fb` | **6.58:1** | ≥ 4.5:1 ✓ |
-| tertiary text | `--text-dim` `#3a5872` | darkest stop `#b4e0fb` | **5.32:1** | ≥ 4.55:1 ✓ |
-| button label | `--text-invert` `#ffffff` | `--accent` `#0d6db3` | **5.45:1** | ≥ 4.5:1 ✓ |
-| accent as text | `--accent-ink` `#0a5590` | darkest stop `#b4e0fb` | **5.52:1** | ≥ 4.5:1 ✓ |
-| accent as text on a badge | `--accent-ink` `#0a5590` | `--accent-soft` 14% over `--surface-2` `#c6e1f4` | **5.70:1** | ≥ 4.5:1 ✓ |
-| accent as text on a card | `--accent-ink` `#0a5590` | `--accent-soft` 14% over `--surface` `#b3d9f2` | **5.20:1** | ≥ 4.5:1 ✓ |
-| status | `--ok` `#0f6b3d` | darkest stop `#b4e0fb` | **4.70:1** | ≥ 4.5:1 ✓ |
-| status | `--warn` `#7d4d00` | darkest stop `#b4e0fb` | **5.11:1** | ≥ 4.5:1 ✓ |
-| status | `--danger` `#b0203c` | darkest stop `#b4e0fb` | **4.81:1** | ≥ 4.5:1 ✓ |
-| status | `--info` `#0b5f9e` | darkest stop `#b4e0fb` | **4.77:1** | ≥ 4.5:1 ✓ |
-| focus ring | `--focus-ring` `#0a5590` | darkest stop `#b4e0fb` | **5.52:1** | ≥ 3:1 ✓ |
+`--surface` (46% white) over the darkest field pixel composites to `#c5dab4` (L 0.652);
+`--surface-2` (58%) to `#d2e2c5` (L 0.722). Both are graded against that composite, not against
+white:
 
-**Worst pair in the kit: `--ok` `#0f6b3d` on the darkest ground stop `#b4e0fb` at 4.70:1**
-(target 4.5:1). It is a status colour used as badge text; the tighter a status colour gets, the
-more the green has to be pulled towards the forest floor.
-
-### Composited (glass and tint) pairs — graded, not assumed
-
-All against the darker of the two card grounds, i.e. a 34%-white `--surface` over the darkest
-stop (`#ceebfc`), or a 44%-white `--surface-2` over it (`#daf0fd`):
-
-| Pair | Ground | Ratio |
+| Pair | On a card | On `--surface-2` |
 |---|---|---|
-| `--text` on a card, below the band (`#d1ecfc`) | 10.64:1 |
-| `--text-muted` on a card (`#ceebfc`) | 7.42:1 |
-| `--text-dim` on a card (`#ceebfc`) | 6.00:1 |
-| `--text-dim` on a card below the band (`#d1ecfc`) | 6.07:1 |
-| `--text-dim` on `--surface-2`, its darkest end (`#daf0fd`) | 6.34:1 |
-| `--text-muted` on `--surface-2` | 7.84:1 |
-| `--text-invert` on the upper `--fill-bg` band (10% white over `#0f6aa8`) | 4.71:1 |
-| `--text-invert` on the lower `--fill-bg` band (14% white over `#0b4f80`) | 5.99:1 |
-| `--text-invert` on the green foot (14% white over `#116b48`) | 4.77:1 |
+| `--text` | 11.23:1 | 12.34:1 |
+| `--text-muted` | 7.80:1 | 8.57:1 |
+| `--text-dim` | 7.02:1 | 7.71:1 |
+| `--accent-ink` | 7.66:1 | 8.42:1 |
+| `--ok` | 7.43:1 | 8.16:1 |
+| `--warn` | 7.16:1 | 7.87:1 |
+| `--danger` | 7.00:1 | 7.69:1 |
 
-`templates/lab.css` also passes each *rendered* text box through `verify-lab.cjs`, which samples
-the real pixel behind the text and re-composites any alpha — that run is clean (below).
+Badge and secondary-button labels sit on a **14% accent tint composited over the glass**, not on
+the tint's declared value: `--accent-ink` on `accent-soft`/`--surface` = **6.49:1**, on
+`accent-soft`/`--surface-2` = **7.07:1**.
+
+The avatar's white monogram is the reason the progress fill is not brighter: 10% white over
+`#0f6aa8` = **4.72:1**, 14% over `#0b4f80` = **6.01:1**, 14% over the green foot `#116b48` =
+**4.79:1**.
+
+`verify-lab.cjs` re-checks this independently by sampling the real pixel behind each rendered text
+box; its tightest sampled pair is `.btn-secondary` at **5.57:1**.
 
 ## Signature motifs
 
 Three, each doing a different job, each drawn as base64 inline SVG (a sphere and a teardrop are
-organic forms; nested radial rings read as a bullseye, so gradients cannot do them).
+organic forms; nested radial rings read as a bullseye, so gradients cannot do them). They are
+unchanged by the ground rework — that is the point of moving them off the wallpaper.
 
-Non-flatness is measured on the **rendered** 168×72 tile, per channel, in the lab:
+Non-flatness is measured on the **rendered** 168×72 tile at 1×, per channel:
 
-| Token | Job | Drawn | Measured (σ, per channel) | Luma range |
+| Token | Job | Drawn | σ R/G/B | Luma range |
 |---|---|---|---|---|
-| `--frutiger-aero-bubble` | a **sphere** — rim, body gradient, one hard-edged specular | 3 bubbles at 56/36/24px over a sky base | **20.3 / 11.7 / 5.6** | 0.320–1.000 |
-| `--frutiger-aero-droplet` | a **teardrop** — different silhouette, lit differently (caustic pooled low in the bulb) | 3 droplets at 48/28/22px over a grass base | **23.4 / 12.9 / 22.4** | 0.335–0.989 |
-| `--frutiger-aero-horizon` | a **plane** — sky over grass with a hard specular line *on* the horizon, under a hard-edged band | 3 CSS layers, two hard stops | **22.0 / 10.3 / 45.8** | 0.570–0.986 |
+| `--frutiger-aero-bubble` | a **sphere** — rim, body gradient, one hard-edged specular | 3 bubbles at 56/36/24px over a sky base | **17.7 / 9.8 / 4.5** | 0.320–1.000 |
+| `--frutiger-aero-droplet` | a **teardrop** — different silhouette, caustic pooled low in the bulb | 3 droplets at 48/28/22px over a grass base | **23.1 / 11.9 / 20.6** | 0.332–0.989 |
+| `--frutiger-aero-horizon` | a **plane** — sky over grass with a hard specular line *on* the horizon | 3 CSS layers, two hard stops | **25.4 / 10.4 / 51.3** | 0.575–0.998 |
 
-For scale: a flat plate of the tile base measures σ < 1. All three are 20–46 units of
-per-channel deviation, so every tile survives the "empty chip" failure on its own.
+For scale, the same box painted with the tile base alone measures σ **0.4**. All three are 17–51
+units of per-channel deviation, so every tile survives the "empty chip" failure on its own.
 
 The bubble's rim is deliberately **split**: bright on the lit (upper-left) arc, weightier and
-darker through the lower-right. A uniform outline reads as a sticker — the first draft had one,
-and it was rejected on sight at 4× magnification. Each sphere carries exactly one light source
-(upper left) with a hard-edged core inside a soft halo; the lower-right second highlight of the
-first draft was cut for the same reason.
+darker through the lower-right. A uniform outline reads as a sticker. Each sphere carries exactly
+one light source, and the droplet is lit differently again — the light rims its upper-left and the
+caustic pools low in the bulb, where a droplet actually concentrates it.
+
+## Trade-offs and deviations
+
+- **The inks are deeper than a pale-ground kit would need, and that is the cost of the field.**
+  `--text` went `#10334f` → `#091f30`, `--text-dim` `#3a5872` → `#24425a`, `--ok` `#0f6b3d` →
+  `#094526`, `--danger` `#b0203c` → `#7d1526`. The hierarchy is carried by `--text` /
+  `--text-muted` / `--text-dim` (0.013 / 0.040 / 0.050 in relative luminance) plus weight, rather
+  than by lightness alone — on a mid-tone ground there is far less room to spread three tiers.
+- **`--ok` is a forest green, not a "success" green.** On grass, a cheerful green is invisible by
+  definition. The chip that can be read wins.
+- **The glass is denser than glass purists would like.** 46% white is a real cost to the
+  "you can see the scene through it" effect; at 34% the panel read as a tint on the field rather
+  than a surface above it, which is the worse failure at this ground luminance.
+- **The mown texture is faint on purpose.** It reads as mowing at 1×, not as a pattern: eight
+  broad swaths and a grain far below text contrast. Making it louder made the field compete with
+  the content, which is exactly what a ground must never do.
+- **`.card-elevated` carries no band** — the shared lab reads `--surface-2` for it, and a band on
+  `--surface-2` would band every input, badge, alert and code block. Shown honestly rather than
+  worked around.
+- **`--check-appearance` is deliberately not declared.** The contract gives one switch that
+  squares the checkbox *and* the radio; squaring the radio to get a square checkbox trades a
+  correct control for an incorrect one. The kit takes the browser's own rendering with
+  `accent-color` = the azure and sets only `--check-radius: 6px`.
+- **`--btn-shadow` is insets only.** Four of the five button variants are transparent, and a cast
+  shadow on a transparent box is a grey blob with no plate under it. The bevel is inner light on
+  all variants; the cast shadow lives on `--glow` and on the panels.
+- **The gallery preview will show sky, not the landscape.** `tools/build.py` paints `--bg` into a
+  118px-tall preview box, and the artwork is anchored at `570px` for a 3,564px document, so the
+  chip shows the top of the sky ramp and the sun's upper glow only. **The lab page is the
+  reference view** — the preview is a colour chip, and no single-layer token can be both a page
+  ground and a thumbnail.
+- **Two independent visual passes were wrong about this kit before, and the numbers settled it.**
+  An unprimed look reported "no bright band, no hard edge" on a panel whose pixel profile is
+  unambiguous, and later saw "soft flat bands" where the render measures a 0.107 luminance step.
+  Presence-of-a-place, though, is exactly what a look *can* answer. Three independent readings of
+  the page agreed the ground reads as **sky → haze → rolling hills**, and a 1:1 crop of the field
+  shows the mown swaths; the swaths are the first thing to fade in a whole-page view scaled down to
+  thumbnail size, which is the price of keeping a ground quiet.
 
 ## Verification
 
@@ -254,29 +260,20 @@ python tools/build.py --only frutiger-aero --no-export --no-lint
 KIT_SHOTS="$LOCALAPPDATA/Temp/frutiger-aero-shots" node tools/verify-lab.cjs frutiger-aero
 ```
 
-Result: **`PASS  frutiger-aero`** — 0 errors, 0 missing tokens, 0 console errors, no contrast
-failures (the harness reads computed styles, samples the real pixel behind each text box, and
-composites the translucent stack). `verdict.json` is in `$KIT_SHOTS`.
+Result: **`PASS  frutiger-aero`** — 0 errors, 0 warnings, 0 missing tokens, 0 console errors, no
+contrast failures (the harness reads computed styles, samples the real pixel behind each text box,
+and composites the translucent stack). `verdict.json` is in `$KIT_SHOTS`.
 
-Everything numeric in this file was measured, not asserted: the static table comes from a
-Python compositing script, the band and tile figures come from pixel profiles of the rendered
-lab at deviceScaleFactor 1 and 4, and the ink pairs are re-checked independently by
-`verify-lab.cjs`.
-
-`npx -y -p @google/design.md designmd lint kits/frutiger-aero/DESIGN.md` → **0 errors, 10
-warnings + 1 info**, all documented below.
+`npx -y -p @google/design.md designmd lint kits/frutiger-aero/DESIGN.md` → **0 errors, 10 warnings
++ 1 info**, documented below.
 
 ## Linter
 
-The `@google/design.md` component vocabulary whitelists `backgroundColor`, `textColor`,
-`typography`, `rounded`, `padding`, `size`, `height`, `width`. Measured findings, not a
-description:
-
 | Count | Rule | Why it stays |
 |---|---|---|
-| 8 | `broken-ref` — `'borderColor' is not a recognized component sub-token` | The rim is the substance of this kit: a white hairline is invisible on a sky, which is why every pane's edge is a blue line. `borderColor` is not in the vocabulary, so the eight uses are recorded as warnings and the rim is written up in prose under *Colors* and *Elevation & Depth*. |
-| 2 | `contrast-ratio` **false positive** — `textColor #0a5590 on backgroundColor #0d6db324` reports 1.42:1 | `badge-accent` and `nav-item-active`. The linter compares the ink to the un-composited 14% tint, so it effectively measures the ink against itself. Composited over a surface the pair measures **5.70:1** (badge) and **5.20:1** (on a card). |
-| 1 | `token-summary` (info) | 33 colours, 7 type scales, 4 radii, 5 spacing tokens, 39 components. |
+| 8 | `broken-ref` — `'borderColor' is not a recognized component sub-token` | The rim is the substance of this kit: a white hairline is invisible on a sky and twice invisible on grass, which is why every pane's edge is a blue line. `borderColor` is not in the vocabulary, so the eight uses are recorded as warnings and the rim is written up in prose under *Colors* and *Elevation & Depth*. |
+| 2 | `contrast-ratio` **false positive** — `#053c63` on `#0d6db324` reports 2.10:1 | `badge-accent` and `nav-item-active`. The linter compares the ink to the un-composited 14% tint, so it effectively measures the ink against itself. Composited over a card the pair measures **6.49:1**; over `--surface-2`, **7.07:1**. |
+| 1 | `token-summary` (info) | 35 colours, 7 type scales, 4 radii, 5 spacing tokens, 42 components. |
 
 Zero **errors**, and **no `orphaned-tokens`** — every declared colour is referenced from at least
 one component.
@@ -284,39 +281,46 @@ one component.
 ## When to use
 
 Consumer software and device-adjacent marketing, playful dashboards and onboarding, media and
-lifestyle products, game launchers, anything that should feel bright, glossy and friendly rather
-than severe. It is a **light** kit: do not use it for dark-mode shells or dense data work that
-wants a neutral ground. Avoid it for print (use `--frutiger-aero-solid` /
-`--frutiger-aero-air`), and anywhere `backdrop-filter` is unavailable — without the frost this
-is a pale pastel page with bubbles on it.
+lifestyle products, game launchers — anything that should feel bright, glossy and friendly rather
+than severe, and anything that wants to feel *outdoors*.
+
+It is a **light** kit: do not use it for dark-mode shells or dense data work that wants a neutral
+ground, and do not use it behind long-form text if the panels can be made opaque — the field is
+the point, so a page that hides it wastes the kit. For print, email or canvas, use
+`--frutiger-aero-meadow` (the opaque ground) rather than the layered `--bg`. Avoid it anywhere
+`backdrop-filter` is unavailable: without the frost this is a pale green page with glass drawn on
+it.
 
 ## What the lab could not express
 
 Honest list, per the brief's report-back rule — none of it was worked around by editing the lab:
 
-- **A display *weight* hook.** The register leans towards a light-to-regular display weight, and
-  the shared lab sets `font-weight: 700` on `.t-display` and `.masthead h1` with no token to
-  change it (`--style-display` covers `font-style` only). The kit therefore expresses its light
-  display voice through a near-neutral tracking value and generous radii instead. A
-  `--weight-display` (or `--light-display`) hook would fix it for every kit whose register is
-  lighter than its headings currently render.
 - **A per-variant button shadow.** `--btn-shadow` reaches every variant at once, so a kit whose
-  secondary/ghost/danger variants are transparent cannot give its *filled* variants a cast
-  shadow without floating a grey blob under the transparent ones. `--glow` happens to cover
-  `.btn-primary` only, which is why the primary button's cast shadow lives there and every other
-  variant gets an inset bevel.
+  secondary/ghost/danger variants are transparent cannot give its *filled* variants a cast shadow
+  without floating a grey blob under the transparent ones. `--glow` covers `.btn-primary` only,
+  which is why the primary button's cast shadow lives there and every other variant gets an inset
+  bevel.
 - **A separate specular token for `.card-elevated`.** The lab reads `--surface-2` for it, and
-  `--surface-2` also backs every input, badge, alert and code block — so one token cannot carry
-  a hard-edged band on the raised panel without banding all of those too.
+  `--surface-2` also backs every input, badge, alert and code block — one token cannot carry a
+  hard-edged band on the raised panel without banding all of those too.
+- **A display *weight* hook now exists, and this kit leaves it unset.** `--weight-display` was
+  added after an earlier report from this kit, so the original gap is closed and the entry is kept
+  here only for the record. The ground rework did not touch the display voice: 700 is what the
+  panel proportions, tracking and the specular band were solved against, and changing it would be
+  a different piece of work with its own measurements. Stated as a scope decision, not a
+  limitation — and not claimed as a finding.
+- **No hook for `background-attachment` / per-section grounds.** The scene is one image layer
+  sized in px, which is what makes the horizon land at a fixed height — but there is no way to
+  give, say, the footer a different part of the same landscape.
 
 ## IP
 
 **No Microsoft trade dress.** There is no Windows logo, no window chrome copied from a
 screenshot, and no Vista/7 branding or UI text anywhere in this kit. The vocabulary is generic
-optics — glass, a specular band, a bubble, a droplet, a horizon — and the kit is named by the
-aesthetic's established *community* name, not a product name.
+optics and generic landscape — glass, a specular band, a bubble, a droplet, a horizon, a mown
+field — and the kit is named by the aesthetic's established *community* name, not a product name.
 
 **The typeface is not Frutiger.** The real Frutiger is a commercial Linotype licence and this
 repository is public, so the kit ships **Hind**, a Frutiger-adjacent free humanist sans, with
-`"Frutiger"` present only as a *system fallback string* inside the font stack — never as a
-Google Fonts request.
+`"Frutiger"` present only as a *system fallback string* inside the font stack — never as a Google
+Fonts request.
