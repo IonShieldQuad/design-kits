@@ -32,12 +32,23 @@ readable on grass. Every number below was measured off the rendered page.
 
 | # | Layer | What it does |
 |---|---|---|
-| 1 | sun core, 104px | the light source: a small hot cream core at **82% / 250px** |
-| 2 | sun bloom, 520×430 | the wide low glow that lifts the upper-right sky |
-| 3–5 | three cloud banks | flattened white ellipses — something has to be *in* the sky |
-| 6 | **drawn landscape** (one base64 SVG, 1280×760, anchored `82% 570px`) | sky left transparent; three ranges, each veiled before the nearer one is painted over it; mown contours and blade grain in the near field |
-| 7–8 | two broad daylight pools | sunlight lying on the meadow at y≈1900 and y≈3000, at 0.18–0.20 alpha |
-| 9 | the ramp | px-stopped sky → haze → far → mid → meadow, **and the fallback**: without the artwork this is still a horizon, not a bubble field |
+| 1 | sun core, `8.13% 2.92%` (=104px here) | the light source: a small hot cream core at **82% / 7.02%** |
+| 2 | sun bloom, `40.63% 12.08%` (=520×430 here) | the wide low glow that lifts the upper-right sky |
+| 3–5 | three cloud banks, `23.44% 1.24%` and friends | flattened white ellipses — something has to be *in* the sky |
+| 6 | **drawn landscape** (one base64 SVG, 1280×760, sized `100% 21.35%` and anchored `82% 20.36%`) | sky left transparent; three ranges, each veiled before the nearer one is painted over it; mown contours and blade grain in the near field |
+| 7–8 | two broad daylight pools | sunlight lying on the meadow at y≈53% and y≈84%, at 0.18–0.20 alpha |
+| 9 | the ramp | percentage-stopped sky → haze → far → mid → meadow, **and the fallback**: without the artwork this is still a horizon, not a bubble field |
+
+**Every position and size above is a percentage of the frame**, not a pixel length, and that is a
+deliberate correction: the px version put the artwork at `570px`, the sun at `250px` and the ramp's
+stops at `0–3400px`, which is correct for this page's 3,560px document and for nothing else. The
+gallery paints the same value on a **360×118** card, where every one of those anchors lands below
+the bottom edge — the tile showed the top 118px of sky, so the kit that had just become a meadow
+was illustrated by an empty blue rectangle. As percentages the layers land at the same fraction of
+any frame: measured off the rendered card, its horizon sits at **20 of 118px (17%)**, which is this
+page's own 601px of 3,560px. Sizes are percentages on their own axis (x against the width, y
+against the height), so the sun keeps its exact 104px disk here and becomes a low horizontal glow
+in a 3:1 thumbnail instead of a 104px blob filling the whole card.
 
 **Aerial perspective is the whole trick.** Each range is painted, then covered by a pale haze
 veil that is strongest at its foot, then the nearer range is painted over the veil. What survives
@@ -56,7 +67,12 @@ broad swaths, no high-frequency pattern, nothing that competes with a paragraph.
 loaded. At 570 the first viewport shows a clear band of sky under the masthead rule, then the
 whole landscape — far, mid and near crests plus meadow with visible mowing — before the fold at
 900px. The first build of this pass put the artwork at 520 and the crest read as *tangent* to the
-masthead rule: two competing horizontals 40px apart. 570 is the measured fix.
+masthead rule: two competing horizontals 40px apart. 570 is the measured fix, and it survives the
+move to percentages unchanged — `20.36%` is a share of the *free* space (frame height minus image
+height), not of the frame, which is what puts the same artwork at 570px here and on the card's
+horizon. Re-measured after the change: crest at **601px**, masthead rule at **499px**, 102px of
+clearance — the same 601.5px as before, and the full-page render is pixel-identical outside one
+token swatch.
 
 **Why `82%` and not `50%`.** The artwork is 1280px wide, so on a wide viewport its position is
 immaterial. Below 1280 it matters: anchored at 82% the image stays on the sun, and the sun stays
@@ -104,7 +120,7 @@ colour for the 2,500px below it.
 - **The masthead wash now fades to zero at its bottom edge.** Its last stop used to be `.20`
   white at 100%, which on a pale ground read as a soft edge and on grass drew a hard horizontal
   seam across the landscape — at exactly the height where the eye is looking for a horizon. The
-  wash fades out, and a warm sun bloom aligned to the pixel with `--bg`'s sun (82% / 250px) sits
+  wash fades out, and a warm sun bloom aligned to the pixel with `--bg`'s sun (82% / 7.02%) sits
   on top of the gloss sweep so the disk cannot be cut off by the masthead box.
 - **One action colour, one counterweight.** Azure for action; grass green for gradients, media,
   charts and the far ranges. The green is never text.
@@ -238,11 +254,17 @@ caustic pools low in the bulb, where a droplet actually concentrates it.
 - **`--btn-shadow` is insets only.** Four of the five button variants are transparent, and a cast
   shadow on a transparent box is a grey blob with no plate under it. The bevel is inner light on
   all variants; the cast shadow lives on `--glow` and on the panels.
-- **The gallery preview will show sky, not the landscape.** `tools/build.py` paints `--bg` into a
-  118px-tall preview box, and the artwork is anchored at `570px` for a 3,564px document, so the
-  chip shows the top of the sky ramp and the sun's upper glow only. **The lab page is the
-  reference view** — the preview is a colour chip, and no single-layer token can be both a page
-  ground and a thumbnail.
+- **The gallery preview is the page *squeezed*, so its sky is a band, not a bowl.** Anchoring the
+  scene proportionally fixed the tile — it reads as sky over green field — but a 118px card cannot
+  show this page's proportions and its detail at once: the horizon lands at 17% (20px), and the
+  three hazy ranges compress into ~5px, so the card reads as a meadow with a sky band rather than
+  as *rolling hills*. Giving the thumbnail more sky would mean moving the page's horizon to ~2,200px
+  and breaking the 570px calibration above; the scene is not distorted to suit the chip. The same
+  proportionality has one other measured consequence: because the scene tracks its frame's height,
+  the horizon on a 390x844 viewport sits at **~900px of the 5,300px mobile document** instead of the
+  fixed 601px it used to hold, so the first mobile screen is now sky and the ground begins just
+  below the fold. That is the trade a proportional scene makes, taken knowingly. The lab page
+  remains the reference view.
 - **Two independent visual passes were wrong about this kit before, and the numbers settled it.**
   An unprimed look reported "no bright band, no hard edge" on a panel whose pixel profile is
   unambiguous, and later saw "soft flat bands" where the render measures a 0.107 luminance step.
@@ -310,8 +332,9 @@ Honest list, per the brief's report-back rule — none of it was worked around b
   a different piece of work with its own measurements. Stated as a scope decision, not a
   limitation — and not claimed as a finding.
 - **No hook for `background-attachment` / per-section grounds.** The scene is one image layer
-  sized in px, which is what makes the horizon land at a fixed height — but there is no way to
-  give, say, the footer a different part of the same landscape.
+  sized as a fraction of its frame, which is what lets the horizon land correctly on both the page
+  and the 118px card — but there is no way to give, say, the footer a different part of the same
+  landscape.
 
 ## IP
 
