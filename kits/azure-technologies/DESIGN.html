@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azure Technologies — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Azure Technologies kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Azure Technologies</h1>
+  <p class="spec-sub">A cold orbital instrument console — cyan hairlines over a black starfield</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Azure Technologies
+description: The reference place of the Li//OS desk family — a cold orbital instrument console of cyan hairlines on a near-black blue ground, a hexagon lattice in the card material, and 16px chamfers.
+colors:
+  primary: &quot;#4FD8FF&quot;
+  primary-hover: &quot;#7FE4FF&quot;
+  primary-ink: &quot;#04121A&quot;
+  primary-text: &quot;#8BE8FF&quot;
+  secondary: &quot;#7E8CFF&quot;
+  tertiary: &quot;#0B2233&quot;
+  neutral: &quot;#05080D&quot;
+  surface: &quot;#0A0F16&quot;
+  surface-2: &quot;#0A0F15&quot;
+  text: &quot;#E8F2F8&quot;
+  text-muted: &quot;#B7C7D3&quot;
+  text-dim: &quot;#9AADBC&quot;
+  success: &quot;#4EE6B0&quot;
+  warning: &quot;#FFC04D&quot;
+  error: &quot;#FF6377&quot;
+  info: &quot;#A98BFF&quot;
+typography:
+  display:
+    fontFamily: Chakra Petch
+    fontSize: 2.9rem
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: &quot;0.004em&quot;
+  heading:
+    fontFamily: Chakra Petch
+    fontSize: 1.3rem
+    fontWeight: 650
+    lineHeight: 1.2
+    letterSpacing: &quot;0.004em&quot;
+  body:
+    fontFamily: Chakra Petch
+    fontSize: 0.95rem
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: JetBrains Mono
+    fontSize: 0.75rem
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: &quot;0.14em&quot;
+  mono:
+    fontFamily: JetBrains Mono
+    fontSize: 0.8rem
+    fontWeight: 400
+    lineHeight: 1.6
+rounded:
+  none: 0px
+  sm: 0px
+  md: 0px
+  lg: 0px
+  pill: 2px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 40px
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.primary-ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 16px
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: 18px
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  card-title:
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.heading}&quot;
+  card-body:
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.body}&quot;
+  card-media:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    typography: &quot;{typography.body}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 10px
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: 4px
+  badge-accent:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-success:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.success}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warning:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.warning}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.error}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  alert-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  alert-error:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.error}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 12px
+  nav:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: 8px
+  nav-item-active:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-text}&quot;
+    typography: &quot;{typography.label}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  table-header:
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.text-dim}&quot;
+    typography: &quot;{typography.label}&quot;
+  link:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.primary-text}&quot;</code></pre></section>
+<h3 id="overview">Overview</h3>
+<p>Azure Technologies is place 01 of the Li//OS desk — the reference instance of a family of fifteen instrument-panel places, six of which are ported here. It is a cold orbital console: a near-black blue ground, cyan hairlines at 1px, an opaque card face carrying a 72 x 41.5692 hexagon lattice at 5.5%, a 16px chamfer on every plate, and no rounding anywhere.</p>
+<p>The desk's grammar is what makes it one family rather than six skins: a hairline frame, an opaque face with a sheen band across its top 9%, a bottom occlusion band, a 157° face fall, a 5% accent tint and one drawn texture at 5–9%. This kit is that grammar with the fewest modifications, which is exactly why it is the baseline: a sibling place changes its hue, its motif or its corner treatment and keeps everything else, so this is the file to copy and the file to diff against.</p>
+<p>Two cues carry the register, both measurable. Depth is <em>light on a plate</em>, not elevation: the only elevation tokens in the file are the desk's own <code>0 6px 16px rgba(0,0,0,.50)</code> and its <code>0 10px 26px rgba(0,0,0,.55)</code>, and neither is visible on a clipped card — separation comes from the 1px frame and the sheen lip. And nothing is soft: <code>--blur: none</code>, <code>--ease: linear</code>, <code>--radius-*: 0px</code>.</p>
+<h3 id="colors">Colors</h3>
+<p>Six values were copied from the place's own token block and nothing was invented:</p>
+<ul><li><strong>Primary (#4FD8FF)</strong> — <code>--acc</code>. The action colour, the hairline colour, the identity edge along the bottom of every card, at 55% on that edge and 60% on <code>--border-strong</code>. It is a light fill (L≈0.58), so primary labels are <code>#04121A</code> rather than white: 11.4:1.</li><li><strong>Primary-hover (#7FE4FF)</strong> — one step lighter, the hover fill only.</li><li><strong>Primary-text (#8BE8FF)</strong> — <code>--accHi</code>, the desk's own answer to "accent as text": the eyebrow, links, active nav, secondary-button labels and badges. <code>--accent-ink-hover</code> is <code>#B0F1FF</code>.</li><li><strong>Secondary (#7E8CFF)</strong> — the violet the place's own space scene carries. It is the second accent, and it is used in gradient stops, charts and the media plate. Never a second call to action.</li><li><strong>Tertiary (#0B2233)</strong> — <code>--sceneA</code>, the two bloom fields in the ground and the media plate's light. It is a <em>light source</em> value, not a UI fill.</li><li><strong>Neutral (#05080D)</strong> — <code>--ground</code>, the page floor, ramping to <code>--sceneB #030609</code>.</li><li><strong>Surface (#0A0F16) / surface-2 (#0A0F15)</strong> — <code>--face</code> and <code>--panel</code>. The card is the face plus the material's five translucent layers; the nested tier is the panel plus a 6% sheen and a 4% tint.</li><li><strong>Text (#E8F2F8) / text-muted (#B7C7D3) / text-dim (#9AADBC)</strong> — the three ink steps, graded against the composited pane rather than against a solid (table in <code>README.md</code>).</li><li><strong>Success / warning / error / info</strong> — mint, amber, red and violet off the place's scene, <code>#4EE6B0</code> / <code>#FFC04D</code> / <code>#FF6377</code> / <code>#A98BFF</code>. Cyan stays the action; mint is 26° away and is separated by material as well as hue.</li></ul>
+<p>Three values are defined in <code>tokens.css</code> and absent from the map above because the DESIGN.md component schema has no property that can carry them:</p>
+<ul><li><code>--border: rgba(255,255,255,.14)</code> — the frame hairline. It is white at 14%, not accent: a page of cyan frames reads as a wireframe, a page of white hairlines with one cyan edge per plate reads as an instrument.</li><li><code>--accent-soft: rgba(79,216,255,.16)</code> — nav selection, inline code, secondary hover.</li><li><code>--overlay: rgba(3,6,9,.72)</code> — modal scrim, derived from <code>--sceneB</code>.</li></ul>
+<h3 id="typography">Typography</h3>
+<p>The family ships exactly two faces and shares them across all six places, deliberately: these are places inside one operating system, and the type <em>is</em> the OS. Changing it per kit would break the one thing that makes the set a set.</p>
+<ul><li><strong>Chakra Petch</strong> — display and body. Squared, technical, slightly condensed; it holds a 2.9rem heading and a 0.95rem paragraph without either looking borrowed from the other. <code>--tracking-display: .004em</code> — this face is drawn tight and positive tracking opens it, where a neutral grotesque would need negative.</li><li><strong>JetBrains Mono</strong> — labels, badges, table headers, code, the eyebrow. Uppercase at <code>--tracking-caps: .14em</code>. If a string is a fact rather than a sentence, it is mono.</li></ul>
+<p>Display weight is 700, headings 650, body 400. Label floor is 12px, asserted by the harness.</p>
+<h3 id="layout">Layout</h3>
+<p>A single column at <code>min(1040px, 100% - 2.5rem)</code>; cards in an auto-fit grid at a 230px minimum, collapsing to one column below ~640px. Density is medium-tight: 2.25rem section padding with 0.65–1rem internal gaps, so the page reads as plated modules on a board rather than a document.</p>
+<p>The ground is deliberately <em>large-celled</em>: a 120px technical grid and the motif at 144 x 83.14 (twice the card's pitch). The components carry the motif at 72 x 41.5692 and 5.5%. Two scales, two jobs — an equal-weight ground and card makes the whole page one busy field and every card reads as texture inside texture.</p>
+<p>Every scene size is a percentage, never a px: the gallery renders <code>--bg</code> into a ~118px tile and a px-anchored radial shows it the top edge of the page instead of the scene.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>There is no elevation model, only a light model, and it is the layer order inside <code>--azure-technologies-pane</code>:</p>
+<pre><code>sheen (1px specular lip)  &gt;  occlusion  &gt;  texture  &gt;  identity edge  &gt;  tint  &gt;  face fall  &gt;  face</code></pre>
+<p>Why that order and not another:</p>
+<ul><li><strong>Sheen above everything.</strong> It is light arriving on the plate; nothing on the plate tints it.</li><li><strong>Occlusion above the texture.</strong> The bottom 9% of a card goes out of the light, so the lattice must dim there. Occlusion under the texture leaves a full-strength lattice in the dark band, which reads as a rendering fault.</li><li><strong>Texture above the tint.</strong> A 5.5% lattice under a 5% cyan tint is invisible; the tint is a wash on the face and the lattice is drawn on the wash.</li><li><strong>Tint above the fall.</strong> The fall is the face's own shading; the tint is the place's colour sitting on that face, so it takes the shading rather than replacing it.</li><li><strong>The identity edge above the face and below the occlusion.</strong> 1px of <code>--accLine</code> at 55% along the bottom, from 7% to 96% of the width — the one place a plate is allowed to be brighter than its frame.</li></ul>
+<p><code>--shadow-1</code> and <code>--shadow-2</code> are the desk's drop-shadows as <code>box-shadow</code>, but a clipped plate drops its shadow along the silhouette, so on cards they are effectively absent. That is the documented cost of the chamfer, and the frame ring is what replaces them: the 1px ring derived from <code>--clip</code> follows the diagonal, so a chamfered card keeps a closed outline. Glow exists exactly once — <code>--glow: 0 0 14px rgba(79,216,255,.34)</code> on the primary action.</p>
+<h3 id="shapes">Shapes</h3>
+<p><strong>Nothing in this kit is round.</strong> Radii are 0 across the scale, <code>--radius-pill</code> is 2px (not 0, so a badge's fill does not clip its own glyphs), <code>--check-radius</code> is 2px and <code>--check-appearance: none</code> squares the native checkbox, because a native control ignores <code>border-radius</code> and would otherwise render as the only circle on the page.</p>
+<p>One chamfer, everywhere: <code>--cut: 16px</code> with</p>
+<pre><code>--clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)),
+                calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));</code></pre>
+<p>The clip applies to cards, buttons, inputs, badges, alerts, nav and code blocks. Two consequences, both documented rather than worked around: the border is cut along the diagonal (fixed by the generated <code>--frame-ring</code>), and <code>outline</code> is cut too (<code>--focus-inset: 2px</code> paints the keyboard ring inside the silhouette).</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — the only filled control in the kit. <code>#4FD8FF</code> plate, <code>#04121A</code> label, 700 mono label at <code>.14em</code>, the 16px chamfer, and the desk's glow. One per screen.</li><li><strong>button-primary-hover</strong> — <code>#7FE4FF</code>; the label stays dark ink.</li><li><strong>button-secondary</strong> — no fill of its own, <code>--accent-ink</code> label, rim at <code>color-mix(in srgb, var(--accent) 45%, transparent)</code>. Its hover takes <code>--accent-soft</code>.</li><li><strong>card</strong> — the pane material: opaque <code>#0A0F16</code> face, lattice, sheen, occlusion, tint, and the cyan identity edge. The 1px frame is the ring, not a border.</li><li><strong>card-elevated</strong> — <code>--surface-2</code>: no lattice, no identity edge, 6% sheen and 4% tint. On a 2.5rem control the card's material is clutter.</li><li><strong>card-media</strong> — the place plate: the lattice at card pitch over the scene's bloom on the face, at <code>opacity: 1</code>. Not the default accent→accent-2 ramp, which would read as a marketing banner in a console.</li><li><strong>input</strong> — <code>--surface-2</code> fill, 1px <code>--border</code>, chamfered; focus is the accent border plus the inset ring.</li><li><strong>badge</strong> — mono, uppercase, 2px radius, chamfered. <code>badge-accent</code> is <code>--accent-ink</code> on <code>--accent-soft</code>.</li><li><strong>nav</strong> — the pane material, so the bar is the same plate as the cards; the current item is <code>--accent-soft</code> with <code>--accent-ink</code>.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep the frame at 1px. Separation in this kit is a hairline plus a sheen lip; a 2px ink line on near-black is what makes an instrument panel look printed.</li><li><strong>Do</strong> keep cyan for action and hairlines. It is a light colour — use <code>--accent-ink</code> for text and <code>--text-invert</code> on cyan fills.</li><li><strong>Do</strong> let the motif carry the surface. The lattice is 5.5% on the card and 2.75% on the ground on purpose; raising either makes the page one busy field.</li><li><strong>Do</strong> keep the chamfer at 16px. It is the family's shape; a sibling place changes hue or motif, not this.</li><li><strong>Don't</strong> add a second filled button, a gradient banner, or a blurred card. Every surface here is opaque and the desk forbids glass.</li><li><strong>Don't</strong> lighten <code>--text-dim</code> to make a caption pop. It is graded against the composited pane; the table in <code>README.md</code> is the argument.</li><li><strong>Don't</strong> use the violet for an action. It exists because the place's scene has a violet in it, not because the kit needs a second button.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

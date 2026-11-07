@@ -1,0 +1,22 @@
+{
+  "name": "Crimson Labyrinth",
+  "tagline": "A gothic ritual console — crimson hairlines and an engraved rose on black velvet",
+  "use_when": "dark romance and gothic editorial, nightlife and music, witchy or vampire branding, game UI that should feel ritual rather than tactical",
+  "signature": [
+    "--crimson-labyrinth-pane",
+    "--crimson-labyrinth-tex",
+    "--crimson-labyrinth-field"
+  ],
+  "order": 220,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Chakra Petch · JetBrains Mono",
+  "mode": "dark",
+  "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 06) — palette, panel construction and drawn motif taken from the prototype's own tokens",
+  "tags": [
+    "dark",
+    "gothic",
+    "ornate",
+    "ritual",
+    "romantic"
+  ]
+}

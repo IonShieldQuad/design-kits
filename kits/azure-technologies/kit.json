@@ -1,0 +1,12 @@
+{
+  "name": "Azure Technologies",
+  "tagline": "A cold orbital instrument console — cyan hairlines over a black starfield",
+  "use_when": "sci-fi product and spacecraft pages, engineering and telemetry dashboards, anything that should read as an instrument panel rather than a website",
+  "signature": ["--azure-technologies-pane", "--azure-technologies-tex", "--azure-technologies-field"],
+  "order": 205,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Chakra Petch · JetBrains Mono",
+  "mode": "dark",
+  "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 01) — palette, panel construction and drawn motif taken from the prototype's own tokens",
+  "tags": ["dark", "cold", "geometric", "instrument", "hud"]
+}

@@ -1,0 +1,7 @@
+/* place 02 — extracted verbatim from prototypes/v9-lilythium/index.html */
+
+--tx-scan:repeating-linear-gradient(0deg,rgba(255,255,255,1) 0 1px,transparent 1px 4px);
+
+body[data-place="02"]{--acc:#54E08A;--acc2:#DFFFEC;--accRgb:84,224,138;--accLine:rgba(84,224,138,.6);--face:#04100A;--faceRgb:4,16,10;--tintA:.05;--tx:var(--tx-scan);--txA:.05;--cpIn:none}
+body[data-place="02"]{--cp:none;--cpIn:none;--rad:0px}
+body[data-place="02"]{--ground:#020704;--panel:#071009;--sceneA:#072A19;--sceneB:#010302;--glow:rgba(84,224,138,.34);--accHi:#93F2B8}

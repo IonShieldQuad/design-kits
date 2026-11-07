@@ -1,0 +1,113 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff8fc4",
+        "primary-hover": "#ffa9d2",
+        "on-primary": "#2a0f1b",
+        "primary-soft": "#ff8fc42e",
+        "secondary": "#6ee7b0",
+        "tertiary": "#ffb9db",
+        "neutral": "#160c13",
+        "scene": "#43223b",
+        "scene-floor": "#12090f",
+        "surface": "#23141d",
+        "surface-2": "#1e121a",
+        "surface-flat": "#23141d",
+        "text": "#f8eff3",
+        "text-muted": "#dcc5d0",
+        "text-dim": "#b79eac",
+        "ok": "#6ee7b0",
+        "warn": "#ffc46b",
+        "danger": "#ff7086",
+        "info": "#c9a8ff",
+        "border": "#ffffff24",
+        "border-strong": "#ff8fc499"
+      },
+      "fontFamily": {
+        "display": [
+          "Chakra Petch"
+        ],
+        "h1": [
+          "Chakra Petch"
+        ],
+        "h2": [
+          "Chakra Petch"
+        ],
+        "body": [
+          "Chakra Petch"
+        ],
+        "small": [
+          "Chakra Petch"
+        ],
+        "button": [
+          "Chakra Petch"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.6rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "700"
+          }
+        ],
+        "h1": [
+          "1.7rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "button": [
+          "0.875rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "label": [
+          "0.75rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "4px",
+        "md": "6px",
+        "lg": "8px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

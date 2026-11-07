@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viridian Fields — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Viridian Fields kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Viridian Fields</h1>
+  <p class="spec-sub">A matte botanical console — deep emerald, an engraved fern, no glow</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Viridian Fields
+description: A matte botanical console — a deep absorbed emerald as the only filled thing, one engraved fern struck at 248px in a card&#x27;s bottom-right, a 1px frame and a 157° face fall. No bloom, no scanlines, no glow wash.
+colors:
+  primary: &quot;#147A57&quot;
+  primary-hover: &quot;#116B4C&quot;
+  on-primary: &quot;#EAF6F0&quot;
+  primary-soft: &quot;rgba(20, 122, 87, 0.22)&quot;
+  secondary: &quot;#7FA9C8&quot;
+  tertiary: &quot;#5BCBA0&quot;
+  neutral: &quot;#0A1512&quot;
+  surface: &quot;#0C1914&quot;
+  surface-2: &quot;#1D2E29&quot;
+  text: &quot;#EAF6F0&quot;
+  text-muted: &quot;#B7CCC1&quot;
+  text-dim: &quot;#A2B9AD&quot;
+  ok: &quot;#6FCF97&quot;
+  warn: &quot;#D9B36B&quot;
+  danger: &quot;#EE7A70&quot;
+  info: &quot;#7FA9B8&quot;
+  border: &quot;rgba(255, 255, 255, 0.14)&quot;
+  border-strong: &quot;rgba(20, 122, 87, 0.60)&quot;
+  bg-stop-1: &quot;#16382B&quot;
+  bg-stop-2: &quot;#0A1512&quot;
+  bg-stop-3: &quot;#050B08&quot;
+  fern: &quot;#FFFFFF&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;2.7rem&quot;
+    fontWeight: 600
+    lineHeight: 1.06
+    letterSpacing: &quot;0.004em&quot;
+  h1:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.7rem&quot;
+    fontWeight: 600
+    lineHeight: 1.14
+    letterSpacing: &quot;0.004em&quot;
+  h2:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.28rem&quot;
+    fontWeight: 500
+    lineHeight: 1.22
+    letterSpacing: &quot;0.008em&quot;
+  body:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.64
+  small:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.52
+  button:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.14em&quot;
+
+rounded:
+  sm: &quot;3px&quot;
+  md: &quot;5px&quot;
+  lg: &quot;7px&quot;
+  pill: &quot;999px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-danger:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  tab-item-active:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;0px&quot;
+  alert:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.8rem 0.95rem&quot;
+  alert-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+  code-block:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.85rem 1rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-3:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;</code></pre></section>
+<h2 id="viridian-fields">Viridian Fields</h2>
+<p><strong>A matte botanical console.</strong> Deep emerald is the action, an engraved fern is the material, and nothing on the page emits light. This is the one place in the Li//OS desk family that is <em>absorbed</em> rather than <em>lit</em>: the accent is a dark green fill, the ink on it is the lightest thing in the kit, and the only glow is the place's own 14px emerald at 26%, on the primary button.</p>
+<h3 id="overview">Overview</h3>
+<p>Every other dark kit in this library answers "how does it glow?" This one answers "what does a surface look like when it has stopped reflecting?" Four decisions carry it:</p>
+<ul><li><strong>The accent is dark, and it inverts the ink.</strong> <code>{colors.primary}</code> is the place's own <code>--acc</code>, a deep emerald that is <em>darker</em> than the text around it. So ink on it is light (<code>{colors.on-primary}</code>) and the accent used as a label is its pale member <code>{colors.tertiary}</code> — the fill itself is 3.4:1 on a pane and cannot be a small label. Five of the six places in this family do the opposite; here it is deliberate and the numbers are in the README.</li><li><strong>The material is a plate, not a gradient.</strong> <code>{colors.surface}</code> is the desk's own <code>.card-in</code>: a sheen band with a 1px specular lip, a bottom occlusion band, the engraved fern, an emerald identity edge along the floor, a 5% tint, a 157° face fall, and the face. The fern is drawn once at 248px and pinned to the bottom-right — it is an engraving on a plate, not a pattern.</li><li><strong>The frame is 1px and nothing behind it moves.</strong> The page ground is two soft fields of <code>{colors.bg-stop-1}</code> over a 120px technical ruling, one 520px fern struck near the floor, and a ground-to-floor ramp. Large-celled and quiet, so the card's plate is legible as a plate.</li><li><strong>Depth is occlusion.</strong> <code>--shadow-1</code> and <code>--shadow-2</code> are black drops; <code>--blur: none</code> because every surface is opaque. Nothing in this kit is glass, and a blurred opaque card only costs a repaint.</li></ul>
+<h3 id="colors">Colors</h3>
+<p><code>{colors.primary}</code> is the desk's <code>--acc</code> (#147A57): a matte, absorbed emerald with 0.15 relative luminance. It fills the primary button, the progress ramp and the avatar — the only opaque fills in the kit. <code>{colors.tertiary}</code> (#5BCBA0, the desk's <code>--accHi</code>) is the same hue re-tuned for <strong>text</strong>: eyebrows, links, active nav, secondary-button labels, <code>badge-accent</code>. It measures 9.0:1 on the flat pane, 6.4:1 on a card's lit end and 5.9:1 over the brightest point of the scene field.</p>
+<p><code>{colors.secondary}</code> (#7FA9C8) is the place's own pale sky — the second hue, for gradients, media, charts and the avatar's far stop. It is a fill colour and is never a label.</p>
+<p>The status ladder is derived from the place, and the pair that needed care is <code>{colors.ok}</code> against the accent: both are green, so <code>{colors.ok}</code> is held clearly lighter and mintier — 0.50 relative luminance against the accent's 0.15, 2.8:1 apart — and a state chip is separated from the action by <em>material</em> as well: a badge is an outlined chip, the action is an opaque plate.</p>
+<p><code>{colors.neutral}</code> is the floor the whole kit was graded against, and <code>{colors.bg-stop-1}</code> is the lightest field on the page — the scene's own <code>--sceneA</code>. <code>{colors.fern}</code> documents the plate's stroke colour (white, at the 9% the desk baked into its alpha); it is a drawn asset, not a tint.</p>
+<h3 id="typography">Typography</h3>
+<p>Chakra Petch for display and body, JetBrains Mono for labels, keys and metadata — the family's fixed pairing, shared by all six places, because the type <em>is</em> the OS. Display weights stay at 500–600: this register is printed on a plate rather than shouted off one, and a 700 weight at display size is the quickest way to make a matte kit read as a loud one.</p>
+<p>Labels are uppercase mono at <code>{typography.label}</code> (12px floor) with <code>{typography.label.letterSpacing}</code> — the desk's instrument voice, narrow enough to sit inside a 3px chip radius.</p>
+<h3 id="layout">Layout</h3>
+<p>The page is a plate laid on a field: generous vertical rhythm (<code>{spacing.lg}</code> between sections, <code>{spacing.xl}</code> for hero pacing), 1px rules, and a card radius of 5px so a plate reads as cut rather than moulded. Nothing overlaps; the kit's depth comes from the drop under a plate, not from stacking translucent layers.</p>
+<p>The signature plate is anchored to the card's <strong>bottom-right corner</strong> (the desk's own <code>right -42px bottom 10%</code>), so a card's engraving always reads as a mark struck into that corner rather than as a centred illustration. On the ground the same engraving appears once at 520px near the floor of the page — one plate, at roughly half the card's alpha. It does not repeat.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Two shadows, both black, both short: <code>0 6px 16px rgba(0,0,0,.50)</code> for a resting plate and <code>0 10px 26px rgba(0,0,0,.55)</code> for one that floats. The single emanation is <code>0 0 14px rgba(46,156,116,.26)</code> — the place's own glow, at the desk's own width, on the primary button. Widening that blur, or lifting its alpha, is what would turn this kit into Mainframe Access.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>{rounded.sm}</code> 3px, <code>{rounded.md}</code> 5px, <code>{rounded.lg}</code> 7px, <code>{rounded.pill}</code> 999px. <code>--cut: 0px</code> and no <code>--clip</code>: this place rounds, it does not chamfer. Buttons take the 5px radius, chips and small controls 3px, and the native checkbox is squared to 3px with <code>--check-radius</code> so the shape language holds on controls the browser draws itself.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>Buttons.</strong> The primary is an opaque emerald plate with a light label and the faint emerald glow; its hover goes <em>deeper</em> (#116B4C), because raising the fill's luminance drops the light label toward 3.9:1. Secondary and danger buttons are transparent with an accent-hairline rim and their colour in the label. The press travels <em>down</em> (<code>--btn-press: 0px</code> against a −1px hover) so the key seats into the plate — the only motion in the kit, linear and .18s.</li><li><strong>Cards.</strong> <code>{colors.surface}</code> is the plate material; <code>card-elevated</code> drops to <code>{colors.surface-2}</code> — the nested tier, which drops the engraving and the identity edge and keeps a shallow sheen plus half the tint.</li><li><strong>Inputs.</strong> A shallow recess with a lit lower lip (<code>--input-inset</code>), a rim of <code>{colors.border-strong}</code> — the desk's accent hairline at 60% — and <code>{colors.surface-2}</code> as its field.</li><li><strong>Badges.</strong> Pills at <code>{rounded.pill}</code> with a mono label; <code>badge-accent</code> sits on a 22% emerald tint under the pale ink. Status badges keep the chip's own surface and take only their dot and border from the status hue.</li><li><strong>Navigation.</strong> A milled channel (<code>--bar-shadow</code>) with the current item on an emerald tint, in <code>{colors.tertiary}</code>.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> treat the emerald as a fill and its pale member as the label. Writing <code>--accent</code> as text is the mistake this kit's ink pair exists to prevent.</li><li><strong>Do</strong> keep the glow at 14px / 26%. It is the place's own value and its restraint is the identity.</li><li><strong>Do</strong> let the fern sit in the bottom-right of a plate and leave it alone. It is drawn at 248px with its alpha baked in; re-tinting or tiling it makes it a pattern.</li><li><strong>Don't</strong> lighten the ground to add contrast. The scene field is the lightest ground the kit was graded against, and every number in the README assumes it.</li><li><strong>Don't</strong> use <code>{colors.secondary}</code> for text, and don't introduce a third "look at me" hue — the status ladder is the only other colour family the kit carries.</li><li><strong>Don't</strong> add glass, backdrop blur or a coloured rim glow. All three are the opposite register.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

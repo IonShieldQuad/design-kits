@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Boulevard — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Sunset Boulevard kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Sunset Boulevard</h1>
+  <p class="spec-sub">An outrun night-city deck — violet frame, amber sun, a perspective floor</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Sunset Boulevard
+description: An instrument deck standing on a drawn city floor at midnight — violet hairline frame, 16px cut corners, an opaque indigo face carrying a perspective grid anchored to its own floor, and one amber sun in the scene.
+colors:
+  primary: &quot;#B06CFF&quot;
+  primary-hover: &quot;#C08BFF&quot;
+  on-primary: &quot;#12081F&quot;
+  primary-soft: &quot;rgba(176, 108, 255, 0.16)&quot;
+  secondary: &quot;#FFB84D&quot;
+  tertiary: &quot;#CFA4FF&quot;
+  neutral: &quot;#0A0512&quot;
+  scene: &quot;#231040&quot;
+  scene-floor: &quot;#040208&quot;
+  surface: &quot;#150C28&quot;
+  surface-2: &quot;#120B1C&quot;
+  surface-solid: &quot;#0F0819&quot;
+  text: &quot;#F2EBFF&quot;
+  text-muted: &quot;#C9B8E6&quot;
+  text-dim: &quot;#AE9CCB&quot;
+  ok: &quot;#45E0B0&quot;
+  warn: &quot;#FFB84D&quot;
+  danger: &quot;#FF5C7A&quot;
+  info: &quot;#66D9FF&quot;
+  border: &quot;rgba(255, 255, 255, 0.14)&quot;
+  border-strong: &quot;rgba(176, 108, 255, 0.60)&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;2.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.04
+    letterSpacing: &quot;0.004em&quot;
+  h1:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.75rem&quot;
+    fontWeight: 600
+    lineHeight: 1.12
+    letterSpacing: &quot;0.004em&quot;
+  h2:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.62
+  small:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.14em&quot;
+
+rounded:
+  sm: &quot;0px&quot;
+  md: &quot;0px&quot;
+  lg: &quot;0px&quot;
+  pill: &quot;2px&quot;
+  cut: &quot;16px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  button-ghost:
+    backgroundColor: &quot;transparent&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-3:
+    backgroundColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;</code></pre></section>
+<h2 id="sunset-boulevard">Sunset Boulevard</h2>
+<p><strong>An instrument deck on a city floor at midnight.</strong> A violet-framed slab of opaque indigo, corners cut at 16px, its face carrying a perspective grid that is anchored to its own bottom edge — the same grid the page stands on, at twice the pitch and half the alpha. The only warm object in the kit is the amber sun in the scene: <code>{colors.secondary}</code>, and never a wash behind text.</p>
+<h3 id="overview">Overview</h3>
+<p>This is one room of <code>Li//OS</code>, not a poster of a decade. The desk's grammar is fixed — a hairline frame, an opaque face carrying a sheen band, a bottom occlusion band, a 157° face fall, a 5% accent tint, one drawn texture, one accent hue — and what this place owns inside that grammar is the <strong>floor</strong>.</p>
+<ul><li><strong>The ground is a plane, not a backdrop.</strong> Two soft fields of <code>{colors.scene}</code> over <code>{colors.neutral}</code>, a 120px technical grid, and the place's own perspective motif stretched across it, settling into <code>{colors.scene-floor}</code>. It recedes, so the page reads as somewhere rather than as a colour.</li><li><strong>The card is a slab of that plane.</strong> <code>{colors.surface}</code> is the desk's <code>.card-in</code> ported to tokens: sheen with a 1px specular lip, a bottom occlusion band, the same perspective grid at the card's own pitch with its horizon at 62% of the card's height, a 1px violet identity edge along the floor, a 5% tint, and a 157° fall. The grid lands on the card's floor, which is what makes the slab sit on the scene instead of floating in front of it.</li><li><strong>The frame is cut, and it keeps its frame.</strong> <code>--cut: 16px</code> with the family's <code>--clip</code>; because <code>clip-path</code> removes the border along the diagonal, <code>build.py</code> derives <code>--frame-ring</code> from that polygon and the 1px frame survives every edge.</li><li><strong>One accent, one counterpoint.</strong> Violet is the action. Amber is the scene's sun — it is also the warning status, and it is deliberately never a control.</li></ul>
+<h3 id="colors">Colors</h3>
+<p><code>{colors.primary}</code> <code>#B06CFF</code> is the place's own system violet: primary plates, links, active nav, the focus ring, the identity edge along a card's floor. It is a <strong>mid-light</strong> fill, so <code>{colors.on-primary}</code> <code>#12081F</code> carries its labels at 6.0:1 rather than white.</p>
+<p><code>{colors.tertiary}</code> <code>#CFA4FF</code> is the same violet re-tuned for <strong>text</strong> (the desk's <code>--accHi</code>): small labels, eyebrows, links, badge labels and secondary-button labels route through it, because a fill colour used as a label is the failure this split exists to prevent.</p>
+<p><code>{colors.secondary}</code> <code>#FFB84D</code> is the amber sun — the media plate, the second stop in charts and the progress ramp's warm end. It is also <code>{colors.warn}</code>: amber in this kit is a <strong>status colour and a scene colour, not an action colour</strong>. Nothing the user clicks is amber.</p>
+<p>The status ladder is mint / amber / hot pink-red / sky. <code>{colors.danger}</code> <code>#FF5C7A</code> is deliberately a warm pink-red so it separates cleanly from a violet action; the one pair that is not separable by hue is <code>--warn</code> against <code>--accent-2</code>, because they are the same amber by design.</p>
+<p><code>{colors.neutral}</code> <code>#0A0512</code> is the floor. <code>{colors.surface}</code> <code>#150C28</code> is the deck's face, one full step lighter so a card reads as lifted off the ground by value before it reads as lifted by anything else.</p>
+<h3 id="typography">Typography</h3>
+<p>Chakra Petch for both display and body — a squared technical face, which is what an instrument deck is lettered in — and JetBrains Mono for labels, keys and readouts. Labels are uppercase mono at <code>{typography.label}</code> with <code>{typography.label.letterSpacing}</code>.</p>
+<p>The pairing is <strong>shared by every place in the family</strong>, on purpose: these kits are rooms in one operating system, and the type is the operating system. A later session should not "improve" it per kit — change it in all of them or in none.</p>
+<h3 id="layout">Layout</h3>
+<p>The floor is percentage-sized, never px, so the scene lands the same in a 118px gallery tile as in a full page. A 12-column feel with generous vertical rhythm (<code>{spacing.lg}</code> between sections, <code>{spacing.xl}</code> for hero pacing). Cards are cut slabs with a 1px frame and a 9% sheen band: their material is the face, and the grid inside them is anchored to the card's bottom edge, so a tall card shows more floor and a short one shows the horizon.</p>
+<p>Two scales do two jobs. The card's grid is the place's own pitch with its floor at 62% of the card's height; the ground's is the same motif at half the alpha and twice the pitch. Equal weight would make the page one busy field and every card read as texture inside texture.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>Depth is <strong>cast, not blurred</strong>. Every surface here is opaque, so <code>--blur: none</code> — the desk forbids glass and <code>backdrop-filter</code>, and a blurred opaque card is only a repaint cost. A card carries <code>0 6px 16px rgba(0,0,0,.50)</code>; a nested or elevated one <code>0 10px 26px rgba(0,0,0,.55)</code>. <code>--glow</code> is the desk's own bloom, <code>0 0 14px rgba(176,108,255,.32)</code>, and it is spent on the primary plate.</p>
+<p><code>clip-path</code> also clips a box-shadow, so a chamfered card's shadow stops at the silhouette. That is the intended reading: the slab is cut out of the plane, not resting on top of it with a soft edge.</p>
+<h3 id="shapes">Shapes</h3>
+<p>Cut, never rounded: <code>{rounded.sm}</code>/<code>{rounded.md}</code>/<code>{rounded.lg}</code> are 0, <code>--cut: 16px</code> taken on the top-left and bottom-right corners (the desk's asymmetric chamfer), and <code>--radius-pill</code> is <code>2px</code> so a pill-shaped badge still squares up. Native checkboxes and radios take <code>--check-radius: 2px</code> for the same reason — a rounded control would be the one false note in the kit. Because <code>clip-path</code> eats <code>outline</code> along the diagonal, keyboard focus is painted <strong>inside</strong> the silhouette (<code>--focus-inset: 2px</code>) rather than outside it.</p>
+<h3 id="components">Components</h3>
+<ul><li><strong>button-primary</strong> — a solid <code>{colors.primary}</code> plate, <code>{colors.on-primary}</code> label, the desk's violet glow. The only filled, opaque thing on a page.</li><li><strong>button-secondary</strong> — transparent with a <code>{colors.border-strong}</code> hairline and a <code>{colors.tertiary}</code> label: an outlined plate on the floor, not a lit pane.</li><li><strong>card</strong> — the deck: sheen, occlusion, grid, identity edge, tint, fall, on <code>{colors.surface}</code>, 1px <code>{colors.border}</code> frame, cut corners.</li><li><strong>card-elevated / input / badge / alert / code</strong> — <code>{colors.surface-2}</code>, the nested tier: no texture, no identity edge, just a shallow sheen and half the tint on <code>{colors.surface-2}</code>. A 240px grid on a 2.5rem control is clutter, not material.</li><li><strong>badge</strong> — mono, uppercase, 2px corners, cut; <code>badge-accent</code> takes the violet tint, the rest take a status hue with a tinted hairline.</li><li><strong>avatar / progress</strong> — the fill ramp: the accent at 25% into the accent itself.</li></ul>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<p><strong>Do</strong></p>
+<ul><li>Keep the card's grid anchored to its bottom edge (62% height). It is the card's floor; floating it in the middle turns the deck into wallpaper.</li><li>Use <code>{colors.tertiary}</code> for violet text and <code>{colors.primary}</code> for violet fills.</li><li>Keep the frame at 1px. On a near-black ground a 2px line reads as printed, not as an instrument.</li><li>Grade any new ink against the <strong>composited</strong> card (face + tint + fall + sheen), not against <code>{colors.neutral}</code>.</li></ul>
+<p><strong>Don't</strong></p>
+<ul><li>Don't use the amber as an action colour. It is <code>{colors.warn}</code> as well as the sun; a clickable amber button is a button that reads as an error.</li><li>Don't put the sun behind text, and don't turn it into a page-wide wash. It appears in the media plate and as the second stop of a chart, nowhere else.</li><li>Don't round a corner, a chip or a checkbox.</li><li>Don't set <code>--blur</code> — there is nothing here to see through.</li><li>Don't add a third accent. Violet, amber and four status hues is already the room's whole palette.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

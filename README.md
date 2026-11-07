@@ -107,6 +107,12 @@ order, palette limits.
 | [`moon-rover`](kits/moon-rover/DESIGN.md) | light · mineral · dusty · hard-shadow · technical · aerospace | lunar and field-hardware pages, mission-ground products, anything that should feel like dust under one unfiltered sun rather than a view of space |
 | [`photonic`](kits/photonic/DESIGN.md) | dark · sci-fi · holographic · translucent · luminous · screen | projected and in-world interfaces — sci-fi, space and hardware product pages, HUD and telemetry overlays, ambient status displays, AI and vision marketing, anything that should look lit from its own edges rather than printed |
 | [`frutiger-aero`](kits/frutiger-aero/DESIGN.md) | light · glossy · translucent · 2000s · meadow · friendly | consumer software, device and OS-adjacent marketing, playful dashboards and onboarding, media and lifestyle products — anything that should feel bright, glossy and friendly rather than severe |
+| [`azure-technologies`](kits/azure-technologies/DESIGN.md) | dark · cold · geometric · instrument · hud | sci-fi product and spacecraft pages, engineering and telemetry dashboards, anything that should read as an instrument panel rather than a website |
+| [`mainframe-access`](kits/mainframe-access/DESIGN.md) | dark · terminal · monochrome · phosphor · technical | developer tools, security and ops consoles, terminal-adjacent products, anything that should feel like a machine login rather than a page |
+| [`pastel-district`](kits/pastel-district/DESIGN.md) | dark · pastel · dreamy · soft · nocturnal | soft and playful products, anime and music editorial, generative-tool panels, anything that should feel dreamy at night without going pastel-light |
+| [`crimson-labyrinth`](kits/crimson-labyrinth/DESIGN.md) | dark · gothic · ornate · ritual · romantic | dark romance and gothic editorial, nightlife and music, witchy or vampire branding, game UI that should feel ritual rather than tactical |
+| [`sunset-boulevard`](kits/sunset-boulevard/DESIGN.md) | dark · outrun · night · retro-future · neon | night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like a city at 1987 midnight |
+| [`viridian-fields`](kits/viridian-fields/DESIGN.md) | dark · botanical · matte · nature · calm | calm and natural products, long-reading interfaces, landscape and field-work tools, anything that should feel grown rather than lit |
 <!-- END KITS -->
 
 ## Token contract (v1)

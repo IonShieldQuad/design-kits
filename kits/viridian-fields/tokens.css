@@ -1,0 +1,222 @@
+/* ============================================================================
+   design-kits · viridian-fields                                        contract v1
+   ----------------------------------------------------------------------------
+   A MATTE BOTANICAL CONSOLE — DEEP EMERALD, AN ENGRAVED FERN, NO GLOW.
+
+   The family's deliberate exception. Places 01-07 in the Li//OS desk are lit
+   objects: an accent that reads as emitted light, a rim that is the light
+   source, a bloom under the frame. This place is the opposite claim. The desk's
+   own note for 08 says the green here is not information (that is 02
+   Mainframe's phosphor), it is ABSORBED: deep, matte, no bloom, no scanlines,
+   no wash. Everything below is that restraint made operational —
+
+     · the accent is a DARK emerald (#147A57), not a light one. It is the only
+       filled thing on the page and it is darker than the ink around it, which
+       inverts the usual accent/ink relationship (see --accent-ink and
+       --text-invert below);
+     · the light model is a 157° face fall and a 1px edge, not a halo. The one
+       glow in the kit is the place's own (0 0 14px rgba(46,156,116,.26)) and
+       it is used at the desk's own width — widening it turns this into 02;
+     · the material carries a DRAWN plate, not a pattern. One engraved fern,
+       struck once at 248px in a card's bottom-right, at the alpha the desk
+       baked into it. It does not tile and it is not a field of leaves.
+
+   PROVENANCE — derived from the user's bespoke-desktop Li//OS prototype
+   (prototypes/v9-lilythium, place 08). Palette, panel construction and the
+   engraved plate are the prototype's own values; the plate is taken from
+   docs/lilythium/textures.css already alpha-baked, and pasted unmodified.
+
+   THE GROUND IS NOT NEUTRAL HERE. --bg is the place's .scene: two soft fields
+   of --sceneA over a 120px technical grid, one 520px engraved plate pinned at
+   the floor, over the ground-to-sceneB ramp. It is quiet on purpose — the
+   plate on the ground is struck at half the card's alpha, because equal weight
+   makes the page one busy field and every card read as texture inside texture.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces *
+     Layer order is the light model and is NOT negotiable:
+     sheen > occlusion > engraved plate > identity edge > tint > fall > face.
+     A plate placed under the tint is invisible; a fall placed under the face
+     is not a fall. */
+  --viridian-fields-face:     #0C1410;   /* the desk's --face: an opaque matte green-black */
+  --viridian-fields-panel:    #0F1D19;   /* the desk's --panel: one step up, the nested tier */
+  --viridian-fields-ground:   #0A1512;   /* the desk's --ground: the floor of the scene */
+  --viridian-fields-scene-a:  #16382B;   /* the desk's --sceneA: the two soft fields */
+  --viridian-fields-scene-b:  #050B08;   /* the desk's --sceneB: the floor stop */
+
+  /* THE GROUND. Sizes in percentages, never pixels, except the plate itself —
+     the gallery renders --bg into a ~118px tile and a px-anchored scene shows
+     the tile its top edge only. The two fields are the scene's own; the grid is
+     the desk's faint technical ruling; the 520px plate is struck once and
+     pinned at the floor (the desk's latest build: the fern is an engraving, not
+     a tile — it is not repeated anywhere in this kit). */
+  --viridian-fields-field:
+    radial-gradient(80% 60% at 63% 38%, var(--viridian-fields-scene-a) 0%, transparent 62%),
+    radial-gradient(120% 70% at 14% 96%, var(--viridian-fields-scene-a) 0%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.024) 0 1px, transparent 1px 120px),
+    var(--viridian-fields-tex-ground),
+    linear-gradient(180deg, var(--viridian-fields-ground) 0%, var(--viridian-fields-scene-b) 100%);
+  --bg:            var(--viridian-fields-field);
+  --bg-2:          #0B1714;              /* masthead stop / solid stand-in */
+  --overlay:       rgba(4, 10, 7, .72);  /* modal scrim */
+
+  /* THE CARD MATERIAL — the desk's own .card-in, ported. A card is a plate, not
+     a fill: sheen with its 1px specular lip, the bottom occlusion band, the
+     engraved fern struck once at 248px in the bottom-right, the emerald
+     identity edge along the floor, the 5% tint, the 157° face fall, the face.
+     The plate's alpha (0.09) is baked into the SVG — do not re-tune it. */
+  --viridian-fields-pane:
+    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
+                            rgba(255,255,255,.17) 1px,
+                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
+    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
+                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    var(--viridian-fields-tex),
+    linear-gradient(90deg, transparent 0%,
+                            rgba(20,122,87,.55) 7%,
+                            rgba(20,122,87,.55) 62%,
+                            transparent 96%) 0 100%/100% 1px no-repeat,
+    linear-gradient(rgba(20,122,87,.05), rgba(20,122,87,.05)),
+    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 44%,
+                            rgba(0,0,0,.24) 78%,
+                            rgba(0,0,0,.52) 100%),
+    var(--viridian-fields-face);
+  --surface:       var(--viridian-fields-pane);
+
+  /* THE NESTED TIER — inputs, badges, alerts, code blocks, card-elevated. It
+     drops the plate and the identity edge: a 248px engraving on a 2.5rem
+     control is clutter, not material. A shallow sheen plus half the tint over
+     the panel step, and its depth comes from --shadow-2. */
+  --surface-2:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+    linear-gradient(rgba(20,122,87,.04), rgba(20,122,87,.04)),
+    var(--viridian-fields-panel);
+
+  /* ----------------------------------------------------------------- text *
+     Graded against the COMPOSITED pane, not the declared face: the face plus
+     the 5% tint plus the 157° fall's lit end is #293530, which is the lightest
+     ink ground any label in a card can land on. Full table in README.md. */
+  --text:          #EAF6F0;   /* 10.6:1 on the lit ground  ·  16.3:1 on the flat face */
+  --text-muted:    #B7CCC1;   /* 10.7:1 on the flat pane   ·   7.6:1 on its lit end   */
+  --text-dim:      #A2B9AD;   /*  5.6:1 on the scene field ·   4.9:1 over grid + plate */
+  --text-invert:   #EAF6F0;   /*  4.8:1 on --accent — LIGHT ink on a DARK fill. This is
+                                 the family inversion: everywhere else the action is
+                                 light, so ink on it is dark. Here the fill is the
+                                 darkest thing in the kit and the label is the
+                                 lightest. Do not "fix" this to a dark ink. */
+
+  /* ---------------------------------------------------------------- brand *
+     ONE action + ONE counterpoint. The emerald is DARK on purpose: it is the
+     place's own --acc, and it is the only opaque fill on the page. */
+  --accent:        #147A57;   /* the place's --acc — deep, matte, absorbed */
+  --accent-ink:    #5BCBA0;   /* the desk's --accHi: the accent AS TEXT. The fill
+                                 itself is 3.4:1 on a pane and unreadable as a
+                                 small label; this is the value the desk already
+                                 solved that problem with. */
+  --accent-ink-hover: #7FD9B6;/* one step lighter — text only */
+  --accent-hover:  #116B4C;   /* the FILL hover goes DEEPER, not lighter: with
+                                 light ink on the fill, raising luminance drops
+                                 the label to 3.9:1. A press settles. */
+  --accent-2:      #7FA9C8;   /* the place's own pale sky — the second hue.
+                                 Fills, media, charts. Never a label. */
+  --accent-soft:   rgba(20, 122, 87, .22);  /* 22% of the accent: active nav,
+                                 badge-accent, focus halo. At 22% --accent-ink
+                                 still clears 5.8:1 over the nested tier. */
+
+  /* --------------------------------------------------------------- status *
+     Derived from the place. The pair to watch is --ok against the emerald
+     accent: both are green, so --ok is kept clearly LIGHTER and mintier
+     (luminance .50 against the accent's .15, 2.8:1 apart) — a state chip must
+     never be mistaken for the action. */
+  --ok:            #6FCF97;   /* 7.5:1 on --surface-2, and 0.50 luminance vs the accent's 0.15 */
+  --warn:          #D9B36B;   /* 7.2:1 on --surface-2 */
+  --danger:        #EE7A70;   /* tuned from #E05A5A: that measured 3.92:1 on --surface-2
+                                 and 3.51:1 on a card's lit end. This holds 5.19 / 4.65. */
+  --info:          #7FA9B8;   /* 5.6:1 on --surface-2 — the sky, desaturated */
+
+  /* ---------------------------------------------------------------- lines *
+     Two hairlines, and they are different materials. The frame is the desk's
+     white at 14% (it takes 35% on hover in the prototype); the strong line is
+     the desk's --accLine, an emerald at 60%, which is what every control's
+     rim is drawn with. 1px is not negotiable in this family. */
+  --border:        rgba(255, 255, 255, .14);
+  --border-strong: rgba(20, 122, 87, .60);
+  --border-w:      1px;
+  --focus-ring:    #5BCBA0;
+
+  /* ---------------------------------------------------------------- shape *
+     The desk's --rad: 5px on the card. Small radius, everywhere: a botanical
+     plate is cut, not moulded, so the radius is a rounding-off rather than a
+     soft edge. --cut is 0 because this place does not chamfer. */
+  --radius-sm:     3px;
+  --radius-md:     5px;
+  --radius-lg:     7px;
+  --radius-pill:   999px;
+  --cut:           0px;
+
+  /* ----------------------------------------------------------------- type *
+     The family's own pairing, shared by all six places: the OS is the type.
+     Chakra Petch (squared, slightly technical) for display and body; JetBrains
+     Mono for labels, keys and metadata. Deliberately identical to its siblings. */
+  --font-display:  "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;
+  --tracking-display: .004em;
+
+  /* ---------------------------------------------------------------- depth *
+     Matte depth is occlusion, not light: a short dark drop under a plate and a
+     deeper one under a floating one. The glow is the place's own, at the desk's
+     own 14px — it is the only emanation in the kit and it exists on the primary
+     button only. Widening it is the single change that turns this kit into 02. */
+  --shadow-1:      0 6px 16px rgba(0, 0, 0, .50);
+  --shadow-2:      0 10px 26px rgba(0, 0, 0, .55);
+  --glow:          0 0 14px rgba(46, 156, 116, .26);
+  --blur:          none;      /* every surface is opaque; glass is forbidden here */
+
+  /* --------------------------------------------------------------- motion */
+  --dur:           .18s;
+  --ease:          linear;    /* the desk transitions linearly; nothing eases */
+
+  /* ======================================================== opt-in hooks === */
+  /* a control is seated, not floated: a 1px collapse under it */
+  --btn-shadow:   0 1px 0 rgba(0, 0, 0, .35);
+  --btn-shadow-active: inset 0 1px 2px rgba(0, 0, 0, .50);
+  --btn-hover-lift: -1px;
+  --btn-press:      0px;      /* the key travels down into the plate */
+  /* fields are shallow recesses with a lit lower lip */
+  --input-inset:   inset 0 1px 2px rgba(0, 0, 0, .45),
+                   inset 0 0 0 1px rgba(255, 255, 255, .05);
+  /* the nav is a milled channel, its current item a plate riding in it */
+  --bar-shadow:      inset 0 1px 0 rgba(255, 255, 255, .035);
+  --toggle-shadow:   inset 0 1px 2px rgba(0, 0, 0, .45);
+  --toggle-knob-shadow: 0 1px 2px rgba(0, 0, 0, .50);
+  --check-radius:    var(--radius-sm);
+  /* progress and avatar: the accent's own 25% tint ramping to the accent. It
+     cannot go lighter than the accent, or the light ink on the avatar fails. */
+  --fill-bg:        linear-gradient(90deg, rgba(20, 122, 87, .25) 0%, var(--accent) 100%);
+  /* the media panel is a place plate: the engraving at card pitch over the
+     scene's own bloom, on the face — not the default accent ramp. */
+  --media-bg:       var(--viridian-fields-tex),
+                    radial-gradient(80% 60% at 63% 38%, var(--viridian-fields-scene-a) 0%, transparent 62%),
+                    linear-gradient(180deg, var(--viridian-fields-face) 0%, var(--viridian-fields-scene-b) 100%);
+  --media-op:       1;        /* the plate is dark; the default .85 would grey it */
+  /* The masthead is a wash, and this is the least that keeps it from reading as
+     a bloom: 10% emerald, gone by 62%. Nothing on this page emits. */
+  --wash:           radial-gradient(120% 140% at 50% -10%, rgba(20, 122, 87, .10) 0%, transparent 62%);
+
+  /* ==================================================================== *
+     EXTRAS — the engraved plate, kept addressable so a project can strike it
+     on a plate of its own without copying a 4KB data URI. Both values are
+     pasted verbatim from docs/lilythium/textures.css: the card line is the
+     fern drawn once at 248px and pinned to the bottom-right (the desk's own
+     'right -42px bottom 10%'), the ground line is the same engraving at 520px
+     pinned near the floor. The stroke alpha is already baked into the SVG.
+     ==================================================================== */
+  --viridian-fields-tex: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nNDQwJyB2aWV3Qm94PScwIDAgMzAwIDQ0MCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmJyBzdHJva2Utb3BhY2l0eT0nMC4wOScgc3Ryb2tlLXdpZHRoPScxJz48cGF0aCBkPSdNMjYuMCA0MzYuMEMzMC4zIDQyOC43IDQ0LjcgNDA4LjAgNTIuMCAzOTIuMEM1OS4zIDM3Ni4wIDY1LjMgMzU3LjcgNzAuMCAzNDAuMEM3NC43IDMyMi4zIDc3LjMgMzA0LjAgODAuMCAyODYuMEM4Mi43IDI2OC4wIDg0LjcgMjQ5LjcgODYuMCAyMzIuMEM4Ny4zIDIxNC4zIDg4LjcgMTk2LjcgODguMCAxODAuMEM4Ny4zIDE2My4zIDg1LjAgMTQ2LjcgODIuMCAxMzIuMEM3OS4wIDExNy4zIDc1LjAgMTA0LjMgNzAuMCA5Mi4wQzY1LjAgNzkuNyA1NS4wIDYzLjcgNTIuMCA1OC4wJy8+PHBhdGggZD0nTTM5LjAgNDE0LjBRMjAuOSAzNzAuOSAtMjUuMyAzNjMuOFEtNy4yIDQwNi45IDM5LjAgNDE0LjBaJy8+PHBhdGggZD0nTTM5LjAgNDE0LjBMLTI1LjMgMzYzLjgnLz48cGF0aCBkPSdNMTUuOSAzOTUuOUwtMi4xIDM5NS45Jy8+PHBhdGggZD0nTS0zLjQgMzgwLjhMLTIxLjQgMzgwLjgnLz48cGF0aCBkPSdNMzkuMCA0MTQuMFE4Mi43IDM5Ny40IDkxLjUgMzUxLjVRNDcuNyAzNjguMSAzOS4wIDQxNC4wWicvPjxwYXRoIGQ9J00zOS4wIDQxNC4wTDkxLjUgMzUxLjUnLz48cGF0aCBkPSdNNTcuOSAzOTEuNUw3NS40IDM4Ny44Jy8+PHBhdGggZD0nTTczLjYgMzcyLjdMOTEuMiAzNjkuMCcvPjxwYXRoIGQ9J00zOS4wIDQxNC4wUTI4LjAgMzU1LjcgLTI3LjQgMzM0LjZRLTE2LjUgMzkyLjkgMzkuMCA0MTQuMFonLz48cGF0aCBkPSdNMzkuMCA0MTQuMEwtMjcuNCAzMzQuNicvPjxwYXRoIGQ9J00xNS4xIDM4NS40TC03LjIgMzgwLjYnLz48cGF0aCBkPSdNLTQuOSAzNjEuNkwtMjcuMSAzNTYuOCcvPjxwYXRoIGQ9J00zOS4wIDQxNC4wUTk3LjcgNDA1LjEgMTIwLjcgMzUwLjRRNjIuMCAzNTkuMyAzOS4wIDQxNC4wWicvPjxwYXRoIGQ9J00zOS4wIDQxNC4wTDEyMC43IDM1MC40Jy8+PHBhdGggZD0nTTY4LjQgMzkxLjFMOTEuMiAzOTEuMScvPjxwYXRoIGQ9J005Mi45IDM3Mi4wTDExNS43IDM3Mi4wJy8+PHBhdGggZD0nTTYxLjAgMzY2LjBRMzkuNiAzMzUuMyAyLjIgMzM3LjZRMjMuNiAzNjguMyA2MS4wIDM2Ni4wWicvPjxwYXRoIGQ9J002MS4wIDM2Ni4wTDIuMiAzMzcuNicvPjxwYXRoIGQ9J00zOS44IDM1NS44TDI1LjggMzU4LjgnLz48cGF0aCBkPSdNMjIuMiAzNDcuMkw4LjEgMzUwLjMnLz48cGF0aCBkPSdNNjEuMCAzNjYuMFE5Mi40IDM0NS42IDkxLjUgMzA4LjJRNjAuMSAzMjguNiA2MS4wIDM2Ni4wWicvPjxwYXRoIGQ9J002MS4wIDM2Ni4wTDkxLjUgMzA4LjInLz48cGF0aCBkPSdNNzIuMCAzNDUuMkw4NS4xIDMzOS4zJy8+PHBhdGggZD0nTTgxLjEgMzI3LjlMOTQuMiAzMjIuMCcvPjxwYXRoIGQ9J003NS4wIDMxMy4wUTY1LjEgMjg5LjIgMzkuNiAyODUuMVE0OS41IDMwOS4wIDc1LjAgMzEzLjBaJy8+PHBhdGggZD0nTTc1LjAgMzEzLjBMMzkuNiAyODUuMScvPjxwYXRoIGQ9J002Mi4zIDMwMy4wTDUyLjQgMzAyLjknLz48cGF0aCBkPSdNNTEuNiAyOTQuNkw0MS43IDI5NC42Jy8+PHBhdGggZD0nTTc1LjAgMzEzLjBROTkuMiAzMDQuMCAxMDQuMSAyNzguNlE3OS45IDI4Ny43IDc1LjAgMzEzLjBaJy8+PHBhdGggZD0nTTc1LjAgMzEzLjBMMTA0LjEgMjc4LjYnLz48cGF0aCBkPSdNODUuNSAzMDAuNkw5NS4yIDI5OC42Jy8+PHBhdGggZD0nTTk0LjIgMjkwLjNMMTAzLjkgMjg4LjMnLz48cGF0aCBkPSdNNzUuMCAzMTMuMFE2Ny4yIDI3Mi4wIDI4LjIgMjU3LjJRMzYuMCAyOTguMiA3NS4wIDMxMy4wWicvPjxwYXRoIGQ9J003NS4wIDMxMy4wTDI4LjIgMjU3LjInLz48cGF0aCBkPSdNNTguMSAyOTIuOUw0Mi41IDI4OS42Jy8+PHBhdGggZD0nTTQ0LjEgMjc2LjJMMjguNCAyNzIuOScvPjxwYXRoIGQ9J003NS4wIDMxMy4wUTExNi4yIDMwNi42IDEzMi40IDI2OC4xUTkxLjEgMjc0LjUgNzUuMCAzMTMuMFonLz48cGF0aCBkPSdNNzUuMCAzMTMuMEwxMzIuNCAyNjguMScvPjxwYXRoIGQ9J005NS43IDI5Ni44TDExMS43IDI5Ni44Jy8+PHBhdGggZD0nTTExMi45IDI4My40TDEyOC45IDI4My40Jy8+PHBhdGggZD0nTTgzLjAgMjU5LjBRNTguOSAyMjQuNyAxNy4wIDIyNy4zUTQxLjEgMjYxLjYgODMuMCAyNTkuMFonLz48cGF0aCBkPSdNODMuMCAyNTkuMEwxNy4wIDIyNy4zJy8+PHBhdGggZD0nTTU5LjIgMjQ3LjZMNDMuNSAyNTEuMCcvPjxwYXRoIGQ9J00zOS41IDIzOC4xTDIzLjcgMjQxLjUnLz48cGF0aCBkPSdNODMuMCAyNTkuMFExMTguMiAyMzYuMSAxMTcuMCAxOTQuMlE4MS45IDIxNy4xIDgzLjAgMjU5LjBaJy8+PHBhdGggZD0nTTgzLjAgMjU5LjBMMTE3LjAgMTk0LjInLz48cGF0aCBkPSdNOTUuMiAyMzUuN0wxMDkuOSAyMjkuMCcvPjxwYXRoIGQ9J00xMDUuNSAyMTYuMkwxMjAuMSAyMDkuNicvPjxwYXRoIGQ9J004Ny4wIDIwNi4wUTc4LjUgMTg1LjEgNTYuMiAxODEuNVE2NC44IDIwMi40IDg3LjAgMjA2LjBaJy8+PHBhdGggZD0nTTg3LjAgMjA2LjBMNTYuMiAxODEuNScvPjxwYXRoIGQ9J003NS45IDE5Ny4yTDY3LjMgMTk3LjEnLz48cGF0aCBkPSdNNjYuNyAxODkuOUw1OC4wIDE4OS44Jy8+PHBhdGggZD0nTTg3LjAgMjA2LjBRMTA4LjEgMTk4LjIgMTEyLjUgMTc2LjFROTEuNCAxODMuOSA4Ny4wIDIwNi4wWicvPjxwYXRoIGQ9J004Ny4wIDIwNi4wTDExMi41IDE3Ni4xJy8+PHBhdGggZD0nTTk2LjIgMTk1LjJMMTA0LjcgMTkzLjUnLz48cGF0aCBkPSdNMTAzLjggMTg2LjNMMTEyLjMgMTg0LjUnLz48cGF0aCBkPSdNODcuMCAyMDYuMFE4My4wIDE4NS4yIDYzLjEgMTc3LjdRNjcuMSAxOTguNSA4Ny4wIDIwNi4wWicvPjxwYXRoIGQ9J004Ny4wIDIwNi4wTDYzLjEgMTc3LjcnLz48cGF0aCBkPSdNODcuMCAyMDYuMFExMDcuOSAyMDIuNyAxMTYuMSAxODMuMVE5NS4xIDE4Ni40IDg3LjAgMjA2LjBaJy8+PHBhdGggZD0nTTg3LjAgMjA2LjBMMTE2LjEgMTgzLjEnLz48cGF0aCBkPSdNODUuMCAxNTYuMFE2Ni43IDEzMC4xIDM1LjEgMTMyLjFRNTMuNCAxNTguMCA4NS4wIDE1Ni4wWicvPjxwYXRoIGQ9J004NS4wIDE1Ni4wTDM1LjEgMTMyLjEnLz48cGF0aCBkPSdNODUuMCAxNTYuMFExMTEuNSAxMzguNyAxMTAuNiAxMDcuMFE4NC4xIDEyNC4zIDg1LjAgMTU2LjBaJy8+PHBhdGggZD0nTTg1LjAgMTU2LjBMMTEwLjYgMTA3LjAnLz48cGF0aCBkPSdNNzYuMCAxMTIuMFE2Ni44IDg5LjMgNDIuNiA4NS4yUTUxLjggMTA4LjAgNzYuMCAxMTIuMFonLz48cGF0aCBkPSdNNzYuMCAxMTIuMEw0Mi42IDg1LjInLz48cGF0aCBkPSdNNzYuMCAxMTIuMFE5OS4wIDEwMy42IDEwMy45IDc5LjZRODAuOSA4OC4wIDc2LjAgMTEyLjBaJy8+PHBhdGggZD0nTTc2LjAgMTEyLjBMMTAzLjkgNzkuNicvPjxwYXRoIGQ9J003Ni4wIDExMi4wUTczLjYgOTkuOSA2Mi4xIDk1LjZRNjQuNCAxMDcuNyA3Ni4wIDExMi4wWicvPjxwYXRoIGQ9J003Ni4wIDExMi4wTDYyLjEgOTUuNicvPjxwYXRoIGQ9J003Ni4wIDExMi4wUTg4LjIgMTEwLjEgOTIuOSA5OC42UTgwLjcgMTAwLjYgNzYuMCAxMTIuMFonLz48cGF0aCBkPSdNNzYuMCAxMTIuMEw5Mi45IDk4LjYnLz48cGF0aCBkPSdNNjEuMCA3NS4wUTUyLjMgNjIuNyAzNy4zIDYzLjdRNDYuMCA3Ni4wIDYxLjAgNzUuMFonLz48cGF0aCBkPSdNNjEuMCA3NS4wTDM3LjMgNjMuNycvPjxwYXRoIGQ9J002MS4wIDc1LjBRNzMuNiA2Ni43IDczLjEgNTEuN1E2MC41IDU5LjkgNjEuMCA3NS4wWicvPjxwYXRoIGQ9J002MS4wIDc1LjBMNzMuMSA1MS43Jy8+PHBhdGggZD0nTTYxLjAgNzUuMFE1NC40IDU4LjYgMzcuMCA1NS42UTQzLjUgNzIuMCA2MS4wIDc1LjBaJy8+PHBhdGggZD0nTTYxLjAgNzUuMEwzNy4wIDU1LjYnLz48cGF0aCBkPSdNNjEuMCA3NS4wUTc3LjcgNjkuMCA4MS4zIDUxLjdRNjQuNiA1Ny43IDYxLjAgNzUuMFonLz48cGF0aCBkPSdNNjEuMCA3NS4wTDgxLjMgNTEuNycvPjxwYXRoIGQ9J00xOTYuMCAzMDAuMFEyMDcuMCAzMTMuNiAyMjQuMiAzMTAuM1EyMTMuMiAyOTYuNyAxOTYuMCAzMDAuMFonLz48cGF0aCBkPSdNMjE0LjAgMjE0LjBRMjI4LjYgMjEwLjEgMjMyLjEgMTk1LjNRMjE3LjQgMTk5LjIgMjE0LjAgMjE0LjBaJy8+PHBhdGggZD0nTTE3Mi4wIDM2OC4wUTE3My4yIDM4MS45IDE4Ni4xIDM4Ny40UTE4NC45IDM3My41IDE3Mi4wIDM2OC4wWicvPjwvZz48L3N2Zz4=") 100% 82%/248px auto no-repeat;
+  --viridian-fields-tex-ground: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nNDQwJyB2aWV3Qm94PScwIDAgMzAwIDQ0MCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmJyBzdHJva2Utb3BhY2l0eT0nMC4wNDk1JyBzdHJva2Utd2lkdGg9JzEnPjxwYXRoIGQ9J00yNi4wIDQzNi4wQzMwLjMgNDI4LjcgNDQuNyA0MDguMCA1Mi4wIDM5Mi4wQzU5LjMgMzc2LjAgNjUuMyAzNTcuNyA3MC4wIDM0MC4wQzc0LjcgMzIyLjMgNzcuMyAzMDQuMCA4MC4wIDI4Ni4wQzgyLjcgMjY4LjAgODQuNyAyNDkuNyA4Ni4wIDIzMi4wQzg3LjMgMjE0LjMgODguNyAxOTYuNyA4OC4wIDE4MC4wQzg3LjMgMTYzLjMgODUuMCAxNDYuNyA4Mi4wIDEzMi4wQzc5LjAgMTE3LjMgNzUuMCAxMDQuMyA3MC4wIDkyLjBDNjUuMCA3OS43IDU1LjAgNjMuNyA1Mi4wIDU4LjAnLz48cGF0aCBkPSdNMzkuMCA0MTQuMFEyMC45IDM3MC45IC0yNS4zIDM2My44US03LjIgNDA2LjkgMzkuMCA0MTQuMFonLz48cGF0aCBkPSdNMzkuMCA0MTQuMEwtMjUuMyAzNjMuOCcvPjxwYXRoIGQ9J00xNS45IDM5NS45TC0yLjEgMzk1LjknLz48cGF0aCBkPSdNLTMuNCAzODAuOEwtMjEuNCAzODAuOCcvPjxwYXRoIGQ9J00zOS4wIDQxNC4wUTgyLjcgMzk3LjQgOTEuNSAzNTEuNVE0Ny43IDM2OC4xIDM5LjAgNDE0LjBaJy8+PHBhdGggZD0nTTM5LjAgNDE0LjBMOTEuNSAzNTEuNScvPjxwYXRoIGQ9J001Ny45IDM5MS41TDc1LjQgMzg3LjgnLz48cGF0aCBkPSdNNzMuNiAzNzIuN0w5MS4yIDM2OS4wJy8+PHBhdGggZD0nTTM5LjAgNDE0LjBRMjguMCAzNTUuNyAtMjcuNCAzMzQuNlEtMTYuNSAzOTIuOSAzOS4wIDQxNC4wWicvPjxwYXRoIGQ9J00zOS4wIDQxNC4wTC0yNy40IDMzNC42Jy8+PHBhdGggZD0nTTE1LjEgMzg1LjRMLTcuMiAzODAuNicvPjxwYXRoIGQ9J00tNC45IDM2MS42TC0yNy4xIDM1Ni44Jy8+PHBhdGggZD0nTTM5LjAgNDE0LjBROTcuNyA0MDUuMSAxMjAuNyAzNTAuNFE2Mi4wIDM1OS4zIDM5LjAgNDE0LjBaJy8+PHBhdGggZD0nTTM5LjAgNDE0LjBMMTIwLjcgMzUwLjQnLz48cGF0aCBkPSdNNjguNCAzOTEuMUw5MS4yIDM5MS4xJy8+PHBhdGggZD0nTTkyLjkgMzcyLjBMMTE1LjcgMzcyLjAnLz48cGF0aCBkPSdNNjEuMCAzNjYuMFEzOS42IDMzNS4zIDIuMiAzMzcuNlEyMy42IDM2OC4zIDYxLjAgMzY2LjBaJy8+PHBhdGggZD0nTTYxLjAgMzY2LjBMMi4yIDMzNy42Jy8+PHBhdGggZD0nTTM5LjggMzU1LjhMMjUuOCAzNTguOCcvPjxwYXRoIGQ9J00yMi4yIDM0Ny4yTDguMSAzNTAuMycvPjxwYXRoIGQ9J002MS4wIDM2Ni4wUTkyLjQgMzQ1LjYgOTEuNSAzMDguMlE2MC4xIDMyOC42IDYxLjAgMzY2LjBaJy8+PHBhdGggZD0nTTYxLjAgMzY2LjBMOTEuNSAzMDguMicvPjxwYXRoIGQ9J003Mi4wIDM0NS4yTDg1LjEgMzM5LjMnLz48cGF0aCBkPSdNODEuMSAzMjcuOUw5NC4yIDMyMi4wJy8+PHBhdGggZD0nTTc1LjAgMzEzLjBRNjUuMSAyODkuMiAzOS42IDI4NS4xUTQ5LjUgMzA5LjAgNzUuMCAzMTMuMFonLz48cGF0aCBkPSdNNzUuMCAzMTMuMEwzOS42IDI4NS4xJy8+PHBhdGggZD0nTTYyLjMgMzAzLjBMNTIuNCAzMDIuOScvPjxwYXRoIGQ9J001MS42IDI5NC42TDQxLjcgMjk0LjYnLz48cGF0aCBkPSdNNzUuMCAzMTMuMFE5OS4yIDMwNC4wIDEwNC4xIDI3OC42UTc5LjkgMjg3LjcgNzUuMCAzMTMuMFonLz48cGF0aCBkPSdNNzUuMCAzMTMuMEwxMDQuMSAyNzguNicvPjxwYXRoIGQ9J004NS41IDMwMC42TDk1LjIgMjk4LjYnLz48cGF0aCBkPSdNOTQuMiAyOTAuM0wxMDMuOSAyODguMycvPjxwYXRoIGQ9J003NS4wIDMxMy4wUTY3LjIgMjcyLjAgMjguMiAyNTcuMlEzNi4wIDI5OC4yIDc1LjAgMzEzLjBaJy8+PHBhdGggZD0nTTc1LjAgMzEzLjBMMjguMiAyNTcuMicvPjxwYXRoIGQ9J001OC4xIDI5Mi45TDQyLjUgMjg5LjYnLz48cGF0aCBkPSdNNDQuMSAyNzYuMkwyOC40IDI3Mi45Jy8+PHBhdGggZD0nTTc1LjAgMzEzLjBRMTE2LjIgMzA2LjYgMTMyLjQgMjY4LjFROTEuMSAyNzQuNSA3NS4wIDMxMy4wWicvPjxwYXRoIGQ9J003NS4wIDMxMy4wTDEzMi40IDI2OC4xJy8+PHBhdGggZD0nTTk1LjcgMjk2LjhMMTExLjcgMjk2LjgnLz48cGF0aCBkPSdNMTEyLjkgMjgzLjRMMTI4LjkgMjgzLjQnLz48cGF0aCBkPSdNODMuMCAyNTkuMFE1OC45IDIyNC43IDE3LjAgMjI3LjNRNDEuMSAyNjEuNiA4My4wIDI1OS4wWicvPjxwYXRoIGQ9J004My4wIDI1OS4wTDE3LjAgMjI3LjMnLz48cGF0aCBkPSdNNTkuMiAyNDcuNkw0My41IDI1MS4wJy8+PHBhdGggZD0nTTM5LjUgMjM4LjFMMjMuNyAyNDEuNScvPjxwYXRoIGQ9J004My4wIDI1OS4wUTExOC4yIDIzNi4xIDExNy4wIDE5NC4yUTgxLjkgMjE3LjEgODMuMCAyNTkuMFonLz48cGF0aCBkPSdNODMuMCAyNTkuMEwxMTcuMCAxOTQuMicvPjxwYXRoIGQ9J005NS4yIDIzNS43TDEwOS45IDIyOS4wJy8+PHBhdGggZD0nTTEwNS41IDIxNi4yTDEyMC4xIDIwOS42Jy8+PHBhdGggZD0nTTg3LjAgMjA2LjBRNzguNSAxODUuMSA1Ni4yIDE4MS41UTY0LjggMjAyLjQgODcuMCAyMDYuMFonLz48cGF0aCBkPSdNODcuMCAyMDYuMEw1Ni4yIDE4MS41Jy8+PHBhdGggZD0nTTc1LjkgMTk3LjJMNjcuMyAxOTcuMScvPjxwYXRoIGQ9J002Ni43IDE4OS45TDU4LjAgMTg5LjgnLz48cGF0aCBkPSdNODcuMCAyMDYuMFExMDguMSAxOTguMiAxMTIuNSAxNzYuMVE5MS40IDE4My45IDg3LjAgMjA2LjBaJy8+PHBhdGggZD0nTTg3LjAgMjA2LjBMMTEyLjUgMTc2LjEnLz48cGF0aCBkPSdNOTYuMiAxOTUuMkwxMDQuNyAxOTMuNScvPjxwYXRoIGQ9J00xMDMuOCAxODYuM0wxMTIuMyAxODQuNScvPjxwYXRoIGQ9J004Ny4wIDIwNi4wUTgzLjAgMTg1LjIgNjMuMSAxNzcuN1E2Ny4xIDE5OC41IDg3LjAgMjA2LjBaJy8+PHBhdGggZD0nTTg3LjAgMjA2LjBMNjMuMSAxNzcuNycvPjxwYXRoIGQ9J004Ny4wIDIwNi4wUTEwNy45IDIwMi43IDExNi4xIDE4My4xUTk1LjEgMTg2LjQgODcuMCAyMDYuMFonLz48cGF0aCBkPSdNODcuMCAyMDYuMEwxMTYuMSAxODMuMScvPjxwYXRoIGQ9J004NS4wIDE1Ni4wUTY2LjcgMTMwLjEgMzUuMSAxMzIuMVE1My40IDE1OC4wIDg1LjAgMTU2LjBaJy8+PHBhdGggZD0nTTg1LjAgMTU2LjBMMzUuMSAxMzIuMScvPjxwYXRoIGQ9J004NS4wIDE1Ni4wUTExMS41IDEzOC43IDExMC42IDEwNy4wUTg0LjEgMTI0LjMgODUuMCAxNTYuMFonLz48cGF0aCBkPSdNODUuMCAxNTYuMEwxMTAuNiAxMDcuMCcvPjxwYXRoIGQ9J003Ni4wIDExMi4wUTY2LjggODkuMyA0Mi42IDg1LjJRNTEuOCAxMDguMCA3Ni4wIDExMi4wWicvPjxwYXRoIGQ9J003Ni4wIDExMi4wTDQyLjYgODUuMicvPjxwYXRoIGQ9J003Ni4wIDExMi4wUTk5LjAgMTAzLjYgMTAzLjkgNzkuNlE4MC45IDg4LjAgNzYuMCAxMTIuMFonLz48cGF0aCBkPSdNNzYuMCAxMTIuMEwxMDMuOSA3OS42Jy8+PHBhdGggZD0nTTc2LjAgMTEyLjBRNzMuNiA5OS45IDYyLjEgOTUuNlE2NC40IDEwNy43IDc2LjAgMTEyLjBaJy8+PHBhdGggZD0nTTc2LjAgMTEyLjBMNjIuMSA5NS42Jy8+PHBhdGggZD0nTTc2LjAgMTEyLjBRODguMiAxMTAuMSA5Mi45IDk4LjZRODAuNyAxMDAuNiA3Ni4wIDExMi4wWicvPjxwYXRoIGQ9J003Ni4wIDExMi4wTDkyLjkgOTguNicvPjxwYXRoIGQ9J002MS4wIDc1LjBRNTIuMyA2Mi43IDM3LjMgNjMuN1E0Ni4wIDc2LjAgNjEuMCA3NS4wWicvPjxwYXRoIGQ9J002MS4wIDc1LjBMMzcuMyA2My43Jy8+PHBhdGggZD0nTTYxLjAgNzUuMFE3My42IDY2LjcgNzMuMSA1MS43UTYwLjUgNTkuOSA2MS4wIDc1LjBaJy8+PHBhdGggZD0nTTYxLjAgNzUuMEw3My4xIDUxLjcnLz48cGF0aCBkPSdNNjEuMCA3NS4wUTU0LjQgNTguNiAzNy4wIDU1LjZRNDMuNSA3Mi4wIDYxLjAgNzUuMFonLz48cGF0aCBkPSdNNjEuMCA3NS4wTDM3LjAgNTUuNicvPjxwYXRoIGQ9J002MS4wIDc1LjBRNzcuNyA2OS4wIDgxLjMgNTEuN1E2NC42IDU3LjcgNjEuMCA3NS4wWicvPjxwYXRoIGQ9J002MS4wIDc1LjBMODEuMyA1MS43Jy8+PHBhdGggZD0nTTE5Ni4wIDMwMC4wUTIwNy4wIDMxMy42IDIyNC4yIDMxMC4zUTIxMy4yIDI5Ni43IDE5Ni4wIDMwMC4wWicvPjxwYXRoIGQ9J00yMTQuMCAyMTQuMFEyMjguNiAyMTAuMSAyMzIuMSAxOTUuM1EyMTcuNCAxOTkuMiAyMTQuMCAyMTQuMFonLz48cGF0aCBkPSdNMTcyLjAgMzY4LjBRMTczLjIgMzgxLjkgMTg2LjEgMzg3LjRRMTg0LjkgMzczLjUgMTcyLjAgMzY4LjBaJy8+PC9nPjwvc3ZnPg==") 100% 86%/520px auto no-repeat;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Viridian Fields",
+  "tagline": "A matte botanical console — deep emerald, an engraved fern, no glow",
+  "use_when": "calm and natural products, long-reading interfaces, landscape and field-work tools, anything that should feel grown rather than lit",
+  "signature": [
+    "--viridian-fields-pane",
+    "--viridian-fields-tex",
+    "--viridian-fields-field"
+  ],
+  "order": 230,
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
+  "fonts_label": "Chakra Petch · JetBrains Mono",
+  "mode": "dark",
+  "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 08) — palette, panel construction and drawn motif taken from the prototype's own tokens",
+  "tags": [
+    "dark",
+    "botanical",
+    "matte",
+    "nature",
+    "calm"
+  ]
+}

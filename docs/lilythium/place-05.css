@@ -1,0 +1,17 @@
+/* place 05 — extracted verbatim from prototypes/v9-lilythium/index.html */
+
+--tx-bokeh: /* 753 chars, see below */
+--tx-bokeh:
+    radial-gradient(circle at 22% 28%,rgba(255,255,255,.85) 0 7px,transparent 8px),
+    radial-gradient(circle at 68% 16%,rgba(255,255,255,.55) 0 5px,transparent 6px),
+    radial-gradient(circle at 82% 62%,rgba(255,255,255,.65) 0 6px,transparent 7px),
+    radial-gradient(circle at 38% 74%,rgba(255,255,255,.45) 0 4px,transparent 5px),
+    radial-gradient(circle at 8% 86%,rgba(255,255,255,.40) 0 5px,transparent 6px),
+    radial-gradient(circle at 52% 46%,rgba(255,255,255,.50) 0 3px,transparent 4px),
+    radial-gradient(circle at 92% 30%,rgba(255,255,255,.45) 0 6px,transparent 7px),
+    radial-gradient(circle at 30% 6%,rgba(255,255,255,.55) 0 4px,transparent 5px),
+    radial-gradient(circle at 74% 90%,rgba(255,255,255,.40) 0 5px,transparent 6px);
+
+body[data-place="05"]{--acc:#FF8FC4;--acc2:#FFE6F3;--accRgb:255,143,196;--accLine:rgba(255,143,196,.6);--face:#23141D;--faceRgb:35,20,29;--tintA:.05;--tx:var(--tx-bokeh);--txA:.05;--cpIn:none}
+body[data-place="05"]{--cp:none;--cpIn:none;--rad:6px}
+body[data-place="05"]{--ground:#160C13;--panel:#1E121A;--sceneA:#43223B;--sceneB:#12090F;--glow:rgba(255,143,196,.30);--accHi:#FFB9DB}

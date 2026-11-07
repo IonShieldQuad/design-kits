@@ -1,0 +1,110 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#ff4d5e",
+        "primary-hover": "#ff6e7c",
+        "on-primary": "#160406",
+        "primary-soft": "#ff4d5e1f",
+        "secondary": "#d9a85e",
+        "tertiary": "#ff8d99",
+        "neutral": "#090305",
+        "surface": "#140a0c",
+        "surface-2": "#13080c",
+        "text": "#f2e6e4",
+        "text-muted": "#cfb6b6",
+        "text-dim": "#bca2a4",
+        "ok": "#9bc7a8",
+        "warn": "#d9b36b",
+        "danger": "#ff7a45",
+        "info": "#9e8cc7",
+        "border": "#ffffff24",
+        "border-strong": "#ff4d5e99"
+      },
+      "fontFamily": {
+        "display": [
+          "Chakra Petch"
+        ],
+        "h1": [
+          "Chakra Petch"
+        ],
+        "h2": [
+          "Chakra Petch"
+        ],
+        "body": [
+          "Chakra Petch"
+        ],
+        "small": [
+          "Chakra Petch"
+        ],
+        "button": [
+          "Chakra Petch"
+        ],
+        "label": [
+          "JetBrains Mono"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "2.7rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "700"
+          }
+        ],
+        "h1": [
+          "1.75rem",
+          {
+            "letterSpacing": "0.004em",
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "1.3rem",
+          {
+            "letterSpacing": "0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "body": [
+          "0.95rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "small": [
+          "0.8rem",
+          {
+            "fontWeight": "400"
+          }
+        ],
+        "button": [
+          "0.875rem",
+          {
+            "fontWeight": "500"
+          }
+        ],
+        "label": [
+          "0.72rem",
+          {
+            "letterSpacing": "0.14em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "sm": "0px",
+        "md": "0px",
+        "lg": "0px",
+        "pill": "2px"
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "28px",
+        "xl": "44px"
+      }
+    }
+  }
+}

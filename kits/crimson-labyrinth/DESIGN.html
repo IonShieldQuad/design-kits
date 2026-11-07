@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crimson Labyrinth — design spec</title>
+<meta name="description" content="Normative design tokens and rationale for the Crimson Labyrinth kit.">
+<link rel="icon" href="../../templates/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../templates/gallery.css">
+<style>
+  .spec-wrap { max-width: 78ch; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  .spec-top { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+              font-family: var(--font-mono, ui-monospace, monospace); font-size: .74rem; }
+  .spec-top a { color: var(--muted, #98a2b3); text-decoration: none; }
+  .spec-top a:hover { color: var(--fg, #e9edf5); }
+  .spec-h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 1.1rem 0 .35rem; letter-spacing: -.01em; }
+  .spec-sub { color: var(--muted, #98a2b3); margin: 0 0 2rem; }
+  .spec-body h2 { margin: 2.4rem 0 .7rem; font-size: 1.18rem; }
+  .spec-body h3 { margin: 1.8rem 0 .5rem; font-size: 1.02rem; }
+  .spec-body p, .spec-body li { line-height: 1.65; }
+  .spec-body code { font-family: var(--font-mono, ui-monospace, monospace); font-size: .86em;
+                    background: rgba(127,127,127,.16); padding: .1em .35em; border-radius: 4px; }
+  .spec-body pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+                   overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .spec-body pre code { background: none; padding: 0; font-size: .84em; }
+  .spec-body table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; }
+  .spec-body th, .spec-body td { text-align: left; padding: .45rem .6rem;
+                                 border-bottom: 1px solid rgba(127,127,127,.28); vertical-align: top; }
+  .spec-body th { font-weight: 600; }
+  .spec-fm { margin: 0 0 2rem; }
+  .spec-note { color: var(--muted, #98a2b3); font-size: .88rem; }
+  .spec-foot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(127,127,127,.28);
+               color: var(--muted, #98a2b3); font-size: .82rem; }
+</style>
+</head>
+<body>
+<div class="spec-wrap">
+  <nav class="spec-top">
+    <a href="../../index.html">← all themes</a>
+    <span>·</span>
+    <a href="index.html">live lab</a>
+    <span>·</span>
+    <a href="tokens.css">tokens.css</a>
+    <span>·</span>
+    <a href="DESIGN.md">raw markdown</a>
+  </nav>
+  <h1 class="spec-h1">Crimson Labyrinth</h1>
+  <p class="spec-sub">A gothic ritual console — crimson hairlines and an engraved rose on black velvet</p>
+  <article class="spec-body">
+<section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
+name: Crimson Labyrinth
+description: Chamfered oxblood plates carrying a sheen, a bottom occlusion, one 268px engraved rose, a crimson identity edge and a 157° face fall — on a crimson-tinted black velvet ground. The status ladder is inverted so that red never means danger beside a red action.
+colors:
+  primary: &quot;#FF4D5E&quot;
+  primary-hover: &quot;#FF6E7C&quot;
+  on-primary: &quot;#160406&quot;
+  primary-soft: &quot;rgba(255, 77, 94, 0.12)&quot;
+  secondary: &quot;#D9A85E&quot;
+  tertiary: &quot;#FF8D99&quot;
+  neutral: &quot;#090305&quot;
+  surface: &quot;#140A0C&quot;
+  surface-2: &quot;#13080C&quot;
+  text: &quot;#F2E6E4&quot;
+  text-muted: &quot;#CFB6B6&quot;
+  text-dim: &quot;#BCA2A4&quot;
+  ok: &quot;#9BC7A8&quot;
+  warn: &quot;#D9B36B&quot;
+  danger: &quot;#FF7A45&quot;
+  info: &quot;#9E8CC7&quot;
+  border: &quot;rgba(255, 255, 255, 0.14)&quot;
+  border-strong: &quot;rgba(255, 77, 94, 0.6)&quot;
+
+typography:
+  display:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;2.7rem&quot;
+    fontWeight: 700
+    lineHeight: 1.04
+    letterSpacing: &quot;0.004em&quot;
+  h1:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.75rem&quot;
+    fontWeight: 700
+    lineHeight: 1.12
+    letterSpacing: &quot;0.004em&quot;
+  h2:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;1.3rem&quot;
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: &quot;0.01em&quot;
+  body:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.95rem&quot;
+    fontWeight: 400
+    lineHeight: 1.62
+  small:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.8rem&quot;
+    fontWeight: 400
+    lineHeight: 1.5
+  button:
+    fontFamily: &quot;Chakra Petch&quot;
+    fontSize: &quot;0.875rem&quot;
+    fontWeight: 500
+    lineHeight: 1.2
+  label:
+    fontFamily: &quot;JetBrains Mono&quot;
+    fontSize: &quot;0.72rem&quot;
+    fontWeight: 500
+    letterSpacing: &quot;0.14em&quot;
+
+rounded:
+  sm: &quot;0px&quot;
+  md: &quot;0px&quot;
+  lg: &quot;0px&quot;
+  pill: &quot;2px&quot;
+
+spacing:
+  xs: &quot;4px&quot;
+  sm: &quot;8px&quot;
+  md: &quot;16px&quot;
+  lg: &quot;28px&quot;
+  xl: &quot;44px&quot;
+
+components:
+  button-primary:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-primary-hover:
+    backgroundColor: &quot;{colors.primary-hover}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-secondary:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-secondary-hover:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-ghost:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  button-danger:
+    backgroundColor: &quot;{colors.neutral}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.58rem 1rem&quot;
+    typography: &quot;{typography.button}&quot;
+  card:
+    backgroundColor: &quot;{colors.surface}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  card-elevated:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    rounded: &quot;{rounded.lg}&quot;
+    padding: &quot;1.15rem&quot;
+  input:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+    height: &quot;2.5rem&quot;
+  badge:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.text-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-accent:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-ok:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  badge-info:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.info}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    padding: &quot;0.2rem 0.55rem&quot;
+    typography: &quot;{typography.label}&quot;
+  nav-item-active:
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.tertiary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+    padding: &quot;0.4rem 0.75rem&quot;
+  alert-danger:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  alert-warn:
+    backgroundColor: &quot;{colors.surface-2}&quot;
+    textColor: &quot;{colors.warn}&quot;
+    rounded: &quot;{rounded.md}&quot;
+    padding: &quot;0.6rem 0.72rem&quot;
+  caption:
+    textColor: &quot;{colors.text-dim}&quot;
+  avatar:
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
+    size: &quot;2.2rem&quot;
+  chart-1:
+    backgroundColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-2:
+    backgroundColor: &quot;{colors.secondary}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  chart-3:
+    backgroundColor: &quot;{colors.ok}&quot;
+    rounded: &quot;{rounded.sm}&quot;
+  divider:
+    backgroundColor: &quot;{colors.border}&quot;
+    height: &quot;1px&quot;
+  divider-strong:
+    backgroundColor: &quot;{colors.border-strong}&quot;
+    height: &quot;1px&quot;</code></pre></section>
+<h2 id="crimson-labyrinth">Crimson Labyrinth</h2>
+<p><strong>A gothic ritual console.</strong> Not a dark page with a red accent: an instrument panel in a vampire's chamber. The plate is near-black oxblood, its frame is a 1px crimson hairline cut by a 16px chamfer, its face carries one engraved rose at 268px, and the only light is a sheen along the top edge and a crimson identity line along the bottom. It is a place in the <code>Li//OS</code> desk — the same construction five sibling places wear, warmed to a colour, a motif and a metal of its own.</p>
+<h3 id="overview">Overview</h3>
+<p>Every token here comes from place 06 of the user's own desk prototype. The kit exists to port one <strong>material</strong> faithfully and one <strong>inversion</strong> honestly.</p>
+<p>The material is the desk's <code>.card-in</code>, unchanged, and its layer order <em>is</em> the light model: a sheen (with its 1px specular lip) over a bottom occlusion band, over the rose plate, over the crimson identity edge, over a 5% crimson tint, over a 157° face fall, over <code>{colors.surface}</code>. Move the tint under the face and the plate disappears; put the fall under the face and there is no fall.</p>
+<p>The inversion is the status ladder. Crimson is the action — the only thing that acts — so crimson cannot also mean danger. <code>{colors.danger}</code> is a hot orange, <code>{colors.warn}</code> brass, <code>{colors.ok}</code> a desaturated sage, <code>{colors.info}</code> a muted violet. Nothing in the ladder is crimson, which is exactly what keeps a filled crimson button from reading as an error chip.</p>
+<p>That inversion is also the difference between this kit and its <code>gothic</code> sibling. <code>gothic</code> is editorial velvet: plum, ivory, a rose <em>bloom drawing on a stem</em>, soft 5–16px curves, a serif display face. This kit is an instrument console: oxblood, a <em>line engraving</em> of a rose as the plate's own material, a hard 16px chamfer with a 1px frame, and the family's squared technical face. One is a novel cover; the other is the machine a vampire keeps its records in.</p>
+<h3 id="colors">Colors</h3>
+<p><code>{colors.primary}</code> is the place's <code>--acc</code>, exactly as the desk declares it: <code>#FF4D5E</code>, a crimson at the light end of the oxblood family, used for the hairline that emphasises, the identity edge at the foot of every plate, and the one filled action. It is mid-light, so it takes a very dark ink — <code>{colors.on-primary}</code> is <code>#160406</code>, the place's own black-wine, not white: white on this crimson is 3.24:1 and would be the obvious mistake.</p>
+<p><code>{colors.tertiary}</code> is the same crimson re-tuned for <strong>text</strong> (the desk's <code>--accHi</code>): the fill colour is 5.29:1 on the brightest band a card shows and the ink is 8.23:1 on the ground, which is why every label, eyebrow, link and active-nav item uses the ink and every plate uses the fill. <code>{colors.secondary}</code> is brass <code>#D9A85E</code>, the place's own second hue from its cathedral scene — a counterpoint in the media ramp and charts, never a second action.</p>
+<p><code>{colors.neutral}</code> is the ground floor <code>#090305</code>. Over it sit two soft fields of the place's own <code>--sceneA</code> (<code>#2B0A12</code> at 66%, softened so a field reads as a field and not as a blob), a 120px technical grid at 2.8% / 2.4% white, the 560px rose at 0.0468 white, and a floor ramp into <code>#050203</code>. The stops are not colour keys here because no component wears them — <code>--bg</code> is one layered value; see <code>tokens.css</code>. The ground is quiet on purpose: a busy page makes every plate read as texture inside texture.</p>
+<h3 id="typography">Typography</h3>
+<p>Chakra Petch for display and body, JetBrains Mono for labels — the family's pairing, shared by all six places and deliberately not varied. These are places in one operating system and the type <em>is</em> the OS: a squared technical face with a cut counter, which is what makes a ritual palette read as an instrument rather than as a book cover. JetBrains Mono is the voice that labels the channels, at <code>{typography.label}</code> (12px floor) and <code>0.14em</code>.</p>
+<p>The cost is real: a squared sans cannot do the calligraphic, romantic line that <code>gothic</code> gets from Cormorant. That is the trade this family makes everywhere — the ornament is in the plate, the type stays the machine's.</p>
+<h3 id="layout">Layout</h3>
+<p>The plate is the layout unit. 16px chamfers cut the top-left and bottom-right corners only (the desk's diagonal, not a four-corner bevel), the frame is exactly 1px, and the identity edge runs along the bottom from 7% to 62% of the width — off-centre by design, because an instrument's label is not a centred ribbon.</p>
+<p>A page is a stack of plates on the ground with <code>{spacing.lg}</code> between sections; cards sit in an auto-fit grid at a 230px minimum. The rose plate is pinned to a card's right side (100% 20%, 268px) so it is cropped by the plate rather than centred in it — the engraving should feel like it was struck for the plate, not placed on it.</p>
+<h3 id="elevation-depth">Elevation &amp; Depth</h3>
+<p>There is almost no elevation. <code>--shadow-1</code> and <code>--shadow-2</code> are the desk's own <code>0 6px 16px</code> / <code>0 10px 26px</code> black falloffs, but a chamfered box clips its own outer shadow, so on this kit they read as the plate's edge and not as a lift. Depth is instead carried by three things that cannot be clipped:</p>
+<p>1. <strong>the frame ring</strong>, derived by <code>tools/build.py</code> from <code>--clip</code> — the clip shape with an inset copy punched out, so the diagonal keeps its 1px border where a painted border would be cut away; 2. <strong>the sheen</strong>, a 1px <code>rgba(255,255,255,.30)</code> lip that falls to nothing across the top 9%; 3. <strong>the occlusion band</strong>, black at 46% across the bottom 9%, which is what makes the plate look seated in the panel rather than floating.</p>
+<p><code>--blur: none</code>, always. Every surface is opaque, the desk forbids glass, and a blurred opaque card is a repaint cost with no visual return.</p>
+<h3 id="shapes">Shapes</h3>
+<p><code>0px</code> radii, a <code>2px</code> pill (badges are cut tags, not lozenges), a <code>2px</code> checkbox, and <code>--cut: 16px</code> on the two diagonal corners. <code>--focus-inset: 2px</code> paints the keyboard ring <em>inside</em> the silhouette, because <code>clip-path</code> eats an outline along the chamfer; the same clipping is why the ring is a <code>::before</code> ring rather than a border.</p>
+<h3 id="components">Components</h3>
+<p><code>button-primary</code> is a flat crimson plate with dark ink and the desk's <code>0 0 14px</code> crimson bloom. <code>button-secondary</code> is a hairline ghost with the crimson ink label — it is a label, so it uses <code>{colors.tertiary}</code>, not the fill. <code>card</code> is the full plate material; <code>card-elevated</code> drops to the nested tier, which is the same oxblood at half the tint with no engraving, because a 268px rose on a 2.5rem control is clutter. <code>input</code> is that nested tier with a 1px hairline; <code>badge-accent</code> is a 12% crimson tint under the crimson ink. <code>badge-danger</code> is the hot orange, never a red — see below.</p>
+<h3 id="do-s-and-don-ts">Do's and Don'ts</h3>
+<ul><li><strong>Do</strong> keep the plate's layer order. Sheen, occlusion, rose, identity edge, tint, fall, face. It is the light model, not a list of decorations.</li><li><strong>Do</strong> let crimson be the only thing that acts, and let every state be a non-crimson hue. The ladder is inverted on purpose.</li><li><strong>Do</strong> keep the frame at 1px. Separation comes from the hairline, the sheen and the derived ring.</li><li><strong>Do</strong> leave the rose at 268px on a card and 560px on the ground, pinned right. It is one plate, not a pattern.</li><li><strong>Don't</strong> put white on the crimson fill. <code>#160406</code> is the ink; white is 3.24:1.</li><li><strong>Don't</strong> add rounding. The only curved thing in a plate is the engraving.</li><li><strong>Don't</strong> brighten the ground to make the rose read. The engraving is legitimately quiet; that is what makes it a plate rather than a wallpaper.</li><li><strong>Don't</strong> reuse crimson for danger, error or delete. That is the one failure this kit's whole status ladder exists to prevent.</li><li><strong>Don't</strong> ship this with a second display face. The type is the OS, and the OS is shared.</li></ul>
+  </article>
+  <p class="spec-foot">
+    Generated from <code>DESIGN.md</code> by <code>tools/build.py</code> — edit the markdown, not
+    this page. Contract: <a href="../../docs/KIT-SPEC.html">KIT-SPEC</a>.
+  </p>
+</div>
+</body>
+</html>

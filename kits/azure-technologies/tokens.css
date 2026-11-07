@@ -1,0 +1,218 @@
+/* ============================================================================
+   design-kits · azure-technologies                                     contract v1
+   ----------------------------------------------------------------------------
+   THE REFERENCE PLACE OF THE LIL//OS DESK FAMILY — a cold orbital instrument
+   console. Place 01 of the desk's fifteen; this is the baseline the other five
+   ported places are variations on.
+
+   WHAT THE RENDER IS. A near-black blue ground (#05080D, floor #030609) carrying
+   two soft fields of #0B2233, a 120px technical grid and the place's hexagon
+   lattice at half alpha and twice the card's pitch. On that ground, opaque cards
+   (#0A0F16) with a 72 x 41.5692 lattice at 5.5%, a 9% sheen band with a 1px
+   specular lip, a 9% bottom occlusion band, a 157° face fall, a 5% cyan tint and
+   a 1px cyan identity edge along the bottom — the desk's own .card-in, expressed
+   as one background value. 16px chamfer on every plate, 0px radii, 1px frames,
+   no bloom beyond the glow the desk itself declares.
+
+   WHY IT IS THE BASELINE. One accent, one drawn motif, one frame, one light
+   model. A sibling changes exactly one of those — its hue, its motif, its corner
+   treatment — and keeps the construction; this kit is the version with the
+   fewest exceptions to explain, so it is the one to copy from and the one to
+   diff a sibling against.
+
+   PROVENANCE — every colour is copied from docs/lilythium/place-01.css, which was
+   extracted verbatim from the user's bespoke-desktop prototype
+   (prototypes/v9-lilythium/index.html, body[data-place="01"]): --acc #4FD8FF,
+   --acc2 #DAF9FF, --accHi #8BE8FF, --face #0A0F16, --panel #0A0F15,
+   --ground #05080D, --sceneA #0B2233, --sceneB #030609,
+   --glow rgba(79,216,255,.34), --accLine rgba(79,216,255,.6), --cp 16px,
+   --rad 0px, --txA .055. The two texture tokens are pasted verbatim from
+   docs/lilythium/textures.css (alpha already folded in; ground variant at half
+   alpha, twice the pitch). --accent-2 violet #7E8CFF is the hue the place's own
+   space scene carries.
+
+   THE FRAME IS A RING, NOT A BORDER. --clip cuts the diagonal, so the border is
+   painted on an edge that no longer exists. tools/build.py derives --frame-ring
+   from --cut and paints the 1px frame as the silhouette with an inset copy of
+   itself punched out; --frame-ring is therefore NOT authored here.
+   ========================================================================== */
+:root{
+  /* ---------------------------------------------------------------- surfaces *
+     THE GROUND IS A SCENE, NOT A COLOUR. Two fields of --sceneA, a 120px
+     technical grid, the motif at half alpha and twice the card's pitch, and a
+     ramp to --sceneB at the floor. Sizes are percentages (or the motif's own
+     baked pitch) because the gallery renders --bg into a ~118px tile and a
+     px-anchored radial would show it the top edge only. */
+  --azure-technologies-face:      #0A0F16;   /* --face */
+  --azure-technologies-panel:     #0A0F15;   /* --panel, one step off the face */
+  --azure-technologies-ground:    #05080D;   /* --ground */
+  --azure-technologies-scene-a:   #0B2233;   /* --sceneA — the two bloom fields */
+  --azure-technologies-scene-b:   #030609;   /* --sceneB — the floor */
+
+  --azure-technologies-field:
+    radial-gradient(80% 60% at 63% 38%, var(--azure-technologies-scene-a) 0%, transparent 62%),
+    radial-gradient(120% 70% at 14% 96%, var(--azure-technologies-scene-a) 0%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.024) 0 1px, transparent 1px 120px),
+    var(--azure-technologies-tex-ground),
+    linear-gradient(180deg, var(--azure-technologies-ground) 0%, var(--azure-technologies-scene-b) 100%);
+
+  --bg:            var(--azure-technologies-field);
+  --bg-2:          #0A0F15;   /* --azure-technologies-panel, the masthead stop / solid stand-in */
+
+  /* A card is the PANE MATERIAL, not a fill: sheen > occlusion > texture >
+     identity edge > tint > fall > face. That order IS the light model — sheen
+     over occlusion over texture over tint over fall over the face. A texture
+     under the tint is invisible; a fall under the face is not a fall. */
+  --surface:       var(--azure-technologies-pane);
+
+  /* The nested tier — inputs, badges, alerts, code, card-elevated. It drops the
+     lattice and the identity edge on purpose: a 72 x 41.57 lattice on a 2.5rem
+     control is clutter, not material. Shallow sheen, half the tint, the panel. */
+  --surface-2:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+    linear-gradient(rgba(79,216,255,.04), rgba(79,216,255,.04)),
+    var(--azure-technologies-panel);
+
+  --overlay:       rgba(3, 6, 9, .72);        /* derived: --sceneB as a scrim */
+
+  /* ------------------------------------------------------------------- text *
+     Graded against the composited pane, not against --bg and not against the
+     face alone. Ratios measured on the rendered lab: text on the face 16.9:1
+     and 14.3:1 on the ground's bloom pixel; muted on the face 11.1:1; dim 8.3:1
+     on the face and 8.7:1 on the ground. The top 9% sheen band is a LIGHT
+     SOURCE, not an ink ground — its peak measures rgb(93,102,108), where only
+     --text clears 4.5 (5.16:1; muted 3.38, dim 2.53), so no muted or dim ink is
+     placed inside it. Full table in README.md. */
+  --text:          #E8F2F8;
+  --text-muted:    #B7C7D3;
+  --text-dim:      #9AADBC;
+  --text-invert:   #04121A;   /* 11.4:1 on --accent: cyan is a light fill */
+
+  /* ------------------------------------------------------------------ brand *
+     One action, one counterpoint. Cyan is hairlines and the single filled
+     control; violet is the place's own second hue from its space scene, and it
+     is used for gradient stops, charts and media — never a second call to action. */
+  --accent:        #4FD8FF;   /* --acc */
+  --accent-hover:  #7FE4FF;
+  --accent-ink:    #8BE8FF;   /* --accHi — the desk already solved "accent as text" */
+  --accent-ink-hover: #B0F1FF;
+  --accent-2:      #7E8CFF;   /* the violet in the place's own scene */
+  --accent-soft:   rgba(79, 216, 255, .16);
+
+  /* ----------------------------------------------------------------- status *
+     Mint / amber / red / violet off the place's scene. The accent is cyan and
+     --ok is mint: a 26° hue gap, kept separable by material rather than hue alone
+     (opaque accent plate against an outlined chip). */
+  --ok:            #4EE6B0;
+  --warn:          #FFC04D;
+  --danger:        #FF6377;
+  --info:          #A98BFF;
+
+  /* ------------------------------------------------------------------ lines *
+     1px is not negotiable in this family. The frame is white at 14%; the
+     emphasised line is the desk's own --accLine at 60%. */
+  --border:        rgba(255, 255, 255, .14);
+  --border-strong: rgba(79, 216, 255, .60);
+  --border-w:      1px;
+  --focus-ring:    #8BE8FF;
+
+  /* ------------------------------------------------------------------ shape *
+     The chamfer is the only corner treatment in the language. Radii are 0;
+     --radius-pill is 2px rather than 0 so a badge keeps two square-ish corners
+     with the glyphs in it, and native controls square to the same 2px. */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   2px;
+  --cut:           16px;
+  --clip:          polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+
+  /* ------------------------------------------------------------------- type *
+     The family's own pairing, shared by all six places: these are places in one
+     OS and the type is the OS. Two faces, both the desk's, unchanged. */
+  --font-display:  "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;
+  --tracking-display: .004em;
+
+  /* ------------------------------------------------------------------ depth *
+     The desk's drop-shadow, as box-shadow. --glow is the desk's own
+     rgba(79,216,255,.34) at its own 14px. --blur: none — every surface is opaque
+     and the desk forbids glass; a blurred opaque card is only a repaint cost.
+     Note the clip: a clipped plate drops its box-shadow along the silhouette,
+     which is why the frame is a ring and separation comes from the hairline. */
+  --shadow-1:      0 6px 16px rgba(0, 0, 0, .50);
+  --shadow-2:      0 10px 26px rgba(0, 0, 0, .55);
+  --glow:          0 0 14px rgba(79, 216, 255, .34);
+  --blur:          none;
+
+  /* ----------------------------------------------------------------- motion *
+     The desk transitions border-colour and tint linearly and nothing in this
+     family eases. */
+  --dur:           .18s;
+  --ease:          linear;
+
+  /* ============================================================ opt-in hooks */
+  /* clip-path eats `outline`, so the keyboard ring is painted INSIDE the
+     silhouette where the chamfer cannot reach it. */
+  --focus-inset:   2px;
+  /* native checkbox/radio ignore border-radius, so a 0px-radius kit would still
+     show round controls. Square them to the same 2px and let the fill be the
+     checked state. */
+  --check-appearance: none;
+  --check-radius:  2px;
+  --check-bg:      var(--surface-2);
+  --check-border:  var(--border-w) solid var(--border);
+  --check-checked: var(--accent);
+  /* progress + avatar: the accent's own 25% tint into the accent */
+  --fill-bg:       linear-gradient(90deg, rgba(79, 216, 255, .25), var(--accent));
+  /* the card media panel is a PLACE PLATE — the scene's bloom and the motif at
+     card pitch on the face, not the default accent ramp. Opaque, so --media-op: 1 */
+  --media-bg:
+    var(--azure-technologies-tex),
+    radial-gradient(120% 90% at 68% 12%, rgba(11, 34, 51, .90) 0%, rgba(5, 8, 13, 0) 70%),
+    linear-gradient(160deg, var(--azure-technologies-face) 0%, var(--azure-technologies-ground) 100%);
+  --media-op:      1;
+  /* the masthead is a field of the scene, not an accent bloom */
+  --wash:          radial-gradient(120% 140% at 12% 0%, rgba(11, 34, 51, .85) 0%, rgba(11, 34, 51, 0) 62%);
+
+  /* ==================================================================== *
+     THE MOTIF — pasted verbatim from docs/lilythium/textures.css. The desk
+     applied --txA as a pseudo-element opacity; a background layer has no opacity
+     of its own, so the alpha is already folded into the stroke (5.5% on the
+     card, 3.03% on the ground) and the placement is baked in: 72 x 41.5692 at
+     the card, 144 x 83.14 on the ground. Do not redraw or re-encode these.
+     ==================================================================== */
+  --azure-technologies-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='41.5692'><g fill='none' stroke='%23fff' stroke-opacity='0.055' stroke-width='1'><path d='M12.00 20.78L24.00 0.00'/><path d='M-12.00 20.78L12.00 20.78'/><path d='M-24.00 0.00L-12.00 20.78'/><path d='M-24.00 0.00L-12.00 -20.78'/><path d='M-12.00 -20.78L12.00 -20.78'/><path d='M12.00 -20.78L24.00 0.00'/><path d='M12.00 62.35L24.00 41.57'/><path d='M-12.00 62.35L12.00 62.35'/><path d='M-24.00 41.57L-12.00 62.35'/><path d='M-24.00 41.57L-12.00 20.78'/><path d='M12.00 20.78L24.00 41.57'/><path d='M48.00 0.00L60.00 -20.78'/><path d='M24.00 0.00L48.00 0.00'/><path d='M12.00 -20.78L24.00 -41.57'/><path d='M24.00 -41.57L48.00 -41.57'/><path d='M48.00 -41.57L60.00 -20.78'/><path d='M48.00 41.57L60.00 20.78'/><path d='M24.00 41.57L48.00 41.57'/><path d='M48.00 0.00L60.00 20.78'/><path d='M48.00 83.14L60.00 62.35'/><path d='M24.00 83.14L48.00 83.14'/><path d='M12.00 62.35L24.00 83.14'/><path d='M48.00 41.57L60.00 62.35'/><path d='M84.00 20.78L96.00 0.00'/><path d='M60.00 20.78L84.00 20.78'/><path d='M60.00 -20.78L84.00 -20.78'/><path d='M84.00 -20.78L96.00 0.00'/><path d='M84.00 62.35L96.00 41.57'/><path d='M60.00 62.35L84.00 62.35'/><path d='M84.00 20.78L96.00 41.57'/><path d='M0.00 0.00L24.00 0.00'/><path d='M0.00 0.00L12.00 20.78'/><path d='M0.00 0.00L-12.00 20.78'/><path d='M0.00 0.00L-24.00 0.00'/><path d='M0.00 0.00L-12.00 -20.78'/><path d='M0.00 0.00L12.00 -20.78'/><path d='M0.00 41.57L24.00 41.57'/><path d='M0.00 41.57L12.00 62.35'/><path d='M0.00 41.57L-12.00 62.35'/><path d='M0.00 41.57L-24.00 41.57'/><path d='M0.00 41.57L-12.00 20.78'/><path d='M0.00 41.57L12.00 20.78'/><path d='M36.00 -20.78L60.00 -20.78'/><path d='M36.00 -20.78L48.00 0.00'/><path d='M36.00 -20.78L24.00 0.00'/><path d='M36.00 -20.78L12.00 -20.78'/><path d='M36.00 -20.78L24.00 -41.57'/><path d='M36.00 -20.78L48.00 -41.57'/><path d='M36.00 20.78L60.00 20.78'/><path d='M36.00 20.78L48.00 41.57'/><path d='M36.00 20.78L24.00 41.57'/><path d='M36.00 20.78L12.00 20.78'/><path d='M36.00 20.78L24.00 0.00'/><path d='M36.00 20.78L48.00 0.00'/><path d='M36.00 62.35L60.00 62.35'/><path d='M36.00 62.35L48.00 83.14'/><path d='M36.00 62.35L24.00 83.14'/><path d='M36.00 62.35L12.00 62.35'/><path d='M36.00 62.35L24.00 41.57'/><path d='M36.00 62.35L48.00 41.57'/><path d='M72.00 0.00L96.00 0.00'/><path d='M72.00 0.00L84.00 20.78'/><path d='M72.00 0.00L60.00 20.78'/><path d='M72.00 0.00L48.00 0.00'/><path d='M72.00 0.00L60.00 -20.78'/><path d='M72.00 0.00L84.00 -20.78'/><path d='M72.00 41.57L96.00 41.57'/><path d='M72.00 41.57L84.00 62.35'/><path d='M72.00 41.57L60.00 62.35'/><path d='M72.00 41.57L48.00 41.57'/><path d='M72.00 41.57L60.00 20.78'/><path d='M72.00 41.57L84.00 20.78'/></g></svg>") 0 0/72px 41.57px repeat;
+  --azure-technologies-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='41.5692'><g fill='none' stroke='%23fff' stroke-opacity='0.0303' stroke-width='1'><path d='M12.00 20.78L24.00 0.00'/><path d='M-12.00 20.78L12.00 20.78'/><path d='M-24.00 0.00L-12.00 20.78'/><path d='M-24.00 0.00L-12.00 -20.78'/><path d='M-12.00 -20.78L12.00 -20.78'/><path d='M12.00 -20.78L24.00 0.00'/><path d='M12.00 62.35L24.00 41.57'/><path d='M-12.00 62.35L12.00 62.35'/><path d='M-24.00 41.57L-12.00 62.35'/><path d='M-24.00 41.57L-12.00 20.78'/><path d='M12.00 20.78L24.00 41.57'/><path d='M48.00 0.00L60.00 -20.78'/><path d='M24.00 0.00L48.00 0.00'/><path d='M12.00 -20.78L24.00 -41.57'/><path d='M24.00 -41.57L48.00 -41.57'/><path d='M48.00 -41.57L60.00 -20.78'/><path d='M48.00 41.57L60.00 20.78'/><path d='M24.00 41.57L48.00 41.57'/><path d='M48.00 0.00L60.00 20.78'/><path d='M48.00 83.14L60.00 62.35'/><path d='M24.00 83.14L48.00 83.14'/><path d='M12.00 62.35L24.00 83.14'/><path d='M48.00 41.57L60.00 62.35'/><path d='M84.00 20.78L96.00 0.00'/><path d='M60.00 20.78L84.00 20.78'/><path d='M60.00 -20.78L84.00 -20.78'/><path d='M84.00 -20.78L96.00 0.00'/><path d='M84.00 62.35L96.00 41.57'/><path d='M60.00 62.35L84.00 62.35'/><path d='M84.00 20.78L96.00 41.57'/><path d='M0.00 0.00L24.00 0.00'/><path d='M0.00 0.00L12.00 20.78'/><path d='M0.00 0.00L-12.00 20.78'/><path d='M0.00 0.00L-24.00 0.00'/><path d='M0.00 0.00L-12.00 -20.78'/><path d='M0.00 0.00L12.00 -20.78'/><path d='M0.00 41.57L24.00 41.57'/><path d='M0.00 41.57L12.00 62.35'/><path d='M0.00 41.57L-12.00 62.35'/><path d='M0.00 41.57L-24.00 41.57'/><path d='M0.00 41.57L-12.00 20.78'/><path d='M0.00 41.57L12.00 20.78'/><path d='M36.00 -20.78L60.00 -20.78'/><path d='M36.00 -20.78L48.00 0.00'/><path d='M36.00 -20.78L24.00 0.00'/><path d='M36.00 -20.78L12.00 -20.78'/><path d='M36.00 -20.78L24.00 -41.57'/><path d='M36.00 -20.78L48.00 -41.57'/><path d='M36.00 20.78L60.00 20.78'/><path d='M36.00 20.78L48.00 41.57'/><path d='M36.00 20.78L24.00 41.57'/><path d='M36.00 20.78L12.00 20.78'/><path d='M36.00 20.78L24.00 0.00'/><path d='M36.00 20.78L48.00 0.00'/><path d='M36.00 62.35L60.00 62.35'/><path d='M36.00 62.35L48.00 83.14'/><path d='M36.00 62.35L24.00 83.14'/><path d='M36.00 62.35L12.00 62.35'/><path d='M36.00 62.35L24.00 41.57'/><path d='M36.00 62.35L48.00 41.57'/><path d='M72.00 0.00L96.00 0.00'/><path d='M72.00 0.00L84.00 20.78'/><path d='M72.00 0.00L60.00 20.78'/><path d='M72.00 0.00L48.00 0.00'/><path d='M72.00 0.00L60.00 -20.78'/><path d='M72.00 0.00L84.00 -20.78'/><path d='M72.00 41.57L96.00 41.57'/><path d='M72.00 41.57L84.00 62.35'/><path d='M72.00 41.57L60.00 62.35'/><path d='M72.00 41.57L48.00 41.57'/><path d='M72.00 41.57L60.00 20.78'/><path d='M72.00 41.57L84.00 20.78'/></g></svg>") 0 0/144px 83.14px repeat;
+
+  /* ==================================================================== *
+     THE MATERIAL, kept addressable. --azure-technologies-pane is the desk's own
+     .card-in in one value; --azure-technologies-pane-flat is the same layering
+     over an opaque face for a surface that stands without the ground behind it.
+     ==================================================================== */
+  --azure-technologies-identity: rgba(79, 216, 255, .55);
+  --azure-technologies-pane:
+    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
+                            rgba(255,255,255,.17) 1px,
+                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
+    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
+                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    var(--azure-technologies-tex),
+    linear-gradient(90deg, transparent 0%,
+                            rgba(79,216,255,.55) 7%,
+                            rgba(79,216,255,.55) 62%,
+                            transparent 96%) 0 100%/100% 1px no-repeat,
+    linear-gradient(rgba(79,216,255,.05), rgba(79,216,255,.05)),
+    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 44%,
+                            rgba(0,0,0,.24) 78%,
+                            rgba(0,0,0,.52) 100%),
+    var(--azure-technologies-face);
+  /* the place's pale step (--acc2 #DAF9FF), kept as the specular stop it is */
+  --azure-technologies-specular: #DAF9FF;
+}

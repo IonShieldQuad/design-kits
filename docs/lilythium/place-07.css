@@ -1,0 +1,7 @@
+/* place 07 — extracted verbatim from prototypes/v9-lilythium/index.html */
+
+--tx-persp:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>");
+
+body[data-place="07"]{--acc:#B06CFF;--acc2:#EAD9FF;--accRgb:176,108,255;--accLine:rgba(176,108,255,.6);--face:#150C28;--faceRgb:21,12,40;--tintA:.05;--tx:var(--tx-persp) center/100% 100% no-repeat;--txA:.06;--cpIn:polygon(13px 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,0 100%,0 13px)}
+body[data-place="07"]{--cp:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);--cpIn:polygon(15px 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,0 100%,0 15px);--rad:0px}
+body[data-place="07"]{--ground:#0A0512;--panel:#120B1C;--sceneA:#231040;--sceneB:#040208;--glow:rgba(176,108,255,.32);--accHi:#CFA4FF}

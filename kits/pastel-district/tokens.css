@@ -1,0 +1,231 @@
+/* ============================================================================
+   design-kits · pastel-district                                     contract v1
+   ----------------------------------------------------------------------------
+   LIGHT FALLING OUT OF FOCUS, BEHIND HAIRLINE GLASS. Place 05 of the Li//OS
+   desk family — the only warm-soft place in it.
+
+   THE GRAMMAR IS THE DESK'S, UNCHANGED. A 1px frame, an opaque face carrying a
+   sheen band along its top edge and an occlusion band along its floor, a 157°
+   face fall, a 5% accent tint, one drawn motif at 5%, and an identity edge —
+   one hairline of the place's pink running along the card's bottom. All six
+   places are one instrument panel seen from six rooms, and a card here is that
+   panel, not a card with a pink border.
+
+   WHAT CHANGES IS THE SUBJECT. Everywhere else in this family the object is a
+   machined plate. In Pastel District it is nine bokeh discs — light that has
+   gone out of focus — sitting BEHIND that glass. So the material is read as a
+   pane over a bloom rather than as a faceplate, the geometry is 6px round
+   instead of a 16px chamfer, and the frame is still one pixel: a hairline is
+   what makes a bloom look like it is behind something.
+
+   NOTHING HERE BLURS. `--blur: none`, because every surface in this kit is
+   opaque — the pane's last layer is the face itself. A blurred opaque card is
+   a repaint cost and a lie about the material.
+
+   PROVENANCE — extracted from the user's bespoke-desktop Li//OS prototype
+   (`prototypes/v9-lilythium`, place 05). `--acc`, `--accHi`, `--face`,
+   `--ground`, `--panel`, `--sceneA`, `--sceneB`, `--glow`, `--accLine` and
+   `--rad` are the place's OWN values, copied and not chosen. The panel
+   construction is the desk's own `.card-in`, ported to tokens. The nine discs
+   are its `--tx-bokeh` at its own `--txA` of .05, alpha-baked in
+   `docs/lilythium/textures.css` and pasted here verbatim. The mint is the pale
+   mint in the place's own scene; the four status colours are DERIVED, because
+   the desk has one alert red and no ladder. Numbers in README.md.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces *
+     THE GROUND is the desk's `.scene`: the place's floor, two soft fields of
+     `--sceneA`, a faint technical grid, and `--sceneB` at the base. Sizes are
+     in %, never px — the gallery renders `--bg` into a ~118px tile and a
+     px-anchored scene would show the tile its top edge only. Both fields are
+     the place's single plum: the ground is the same hue as the card, one step
+     darker, so page and material never fight for the eye. */
+  --pastel-district-scene-a: #43223B;
+  --pastel-district-scene-b: #12090F;
+  --pastel-district-ground:  #160C13;          /* the desk's --ground       */
+  --pastel-district-face:    #23141D;          /* the desk's --face         */
+  --pastel-district-panel:   #1E121A;          /* the desk's --panel        */
+
+  --pastel-district-field:
+    radial-gradient(80% 60% at 63% 38%, var(--pastel-district-scene-a) 0%, transparent 62%),
+    radial-gradient(120% 70% at 14% 96%, var(--pastel-district-scene-a) 0%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.024) 0 1px, transparent 1px 120px),
+    var(--pastel-district-tex-ground) 0 0/100% 100% no-repeat,
+    linear-gradient(180deg, var(--pastel-district-ground) 0%, var(--pastel-district-scene-b) 100%);
+  --bg:                  var(--pastel-district-field);
+  --bg-2:                #1E121A;   /* --pastel-district-panel: masthead stop, solid stand-in */
+
+  /* THE CARD MATERIAL — the desk's own `.card-in`, ported.
+     sheen (with its 1px specular lip) > occlusion > texture > identity edge >
+     tint > fall > face. LAYER ORDER IS THE LIGHT MODEL: the sheen and the
+     occlusion are what is in front of the glass; the discs sit behind the tint,
+     which is what makes them read as light out of focus rather than as a
+     pattern printed on the face; and the fall is above the face or it is not a
+     fall.
+
+     The nine discs fill the box with `100% 100%`: they are positioned in % and
+     keep their absolute radii, so one stack gives a different, non-repeating
+     constellation in every card — which is what bokeh does and what a tiled
+     motif cannot. */
+  --pastel-district-tex:
+    radial-gradient(circle at 22% 28%,rgba(255,255,255,0.0425) 0 7px,transparent 8px),
+    radial-gradient(circle at 68% 16%,rgba(255,255,255,0.0275) 0 5px,transparent 6px),
+    radial-gradient(circle at 82% 62%,rgba(255,255,255,0.0325) 0 6px,transparent 7px),
+    radial-gradient(circle at 38% 74%,rgba(255,255,255,0.0225) 0 4px,transparent 5px),
+    radial-gradient(circle at 8% 86%,rgba(255,255,255,0.02) 0 5px,transparent 6px),
+    radial-gradient(circle at 52% 46%,rgba(255,255,255,0.025) 0 3px,transparent 4px),
+    radial-gradient(circle at 92% 30%,rgba(255,255,255,0.0225) 0 6px,transparent 7px),
+    radial-gradient(circle at 30% 6%,rgba(255,255,255,0.0275) 0 4px,transparent 5px),
+    radial-gradient(circle at 74% 90%,rgba(255,255,255,0.02) 0 5px,transparent 6px);
+  --pastel-district-pane:
+    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
+                            rgba(255,255,255,.17) 1px,
+                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
+    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
+                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    var(--pastel-district-tex) 0 0/100% 100% no-repeat,
+    linear-gradient(90deg, transparent 0%,
+                            rgba(255,143,196,.55) 7%,
+                            rgba(255,143,196,.55) 62%,
+                            transparent 96%) 0 100%/100% 1px no-repeat,
+    linear-gradient(rgba(255,143,196,.05), rgba(255,143,196,.05)),
+    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 44%,
+                            rgba(0,0,0,.24) 78%,
+                            rgba(0,0,0,.52) 100%),
+    #23141D;
+  --surface:             var(--pastel-district-pane);
+  --surface-solid:       var(--pastel-district-face);    /* print / no-filter stand-in */
+
+  /* THE NESTED TIER — inputs, badges, alerts, code blocks, `card-elevated`.
+     No texture and no identity edge: nine discs on a 2.5rem control are clutter,
+     not material. A shallow sheen and half the tint, on the place's `--panel`
+     one step up from the face. */
+  --surface-2:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+    linear-gradient(rgba(255,143,196,.04), rgba(255,143,196,.04)),
+    #1E121A;
+  --overlay:             rgba(10, 5, 8, .74);            /* modal scrim */
+
+  /* ----------------------------------------------------------------- text *
+     Graded against the COMPOSITED pane — the lightest pixel in a card's text
+     band, 157° fall + 5% tint + a bokeh disc — and against the lightest pixel
+     of the ground. Not against the declared `--face`. Table in README.md. */
+  --text:                #F8EFF3;   /* 10.7:1 on the lightest pane pixel · 12.2:1 on the ground */
+  --text-muted:          #DCC5D0;   /*  7.4:1 there · 8.5:1 on the ground */
+  --text-dim:            #B79EAC;   /*  4.9:1 there · 5.6:1 on the ground */
+  --text-invert:         #2A0F1B;   /*  8.4:1 on --accent — pink is a LIGHT fill */
+
+  /* ---------------------------------------------------------------- brand *
+     ONE action + ONE counterpoint. The pink is the place's `--acc`; the mint is
+     the pale mint in its scene, doing the counterpoint's job in media.
+     `--accent-ink` is not decoration: #FF8FC4 as a 12px label on the pane is
+     5.7:1 — legal, but it reads as a pressed button — so labels take the
+     desk's own `--accHi` at 7.6:1. */
+  --accent:              #FF8FC4;
+  --accent-hover:        #FFA9D2;
+  --accent-ink:          #FFB9DB;   /* the desk's --accHi */
+  --accent-ink-hover:    #FFD1E8;
+  --accent-2:            #6EE7B0;   /* mint — media, charts, the place plate */
+  --accent-soft:         rgba(255, 143, 196, .18);
+
+  /* --------------------------------------------------------------- status *
+     Derived from the place, not from a ladder the desk never had. `--danger`
+     is DELIBERATELY darker and more saturated than the pink action: at
+     #FF7086 it is 21° off the accent in hue, so the separation has to come
+     from chroma and value, and an error never reads as a pastel button. */
+  --ok:                  #6EE7B0;
+  --warn:                #FFC46B;
+  --danger:              #FF7086;
+  --info:                #C9A8FF;
+
+  /* ---------------------------------------------------------------- lines *
+     The frame is white at 14% — the desk's hairline, not negotiable in this
+     family — and `--border-strong` is the place's own `--accLine`. */
+  --border:              rgba(255, 255, 255, .14);
+  --border-strong:       rgba(255, 143, 196, .60);
+  --border-w:            1px;
+  --focus-ring:          #FFB9DB;
+
+  /* ---------------------------------------------------------------- shape *
+     The desk's `--rad: 6px`, stepped: chips 4, controls 6, cards 8. No
+     `--clip` and no `--cut` — this place rounds, it does not cut. */
+  --radius-sm:           4px;
+  --radius-md:           6px;
+  --radius-lg:           8px;
+  --radius-pill:         999px;
+  --cut:                 0px;
+
+  /* ----------------------------------------------------------------- type *
+     The family's own pairing, shared by all six places: the type is the OS,
+     not the place. Chakra Petch for both voices, JetBrains Mono for labels. */
+  --font-display:        "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:           "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-mono:           "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps:       .14em;
+  --tracking-display:    .004em;
+
+  /* ---------------------------------------------------------------- depth *
+     The desk's own drop-shadow and well shadow, unchanged across the family;
+     `--glow` is its 14px accent bloom at the place's .30. Depth here is an
+     OCCLUSION, not a light: the card is already lit from behind. */
+  --shadow-1:            0 6px 16px rgba(0, 0, 0, .50);
+  --shadow-2:            0 10px 26px rgba(0, 0, 0, .55);
+  --glow:                0 0 14px rgba(255, 143, 196, .30);
+  --blur:                none;
+
+  /* --------------------------------------------------------------- motion *
+     The desk transitions border-colour and tint linearly; nothing in this
+     family eases. */
+  --dur:                 .18s;
+  --ease:                linear;
+
+  /* ======================================================== opt-in hooks === */
+  /* Round places take their chip radius on native controls. */
+  --check-radius:        var(--radius-sm);
+  /* progress + avatar: the accent's own 25% tint ramping into the accent. It
+     completes at 55% because the avatar's label sits at the ramp's midpoint
+     and #2A0F1B on a 62% pink is 3.8:1 — the label needs the solid end. */
+  --fill-bg:             linear-gradient(90deg, rgba(255,143,196,.25) 0%, #FF8FC4 55%);
+  /* THE PLACE PLATE — the media panel is a lit region of the place, not a
+     bright two-accent ramp: the plum bloom, the nine discs at card pitch, and
+     the mint arriving from one corner as the scene's second hue. */
+  --pastel-district-bloom:
+    radial-gradient(60% 80% at 74% 16%, rgba(67, 34, 59, .92) 0%, rgba(67, 34, 59, 0) 70%),
+    radial-gradient(46% 62% at 14% 88%, rgba(110, 231, 176, .10) 0%, transparent 72%),
+    var(--pastel-district-tex) 0 0/100% 100% no-repeat,
+    linear-gradient(157deg, var(--pastel-district-face) 0%,
+                            var(--pastel-district-panel) 62%,
+                            var(--pastel-district-scene-b) 100%);
+  --media-bg:            var(--pastel-district-bloom);
+  --media-op:            1;                 /* the plate is dark, not a bright ramp */
+  /* The masthead keeps a bloom, but it is the desk's SCENE bloom — the place's
+     own plum, twice — and not the default accent-soft radial. */
+  --wash:
+    radial-gradient(110% 92% at 72% -8%, rgba(67, 34, 59, .62) 0%, transparent 70%),
+    radial-gradient(64% 74% at 8% 0%,   rgba(67, 34, 59, .34) 0%, transparent 74%);
+
+  /* ==================================================================== *
+     EXTRAS — the motif and the matter of the ground, kept addressable: a
+     project can rebuild the field, a pane or the plate without re-typing
+     rgba, and the lab renders three of them as signature tiles.
+     ==================================================================== */
+  /* the ground's own nine discs: the same constellation at the source's ground
+     step, .0425 -> .0234 (the desk's --txA applied as a pseudo-element
+     `opacity`; folded into the stops here, since a background layer has no
+     opacity of its own). Pasted verbatim — these alphas are baked and were
+     verified at gallery-tile size. */
+  --pastel-district-tex-ground:
+    radial-gradient(circle at 22% 28%,rgba(255,255,255,0.0234) 0 7px,transparent 8px),
+    radial-gradient(circle at 68% 16%,rgba(255,255,255,0.0151) 0 5px,transparent 6px),
+    radial-gradient(circle at 82% 62%,rgba(255,255,255,0.0179) 0 6px,transparent 7px),
+    radial-gradient(circle at 38% 74%,rgba(255,255,255,0.0124) 0 4px,transparent 5px),
+    radial-gradient(circle at 8% 86%,rgba(255,255,255,0.011) 0 5px,transparent 6px),
+    radial-gradient(circle at 52% 46%,rgba(255,255,255,0.0138) 0 3px,transparent 4px),
+    radial-gradient(circle at 92% 30%,rgba(255,255,255,0.0124) 0 6px,transparent 7px),
+    radial-gradient(circle at 30% 6%,rgba(255,255,255,0.0151) 0 4px,transparent 5px),
+    radial-gradient(circle at 74% 90%,rgba(255,255,255,0.011) 0 5px,transparent 6px);
+}

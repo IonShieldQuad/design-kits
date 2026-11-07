@@ -1,0 +1,200 @@
+/* ============================================================================
+   design-kits · sunset-boulevard                                     contract v1
+   ----------------------------------------------------------------------------
+   AN INSTRUMENT DECK ON A CITY FLOOR AT MIDNIGHT. Not a sunset poster and not a
+   daylight sleeve: a violet-framed panel standing on a drawn perspective floor,
+   with one warm object in the whole kit — the amber sun hanging in the scene.
+
+     THE DECK     an opaque indigo face carrying a sheen band along its top edge,
+                  an occlusion band along its bottom, a 5% violet tint, a 157°
+                  face fall, a 1px identity edge and, over all of it, the place's
+                  own perspective grid drawn at the card's floor.
+     THE FRAME    1px, white at 14% on the flat edges, accent at 60% where the
+                  card meets its floor. 16px chamfer: this family's corners are
+                  cut, never rounded, and clip-path eats the border along the
+                  diagonal — build.py derives --frame-ring so the frame survives
+                  the cut.
+     THE FLOOR    the place's ground #0A0512, two soft fields of violet #231040,
+                  a 120px technical grid and the same perspective motif at half
+                  the card's alpha and twice its pitch, settling to #040208.
+
+   A chamfered deck lit by its own grid is the family's grammar; what is this
+   place's own is the FLOOR. Every other surface in Li//OS is a panel on a
+   ground. Here the ground is a plane that recedes, and the card is a slab of
+   that same plane lifted off it — which is why the texture is the material
+   rather than a motif printed on top of one.
+
+   PROVENANCE — place 07 of the user's bespoke-desktop Li//OS prototype
+   (prototypes/v9-lilythium). Palette --acc #B06CFF, --acc2 #EAD9FF, --accHi
+   #CFA4FF, --accLine rgba(176,108,255,.6), --face #150C28, --panel #120B1C,
+   --ground #0A0512, --sceneA #231040, --sceneB #040208, --glow
+   rgba(176,108,255,.32), --cp 16px, --rad 0px. The motif is the place's own
+   --tx-persp. The amber sun is the scene's one warm object; it is --accent-2
+   and the media plate, never a wash behind text.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces */
+  /* The ground is one addressable value, so the page, the media plate and the
+     signature tile all show the same floor. Sizes are in PERCENTAGES, never px:
+     the gallery renders --bg into a ~118px tile, and a px-anchored scene shows
+     the tile its top edge only. */
+  --bg:            var(--sunset-boulevard-field);
+  --bg-2:          #120B1C;                   /* the place's --panel: masthead stop / solid stand-in */
+  /* A card is not a fill and not a tinted panel: it is the PANE MATERIAL —
+     sheen > occlusion > texture > identity edge > tint > fall > face. That
+     order IS the light model. A texture under the tint is invisible; a fall
+     under the face is not a fall. */
+  --surface:       var(--sunset-boulevard-pane);
+  /* The nested tier — inputs, badges, alerts, code blocks, card-elevated. It
+     DROPS the texture and the identity edge: a 240px perspective grid on a
+     2.5rem control is clutter, not material. Shallow sheen plus half the tint. */
+  --surface-2:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+    linear-gradient(rgba(176,108,255,.04), rgba(176,108,255,.04)),
+    #120B1C;
+  --surface-solid: #0F0819;                   /* print / no-filter stand-in */
+  --overlay:       rgba(4, 2, 8, .74);        /* modal scrim — the floor going dark */
+
+  /* ----------------------------------------------------------------- text */
+  /* Graded against the COMPOSITED pane (face + tint + fall + sheen), not against
+     --bg: the card's top-left band is the lightest ink ground in the kit. The
+     full table is in README.md. */
+  --text:          #F2EBFF;   /* 17.35:1 on the ground  ·  10.96:1 in the lit card band */
+  --text-muted:    #C9B8E6;   /* 11.01:1 on the ground  ·   6.95:1 in the lit card band */
+  --text-dim:      #AE9CCB;   /*  8.07:1 on the ground  ·   5.10:1 in the lit card band */
+  --text-invert:   #12081F;   /*  5.96:1 on --accent, which is a mid-light fill */
+
+  /* ---------------------------------------------------------------- brand */
+  /* ONE action + ONE counterpoint. #B06CFF is the desk's own system violet and
+     the only colour that ever asks to be clicked. The amber is the second
+     accent — the sun in the scene — and it is also --warn: it is a status colour
+     and a scene colour, not an action colour. */
+  --accent:        #B06CFF;
+  --accent-hover:  #C08BFF;
+  --accent-ink:    #CFA4FF;   /* the desk's --accHi: violet AS TEXT */
+  --accent-ink-hover: #E0C4FF;
+  --accent-2:      #FFB84D;   /* the slat sun — media, charts, the second stop */
+  --accent-soft:   rgba(176, 108, 255, .16);
+
+  /* --------------------------------------------------------------- status */
+  /* Mint / amber / hot pink-red / sky. --danger is a warm pink-red, so it
+     separates from the violet action cleanly; --warn IS --accent-2 by design,
+     which is why amber never becomes a button. */
+  --ok:            #45E0B0;
+  --warn:          #FFB84D;
+  --danger:        #FF5C7A;
+  --info:          #66D9FF;
+
+  /* ---------------------------------------------------------------- lines */
+  /* The frame is a hairline: white 14% flat, the place's own --accLine (60%)
+     where a card meets its floor. Hover takes the hairline to 35%. */
+  --border:        rgba(255, 255, 255, .14);
+  --border-strong: rgba(176, 108, 255, .60);
+  --border-w:      1px;
+  --focus-ring:    #CFA4FF;
+
+  /* ---------------------------------------------------------------- shape */
+  /* Cut, never rounded. --clip is the family's own chamfer; --radius-* are 0 so
+     nothing inherits a curve from the contract's defaults. */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   2px;
+  --check-radius:  2px;        /* native controls are squared to the deck */
+  --cut:           16px;
+  --clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+  /* clip-path eats `outline` along the diagonal, so keyboard focus is painted
+     inside the silhouette instead. Not optional for a chamfered kit. */
+  --focus-inset:   2px;
+
+  /* ----------------------------------------------------------------- type */
+  /* Chakra Petch (squared technical display and body) + JetBrains Mono (labels,
+     keys, readouts). Shared by every place in Li//OS on purpose: the six are
+     rooms in one operating system, and the type IS the operating system. */
+  --font-display:  "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;
+  --tracking-display: .004em;   /* a squared face wants air, not a squeeze */
+
+  /* ---------------------------------------------------------------- depth */
+  /* Every surface here is OPAQUE, so --blur is none: the desk forbids glass,
+     and a blurred opaque card is only a repaint cost. Depth is the shadow the
+     deck casts onto its own floor — plus the fact that clip-path cuts the
+     shadow at the silhouette, so the chamfer never floats. */
+  --shadow-1:      0 6px 16px rgba(0, 0, 0, .50);
+  --shadow-2:      0 10px 26px rgba(0, 0, 0, .55);
+  --glow:          0 0 14px rgba(176, 108, 255, .32);
+  --blur:          none;
+
+  /* --------------------------------------------------------------- motion */
+  /* The desk transitions border-colour and tint linearly; nothing in this
+     family eases. */
+  --dur:           .18s;
+  --ease:          linear;
+
+  /* ======================================================== opt-in hooks === */
+  /* progress + avatar: the accent's 25% tint ramping into the accent itself */
+  --fill-bg:       linear-gradient(90deg, rgba(176, 108, 255, .25) 0%, #B06CFF 100%);
+  /* the card media panel is a PLACE PLATE: the scene's own amber sun over the
+     card-pitch grid on the face, not the default accent ramp. */
+  --media-bg:      var(--sunset-boulevard-tex),
+                   var(--sunset-boulevard-sun),
+                   linear-gradient(180deg, rgba(35,16,64,.55) 0%, rgba(35,16,64,.18) 46%, rgba(10,5,18,0) 100%),
+                   linear-gradient(180deg, #150C28 0%, #0A0512 100%);
+  --media-op:      1;
+
+  /* ==================================================================== *
+     EXTRAS — the material, kept addressable so a project can rebuild the
+     floor, the deck or the sun without re-typing a gradient.
+     ==================================================================== */
+  /* THE GROUND. --bg is this value and nothing else; the gallery tile, the
+     card's floor line and the media plate all point here. Two soft fields of
+     --sceneA, a 120px technical grid, then the place's own perspective motif
+     at half the card's alpha and twice its pitch, settling into --sceneB. */
+  --sunset-boulevard-field:
+    radial-gradient(80% 60% at 63% 38%, var(--sunset-boulevard-scene-a) 0%, transparent 62%),
+    radial-gradient(120% 70% at 14% 96%, var(--sunset-boulevard-scene-a) 0%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.024) 0 1px, transparent 1px 120px),
+    var(--sunset-boulevard-tex-ground),
+    linear-gradient(180deg, var(--sunset-boulevard-ground) 0%, var(--sunset-boulevard-scene-b) 100%);
+  --sunset-boulevard-ground: #0A0512;
+  --sunset-boulevard-scene-a: #231040;
+  --sunset-boulevard-scene-b: #040208;
+  /* THE DECK. The desk's .card-in, ported. Layer order, top first:
+     sheen (+ its 1px specular lip) > occlusion > texture > identity edge >
+     5% tint > 157° face fall > face. */
+  --sunset-boulevard-pane:
+    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
+                            rgba(255,255,255,.17) 1px,
+                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
+    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
+                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    var(--sunset-boulevard-tex),
+    linear-gradient(90deg, transparent 0%,
+                            rgba(176,108,255,.55) 7%,
+                            rgba(176,108,255,.55) 62%,
+                            transparent 96%) 0 100%/100% 1px no-repeat,
+    linear-gradient(rgba(176,108,255,.05), rgba(176,108,255,.05)),
+    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 44%,
+                            rgba(0,0,0,.24) 78%,
+                            rgba(0,0,0,.52) 100%),
+    var(--sunset-boulevard-face);
+  --sunset-boulevard-face: #150C28;
+  /* THE MOTIF — pasted verbatim from docs/lilythium/textures.css. The card line
+     is a perspective grid anchored to the card's floor at 62% height
+     (50% 100% / 100% 62%); the ground line is the same grid stretched
+     (50% 0 / 200% 100%). Do not redraw, re-encode or re-alpha either. */
+  --sunset-boulevard-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.06' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 100%/100% 62% no-repeat;
+  --sunset-boulevard-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.033' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 0/200% 100% no-repeat;
+  /* THE SUN — the one warm object in the kit, built from --accent-2 only: a
+     disc with the lower slats cut through it by the face colour, the way the
+     scene draws it. Used by the media plate; never a wash behind text. */
+  --sunset-boulevard-sun:
+    repeating-linear-gradient(180deg, transparent 0 5px, rgba(21,12,40,.92) 5px 8px) 50% 0/100% 74% no-repeat,
+    radial-gradient(22% 30% at 50% 38%, #FFB84D 0%, #FFB84D 58%, rgba(255,184,77,.55) 68%, rgba(255,184,77,0) 100%);
+}
