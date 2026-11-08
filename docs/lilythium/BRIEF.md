@@ -39,11 +39,18 @@ render; the name is the place.
   as a pseudo-element `opacity`, which a background layer cannot do, and the folding is already
   done and verified at gallery-tile size.
 
-  Two facts about the **latest** build (2026-11-07 16:30) that supersede anything older you may
-  find in the prototype's own CSS: the grid motif is a **hexagon** lattice (the triangular grid is
-  gone), and **no engraving tiles** — place 06 and 08 pin one rose and one fern plate to a corner.
-  The prototype still *defines* 96px tiled `--tx-rose` / `--tx-leaf` tokens in its `:root`; nothing
-  in the current build uses them. Never repeat a rose or a leaf.
+  **The stylesheet is not the truth — the running page is.** The built page carries a *legacy*
+  motif per place and swaps it when its scripts run, so anything read out of the CSS text is the
+  pre-script state. Measured differences, all of them real: place 01's legacy texture is a 72px
+  hexagon grid with a spoke from each centre to its corners (it reads as a triangle grid) and the
+  runtime value is a **36 x 20.7846 closed honeycomb at .09**; place 02's card texture is switched
+  **off** (`::after` opacity 0) and its card is a black plate with a green hairline and a green
+  outer glow; place 06's rose is applied at **.13**, not .085; place 07's grid at **.09**, not .06.
+
+  Hence: `docs/lilythium/textures.css` and `docs/lilythium/runtime-<place>.json` are the only
+  sources for motif, accent, ink ramp, hairline and card face. They were produced with
+  `getComputedStyle()` on the settled page, not by parsing the CSS. The per-place JSON also records
+  the rendered card colour and the card's own `drop-shadow`, which is the desk's only depth.
 - The **panel construction is the desk's own `.card-in`**, ported below into token form. It is
   the family's identity; every one of the six uses it unchanged.
 - Do not add a `kit.css`. Everything this family needs is reachable from tokens.
@@ -92,6 +99,27 @@ on a 2.5rem control is clutter, not material — and keeps a shallow sheen plus 
 
 Because every surface is opaque, `--blur: none` — the desk forbids glass and `backdrop-filter`,
 and a blurred opaque card is only a repaint cost.
+
+## The card material is per place, not per family
+
+I first wrote that all six share one stack. They share the **construction order**, but each place
+supplies its own numbers, and two places replace the stack outright. Measured with
+`getComputedStyle()` on `.card-in` + `.card`:
+
+| place | shape | identity edge | card stack |
+|---|---|---|---|
+| 01 azure | `--clip` 16px, TL+BR; radius 0 | accent, 7%–62%–96%, op .55 | sheen `.17/.047@34%/0` @ `100% 9%`; occlusion `.46/.137@38%/0`; fall `157deg .12/0/.24/.52`; face `#0A0F16` |
+| 02 mainframe | none; radius 0 | accent solid, op .75 | **replaced**: sheen `rgba(210,255,222,.09)→0` @ `100% 30px`; `rgba(92,247,155,.05)→rgba(0,0,0,.34)`; **green scanline `rgba(92,255,140,.055)` 1px/3px**; face `#000` |
+| 05 pastel | none; radius 6 | accent, 7%–62%–96%, op .55 | standard, face `rgb(35,20,29)` |
+| 06 crimson | **octagon**: all four corners 12px, 8 points; radius 0 | deep crimson `rgb(142,31,43)`→`rgb(192,48,63)`, faded both ends, op .9 | sheen `.08/.024@34%/0`; occlusion `.48/.145@38%/0`; fall `157deg .05/0/.20/.50`; face `rgb(16,6,8)` |
+| 07 sunset | `--clip` 18px, TL+BR; radius 0 | **neon ramp** `rgb(255,106,213)→rgb(161,92,255)→rgb(58,201,255)`, op 1 | **replaced**: top wash `.12→0` @24%; pink bloom `radial 120% 64% at 50% 116%` `.34`; dark ramp `rgb(13,7,34)→rgb(7,3,18,.80)`; face `rgb(13,7,34)` |
+| 08 viridian | none; radius 5 | accent, 7%–62%–96%, op .55 | standard, face `rgb(12,20,16)` |
+
+The two in-card accent radials (identity glow at `0% 100%`, crown at `50% -10%`) are present in the
+markup for every place and sit at **0 alpha** in all six: the desk switches them off, so do not
+"restore" them. Depth is the card's own `drop-shadow`, and it is per place too (06 is
+`0 7px 18px rgba(0,0,0,.66)`, 07 is a magenta `0 0 10px rgba(255,90,200,.32)` plus a dark
+`0 7px 14px`, the rest are `0 6px 16px rgba(0,0,0,.50)`).
 
 ## The ground
 
@@ -148,6 +176,49 @@ Additional required values, all of them the desk's:
 - `--fill-bg`: progress and avatar — a two-stop ramp from the accent's 25% tint to `--accent`
 - `--media-bg` + `--media-op: 1`: a "place plate" — the scene bloom and the texture at card pitch
   on the face, not the default accent ramp
+
+## The holo pane — the family's projected surface
+
+The desk has two kinds of surface and the port needs both. A **card** is built out of the desk
+(opaque face, hairline, sheen, occlusion, motif). A **pane** is projected onto it: no face, no
+border, no shadow, just a 13% veil of the place's own hue, one accent bloom at its crown, CRT
+scanlines, and four 24px corner marks. That construction is the desk's `.pane-holo`
+(`experiments/panels-v3/index.html`, lines 153-183) and it is the family's signature; a family
+without it is just six tinted plate skins.
+
+Express it as one token and wire it to the lab's media panel:
+
+```css
+--<slug>-holo:
+  /* four corner marks, two 1px hairlines each (the desk's .brk, at 24px) */
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) left  top/24px 1px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) left  top/1px 24px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) right top/24px 1px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) right top/1px 24px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) left  bottom/24px 1px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) left  bottom/1px 24px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) right bottom/24px 1px no-repeat,
+  linear-gradient(rgba(<accRgb>,.70),rgba(<accRgb>,.70)) right bottom/1px 24px no-repeat,
+  /* the desk's .scan: 1px rows at a 3px pitch, 5% white, held at 60% */
+  repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+  /* the crown bloom (the desk's second radial, .055) */
+  radial-gradient(120% 78% at 50% 0%, rgba(<accRgb>,.055) 0%, rgba(<accRgb>,0) 62%),
+  /* THE VEIL, as it behaves here: the desk lays 13% of the place's hue over the
+     scene; the lab's media panel sits on an opaque card, so the same 13% is a
+     film of black. Say that in the README — it is the one re-expression. */
+  linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
+
+--media-bg: var(--<slug>-holo);
+--media-op: 1;
+```
+
+Also add `--<slug>-holo` to `kit.json`'s `signature` list so the lab renders it at 168x72: it is
+the token that tells you whether this kit is a desk skin or a coloured rectangle.
+
+**What cannot be a token:** the desk animates a 180px accent band down the pane every 9s
+(`@keyframes sweep`, with a `prefers-reduced-motion` guard). The lab has no element to put it on,
+so the family ships the construction and not the motion. State that as a limitation in the README
+rather than hiding it.
 
 ## Type — the family's own pairing, shared by all six
 

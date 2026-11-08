@@ -3,8 +3,8 @@
 **The reference place of the Li//OS desk family.** Place 01 of fifteen; six of them are ported
 into this library and this is the one the other five are variations on. A near-black blue ground
 (`#05080D`, floor `#030609`) with two soft fields of `#0B2233`, a 120px technical grid and a
-72 x 41.5692 hexagon lattice at 2.75–3.03%; on it, opaque cards at `#0A0F16` carrying the same
-lattice at 5.5%, a 9% sheen band with a 1px specular lip, a 9% bottom occlusion band, a 157° face
+36 x 20.7846 hexagon lattice at 4.95%; on it, opaque cards at `#0A0F16` carrying the same
+lattice at 9%, a 9% sheen band with a 1px specular lip, a 9% bottom occlusion band, a 157° face
 fall, a 5% cyan tint and a 1px cyan identity edge. Cyan `#4FD8FF` is hairlines and one filled
 control; violet `#7E8CFF` is the second hue. 16px chamfer, 0px radii, `--blur: none`.
 
@@ -41,12 +41,12 @@ hues with no inversion to argue about. When a sibling looks wrong, diff it again
 | **01** | **Azure Technologies — this kit** | `azure-technologies` | **205** | **`#4FD8FF`** | **`#0A0F16`** | **`#05080D`** | **chamfer 16** | **hex lattice** |
 | 02 | Mainframe Access | `mainframe-access` | 210 | `#54E08A` | `#04100A` | `#020704` | square | scanlines |
 | 05 | Pastel District | `pastel-district` | 215 | `#FF8FC4` | `#23141D` | `#160C13` | round 6 | bokeh |
-| 06 | Crimson Labyrinth | `crimson-labyrinth` | 220 | `#FF4D5E` | `#140A0C` | `#090305` | chamfer 16 | engraved rose |
-| 07 | Sunset Boulevard | `sunset-boulevard` | 225 | `#B06CFF` | `#150C28` | `#0A0512` | chamfer 16 | perspective grid |
+| 06 | Crimson Labyrinth | `crimson-labyrinth` | 220 | `#FF4D5E` | `#140A0C` | `#090305` | octagon 12 | engraved rose |
+| 07 | Sunset Boulevard | `sunset-boulevard` | 225 | `#B06CFF` | `#150C28` | `#0A0512` | chamfer 18 | perspective grid |
 | 08 | Viridian Fields | `viridian-fields` | 230 | `#147A57` | `#0C1410` | `#0A1512` | round 5 | engraved fern |
 
 **The axis.** Two siblings share this kit's 16px chamfer (06, 07) and one shares its second hue
-family (07's violet). What is *only* here: a **tessellated** motif — a 72 x 41.5692 lattice whose
+family (07's violet). What is *only* here: a **tessellated** motif — a 36 x 20.7846 lattice whose
 edges are at 60° and which tiles seamlessly at 144 x 83.14 on the ground — and an accent light
 enough to need a dark ink (`--text-invert: #04121A`, 11.4:1 on `#4FD8FF`). Every other place's
 accent is a mid-tone or darker hue read as text or as a border; here cyan is a *fill*, which is
@@ -73,14 +73,14 @@ sheen (1px specular lip)  >  occlusion  >  texture  >  identity edge  >  tint  >
 |---|---|---|
 | sheen | `rgba(255,255,255,.30) 0 1px`, `.17 1px`, `.048 34%`, `0 100%`, box `100% 9%` | light arriving on the plate. Nothing on the plate tints it, so it is the top layer. Measured: `rgb(114,121,127)` at the lip, `rgb(81,90,96)` 2px down, `rgb(41,51,59)` at the band's edge. |
 | occlusion | `rgba(0,0,0,.46) 0`, `.138 38%`, `0 100%`, box `100% 9%` at the bottom | the bottom of a plate is out of the light. It sits **above** the texture: an occlusion under the lattice leaves a full-strength lattice in the dark band, which reads as a rendering fault. |
-| texture | `var(--azure-technologies-tex)` — 72 x 41.5692, `stroke-opacity .055` | the motif. Above the tint, because a 5.5% lattice under a 5% cyan wash is invisible. |
+| texture | `var(--azure-technologies-tex)` — 36 x 20.7846, `stroke-opacity .09` | the motif. Above the tint, because a 9% lattice under a 5% cyan wash is invisible. |
 | identity edge | `rgba(79,216,255,.55)`, 1px, from 7% to 96% of the width, at the bottom | the one place a plate is brighter than its frame. Measured after the occlusion: `rgb(59,123,142)`. |
 | tint | `rgba(79,216,255,.05)` | the place's colour on the face — 5%, the desk's own `--tintA`. |
 | face fall | `157deg`: white `.12 0%` → `0 44%` → black `.24 78%` → `.52 100%` | the plate's own shading. Under the tint: the tint is colour on the face, so it takes the shading instead of replacing it. A fall under the face is not a fall. |
 | face | `#0A0F16` | `--face`, opaque. The desk forbids glass, so there is nothing to see through. |
 
 `--surface-2` is the **nested** tier — inputs, badges, alerts, code, `card-elevated` — and drops
-the lattice and the identity edge: a 72 x 41.5692 lattice on a 2.5rem control is clutter, not
+the lattice and the identity edge: a 36 x 20.7846 lattice on a 2.5rem control is clutter, not
 material. It keeps a 6% sheen, half the tint (4%) and `--panel #0A0F15`.
 
 **`--blur: none`.** Every surface is opaque; the desk forbids `backdrop-filter`. A `blur()` on an
@@ -92,7 +92,7 @@ A hexagon lattice, 6 edges at 60°, on a 24 x 20.78 unit cell. Two pitches, two 
 
 | where | pitch | stroke | measured |
 |---|---|---|---|
-| card material (`--azure-technologies-tex`) | **72 x 41.5692 px**, `0 0/72px 41.57px repeat` | white at **5.5%** (`stroke-opacity .055`) | row-average swing inside a quiet card band: `rgb(13,23,31)` → `rgb(21,31,39)` |
+| card material (`--azure-technologies-tex`) | **36 x 20.7846 px**, `0 0/36px 20.78px repeat` | white at **9%** (`stroke-opacity .09`) | row-average swing inside a quiet card band: `rgb(13,23,31)` → `rgb(21,31,39)` |
 | page ground (`--azure-technologies-tex-ground`) | **144 x 83.14 px** (2x the card's) | white at **3.03%** (`stroke-opacity .0303`) | the same motif, larger and quieter |
 | the technical grid under it | 120 x 120 px | white at 2.8% vertical, 2.4% horizontal | anchors the scene to the page |
 

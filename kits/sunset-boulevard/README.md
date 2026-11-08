@@ -1,7 +1,7 @@
 # Sunset Boulevard
 
 **An instrument deck on a city floor at midnight.** A violet-framed slab of opaque indigo, corners
-cut at 16px, its face carrying the place's own perspective grid with its horizon at 62% of the card's
+cut at 18px, its face carrying the place's own perspective grid with its horizon at 62% of the card's
 height — so the grid lands on the card's floor and the deck reads as a piece of the plane it stands
 on. One warm object in the whole kit: the amber sun in the scene.
 
@@ -32,8 +32,8 @@ only warm thing in the room.
 | 01 | `azure-technologies` | 205 | `#4FD8FF` | `#0A0F16` | `#05080D` | chamfer 16 | hex lattice |
 | 02 | `mainframe-access` | 210 | `#54E08A` | `#04100A` | `#020704` | square | scanlines |
 | 05 | `pastel-district` | 215 | `#FF8FC4` | `#23141D` | `#160C13` | round 6 | bokeh |
-| 06 | `crimson-labyrinth` | 220 | `#FF4D5E` | `#140A0C` | `#090305` | chamfer 16 | engraved rose |
-| **07** | **`sunset-boulevard`** | **225** | **`#B06CFF`** | **`#150C28`** | **`#0A0512`** | **chamfer 16** | **perspective grid** |
+| 06 | `crimson-labyrinth` | 220 | `#FF4D5E` | `#140A0C` | `#090305` | octagon 12 | engraved rose |
+| **07** | **`sunset-boulevard`** | **225** | **`#B06CFF`** | **`#150C28`** | **`#0A0512`** | **chamfer 18** | **perspective grid** |
 | 08 | `viridian-fields` | 230 | `#147A57` | `#0C1410` | `#0A1512` | round 5 | engraved fern |
 
 The axis that separates this place from its five siblings is **depth**: it is the member of the
@@ -50,11 +50,11 @@ it is that they are not. It is a different **object**, not another palette of th
 | | `synthwave` (125) | `city-pop` (130) | **`sunset-boulevard` (225)** |
 |---|---|---|---|
 | register | an 80s poster: the page *is* the artwork | a daylight sleeve: airy, pastel, printed | an **instrument deck** standing on a floor |
-| structure | a sunset band across the page top, then night | cream → pale horizon → sky-blue, low surface contrast | an opaque, hairline-framed, 16px-chamfered face on a receding ground |
+| structure | a sunset band across the page top, then night | cream → pale horizon → sky-blue, low surface contrast | an opaque, hairline-framed, 18px-chamfered face on a receding ground |
 | action colour | magenta `#ec4b8f` | coral `#d62f4b` | violet `#B06CFF` |
 | second hue | cyan `#44a6d7` (technology) | teal `#1f9aa8` (water) | amber `#FFB84D` (the sun — and the warning colour) |
 | the sun | a drawn hero motif in the system's own vocabulary | part of the sleeve SVG | one small plate in `.card-media`; never a wash, never a control |
-| shape | 3–10px radii, no chamfer | 5–16px radii, no chamfer | **0 radii, 16px chamfer, 1px frames** |
+| shape | 3–10px radii, no chamfer | 5–16px radii, no chamfer | **0 radii, 18px chamfer, 1px frames** |
 | where the grid lives | the page ground | — | **the card's own material**, anchored to its floor |
 | type | Audiowide · Rajdhani · Share Tech Mono | Sora · Manrope · Space Mono | Chakra Petch · JetBrains Mono (the desk's face) |
 
@@ -67,19 +67,23 @@ the interface under it, take this.
 `--surface` is `--sunset-boulevard-pane`, and it is a *layer stack*, not a fill. Top first, which is
 also the light model:
 
-1. **sheen** — a 9%-tall band with a 1px specular lip: `rgba(255,255,255,.30)` on the first pixel,
-   `.17` on the second, `.048` by 34%, gone by the bottom of the band.
-2. **occlusion** — the same band at the bottom, inverted, up to `rgba(0,0,0,.46)`: the floor of the
-   card sits in its own shadow.
-3. **the texture** — `--sunset-boulevard-tex`, the place's perspective grid, at the desk's own pitch.
-4. **the identity edge** — a 1px violet line (`rgba(176,108,255,.55)`) across the bottom of the card,
-   running 7% → 62% with soft ends. This is where the deck touches its floor.
-5. **the 5% tint** — `rgba(176,108,255,.05)` over the whole face.
-6. **the 157° fall** — white at the top-left corner, dark at the bottom-right, the face's own shading.
-7. **the face** — `#150C28`.
+1. **top wash** — `rgba(255,255,255,.12)` fading to nothing by 24%: the deck's ceiling catching light.
+2. **the pink bloom** — a radial anchored *below* the card, `radial-gradient(120% 64% at 50% 116%)`
+   at `rgba(255,106,213,.34)`. This is the sun coming up off the boulevard through the floor, and it
+   is the reason this kit's card is not the family's default stack.
+3. **the dark ramp** — the face colour to `rgba(7,3,18,.80)` at the bottom, so the bloom sits behind
+   depth instead of on top of it.
+4. **the texture** — `--sunset-boulevard-tex`, the perspective grid, pinned to the card's own floor
+   at 62% of its height and applied at .09.
+5. **the identity edge** — the neon ramp, `rgb(255,106,213) → rgb(161,92,255) → rgb(58,201,255)`,
+   full width at opacity 1. Pink, violet and cyan in one 1px line: it is the kit's signature, and the
+   only place those two extra hues are allowed to appear.
+6. **the face** — `rgb(13,7,34)`, the rendered value. The stylesheet declares `#150C28`; the page
+   paints this.
 
-The order is the design, and it is not negotiable: a texture placed under the tint is invisible, a
-fall placed under the face is not a fall, and a sheen under the texture is dirt.
+There is no 9% occlusion band and no 157° fall here: the bloom and the ramp do that work, and the
+desk switches both defaults off for this place. The order still matters — the bloom sits under the
+dark ramp, so it reads as light coming through material rather than as a sticker on the face.
 
 `--surface-2` — inputs, badges, alerts, code blocks, `card-elevated` — is the *nested* tier and drops
 layers 3 and 4: a 240-unit perspective drawing on a 2.5rem control is clutter, not material. It keeps

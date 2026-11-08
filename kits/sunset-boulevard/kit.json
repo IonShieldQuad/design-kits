@@ -1,12 +1,12 @@
 {
   "name": "Sunset Boulevard",
-  "tagline": "An outrun night-city deck — violet frame, amber sun, a perspective floor",
+  "tagline": "An outrun night-city deck — magenta rim, amber sun, perspective floor, holo pane",
   "use_when": "night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like a city at 1987 midnight",
-  "signature": ["--sunset-boulevard-pane", "--sunset-boulevard-tex", "--sunset-boulevard-field"],
+  "signature": ["--sunset-boulevard-pane", "--sunset-boulevard-edge", "--sunset-boulevard-tex", "--sunset-boulevard-field", "--sunset-boulevard-holo"],
   "order": 225,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
   "fonts_label": "Chakra Petch · JetBrains Mono",
   "mode": "dark",
   "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 07) — palette, panel construction and drawn motif taken from the prototype's own tokens",
-  "tags": ["dark", "outrun", "night", "retro-future", "neon"]
+  "tags": ["dark", "outrun", "night", "retro-future", "neon", "holo"]
 }

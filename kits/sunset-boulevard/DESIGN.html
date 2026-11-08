@@ -48,7 +48,7 @@
     <a href="DESIGN.md">raw markdown</a>
   </nav>
   <h1 class="spec-h1">Sunset Boulevard</h1>
-  <p class="spec-sub">An outrun night-city deck — violet frame, amber sun, a perspective floor</p>
+  <p class="spec-sub">An outrun night-city deck — magenta rim, amber sun, perspective floor, holo pane</p>
   <article class="spec-body">
 <section class="spec-fm"><h2>Front matter &mdash; the normative values</h2><p class="spec-note">This block is the machine-readable half of the spec: another agent can read these token names and values directly.</p><pre><code>version: alpha
 name: Sunset Boulevard
@@ -224,7 +224,7 @@ components:
     backgroundColor: &quot;{colors.border}&quot;
     height: &quot;1px&quot;</code></pre></section>
 <h2 id="sunset-boulevard">Sunset Boulevard</h2>
-<p><strong>An instrument deck on a city floor at midnight.</strong> A violet-framed slab of opaque indigo, corners cut at 16px, its face carrying a perspective grid that is anchored to its own bottom edge — the same grid the page stands on, at twice the pitch and half the alpha. The only warm object in the kit is the amber sun in the scene: <code>{colors.secondary}</code>, and never a wash behind text.</p>
+<p><strong>An instrument deck on a city floor at midnight.</strong> A violet-framed slab of opaque indigo, corners cut at 18px, its face carrying a perspective grid that is anchored to its own bottom edge — the same grid the page stands on, at twice the pitch and half the alpha. The only warm object in the kit is the amber sun in the scene: <code>{colors.secondary}</code>, and never a wash behind text.</p>
 <h3 id="overview">Overview</h3>
 <p>This is one room of <code>Li//OS</code>, not a poster of a decade. The desk's grammar is fixed — a hairline frame, an opaque face carrying a sheen band, a bottom occlusion band, a 157° face fall, a 5% accent tint, one drawn texture, one accent hue — and what this place owns inside that grammar is the <strong>floor</strong>.</p>
 <ul><li><strong>The ground is a plane, not a backdrop.</strong> Two soft fields of <code>{colors.scene}</code> over <code>{colors.neutral}</code>, a 120px technical grid, and the place's own perspective motif stretched across it, settling into <code>{colors.scene-floor}</code>. It recedes, so the page reads as somewhere rather than as a colour.</li><li><strong>The card is a slab of that plane.</strong> <code>{colors.surface}</code> is the desk's <code>.card-in</code> ported to tokens: sheen with a 1px specular lip, a bottom occlusion band, the same perspective grid at the card's own pitch with its horizon at 62% of the card's height, a 1px violet identity edge along the floor, a 5% tint, and a 157° fall. The grid lands on the card's floor, which is what makes the slab sit on the scene instead of floating in front of it.</li><li><strong>The frame is cut, and it keeps its frame.</strong> <code>--cut: 16px</code> with the family's <code>--clip</code>; because <code>clip-path</code> removes the border along the diagonal, <code>build.py</code> derives <code>--frame-ring</code> from that polygon and the 1px frame survives every edge.</li><li><strong>One accent, one counterpoint.</strong> Violet is the action. Amber is the scene's sun — it is also the warning status, and it is deliberately never a control.</li></ul>

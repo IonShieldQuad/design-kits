@@ -204,7 +204,7 @@ components:
 # Crimson Labyrinth
 
 **A gothic ritual console.** Not a dark page with a red accent: an instrument panel in a vampire's
-chamber. The plate is near-black oxblood, its frame is a 1px crimson hairline cut by a 16px chamfer,
+chamber. The plate is near-black oxblood, its frame is a 1px crimson hairline cut by a 12px octagon,
 its face carries one engraved rose at 268px, and the only light is a sheen along the top edge and a
 crimson identity line along the bottom. It is a place in the `Li//OS` desk — the same construction
 five sibling places wear, warmed to a colour, a motif and a metal of its own.
@@ -227,7 +227,7 @@ what keeps a filled crimson button from reading as an error chip.
 That inversion is also the difference between this kit and its `gothic` sibling. `gothic` is
 editorial velvet: plum, ivory, a rose *bloom drawing on a stem*, soft 5–16px curves, a serif display
 face. This kit is an instrument console: oxblood, a *line engraving* of a rose as the plate's own
-material, a hard 16px chamfer with a 1px frame, and the family's squared technical face. One is a
+material, a hard 12px octagon with a 1px frame, and the family's squared technical face. One is a
 novel cover; the other is the machine a vampire keeps its records in.
 
 ## Colors
@@ -265,7 +265,7 @@ stays the machine's.
 
 ## Layout
 
-The plate is the layout unit. 16px chamfers cut the top-left and bottom-right corners only (the
+The plate is the layout unit. 12px octagons cut all four corners (the
 desk's diagonal, not a four-corner bevel), the frame is exactly 1px, and the identity edge runs
 along the bottom from 7% to 62% of the width — off-centre by design, because an instrument's label
 is not a centred ribbon.

@@ -13,6 +13,13 @@ plate; here it is nine discs of light that have gone out of focus, sitting behin
 - Source: **derived** from the user's `bespoke-desktop` Li//OS prototype
   (`prototypes/v9-lilythium`, place 05). Palette, panel construction and the nine discs are the
   place's own tokens, copied rather than chosen.
+- **Every value was re-measured from the running page** — `getComputedStyle()` on the settled
+  prototype (`docs/lilythium/runtime-05.json`, `docs/lilythium/textures.css`), never parsed out of
+  its stylesheet. The built page carries a *legacy* motif per place and swaps it when its scripts
+  run, so anything read from the CSS text is the pre-script state; for this place the runtime motif
+  happens to be the same nine discs, at an *applied* opacity of .05 rather than a declared one, and
+  that applied value is what is baked into the stops below. The CSS comment in `tokens.css` records
+  the same provenance.
 
 ## Stance
 
@@ -54,8 +61,8 @@ model**:
 
 | # | layer | what it is | why it is there in this order |
 |---|---|---|---|
-| 1 | sheen | white 30% on the first 1px, 17% on the next, 4.8% to 34% of a 9%-tall band | the specular lip: glass has a bright top edge, and it must be *over* everything or it is paint |
-| 2 | occlusion | black 46% → 13.8% → 0 over a 9% band at the floor | the card sits in shadow where it meets the page; over the motif, or the discs float in front of the card |
+| 1 | sheen | white 30% on the first 1px, 17% on the next, 4.7% to 34% of a 9%-tall band | the specular lip: glass has a bright top edge, and it must be *over* everything or it is paint |
+| 2 | occlusion | black 46% → 13.7% → 0 over a 9% band at the floor | the card sits in shadow where it meets the page; over the motif, or the discs float in front of the card |
 | 3 | **the nine discs** | the place's `--tx-bokeh`, alpha-baked at `--txA` `.05` | **behind** the tint — that is the whole kit. Over the tint they are a dotted pattern; under it they are light behind glass |
 | 4 | identity edge | accent 55%, 1px, inset 7%…96% along the floor | the family's accent hairline, and the only one of the four kits where it is a straight line rather than a ring |
 | 5 | tint | accent at 5% | warms the face toward the place; it must sit over the motif or the discs read as white, not as pink light |
@@ -71,6 +78,13 @@ the card's bottom row the accent at 55% sits under black at 46%. Measured on the
 lands at `rgb(82,45,63)` against a card body of `rgb(21,11,17)` — a warm plum-pink hairline, not a
 bright underline. That is the shared construction, not a local tuning: all six places do it, and
 re-ordering the layers to make this kit's line hotter would make it the odd one out.
+
+**Two accent radials the desk's card also carries are absent here, deliberately.** `.card-in` has an
+identity glow and a crown radial *inside* the card, and on the running page both are at **0 alpha**
+for place 05 — measured, not inferred (`runtime-05.json`). A 0-alpha radial paints nothing, so they
+are simply not in `--pastel-district-pane`, and there is no placeholder layer standing in for them.
+Do not "restore" them: a pink bloom inside the card is a different kit's construction, and this one
+already gets its glow from the ground and its hard light from the holo pane.
 
 ## The motif
 
@@ -93,6 +107,50 @@ a pattern is the opposite of out-of-focus light. That is why the card and the gr
 nine rather than a tiled field, and why the ground's job is to be *quieter* — its own lower alpha — rather
 than twice the pitch.
 
+## The holo pane — the family's projected surface
+
+The desk has **two** kinds of surface and this port needs both. A **card** is built out of the desk:
+an opaque face, a hairline, a sheen, an occlusion, one drawn motif. A **pane** is *projected onto*
+one — no face, no border, no shadow, just a 13% veil, one accent bloom at its crown, 3px CRT
+scanlines and four 24px corner marks. That is the desk's `.pane-holo`, and it is the family's
+signature; a family of six tinted plate skins is what you get without it. It ships as one token,
+`--pastel-district-holo`, wired to the lab's media panel (`--media-bg`) at `--media-op: 1` and named
+in `kit.json`'s `signature`, so it renders both at 168×72 in the Signature row and at full size under
+the cards.
+
+| # | layer | what it is | why here |
+|---|---|---|---|
+| 1 | four corner marks | eight 1px hairlines: two per corner, 24px arms, accent at 70% | they are the projection's registration brackets — *over* the veil or they read as part of the card |
+| 2 | scanlines | 1px rows at a **3px** pitch, white at 3% — the desk's `.scan`, held at 60% | the CRT grille: the one thing that says "emitted", not "printed" |
+| 3 | crown bloom | accent at 5.5%, 120% × 78% at `50% 0%` | the light source the grille is cutting across |
+| 4 | veil | black at 13% | the film; last in the stack because it is the surface itself |
+
+**In most of the family the pane is a HUD. Here it is the subject stated a second time.** This
+place's subject is light falling out of focus: the nine discs are that light *diffuse*, and the pane
+is the same light *given an edge* — the crown bloom is a light source with a boundary, and the 3px
+grille across it is the only hard geometry in the kit apart from the 1px frame. Diffuse light and
+focused light on the same card is the whole kit in one object, and it is why this kit gets more out
+of the pane than its five siblings do. Measured on the lab's own render: the panel's centre column
+runs `rgb(65,43,55)` at the top edge to `rgb(46,29,38)` at mid-height and `rgb(41,24,33)` at the
+floor, with the corner arms measuring `rgb(195,112,152)` — so the bloom is a real falloff and the
+marks are the brightest thing on the surface, not decoration.
+
+Two things about the pane have to be said plainly rather than left to the code:
+
+- **The veil is re-expressed as a black film.** The desk lays 13% of the place's own pink over the
+  *scene*, where it tints the air behind a floating panel. The lab's media panel sits **on an opaque
+  card**, and a pink film there would only be more card — it has nothing to tint. So the same 13% is
+  a film of **black**: it darkens what is underneath, which is what makes the bloom and the brackets
+  read as *projected onto* a surface rather than painted in the card's own colour. No face is added;
+  the card underneath is the face. This is the one place the construction is not the desk's
+  verbatim — mark length, line weights, the 3px pitch, the .055 bloom and the 13% strength are all
+  the desk's own measured values.
+- **The 9s sweep cannot be a token.** The desk animates a 180px accent band down the pane every 9
+  seconds (`@keyframes sweep`, behind a `prefers-reduced-motion` guard). A background value carries
+  no keyframes and the lab has no element to run them on, so the family ships the construction and
+  not the motion — the pane here is the desk's, standing still. A project that wants the sweep adds
+  one absolutely-positioned band with that animation; nothing in this kit has to change for it.
+
 ## Key choices
 
 - **Pink is a light fill, so the ink on it is dark.** `--text-invert: #2A0F1B` at **8.4:1** on
@@ -108,16 +166,22 @@ than twice the pitch.
   same control group and you need the label to tell them apart — that is the trade, and it is the
   one place this kit is fragile.
 - **Mint is one hue doing two jobs.** The place's scene has exactly one pale mint, so `--accent-2`
-  and `--ok` are the same value (`#6EE7B0`). They never compete: the counterpoint appears in the
-  media plate and a chart series, `--ok` in a status chip. It is honest to the source rather than
+  and `--ok` are the same value (`#6EE7B0`). They never compete: the counterpoint appears in a chart
+  series and in the `ok` chip, never as an action colour. It is honest to the source rather than
   inventing a second green to tell them apart.
 - **`--fill-bg` completes at 55%.** The desk's ramp is the accent's 25% tint into the accent, but
   the avatar's label sits at the ramp's midpoint, where `#2A0F1B` on a 62% pink is 3.8:1. Running
   the ramp out to the solid accent by 55% keeps the two-stop construction and the label's 8.4:1.
-- **The media panel is a place plate, not an accent ramp.** `--media-bg` is the plum bloom + the
-  nine discs at card pitch + a 10% mint glint + a face-to-floor ramp — the one surface in the kit
-  allowed a bloom, because it is a picture of the place and not a card.
-- **`--media-op: 1`**, because the plate is dark; the default .85 greys it.
+- **The media panel is the holo pane, not a place plate and not an accent ramp.** `--media-bg` is
+  `--pastel-district-holo`: no face, four corner marks, a 3px grille, one crown bloom, one 13% film.
+  It replaced an earlier plum-bloom plate in this kit, and the plate was **removed rather than kept
+  as an alternate** — a construction defined and bound to nothing is exactly how a port ends up with
+  a superseded surface still shipping, and the pane is the better answer here anyway: the card is
+  already the diffuse version of this place's light, so the media area is where it gets to be sharp.
+- **`--media-op: 1`**, because the pane is already that dark; the default .85 greys it.
+- **The holo pane is the kit's second signature tile** (168×72, alongside `pane`, `tex`, `field`).
+  At that size the four 24px brackets and the grille are the whole read — which is the point: a
+  viewer can tell from the tile that this is a projected surface and not a coloured rectangle.
 
 ## Trade-offs
 
@@ -134,9 +198,9 @@ than twice the pitch.
   fonts: they are identical in all six kits on purpose.
 - **The `--pastel-district-tex` signature tile reads faint at 168×72.** It is the raw motif at the
   desk's own 5% over the tile's nested surface — a 9-level lift. The brief forbids re-timing it, so
-  it stays; the `pane` and `field` tiles are the two that sell the kit, and the `tex` tile is honest
-  about being an overlay. (Do not raise the alpha to "make the tile show": the card then reads as a
-  dotted fill.)
+  it stays; the `holo`, `pane` and `field` tiles are the three that sell the kit, and the `tex` tile
+  is honest about being an overlay. (Do not raise the alpha to "make the tile show": the card then
+  reads as a dotted fill.)
 - **The ground is a slow field.** Both scene blobs are sized in % of the *document*, so on a 3500px
   page the plum peak lands around 38% of the scroll rather than at the masthead; `--wash` exists to
   put a bloom at the top, and it is the same plum rather than the default accent-soft radial.

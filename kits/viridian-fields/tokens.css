@@ -7,8 +7,8 @@
    objects: an accent that reads as emitted light, a rim that is the light
    source, a bloom under the frame. This place is the opposite claim. The desk's
    own note for 08 says the green here is not information (that is 02
-   Mainframe's phosphor), it is ABSORBED: deep, matte, no bloom, no scanlines,
-   no wash. Everything below is that restraint made operational —
+   Mainframe's phosphor), it is ABSORBED: deep, matte, no bloom, no accent
+   wash over the ground. Everything below is that restraint made operational —
 
      · the accent is a DARK emerald (#147A57), not a light one. It is the only
        filled thing on the page and it is darker than the ink around it, which
@@ -19,7 +19,11 @@
        it is used at the desk's own width — widening it turns this into 02;
      · the material carries a DRAWN plate, not a pattern. One engraved fern,
        struck once at 248px in a card's bottom-right, at the alpha the desk
-       baked into it. It does not tile and it is not a field of leaves.
+       baked into it. It does not tile and it is not a field of leaves;
+     · the one SCANLINE ruling in the kit lives inside the holo pane, where it
+       is a 3px screen texture at 3% white and measures 1.07:1 — a ruling, not
+       a phosphor. The pane's other lit device, its crown bloom, measures
+       1.06:1. See the pane's own comment and README, "The holo pane".
 
    PROVENANCE — derived from the user's bespoke-desktop Li//OS prototype
    (prototypes/v9-lilythium, place 08). Palette, panel construction and the
@@ -96,6 +100,36 @@
     linear-gradient(rgba(20,122,87,.04), rgba(20,122,87,.04)),
     var(--viridian-fields-panel);
 
+  /* THE HOLO PANE — the family's projected surface, the desk's .pane-holo.
+     A CARD is built out of the place: opaque face, hairline, sheen, occlusion,
+     engraved plate. A PANE is projected onto one: no face, no border, no
+     shadow — a 13% veil, one accent bloom at its crown, 3px CRT scanlines and
+     four 24px corner marks. Both kinds of surface are in the desk, so both are
+     in the port.
+
+     This is the family's one MATTE kit and the pane is the family's one LIT
+     object, so the two have to be reconciled rather than averaged out. They
+     are reconciled by keeping the desk's own alphas (.70 for the marks, .055
+     for the bloom) and letting this place's accent do what it does everywhere
+     else in the kit: *absorb*. An emerald at .70 over a near-black plate is a
+     DEEP green-grey line, not a glow — the marks read as scored into the
+     frame, and the bloom is a barely-there lift at the crown. See README,
+     "The holo pane", for the composited measurements. Raising either alpha to
+     make the pane "work" here is the one change that would make this kit a
+     sibling rather than itself. */
+  --viridian-fields-holo:
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) left  top/24px 1px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) left  top/1px 24px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) right top/24px 1px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) right top/1px 24px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) left  bottom/24px 1px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) left  bottom/1px 24px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) right bottom/24px 1px no-repeat,
+    linear-gradient(rgba(20,122,87,.70),rgba(20,122,87,.70)) right bottom/1px 24px no-repeat,
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 78% at 50% 0%, rgba(20,122,87,.055) 0%, rgba(20,122,87,0) 62%),
+    linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
+
   /* ----------------------------------------------------------------- text *
      Graded against the COMPOSITED pane, not the declared face: the face plus
      the 5% tint plus the 157° fall's lit end is #293530, which is the lightest
@@ -154,7 +188,7 @@
      soft edge. --cut is 0 because this place does not chamfer. */
   --radius-sm:     3px;
   --radius-md:     5px;
-  --radius-lg:     7px;
+  --radius-lg:     5px;      /* = the desk's --rad: the card's own corner */
   --radius-pill:   999px;
   --cut:           0px;
 
@@ -199,12 +233,9 @@
   /* progress and avatar: the accent's own 25% tint ramping to the accent. It
      cannot go lighter than the accent, or the light ink on the avatar fails. */
   --fill-bg:        linear-gradient(90deg, rgba(20, 122, 87, .25) 0%, var(--accent) 100%);
-  /* the media panel is a place plate: the engraving at card pitch over the
-     scene's own bloom, on the face — not the default accent ramp. */
-  --media-bg:       var(--viridian-fields-tex),
-                    radial-gradient(80% 60% at 63% 38%, var(--viridian-fields-scene-a) 0%, transparent 62%),
-                    linear-gradient(180deg, var(--viridian-fields-face) 0%, var(--viridian-fields-scene-b) 100%);
-  --media-op:       1;        /* the plate is dark; the default .85 would grey it */
+  /* the media panel is the holo pane (below), laid opaquely on a card. */
+  --media-bg:       var(--viridian-fields-holo);
+  --media-op:       1;        /* the pane is a CONSTRUCTION; the default .85 greys it */
   /* The masthead is a wash, and this is the least that keeps it from reading as
      a bloom: 10% emerald, gone by 62%. Nothing on this page emits. */
   --wash:           radial-gradient(120% 140% at 50% -10%, rgba(20, 122, 87, .10) 0%, transparent 62%);

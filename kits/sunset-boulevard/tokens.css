@@ -1,22 +1,35 @@
 /* ============================================================================
    design-kits · sunset-boulevard                                     contract v1
    ----------------------------------------------------------------------------
-   AN INSTRUMENT DECK ON A CITY FLOOR AT MIDNIGHT. Not a sunset poster and not a
-   daylight sleeve: a violet-framed panel standing on a drawn perspective floor,
-   with one warm object in the whole kit — the amber sun hanging in the scene.
+   AN INSTRUMENT DECK ON A CITY FLOOR AT MIDNIGHT, WITH A PROJECTED PANE OVER IT.
+   Not a sunset poster and not a daylight sleeve: a violet-framed panel standing
+   on a drawn perspective floor, one warm object in the whole kit — the amber sun
+   — and one surface that is not a card at all, the desk's projected pane.
 
-     THE DECK     an opaque indigo face carrying a sheen band along its top edge,
-                  an occlusion band along its bottom, a 5% violet tint, a 157°
-                  face fall, a 1px identity edge and, over all of it, the place's
-                  own perspective grid drawn at the card's floor.
-     THE FRAME    1px, white at 14% on the flat edges, accent at 60% where the
-                  card meets its floor. 16px chamfer: this family's corners are
-                  cut, never rounded, and clip-path eats the border along the
-                  diagonal — build.py derives --frame-ring so the frame survives
-                  the cut.
+     THE DECK     an opaque violet face, a 12% top wash, the place's own
+                  perspective grid at the card's floor, a PINK BLOOM rising from
+                  below the floor and a dark ramp toward the bottom — and along
+                  the bottom edge, full width and at full opacity, the kit's
+                  signature: a neon ramp, pink #FF6AD5 → violet #A15CFF → blue
+                  #3AC9FF.
+     THE FRAME    1px, MAGENTA at 45% (#FF6AD5) on the flat edges — the sun's light
+                  caught on the rim, not a white rule — and the accent at 60%
+                  where the card meets its floor. 18px chamfer: this family's
+                  corners are cut, never rounded, and clip-path eats the border
+                  along the diagonal — build.py derives --frame-ring from the
+                  kit's own --cut so the frame survives the cut.
+     THE DEPTH   two shadows, and the first one is the signature: a magenta halo
+                  (0 0 10px rgba(255,90,200,.32)) spilling off the deck like the
+                  sun on its horizon, under which sits the occlusion shadow
+                  (0 7px 14px rgba(0,0,0,.55)). Applied as a filter, because a
+                  clip-path eats a box-shadow.
      THE FLOOR    the place's ground #0A0512, two soft fields of violet #231040,
                   a 120px technical grid and the same perspective motif at half
                   the card's alpha and twice its pitch, settling to #040208.
+     THE PANE     --sunset-boulevard-holo: the desk's .pane-holo — a 13% veil,
+                  one accent bloom at its crown, 3px CRT scanlines and four 24px
+                  corner marks. It is the media plate, and the amber sun rises
+                  inside it.
 
    A chamfered deck lit by its own grid is the family's grammar; what is this
    place's own is the FLOOR. Every other surface in Li//OS is a panel on a
@@ -26,11 +39,17 @@
 
    PROVENANCE — place 07 of the user's bespoke-desktop Li//OS prototype
    (prototypes/v9-lilythium). Palette --acc #B06CFF, --acc2 #EAD9FF, --accHi
-   #CFA4FF, --accLine rgba(176,108,255,.6), --face #150C28, --panel #120B1C,
-   --ground #0A0512, --sceneA #231040, --sceneB #040208, --glow
-   rgba(176,108,255,.32), --cp 16px, --rad 0px. The motif is the place's own
-   --tx-persp. The amber sun is the scene's one warm object; it is --accent-2
-   and the media plate, never a wash behind text.
+   #CFA4FF, --accLine rgba(176,108,255,.6), --face #150C28 declared (the face
+   that RENDERS is #0D0722), --panel #120B1C, --ground #0A0512, --sceneA
+   #231040, --sceneB #040208, --glow rgba(176,108,255,.32), --cp 16px,
+   --rad 0px. The motif is the place's own --tx-persp.
+
+   EVERY VALUE HERE THAT READS LIKE A RENDER RATHER THAN A PALETTE ENTRY WAS TAKEN
+   OFF THE RUNNING PAGE (getComputedStyle on the settled prototype), not out of
+   the stylesheet: the ink ramp, the magenta hairline, the card face and its two
+   shadows, and the motif's applied alpha (.09 — the prototype declares .06 and
+   raises it at runtime). The stylesheet is the pre-script state; the page is the
+   truth.
    ========================================================================== */
 :root{
   /* ------------------------------------------------------------- surfaces */
@@ -52,16 +71,20 @@
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
     linear-gradient(rgba(176,108,255,.04), rgba(176,108,255,.04)),
     #120B1C;
-  --surface-solid: #0F0819;                   /* print / no-filter stand-in */
+  --surface-solid: #0B0619;                   /* print / no-filter stand-in, one step under the face */
   --overlay:       rgba(4, 2, 8, .74);        /* modal scrim — the floor going dark */
 
   /* ----------------------------------------------------------------- text */
-  /* Graded against the COMPOSITED pane (face + tint + fall + sheen), not against
-     --bg: the card's top-left band is the lightest ink ground in the kit. The
-     full table is in README.md. */
-  --text:          #F2EBFF;   /* 17.35:1 on the ground  ·  10.96:1 in the lit card band */
-  --text-muted:    #C9B8E6;   /* 11.01:1 on the ground  ·   6.95:1 in the lit card band */
-  --text-dim:      #AE9CCB;   /*  8.07:1 on the ground  ·   5.10:1 in the lit card band */
+  /* THE RUNTIME RAMP. These are the place's measured inks and they are
+     VIOLET-TINTED, not neutral white: the card is violet, so a neutral white in
+     it read as a different material. Graded against the COMPOSITED card (face +
+     wash + ramp + bloom), not against --bg: the top of the deck is the lightest
+     ink ground in the kit. The full table is in README.md. */
+  --text:          #FBEDFF;   /* 17.88:1 on the ground  ·  13.08:1 at the top of the deck */
+  --text-muted:    #CFB6EC;   /* 11.08:1 on the ground  ·   8.10:1 at the top of the deck */
+  --text-dim:      #9C82C4;   /*  6.14:1 on the ground  ·   4.49:1 in the whitest 1px of the
+                                 top wash, 5.4-6.2:1 across the deck body where
+                                 captions actually sit */
   --text-invert:   #12081F;   /*  5.96:1 on --accent, which is a mid-light fill */
 
   /* ---------------------------------------------------------------- brand */
@@ -77,18 +100,21 @@
   --accent-soft:   rgba(176, 108, 255, .16);
 
   /* --------------------------------------------------------------- status */
-  /* Mint / amber / hot pink-red / sky. --danger is a warm pink-red, so it
-     separates from the violet action cleanly; --warn IS --accent-2 by design,
-     which is why amber never becomes a button. */
+  /* Mint / amber / hot pink-red / sky. --danger is a warm pink-red, a step
+     hotter than the magenta hairline so a danger chip never reads as a frame;
+     --warn IS --accent-2 by design, which is why amber never becomes a button. */
   --ok:            #45E0B0;
   --warn:          #FFB84D;
   --danger:        #FF5C7A;
   --info:          #66D9FF;
 
   /* ---------------------------------------------------------------- lines */
-  /* The frame is a hairline: white 14% flat, the place's own --accLine (60%)
-     where a card meets its floor. Hover takes the hairline to 35%. */
-  --border:        rgba(255, 255, 255, .14);
+  /* THE HAIRLINE IS MAGENTA, measured off the running page:
+     rgba(255,106,213,.45) — the sun's light caught on the rim. The white 14% the
+     stylesheet declares is the pre-script value and is retired. --border-strong
+     stays the accent at 60% where a card meets its floor; hover takes the
+     hairline to 35%. */
+  --border:        rgba(255, 106, 213, .45);
   --border-strong: rgba(176, 108, 255, .60);
   --border-w:      1px;
   --focus-ring:    #CFA4FF;
@@ -101,7 +127,7 @@
   --radius-lg:     0px;
   --radius-pill:   2px;
   --check-radius:  2px;        /* native controls are squared to the deck */
-  --cut:           16px;
+  --cut:           18px;
   --clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
   /* clip-path eats `outline` along the diagonal, so keyboard focus is painted
      inside the silhouette instead. Not optional for a chamfered kit. */
@@ -118,11 +144,15 @@
   --tracking-display: .004em;   /* a squared face wants air, not a squeeze */
 
   /* ---------------------------------------------------------------- depth */
-  /* Every surface here is OPAQUE, so --blur is none: the desk forbids glass,
-     and a blurred opaque card is only a repaint cost. Depth is the shadow the
-     deck casts onto its own floor — plus the fact that clip-path cuts the
-     shadow at the silhouette, so the chamfer never floats. */
-  --shadow-1:      0 6px 16px rgba(0, 0, 0, .50);
+  /* THE DESK'S TWO DROP-SHADOWS, measured on the running card as
+       drop-shadow(rgba(255,90,200,.32) 0 0 10px)
+       drop-shadow(rgba(0,0,0,.55) 0 7px 14px)
+     and expressed as ONE box-shadow stack (the first layer paints on top). The
+     magenta halo is this kit's signature: the sun's light spilling off the deck.
+     The black layer beneath it is what keeps the slab seated on its floor.
+     Every surface here is OPAQUE, so --blur is none: the desk forbids glass, and
+     a blurred opaque card is only a repaint cost. */
+  --shadow-1:      0 0 10px rgba(255, 90, 200, .32), 0 7px 14px rgba(0, 0, 0, .55);
   --shadow-2:      0 10px 26px rgba(0, 0, 0, .55);
   --glow:          0 0 14px rgba(176, 108, 255, .32);
   --blur:          none;
@@ -136,17 +166,17 @@
   /* ======================================================== opt-in hooks === */
   /* progress + avatar: the accent's 25% tint ramping into the accent itself */
   --fill-bg:       linear-gradient(90deg, rgba(176, 108, 255, .25) 0%, #B06CFF 100%);
-  /* the card media panel is a PLACE PLATE: the scene's own amber sun over the
-     card-pitch grid on the face, not the default accent ramp. */
-  --media-bg:      var(--sunset-boulevard-tex),
-                   var(--sunset-boulevard-sun),
-                   linear-gradient(180deg, rgba(35,16,64,.55) 0%, rgba(35,16,64,.18) 46%, rgba(10,5,18,0) 100%),
-                   linear-gradient(180deg, #150C28 0%, #0A0512 100%);
+  /* THE MEDIA PLATE IS THE HOLO PANE, with the amber sun rising inside it. The
+     sun is the BASE layer and the pane is painted over it, so the veil, the
+     scanlines and the corner marks lie across the sun the way a projection lies
+     across a horizon — one element, one signature, nothing competing. */
+  --media-bg:      var(--sunset-boulevard-holo),
+                   var(--sunset-boulevard-sun);
   --media-op:      1;
 
   /* ==================================================================== *
      EXTRAS — the material, kept addressable so a project can rebuild the
-     floor, the deck or the sun without re-typing a gradient.
+     floor, the deck, the pane or the sun without re-typing a gradient.
      ==================================================================== */
   /* THE GROUND. --bg is this value and nothing else; the gallery tile, the
      card's floor line and the media plate all point here. Two soft fields of
@@ -162,39 +192,95 @@
   --sunset-boulevard-ground: #0A0512;
   --sunset-boulevard-scene-a: #231040;
   --sunset-boulevard-scene-b: #040208;
-  /* THE DECK. The desk's .card-in, ported. Layer order, top first:
-     sheen (+ its 1px specular lip) > occlusion > texture > identity edge >
-     5% tint > 157° face fall > face. */
+  /* THE DECK — place 07's OWN MATERIAL, and it is not the family default.
+     Measured on the running page, top first:
+       1. the top wash        white 12% out by 24% of the height
+       2. the motif           the place's own perspective grid at the card floor
+       3. THE PINK BLOOM      rgba(255,106,213,.34) rising from 116% (below the
+                              card's floor), gone by 68% — the sun's light coming
+                              up off the plane, and the reason this deck is pink
+                              at the bottom and indigo at the top
+       4. the dark ramp       transparent at the top to rgba(7,3,18,.80) at the
+                              bottom
+       5. the face            rgb(13,7,34)
+     There is NO 9% occlusion band and NO 157° face fall in this place: the bloom
+     and the ramp do that work, and the effect is an object standing in coloured
+     light rather than a slab with a drawn highlight. The motif sits under the
+     wash and over the bloom, so the grid is the material and the bloom lights it
+     from beneath. */
   --sunset-boulevard-pane:
-    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
-                            rgba(255,255,255,.17) 1px,
-                            rgba(255,255,255,.048) 34%,
-                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
-    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
-                            rgba(0,0,0,.138) 38%,
-                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    var(--sunset-boulevard-edge) 0 100%/100% 1px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 24%),
     var(--sunset-boulevard-tex),
-    linear-gradient(90deg, transparent 0%,
-                            rgba(176,108,255,.55) 7%,
-                            rgba(176,108,255,.55) 62%,
-                            transparent 96%) 0 100%/100% 1px no-repeat,
-    linear-gradient(rgba(176,108,255,.05), rgba(176,108,255,.05)),
-    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
-                            rgba(255,255,255,0) 44%,
-                            rgba(0,0,0,.24) 78%,
-                            rgba(0,0,0,.52) 100%),
-    var(--sunset-boulevard-face);
-  --sunset-boulevard-face: #150C28;
+    radial-gradient(120% 64% at 50% 116%, rgba(255,106,213,.34) 0%, rgba(255,106,213,0) 68%),
+    linear-gradient(rgba(13,7,34,0) 0%,
+                            rgba(7,3,18,.80) 100%),
+    rgb(13,7,34);
+  /* THE IDENTITY EDGE — the kit's signature, and the one place pink and blue
+     are allowed. A full-width, full-opacity three-stop NEON RAMP along the
+     card's bottom edge: pink #FF6AD5 → violet #A15CFF → blue #3AC9FF. No fade,
+     no short 7%-62% band; the sweep runs the whole width because it is the
+     horizon of this place, not a highlight. It is a gradient, not two more
+     accents: nothing else in the kit may be pink or blue because of it. */
+  --sunset-boulevard-edge:
+    linear-gradient(90deg, rgb(255,106,213) 0%, rgb(161,92,255) 46%, rgb(58,201,255) 100%);
+  /* THE FACE IS THE RENDERED ONE: rgb(13,7,34) = #0D0722, a violet-tinted step
+     the desk renders — not the #150C28 the stylesheet declares. A card stands on
+     the value it renders, so that is the one shipped here. */
+  --sunset-boulevard-face: #0D0722;
   /* THE MOTIF — pasted verbatim from docs/lilythium/textures.css. The card line
      is a perspective grid anchored to the card's floor at 62% height
-     (50% 100% / 100% 62%); the ground line is the same grid stretched
-     (50% 0 / 200% 100%). Do not redraw, re-encode or re-alpha either. */
-  --sunset-boulevard-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.06' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 100%/100% 62% no-repeat;
-  --sunset-boulevard-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.033' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 0/200% 100% no-repeat;
+     (50% 100% / 100% 62%), stroked at the APPLIED alpha of .09; the ground line
+     is the same grid stretched (50% 0 / 200% 100%) at half that, .0495. Do not
+     redraw, re-encode or re-alpha either. */
+  --sunset-boulevard-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.09' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 100%/100% 62% no-repeat;
+  --sunset-boulevard-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 150' preserveAspectRatio='none'><g fill='none' stroke='%23fff' stroke-opacity='0.0495' stroke-width='.7'><path d='M120 28L-60 150M120 28L20 150M120 28L60 150M120 28L100 150M120 28L120 150M120 28L140 150M120 28L180 150M120 28L220 150M120 28L300 150'/><path d='M0 42H240M0 52H240M0 66H240M0 84H240M0 108H240M0 138H240'/></g></svg>") 50% 0/200% 100% no-repeat;
+  /* THE HOLO PANE — the desk's .pane-holo, and the family's signature. No face,
+     no border, no shadow: a 13% veil, one accent bloom at its crown, 3px
+     scanlines and four 24px corner marks. This is the one surface in the kit
+     that is PROJECTED rather than built, and it is the media plate.
+     Order, top first: corner marks > scanlines > crown bloom > veil.
+     The veil is the ONE re-expression: the desk lays 13% of the place's hue over
+     its scene, while this plate sits on an opaque card, so the same 13% is a
+     film of black. Read the README before "fixing" it to violet. */
+  --sunset-boulevard-holo:
+    /* four corner marks, two 1px hairlines each (the desk's .brk, at 24px) */
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) left  top/24px 1px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) left  top/1px 24px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) right top/24px 1px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) right top/1px 24px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) left  bottom/24px 1px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) left  bottom/1px 24px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) right bottom/24px 1px no-repeat,
+    linear-gradient(rgba(176,108,255,.70),rgba(176,108,255,.70)) right bottom/1px 24px no-repeat,
+    /* the desk's .scan: 1px rows at a 3px pitch, 5% white, held at 60% */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    /* the crown bloom (the desk's second radial, .055) */
+    radial-gradient(120% 78% at 50% 0%, rgba(176,108,255,.055) 0%, rgba(176,108,255,0) 62%),
+    /* THE VEIL */
+    linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
   /* THE SUN — the one warm object in the kit, built from --accent-2 only: a
-     disc with the lower slats cut through it by the face colour, the way the
-     scene draws it. Used by the media plate; never a wash behind text. */
+     disc with the lower slats cut through it, the way the scene draws it. It is
+     the base of the media plate, so the holo pane is thrown across the sun
+     rather than standing beside it. Never a wash behind text. */
   --sunset-boulevard-sun:
-    repeating-linear-gradient(180deg, transparent 0 5px, rgba(21,12,40,.92) 5px 8px) 50% 0/100% 74% no-repeat,
+    repeating-linear-gradient(180deg, transparent 0 5px, rgba(13,7,34,.92) 5px 8px) 50% 0/100% 74% no-repeat,
     radial-gradient(22% 30% at 50% 38%, #FFB84D 0%, #FFB84D 58%, rgba(255,184,77,.55) 68%, rgba(255,184,77,0) 100%);
+  /* THE DESK'S OWN DEPTH, as a filter — see the rule below. */
+  --sunset-boulevard-halo:
+    drop-shadow(0 0 10px rgba(255, 90, 200, .32))
+    drop-shadow(0 7px 14px rgba(0, 0, 0, .55));
 }
+
+/* ----------------------------------------------------------------------------
+   THE HALO, APPLIED. `clip-path` removes a box-shadow at the silhouette, so the
+   contract's --shadow-1 can carry this kit's two drop-shadows and still paint
+   nothing: the desk builds its depth as `filter: drop-shadow(...)`, which follows
+   the clipped outline of the chamfer. Re-expressed here in the one form that can
+   render it — the same move the library already makes for a button filter — so
+   the magenta halo the place is known for is actually on screen and not merely
+   declared. The colours are the measured ones; --shadow-1 keeps the same stack
+   for consumers that paint it on an unclipped box.
+   ------------------------------------------------------------------------- */
+.card { filter: var(--sunset-boulevard-halo); }

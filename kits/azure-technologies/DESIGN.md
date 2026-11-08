@@ -171,8 +171,8 @@ components:
 
 Azure Technologies is place 01 of the Li//OS desk — the reference instance of a family of
 fifteen instrument-panel places, six of which are ported here. It is a cold orbital console:
-a near-black blue ground, cyan hairlines at 1px, an opaque card face carrying a 72 x 41.5692
-hexagon lattice at 5.5%, a 16px chamfer on every plate, and no rounding anywhere.
+a near-black blue ground, cyan hairlines at 1px, an opaque card face carrying a 36 x 20.7846
+hexagon lattice at 9%, a 16px chamfer on every plate, and no rounding anywhere.
 
 The desk's grammar is what makes it one family rather than six skins: a hairline frame, an
 opaque face with a sheen band across its top 9%, a bottom occlusion band, a 157° face fall, a
@@ -244,7 +244,7 @@ collapsing to one column below ~640px. Density is medium-tight: 2.25rem section 
 0.65–1rem internal gaps, so the page reads as plated modules on a board rather than a document.
 
 The ground is deliberately *large-celled*: a 120px technical grid and the motif at 144 x 83.14
-(twice the card's pitch). The components carry the motif at 72 x 41.5692 and 5.5%. Two scales,
+(twice the card's pitch). The components carry the motif at 36 x 20.7846 and 5.5%. Two scales,
 two jobs — an equal-weight ground and card makes the whole page one busy field and every card
 reads as texture inside texture.
 
@@ -266,7 +266,7 @@ Why that order and not another:
 - **Occlusion above the texture.** The bottom 9% of a card goes out of the light, so the
   lattice must dim there. Occlusion under the texture leaves a full-strength lattice in the
   dark band, which reads as a rendering fault.
-- **Texture above the tint.** A 5.5% lattice under a 5% cyan tint is invisible; the tint is a
+- **Texture above the tint.** A 9% lattice under a 5% cyan tint is invisible; the tint is a
   wash on the face and the lattice is drawn on the wash.
 - **Tint above the fall.** The fall is the face's own shading; the tint is the place's colour
   sitting on that face, so it takes the shading rather than replacing it.

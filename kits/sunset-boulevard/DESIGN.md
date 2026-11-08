@@ -177,7 +177,7 @@ components:
 # Sunset Boulevard
 
 **An instrument deck on a city floor at midnight.** A violet-framed slab of opaque indigo, corners
-cut at 16px, its face carrying a perspective grid that is anchored to its own bottom edge — the same
+cut at 18px, its face carrying a perspective grid that is anchored to its own bottom edge — the same
 grid the page stands on, at twice the pitch and half the alpha. The only warm object in the kit is
 the amber sun in the scene: `{colors.secondary}`, and never a wash behind text.
 

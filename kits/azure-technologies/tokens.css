@@ -6,13 +6,15 @@
    ported places are variations on.
 
    WHAT THE RENDER IS. A near-black blue ground (#05080D, floor #030609) carrying
-   two soft fields of #0B2233, a 120px technical grid and the place's hexagon
-   lattice at half alpha and twice the card's pitch. On that ground, opaque cards
-   (#0A0F16) with a 72 x 41.5692 lattice at 5.5%, a 9% sheen band with a 1px
-   specular lip, a 9% bottom occlusion band, a 157° face fall, a 5% cyan tint and
-   a 1px cyan identity edge along the bottom — the desk's own .card-in, expressed
-   as one background value. 16px chamfer on every plate, 0px radii, 1px frames,
-   no bloom beyond the glow the desk itself declares.
+   two soft fields of #0B2233, a 120px technical grid and the place's closed
+   honeycomb at 4.95% and twice the card's pitch. On that ground, opaque cards
+   (#0A0F16) with a 36 x 20.7846 closed honeycomb at 9%, a 9% sheen band with a
+   1px specular lip, a 9% bottom occlusion band, a 157° face fall, a 5% cyan tint
+   and a 1px cyan identity edge along the bottom — the desk's own .card-in,
+   expressed as one background value. 16px chamfer on every plate, 0px radii,
+   1px frames, no bloom beyond the glow the desk itself declares. The card's
+   media panel is the desk's .pane-holo instead: no face, a 13% veil, an accent
+   crown bloom, 3px CRT scanlines and four 24px corner marks.
 
    WHY IT IS THE BASELINE. One accent, one drawn motif, one frame, one light
    model. A sibling changes exactly one of those — its hue, its motif, its corner
@@ -20,16 +22,25 @@
    fewest exceptions to explain, so it is the one to copy from and the one to
    diff a sibling against.
 
-   PROVENANCE — every colour is copied from docs/lilythium/place-01.css, which was
-   extracted verbatim from the user's bespoke-desktop prototype
-   (prototypes/v9-lilythium/index.html, body[data-place="01"]): --acc #4FD8FF,
+   PROVENANCE — every colour is copied from docs/lilythium/runtime-01.json, which
+   is getComputedStyle() on the SETTLED page of the user's bespoke-desktop
+   prototype (prototypes/v9-lilythium, body[data-place="01"]): --acc #4FD8FF,
    --acc2 #DAF9FF, --accHi #8BE8FF, --face #0A0F16, --panel #0A0F15,
    --ground #05080D, --sceneA #0B2233, --sceneB #030609,
    --glow rgba(79,216,255,.34), --accLine rgba(79,216,255,.6), --cp 16px,
-   --rad 0px, --txA .055. The two texture tokens are pasted verbatim from
-   docs/lilythium/textures.css (alpha already folded in; ground variant at half
-   alpha, twice the pitch). --accent-2 violet #7E8CFF is the hue the place's own
-   space scene carries.
+   --rad 0px, texture alpha .09, hairline rgba(255,255,255,.14). The desk's own
+   ink ramp is #E9F0F6 / #B2BFCA / #93A1AE; this port's three inks sit one step
+   lighter (#E8F2F8 / #B7C7D3 / #9AADBC) and are graded against the composited
+   pane, table in README.md. The two texture tokens are pasted verbatim from
+   docs/lilythium/textures.css (alpha already folded in; ground variant at 55% of
+   the card's alpha, twice the pitch). --accent-2 violet #7E8CFF is the hue the
+   place's own space scene carries.
+
+   THE STYLESHEET IS NOT THE TRUTH. The built page ships a legacy motif — a 72px
+   hexagon grid with a spoke from each centre to its corners, which reads as a
+   triangle grid — and swaps it for the closed 36 x 20.7846 honeycomb when its
+   scripts run. Everything here is the post-script state. A previous port of this
+   kit read place-01.css and therefore shipped the legacy grid; it was wrong.
 
    THE FRAME IS A RING, NOT A BORDER. --clip cuts the diagonal, so the border is
    painted on an edge that no longer exists. tools/build.py derives --frame-ring
@@ -39,7 +50,8 @@
 :root{
   /* ---------------------------------------------------------------- surfaces *
      THE GROUND IS A SCENE, NOT A COLOUR. Two fields of --sceneA, a 120px
-     technical grid, the motif at half alpha and twice the card's pitch, and a
+     technical grid, the motif at 4.95% (55% of the card's .09) over twice the
+     card's pitch, and a
      ramp to --sceneB at the floor. Sizes are percentages (or the motif's own
      baked pitch) because the gallery renders --bg into a ~118px tile and a
      px-anchored radial would show it the top edge only. */
@@ -67,7 +79,7 @@
   --surface:       var(--azure-technologies-pane);
 
   /* The nested tier — inputs, badges, alerts, code, card-elevated. It drops the
-     lattice and the identity edge on purpose: a 72 x 41.57 lattice on a 2.5rem
+     motif and the identity edge on purpose: a 36 x 20.78 honeycomb on a 2.5rem
      control is clutter, not material. Shallow sheen, half the tint, the panel. */
   --surface-2:
     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
@@ -168,30 +180,74 @@
   --check-checked: var(--accent);
   /* progress + avatar: the accent's own 25% tint into the accent */
   --fill-bg:       linear-gradient(90deg, rgba(79, 216, 255, .25), var(--accent));
-  /* the card media panel is a PLACE PLATE — the scene's bloom and the motif at
-     card pitch on the face, not the default accent ramp. Opaque, so --media-op: 1 */
-  --media-bg:
-    var(--azure-technologies-tex),
-    radial-gradient(120% 90% at 68% 12%, rgba(11, 34, 51, .90) 0%, rgba(5, 8, 13, 0) 70%),
-    linear-gradient(160deg, var(--azure-technologies-face) 0%, var(--azure-technologies-ground) 100%);
+  /* THE HOLO PANE — the desk's .pane-holo (experiments/panels-v3/index.html,
+     153-183), the family's projected surface, and the one construction in this
+     kit that is not a card. A card is opaque and built out of the place; a pane
+     is projected onto it: no face, no border, no shadow. What is left is a 13%
+     veil, one accent bloom at the crown, 3px CRT scanlines and four 24px corner
+     marks (each mark two 1px hairlines). It is wired to the card's media panel,
+     where a place plate used to be.
+
+     THE ONE RE-EXPRESSION. The desk lays 13% of the place's HUE over its scene;
+     the lab's media panel sits on an opaque card face, so the same 13% as hue
+     would read as tint-on-tint and disappear. It is a film of BLACK instead —
+     same weight, same job (drop what is behind the projection), opposite sign.
+     Everything else is the desk's own values: corner marks at .70, scanlines
+     white .03 on a 3px pitch, bloom .055.
+
+     WHAT CANNOT BE A TOKEN. The desk animates a 180px accent band down the pane
+     every 9s (@keyframes sweep) behind a prefers-reduced-motion guard. The lab
+     has no element to hang it on, so this kit ships the construction and not the
+     motion. See README. */
+  --azure-technologies-holo:
+    /* four corner marks, two 1px hairlines each, 24px */
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) left  top/24px 1px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) left  top/1px 24px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) right top/24px 1px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) right top/1px 24px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) left  bottom/24px 1px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) left  bottom/1px 24px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) right bottom/24px 1px no-repeat,
+    linear-gradient(rgba(79,216,255,.70),rgba(79,216,255,.70)) right bottom/1px 24px no-repeat,
+    /* the desk's .scan: 1px rows at a 3px pitch, white .03 */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    /* the crown bloom — the desk's second radial, .055 */
+    radial-gradient(120% 78% at 50% 0%, rgba(79,216,255,.055) 0%, rgba(79,216,255,0) 62%),
+    /* THE VEIL, as it behaves here: 13% of black, because the panel beneath is
+       already an opaque card. See the note above. */
+    linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
+
+  /* the card media panel is the HOLO PANE — no face, corner marks, scanlines,
+     crown bloom and the veil, at --media-op: 1 because the pane is not a wash */
+  --media-bg:      var(--azure-technologies-holo);
   --media-op:      1;
   /* the masthead is a field of the scene, not an accent bloom */
   --wash:          radial-gradient(120% 140% at 12% 0%, rgba(11, 34, 51, .85) 0%, rgba(11, 34, 51, 0) 62%);
 
   /* ==================================================================== *
-     THE MOTIF — pasted verbatim from docs/lilythium/textures.css. The desk
-     applied --txA as a pseudo-element opacity; a background layer has no opacity
-     of its own, so the alpha is already folded into the stroke (5.5% on the
-     card, 3.03% on the ground) and the placement is baked in: 72 x 41.5692 at
-     the card, 144 x 83.14 on the ground. Do not redraw or re-encode these.
+     THE MOTIF — pasted verbatim from docs/lilythium/textures.css, which was read
+     with getComputedStyle() on the settled page. It is a CLOSED hexagon
+     honeycomb: complete hexagons, no spokes, tile 36 x 20.7846.
+
+     NOT the stylesheet's motif. place-01.css ships a 72px hexagon grid with a
+     spoke from each centre to its corners, which renders as a triangle grid; the
+     page's scripts swap it for this one at runtime. The stylesheet is the
+     pre-script state and is superseded. (An earlier port of this kit shipped it.)
+
+     The desk applied its alpha as a pseudo-element opacity; a background layer
+     has no opacity of its own, so the alpha is already folded into the stroke
+     (.09 on the card, .0495 on the ground) and the placement is baked in:
+     36 x 20.78 on the card, 72 x 41.57 on the ground. Do not re-derive, re-alpha
+     or re-encode these.
      ==================================================================== */
-  --azure-technologies-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='41.5692'><g fill='none' stroke='%23fff' stroke-opacity='0.055' stroke-width='1'><path d='M12.00 20.78L24.00 0.00'/><path d='M-12.00 20.78L12.00 20.78'/><path d='M-24.00 0.00L-12.00 20.78'/><path d='M-24.00 0.00L-12.00 -20.78'/><path d='M-12.00 -20.78L12.00 -20.78'/><path d='M12.00 -20.78L24.00 0.00'/><path d='M12.00 62.35L24.00 41.57'/><path d='M-12.00 62.35L12.00 62.35'/><path d='M-24.00 41.57L-12.00 62.35'/><path d='M-24.00 41.57L-12.00 20.78'/><path d='M12.00 20.78L24.00 41.57'/><path d='M48.00 0.00L60.00 -20.78'/><path d='M24.00 0.00L48.00 0.00'/><path d='M12.00 -20.78L24.00 -41.57'/><path d='M24.00 -41.57L48.00 -41.57'/><path d='M48.00 -41.57L60.00 -20.78'/><path d='M48.00 41.57L60.00 20.78'/><path d='M24.00 41.57L48.00 41.57'/><path d='M48.00 0.00L60.00 20.78'/><path d='M48.00 83.14L60.00 62.35'/><path d='M24.00 83.14L48.00 83.14'/><path d='M12.00 62.35L24.00 83.14'/><path d='M48.00 41.57L60.00 62.35'/><path d='M84.00 20.78L96.00 0.00'/><path d='M60.00 20.78L84.00 20.78'/><path d='M60.00 -20.78L84.00 -20.78'/><path d='M84.00 -20.78L96.00 0.00'/><path d='M84.00 62.35L96.00 41.57'/><path d='M60.00 62.35L84.00 62.35'/><path d='M84.00 20.78L96.00 41.57'/><path d='M0.00 0.00L24.00 0.00'/><path d='M0.00 0.00L12.00 20.78'/><path d='M0.00 0.00L-12.00 20.78'/><path d='M0.00 0.00L-24.00 0.00'/><path d='M0.00 0.00L-12.00 -20.78'/><path d='M0.00 0.00L12.00 -20.78'/><path d='M0.00 41.57L24.00 41.57'/><path d='M0.00 41.57L12.00 62.35'/><path d='M0.00 41.57L-12.00 62.35'/><path d='M0.00 41.57L-24.00 41.57'/><path d='M0.00 41.57L-12.00 20.78'/><path d='M0.00 41.57L12.00 20.78'/><path d='M36.00 -20.78L60.00 -20.78'/><path d='M36.00 -20.78L48.00 0.00'/><path d='M36.00 -20.78L24.00 0.00'/><path d='M36.00 -20.78L12.00 -20.78'/><path d='M36.00 -20.78L24.00 -41.57'/><path d='M36.00 -20.78L48.00 -41.57'/><path d='M36.00 20.78L60.00 20.78'/><path d='M36.00 20.78L48.00 41.57'/><path d='M36.00 20.78L24.00 41.57'/><path d='M36.00 20.78L12.00 20.78'/><path d='M36.00 20.78L24.00 0.00'/><path d='M36.00 20.78L48.00 0.00'/><path d='M36.00 62.35L60.00 62.35'/><path d='M36.00 62.35L48.00 83.14'/><path d='M36.00 62.35L24.00 83.14'/><path d='M36.00 62.35L12.00 62.35'/><path d='M36.00 62.35L24.00 41.57'/><path d='M36.00 62.35L48.00 41.57'/><path d='M72.00 0.00L96.00 0.00'/><path d='M72.00 0.00L84.00 20.78'/><path d='M72.00 0.00L60.00 20.78'/><path d='M72.00 0.00L48.00 0.00'/><path d='M72.00 0.00L60.00 -20.78'/><path d='M72.00 0.00L84.00 -20.78'/><path d='M72.00 41.57L96.00 41.57'/><path d='M72.00 41.57L84.00 62.35'/><path d='M72.00 41.57L60.00 62.35'/><path d='M72.00 41.57L48.00 41.57'/><path d='M72.00 41.57L60.00 20.78'/><path d='M72.00 41.57L84.00 20.78'/></g></svg>") 0 0/72px 41.57px repeat;
-  --azure-technologies-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='41.5692'><g fill='none' stroke='%23fff' stroke-opacity='0.0303' stroke-width='1'><path d='M12.00 20.78L24.00 0.00'/><path d='M-12.00 20.78L12.00 20.78'/><path d='M-24.00 0.00L-12.00 20.78'/><path d='M-24.00 0.00L-12.00 -20.78'/><path d='M-12.00 -20.78L12.00 -20.78'/><path d='M12.00 -20.78L24.00 0.00'/><path d='M12.00 62.35L24.00 41.57'/><path d='M-12.00 62.35L12.00 62.35'/><path d='M-24.00 41.57L-12.00 62.35'/><path d='M-24.00 41.57L-12.00 20.78'/><path d='M12.00 20.78L24.00 41.57'/><path d='M48.00 0.00L60.00 -20.78'/><path d='M24.00 0.00L48.00 0.00'/><path d='M12.00 -20.78L24.00 -41.57'/><path d='M24.00 -41.57L48.00 -41.57'/><path d='M48.00 -41.57L60.00 -20.78'/><path d='M48.00 41.57L60.00 20.78'/><path d='M24.00 41.57L48.00 41.57'/><path d='M48.00 0.00L60.00 20.78'/><path d='M48.00 83.14L60.00 62.35'/><path d='M24.00 83.14L48.00 83.14'/><path d='M12.00 62.35L24.00 83.14'/><path d='M48.00 41.57L60.00 62.35'/><path d='M84.00 20.78L96.00 0.00'/><path d='M60.00 20.78L84.00 20.78'/><path d='M60.00 -20.78L84.00 -20.78'/><path d='M84.00 -20.78L96.00 0.00'/><path d='M84.00 62.35L96.00 41.57'/><path d='M60.00 62.35L84.00 62.35'/><path d='M84.00 20.78L96.00 41.57'/><path d='M0.00 0.00L24.00 0.00'/><path d='M0.00 0.00L12.00 20.78'/><path d='M0.00 0.00L-12.00 20.78'/><path d='M0.00 0.00L-24.00 0.00'/><path d='M0.00 0.00L-12.00 -20.78'/><path d='M0.00 0.00L12.00 -20.78'/><path d='M0.00 41.57L24.00 41.57'/><path d='M0.00 41.57L12.00 62.35'/><path d='M0.00 41.57L-12.00 62.35'/><path d='M0.00 41.57L-24.00 41.57'/><path d='M0.00 41.57L-12.00 20.78'/><path d='M0.00 41.57L12.00 20.78'/><path d='M36.00 -20.78L60.00 -20.78'/><path d='M36.00 -20.78L48.00 0.00'/><path d='M36.00 -20.78L24.00 0.00'/><path d='M36.00 -20.78L12.00 -20.78'/><path d='M36.00 -20.78L24.00 -41.57'/><path d='M36.00 -20.78L48.00 -41.57'/><path d='M36.00 20.78L60.00 20.78'/><path d='M36.00 20.78L48.00 41.57'/><path d='M36.00 20.78L24.00 41.57'/><path d='M36.00 20.78L12.00 20.78'/><path d='M36.00 20.78L24.00 0.00'/><path d='M36.00 20.78L48.00 0.00'/><path d='M36.00 62.35L60.00 62.35'/><path d='M36.00 62.35L48.00 83.14'/><path d='M36.00 62.35L24.00 83.14'/><path d='M36.00 62.35L12.00 62.35'/><path d='M36.00 62.35L24.00 41.57'/><path d='M36.00 62.35L48.00 41.57'/><path d='M72.00 0.00L96.00 0.00'/><path d='M72.00 0.00L84.00 20.78'/><path d='M72.00 0.00L60.00 20.78'/><path d='M72.00 0.00L48.00 0.00'/><path d='M72.00 0.00L60.00 -20.78'/><path d='M72.00 0.00L84.00 -20.78'/><path d='M72.00 41.57L96.00 41.57'/><path d='M72.00 41.57L84.00 62.35'/><path d='M72.00 41.57L60.00 62.35'/><path d='M72.00 41.57L48.00 41.57'/><path d='M72.00 41.57L60.00 20.78'/><path d='M72.00 41.57L84.00 20.78'/></g></svg>") 0 0/144px 83.14px repeat;
+  --azure-technologies-tex: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='20.7846'><g fill='none' stroke='%23ffffff' stroke-opacity='0.09' stroke-width='1'><path d='M12,10.39L6,20.78L-6,20.78L-12,10.39L-6,0L6,0Z M30,0L24,10.39L12,10.39L6,0L12,-10.39L24,-10.39Z M30,20.78L24,31.17L12,31.17L6,20.78L12,10.39L24,10.39Z M48,10.39L42,20.78L30,20.78L24,10.39L30,0L42,0Z'/></g></svg>") 0 0/36px 20.78px repeat;
+  --azure-technologies-tex-ground: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='20.7846'><g fill='none' stroke='%23ffffff' stroke-opacity='0.0495' stroke-width='1'><path d='M12,10.39L6,20.78L-6,20.78L-12,10.39L-6,0L6,0Z M30,0L24,10.39L12,10.39L6,0L12,-10.39L24,-10.39Z M30,20.78L24,31.17L12,31.17L6,20.78L12,10.39L24,10.39Z M48,10.39L42,20.78L30,20.78L24,10.39L30,0L42,0Z'/></g></svg>") 0 0/72px 41.57px repeat;
 
   /* ==================================================================== *
      THE MATERIAL, kept addressable. --azure-technologies-pane is the desk's own
-     .card-in in one value; --azure-technologies-pane-flat is the same layering
-     over an opaque face for a surface that stands without the ground behind it.
+     .card-in in one value: sheen > occlusion > honeycomb > identity edge > tint >
+     fall > face. --azure-technologies-identity is the accent at the alpha the
+     edge uses, for anything that has to draw that edge itself.
      ==================================================================== */
   --azure-technologies-identity: rgba(79, 216, 255, .55);
   --azure-technologies-pane:

@@ -285,6 +285,23 @@ is *inside* the material (the 5% tint over the discs), which no `backdrop-filter
 The sheen is the top 9% of the card and the occlusion its bottom 9%, both with the desk's own
 stops. They are what make the pane read as a sheet with an edge rather than a rounded rectangle.
 
+### The holo pane
+
+The desk has a second kind of surface and this kit ships it. A card is *built* out of the desk; a
+**pane** is **projected onto** one — no face, no border, no shadow. `--pastel-district-holo` is that
+pane, and it is the media panel's background (`--media-bg`, at `--media-op: 1`): four 24px corner
+marks in `{colors.primary}` at 70%, 1px scanlines at a 3px pitch in white at 3%, one crown bloom of
+`{colors.primary}` at 5.5% (120% × 78% at `50% 0%`), and a 13% film last in the stack.
+
+The film is the one re-expression in this kit: the desk lays 13% of the place's own pink over the
+*scene*, which tints air; this panel sits on an opaque card, where a pink film would only be more
+card, so the same 13% is black and the bloom and brackets read as projected onto the surface. The
+desk's 9s sweep — a 180px accent band travelling down the pane — is motion, which a background value
+cannot carry, so the pane ships still.
+
+In this place the pane is not a HUD but the second half of the kit's subject: the nine discs are
+light out of focus, and the pane's crown bloom and grille are the same light given an edge.
+
 ## Shapes
 
 4 / 6 / 8px and a 999px pill, `--cut: 0px`, no `--clip`. The desk's `--rad` is 6px and the steps
@@ -307,8 +324,8 @@ because a squared control in this place is a different kit.
   ink. Focus takes the accent hairline and a 3px `{colors.primary-soft}` ring.
 - **badge** — mono, uppercase, pill. `badge-accent` carries the pink tint and the accent ink; the
   four status badges carry a status hue on `{colors.surface-2}`.
-- **avatar / chart-1..3 / media** — where the two accents are allowed to appear as colour rather
-  than as chrome.
+- **avatar / chart-1..3** — where the two accents are allowed to appear as colour rather than as
+  chrome. **media** is the holo pane (see *Elevation & Depth*): the only hard-edged light in the kit.
 
 ## Do's and Don'ts
 
@@ -319,13 +336,16 @@ because a squared control in this place is a different kit.
 - Grade any new ink against the composited pane — the lightest pixel under a disc, not `#23141D`.
 - Keep the frame at 1px and the radius at 6px. The softness is in the light, not in the geometry.
 - Let the identity edge have its pixel: nothing should sit flush against the bottom of a card.
+- Keep a media area on `--pastel-district-holo` — the pane is the kit's signature surface and the one
+  place its light is in focus.
 
 **Don't**
 
 - Don't set `--blur` to anything but `none`. It would blur an opaque surface and cost a compositor
   layer for no visible change.
 - Don't add a glow. The bloom is already behind the glass; a second one makes the card a light
-  source and the kit a neon theme.
+  source and the kit a neon theme. (The desk's two in-card accent radials — identity glow and crown —
+  measure 0 alpha on this place's live page and are deliberately not in the pane. Do not restore them.)
 - Don't use `{colors.primary}` as small text. It is legal on the pane (5.7:1) but it reads as a
   pressed button, and the desk's own `{colors.tertiary}` buys 7.6:1 for the same hue.
 - Don't swap the ground for a light one and call it a variant: the pink is graded against a deep

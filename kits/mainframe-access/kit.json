@@ -1,17 +1,17 @@
 {
   "name": "Mainframe Access",
-  "tagline": "Phosphor-green terminal glass on a black grid",
+  "tagline": "Phosphor-green hairline and halo on a black terminal plate",
   "use_when": "developer tools, security and ops consoles, terminal-adjacent products, anything that should feel like a machine login rather than a page",
   "signature": [
     "--mainframe-access-pane",
-    "--mainframe-access-tex",
+    "--mainframe-access-holo",
     "--mainframe-access-field"
   ],
   "order": 210,
   "fonts_url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
   "fonts_label": "Chakra Petch · JetBrains Mono",
   "mode": "dark",
-  "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 02 \"Mainframe Access\") — palette, panel construction and drawn motif taken from the prototype's own tokens",
+  "source": "derived from the user's bespoke-desktop Li//OS prototype (prototypes/v9-lilythium, place 02 \"Mainframe Access\") — palette, panel construction, holo pane and drawn motif taken from the prototype's own tokens, every value re-measured from the running page (getComputedStyle) rather than read from its stylesheet",
   "tags": [
     "dark",
     "terminal",

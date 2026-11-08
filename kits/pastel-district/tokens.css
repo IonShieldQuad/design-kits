@@ -31,6 +31,13 @@
    `docs/lilythium/textures.css` and pasted here verbatim. The mint is the pale
    mint in the place's own scene; the four status colours are DERIVED, because
    the desk has one alert red and no ladder. Numbers in README.md.
+
+   THESE VALUES WERE RE-MEASURED FROM THE RUNNING PAGE, not read out of the
+   prototype's stylesheet: the built page carries a legacy motif per place and
+   swaps it when its scripts run, so anything taken from the CSS text is the
+   pre-script state. `getComputedStyle()` on the settled page is the source
+   (`docs/lilythium/runtime-05.json`), which is why the motif numbers here are
+   the runtime ones and not the ones the text declares.
    ========================================================================== */
 :root{
   /* ------------------------------------------------------------- surfaces *
@@ -67,7 +74,13 @@
      The nine discs fill the box with `100% 100%`: they are positioned in % and
      keep their absolute radii, so one stack gives a different, non-repeating
      constellation in every card — which is what bokeh does and what a tiled
-     motif cannot. */
+     motif cannot.
+
+     The desk's `.card-in` also carries two accent radials inside the card — an
+     identity glow and a crown — and BOTH measure 0 alpha on place 05's running
+     page. They are therefore absent here rather than transcribed at 0: a
+     no-op layer is still a layer, and a pink bloom inside the card is another
+     kit's construction. Do not restore them. */
   --pastel-district-tex:
     radial-gradient(circle at 22% 28%,rgba(255,255,255,0.0425) 0 7px,transparent 8px),
     radial-gradient(circle at 68% 16%,rgba(255,255,255,0.0275) 0 5px,transparent 6px),
@@ -81,10 +94,10 @@
   --pastel-district-pane:
     linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
                             rgba(255,255,255,.17) 1px,
-                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,.047) 34%,
                             rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
     linear-gradient(0deg,   rgba(0,0,0,.46) 0,
-                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,.137) 38%,
                             rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
     var(--pastel-district-tex) 0 0/100% 100% no-repeat,
     linear-gradient(90deg, transparent 0%,
@@ -155,7 +168,7 @@
      `--clip` and no `--cut` — this place rounds, it does not cut. */
   --radius-sm:           4px;
   --radius-md:           6px;
-  --radius-lg:           8px;
+  --radius-lg:           6px;      /* = the desk's --rad: the card's own corner */
   --radius-pill:         999px;
   --cut:                 0px;
 
@@ -190,18 +203,46 @@
      completes at 55% because the avatar's label sits at the ramp's midpoint
      and #2A0F1B on a 62% pink is 3.8:1 — the label needs the solid end. */
   --fill-bg:             linear-gradient(90deg, rgba(255,143,196,.25) 0%, #FF8FC4 55%);
-  /* THE PLACE PLATE — the media panel is a lit region of the place, not a
-     bright two-accent ramp: the plum bloom, the nine discs at card pitch, and
-     the mint arriving from one corner as the scene's second hue. */
-  --pastel-district-bloom:
-    radial-gradient(60% 80% at 74% 16%, rgba(67, 34, 59, .92) 0%, rgba(67, 34, 59, 0) 70%),
-    radial-gradient(46% 62% at 14% 88%, rgba(110, 231, 176, .10) 0%, transparent 72%),
-    var(--pastel-district-tex) 0 0/100% 100% no-repeat,
-    linear-gradient(157deg, var(--pastel-district-face) 0%,
-                            var(--pastel-district-panel) 62%,
-                            var(--pastel-district-scene-b) 100%);
-  --media-bg:            var(--pastel-district-bloom);
-  --media-op:            1;                 /* the plate is dark, not a bright ramp */
+  /* THE HOLO PANE — the family's projected surface, and the one place in this
+     kit where light becomes a HARD-EDGED OBJECT instead of a blur. A card is
+     built out of the desk; a pane is projected onto one: no face, no border, no
+     shadow — a 13% veil, one accent bloom at the crown, 3px CRT scanlines and
+     four 24px corner marks. That is the desk's `.pane-holo`, and it is the
+     family's signature: without it these six are tinted plate skins.
+
+     Here it earns its keep twice over. This place's subject is light falling
+     out of focus; the nine discs are that light DIFFUSE, and the pane is the
+     same light given an edge — the crown bloom and the scanline grille are the
+     only hard geometry in the kit, and the frame is still one pixel.
+
+     THE VEIL IS RE-EXPRESSED, the one place this construction is not verbatim:
+     the desk lays 13% of the place's pink over the SCENE, where it tints air;
+     the lab's media panel sits on an opaque card, where a pink film would only
+     be more card. The same 13% as a film of BLACK is what reads as a veil in
+     that position. No face is added — the card underneath is the face.
+
+     THE 9s SWEEP CANNOT BE A TOKEN: the desk animates a 180px accent band down
+     the pane every 9s behind a `prefers-reduced-motion` guard, and a background
+     value carries no keyframes. The family ships the construction, not the
+     motion. */
+  --pastel-district-holo:
+    /* four corner marks, two 1px hairlines each (the desk's .brk, at 24px) */
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) left  top/24px 1px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) left  top/1px 24px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) right top/24px 1px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) right top/1px 24px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) left  bottom/24px 1px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) left  bottom/1px 24px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) right bottom/24px 1px no-repeat,
+    linear-gradient(rgba(255,143,196,.70),rgba(255,143,196,.70)) right bottom/1px 24px no-repeat,
+    /* the desk's .scan: 1px rows at a 3px pitch, 5% white, held at 60% */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    /* the crown bloom (the desk's second radial, .055) */
+    radial-gradient(120% 78% at 50% 0%, rgba(255,143,196,.055) 0%, rgba(255,143,196,0) 62%),
+    /* the veil, as it behaves on this surface (see above) */
+    linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
+  --media-bg:            var(--pastel-district-holo);
+  --media-op:            1;                 /* the pane is already this dark; .85 greys it */
   /* The masthead keeps a bloom, but it is the desk's SCENE bloom — the place's
      own plum, twice — and not the default accent-soft radial. */
   --wash:

@@ -47,7 +47,7 @@ and read its spec.
 | [`mainframe-access`](kits/mainframe-access/DESIGN.md) | dark · terminal · monochrome · phosphor · technical | developer tools, security and ops consoles, terminal-adjacent products, anything that should feel like a machine login rather than a page |
 | [`pastel-district`](kits/pastel-district/DESIGN.md) | dark · pastel · dreamy · soft · nocturnal | soft and playful products, anime and music editorial, generative-tool panels, anything that should feel dreamy at night without going pastel-light |
 | [`crimson-labyrinth`](kits/crimson-labyrinth/DESIGN.md) | dark · gothic · ornate · ritual · romantic | dark romance and gothic editorial, nightlife and music, witchy or vampire branding, game UI that should feel ritual rather than tactical |
-| [`sunset-boulevard`](kits/sunset-boulevard/DESIGN.md) | dark · outrun · night · retro-future · neon | night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like a city at 1987 midnight |
+| [`sunset-boulevard`](kits/sunset-boulevard/DESIGN.md) | dark · outrun · night · retro-future · neon · holo | night-time nostalgia: music, media and game pages, event and stream branding, anything that should feel like a city at 1987 midnight |
 | [`viridian-fields`](kits/viridian-fields/DESIGN.md) | dark · botanical · matte · nature · calm | calm and natural products, long-reading interfaces, landscape and field-work tools, anything that should feel grown rather than lit |
 <!-- END KITS -->
 

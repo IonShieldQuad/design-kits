@@ -2,7 +2,7 @@
 
 **A gothic ritual console — crimson hairlines and an engraved rose on black velvet.** Not a dark
 page with a red accent: an instrument panel in a vampire's chamber. Near-black oxblood plates, a 1px
-crimson frame cut by a 16px chamfer, one engraved rose struck into the plate's face, a sheen along
+crimson frame cut by a 12px octagon, one engraved rose struck into the plate's face, a sheen along
 the top edge and a crimson identity line along the bottom. One accent, one brass counterpoint, and a
 status ladder that deliberately does not use the accent.
 
@@ -29,8 +29,8 @@ inversion (the status ladder).
 | 01 | `azure-technologies` | 205 | `#4FD8FF` | `#0A0F16` | `#05080D` | chamfer 16 | hex lattice |
 | 02 | `mainframe-access` | 210 | `#54E08A` | `#04100A` | `#020704` | square | scanlines |
 | 05 | `pastel-district` | 215 | `#FF8FC4` | `#23141D` | `#160C13` | round 6 | bokeh |
-| **06** | **`crimson-labyrinth`** | **220** | **`#FF4D5E`** | **`#140A0C`** | **`#090305`** | **chamfer 16** | **engraved rose** |
-| 07 | `sunset-boulevard` | 225 | `#B06CFF` | `#150C28` | `#0A0512` | chamfer 16 | perspective grid |
+| **06** | **`crimson-labyrinth`** | **220** | **`#FF4D5E`** | **`#140A0C`** | **`#090305`** | **octagon 12** | **engraved rose** |
+| 07 | `sunset-boulevard` | 225 | `#B06CFF` | `#150C28` | `#0A0512` | chamfer 18 | perspective grid |
 | 08 | `viridian-fields` | 230 | `#147A57` | `#0C1410` | `#0A1512` | round 5 | engraved fern |
 
 **The axis that separates this place from its five siblings is colour temperature and what the
@@ -42,7 +42,7 @@ line art on metal* rather than a field — the rose is struck into the plate, no
 to:** `gothic` is editorial velvet — plum ground, ivory type, a wine accent, a *rose bloom drawn on a
 thorned stem* as a decorative mark, soft 5–16px curves, a true pill, and Cormorant Garamond carrying
 the romance. This kit is the machine, not the book: oxblood and crimson, an *engraving of a rose as
-the card's own material* (not a sticker on it), a hard 16px chamfer with a 1px frame, 0px radii, and
+the card's own material* (not a sticker on it), a hard 12px octagon with a 1px frame, 0px radii, and
 the family's squared technical face. One is a novel cover on velvet; the other is the console a
 vampire keeps its records in. They share a register, not a construction — and `gothic` keeps red as
 danger while this kit cannot (below).

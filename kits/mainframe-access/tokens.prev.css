@@ -1,0 +1,282 @@
+/* ============================================================================
+   design-kits · mainframe-access                                   contract v2
+   ----------------------------------------------------------------------------
+   A BLACK PLATE THAT EMITS: GREEN HAIRLINE, GREEN HALO, NO FILL, NO MOTIF.
+
+   Every value below was re-measured on the RUNNING page (getComputedStyle on the
+   settled Li//OS desk), not read out of the prototype stylesheet — see
+   docs/lilythium/runtime-02.json. The stylesheet carries the pre-script state,
+   and for place 02 the two disagree on almost everything that matters: the
+   accent, the whole ink ramp, the hairline colour, and the card itself, whose
+   drawn scanline is switched OFF at runtime (::after opacity 0) and whose 5%
+   accent tint is applied at 0. What is left is no longer "terminal glass": it is
+   the family's one EMISSIVE member — a black plate lit from its own edge.
+
+   The pane, top-first (this is the light model):
+
+     sheen        a 9% band at the top edge, 30% white on its first pixel — the
+                  specular lip of a plate under a ceiling light
+     occlusion    a 9% band at the floor, 46% black at its first pixel; inert on
+                  a #000000 face, kept because the pane is the family's
+                  construction and a project that swaps the face stop inherits it
+     edge         1px accent hairline along the bottom, 55% and stopping at 62% —
+                  the desk still draws its identity edge, and it is the brightest
+                  line on the plate
+     fall         157deg, 12% white at the top-left corner to 52% black at the
+                  bottom-right — the only thing that puts light INTO the face
+     face         #000000, the desk's rendered card colour
+
+   NO texture layer. NO tint layer. The motif moved off the card entirely: the
+   scanlines are on the GROUND (1px every 6px at 3.5% white) and inside the holo
+   pane (1px every 3px at 3%), which is where the desk actually renders them.
+
+   The green does not live in the face — it lives in the DEPTH. The desk's card
+   carries filter: drop-shadow(0 0 8px rgba(92,247,155,.16)), an inset bloom
+   rgba(92,247,155,.05) 0 0 30px and a pale top lip rgba(200,255,215,.22) 0 1px
+   0 inset; all three are re-expressed in --shadow-1, which is a box-shadow and
+   so can hold the inset pair a filter cannot.
+
+   IDENTITY. The family's instrument grammar with its two decorations removed:
+   no chamfer (--cut 0, no --clip) and no radius (0 / 0 / 0, pill 2px). What is
+   left is a black rectangle with a green hairline, a green halo and one hue. It
+   is the only monochrome kit in the library — the accent is the only chroma in
+   the interface apart from the status ladder, and the ladder itself is carried
+   by value, chroma and material (see README, "the accent/status collision").
+
+   PROVENANCE — ported from the user's bespoke-desktop Li//OS prototype
+   (prototypes/v9-lilythium, place 02 "Mainframe Access"), values re-measured on
+   the running page: --acc #5CF79B, --acc2 #C2FF8F, --accHi #BCF7CE,
+   --face #04100A (rendered rgb(0,0,0)), --ground #020704, --panel #071009,
+   --sceneA #072A19, --sceneB #010302, --glow rgba(92,247,155,.32), --rad 0px,
+   --cp none. The ground texture is pasted verbatim from
+   docs/lilythium/textures.css; the card texture there is `none`, and is kept as
+   a declared token so nobody re-draws what the desk switched off.
+
+   THE PANE IS THE DESK'S .card-in, minus the two layers it renders at zero.
+   ========================================================================== */
+:root{
+  /* ------------------------------------------------------------- surfaces *
+     --mainframe-access-field is the GROUND as a token: the two sceneA pools,
+     the 120px technical grid, the 6px scanline and the #020704 -> #010302 ramp.
+     --bg IS this token, so the signature tile renders the same scene the page
+     stands on — a bare two-stop ramp is #020704 at both ends and renders as an
+     empty black chip at 168x72. */
+  --mainframe-access-field:
+    radial-gradient(80% 60% at 63% 38%, var(--mainframe-access-scene-a) 0%, transparent 62%),
+    radial-gradient(120% 70% at 14% 96%, var(--mainframe-access-scene-a) 0%, transparent 72%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.024) 0 1px, transparent 1px 120px),
+    var(--mainframe-access-tex-ground),
+    linear-gradient(180deg, #020704 0%, #010302 100%);
+  --bg: var(--mainframe-access-field);
+  --bg-2:          #071009;                   /* panel stop / solid stand-in */
+  /* the plate is the PANE MATERIAL — sheen + occlusion + identity edge + fall
+     over a black face, which is why this token is a layered value, not a fill.
+     No texture, no tint: the desk renders both at zero for this place. */
+  --surface:       var(--mainframe-access-pane);
+  /* the nested tier: sheen + a quarter of a tint on the panel, NO scanline. A 4px
+     row on a 2.5rem control is a moiré, not material: at a 40px control height
+     the pitch repeats 10 times and reads as a printing fault. Same reason the
+     identity edge is dropped — a 1px accent line on a 34px badge is a second
+     border. This tier KEEPS its faint tint because it is a well cut into the
+     plate, not the plate itself, and a well with no fill at all is a hole. */
+  --surface-2:     linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+                   linear-gradient(rgba(92,247,155,.025), rgba(92,247,155,.025)),
+                   #071009;
+  --overlay:       rgba(1, 3, 2, .78);        /* modal scrim: the ground, floored */
+  --surface-solid: #000000;                   /* print / no-filter stand-in — the rendered face */
+
+  /* ----------------------------------------------------------------- text *
+     The desk's ink ramp for this place is GREEN-TINTED, not the neutral it uses
+     elsewhere, and it was read from the running page: #C8EED4 / #93CFA4 /
+     #6A9B7A. Graded against the COMPOSITED plate, not against the face colour.
+     The lightest band a glyph can occupy on a card is #2A2A2A (4.8% sheen tail
+     over the 12% fall), the face is #000000, and --surface-2 composites to
+     #18241C. Numbers in README.
+
+     --text-dim is the ONE ink lifted off the measurement: the desk's #6A9B7A
+     reads 3.96:1 on an 18% accent tint over --surface-2 (#163A23), under the
+     4.55 floor, so it takes one step along its own hue to #77AB89 — 4.79:1
+     there, 5.45:1 on the sheen band, 7.97:1 on the face. */
+  --text:          #C8EED4;   /* 11.37:1 on the lightest band · 16.64:1 on the face · 12.28:1 on the ground */
+  --text-muted:    #93CFA4;   /*  8.00:1 there · 11.70:1 on the face ·  8.95:1 on --surface-2 */
+  --text-dim:      #77AB89;   /*  5.45:1 there ·  7.97:1 on the face ·  6.09:1 on --surface-2 */
+  --text-invert:   #02120A;   /* 13.93:1 on --accent (a light fill needs a dark ink) */
+
+  /* ---------------------------------------------------------------- brand *
+     ONE action and ONE counterpoint. The amber is the desk's own second hue
+     from place 02's scene (its sibling amber terminal), never a third voice:
+     it appears only in warnings, chart stops and the second half of a ramp. */
+  --accent:        #5CF79B;   /* phosphor green — the place's --acc, re-measured
+                                 (the stylesheet's #54E08A is the pre-script state) */
+  --accent-ink:    #BCF7CE;   /* phosphor AS TEXT — the desk's --accHi; 10.42:1 on
+                                 an 18% accent tint, 13.25:1 on --surface-2 */
+  --accent-ink-hover: #C2FF8F;/* the desk's --acc2, the pale member of the family */
+  --accent-hover:  #85FAB5;   /* the fill's +1 step: the same offset the old pair used */
+  --accent-2:      #FFC04D;   /* the desk's amber-terminal sibling */
+  --accent-soft:   rgba(92, 247, 155, .18);
+
+  /* --------------------------------------------------------------- status *
+     MONOCHROME BY DESIGN: --ok is --accent-ink (#BCF7CE) — the pale phosphor
+     standing as a STATE, not as the action. Re-checked against the brighter
+     #5CF79B: the value gap narrowed (1.26:1 -> 1.14:1) but the chroma gap
+     widened (.55/.37 -> .61/.23), so the pair separates by saturation and by
+     material — an outlined chip against an opaque plate — not by hue. See README
+     for the argument, and for the one place it is thin. */
+  --ok:            #BCF7CE;
+  --warn:          #FFC04D;
+  --danger:        #FF7070;   /* 4.69:1 on the accent-soft-over-panel composite; #FF6464
+                                 fell to 4.36 there once the tint underneath brightened */
+  --info:          #9AD9FF;
+
+  /* ---------------------------------------------------------------- lines *
+     THE HAIRLINE IS THE ACCENT, not white. The desk's frame for this place is
+     rgba(92,247,155,.32) and its emphasised line rgba(92,247,155,.52) — both
+     measured, both 1px. This family never thickens a border to separate two
+     surfaces; it occludes. */
+  --border:        rgba(92, 247, 155, .32);
+  --border-strong: rgba(92, 247, 155, .52);
+  --border-w:      1px;
+  --focus-ring:    #BCF7CE;
+
+  /* ---------------------------------------------------------------- shape *
+     SQUARE. Not "slightly rounded": a terminal plate has mitred corners. The
+     pill is 2px because a 999px pill would be the one curved thing on the page;
+     2px only takes the burr off a 0.85rem badge. --cut stays 0 and no --clip is
+     declared, so there is no frame ring to derive. */
+  --radius-sm:     0px;
+  --radius-md:     0px;
+  --radius-lg:     0px;
+  --radius-pill:   2px;
+  --cut:           0px;
+
+  /* ----------------------------------------------------------------- type *
+     The family's pairing, shared by all six places and deliberately unchanged:
+     Chakra Petch is the OS, not the kit. JetBrains Mono carries every label,
+     key, badge and code value — the channel names on an instrument. */
+  --font-display:  "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body:     "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --tracking-caps: .14em;
+  --tracking-display: .004em;
+
+  /* ---------------------------------------------------------------- depth *
+     THE PLATE EMITS. This is the one place in the family where depth is not
+     pure occlusion: the desk's card carries a green drop-shadow, a green inset
+     bloom and a pale top lip, re-expressed here as one box-shadow so the two
+     inset layers survive (filter: drop-shadow cannot hold an inset). --shadow-2
+     keeps the same halo and adds the family's well shadow for the nested tier.
+     --glow is the accent's own 32% and is still used by .btn-primary only —
+     one emitter per control, not one per page. */
+  --shadow-1:      0 0 8px rgba(92, 247, 155, .16),
+                   inset 0 0 30px rgba(92, 247, 155, .05),
+                   inset 0 1px 0 rgba(200, 255, 215, .22);
+  --shadow-2:      0 0 8px rgba(92, 247, 155, .16),
+                   0 10px 26px rgba(0, 0, 0, .55);
+  --glow:          0 0 14px rgba(92, 247, 155, .32);
+  --blur:          none;       /* every surface is opaque; a blurred opaque card is a repaint */
+
+  /* --------------------------------------------------------------- motion *
+     The desk transitions border-colour and tint linearly at .18s. Nothing in
+     this family eases — an eased fade is a consumer interface, a linear one is
+     a machine. */
+  --dur:           .18s;
+  --ease:          linear;
+
+  /* ======================================================== opt-in hooks === */
+  /* fields are recessed wells, not raised boxes: one black 1px lip at the top
+     and a 3.5% white inner keyline, nothing else. */
+  --input-inset:   inset 0 1px 0 rgba(0, 0, 0, .55),
+                   inset 0 0 0 1px rgba(255, 255, 255, .035);
+  /* native controls take the kit's mitre — see the note on --check-appearance. */
+  --check-radius:  0px;
+  /* SQUARING THE NATIVE CONTROLS needs more than a radius: a native radio paints a
+     circle inside its 1rem box whatever border-radius says, and a circle is the one
+     curve this kit forbids. So the box is drawn here — 1px accent hairline when off,
+     solid accent when on. It is also the kit's material argument in miniature: an
+     outlined indicator beside a filled key. */
+  --check-appearance: none;
+  --check-bg:         #071009;                 /* the place's --panel, as a color */
+  --check-border:     1px solid rgba(92, 247, 155, .52);
+  --check-checked:    var(--accent);
+  /* progress + avatar: the accent's 25% tint to the accent itself, hard-stopped
+     at the ends, no third hue. */
+  --fill-bg:       linear-gradient(90deg, rgba(92, 247, 155, .25) 0%, var(--accent) 100%);
+  /* THE MEDIA PANEL IS THE HOLO PANE, not a place plate. The desk has two kinds of
+     surface — a CARD, built out of the plate (opaque face, hairline, sheen,
+     occlusion, motif), and a PANE, projected onto it — and this kit now ships
+     both. See --mainframe-access-holo below. */
+  --media-bg:      var(--mainframe-access-holo);
+  --media-op:      1;           /* the pane is already dark: a 13% veil over a black plate */
+  /* the masthead bloom is the accent at 10% — half the kit's 18% soft tint, so
+     the top of the document is lit without a second, stronger field landing on
+     top of the ground's own sceneA radial. */
+  --wash:          radial-gradient(120% 140% at 50% -8%,
+                                   color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+                                   transparent 60%);
+
+  /* ==================================================================== *
+     THE MATERIAL, kept addressable: the ground, the plate, the projected pane
+     and the two drawn textures. All of them are referenced by --bg / --surface /
+     --media-bg, so a project can rebuild a card or the page without re-typing a
+     stack.
+     ==================================================================== */
+  --mainframe-access-scene-a: #072A19;        /* the place's own --sceneA */
+  /* THE PLATE — the desk's .card-in with the two layers it renders at zero
+     removed: sheen (with its 1px specular lip) > occlusion > identity edge >
+     fall > face. Read top-first; the order is the light model. */
+  --mainframe-access-pane:
+    linear-gradient(180deg, rgba(255,255,255,.30) 0 1px,
+                            rgba(255,255,255,.17) 1px,
+                            rgba(255,255,255,.048) 34%,
+                            rgba(255,255,255,0) 100%) 0 0/100% 9% no-repeat,
+    linear-gradient(0deg,   rgba(0,0,0,.46) 0,
+                            rgba(0,0,0,.138) 38%,
+                            rgba(0,0,0,0) 100%) 0 100%/100% 9% no-repeat,
+    linear-gradient(90deg, transparent 0%,
+                            rgba(92,247,155,.55) 7%,
+                            rgba(92,247,155,.55) 62%,
+                            transparent 96%) 0 100%/100% 1px no-repeat,   /* the identity edge */
+    linear-gradient(157deg, rgba(255,255,255,.12) 0%,
+                            rgba(255,255,255,0) 44%,
+                            rgba(0,0,0,.24) 78%,
+                            rgba(0,0,0,.52) 100%),                       /* the face fall      */
+    #000000;
+
+  /* THE HOLO PANE — the desk's .pane-holo, ported. No face, no border, no shadow:
+     four 24px corner marks, 3px CRT scanlines, one accent bloom at the crown and
+     a 13% veil. This is the half of the desk that a card-only port cannot say.
+
+     ONE RE-EXPRESSION, stated because it is the only one: the desk lays its 13%
+     over the SCENE, where 13% of the place's hue is a green tint. The lab's media
+     panel sits on an opaque black card, so the same 13% has nothing to tint and
+     ships as a film of black instead — a veil that darkens rather than greens.
+     Everything above it is the desk's own construction. */
+  --mainframe-access-holo:
+    /* four corner marks, two 1px hairlines each (the desk's .brk, at 24px) */
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) left  top/24px 1px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) left  top/1px 24px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) right top/24px 1px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) right top/1px 24px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) left  bottom/24px 1px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) left  bottom/1px 24px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) right bottom/24px 1px no-repeat,
+    linear-gradient(rgba(92,247,155,.70),rgba(92,247,155,.70)) right bottom/1px 24px no-repeat,
+    /* the desk's .scan: 1px rows at a 3px pitch, 5% white, held at 60% (= 3%) */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    /* the crown bloom (the desk's second radial, .055) */
+    radial-gradient(120% 78% at 50% 0%, rgba(92,247,155,.055) 0%, rgba(92,247,155,0) 62%),
+    /* THE VEIL — see the note above */
+    linear-gradient(rgba(0,0,0,.13), rgba(0,0,0,.13));
+
+  /* THE CARD TEXTURE IS `none`. The desk renders this place's ::after at opacity 0,
+     so the plate carries no pattern at all. The value is pasted verbatim from
+     docs/lilythium/textures.css and kept declared, so the absence is on the record
+     rather than looking like an oversight. Nothing in --surface references it. */
+  --mainframe-access-tex: none;
+  /* The scanlines that DO render belong to the ground, verbatim from the same file:
+     1px rows every 6px at 3.5% white. The pitch is the image's own period, so the
+     layer declares no background-size: any size would have to be a multiple of 6px
+     or it would resample the 1px row into a soft 2px one. */
+  --mainframe-access-tex-ground: repeating-linear-gradient(0deg,rgba(255,255,255,0.035) 0 1px,transparent 1px 6px);
+}
