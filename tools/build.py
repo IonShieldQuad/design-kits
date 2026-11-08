@@ -63,7 +63,8 @@ OPTIONAL_TOKENS = [
     "--accent-ink", "--accent-ink-hover", "--text-on-surface", "--text-on-surface-muted",
     "--text-on-surface-2", "--text-on-surface-2-muted",
     # shape / construction
-    "--clip", "--input-inset", "--btn-shadow", "--btn-shadow-active", "--btn-hover-lift", "--btn-press",
+    "--clip", "--clip-sm", "--cut-sm", "--input-inset", "--btn-shadow", "--btn-shadow-active",
+    "--btn-hover-lift", "--btn-press",
     # bars and switches: the lab chromed .nav/.tabs/.toggle directly and offered no shadow hook, so a
     # kit could not make a milled channel or a seated knob without a kit.css. Now it can.
     "--bar-shadow", "--bar-item-shadow", "--bar-item-pad", "--toggle-shadow", "--toggle-knob-shadow",
@@ -181,10 +182,13 @@ def frame_ring(clip_value: str, cut_value: str | None = None, fw_value: str | No
         # overshot the diagonal by 41% and sloped the inner edge, which showed up as a step and a
         # thin grey diagonal where the straight edges stayed solid).
         k = "calc(var(--fw) * 0.41421)"
-        mm = re.fullmatch(r"calc\(100% - (var\(--cut\))\)", c)
+        # Any custom property counts, not just --cut: a kit with a second, smaller chamfer for its
+        # controls writes --clip-sm in terms of --cut-sm, and a ring that only understood --cut
+        # would have collapsed to zero thickness on every small control.
+        mm = re.fullmatch(r"calc\(100% - (var\(--[\w-]+\))\)", c)
         if mm:                                     # a chamfer coordinate measured from the far edge
             return f"calc(100% - {mm.group(1)} - {k})"
-        mm = re.fullmatch(r"(var\(--cut\))", c)
+        mm = re.fullmatch(r"(var\(--[\w-]+\))", c)
         if mm:                                     # a chamfer coordinate measured from the near edge
             return f"calc({mm.group(1)} + {k})"
         return c
@@ -599,13 +603,26 @@ class Kit:
         diagonal, which read as "the diagonal is thinner". Only the colour changes, never geometry.
         """
         ring = frame_ring(self.vars.get("--clip", ""), self.vars.get("--cut"), self.vars.get("--border-w"))
-        if not ring:
+        ring_sm = frame_ring(self.vars.get("--clip-sm", ""), self.vars.get("--cut-sm"),
+                             self.vars.get("--border-w"))
+        if not ring and not ring_sm:
             return ""
-        return (
-            "<style>:root{--fw:var(--border-w, 1px);--frame-ring:" + ring + ";}"
-            ".btn,.badge,.card,.nav,pre.code,code.code,.alert,.ctrl,"
-            ".ctrl>.input,.ctrl>.select,.ctrl>.textarea{border-color:transparent}</style>"
-        )
+        # The border is made transparent ONLY on the components that actually got a ring: a kit may
+        # chamfer its panels and leave its chips square, and blanking every border would have left
+        # those chips frameless with nothing drawn in its place.
+        root = ["--fw:var(--border-w, 1px)"]
+        css = []
+        if ring:
+            root.append("--frame-ring:" + ring)
+            css.append(".card,.nav,.alert,pre.code,code.code{border-color:transparent}")
+        if ring_sm or ring:
+            # the chips draw their frame from --frame-ring-sm when a kit declares one and fall back
+            # to --frame-ring otherwise, so either way the border underneath must go
+            if ring_sm:
+                root.append("--frame-ring-sm:" + ring_sm)
+            css.append(".btn,.badge,.ctrl,.ctrl>.input,.ctrl>.select,.ctrl>.textarea"
+                       "{border-color:transparent}")
+        return "<style>:root{" + ";".join(root) + ";}" + "".join(css) + "</style>"
 
     def design_page_html(self) -> str:
         """Rendered DESIGN.md. GitHub Pages runs Jekyll, which rewrites front-matter .md files

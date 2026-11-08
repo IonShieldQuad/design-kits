@@ -161,6 +161,10 @@
                                                a 999px pill can't survive the cut */
   --cut:           10px;                    /* corner cut exposed to consumers */
   /* OPTIONAL CAPABILITY: chamfer. Two opposite corners only — the facet. */
+    /* SMALL-CONTROL CHAMFER - the panel cut at roughly 40%, so a 27px chip keeps its label off the diagonal */
+  --cut-sm: 4px;
+  --clip-sm: polygon(var(--cut-sm) 0, 100% 0, 100% calc(100% - var(--cut-sm)),
+                   calc(100% - var(--cut-sm)) 100%, 0 100%, 0 var(--cut-sm));
   --clip:          polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)),
                    calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
 

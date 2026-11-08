@@ -129,6 +129,9 @@
   --check-radius:  2px;        /* native controls are squared to the deck */
   --cut:           18px;
   --clip: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+  /* SMALL-CONTROL CHAMFER. the 18px panel cut is 67% of a 27px badge's height; 6px is the most a chip can carry. */
+  --cut-sm: 6px;
+  --clip-sm: polygon(var(--cut-sm) 0, 100% 0, 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, 0 100%, 0 var(--cut-sm));
   /* clip-path eats `outline` along the diagonal, so keyboard focus is painted
      inside the silhouette instead. Not optional for a chamfered kit. */
   --focus-inset:   2px;

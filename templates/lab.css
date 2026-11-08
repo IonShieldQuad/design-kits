@@ -100,6 +100,17 @@ section.block:first-of-type { border-top: 0; }
 }
 .ctrl { display: block; }        /* the wrapper is the control's own box, so the ring fits it */
 
+/* SMALL CONTROLS TAKE THEIR OWN CHAMFER. One cut cannot serve a 280px card and a 27px badge: at 16px
+   on a 27px chip the diagonal removes 59% of the corner's height and the label sits on the edge.
+   A kit scales the cut down for the small tier with --clip-sm; the ring follows it via
+   --frame-ring-sm, which build.py derives from that kit's own --clip-sm. Both fall back to the
+   panel chamfer, so a kit that declares only --clip behaves exactly as before. */
+.btn::before, .badge::before, .ctrl::before {
+  /* the fallback chain is --frame-ring-sm -> --frame-ring -> inert. Dropping straight to inset(50%)
+     would have silently deleted the ring from the five kits that only ever declared --clip. */
+  clip-path: var(--frame-ring-sm, var(--frame-ring, inset(50%)));
+}
+
 /* ------------------------------------------------------------------ buttons */
 .btn {
   --_bg: var(--surface-2, rgba(255,255,255,.06));
@@ -110,7 +121,7 @@ section.block:first-of-type { border-top: 0; }
   color: var(--_fg); background: var(--_bg); border: 1px solid var(--_bd);
   border-radius: var(--radius-md, 8px); cursor: pointer;
   box-shadow: var(--btn-shadow, none);   /* every variant, not just primary (which sets --glow) */
-  clip-path: var(--clip, none);
+  clip-path: var(--clip-sm, var(--clip, none));
   transition: background var(--dur, .16s) var(--ease, ease), color var(--dur, .16s) var(--ease, ease),
               border-color var(--dur, .16s) var(--ease, ease), box-shadow var(--dur, .16s) var(--ease, ease),
               transform var(--dur, .16s) var(--ease, ease);
@@ -182,7 +193,7 @@ section.block:first-of-type { border-top: 0; }
   border-radius: var(--radius-pill, 999px); border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
   background: var(--surface-2, rgba(255,255,255,.05));
   color: var(--text-on-surface-2-muted, var(--text-muted, rgba(233,237,245,.72)));
-  clip-path: var(--clip, none);
+  clip-path: var(--clip-sm, var(--clip, none));
 }
 .badge-accent { color: var(--accent-ink, var(--accent, #6aa2ff)); background: var(--accent-soft, rgba(106,162,255,.14));
                 border-color: color-mix(in srgb, var(--accent, #6aa2ff) 38%, transparent); }
@@ -227,7 +238,7 @@ section.block:first-of-type { border-top: 0; }
   color: var(--text-on-surface-2, var(--text, #e9edf5)); background: var(--surface-2, rgba(255,255,255,.05));
   border: var(--border-w, 1px) solid var(--border, rgba(255,255,255,.14));
   border-radius: var(--radius-md, 8px); outline: none;
-  clip-path: var(--clip, none);
+  clip-path: var(--clip-sm, var(--clip, none));
   /* opt-in recess: a hardware/panel kit sets --input-inset so fields read as milled into the
      surface rather than laid on top of it. Without it, inputs are the flattest thing on the page
      and break the illusion a physical kit is going for. */
